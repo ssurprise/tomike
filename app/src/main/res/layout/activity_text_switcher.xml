@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.activity.TextSwitcherActivity">
+
+    <TextSwitcher
+        android:id="@+id/textSwitcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="咖啡机"
+            android:textColor="@color/skx_2c3e50" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="面包机"
+            android:textColor="@color/skx_ff4081" />
+
+    </TextSwitcher>
+
+    <Button
+        android:id="@+id/textSwitcher_btn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/textSwitcher"
+        android:text="点击切换" />
+
+    <HorizontalScrollView
+        android:id="@+id/pageIndicator_page"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textSwitcher_btn"
+        android:layout_marginTop="31dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/pageIndicator_page_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+</RelativeLayout>

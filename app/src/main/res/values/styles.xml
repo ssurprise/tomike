@@ -1,0 +1,51 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+
+    <style name="BaseTextStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="TextStyle_Size_12sp_Color_2c3e50" parent="@style/BaseTextStyle">
+        <item name="android:textColor">@color/skx_2c3e50</item>
+        <item name="android:textSize">12sp</item>
+
+    </style>
+
+    <style name="TextStyle_Size_14sp_Color_f05b72" parent="@style/BaseTextStyle">
+        <item name="android:textColor">@color/skx_f05b72</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="popup_window_anim_style">
+        <item name="android:windowEnterAnimation">@anim/popup_window_show</item>
+        <item name="android:windowExitAnimation">@anim/popup_window_hidden</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="RatingBarTool" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_bar_star</item>
+        <item name="android:minHeight">30px</item>
+        <item name="android:maxHeight">30px</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/catalog_item_child_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rectangle_solid_b226a69a_corner_2"
+        android:gravity="center_vertical"
+        android:padding="@dimen/view_padding"
+        android:textColor="@color/skx_26a69a"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:text="下拉刷新" />
+</LinearLayout>
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.skx.tomike.customview.ZoomImageNestedScrollingParent xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.skx.tomike.activity.xzdz.ScrollZoomImageActivity">
+
+    <ImageView
+        android:id="@+id/scrollZoom_mainImage"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_06" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollZoom_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:overScrollMode="never"
+        android:paddingTop="90dp"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/skx_ff4081"
+                android:text="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/skx_ffdee9"
+                android:text="2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/skx_3a9173"
+                android:text="3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/skx_f5066d"
+                android:text="4" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/skx_e9596f"
+                android:text="5" />
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</com.skx.tomike.customview.ZoomImageNestedScrollingParent>

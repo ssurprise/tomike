@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<merge xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/luCommentTotalScore_totalScoreContainer"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/luCommentTotalScore_totalScoreContainer"
+    android:layout_width="114dp"
+    android:layout_height="114dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/skx_ff4081"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/luCommentTotalScore_totalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.9"
+        android:textColor="@android:color/white"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/luCommentTotalScore_scoreNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(共28条)"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/luCommentTotalScore_behavior"
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+<!--</merge>-->
+    </LinearLayout>

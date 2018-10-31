@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingEnd="@dimen/view_paddingRight_15"
+    android:paddingLeft="@dimen/view_paddingLeft_15"
+    android:paddingRight="@dimen/view_paddingRight_15"
+    android:paddingStart="@dimen/view_paddingLeft_15"
+    android:paddingTop="20dp">
+
+    <com.skx.tomike.customview.customlayout.PageIndicatorLayout
+        android:id="@+id/infinite_loop_viewPager_pageIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+    </com.skx.tomike.customview.customlayout.PageIndicatorLayout>
+
+    <LinearLayout
+        android:id="@+id/infinite_loop_pageIndicator2_container"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/infinite_loop_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="35dp">
+
+    </android.support.v4.view.ViewPager>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/automatic_loop_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/infinite_loop_viewPager"
+        android:layout_marginTop="30dp">
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

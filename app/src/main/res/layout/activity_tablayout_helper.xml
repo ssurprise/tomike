@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/view_padding"
+    tools:context="com.skx.tomike.activity.ShadowActivity">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayoutHelper_tab"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:tabIndicatorColor="@color/skx_323232"
+        app:tabMode="scrollable"
+        app:tabPadding="0dp"
+        app:tabBackground="@android:color/transparent"
+        app:tabSelectedTextColor="@color/skx_ff4081"
+        app:tabTextColor="@color/skx_878787">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tabLayoutHelper_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#ff4287"
+        android:textSize="24sp">
+
+    </android.support.v4.view.ViewPager>
+
+    <TextView
+        android:id="@+id/tabLayoutHelper_textContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="@color/skx_2cb298"
+        android:gravity="center"
+        android:textColor="#ff4287"
+        android:textSize="24sp" />
+
+    <GridLayout
+        android:id="@+id/tabLayoutHelper_selector"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:columnCount="3"
+        android:rowCount="4">
+
+    </GridLayout>
+
+</LinearLayout>

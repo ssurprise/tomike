@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ViewPagerIndicator">
+        <attr name="color2" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="PageHeaderLayout">
+        <attr name="headerText" format="string" />
+        <attr name="headerTextSize" format="float" />
+        <attr name="headerTextColor" format="color" />
+        <attr name="operateText" format="string" />
+        <attr name="operateTextSize" format="float" />
+        <attr name="operateTextColor" format="color" />
+        <attr name="backBtnSrc" format="reference" />
+    </declare-styleable>
+</resources>

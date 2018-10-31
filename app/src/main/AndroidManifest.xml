@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.skx.tomike">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+
+    <!-- NFC 权限 -->
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <!-- NFC 权限 -->
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".activity.WelcomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- 首页 -->
+        <activity
+            android:name=".activity.HomeActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 单相册 -->
+        <activity
+            android:name=".activity.function.PhotoAlbumActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 多相册 -->
+        <activity
+            android:name=".activity.function.PhotoAlbumsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 图片预览 -->
+        <activity
+            android:name=".activity.function.PicturePreviewActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 拍照 -->
+        <activity
+            android:name=".activity.function.PhotographActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 图片加载 -->
+        <activity
+            android:name=".activity.function.ImageLoadActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- scrollBy 之图片移动 activity -->
+        <activity
+            android:name=".activity.ScrollerPracticeActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- viewpager一屏多展示item activity -->
+        <activity
+            android:name=".activity.VpMultiplePageActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- viewpager无限循环 activity -->
+        <activity
+            android:name=".activity.ViewPagerInfiniteLoopActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!-- 属性动画 -->
+        <activity
+            android:name=".activity.PropertyAnimatorActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!-- 圆形揭示 -->
+        <activity
+            android:name=".activity.effect.CircularRevealActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Double 格式转换工具 -->
+        <activity
+            android:name=".activity.DoubleFormatActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- PopupWindow 实例 -->
+        <activity
+            android:name=".activity.PopupWindowActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 键盘 实例 -->
+        <activity
+            android:name=".activity.KeyboardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.widget.FloatingActionButtonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.widget.SnackBarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.function.PermissionIntroActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.StatusBarNavigationBarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.effect.CardViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.effect.ShareElementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.effect.ShareElement2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.widget.FlowLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.function.RxJavaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.function.RetrofitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SpannableStringBuilderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.function.OkHttpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.xzdz.ScrollChangeTitleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DrawerLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ZoomImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ScrollViewAnchorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TabLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.widget.CoordinatorLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.GetTopTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.designpattern.ClonePatternActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.effect.SwipeRefreshLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ColorMatrixActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ColorMatrix2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UrlEncodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.function.GlideActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ZoomHeaderListViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MatrixImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SetTextIsSelectableTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.designpattern.StrategyPatternActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ImageSpanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.HeaderFooterRecyclerViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.VectorDrawableActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Tint_DrawableTintActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Tint_BackgroundTintActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WatermarkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ShapeDrawableHelperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.XZHomepageNewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TextSwitcherActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PageIndicatorActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.EmojiFilterActivity" />
+        <activity android:name=".activity.TextWordSpacingActivity" />
+        <activity android:name=".activity.designpattern.MementoPatternActivity" />
+        <activity
+            android:name=".activity.widget.CollapsingToolbarLayoutActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.widget.CustomViewActivity" />
+        <activity android:name=".activity.CoordinatorLayoutCaseActivity" />
+        <activity android:name=".activity.ShadowActivity" />
+        <activity android:name=".activity.TabLayoutHelperActivity" />
+        <activity android:name=".activity.NavigationBarActivity" />
+        <activity
+            android:name=".activity.function.NfcGroupActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
+
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.function.NfcWriteTextActivity"
+            android:launchMode="singleTask">
+
+        </activity>
+        <activity
+            android:name=".activity.function.NfcReadTextActivity"
+            android:launchMode="singleTask">
+
+        </activity>
+        <activity
+            android:name=".activity.function.NfcPermissionTestActivity"
+            android:launchMode="singleTask">
+
+        </activity>
+        <activity android:name=".activity.xzdz.EffectGroupActivity" />
+        <activity android:name=".activity.xzdz.ScrollZoomImageActivity" />
+        <activity android:name=".activity.xzdz.ScrollZoomImage2Activity" />
+        <activity android:name=".activity.effect.LayoutTransitionActivity" />
+        <activity android:name=".activity.xzdz.ScrollZoomImage3Activity" />
+
+        <service android:name=".service.LocalService" />
+        <service
+            android:name=".service.RemoteService"
+            android:process=":com.skx.remote" />
+
+        <activity android:name=".activity.widget.ConstraintLayoutActivity">
+
+        </activity>
+        <activity android:name=".activity.designpattern.ChainOfResponsibilityPatternActivity" />
+        <activity android:name=".activity.function.AopTestActivity" />
+        <activity android:name=".activity.function.FloatingWindowActivity" />
+        <activity android:name=".activity.function.OutterStartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!--tenvideo2://?action=66&from= qn2at72s9jb3xk-->
+                <data
+                    android:host="tomike.com"
+                    android:scheme="skxdad" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.designpattern.ViewModelActivity" />
+        <activity android:name=".activity.designpattern.ObserverPatternActivity" />
+        <activity android:name=".activity.PrecomputedTextActivity" />
+        <activity android:name=".activity.GenericTestActivity" />
+    </application>
+
+</manifest>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:drawableLeft="@drawable/ic_action_search"
+    android:drawablePadding="5dp"
+    android:drawableStart="@drawable/ic_action_search"
+    android:gravity="center"
+    android:text="搜索小猪"
+    android:textColor="@android:color/white"
+    android:textSize="14sp" />

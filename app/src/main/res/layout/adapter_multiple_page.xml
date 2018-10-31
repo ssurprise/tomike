@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp">
+
+    <ImageView
+        android:id="@+id/multiple_page_img"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="center" />
+
+    <ImageView
+        android:id="@+id/multiple_page_hoverImg"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="#88000000"
+        android:scaleType="center" />
+
+</RelativeLayout>

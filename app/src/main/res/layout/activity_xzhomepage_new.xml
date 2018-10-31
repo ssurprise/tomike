@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.skx.tomike.activity.XZHomepageNewActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/homepage_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <com.skx.tomike.customview.customlayout.HomepageSearchBtnLayout
+        android:id="@+id/homepage_searchBtn_container"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginEnd="@dimen/view_paddingRight_15"
+        android:layout_marginLeft="@dimen/view_marginLeft_15"
+        android:layout_marginRight="@dimen/view_paddingRight_15"
+        android:layout_marginStart="@dimen/view_marginLeft_15"
+        android:background="@drawable/rectangle_gradient_homepage_search">
+
+    </com.skx.tomike.customview.customlayout.HomepageSearchBtnLayout>
+
+</RelativeLayout>

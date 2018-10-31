@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/view_paddingLeft_15"
+    android:paddingRight="@dimen/view_marginRight_15">
+
+    <ImageView
+        android:id="@+id/commentStart_start1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/star_30dp" />
+
+    <ImageView
+        android:id="@+id/commentStart_start2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:clickable="true"
+        android:src="@drawable/star_30dp" />
+
+    <ImageView
+        android:id="@+id/commentStart_start3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:clickable="true"
+        android:src="@drawable/star_30dp" />
+
+    <ImageView
+        android:id="@+id/commentStart_start4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:clickable="true"
+        android:src="@drawable/star_30dp" />
+
+    <ImageView
+        android:id="@+id/commentStart_start5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:clickable="true"
+        android:src="@drawable/star_30dp" />
+
+</LinearLayout>

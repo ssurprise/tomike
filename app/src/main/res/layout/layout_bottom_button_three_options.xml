@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/bottomBtn_threeOptions_left"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/rectangle_stroke_f3f3f3_solid_fffff_corner_2dp"
+        android:gravity="center"
+        android:textColor="@color/skx_323232"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/bottomBtn_threeOptions_center"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="7dp"
+        android:layout_weight="1"
+        android:background="@drawable/rectangle_stroke_f3f3f3_solid_fffff_corner_2dp"
+        android:gravity="center"
+        android:textColor="@color/skx_323232"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/bottomBtn_threeOptions_right"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="7dp"
+        android:layout_weight="1.7"
+        android:background="@drawable/rectangle_stroke_f3f3f3_solid_fffff_corner_2dp"
+        android:gravity="center"
+        android:textColor="@color/skx_323232"
+        android:textSize="15sp" />
+
+</merge>

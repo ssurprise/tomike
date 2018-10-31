@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:paddingEnd="@dimen/view_paddingRight_15"
+    android:paddingLeft="@dimen/view_paddingLeft_15"
+    android:paddingRight="@dimen/view_paddingRight_15"
+    android:paddingStart="@dimen/view_paddingLeft_15">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/skx_e0e0e0" />
+
+    <TextView
+        android:id="@+id/catalog_item_group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:textColor="@color/skx_323232"
+        android:textSize="16sp"
+        tools:text="组名称" />
+
+    <ImageView
+        android:id="@+id/catalog_item_group_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/arrow_right_30px" />
+
+</RelativeLayout>

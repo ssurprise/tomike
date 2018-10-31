@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.skx.tomike.activity.GetTopTestActivity">
+
+    <LinearLayout
+        android:id="@+id/activity_get_top_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/getTop_1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ff4081"
+            android:gravity="center"
+            android:text="1" />
+
+        <TextView
+            android:id="@+id/getTop_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#22ff4081"
+            android:gravity="center"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/getTop_3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#44ff4081"
+            android:gravity="center"
+            android:text="3" />
+
+        <TextView
+            android:id="@+id/getTop_4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#66ff4081"
+            android:gravity="center"
+            android:text="4"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/getTop_5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#88ff4081"
+            android:gravity="center"
+            android:text="5" />
+
+        <TextView
+            android:id="@+id/getTop_6"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#aaff4081"
+            android:gravity="center"
+            android:text="6" />
+
+        <TextView
+            android:id="@+id/getTop_7"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ccff4081"
+            android:gravity="center"
+            android:text="7" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:gravity="center"
+            android:onClick="test"
+            android:text="test" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:gravity="center"
+            android:onClick="test1"
+            android:text="test1" />
+
+    </LinearLayout>
+</LinearLayout>
