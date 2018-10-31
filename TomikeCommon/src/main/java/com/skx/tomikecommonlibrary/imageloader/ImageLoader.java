@@ -1,16 +1,10 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.view.View;
 import android.widget.ImageView;
-
 
 /**
  * 描述 : 图片加载库
@@ -27,19 +21,13 @@ public class ImageLoader {
 
     public static class Builder<Source, E> {
         Context context;
-        Activity activity;
         LoadOptions options = new LoadOptions();
         Source source;
 
-        private ILoader iLoader = new GlideLoader();
-
+        private ILoader<E> iLoader = new GlideLoader<>();
 
         public Builder(Context context) {
             this.context = context;
-        }
-
-        public Builder(Activity activity) {
-            this.activity = activity;
         }
 
         public Builder load(Source source) {
@@ -54,7 +42,7 @@ public class ImageLoader {
 
         public <T extends Target<E>> void into(T target) {
             if (iLoader instanceof GlideLoader) {
-                ((GlideLoader) iLoader).init(activity);
+                ((GlideLoader) iLoader).init(context);
             }
             iLoader.load(source);
             iLoader.apply(options);
@@ -63,7 +51,7 @@ public class ImageLoader {
 
         public void into(ImageView targetImageView) {
             if (iLoader instanceof GlideLoader) {
-                ((GlideLoader) iLoader).init(activity);
+                ((GlideLoader) iLoader).init(context);
             }
             iLoader.load(source);
             iLoader.apply(options);

@@ -25,7 +25,7 @@ public interface ILoader<E> {
      *
      * @param target 将资源加载到的目标
      */
-    <T extends Target<E>> void into(T target);
+    <T extends Target<E>> T into(T target);
 
     /**
      * 重启
@@ -33,7 +33,7 @@ public interface ILoader<E> {
     void resume();
 
     /**
-     * 暂停
+     * 暂停正在进行的任何负载，但不清除已完成负载的资源。
      */
     void pause();
 
