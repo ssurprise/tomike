@@ -1,18 +1,22 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+
+import java.io.File;
+import java.lang.reflect.ParameterizedType;
 
 
 /**
@@ -20,13 +24,14 @@ import com.bumptech.glide.request.transition.Transition;
  * 日期：2018/10/15 下午3:54
  * 描述：
  */
-class GlideLoader<E> implements ILoader<E> {
+class GlideLoader implements ILoader {
 
 
     private RequestOptions options;
     private Context mContext;
     private Object source;
-    private TargetType targetType = TargetType.DRAWABLE;
+
+//    private Class<E> transcodeClass;
 
 
     public void init(Context context) {
@@ -45,10 +50,10 @@ class GlideLoader<E> implements ILoader<E> {
 //            return;
 //        }
         options = new RequestOptions()
-                .fallback(new ColorDrawable(Color.YELLOW))
-                .error(new ColorDrawable(Color.RED))
-                .placeholder(new ColorDrawable(Color.GREEN))
-                .transforms(new CenterCrop(), new RoundedCorners(120))
+//                .fallback(new ColorDrawable(Color.YELLOW))
+                .error(loadOptions.getErrorResId())
+                .placeholder(loadOptions.getPlaceholderResId())
+        //                .transforms(new CenterCrop(), new RoundedCorners(120))
 //                .transform(new BitmapTransformation() {
 //                    @Override
 //                    protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
@@ -59,13 +64,14 @@ class GlideLoader<E> implements ILoader<E> {
 //                    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
 //                    }
 //                })
-                .timeout(loadOptions.getTimeout())
+//                .timeout(loadOptions.getTimeout())
 //                .circleCrop()
 //                .sizeMultiplier(0.20f);
         ;
 
-        targetType = loadOptions.getTargetType();
+//        transcodeClass = (Class<E>) loadOptions.getSourceType();
 
+//        暂时不对外开放这个缓存配置
 //        switch (loadOptions.getPriority()) {
 //            case HIGH:
 //                options.priority(com.bumptech.glide.Priority.HIGH);
@@ -78,6 +84,7 @@ class GlideLoader<E> implements ILoader<E> {
 //                break;
 //        }
 
+//        暂时不对外开放这个缓存配置
 //        switch (loadOptions.getDiskCacheStrategy()) {
 //            case ALL:
 //                options.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL);
@@ -100,56 +107,56 @@ class GlideLoader<E> implements ILoader<E> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends Target<E>> T into(final T target) {
-        RequestBuilder<E> drawableRequestBuilder;
+    public <E, T extends Target<E>> T into(final T target) {
+        RequestBuilder<?> drawableRequestBuilder;
+
+        ParameterizedType type = (ParameterizedType) target.getClass().getGenericSuperclass();
+        Class<E> z = (Class) type.getActualTypeArguments()[0];
 
         // 输出类型
-//        switch (targetType) {
-//            case DRAWABLE:
-//                drawableRequestBuilder = manager.asDrawable();
-//                break;
-//            case BITMAP:
-//                drawableRequestBuilder = manager.asBitmap();
-//                break;
-//            case GIF:
-//                drawableRequestBuilder = manager.asGif();
-//                break;
-//            case FILE:
-//                drawableRequestBuilder = manager.asFile();
-//                break;
-//            default:
-//                drawableRequestBuilder = manager.asDrawable();
-//                break;
-//        }
+        switch (z.getSimpleName()) {
+            case "Bitmap":
+                drawableRequestBuilder = Glide.with(mContext).asBitmap();
+                break;
+            case "File":
+                drawableRequestBuilder = Glide.with(mContext).asFile();
+                break;
+            default:
+                drawableRequestBuilder = Glide.with(mContext).asDrawable();
+                break;
+        }
 
         // 加载类型
-//        if (source instanceof String) {
-//        } else if (source instanceof Uri) {
-//
-//            drawableRequestBuilder = drawableRequestBuilder.load((Uri) source);
-//        } else if (source instanceof Drawable) {
-//            drawableRequestBuilder = drawableRequestBuilder.load((Drawable) source);
-//        } else if (source instanceof Bitmap) {
-//            drawableRequestBuilder = drawableRequestBuilder.load((Bitmap) source);
-//        } else if (source instanceof Integer) {
-//            drawableRequestBuilder = drawableRequestBuilder.load((Integer) source);
-//        } else if (source instanceof File) {
-//            drawableRequestBuilder = drawableRequestBuilder.load((File) source);
-//        } else if (source instanceof byte[]) {
-//            drawableRequestBuilder = drawableRequestBuilder.load((byte[]) source);
-//        } else {
-//            drawableRequestBuilder = drawableRequestBuilder.load(source);
-//        }
+        if (source instanceof String) {
+            drawableRequestBuilder = drawableRequestBuilder.load((String) source);
+        } else if (source instanceof Uri) {
+            drawableRequestBuilder = drawableRequestBuilder.load((Uri) source);
+        } else if (source instanceof Drawable) {
+            drawableRequestBuilder = drawableRequestBuilder.load((Drawable) source);
+        } else if (source instanceof Bitmap) {
+            drawableRequestBuilder = drawableRequestBuilder.load((Bitmap) source);
+        } else if (source instanceof Integer) {
+            drawableRequestBuilder = drawableRequestBuilder.load((Integer) source);
+        } else if (source instanceof File) {
+            drawableRequestBuilder = drawableRequestBuilder.load((File) source);
+        } else if (source instanceof byte[]) {
+            drawableRequestBuilder = drawableRequestBuilder.load((byte[]) source);
+        } else {
+            drawableRequestBuilder = drawableRequestBuilder.load(source);
+        }
 
-        drawableRequestBuilder = (RequestBuilder<E>) Glide.with(mContext).asBitmap().load(source).apply(options);
-        drawableRequestBuilder.into(new SimpleTarget<E>() {
+        drawableRequestBuilder.apply(options).into(new SimpleTarget() {
             @Override
-            public void onResourceReady(@NonNull E resource, @Nullable Transition<? super E> transition) {
-                target.onResourceReady(resource);
+            public void onResourceReady(@NonNull Object resource, @Nullable Transition transition) {
+                target.onResourceReady((E) resource);
             }
         });
-
         return target;
+    }
+
+    @Override
+    public <T extends ImageView> void into(T target) {
+        Glide.with(mContext).load(source).apply(options).into(target);
     }
 
     @Override

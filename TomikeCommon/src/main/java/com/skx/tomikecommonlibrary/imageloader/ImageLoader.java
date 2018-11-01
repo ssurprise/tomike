@@ -15,22 +15,22 @@ import android.widget.ImageView;
 public class ImageLoader {
 
 
-    public static <T, E> Builder<T, E> with(@NonNull Context context) {
-        return new Builder<>(context);
+    public static Builder with(@NonNull Context context) {
+        return new Builder(context);
     }
 
-    public static class Builder<Source, E> {
+    public static class Builder {
         Context context;
         LoadOptions options = new LoadOptions();
-        Source source;
+        Object source;
 
-        private ILoader<E> iLoader = new GlideLoader<>();
+        private ILoader iLoader = new GlideLoader();
 
         public Builder(Context context) {
             this.context = context;
         }
 
-        public Builder load(Source source) {
+        public Builder load(Object source) {
             this.source = source;
             return this;
         }
@@ -40,24 +40,19 @@ public class ImageLoader {
             return this;
         }
 
-        public <T extends Target<E>> void into(T target) {
-            if (iLoader instanceof GlideLoader) {
-                ((GlideLoader) iLoader).init(context);
-            }
+        public <E, T extends Target<E>> void into(T target) {
+            iLoader.init(context);
             iLoader.load(source);
             iLoader.apply(options);
             iLoader.into(target);
         }
 
-        public void into(ImageView targetImageView) {
-            if (iLoader instanceof GlideLoader) {
-                ((GlideLoader) iLoader).init(context);
-            }
+        public void into(final ImageView targetImageView) {
+            iLoader.init(context);
             iLoader.load(source);
             iLoader.apply(options);
-//            iLoader.into(target);
+            iLoader.into(targetImageView);
         }
-
 
         public Builder showPlaceholder(boolean showPlaceholder) {
             options.showErrorPlaceholder(showPlaceholder);

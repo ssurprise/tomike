@@ -53,6 +53,7 @@ public class LoadOptions {
     @NonNull
     private Priority priority = Priority.NORMAL;
     private TargetType targetType = TargetType.DRAWABLE;
+    private Class<?> sourceType = Drawable.class;
 
     private DiskCacheStrategy diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
 
@@ -101,11 +102,21 @@ public class LoadOptions {
         return this;
     }
 
+    /**
+     * @param priority 加载优先级
+     * @return 加载参数配置
+     * @hide 暂时不对外开放此api，使用默认配置即可
+     */
     public LoadOptions setPriority(@NonNull Priority priority) {
         this.priority = priority;
         return this;
     }
 
+    /**
+     * @param diskCacheStrategy 缓存配置
+     * @return 加载参数配置
+     * @hide 暂时不对外开放此api，使用默认配置即可
+     */
     public LoadOptions setDiskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
         this.diskCacheStrategy = diskCacheStrategy;
         return this;
@@ -159,6 +170,10 @@ public class LoadOptions {
         return transitionAnim;
     }
 
+    /**
+     * @return 加载优先级
+     * {@hide} 暂时不对外开放
+     */
     @NonNull
     public Priority getPriority() {
         return priority;
@@ -174,5 +189,13 @@ public class LoadOptions {
 
     public TargetType getTargetType() {
         return targetType;
+    }
+
+    public void setSourceType(Class<?> sourceType) {
+        this.sourceType = sourceType;
+    }
+
+    public Class<?> getSourceType() {
+        return sourceType;
     }
 }

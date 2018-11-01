@@ -1,9 +1,19 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
+import android.content.Context;
+import android.widget.ImageView;
+
 /**
  * 加载接口
  */
-public interface ILoader<E> {
+public interface ILoader {
+
+    /**
+     * 初始化
+     *
+     * @param context 上下文
+     */
+    void init(Context context);
 
     /**
      * 加载资源
@@ -25,7 +35,9 @@ public interface ILoader<E> {
      *
      * @param target 将资源加载到的目标
      */
-    <T extends Target<E>> T into(T target);
+    <E, T extends Target<E>> T into(T target);
+
+    <T extends ImageView> void into(T target);
 
     /**
      * 重启

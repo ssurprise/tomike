@@ -9,5 +9,5 @@ public class Config {
     /**
      * ImageLoader 加载图片超时阈值
      */
-    public static final int TIMEOUT = 5000;
+    public static final int TIMEOUT = 3000;
 }

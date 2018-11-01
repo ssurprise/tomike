@@ -1,20 +1,13 @@
 package com.skx.tomike.activity.function;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
 import com.skx.tomike.R;
-import com.skx.tomikecommonlibrary.imageloader.AbstractTarget;
 import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
-import com.skx.tomikecommonlibrary.imageloader.Target;
 
 public class GlideActivity extends AppCompatActivity {
 
@@ -57,14 +50,10 @@ public class GlideActivity extends AppCompatActivity {
                         }
 
                         final int index = i;
-                        ImageLoader.with(GlideActivity.this).load(imageArray[i]).into(new AbstractTarget<Drawable>() {
-
-                            @Override
-                            public void onResourceReady(@NonNull Drawable resource) {
-                                if (resource == null) return;
-                                ((ImageView) gridLayout.getChildAt(index)).setImageDrawable(resource);
-                            }
-                        });
+                        ImageLoader.with(GlideActivity.this)
+                                .load(imageArray[i])
+                                .placeholder(R.color.skx_ff4081)
+                                .into((ImageView) gridLayout.getChildAt(index));
                     }
 
                 } catch (Exception e) {
