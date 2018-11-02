@@ -6,11 +6,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -25,7 +26,6 @@ import java.lang.reflect.ParameterizedType;
  * 描述：
  */
 class GlideLoader implements ILoader {
-
 
     private RequestOptions options;
     private Context mContext;
@@ -45,14 +45,30 @@ class GlideLoader implements ILoader {
 
     @Override
     public void apply(LoadOptions loadOptions) {
-//        if (loadOptions == null) {
-//            options = new RequestOptions();
-//            return;
-//        }
-        options = new RequestOptions()
-//                .fallback(new ColorDrawable(Color.YELLOW))
-                .error(loadOptions.getErrorResId())
-                .placeholder(loadOptions.getPlaceholderResId())
+        if (loadOptions == null) {
+            loadOptions = LoadOptions.getDefaultLoadOptions();
+        }
+        options = new RequestOptions();
+
+        if (loadOptions.isShowPlaceholder()) {
+            if (loadOptions.getPlaceholderResId() > 0) {
+                options = options.placeholder(loadOptions.getPlaceholderResId());
+            } else if (loadOptions.getPlaceholderDrawable() != null) {
+                options = options.placeholder(loadOptions.getPlaceholderDrawable());
+            }
+        }
+
+        if (loadOptions.getErrorResId() > 0) {
+            options = options.error(loadOptions.getErrorResId());
+        } else if (loadOptions.getErrorDrawable() != null) {
+            options = options.error(loadOptions.getErrorDrawable());
+        }
+
+        if (loadOptions.getFallbackResId() > 0) {
+            options = options.fallback(loadOptions.getFallbackResId());
+        } else if (loadOptions.getFallbackDrawable() != null) {
+            options = options.fallback(loadOptions.getFallbackDrawable());
+        }
         //                .transforms(new CenterCrop(), new RoundedCorners(120))
 //                .transform(new BitmapTransformation() {
 //                    @Override
@@ -64,7 +80,6 @@ class GlideLoader implements ILoader {
 //                    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
 //                    }
 //                })
-//                .timeout(loadOptions.getTimeout())
 //                .circleCrop()
 //                .sizeMultiplier(0.20f);
         ;
@@ -116,13 +131,13 @@ class GlideLoader implements ILoader {
         // 输出类型
         switch (z.getSimpleName()) {
             case "Bitmap":
-                drawableRequestBuilder = Glide.with(mContext).asBitmap();
+                drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
                 break;
             case "File":
                 drawableRequestBuilder = Glide.with(mContext).asFile();
                 break;
             default:
-                drawableRequestBuilder = Glide.with(mContext).asDrawable();
+                drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
                 break;
         }
 
@@ -156,7 +171,7 @@ class GlideLoader implements ILoader {
 
     @Override
     public <T extends ImageView> void into(T target) {
-        Glide.with(mContext).load(source).apply(options).into(target);
+        Glide.with(mContext).load(source).transition(DrawableTransitionOptions.withCrossFade()).apply(options).into(target);
     }
 
     @Override

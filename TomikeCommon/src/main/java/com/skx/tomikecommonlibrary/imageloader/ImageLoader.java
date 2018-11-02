@@ -1,10 +1,15 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
+
+import com.bumptech.glide.load.resource.gif.GifDrawable;
+
+import java.io.File;
 
 /**
  * 描述 : 图片加载库
@@ -55,22 +60,17 @@ public class ImageLoader {
         }
 
         public Builder showPlaceholder(boolean showPlaceholder) {
-            options.showErrorPlaceholder(showPlaceholder);
+            options.showPlaceholder(showPlaceholder);
             return this;
         }
 
         public Builder placeholder(@Nullable Drawable placeholderDrawable) {
-            options.setPlaceholderDrawable(placeholderDrawable);
+            options.showPlaceholder(true).setPlaceholderDrawable(placeholderDrawable);
             return this;
         }
 
         public Builder placeholder(int placeholderResId) {
-            options.setPlaceholderResId(placeholderResId);
-            return this;
-        }
-
-        public Builder showErrorPlaceholder(boolean showErrorPlaceholder) {
-            options.showErrorPlaceholder(showErrorPlaceholder);
+            options.showPlaceholder(true).setPlaceholderResId(placeholderResId);
             return this;
         }
 
@@ -94,33 +94,23 @@ public class ImageLoader {
             return this;
         }
 
-        public Builder priority(@NonNull Priority priority) {
-            options.setPriority(priority);
-            return this;
-        }
-
-        public Builder diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
-            options.setDiskCacheStrategy(diskCacheStrategy);
-            return this;
-        }
-
         public Builder asFile() {
-            options.setTargetType(TargetType.FILE);
+            options.setSourceType(File.class);
             return this;
         }
 
         public Builder asGif() {
-            options.setTargetType(TargetType.GIF);
+            options.setSourceType(GifDrawable.class);
             return this;
         }
 
         public Builder asBitmap() {
-            options.setTargetType(TargetType.BITMAP);
+            options.setSourceType(Bitmap.class);
             return this;
         }
 
         public Builder asDrawable() {
-            options.setTargetType(TargetType.DRAWABLE);
+            options.setSourceType(Drawable.class);
             return this;
         }
     }

@@ -52,7 +52,6 @@ public class GlideActivity extends AppCompatActivity {
                         final int index = i;
                         ImageLoader.with(GlideActivity.this)
                                 .load(imageArray[i])
-                                .placeholder(R.color.skx_ff4081)
                                 .into((ImageView) gridLayout.getChildAt(index));
                     }
 
