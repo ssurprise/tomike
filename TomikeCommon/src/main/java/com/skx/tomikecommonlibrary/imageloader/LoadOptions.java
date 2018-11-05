@@ -5,6 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.skx.tomikecommonlibrary.R;
+import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -17,7 +21,8 @@ public class LoadOptions {
     /**
      * 是否显示占位图，默认为显示。
      */
-    private boolean showPlaceholder = true;
+    private boolean setPlaceholder = true;
+
     /**
      * 占位图。占位符是当请求正在执行时被展示的 Drawable 。当请求成功完成时，占位符会被请求到的资源替换。
      * 如果被请求的资源是从内存中加载出来的，那么占位符可能根本不会被显示。如果请求失败并且没有设置 error Drawable ，则占位符将被持续展示。
@@ -48,6 +53,8 @@ public class LoadOptions {
 
     private boolean transitionAnim;
 
+    private List<Transformation> transformations;
+
     /**
      * 加载优先级
      */
@@ -64,44 +71,53 @@ public class LoadOptions {
      */
     public static LoadOptions getDefaultLoadOptions() {
         LoadOptions options = new LoadOptions();
-        options.showPlaceholder = true;
-        options.placeholderResId = R.color.skx_f5f5f5;
-
+        options.placeholder(R.color.skx_f5f5f5);
         return options;
     }
 
-
-    public LoadOptions showPlaceholder(boolean showPlaceholder) {
-        this.showPlaceholder = showPlaceholder;
+    public LoadOptions noPlaceholder() {
+        if (placeholderResId != 0) {
+            throw new IllegalStateException("Placeholder resource already set.");
+        }
+        if (placeholderDrawable != null) {
+            throw new IllegalStateException("Placeholder image already set.");
+        }
+        setPlaceholder = false;
         return this;
     }
 
-    public LoadOptions setPlaceholderDrawable(@Nullable Drawable placeholderDrawable) {
+    public LoadOptions placeholder(@Nullable Drawable placeholderDrawable) {
+        if (!setPlaceholder) {
+            throw new IllegalStateException("Already explicitly declared as no placeholder.");
+        }
+        if (placeholderResId == 0) {
+            throw new IllegalArgumentException("Placeholder image resource invalid.");
+        }
         this.placeholderDrawable = placeholderDrawable;
         return this;
     }
 
-    public LoadOptions setPlaceholderResId(int placeholderResId) {
+    public LoadOptions placeholder(int placeholderResId) {
         this.placeholderResId = placeholderResId;
         return this;
     }
 
-    public LoadOptions setErrorDrawable(@Nullable Drawable errorDrawable) {
+    public LoadOptions error(@Nullable Drawable errorDrawable) {
         this.errorDrawable = errorDrawable;
         return this;
     }
 
-    public LoadOptions setErrorResId(int errorResId) {
+    public LoadOptions error(int errorResId) {
         this.errorResId = errorResId;
         return this;
     }
 
-    public LoadOptions setFallbackDrawable(@Nullable Drawable fallbackDrawable) {
+    public LoadOptions fallback(@Nullable Drawable fallbackDrawable) {
         this.fallbackDrawable = fallbackDrawable;
         return this;
     }
 
-    public LoadOptions setFallbackResId(int fallbackResId) {
+    public LoadOptions fallback(int fallbackResId) {
         this.fallbackResId = fallbackResId;
         return this;
     }
@@ -131,6 +147,29 @@ public class LoadOptions {
         return this;
     }
 
+    public LoadOptions transformation(Transformation transformation) {
+        if (transformations == null) {
+            transformations = new ArrayList<>();
+        } else {
+            transformations.clear();
+        }
+        transformations.add(transformation);
+        return this;
+    }
+
+    public LoadOptions transformation(List<Transformation> transformation) {
+        if (transformations == null) {
+            transformations = new ArrayList<>();
+        } else {
+            transformations.clear();
+        }
+        if (transformation == null || transformation.isEmpty()) {
+            return this;
+        }
+        transformations.addAll(transformation);
+        return this;
+    }
+
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
@@ -144,8 +183,8 @@ public class LoadOptions {
         return placeholderResId;
     }
 
-    public boolean isShowPlaceholder() {
-        return showPlaceholder;
+    public boolean isSetPlaceholder() {
+        return setPlaceholder;
     }
 
     @Nullable
@@ -183,9 +222,6 @@ public class LoadOptions {
         return diskCacheStrategy;
     }
 
-    public int getTimeout() {
-        return timeout;
-    }
 
     public void setSourceType(Class<?> sourceType) {
         this.sourceType = sourceType;
@@ -194,4 +230,9 @@ public class LoadOptions {
     public Class<?> getSourceType() {
         return sourceType;
     }
+
+    public List<Transformation> getTransformation() {
+        return transformations;
+    }
+
 }

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.skx.tomikecommonlibrary.imageloader.Picasso.PicassoLoader;
 
 import java.io.File;
 
@@ -29,7 +30,7 @@ public class ImageLoader {
         LoadOptions options = new LoadOptions();
         Object source;
 
-        private ILoader iLoader = new GlideLoader();
+        private ILoader iLoader = new PicassoLoader();
 
         public Builder(Context context) {
             this.context = context;
@@ -59,38 +60,38 @@ public class ImageLoader {
             iLoader.into(targetImageView);
         }
 
-        public Builder showPlaceholder(boolean showPlaceholder) {
-            options.showPlaceholder(showPlaceholder);
+        public Builder noPlaceholder() {
+            options.noPlaceholder();
             return this;
         }
 
         public Builder placeholder(@Nullable Drawable placeholderDrawable) {
-            options.showPlaceholder(true).setPlaceholderDrawable(placeholderDrawable);
+            options.placeholder(placeholderDrawable);
             return this;
         }
 
         public Builder placeholder(int placeholderResId) {
-            options.showPlaceholder(true).setPlaceholderResId(placeholderResId);
+            options.placeholder(placeholderResId);
             return this;
         }
 
         public Builder error(@Nullable Drawable errorDrawable) {
-            options.setErrorDrawable(errorDrawable);
+            options.error(errorDrawable);
             return this;
         }
 
         public Builder error(int errorResId) {
-            options.setErrorResId(errorResId);
+            options.error(errorResId);
             return this;
         }
 
         public Builder fallback(@Nullable Drawable fallbackDrawable) {
-            options.setFallbackDrawable(fallbackDrawable);
+            options.fallback(fallbackDrawable);
             return this;
         }
 
         public Builder fallback(int fallbackResId) {
-            options.setFallbackResId(fallbackResId);
+            options.fallback(fallbackResId);
             return this;
         }
 

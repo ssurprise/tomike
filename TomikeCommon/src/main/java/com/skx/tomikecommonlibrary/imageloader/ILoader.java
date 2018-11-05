@@ -39,6 +39,8 @@ public interface ILoader {
 
     <T extends ImageView> void into(T target);
 
+    void onlyDownload();
+
     /**
      * 重启
      */
@@ -49,13 +51,4 @@ public interface ILoader {
      */
     void pause();
 
-    /**
-     * 取消
-     */
-    void cancel();
-
-    /**
-     * 释放资源
-     */
-    void release();
 }

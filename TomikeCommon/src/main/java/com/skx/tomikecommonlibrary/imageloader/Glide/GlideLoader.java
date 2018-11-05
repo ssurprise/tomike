@@ -1,4 +1,4 @@
-package com.skx.tomikecommonlibrary.imageloader;
+package com.skx.tomikecommonlibrary.imageloader.Glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,14 +10,23 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.BaseTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
+import com.skx.tomikecommonlibrary.imageloader.ILoader;
+import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
+import com.skx.tomikecommonlibrary.imageloader.Target;
+import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 import java.io.File;
 import java.lang.reflect.ParameterizedType;
+import java.security.MessageDigest;
+import java.util.List;
 
 
 /**
@@ -25,7 +34,7 @@ import java.lang.reflect.ParameterizedType;
  * 日期：2018/10/15 下午3:54
  * 描述：
  */
-class GlideLoader implements ILoader {
+public class GlideLoader implements ILoader {
 
     private RequestOptions options;
     private Context mContext;
@@ -50,7 +59,7 @@ class GlideLoader implements ILoader {
         }
         options = new RequestOptions();
 
-        if (loadOptions.isShowPlaceholder()) {
+        if (loadOptions.isSetPlaceholder()) {
             if (loadOptions.getPlaceholderResId() > 0) {
                 options = options.placeholder(loadOptions.getPlaceholderResId());
             } else if (loadOptions.getPlaceholderDrawable() != null) {
@@ -70,16 +79,7 @@ class GlideLoader implements ILoader {
             options = options.fallback(loadOptions.getFallbackDrawable());
         }
         //                .transforms(new CenterCrop(), new RoundedCorners(120))
-//                .transform(new BitmapTransformation() {
-//                    @Override
-//                    protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
-//                        return null;
-//                    }
-//
-//                    @Override
-//                    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-//                    }
-//                })
+        updateTransformations(loadOptions.getTransformation());
 //                .circleCrop()
 //                .sizeMultiplier(0.20f);
         ;
@@ -117,6 +117,42 @@ class GlideLoader implements ILoader {
 //                options.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.RESOURCE);
 //                break;
 //        }
+    }
+
+    private void updateTransformations(List<Transformation> transformations) {
+        if (transformations == null || transformations.isEmpty()) {
+            options = options.dontTransform();
+
+        } else if (transformations.size() == 1) {
+            final Transformation transformation = transformations.get(0);
+            options = options.transforms(new BitmapTransformation() {
+                @Override
+                protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
+                    return transformation.transform(toTransform, outWidth, outHeight);
+                }
+
+                @Override
+                public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+                    messageDigest.update(transformation.diskCacheKey());
+                }
+
+                @Override
+                public boolean equals(Object o) {
+                    return transformation.equals(o);
+                }
+
+                @Override
+                public int hashCode() {
+                    return transformation.hashCode();
+                }
+            });
+        } else {
+//            BitmapTransformation<Bitmap>[]
+//            for (Transformation transformation : transformations) {
+//
+//            }
+//            options = options.transforms()
+        }
     }
 
 
@@ -160,10 +196,32 @@ class GlideLoader implements ILoader {
             drawableRequestBuilder = drawableRequestBuilder.load(source);
         }
 
-        drawableRequestBuilder.apply(options).into(new SimpleTarget() {
+        drawableRequestBuilder.apply(options).into(new BaseTarget() {
+            @Override
+            public void onLoadStarted(@Nullable Drawable placeholder) {
+                super.onLoadStarted(placeholder);
+                target.onLoadStarted(placeholder);
+            }
+
+            @Override
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                super.onLoadFailed(errorDrawable);
+                target.onLoadFailed(errorDrawable);
+            }
+
             @Override
             public void onResourceReady(@NonNull Object resource, @Nullable Transition transition) {
                 target.onResourceReady((E) resource);
+            }
+
+            @Override
+            public void getSize(@NonNull SizeReadyCallback cb) {
+
+            }
+
+            @Override
+            public void removeCallback(@NonNull SizeReadyCallback cb) {
+
             }
         });
         return target;
@@ -172,6 +230,11 @@ class GlideLoader implements ILoader {
     @Override
     public <T extends ImageView> void into(T target) {
         Glide.with(mContext).load(source).transition(DrawableTransitionOptions.withCrossFade()).apply(options).into(target);
+    }
+
+    @Override
+    public void onlyDownload() {
+
     }
 
     @Override
@@ -185,14 +248,5 @@ class GlideLoader implements ILoader {
     @Override
     public void pause() {
         Glide.with(mContext).pauseRequests();
-    }
-
-    @Override
-    public void cancel() {
-    }
-
-    @Override
-    public void release() {
-
     }
 }
