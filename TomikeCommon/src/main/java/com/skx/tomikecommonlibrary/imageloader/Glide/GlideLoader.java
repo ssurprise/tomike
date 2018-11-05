@@ -21,6 +21,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
 import com.skx.tomikecommonlibrary.imageloader.Target;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 import java.io.File;
@@ -78,8 +79,8 @@ public class GlideLoader implements ILoader {
         } else if (loadOptions.getFallbackDrawable() != null) {
             options = options.fallback(loadOptions.getFallbackDrawable());
         }
-        //                .transforms(new CenterCrop(), new RoundedCorners(120))
-        updateTransformations(loadOptions.getTransformation());
+        // 配置转换
+        updateTransform(loadOptions.getTransformStrategy(), loadOptions.getTransformation());
 //                .circleCrop()
 //                .sizeMultiplier(0.20f);
         ;
@@ -119,13 +120,40 @@ public class GlideLoader implements ILoader {
 //        }
     }
 
+    /**
+     * 更新转换
+     *
+     * @param transformStrategy 转换策略
+     * @param transformations   自定义转换
+     */
+    private void updateTransform(TransformStrategy transformStrategy, List<Transformation> transformations) {
+        if (transformStrategy == null) {
+            updateTransformations(transformations);
+            return;
+        }
+        switch (transformStrategy) {
+            case FITCENTER:
+                options = options.fitCenter();
+                break;
+            case CENTERINSIDE:
+                options = options.centerInside();
+                break;
+            case CENTERCROP:
+                options = options.centerCrop();
+                break;
+            case CIRCLECROP:
+                options = options.circleCrop();
+                break;
+        }
+    }
+
     private void updateTransformations(List<Transformation> transformations) {
         if (transformations == null || transformations.isEmpty()) {
             options = options.dontTransform();
 
         } else if (transformations.size() == 1) {
             final Transformation transformation = transformations.get(0);
-            options = options.transforms(new BitmapTransformation() {
+            options = options.transform(new BitmapTransformation() {
                 @Override
                 protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
                     return transformation.transform(toTransform, outWidth, outHeight);
@@ -146,13 +174,35 @@ public class GlideLoader implements ILoader {
                     return transformation.hashCode();
                 }
             });
+
         } else {
-//            BitmapTransformation<Bitmap>[]
-//            for (Transformation transformation : transformations) {
-//
-//            }
-//            options = options.transforms()
-        }
+            BitmapTransformation[] glideTransformations = new BitmapTransformation[transformations.size()];
+            for (int i = 0, j = transformations.size(); i < j; i++) {
+                final Transformation t = transformations.get(i);
+                glideTransformations[i] = new BitmapTransformation() {
+                    @Override
+                    protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
+                        return t.transform(toTransform, outWidth, outHeight);
+                    }
+
+                    @Override
+                    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+                        messageDigest.update(t.diskCacheKey());
+                    }
+
+                    @Override
+                    public boolean equals(Object o) {
+                        return t.equals(o);
+                    }
+
+                    @Override
+                    public int hashCode() {
+                        return t.hashCode();
+                    }
+                };
+            }
+            options = options.transforms(glideTransformations);
+            }
     }
 
 

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.skx.tomikecommonlibrary.R;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class LoadOptions {
 
     private boolean transitionAnim;
 
+    private TransformStrategy transformStrategy;
     private List<Transformation> transformations;
 
     /**
@@ -120,6 +122,10 @@ public class LoadOptions {
     public LoadOptions fallback(int fallbackResId) {
         this.fallbackResId = fallbackResId;
         return this;
+    }
+
+    public void transformStrategy(TransformStrategy transformStrategy) {
+        this.transformStrategy = transformStrategy;
     }
 
     public LoadOptions setTransitionAnim(boolean transitionAnim) {
@@ -229,6 +235,10 @@ public class LoadOptions {
 
     public Class<?> getSourceType() {
         return sourceType;
+    }
+
+    public TransformStrategy getTransformStrategy() {
+        return transformStrategy;
     }
 
     public List<Transformation> getTransformation() {
