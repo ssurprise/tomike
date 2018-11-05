@@ -7,10 +7,12 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
+import java.lang.ref.WeakReference;
+
 /**
- * @author shiguotao
- *         <p>
- *         滑动监听的ScrollView
+ * 作者：shiguotao
+ * 日期：2018/11/5 10:42 AM
+ * 描述：滑动监听的ScrollView
  */
 public class ScrollChangedScrollView extends ScrollView {
 
@@ -18,25 +20,8 @@ public class ScrollChangedScrollView extends ScrollView {
     private int handlerWhatId = 65984;
     private int timeInterval = 20;
     private int lastY = 0;
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if (msg.what == handlerWhatId) {
-                if (lastY == getScrollY()) {
-                    if (scrollViewListener != null) {
-                        scrollViewListener.onScrollStop(true);
-                    }
-                } else {
-                    if (scrollViewListener != null) {
-                        scrollViewListener.onScrollStop(false);
-                    }
-                    handler.sendMessageDelayed(handler.obtainMessage(handlerWhatId, this), timeInterval);
-                    lastY = getScrollY();
-                }
-            }
-        }
-    };
+
+    private ScrollViewListenerHandler mHandler = new ScrollViewListenerHandler(this);
 
     public ScrollChangedScrollView(Context context) {
         super(context);
@@ -85,8 +70,42 @@ public class ScrollChangedScrollView extends ScrollView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_UP) {
-            handler.sendMessageDelayed(handler.obtainMessage(handlerWhatId, this), timeInterval);
+            mHandler.sendMessageDelayed(mHandler.obtainMessage(handlerWhatId, this), timeInterval);
         }
         return super.onTouchEvent(ev);
+    }
+
+
+    private static class ScrollViewListenerHandler extends Handler {
+
+        private WeakReference<ScrollChangedScrollView> reference;
+
+
+        ScrollViewListenerHandler(ScrollChangedScrollView context) {
+            reference = new WeakReference<>(context);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (reference != null && reference.get() != null) {
+                ScrollChangedScrollView scrollChangedScrollView = reference.get();
+                if (msg.what == scrollChangedScrollView.handlerWhatId) {
+                    if (scrollChangedScrollView.lastY == scrollChangedScrollView.getScrollY()) {
+                        if (scrollChangedScrollView.scrollViewListener != null) {
+                            scrollChangedScrollView.scrollViewListener.onScrollStop(true);
+                        }
+                    } else {
+                        if (scrollChangedScrollView.scrollViewListener != null) {
+                            scrollChangedScrollView.scrollViewListener.onScrollStop(false);
+                        }
+                        scrollChangedScrollView.mHandler.sendMessageDelayed(
+                                scrollChangedScrollView.mHandler.obtainMessage(scrollChangedScrollView.handlerWhatId, this),
+                                scrollChangedScrollView.timeInterval);
+                        scrollChangedScrollView.lastY = scrollChangedScrollView.getScrollY();
+                    }
+                }
+            }
+        }
     }
 }

@@ -53,17 +53,17 @@ public class TabLayoutActivity extends SkxBaseActivity {
     public void initializeView() {
         super.initializeView();
         setContentView(R.layout.activity_tab_layout);
-        tab_tagContainer = (TabLayout) findViewById(R.id.anchor_tagContainer);
-        sv_bodyContainer = (ScrollChangedScrollView) findViewById(R.id.anchor_bodyContainer);
-        tv_1 = (TextView) findViewById(R.id.tv_1);
-        tv_2 = (TextView) findViewById(R.id.tv_2);
-        tv_3 = (TextView) findViewById(R.id.tv_3);
-        tv_4 = (TextView) findViewById(R.id.tv_4);
-        tv_5 = (TextView) findViewById(R.id.tv_5);
-        tv_6 = (TextView) findViewById(R.id.tv_6);
-        tv_7 = (TextView) findViewById(R.id.tv_7);
-        tv_8 = (TextView) findViewById(R.id.tv_8);
-        tv_9 = (TextView) findViewById(R.id.tv_9);
+        tab_tagContainer = findViewById(R.id.anchor_tagContainer);
+        sv_bodyContainer = findViewById(R.id.anchor_bodyContainer);
+        tv_1 = findViewById(R.id.tv_1);
+        tv_2 = findViewById(R.id.tv_2);
+        tv_3 = findViewById(R.id.tv_3);
+        tv_4 = findViewById(R.id.tv_4);
+        tv_5 = findViewById(R.id.tv_5);
+        tv_6 = findViewById(R.id.tv_6);
+        tv_7 = findViewById(R.id.tv_7);
+        tv_8 = findViewById(R.id.tv_8);
+        tv_9 = findViewById(R.id.tv_9);
     }
 
     @Override
