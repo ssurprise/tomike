@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.skx.tomikecommonlibrary.R;
-import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class LoadOptions {
     private boolean transitionAnim;
 
     private TransformStrategy transformStrategy;
-    private List<Transformation> transformations;
+    private Transformation[] transformations;
 
     /**
      * 加载优先级
@@ -77,6 +76,11 @@ public class LoadOptions {
         return options;
     }
 
+    /**
+     * 不设置占位图
+     *
+     * @return 默认配置的加载配置对象
+     */
     public LoadOptions noPlaceholder() {
         if (placeholderResId != 0) {
             throw new IllegalStateException("Placeholder resource already set.");
@@ -88,6 +92,12 @@ public class LoadOptions {
         return this;
     }
 
+    /**
+     * 占位符。同步加载，是从主线程上的Android资源加载的。 我们通常希望占位符小，并且可以通过系统资源缓存轻松缓存。
+     *
+     * @param placeholderDrawable 占位图
+     * @return 默认配置的加载配置对象
+     */
     public LoadOptions placeholder(@Nullable Drawable placeholderDrawable) {
         if (!setPlaceholder) {
             throw new IllegalStateException("Already explicitly declared as no placeholder.");
@@ -99,6 +109,12 @@ public class LoadOptions {
         return this;
     }
 
+    /**
+     * 占位符。同步加载，是从主线程上的Android资源加载的。 我们通常希望占位符小，并且可以通过系统资源缓存轻松缓存。
+     *
+     * @param placeholderResId 占位图资源
+     * @return 默认配置的加载配置对象
+     */
     public LoadOptions placeholder(int placeholderResId) {
         this.placeholderResId = placeholderResId;
         return this;
@@ -124,12 +140,59 @@ public class LoadOptions {
         return this;
     }
 
-    public void transformStrategy(TransformStrategy transformStrategy) {
-        this.transformStrategy = transformStrategy;
+    public LoadOptions transitionAnim(boolean transitionAnim) {
+        this.transitionAnim = transitionAnim;
+        return this;
     }
 
-    public LoadOptions setTransitionAnim(boolean transitionAnim) {
-        this.transitionAnim = transitionAnim;
+    /**
+     * 设置变换策略。注意设置了变换策略再添加自定义的变化，会不生效，以后添加的为准。
+     *
+     * @param transformStrategy 变换策略
+     * @return 可选参数对象
+     */
+    public LoadOptions transformStrategy(TransformStrategy transformStrategy) {
+        this.transformStrategy = transformStrategy;
+        // 设置变换策略后，清空调设置的自定义变化。
+        transformations = null;
+
+        return this;
+    }
+
+    /**
+     * 设置自定义转换。注意：转换仅应用于请求的资源，而不应用于任何占位符。
+     *
+     * @param transformation 自定义转换
+     * @return 可选参数对象
+     */
+    public LoadOptions transformation(Transformation transformation) {
+        if (transformation == null) {
+            return this;
+        }
+
+        transformations = new Transformation[]{transformation};
+        // 设置自定义变换后，清空掉设置的变换策略。
+        transformStrategy = null;
+
+        return this;
+    }
+
+    /**
+     * 设置自定义转换。注意：转换仅应用于请求的资源，而不应用于任何占位符。
+     *
+     * @param transformation 自定义转换集
+     * @return 可选参数对象
+     */
+    public LoadOptions transformation(Transformation... transformation) {
+        if (transformation == null || transformation.length == 0) {
+            return this;
+        }
+
+        transformations = transformation;
+
+        // 设置自定义变换后，清空掉设置的变换策略。
+        transformStrategy = null;
+
         return this;
     }
 
@@ -138,7 +201,7 @@ public class LoadOptions {
      * @return 加载参数配置
      * @hide 暂时不对外开放此api，使用默认配置即可
      */
-    public LoadOptions setPriority(@NonNull Priority priority) {
+    public LoadOptions priority(@NonNull Priority priority) {
         this.priority = priority;
         return this;
     }
@@ -148,31 +211,8 @@ public class LoadOptions {
      * @return 加载参数配置
      * @hide 暂时不对外开放此api，使用默认配置即可
      */
-    public LoadOptions setDiskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
+    public LoadOptions diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
         this.diskCacheStrategy = diskCacheStrategy;
-        return this;
-    }
-
-    public LoadOptions transformation(Transformation transformation) {
-        if (transformations == null) {
-            transformations = new ArrayList<>();
-        } else {
-            transformations.clear();
-        }
-        transformations.add(transformation);
-        return this;
-    }
-
-    public LoadOptions transformation(List<Transformation> transformation) {
-        if (transformations == null) {
-            transformations = new ArrayList<>();
-        } else {
-            transformations.clear();
-        }
-        if (transformation == null || transformation.isEmpty()) {
-            return this;
-        }
-        transformations.addAll(transformation);
         return this;
     }
 
@@ -241,7 +281,7 @@ public class LoadOptions {
         return transformStrategy;
     }
 
-    public List<Transformation> getTransformation() {
+    public Transformation[] getTransformations() {
         return transformations;
     }
 

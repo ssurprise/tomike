@@ -8,6 +8,11 @@ import android.widget.ImageView;
 
 import com.skx.tomike.R;
 import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
+import com.skx.tomikecommonlibrary.imageloader.TransformStrategy;
+import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
+import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
+import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
+import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 
 public class GlideActivity extends AppCompatActivity {
 
@@ -48,11 +53,74 @@ public class GlideActivity extends AppCompatActivity {
                         if (i >= gridLayout.getChildCount()) {
                             break;
                         }
+                        ImageView targetImgv = (ImageView) gridLayout.getChildAt(i);
 
                         final int index = i;
-                        ImageLoader.with(GlideActivity.this)
-                                .load(imageArray[i])
-                                .into((ImageView) gridLayout.getChildAt(index));
+                        switch (index) {
+                            case 0:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transformStrategy(TransformStrategy.CENTER_CROP)
+                                        .into(targetImgv);
+                                break;
+                            case 1:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transformStrategy(TransformStrategy.CENTER_INSIDE)
+                                        .into(targetImgv);
+                                break;
+                            case 2:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transformStrategy(TransformStrategy.FIT_CENTER)
+                                        .into(targetImgv);
+                                break;
+                            case 3:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transformStrategy(TransformStrategy.CIRCLE_CROP)
+                                        .into(targetImgv);
+                                break;
+                            case 4:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transform(new CenterInside())
+                                        .into(targetImgv);
+                                break;
+                            case 5:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transform(new CenterCrop())
+                                        .into(targetImgv);
+                                break;
+                            case 6:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transform(new CircleCrop())
+                                        .into(targetImgv);
+                                break;
+                            case 7:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transform(new RoundedCorners(90))
+                                        .into(targetImgv);
+                                break;
+                            case 8:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transforms(new CenterCrop(), new RoundedCorners(90))
+                                        .into(targetImgv);
+                                break;
+                            case 9:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .transforms(new CenterInside(), new RoundedCorners(90))
+                                        .into(targetImgv);
+
+                                break;
+                            case 10:
+                                break;
+                        }
                     }
 
                 } catch (Exception e) {

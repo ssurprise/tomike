@@ -21,19 +21,22 @@ import com.bumptech.glide.request.transition.Transition;
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
 import com.skx.tomikecommonlibrary.imageloader.Target;
-import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
+import com.skx.tomikecommonlibrary.imageloader.TransformStrategy;
+import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
+import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
+import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
+import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 import java.io.File;
 import java.lang.reflect.ParameterizedType;
 import java.security.MessageDigest;
-import java.util.List;
 
 
 /**
  * 作者：shiguotao
  * 日期：2018/10/15 下午3:54
- * 描述：
+ * 描述：Glide 图片加载封装类
  */
 public class GlideLoader implements ILoader {
 
@@ -79,11 +82,8 @@ public class GlideLoader implements ILoader {
         } else if (loadOptions.getFallbackDrawable() != null) {
             options = options.fallback(loadOptions.getFallbackDrawable());
         }
-        // 配置转换
-        updateTransform(loadOptions.getTransformStrategy(), loadOptions.getTransformation());
-//                .circleCrop()
+        configTransformSetting(loadOptions.getTransformStrategy(), loadOptions.getTransformations());
 //                .sizeMultiplier(0.20f);
-        ;
 
 //        transcodeClass = (Class<E>) loadOptions.getSourceType();
 
@@ -121,39 +121,80 @@ public class GlideLoader implements ILoader {
     }
 
     /**
-     * 更新转换
+     * 配置转换设置
      *
      * @param transformStrategy 转换策略
-     * @param transformations   自定义转换
+     * @param transformations   自定义转换集
      */
-    private void updateTransform(TransformStrategy transformStrategy, List<Transformation> transformations) {
-        if (transformStrategy == null) {
-            updateTransformations(transformations);
-            return;
-        }
-        switch (transformStrategy) {
-            case FITCENTER:
-                options = options.fitCenter();
-                break;
-            case CENTERINSIDE:
-                options = options.centerInside();
-                break;
-            case CENTERCROP:
-                options = options.centerCrop();
-                break;
-            case CIRCLECROP:
-                options = options.circleCrop();
-                break;
+    private void configTransformSetting(TransformStrategy transformStrategy, Transformation[] transformations) {
+        if (transformStrategy == null && (transformations == null || transformations.length == 0)) {
+            options = options.dontTransform();
+        } else if (transformStrategy != null) {
+            switch (transformStrategy) {
+                case FIT_CENTER:
+                    options.fitCenter();
+                    break;
+                case CENTER_CROP:
+                    options.centerCrop();
+                    break;
+                case CENTER_INSIDE:
+                    options.centerInside();
+                    break;
+                case CIRCLE_CROP:
+                    options.circleCrop();
+                    break;
+                default:
+                    options.dontTransform();
+                    break;
+            }
+        } else {
+            configCustomTransformations(transformations);
         }
     }
 
-    private void updateTransformations(List<Transformation> transformations) {
-        if (transformations == null || transformations.isEmpty()) {
+    /**
+     * 更新自定义的bitmap转换集
+     *
+     * @param transformations bitmap转化集
+     */
+    private void configCustomTransformations(Transformation[] transformations) {
+        if (transformations == null || transformations.length == 0) {
             options = options.dontTransform();
 
-        } else if (transformations.size() == 1) {
-            final Transformation transformation = transformations.get(0);
-            options = options.transform(new BitmapTransformation() {
+        } else if (transformations.length == 1) {
+            Transformation transformation = transformations[0];
+            options = options.transform(generateGlideBitmapTransformation(transformation));
+        } else {
+            BitmapTransformation[] glideTransforms = new BitmapTransformation[transformations.length];
+            for (int i = 0, j = glideTransforms.length; i < j; i++) {
+                glideTransforms[i] = generateGlideBitmapTransformation(transformations[i]);
+            }
+            options = options.transforms(glideTransforms);
+        }
+    }
+
+    /**
+     * 生成 Glide 的Transformation类
+     *
+     * @param transformation 自定义Bitmap 转换类
+     * @return Glide 的Transformation类
+     */
+    private BitmapTransformation generateGlideBitmapTransformation(final Transformation transformation) {
+        if (transformation == null) {
+            return null;
+        }
+
+        if (transformation instanceof CenterCrop) {
+            return new com.bumptech.glide.load.resource.bitmap.CenterCrop();
+        } else if (transformation instanceof CenterInside) {
+            return new com.bumptech.glide.load.resource.bitmap.CenterInside();
+        } else if (transformation instanceof CircleCrop) {
+            return new com.bumptech.glide.load.resource.bitmap.CircleCrop();
+        } else if (transformation instanceof RoundedCorners) {
+            RoundedCorners roundedCorners = (RoundedCorners) transformation;
+            return new com.bumptech.glide.load.resource.bitmap.RoundedCorners(roundedCorners.getRoundingRadius());
+        } else {
+            return new BitmapTransformation() {
                 @Override
                 protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
                     return transformation.transform(toTransform, outWidth, outHeight);
@@ -173,36 +214,8 @@ public class GlideLoader implements ILoader {
                 public int hashCode() {
                     return transformation.hashCode();
                 }
-            });
-
-        } else {
-            BitmapTransformation[] glideTransformations = new BitmapTransformation[transformations.size()];
-            for (int i = 0, j = transformations.size(); i < j; i++) {
-                final Transformation t = transformations.get(i);
-                glideTransformations[i] = new BitmapTransformation() {
-                    @Override
-                    protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
-                        return t.transform(toTransform, outWidth, outHeight);
-                    }
-
-                    @Override
-                    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-                        messageDigest.update(t.diskCacheKey());
-                    }
-
-                    @Override
-                    public boolean equals(Object o) {
-                        return t.equals(o);
-                    }
-
-                    @Override
-                    public int hashCode() {
-                        return t.hashCode();
-                    }
-                };
-            }
-            options = options.transforms(glideTransformations);
-            }
+            };
+        }
     }
 
 
@@ -279,7 +292,7 @@ public class GlideLoader implements ILoader {
 
     @Override
     public <T extends ImageView> void into(T target) {
-        Glide.with(mContext).load(source).transition(DrawableTransitionOptions.withCrossFade()).apply(options).into(target);
+        Glide.with(mContext).asBitmap().load(source).apply(options).into(target);
     }
 
     @Override

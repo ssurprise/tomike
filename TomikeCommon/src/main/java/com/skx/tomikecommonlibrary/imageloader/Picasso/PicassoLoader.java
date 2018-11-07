@@ -3,8 +3,6 @@ package com.skx.tomikecommonlibrary.imageloader.Picasso;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
@@ -13,6 +11,11 @@ import com.skx.tomikecommonlibrary.imageloader.Target;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+/**
+ * 作者：shiguotao
+ * 日期：2018/11/7 4:55 PM
+ * 描述：Picasso 图片加载库封装类
+ */
 public class PicassoLoader implements ILoader {
 
     private Object mSource;
