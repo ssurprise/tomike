@@ -3,12 +3,17 @@ package com.skx.tomikecommonlibrary.imageloader.transform;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
+import java.nio.charset.Charset;
+
 /**
  * 作者：shiguotao
  * 日期：2018/11/5 5:10 PM
  * 描述：ImageLoader 转换接口
  */
 public interface Transformation {
+
+    String STRING_CHARSET_NAME = "UTF-8";
+    Charset CHARSET = Charset.forName(STRING_CHARSET_NAME);
 
     /**
      * 转换给定Bitmap并返回转换后的Bitmap

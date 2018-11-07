@@ -8,7 +8,8 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.gif.GifDrawable;
-import com.skx.tomikecommonlibrary.imageloader.Picasso.PicassoLoader;
+import com.skx.tomikecommonlibrary.imageloader.Glide.GlideLoader;
+import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 import java.io.File;
 
@@ -30,7 +31,7 @@ public class ImageLoader {
         LoadOptions options = new LoadOptions();
         Object source;
 
-        private ILoader iLoader = new PicassoLoader();
+        private ILoader iLoader = new GlideLoader();
 
         public Builder(Context context) {
             this.context = context;
@@ -92,6 +93,31 @@ public class ImageLoader {
 
         public Builder fallback(int fallbackResId) {
             options.fallback(fallbackResId);
+            return this;
+        }
+
+        public Builder transformStrategy(TransformStrategy transformStrategy) {
+            options.transformStrategy(transformStrategy);
+            return this;
+        }
+
+        public Builder transform(Transformation transformation) {
+            options.transformation(transformation);
+            return this;
+        }
+
+        public Builder transforms(Transformation... transformation) {
+            options.transformation(transformation);
+            return this;
+        }
+
+        public Builder noTransitionAnim() {
+            options.transitionAnim(false);
+            return this;
+        }
+
+        public Builder useTransitionAnim() {
+            options.transitionAnim(true);
             return this;
         }
 
