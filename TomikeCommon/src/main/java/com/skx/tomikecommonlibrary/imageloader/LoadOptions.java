@@ -7,14 +7,23 @@ import android.support.annotation.Nullable;
 import com.skx.tomikecommonlibrary.R;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * 作者：shiguotao
  * 日期：2018/10/12 下午6:22
  * 描述：加载可选项
+ * <p>
+ * 功能点包括：
+ * 1.占位图（默认的颜色值时 ：#f5f5f5）
+ * 2.错误图
+ * 3.备用图
+ * 4.转换（元转换、自定义转换）
+ * 5.过渡动画
+ * <p>
+ * 暂时不对外开放的资源：
+ * 1.请求超时时间设置，默认阈值是3000ms
+ * 2.加载优先级
+ * 3.硬盘缓存策略
  */
 public class LoadOptions {
 
@@ -30,7 +39,7 @@ public class LoadOptions {
      */
     @Nullable
     private Drawable placeholderDrawable;
-    private int placeholderResId = R.color.skx_f5f5f5;
+    private int placeholderResId;
 
     /**
      * 错误图。error Drawable 在请求永久性失败时展示。error Drawable 同样也在请求的url/model为 null ，且并没有设置 fallback Drawable 时展示。
@@ -46,33 +55,36 @@ public class LoadOptions {
     private Drawable fallbackDrawable;
     private int fallbackResId;
 
-    /**
-     * 设置加载超时时间
-     */
-    private int timeout = Config.TIMEOUT;
 
     private boolean transitionAnim;
 
     private TransformStrategy transformStrategy;
     private Transformation[] transformations;
 
+    private Class<?> sourceType = Drawable.class;
+    /**
+     * 设置加载超时时间
+     */
+    private int timeout = Config.TIMEOUT;
     /**
      * 加载优先级
      */
     @NonNull
     private Priority priority = Priority.NORMAL;
-    private Class<?> sourceType = Drawable.class;
-
     private DiskCacheStrategy diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
 
     /**
      * 获取默认配置的加载配置对象
+     * 默认设置为：
+     * 1.占位图颜色为"#f5f5f5"；
+     * 2.默认开启淡入淡出的过渡动画；
      *
      * @return 默认配置的加载配置对象
      */
     public static LoadOptions getDefaultLoadOptions() {
         LoadOptions options = new LoadOptions();
         options.placeholder(R.color.skx_f5f5f5);
+        options.transitionAnim(true);
         return options;
     }
 
@@ -82,13 +94,9 @@ public class LoadOptions {
      * @return 默认配置的加载配置对象
      */
     public LoadOptions noPlaceholder() {
-        if (placeholderResId != 0) {
-            throw new IllegalStateException("Placeholder resource already set.");
-        }
-        if (placeholderDrawable != null) {
-            throw new IllegalStateException("Placeholder image already set.");
-        }
         setPlaceholder = false;
+        this.placeholderDrawable = null;
+        this.placeholderResId = 0;
         return this;
     }
 
@@ -102,10 +110,11 @@ public class LoadOptions {
         if (!setPlaceholder) {
             throw new IllegalStateException("Already explicitly declared as no placeholder.");
         }
-        if (placeholderResId == 0) {
-            throw new IllegalArgumentException("Placeholder image resource invalid.");
+        if (placeholderResId != 0) {
+            throw new IllegalStateException("Placeholder image already set.");
         }
         this.placeholderDrawable = placeholderDrawable;
+        this.setPlaceholder = true;
         return this;
     }
 
@@ -116,7 +125,14 @@ public class LoadOptions {
      * @return 默认配置的加载配置对象
      */
     public LoadOptions placeholder(int placeholderResId) {
+        if (placeholderResId == 0) {
+            throw new IllegalArgumentException("Placeholder image resource invalid.");
+        }
+        if (placeholderDrawable != null) {
+            throw new IllegalStateException("Placeholder image already set.");
+        }
         this.placeholderResId = placeholderResId;
+        this.setPlaceholder = true;
         return this;
     }
 
@@ -165,7 +181,7 @@ public class LoadOptions {
      * @param transformation 自定义转换
      * @return 可选参数对象
      */
-    public LoadOptions transformation(Transformation transformation) {
+    public LoadOptions transform(Transformation transformation) {
         if (transformation == null) {
             return this;
         }
@@ -183,7 +199,7 @@ public class LoadOptions {
      * @param transformation 自定义转换集
      * @return 可选参数对象
      */
-    public LoadOptions transformation(Transformation... transformation) {
+    public LoadOptions transform(Transformation... transformation) {
         if (transformation == null || transformation.length == 0) {
             return this;
         }
@@ -193,6 +209,17 @@ public class LoadOptions {
         // 设置自定义变换后，清空掉设置的变换策略。
         transformStrategy = null;
 
+        return this;
+    }
+
+    /**
+     * 移除所有资源应用的转换功能
+     *
+     * @return 可选参数对象
+     */
+    public LoadOptions dontTransform() {
+        transformStrategy = null;
+        transformations = null;
         return this;
     }
 
