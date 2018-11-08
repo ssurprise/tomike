@@ -1,7 +1,12 @@
 package com.skx.tomike.activity.function;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -12,6 +17,7 @@ import com.skx.tomikecommonlibrary.imageloader.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
 import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
+import com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform;
 import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 
 public class GlideActivity extends AppCompatActivity {
@@ -28,6 +34,7 @@ public class GlideActivity extends AppCompatActivity {
             "http://img.anzow.com/Software/files_images/2014109/2014100975059721.jpg",
             "http://img2.ph.126.net/gUzX-t8Px6z7Pd9x4urozw==/622622648501911322.jpg",
             "http://g.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=7f7e2d22de54564ee530ec3d86eeb0b4/d439b6003af33a87df7a112bc55c10385343b5ef.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541670921791&di=0105ca00fb13ffae5bfa5048b7886934&imgtype=0&src=http%3A%2F%2F04imgmini.eastday.com%2Fmobile%2F20180922%2F20180922214531_d63b3a92a3bca14a7fd0900d3b5d48c3_6.jpeg",
     };
 
     private String nativeImagePath;
@@ -60,18 +67,21 @@ public class GlideActivity extends AppCompatActivity {
                             case 0:
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
+                                        .placeholder(R.color.skx_ff4081)
                                         .transformStrategy(TransformStrategy.CENTER_CROP)
                                         .into(targetImgv);
                                 break;
                             case 1:
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
+                                        .placeholder(R.color.skx_1f000000)
                                         .transformStrategy(TransformStrategy.CENTER_INSIDE)
                                         .into(targetImgv);
                                 break;
                             case 2:
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
+                                        .placeholder(R.color.skx_1f000000)
                                         .transformStrategy(TransformStrategy.FIT_CENTER)
                                         .into(targetImgv);
                                 break;
@@ -119,6 +129,16 @@ public class GlideActivity extends AppCompatActivity {
 
                                 break;
                             case 10:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .noTransitionAnim()
+                                        .transforms(
+                                                new CenterInside(),
+                                                new RoundedCorners(90),
+                                                new OverLapTransform(GlideActivity.this, getBitmap(R.drawable.icon_overdue))
+                                        )
+                                        .into(targetImgv);
+
                                 break;
                         }
                     }
@@ -128,6 +148,25 @@ public class GlideActivity extends AppCompatActivity {
                 }
             }
         }, 0);
+    }
+
+    private Bitmap getBitmap(int id) {
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.image_01);
+        // 取 drawable 的长宽
+        int w = drawable.getIntrinsicWidth();
+        int h = drawable.getIntrinsicHeight();
+
+        // 取 drawable 的颜色格式
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                : Bitmap.Config.RGB_565;
+        // 建立对应 bitmap
+        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
+        // 建立对应 bitmap 的画布
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, w, h);
+        // 把 drawable 内容画到画布中
+        drawable.draw(canvas);
+        return bitmap;
     }
 
     /**

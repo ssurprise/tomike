@@ -2,22 +2,30 @@ package com.skx.tomikecommonlibrary.imageloader.Glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
+import com.skx.tomikecommonlibrary.R;
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
 import com.skx.tomikecommonlibrary.imageloader.Target;
@@ -25,6 +33,7 @@ import com.skx.tomikecommonlibrary.imageloader.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
 import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
+import com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform2;
 import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
@@ -37,15 +46,20 @@ import java.security.MessageDigest;
  * 作者：shiguotao
  * 日期：2018/10/15 下午3:54
  * 描述：Glide 图片加载封装类
+ * <p>
+ * 注意点：
+ * 1、占位符是在主线程上加载Android资源加载。 我们通常希望占位符小，并且可以通过系统资源缓存轻松缓存；
+ * 2、转换只应用于请求的资源，不会应用到任何占位符。如果想对placeholder 进行转换可以自定义视图进行裁剪；
+ * 3、
  */
 public class GlideLoader implements ILoader {
 
     private RequestOptions options;
     private Context mContext;
     private Object source;
+    private boolean transitionAnim = true;
 
 //    private Class<E> transcodeClass;
-
 
     public void init(Context context) {
         this.mContext = context;
@@ -83,6 +97,8 @@ public class GlideLoader implements ILoader {
             options = options.fallback(loadOptions.getFallbackDrawable());
         }
         configTransformSetting(loadOptions.getTransformStrategy(), loadOptions.getTransformations());
+
+        transitionAnim = loadOptions.isTransitionAnim();
 //                .sizeMultiplier(0.20f);
 
 //        transcodeClass = (Class<E>) loadOptions.getSourceType();
@@ -153,7 +169,7 @@ public class GlideLoader implements ILoader {
     }
 
     /**
-     * 更新自定义的bitmap转换集
+     * 配置自定义的bitmap转换集
      *
      * @param transformations bitmap转化集
      */
@@ -194,7 +210,9 @@ public class GlideLoader implements ILoader {
             RoundedCorners roundedCorners = (RoundedCorners) transformation;
             return new com.bumptech.glide.load.resource.bitmap.RoundedCorners(roundedCorners.getRoundingRadius());
         } else {
+//            return new OverLapTransform2(mContext, getBitmap());
             return new BitmapTransformation() {
+
                 @Override
                 protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
                     return transformation.transform(toTransform, outWidth, outHeight);
@@ -230,13 +248,21 @@ public class GlideLoader implements ILoader {
         // 输出类型
         switch (z.getSimpleName()) {
             case "Bitmap":
-                drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
+                if (transitionAnim) {
+                    drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
+                } else {
+                    drawableRequestBuilder = Glide.with(mContext).asBitmap();
+                }
                 break;
             case "File":
                 drawableRequestBuilder = Glide.with(mContext).asFile();
                 break;
             default:
-                drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
+                if (transitionAnim) {
+                    drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
+                } else {
+                    drawableRequestBuilder = Glide.with(mContext).asDrawable();
+                }
                 break;
         }
 
@@ -292,8 +318,30 @@ public class GlideLoader implements ILoader {
 
     @Override
     public <T extends ImageView> void into(T target) {
-        Glide.with(mContext).asBitmap().load(source).apply(options).into(target);
+        RequestBuilder<Bitmap> requestBuilder = Glide.with(mContext).asBitmap().load(source);
+        if (transitionAnim) {
+            requestBuilder = requestBuilder.transition(BitmapTransitionOptions.withCrossFade());
+        }
+        requestBuilder.apply(options).into(target);
     }
+
+
+    /**
+     * 用于在图像加载时监视请求状态的类。
+     */
+    private final RequestListener<Drawable> requestListener = new RequestListener<Drawable>() {
+        @Override
+        public boolean onResourceReady(Drawable resource, Object model, com.bumptech.glide.request.target.Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+            Log.e("success-source", model != null ? (String) model : "");
+            return false;
+        }
+
+        @Override
+        public boolean onLoadFailed(@Nullable GlideException e, Object model, com.bumptech.glide.request.target.Target target, boolean isFirstResource) {
+            Log.e("fail-source", model != null ? (String) model : "");
+            return false;
+        }
+    };
 
     @Override
     public void onlyDownload() {
@@ -311,5 +359,25 @@ public class GlideLoader implements ILoader {
     @Override
     public void pause() {
         Glide.with(mContext).pauseRequests();
+    }
+
+
+    private Bitmap getBitmap() {
+        Drawable drawable = ContextCompat.getDrawable(mContext, R.drawable.image_01);
+        // 取 drawable 的长宽
+        int w = drawable.getIntrinsicWidth();
+        int h = drawable.getIntrinsicHeight();
+
+        // 取 drawable 的颜色格式
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                : Bitmap.Config.RGB_565;
+        // 建立对应 bitmap
+        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
+        // 建立对应 bitmap 的画布
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, w, h);
+        // 把 drawable 内容画到画布中
+        drawable.draw(canvas);
+        return bitmap;
     }
 }
