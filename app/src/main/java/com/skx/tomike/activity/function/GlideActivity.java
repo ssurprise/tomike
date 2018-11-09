@@ -1,12 +1,7 @@
 package com.skx.tomike.activity.function;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -24,17 +19,18 @@ public class GlideActivity extends AppCompatActivity {
 
     private GridLayout gridLayout;
     private String[] imageArray = {
-            "http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=16d72513b0003af34defd464001aea6a/8601a18b87d6277fbe2bf7222e381f30e924fceb.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539145466732&di=2181114d0261abcaba42a4ea115da777&imgtype=0&src=http%3A%2F%2F02imgmini.eastday.com%2Fmobile%2F20180910%2F20180910024525_12bf1f909d6a22fe426b06806d6cba38_3_mwpm_03200403.jpg",
+            "http://img.ivsky.com/img/tupian/pre/201805/06/shandian-009.jpg",
+            "http://img.mp.itc.cn/upload/20170516/93663f2fe5f8491394b4cef08f4a9bdb_th.jpg",
             "http://cdn.duitang.com/uploads/item/201304/15/20130415014759_u3UUV.jpeg",
             "http://365jia.cn/uploads/11/1121/4ec9f0089de6f.jpg",
-            null,
+            "https://b-ssl.duitang.com/uploads/item/201208/03/20120803190720_WVxWS.thumb.700_0.jpeg",
             "http://img.cheshi-img.com/meinv/0_720/2009/0505/49fff32d846be.jpg",
             "http://img1.imgtn.bdimg.com/it/u=3522970723,1359610582&fm=26&gp=0.jpg",
             "http://img.anzow.com/Software/files_images/2014109/2014100975059721.jpg",
             "http://img2.ph.126.net/gUzX-t8Px6z7Pd9x4urozw==/622622648501911322.jpg",
-            "http://g.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=7f7e2d22de54564ee530ec3d86eeb0b4/d439b6003af33a87df7a112bc55c10385343b5ef.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541670921791&di=0105ca00fb13ffae5bfa5048b7886934&imgtype=0&src=http%3A%2F%2F04imgmini.eastday.com%2Fmobile%2F20180922%2F20180922214531_d63b3a92a3bca14a7fd0900d3b5d48c3_6.jpeg",
+            "https://b-ssl.duitang.com/uploads/item/201208/03/20120803190720_WVxWS.thumb.700_0.jpeg",
+            "http://www.pujia8.com/static/pics/20171014110026_41.jpg",
+            "http://image.haha.mx/2014/02/02/middle/1115779_c221d1fc47b97bb1605cddc9c8aec0a7_1391347675.gif",
     };
 
     private String nativeImagePath;
@@ -94,7 +90,8 @@ public class GlideActivity extends AppCompatActivity {
                             case 4:
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
-                                        .transform(new CenterInside())
+                                        .transforms(new RoundedCorners(90),
+                                                new OverLapTransform(GlideActivity.this, R.drawable.icon_used))
                                         .into(targetImgv);
                                 break;
                             case 5:
@@ -112,6 +109,7 @@ public class GlideActivity extends AppCompatActivity {
                             case 7:
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
+                                        .noTransitionAnim()
                                         .transform(new RoundedCorners(90))
                                         .into(targetImgv);
                                 break;
@@ -124,7 +122,9 @@ public class GlideActivity extends AppCompatActivity {
                             case 9:
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
-                                        .transforms(new CenterInside(), new RoundedCorners(90))
+                                        .transforms(new RoundedCorners(90),
+                                                new OverLapTransform(GlideActivity.this, R.drawable.icon_overdue))
+
                                         .into(targetImgv);
 
                                 break;
@@ -132,13 +132,13 @@ public class GlideActivity extends AppCompatActivity {
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
                                         .noTransitionAnim()
-                                        .transforms(
-                                                new CenterInside(),
-                                                new RoundedCorners(90),
-                                                new OverLapTransform(GlideActivity.this, getBitmap(R.drawable.icon_overdue))
-                                        )
+                                        .transforms(new CenterInside(), new RoundedCorners(90))
                                         .into(targetImgv);
-
+                                break;
+                            case 11:
+                                ImageLoader.with(GlideActivity.this)
+                                        .load(imageArray[i])
+                                        .into(targetImgv);
                                 break;
                         }
                     }
@@ -148,25 +148,6 @@ public class GlideActivity extends AppCompatActivity {
                 }
             }
         }, 0);
-    }
-
-    private Bitmap getBitmap(int id) {
-        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.image_01);
-        // 取 drawable 的长宽
-        int w = drawable.getIntrinsicWidth();
-        int h = drawable.getIntrinsicHeight();
-
-        // 取 drawable 的颜色格式
-        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-                : Bitmap.Config.RGB_565;
-        // 建立对应 bitmap
-        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
-        // 建立对应 bitmap 的画布
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, w, h);
-        // 把 drawable 内容画到画布中
-        drawable.draw(canvas);
-        return bitmap;
     }
 
     /**

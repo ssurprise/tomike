@@ -2,13 +2,10 @@ package com.skx.tomikecommonlibrary.imageloader.Glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -25,7 +22,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
-import com.skx.tomikecommonlibrary.R;
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
 import com.skx.tomikecommonlibrary.imageloader.Target;
@@ -33,7 +29,6 @@ import com.skx.tomikecommonlibrary.imageloader.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
 import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
-import com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform2;
 import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
@@ -210,7 +205,6 @@ public class GlideLoader implements ILoader {
             RoundedCorners roundedCorners = (RoundedCorners) transformation;
             return new com.bumptech.glide.load.resource.bitmap.RoundedCorners(roundedCorners.getRoundingRadius());
         } else {
-//            return new OverLapTransform2(mContext, getBitmap());
             return new BitmapTransformation() {
 
                 @Override
@@ -220,12 +214,12 @@ public class GlideLoader implements ILoader {
 
                 @Override
                 public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-                    messageDigest.update(transformation.diskCacheKey());
+                    transformation.updateDiskCacheKey(messageDigest);
                 }
 
                 @Override
-                public boolean equals(Object o) {
-                    return transformation.equals(o);
+                public boolean equals(Object obj) {
+                    return transformation.equals(obj);
                 }
 
                 @Override
@@ -359,25 +353,5 @@ public class GlideLoader implements ILoader {
     @Override
     public void pause() {
         Glide.with(mContext).pauseRequests();
-    }
-
-
-    private Bitmap getBitmap() {
-        Drawable drawable = ContextCompat.getDrawable(mContext, R.drawable.image_01);
-        // 取 drawable 的长宽
-        int w = drawable.getIntrinsicWidth();
-        int h = drawable.getIntrinsicHeight();
-
-        // 取 drawable 的颜色格式
-        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-                : Bitmap.Config.RGB_565;
-        // 建立对应 bitmap
-        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
-        // 建立对应 bitmap 的画布
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, w, h);
-        // 把 drawable 内容画到画布中
-        drawable.draw(canvas);
-        return bitmap;
     }
 }

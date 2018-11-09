@@ -3,6 +3,8 @@ package com.skx.tomikecommonlibrary.imageloader.transform;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
+import java.security.MessageDigest;
+
 /**
  * 作者：shiguotao
  * 日期：2018/11/7 11:51 AM
@@ -24,8 +26,8 @@ public final class CircleCrop implements Transformation {
     }
 
     @Override
-    public byte[] diskCacheKey() {
-        return ID_BYTES;
+    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+        messageDigest.update(ID_BYTES);
     }
 
     @Override

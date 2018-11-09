@@ -27,7 +27,7 @@ public class ImageLoader {
     }
 
     public static class Builder {
-        Context context;
+        final Context context;
         LoadOptions options = LoadOptions.getDefaultLoadOptions();
         Object source;
 
