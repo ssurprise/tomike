@@ -6,11 +6,13 @@ import android.support.annotation.NonNull;
 import com.bumptech.glide.util.Util;
 
 import java.nio.ByteBuffer;
+import java.security.MessageDigest;
 
 /**
  * 作者：shiguotao
  * 日期：2018/11/7 4:06 PM
- * 描述：圆角转换Bitmap
+ * 描述：圆角转换Bitmap。
+ * 注：最终转换成Glide 提供的 RoundedCorners，这里不用纠结实现内容，可以忽略。
  */
 public final class RoundedCorners implements Transformation {
     private static final String ID = "com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners";
@@ -35,6 +37,13 @@ public final class RoundedCorners implements Transformation {
     }
 
     @Override
+    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+        messageDigest.update(ID_BYTES);
+        byte[] radiusData = ByteBuffer.allocate(4).putInt(roundingRadius).array();
+        messageDigest.update(radiusData);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o instanceof RoundedCorners) {
             RoundedCorners other = (RoundedCorners) o;
@@ -47,14 +56,6 @@ public final class RoundedCorners implements Transformation {
     public int hashCode() {
         return Util.hashCode(ID.hashCode(),
                 Util.hashCode(roundingRadius));
-    }
-
-    @Override
-    public byte[] diskCacheKey() {
-//    messageDigest.update(ID_BYTES);
-        byte[] radiusData = ByteBuffer.allocate(4).putInt(roundingRadius).array();
-//    messageDigest.update(radiusData);
-        return radiusData;
     }
 
     public int getRoundingRadius() {

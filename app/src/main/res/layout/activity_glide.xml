@@ -24,6 +24,7 @@
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_column="0"
+            android:layout_gravity="center_horizontal"
             android:layout_row="0"
             android:scaleType="fitCenter" />
 
@@ -31,6 +32,7 @@
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_column="1"
+            android:layout_gravity="center_horizontal"
             android:layout_row="0" />
 
         <!--第1行-->
@@ -38,55 +40,80 @@
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_column="0"
+            android:layout_gravity="center_horizontal"
             android:layout_row="1" />
-        <!--android:scaleType="centerInside"-->
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_column="1"
+            android:layout_gravity="center_horizontal"
             android:layout_row="1" />
 
         <!--第2行-->
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:layout_column="0"
+            android:layout_columnSpan="2"
             android:layout_row="2"
-            android:scaleType="centerCrop" />
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="120dp"
-            android:layout_column="1"
-            android:layout_row="2" />
+            android:scaleType="centerInside" />
 
         <!--第3行-->
         <ImageView
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_column="0"
-            android:layout_row="3"
-            android:scaleType="fitEnd" />
+            android:layout_gravity="center_horizontal"
+            android:layout_row="3" />
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_column="1"
-            android:layout_row="3" />
+            android:layout_gravity="center_horizontal"
+            android:layout_row="3"
+            android:scaleType="fitEnd" />
 
         <!--第4行-->
         <ImageView
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_column="0"
-            android:layout_row="4"
-            android:scaleType="fitXY" />
+            android:layout_gravity="center_horizontal"
+            android:layout_row="4" />
+
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_column="1"
-            android:layout_row="4" />
+            android:layout_gravity="center_horizontal"
+            android:layout_row="4"
+            android:scaleType="fitXY" />
+
+        <!--第5行-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_row="5"
+            android:scaleType="centerCrop" />
+
+        <!--第6行-->
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_column="0"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="6" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_column="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="6" />
     </GridLayout>
 </android.support.v4.widget.NestedScrollView>

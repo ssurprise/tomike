@@ -27,8 +27,8 @@ public class ImageLoader {
     }
 
     public static class Builder {
-        Context context;
-        LoadOptions options = new LoadOptions();
+        final Context context;
+        LoadOptions options = LoadOptions.getDefaultLoadOptions();
         Object source;
 
         private ILoader iLoader = new GlideLoader();
@@ -42,6 +42,12 @@ public class ImageLoader {
             return this;
         }
 
+        /**
+         * 应用指定的可选配置对象，注：指定后会覆盖之前的配置项
+         *
+         * @param builder 可选配置对象
+         * @return 构造器
+         */
         public Builder apply(LoadOptions builder) {
             options = builder;
             return this;
@@ -54,7 +60,7 @@ public class ImageLoader {
             iLoader.into(target);
         }
 
-        public void into(final ImageView targetImageView) {
+        public void into(ImageView targetImageView) {
             iLoader.init(context);
             iLoader.load(source);
             iLoader.apply(options);
@@ -96,28 +102,33 @@ public class ImageLoader {
             return this;
         }
 
+        public Builder dontTransform() {
+            options.dontTransform();
+            return this;
+        }
+
         public Builder transformStrategy(TransformStrategy transformStrategy) {
             options.transformStrategy(transformStrategy);
             return this;
         }
 
         public Builder transform(Transformation transformation) {
-            options.transformation(transformation);
+            options.transform(transformation);
             return this;
         }
 
         public Builder transforms(Transformation... transformation) {
-            options.transformation(transformation);
-            return this;
-        }
-
-        public Builder noTransitionAnim() {
-            options.transitionAnim(false);
+            options.transform(transformation);
             return this;
         }
 
         public Builder useTransitionAnim() {
             options.transitionAnim(true);
+            return this;
+        }
+
+        public Builder noTransitionAnim() {
+            options.transitionAnim(false);
             return this;
         }
 
