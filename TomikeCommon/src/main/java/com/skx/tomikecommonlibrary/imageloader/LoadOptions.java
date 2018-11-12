@@ -1,9 +1,11 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.bumptech.glide.util.Util;
 import com.skx.tomikecommonlibrary.R;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
@@ -26,6 +28,8 @@ import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
  * 3.硬盘缓存策略
  */
 public class LoadOptions {
+
+    private static final int UNSET = -1;
 
     /**
      * 是否显示占位图，默认为显示。
@@ -54,6 +58,15 @@ public class LoadOptions {
     @Nullable
     private Drawable fallbackDrawable;
     private int fallbackResId;
+
+    /**
+     * 用于调整大小的目标图像宽度。
+     */
+    private int targetWidth = UNSET;
+    /**
+     * 调整大小的目标图像高度。
+     */
+    private int targetHeight = UNSET;
 
 
     private boolean transitionAnim;
@@ -155,6 +168,20 @@ public class LoadOptions {
         this.fallbackResId = fallbackResId;
         return this;
     }
+
+    /**
+     * 将图像大小调整为指定大小（以像素为单位）。
+     */
+    public LoadOptions resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
+        if (targetWidth == 0 && targetHeight == 0) {
+            throw new IllegalArgumentException("At least one dimension has to be positive number.");
+        }
+
+        this.targetWidth = targetWidth;
+        this.targetHeight = targetHeight;
+        return this;
+    }
+
 
     public LoadOptions transitionAnim(boolean transitionAnim) {
         this.transitionAnim = transitionAnim;
@@ -312,4 +339,15 @@ public class LoadOptions {
         return transformations;
     }
 
+    public final boolean isValidOverride() {
+        return Util.isValidDimensions(targetWidth, targetHeight);
+    }
+
+    public int getTargetWidth() {
+        return targetWidth;
+    }
+
+    public int getTargetHeight() {
+        return targetHeight;
+    }
 }
