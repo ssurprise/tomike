@@ -326,7 +326,7 @@ public class GlideLoader implements ILoader {
 
         @Override
         public boolean onResourceReady(Object resource, Object model, com.bumptech.glide.request.target.Target target, DataSource dataSource, boolean isFirstResource) {
-            Log.e("success-source", model != null ? (String) model : "");
+            Log.e("success-source", String.format("来源：%s,%s，是否是第一次加载：%s", dataSource.toString(), model != null ? model.toString() : "", isFirstResource));
             return false;
         }
     };
