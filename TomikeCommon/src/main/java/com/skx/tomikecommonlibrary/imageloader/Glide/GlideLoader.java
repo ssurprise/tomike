@@ -19,8 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.BaseTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
@@ -54,7 +53,7 @@ public class GlideLoader implements ILoader {
     private Object source;
     private boolean transitionAnim = true;
 
-//    private Class<E> transcodeClass;
+    private Class<?> transcodeClass;
 
     public void init(Context context) {
         this.mContext = context;
@@ -94,7 +93,13 @@ public class GlideLoader implements ILoader {
         configTransformSetting(loadOptions.getTransformStrategy(), loadOptions.getTransformations());
 
         transitionAnim = loadOptions.isTransitionAnim();
-//                .sizeMultiplier(0.20f);
+
+        if (loadOptions.isValidOverride()) {
+            options = options.override(loadOptions.getTargetWidth(), loadOptions.getTargetHeight());
+        }
+
+
+//        options = options.sizeMultiplier(0.1f);
 
 //        transcodeClass = (Class<E>) loadOptions.getSourceType();
 
@@ -240,24 +245,22 @@ public class GlideLoader implements ILoader {
         Class<E> z = (Class) type.getActualTypeArguments()[0];
 
         // 输出类型
-        switch (z.getSimpleName()) {
-            case "Bitmap":
-                if (transitionAnim) {
-                    drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
-                } else {
-                    drawableRequestBuilder = Glide.with(mContext).asBitmap();
-                }
-                break;
-            case "File":
-                drawableRequestBuilder = Glide.with(mContext).asFile();
-                break;
-            default:
-                if (transitionAnim) {
-                    drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
-                } else {
-                    drawableRequestBuilder = Glide.with(mContext).asDrawable();
-                }
-                break;
+        if (z.isAssignableFrom(Bitmap.class)) {
+            if (transitionAnim) {
+                drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
+            } else {
+                drawableRequestBuilder = Glide.with(mContext).asBitmap();
+            }
+
+        } else if (z.isAssignableFrom(File.class)) {
+            drawableRequestBuilder = Glide.with(mContext).asFile();
+
+        } else {
+            if (transitionAnim) {
+                drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
+            } else {
+                drawableRequestBuilder = Glide.with(mContext).asDrawable();
+            }
         }
 
         // 加载类型
@@ -279,7 +282,7 @@ public class GlideLoader implements ILoader {
             drawableRequestBuilder = drawableRequestBuilder.load(source);
         }
 
-        drawableRequestBuilder.apply(options).into(new BaseTarget() {
+        drawableRequestBuilder.apply(options).listener(requestListener).into(new SimpleTarget() {
             @Override
             public void onLoadStarted(@Nullable Drawable placeholder) {
                 super.onLoadStarted(placeholder);
@@ -296,16 +299,6 @@ public class GlideLoader implements ILoader {
             public void onResourceReady(@NonNull Object resource, @Nullable Transition transition) {
                 target.onResourceReady((E) resource);
             }
-
-            @Override
-            public void getSize(@NonNull SizeReadyCallback cb) {
-
-            }
-
-            @Override
-            public void removeCallback(@NonNull SizeReadyCallback cb) {
-
-            }
         });
         return target;
     }
@@ -316,23 +309,24 @@ public class GlideLoader implements ILoader {
         if (transitionAnim) {
             requestBuilder = requestBuilder.transition(BitmapTransitionOptions.withCrossFade());
         }
-        requestBuilder.apply(options).into(target);
+        requestBuilder.apply(options).listener(requestListener).into(target);
     }
 
 
     /**
      * 用于在图像加载时监视请求状态的类。
      */
-    private final RequestListener<Drawable> requestListener = new RequestListener<Drawable>() {
-        @Override
-        public boolean onResourceReady(Drawable resource, Object model, com.bumptech.glide.request.target.Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-            Log.e("success-source", model != null ? (String) model : "");
-            return false;
-        }
+    private final RequestListener requestListener = new RequestListener() {
 
         @Override
         public boolean onLoadFailed(@Nullable GlideException e, Object model, com.bumptech.glide.request.target.Target target, boolean isFirstResource) {
             Log.e("fail-source", model != null ? (String) model : "");
+            return false;
+        }
+
+        @Override
+        public boolean onResourceReady(Object resource, Object model, com.bumptech.glide.request.target.Target target, DataSource dataSource, boolean isFirstResource) {
+            Log.e("success-source", model != null ? (String) model : "");
             return false;
         }
     };

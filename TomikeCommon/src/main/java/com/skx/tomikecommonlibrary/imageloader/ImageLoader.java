@@ -3,6 +3,7 @@ package com.skx.tomikecommonlibrary.imageloader;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
@@ -22,22 +23,22 @@ import java.io.File;
 public class ImageLoader {
 
 
-    public static Builder with(@NonNull Context context) {
-        return new Builder(context);
+    public static Creator with(@NonNull Context context) {
+        return new Creator(context);
     }
 
-    public static class Builder {
+    public static class Creator {
         final Context context;
         LoadOptions options = LoadOptions.getDefaultLoadOptions();
         Object source;
 
         private ILoader iLoader = new GlideLoader();
 
-        public Builder(Context context) {
+        Creator(Context context) {
             this.context = context;
         }
 
-        public Builder load(Object source) {
+        public Creator load(Object source) {
             this.source = source;
             return this;
         }
@@ -48,7 +49,7 @@ public class ImageLoader {
          * @param builder 可选配置对象
          * @return 构造器
          */
-        public Builder apply(LoadOptions builder) {
+        public Creator apply(LoadOptions builder) {
             options = builder;
             return this;
         }
@@ -67,87 +68,92 @@ public class ImageLoader {
             iLoader.into(targetImageView);
         }
 
-        public Builder noPlaceholder() {
+        public Creator noPlaceholder() {
             options.noPlaceholder();
             return this;
         }
 
-        public Builder placeholder(@Nullable Drawable placeholderDrawable) {
+        public Creator placeholder(@Nullable Drawable placeholderDrawable) {
             options.placeholder(placeholderDrawable);
             return this;
         }
 
-        public Builder placeholder(int placeholderResId) {
+        public Creator placeholder(int placeholderResId) {
             options.placeholder(placeholderResId);
             return this;
         }
 
-        public Builder error(@Nullable Drawable errorDrawable) {
+        public Creator error(@Nullable Drawable errorDrawable) {
             options.error(errorDrawable);
             return this;
         }
 
-        public Builder error(int errorResId) {
+        public Creator error(int errorResId) {
             options.error(errorResId);
             return this;
         }
 
-        public Builder fallback(@Nullable Drawable fallbackDrawable) {
+        public Creator fallback(@Nullable Drawable fallbackDrawable) {
             options.fallback(fallbackDrawable);
             return this;
         }
 
-        public Builder fallback(int fallbackResId) {
+        public Creator fallback(int fallbackResId) {
             options.fallback(fallbackResId);
             return this;
         }
 
-        public Builder dontTransform() {
+        public Creator dontTransform() {
             options.dontTransform();
             return this;
         }
 
-        public Builder transformStrategy(TransformStrategy transformStrategy) {
+        public Creator transformStrategy(TransformStrategy transformStrategy) {
             options.transformStrategy(transformStrategy);
             return this;
         }
 
-        public Builder transform(Transformation transformation) {
+        public Creator transform(Transformation transformation) {
             options.transform(transformation);
             return this;
         }
 
-        public Builder transforms(Transformation... transformation) {
+        public Creator transforms(Transformation... transformation) {
             options.transform(transformation);
             return this;
         }
 
-        public Builder useTransitionAnim() {
+        public Creator useTransitionAnim() {
             options.transitionAnim(true);
             return this;
         }
 
-        public Builder noTransitionAnim() {
+        public Creator noTransitionAnim() {
             options.transitionAnim(false);
             return this;
         }
 
-        public Builder asFile() {
+        public Creator resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
+            options.resize(targetWidth, targetHeight);
+            return this;
+        }
+
+        public Creator asFile() {
             options.setSourceType(File.class);
             return this;
         }
 
-        public Builder asGif() {
+        public Creator asGif() {
             options.setSourceType(GifDrawable.class);
             return this;
         }
 
-        public Builder asBitmap() {
+        public Creator asBitmap() {
             options.setSourceType(Bitmap.class);
             return this;
         }
 
-        public Builder asDrawable() {
+        public Creator asDrawable() {
             options.setSourceType(Drawable.class);
             return this;
         }
