@@ -19,7 +19,6 @@ import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform;
 import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 
-import java.util.Date;
 
 public class GlideActivity extends AppCompatActivity {
 
@@ -200,26 +199,9 @@ public class GlideActivity extends AppCompatActivity {
                                         });
                                 break;
                             case 13:
-                                ImageLoader.with(GlideActivity.this)
+                                ImageLoader.asGif(GlideActivity.this)
                                         .load(imageArray[i])
-                                        .asFile()
-                                        .into(new AbstractTarget<Date>() {
-                                            @Override
-                                            public void onLoadStarted(@Nullable Drawable placeholder) {
-                                                super.onLoadStarted(placeholder);
-                                                targetImgv.setImageDrawable(placeholder);
-                                            }
-
-                                            @Override
-                                            public void onResourceReady(@NonNull Date resource) {
-
-                                            }
-
-//                                            @Override
-//                                            public void onResourceReady(@NonNull Drawable resource) {
-//                                                targetImgv.setImageDrawable(resource);
-//                                            }
-                                        });
+                                        .into(targetImgv);
                                 break;
                         }
                     }

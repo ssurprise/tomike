@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.skx.tomikecommonlibrary.imageloader.Glide.GlideLoader;
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
@@ -25,22 +24,41 @@ import java.io.File;
 public class ImageLoader {
 
 
-    public static Creator with(@NonNull Context context) {
-        return new Creator(context);
+    public static Builder<Drawable> with(@NonNull Context context) {
+        return new Builder<Drawable>(context).setTranscodeClass(Drawable.class);
     }
 
-    public static class Creator {
+    public static Builder<Bitmap> asBitmap(@NonNull Context context) {
+        return new Builder<Bitmap>(context).setTranscodeClass(Bitmap.class);
+    }
+
+    public static Builder<File> asFile(@NonNull Context context) {
+        return new Builder<File>(context).setTranscodeClass(File.class);
+    }
+
+    public static Builder<SGifDrawable> asGif(@NonNull Context context) {
+        return new Builder<SGifDrawable>(context).setTranscodeClass(SGifDrawable.class);
+    }
+
+    public static class Builder<E> {
         final Context context;
         LoadOptions options = LoadOptions.getDefaultLoadOptions();
         Object source;
+        Class<E> transcodeClass;
 
-        private ILoader iLoader = new GlideLoader();
+        private ILoader<E> iLoader;
 
-        Creator(Context context) {
+        Builder(Context context) {
             this.context = context;
         }
 
-        public Creator load(Object source) {
+        Builder<E> setTranscodeClass(Class<E> transcodeClass) {
+            this.transcodeClass = transcodeClass;
+            iLoader = new GlideLoader<>(transcodeClass);
+            return this;
+        }
+
+        public Builder<E> load(Object source) {
             this.source = source;
             return this;
         }
@@ -51,12 +69,12 @@ public class ImageLoader {
          * @param builder 可选配置对象
          * @return 构造器
          */
-        public Creator apply(LoadOptions builder) {
+        public Builder<E> apply(LoadOptions builder) {
             options = builder;
             return this;
         }
 
-        public <E, T extends Target<E>> void into(T target) {
+        public <T extends Target<E>> void into(T target) {
             iLoader.init(context);
             iLoader.load(source);
             iLoader.apply(options);
@@ -70,93 +88,73 @@ public class ImageLoader {
             iLoader.into(targetImageView);
         }
 
-        public Creator noPlaceholder() {
+        public Builder<E> noPlaceholder() {
             options.noPlaceholder();
             return this;
         }
 
-        public Creator placeholder(@Nullable Drawable placeholderDrawable) {
+        public Builder<E> placeholder(@Nullable Drawable placeholderDrawable) {
             options.placeholder(placeholderDrawable);
             return this;
         }
 
-        public Creator placeholder(int placeholderResId) {
+        public Builder<E> placeholder(int placeholderResId) {
             options.placeholder(placeholderResId);
             return this;
         }
 
-        public Creator error(@Nullable Drawable errorDrawable) {
+        public Builder<E> error(@Nullable Drawable errorDrawable) {
             options.error(errorDrawable);
             return this;
         }
 
-        public Creator error(int errorResId) {
+        public Builder<E> error(int errorResId) {
             options.error(errorResId);
             return this;
         }
 
-        public Creator fallback(@Nullable Drawable fallbackDrawable) {
+        public Builder<E> fallback(@Nullable Drawable fallbackDrawable) {
             options.fallback(fallbackDrawable);
             return this;
         }
 
-        public Creator fallback(int fallbackResId) {
+        public Builder<E> fallback(int fallbackResId) {
             options.fallback(fallbackResId);
             return this;
         }
 
-        public Creator dontTransform() {
+        public Builder<E> dontTransform() {
             options.dontTransform();
             return this;
         }
 
-        public Creator transformStrategy(TransformStrategy transformStrategy) {
+        public Builder<E> transformStrategy(TransformStrategy transformStrategy) {
             options.transformStrategy(transformStrategy);
             return this;
         }
 
-        public Creator transform(Transformation transformation) {
+        public Builder<E> transform(Transformation transformation) {
             options.transform(transformation);
             return this;
         }
 
-        public Creator transforms(Transformation... transformation) {
+        public Builder<E> transforms(Transformation... transformation) {
             options.transform(transformation);
             return this;
         }
 
-        public Creator useTransitionAnim() {
+        public Builder<E> useTransitionAnim() {
             options.transitionAnim(true);
             return this;
         }
 
-        public Creator noTransitionAnim() {
+        public Builder<E> noTransitionAnim() {
             options.transitionAnim(false);
             return this;
         }
 
-        public Creator resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
+        public Builder<E> resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
             options.resize(targetWidth, targetHeight);
-            return this;
-        }
-
-        public Creator asFile() {
-            options.setSourceType(File.class);
-            return this;
-        }
-
-        public Creator asGif() {
-            options.setSourceType(GifDrawable.class);
-            return this;
-        }
-
-        public Creator asBitmap() {
-            options.setSourceType(Bitmap.class);
-            return this;
-        }
-
-        public Creator asDrawable() {
-            options.setSourceType(Drawable.class);
             return this;
         }
     }

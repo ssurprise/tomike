@@ -6,9 +6,11 @@ import android.widget.ImageView;
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
 
 /**
- * 加载接口
+ * 图片加载接口
+ *
+ * @param <TranscodeType> 目标转码类型，目前支持的类型包括：Bitmap/Drawable/File
  */
-public interface ILoader {
+public interface ILoader<TranscodeType> {
 
     /**
      * 初始化
@@ -37,7 +39,7 @@ public interface ILoader {
      *
      * @param target 将资源加载到的目标
      */
-    <E, T extends Target<E>> T into(T target);
+    <T extends Target<TranscodeType>> T into(T target);
 
     <T extends ImageView> void into(T target);
 

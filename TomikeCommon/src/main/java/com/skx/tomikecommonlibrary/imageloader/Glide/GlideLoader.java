@@ -23,6 +23,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
+import com.skx.tomikecommonlibrary.imageloader.SGifDrawable;
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
@@ -45,14 +46,18 @@ import java.security.MessageDigest;
  * 2、转换只应用于请求的资源，不会应用到任何占位符。如果想对placeholder 进行转换可以自定义视图进行裁剪；
  * 3、
  */
-public class GlideLoader implements ILoader {
+public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
     private RequestOptions options;
     private Context mContext;
     private Object source;
     private boolean transitionAnim = true;
 
-    private Class<?> transcodeClass = Drawable.class;
+    private Class<TranscodeType> transcodeClass;
+
+    public GlideLoader(Class<TranscodeType> transcodeClass) {
+        this.transcodeClass = transcodeClass;
+    }
 
     public void init(Context context) {
         this.mContext = context;
@@ -97,13 +102,6 @@ public class GlideLoader implements ILoader {
             options = options.override(loadOptions.getTargetWidth(), loadOptions.getTargetHeight());
         }
 
-        if (loadOptions.getSourceType() != null) {
-            transcodeClass = loadOptions.getSourceType();
-        }
-
-//        options = options.sizeMultiplier(0.1f);
-
-
 //        暂时不对外开放这个缓存配置
 //        switch (loadOptions.getPriority()) {
 //            case HIGH:
@@ -137,10 +135,9 @@ public class GlideLoader implements ILoader {
 //        }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public <E, T extends Target<E>> T into(final T target) {
-        createGlideRequestBuilder().into(new SimpleTarget() {
+    public <T extends Target<TranscodeType>> T into(final T target) {
+        createGlideRequestBuilder().into(new SimpleTarget<TranscodeType>() {
             @Override
             public void onLoadStarted(@Nullable Drawable placeholder) {
                 super.onLoadStarted(placeholder);
@@ -154,8 +151,8 @@ public class GlideLoader implements ILoader {
             }
 
             @Override
-            public void onResourceReady(@NonNull Object resource, @Nullable Transition transition) {
-                target.onResourceReady((E) resource);
+            public void onResourceReady(@NonNull TranscodeType resource, @Nullable Transition<? super TranscodeType> transition) {
+                target.onResourceReady(resource);
             }
         });
         return target;
@@ -168,7 +165,7 @@ public class GlideLoader implements ILoader {
 
     @SuppressWarnings("unchecked")
     @NonNull
-    private RequestBuilder<?> createGlideRequestBuilder() {
+    private RequestBuilder<TranscodeType> createGlideRequestBuilder() {
         RequestBuilder<?> drawableRequestBuilder;
 
         // 输出类型
@@ -179,15 +176,19 @@ public class GlideLoader implements ILoader {
                 drawableRequestBuilder = Glide.with(mContext).asBitmap();
             }
 
-        } else if (transcodeClass.isAssignableFrom(File.class)) {
-            drawableRequestBuilder = Glide.with(mContext).asFile();
-
         } else if (transcodeClass.isAssignableFrom(Drawable.class)) {
             if (transitionAnim) {
                 drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
             } else {
                 drawableRequestBuilder = Glide.with(mContext).asDrawable();
             }
+
+        } else if (transcodeClass.isAssignableFrom(SGifDrawable.class)) {
+            drawableRequestBuilder = Glide.with(mContext).asGif();
+
+        } else if (transcodeClass.isAssignableFrom(File.class)) {
+            drawableRequestBuilder = Glide.with(mContext).asFile();
+
         } else {
             throw new IllegalArgumentException(
                     "Unhandled class: " + transcodeClass + ", try .as*(Class).transcode(ResourceTranscoder)");
