@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.bumptech.glide.util.Util;
 import com.skx.tomikecommonlibrary.R;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 
@@ -173,6 +174,12 @@ public class LoadOptions {
      * 将图像大小调整为指定大小（以像素为单位）。
      */
     public LoadOptions resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
+        if (targetWidth < 0) {
+            throw new IllegalArgumentException("Width must be positive number or 0.");
+        }
+        if (targetHeight < 0) {
+            throw new IllegalArgumentException("Height must be positive number or 0.");
+        }
         if (targetWidth == 0 && targetHeight == 0) {
             throw new IllegalArgumentException("At least one dimension has to be positive number.");
         }

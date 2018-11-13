@@ -23,8 +23,8 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
-import com.skx.tomikecommonlibrary.imageloader.Target;
-import com.skx.tomikecommonlibrary.imageloader.TransformStrategy;
+import com.skx.tomikecommonlibrary.imageloader.target.Target;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
 import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
@@ -32,7 +32,6 @@ import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 import java.io.File;
-import java.lang.reflect.ParameterizedType;
 import java.security.MessageDigest;
 
 
@@ -53,7 +52,7 @@ public class GlideLoader implements ILoader {
     private Object source;
     private boolean transitionAnim = true;
 
-    private Class<?> transcodeClass;
+    private Class<?> transcodeClass = Drawable.class;
 
     public void init(Context context) {
         this.mContext = context;
@@ -98,10 +97,12 @@ public class GlideLoader implements ILoader {
             options = options.override(loadOptions.getTargetWidth(), loadOptions.getTargetHeight());
         }
 
+        if (loadOptions.getSourceType() != null) {
+            transcodeClass = loadOptions.getSourceType();
+        }
 
 //        options = options.sizeMultiplier(0.1f);
 
-//        transcodeClass = (Class<E>) loadOptions.getSourceType();
 
 //        暂时不对外开放这个缓存配置
 //        switch (loadOptions.getPriority()) {
@@ -135,6 +136,120 @@ public class GlideLoader implements ILoader {
 //                break;
 //        }
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <E, T extends Target<E>> T into(final T target) {
+        createGlideRequestBuilder().into(new SimpleTarget() {
+            @Override
+            public void onLoadStarted(@Nullable Drawable placeholder) {
+                super.onLoadStarted(placeholder);
+                target.onLoadStarted(placeholder);
+            }
+
+            @Override
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                super.onLoadFailed(errorDrawable);
+                target.onLoadFailed(errorDrawable);
+            }
+
+            @Override
+            public void onResourceReady(@NonNull Object resource, @Nullable Transition transition) {
+                target.onResourceReady((E) resource);
+            }
+        });
+        return target;
+    }
+
+    @Override
+    public <T extends ImageView> void into(T target) {
+        createGlideRequestBuilder().into(target);
+    }
+
+    @SuppressWarnings("unchecked")
+    @NonNull
+    private RequestBuilder<?> createGlideRequestBuilder() {
+        RequestBuilder<?> drawableRequestBuilder;
+
+        // 输出类型
+        if (transcodeClass.isAssignableFrom(Bitmap.class)) {
+            if (transitionAnim) {
+                drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
+            } else {
+                drawableRequestBuilder = Glide.with(mContext).asBitmap();
+            }
+
+        } else if (transcodeClass.isAssignableFrom(File.class)) {
+            drawableRequestBuilder = Glide.with(mContext).asFile();
+
+        } else if (transcodeClass.isAssignableFrom(Drawable.class)) {
+            if (transitionAnim) {
+                drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
+            } else {
+                drawableRequestBuilder = Glide.with(mContext).asDrawable();
+            }
+        } else {
+            throw new IllegalArgumentException(
+                    "Unhandled class: " + transcodeClass + ", try .as*(Class).transcode(ResourceTranscoder)");
+        }
+
+        // 加载类型
+        if (source instanceof String) {
+            drawableRequestBuilder = drawableRequestBuilder.load((String) source);
+        } else if (source instanceof Uri) {
+            drawableRequestBuilder = drawableRequestBuilder.load((Uri) source);
+        } else if (source instanceof Drawable) {
+            drawableRequestBuilder = drawableRequestBuilder.load((Drawable) source);
+        } else if (source instanceof Bitmap) {
+            drawableRequestBuilder = drawableRequestBuilder.load((Bitmap) source);
+        } else if (source instanceof Integer) {
+            drawableRequestBuilder = drawableRequestBuilder.load((Integer) source);
+        } else if (source instanceof File) {
+            drawableRequestBuilder = drawableRequestBuilder.load((File) source);
+        } else if (source instanceof byte[]) {
+            drawableRequestBuilder = drawableRequestBuilder.load((byte[]) source);
+        } else {
+            drawableRequestBuilder = drawableRequestBuilder.load(source);
+        }
+        return drawableRequestBuilder.apply(options).listener(requestListener);
+    }
+
+    /**
+     * 用于在图像加载时监视请求状态的类。
+     */
+    private final RequestListener requestListener = new RequestListener() {
+
+        @Override
+        public boolean onLoadFailed(@Nullable GlideException e, Object model, com.bumptech.glide.request.target.Target target, boolean isFirstResource) {
+            Log.e("fail-source", model != null ? (String) model : "");
+            return false;
+        }
+
+        @Override
+        public boolean onResourceReady(Object resource, Object model, com.bumptech.glide.request.target.Target target, DataSource dataSource, boolean isFirstResource) {
+            Log.e("success-source", String.format("来源：%s,%s，是否是第一次加载：%s", dataSource.toString(), model != null ? model.toString() : "", isFirstResource));
+            return false;
+        }
+    };
+
+    @Override
+    public void onlyDownload() {
+
+    }
+
+    @Override
+    public void resume() {
+        Glide.with(mContext).resumeRequests();
+    }
+
+    /**
+     * 取消正在进行的任何负载，但不清除已完成负载的资源。
+     */
+    @Override
+    public void pause() {
+        Glide.with(mContext).pauseRequests();
+    }
+
 
     /**
      * 配置转换设置
@@ -233,119 +348,5 @@ public class GlideLoader implements ILoader {
                 }
             };
         }
-    }
-
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public <E, T extends Target<E>> T into(final T target) {
-        RequestBuilder<?> drawableRequestBuilder;
-
-        ParameterizedType type = (ParameterizedType) target.getClass().getGenericSuperclass();
-        Class<E> z = (Class) type.getActualTypeArguments()[0];
-
-        // 输出类型
-        if (z.isAssignableFrom(Bitmap.class)) {
-            if (transitionAnim) {
-                drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
-            } else {
-                drawableRequestBuilder = Glide.with(mContext).asBitmap();
-            }
-
-        } else if (z.isAssignableFrom(File.class)) {
-            drawableRequestBuilder = Glide.with(mContext).asFile();
-
-        } else {
-            if (transitionAnim) {
-                drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
-            } else {
-                drawableRequestBuilder = Glide.with(mContext).asDrawable();
-            }
-        }
-
-        // 加载类型
-        if (source instanceof String) {
-            drawableRequestBuilder = drawableRequestBuilder.load((String) source);
-        } else if (source instanceof Uri) {
-            drawableRequestBuilder = drawableRequestBuilder.load((Uri) source);
-        } else if (source instanceof Drawable) {
-            drawableRequestBuilder = drawableRequestBuilder.load((Drawable) source);
-        } else if (source instanceof Bitmap) {
-            drawableRequestBuilder = drawableRequestBuilder.load((Bitmap) source);
-        } else if (source instanceof Integer) {
-            drawableRequestBuilder = drawableRequestBuilder.load((Integer) source);
-        } else if (source instanceof File) {
-            drawableRequestBuilder = drawableRequestBuilder.load((File) source);
-        } else if (source instanceof byte[]) {
-            drawableRequestBuilder = drawableRequestBuilder.load((byte[]) source);
-        } else {
-            drawableRequestBuilder = drawableRequestBuilder.load(source);
-        }
-
-        drawableRequestBuilder.apply(options).listener(requestListener).into(new SimpleTarget() {
-            @Override
-            public void onLoadStarted(@Nullable Drawable placeholder) {
-                super.onLoadStarted(placeholder);
-                target.onLoadStarted(placeholder);
-            }
-
-            @Override
-            public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                super.onLoadFailed(errorDrawable);
-                target.onLoadFailed(errorDrawable);
-            }
-
-            @Override
-            public void onResourceReady(@NonNull Object resource, @Nullable Transition transition) {
-                target.onResourceReady((E) resource);
-            }
-        });
-        return target;
-    }
-
-    @Override
-    public <T extends ImageView> void into(T target) {
-        RequestBuilder<Bitmap> requestBuilder = Glide.with(mContext).asBitmap().load(source);
-        if (transitionAnim) {
-            requestBuilder = requestBuilder.transition(BitmapTransitionOptions.withCrossFade());
-        }
-        requestBuilder.apply(options).listener(requestListener).into(target);
-    }
-
-
-    /**
-     * 用于在图像加载时监视请求状态的类。
-     */
-    private final RequestListener requestListener = new RequestListener() {
-
-        @Override
-        public boolean onLoadFailed(@Nullable GlideException e, Object model, com.bumptech.glide.request.target.Target target, boolean isFirstResource) {
-            Log.e("fail-source", model != null ? (String) model : "");
-            return false;
-        }
-
-        @Override
-        public boolean onResourceReady(Object resource, Object model, com.bumptech.glide.request.target.Target target, DataSource dataSource, boolean isFirstResource) {
-            Log.e("success-source", String.format("来源：%s,%s，是否是第一次加载：%s", dataSource.toString(), model != null ? model.toString() : "", isFirstResource));
-            return false;
-        }
-    };
-
-    @Override
-    public void onlyDownload() {
-
-    }
-
-    @Override
-    public void resume() {
-        Glide.with(mContext).resumeRequests();
-    }
-
-    /**
-     * 取消正在进行的任何负载，但不清除已完成负载的资源。
-     */
-    @Override
-    public void pause() {
-        Glide.with(mContext).pauseRequests();
     }
 }

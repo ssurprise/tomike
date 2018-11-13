@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
-import com.skx.tomikecommonlibrary.imageloader.Target;
+import com.skx.tomikecommonlibrary.imageloader.target.Target;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 

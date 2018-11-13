@@ -1,4 +1,4 @@
-package com.skx.tomikecommonlibrary.imageloader;
+package com.skx.tomikecommonlibrary.imageloader.target;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;

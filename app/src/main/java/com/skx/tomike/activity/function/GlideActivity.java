@@ -10,14 +10,16 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 
 import com.skx.tomike.R;
-import com.skx.tomikecommonlibrary.imageloader.AbstractTarget;
+import com.skx.tomikecommonlibrary.imageloader.target.AbstractTarget;
 import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
-import com.skx.tomikecommonlibrary.imageloader.TransformStrategy;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
 import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform;
 import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
+
+import java.util.Date;
 
 public class GlideActivity extends AppCompatActivity {
 
@@ -200,8 +202,8 @@ public class GlideActivity extends AppCompatActivity {
                             case 13:
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
-                                        .resize(-10,-10)
-                                        .into(new AbstractTarget<Drawable>() {
+                                        .asFile()
+                                        .into(new AbstractTarget<Date>() {
                                             @Override
                                             public void onLoadStarted(@Nullable Drawable placeholder) {
                                                 super.onLoadStarted(placeholder);
@@ -209,9 +211,14 @@ public class GlideActivity extends AppCompatActivity {
                                             }
 
                                             @Override
-                                            public void onResourceReady(@NonNull Drawable resource) {
-                                                targetImgv.setImageDrawable(resource);
+                                            public void onResourceReady(@NonNull Date resource) {
+
                                             }
+
+//                                            @Override
+//                                            public void onResourceReady(@NonNull Drawable resource) {
+//                                                targetImgv.setImageDrawable(resource);
+//                                            }
                                         });
                                 break;
                         }

@@ -1,4 +1,4 @@
-package com.skx.tomikecommonlibrary.imageloader;
+package com.skx.tomikecommonlibrary.imageloader.target;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -23,7 +23,7 @@ public interface Target<T> {
      * restart may cause a call here.
      * <p>
      * <p>You must ensure that any current Drawable received in {@link #onResourceReady(Object
-     * )} is no longer displayed before redrawing the container (usually a View) or
+     *)} is no longer displayed before redrawing the container (usually a View) or
      * changing its visibility.
      *
      * @param placeholder The placeholder drawable to optionally show, or null.
@@ -37,7 +37,7 @@ public interface Target<T> {
      * } if the model object is null.
      * <p>
      * <p>You must ensure that any current Drawable received in {@link #onResourceReady(Object
-     * )} is no longer displayed before redrawing the container (usually a View) or
+     *)} is no longer displayed before redrawing the container (usually a View) or
      * changing its visibility.
      *
      * @param errorDrawable The error drawable to optionally show, or null.
@@ -55,7 +55,7 @@ public interface Target<T> {
      * A lifecycle callback that is called when a load is cancelled and its resources are freed.
      * <p>
      * <p>You must ensure that any current Drawable received in {@link #onResourceReady(Object
-     * )} is no longer displayed before redrawing the container (usually a View) or
+     *)} is no longer displayed before redrawing the container (usually a View) or
      * changing its visibility.
      *
      * @param placeholder The placeholder drawable to optionally show, or null.

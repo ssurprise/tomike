@@ -10,6 +10,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.skx.tomikecommonlibrary.imageloader.Glide.GlideLoader;
+import com.skx.tomikecommonlibrary.imageloader.target.Target;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
 
 import java.io.File;

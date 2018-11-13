@@ -3,6 +3,8 @@ package com.skx.tomikecommonlibrary.imageloader;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.skx.tomikecommonlibrary.imageloader.target.Target;
+
 /**
  * 加载接口
  */
