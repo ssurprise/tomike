@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import com.skx.tomikecommonlibrary.imageloader.Glide.GlideLoader;
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
-import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
 
 import java.io.File;
 
@@ -41,25 +41,25 @@ public class ImageLoader {
     }
 
     public static class Builder<E> {
-        final Context context;
-        LoadOptions options = LoadOptions.getDefaultLoadOptions();
-        Object source;
-        Class<E> transcodeClass;
+        final Context mContext;
+        LoadOptions mOptions = LoadOptions.getDefaultLoadOptions();
+        Object mSource;
+        Class<E> mTranscodeClass;
 
         private ILoader<E> iLoader;
 
         Builder(Context context) {
-            this.context = context;
+            this.mContext = context;
         }
 
         Builder<E> setTranscodeClass(Class<E> transcodeClass) {
-            this.transcodeClass = transcodeClass;
+            this.mTranscodeClass = transcodeClass;
             iLoader = new GlideLoader<>(transcodeClass);
             return this;
         }
 
         public Builder<E> load(Object source) {
-            this.source = source;
+            this.mSource = source;
             return this;
         }
 
@@ -70,91 +70,91 @@ public class ImageLoader {
          * @return 构造器
          */
         public Builder<E> apply(LoadOptions builder) {
-            options = builder;
+            mOptions = builder;
             return this;
         }
 
         public <T extends Target<E>> void into(T target) {
-            iLoader.init(context);
-            iLoader.load(source);
-            iLoader.apply(options);
+            iLoader.init(mContext);
+            iLoader.load(mSource);
+            iLoader.apply(mOptions);
             iLoader.into(target);
         }
 
         public void into(ImageView targetImageView) {
-            iLoader.init(context);
-            iLoader.load(source);
-            iLoader.apply(options);
+            iLoader.init(mContext);
+            iLoader.load(mSource);
+            iLoader.apply(mOptions);
             iLoader.into(targetImageView);
         }
 
         public Builder<E> noPlaceholder() {
-            options.noPlaceholder();
+            mOptions.noPlaceholder();
             return this;
         }
 
         public Builder<E> placeholder(@Nullable Drawable placeholderDrawable) {
-            options.placeholder(placeholderDrawable);
+            mOptions.placeholder(placeholderDrawable);
             return this;
         }
 
         public Builder<E> placeholder(int placeholderResId) {
-            options.placeholder(placeholderResId);
+            mOptions.placeholder(placeholderResId);
             return this;
         }
 
         public Builder<E> error(@Nullable Drawable errorDrawable) {
-            options.error(errorDrawable);
+            mOptions.error(errorDrawable);
             return this;
         }
 
         public Builder<E> error(int errorResId) {
-            options.error(errorResId);
+            mOptions.error(errorResId);
             return this;
         }
 
         public Builder<E> fallback(@Nullable Drawable fallbackDrawable) {
-            options.fallback(fallbackDrawable);
+            mOptions.fallback(fallbackDrawable);
             return this;
         }
 
         public Builder<E> fallback(int fallbackResId) {
-            options.fallback(fallbackResId);
+            mOptions.fallback(fallbackResId);
             return this;
         }
 
         public Builder<E> dontTransform() {
-            options.dontTransform();
+            mOptions.dontTransform();
             return this;
         }
 
         public Builder<E> transformStrategy(TransformStrategy transformStrategy) {
-            options.transformStrategy(transformStrategy);
+            mOptions.transformStrategy(transformStrategy);
             return this;
         }
 
-        public Builder<E> transform(Transformation transformation) {
-            options.transform(transformation);
+        public Builder<E> transform(TransformAdapter transformAdapter) {
+            mOptions.transform(transformAdapter);
             return this;
         }
 
-        public Builder<E> transforms(Transformation... transformation) {
-            options.transform(transformation);
+        public Builder<E> transforms(TransformAdapter... transformAdapters) {
+            mOptions.transform(transformAdapters);
             return this;
         }
 
         public Builder<E> useTransitionAnim() {
-            options.transitionAnim(true);
+            mOptions.transitionAnim(true);
             return this;
         }
 
         public Builder<E> noTransitionAnim() {
-            options.transitionAnim(false);
+            mOptions.transitionAnim(false);
             return this;
         }
 
         public Builder<E> resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
-            options.resize(targetWidth, targetHeight);
+            mOptions.resize(targetWidth, targetHeight);
             return this;
         }
     }

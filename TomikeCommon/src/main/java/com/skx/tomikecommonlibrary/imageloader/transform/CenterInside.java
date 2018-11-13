@@ -14,7 +14,7 @@ import java.security.MessageDigest;
  * <p>
  * 注：最终转换成Glide 提供的 CenterInside，这里不用纠结实现内容，可以忽略！
  */
-public final class CenterInside implements Transformation {
+public final class CenterInside implements TransformAdapter {
     private static final String ID = "com.skx.tomikecommonlibrary.imageloader.transform.CenterInside";
     private static final byte[] ID_BYTES = ID.getBytes(CHARSET);
 

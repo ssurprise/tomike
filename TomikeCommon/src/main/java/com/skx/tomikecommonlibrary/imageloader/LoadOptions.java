@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import com.bumptech.glide.util.Util;
 import com.skx.tomikecommonlibrary.R;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
-import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
 
 
 /**
@@ -73,7 +73,7 @@ public class LoadOptions {
     private boolean transitionAnim;
 
     private TransformStrategy transformStrategy;
-    private Transformation[] transformations;
+    private TransformAdapter[] transformAdapters;
 
     private Class<?> sourceType = Drawable.class;
     /**
@@ -204,7 +204,7 @@ public class LoadOptions {
     public LoadOptions transformStrategy(TransformStrategy transformStrategy) {
         this.transformStrategy = transformStrategy;
         // 设置变换策略后，清空调设置的自定义变化。
-        transformations = null;
+        transformAdapters = null;
 
         return this;
     }
@@ -212,15 +212,15 @@ public class LoadOptions {
     /**
      * 设置自定义转换。注意：转换仅应用于请求的资源，而不应用于任何占位符。
      *
-     * @param transformation 自定义转换
+     * @param transformAdapter 自定义转换
      * @return 可选参数对象
      */
-    public LoadOptions transform(Transformation transformation) {
-        if (transformation == null) {
+    public LoadOptions transform(TransformAdapter transformAdapter) {
+        if (transformAdapter == null) {
             return this;
         }
 
-        transformations = new Transformation[]{transformation};
+        transformAdapters = new TransformAdapter[]{transformAdapter};
         // 设置自定义变换后，清空掉设置的变换策略。
         transformStrategy = null;
 
@@ -230,15 +230,15 @@ public class LoadOptions {
     /**
      * 设置自定义转换。注意：转换仅应用于请求的资源，而不应用于任何占位符。
      *
-     * @param transformation 自定义转换集
+     * @param transformAdapters 自定义转换集
      * @return 可选参数对象
      */
-    public LoadOptions transform(Transformation... transformation) {
-        if (transformation == null || transformation.length == 0) {
+    public LoadOptions transform(TransformAdapter... transformAdapters) {
+        if (transformAdapters == null || transformAdapters.length == 0) {
             return this;
         }
 
-        transformations = transformation;
+        this.transformAdapters = transformAdapters;
 
         // 设置自定义变换后，清空掉设置的变换策略。
         transformStrategy = null;
@@ -253,7 +253,7 @@ public class LoadOptions {
      */
     public LoadOptions dontTransform() {
         transformStrategy = null;
-        transformations = null;
+        transformAdapters = null;
         return this;
     }
 
@@ -342,8 +342,8 @@ public class LoadOptions {
         return transformStrategy;
     }
 
-    public Transformation[] getTransformations() {
-        return transformations;
+    public TransformAdapter[] getTransformAdapters() {
+        return transformAdapters;
     }
 
     public final boolean isValidOverride() {

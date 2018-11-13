@@ -22,7 +22,7 @@ import java.security.MessageDigest;
  * 日期：2018/11/8 2:37 PM
  * 描述：水印转换
  */
-public final class OverLapTransform implements Transformation {
+public final class OverLapTransform implements TransformAdapter {
 
     private static final String ID = "com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform";
     private static final byte[] ID_BYTES = ID.getBytes(CHARSET);
