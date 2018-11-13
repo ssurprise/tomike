@@ -163,6 +163,11 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
         createGlideRequestBuilder().into(target);
     }
 
+    /**
+     * 创建Glide 内供的 RequestBuilder 对象，以完成加载的动作。
+     *
+     * @return RequestBuilder
+     */
     @SuppressWarnings("unchecked")
     @NonNull
     private RequestBuilder<TranscodeType> createGlideRequestBuilder() {
@@ -253,10 +258,11 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
 
     /**
-     * 配置转换设置
+     * 配置转换设置。支持自带的变换和自定义变换。
+     * 1.当没有任何变换策略或者自定义变换时，不执行变换。
      *
      * @param transformStrategy 转换策略
-     * @param transformAdapters   自定义转换集
+     * @param transformAdapters 自定义转换集
      */
     private void configTransformSetting(TransformStrategy transformStrategy, TransformAdapter[] transformAdapters) {
         if (transformStrategy == null && (transformAdapters == null || transformAdapters.length == 0)) {
