@@ -51,16 +51,4 @@ public interface Target<T> {
      */
     void onResourceReady(@NonNull T resource);
 
-    /**
-     * A lifecycle callback that is called when a load is cancelled and its resources are freed.
-     * <p>
-     * <p>You must ensure that any current Drawable received in {@link #onResourceReady(Object
-     *)} is no longer displayed before redrawing the container (usually a View) or
-     * changing its visibility.
-     *
-     * @param placeholder The placeholder drawable to optionally show, or null.
-     */
-    void onLoadCleared(@Nullable Drawable placeholder);
-
-
 }

@@ -160,7 +160,6 @@ public class GlideActivity extends AppCompatActivity {
                                         .load(imageArray[i])
                                         .transforms(new RoundedCorners(90),
                                                 new OverLapTransform(GlideActivity.this, R.drawable.icon_overdue))
-
                                         .into(targetImgv);
 
                                 break;
@@ -174,7 +173,7 @@ public class GlideActivity extends AppCompatActivity {
                                         .into(targetImgv);
                                 break;
                             case 11:
-                                ImageLoader.with(GlideActivity.this)
+                                ImageLoader.asGif(GlideActivity.this)
                                         .load(imageArray[i])
                                         .into(targetImgv);
                                 break;
@@ -199,7 +198,7 @@ public class GlideActivity extends AppCompatActivity {
                                         });
                                 break;
                             case 13:
-                                ImageLoader.asGif(GlideActivity.this)
+                                ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
                                         .into(targetImgv);
                                 break;

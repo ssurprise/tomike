@@ -20,21 +20,23 @@ import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
  * 1.占位图（默认的颜色值时 ：#f5f5f5）
  * 2.错误图
  * 3.备用图
- * 4.转换（元转换、自定义转换）
+ * 4.变换（元转换、自定义转换）
  * 5.过渡动画
+ * 6.指定目标大小
  * <p>
  * 暂时不对外开放的资源：
  * 1.请求超时时间设置，默认阈值是3000ms
  * 2.加载优先级
  * 3.硬盘缓存策略
+ * <p>
+ * 注意：
+ * 1.变换功能：变换策略的优先级高于变换集，当添加自定义变换功能时，会自动设置变换策略为{@link TransformStrategy CUSTOMIZATION}
  */
 public class LoadOptions {
 
     private static final int UNSET = -1;
 
-    /**
-     * 是否显示占位图，默认为显示。
-     */
+    /** 是否显示占位图，默认为显示 */
     private boolean setPlaceholder = true;
 
     /**
@@ -53,38 +55,31 @@ public class LoadOptions {
     private Drawable errorDrawable;
     private int errorResId;
 
-    /**
-     * 后备图。
-     */
+    /** 后备图 */
     @Nullable
     private Drawable fallbackDrawable;
     private int fallbackResId;
 
-    /**
-     * 用于调整大小的目标图像宽度。
-     */
+    /** 用于调整大小的目标图像宽度。*/
     private int targetWidth = UNSET;
-    /**
-     * 调整大小的目标图像高度。
-     */
+    /** 调整大小的目标图像高度。*/
     private int targetHeight = UNSET;
 
-
+    /** 过渡动画 */
     private boolean transitionAnim;
 
-    private TransformStrategy transformStrategy;
+    /** 资源变换策略 */
+    private TransformStrategy transformStrategy = TransformStrategy.NONE;
+    /** 自定义资源变换集合 */
     private TransformAdapter[] transformAdapters;
 
-    private Class<?> sourceType = Drawable.class;
-    /**
-     * 设置加载超时时间
-     */
+    private Class<?> transcodeClass = Drawable.class;
+    /** 设置加载超时时间 */
     private int timeout = Config.TIMEOUT;
-    /**
-     * 加载优先级
-     */
+    /** 加载优先级 */
     @NonNull
     private Priority priority = Priority.NORMAL;
+    /** 硬盘缓存策略 */
     private DiskCacheStrategy diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
 
     /**
@@ -115,7 +110,7 @@ public class LoadOptions {
     }
 
     /**
-     * 占位符。同步加载，是从主线程上的Android资源加载的。 我们通常希望占位符小，并且可以通过系统资源缓存轻松缓存。
+     * 占位符。同步加载，是从主线程上的Android资源加载的。 通常希望占位符小，并且可以通过系统资源缓存轻松缓存。
      *
      * @param placeholderDrawable 占位图
      * @return 默认配置的加载配置对象
@@ -133,7 +128,7 @@ public class LoadOptions {
     }
 
     /**
-     * 占位符。同步加载，是从主线程上的Android资源加载的。 我们通常希望占位符小，并且可以通过系统资源缓存轻松缓存。
+     * 占位符。同步加载，是从主线程上的Android资源加载的。 通常希望占位符小，并且可以通过系统资源缓存轻松缓存。
      *
      * @param placeholderResId 占位图资源
      * @return 默认配置的加载配置对象
@@ -150,21 +145,45 @@ public class LoadOptions {
         return this;
     }
 
+    /**
+     * 设置加载错误图，用户资源加载失败后的显示。
+     *
+     * @param errorDrawable 错误资源drawable
+     * @return 可选参数对象
+     */
     public LoadOptions error(@Nullable Drawable errorDrawable) {
         this.errorDrawable = errorDrawable;
         return this;
     }
 
+    /**
+     * 设置加载错误图，用户资源加载失败后的显示。
+     *
+     * @param errorResId 错误资源id
+     * @return 可选参数对象
+     */
     public LoadOptions error(int errorResId) {
         this.errorResId = errorResId;
         return this;
     }
 
+    /**
+     * 设置后备资源
+     *
+     * @param fallbackDrawable 后备资源Drawable
+     * @return 可选参数对象
+     */
     public LoadOptions fallback(@Nullable Drawable fallbackDrawable) {
         this.fallbackDrawable = fallbackDrawable;
         return this;
     }
 
+    /**
+     * 设置后备资源
+     *
+     * @param fallbackResId 后备资源id
+     * @return 可选参数对象
+     */
     public LoadOptions fallback(int fallbackResId) {
         this.fallbackResId = fallbackResId;
         return this;
@@ -172,6 +191,11 @@ public class LoadOptions {
 
     /**
      * 将图像大小调整为指定大小（以像素为单位）。
+     *
+     * @param targetWidth  指定宽度
+     * @param targetHeight 指定高度
+     * @return 可选参数对象
+     * @throws IllegalArgumentException 如果取值范围{@code targetWidth < 0 || targetHeight < 0 || targetWidth == 0 && targetHeight == 0}
      */
     public LoadOptions resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
         if (targetWidth < 0) {
@@ -189,7 +213,12 @@ public class LoadOptions {
         return this;
     }
 
-
+    /**
+     * 是否开启默认的过渡动画
+     *
+     * @param transitionAnim 是否开启
+     * @return 可选参数对象
+     */
     public LoadOptions transitionAnim(boolean transitionAnim) {
         this.transitionAnim = transitionAnim;
         return this;
@@ -202,35 +231,37 @@ public class LoadOptions {
      * @return 可选参数对象
      */
     public LoadOptions transformStrategy(TransformStrategy transformStrategy) {
-        this.transformStrategy = transformStrategy;
-        // 设置变换策略后，清空调设置的自定义变化。
-        transformAdapters = null;
+        this.transformStrategy = transformStrategy != null ? transformStrategy : TransformStrategy.NONE;
+        // 设置变换策略后，清空设置的自定义变化。
+        this.transformAdapters = null;
 
         return this;
     }
 
     /**
-     * 设置自定义转换。注意：转换仅应用于请求的资源，而不应用于任何占位符。
+     * 设置自定义转换，如果自定义转换为 null，则不会有任何改变。
+     * 注意：转换仅应用于请求的资源，而不应用于任何占位符。
      *
-     * @param transformAdapter 自定义转换
+     * @param transformAdapter 自定义变换
      * @return 可选参数对象
      */
     public LoadOptions transform(TransformAdapter transformAdapter) {
         if (transformAdapter == null) {
             return this;
         }
+        // 设置自定义变换后，置变换策略为自定义类型。
+        this.transformStrategy = TransformStrategy.CUSTOMIZATION;
 
-        transformAdapters = new TransformAdapter[]{transformAdapter};
-        // 设置自定义变换后，清空掉设置的变换策略。
-        transformStrategy = null;
+        this.transformAdapters = new TransformAdapter[]{transformAdapter};
 
         return this;
     }
 
     /**
-     * 设置自定义转换。注意：转换仅应用于请求的资源，而不应用于任何占位符。
+     * 设置自定义转换，如果自定义转换集为 null 或者为空，则不会有任何改变。
+     * 注意：转换仅应用于请求的资源，而不应用于任何占位符。
      *
-     * @param transformAdapters 自定义转换集
+     * @param transformAdapters 自定义变换集
      * @return 可选参数对象
      */
     public LoadOptions transform(TransformAdapter... transformAdapters) {
@@ -238,28 +269,32 @@ public class LoadOptions {
             return this;
         }
 
-        this.transformAdapters = transformAdapters;
+        // 设置自定义变换后，置变换策略为自定义类型。
+        this.transformStrategy = TransformStrategy.CUSTOMIZATION;
 
-        // 设置自定义变换后，清空掉设置的变换策略。
-        transformStrategy = null;
+        this.transformAdapters = transformAdapters;
 
         return this;
     }
 
     /**
-     * 移除所有资源应用的转换功能
+     * 移除所有资源应用的变换功能。
+     * 置缓存策略为{@link com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy NONE},
+     * 同时清空自定义变换集的所有变换。
      *
      * @return 可选参数对象
      */
     public LoadOptions dontTransform() {
-        transformStrategy = null;
+        transformStrategy = TransformStrategy.NONE;
         transformAdapters = null;
         return this;
     }
 
     /**
+     * 设置加载优先级
+     *
      * @param priority 加载优先级
-     * @return 加载参数配置
+     * @return 可选参数对象
      * @hide 暂时不对外开放此api，使用默认配置即可
      */
     public LoadOptions priority(@NonNull Priority priority) {
@@ -268,6 +303,8 @@ public class LoadOptions {
     }
 
     /**
+     * 设置硬盘缓存策略
+     *
      * @param diskCacheStrategy 缓存配置
      * @return 加载参数配置
      * @hide 暂时不对外开放此api，使用默认配置即可
@@ -277,8 +314,15 @@ public class LoadOptions {
         return this;
     }
 
-    public void setTimeout(int timeout) {
+    /**
+     * 设置超时时间
+     *
+     * @param timeout 加载超时时间
+     * @return 加载参数配置
+     */
+    public LoadOptions setTimeout(int timeout) {
         this.timeout = timeout;
+        return this;
     }
 
     @Nullable
@@ -330,12 +374,12 @@ public class LoadOptions {
     }
 
 
-    public void setSourceType(Class<?> sourceType) {
-        this.sourceType = sourceType;
+    public void setTranscodeClass(Class<?> transcodeClass) {
+        this.transcodeClass = transcodeClass;
     }
 
-    public Class<?> getSourceType() {
-        return sourceType;
+    public Class<?> getTranscodeClass() {
+        return transcodeClass;
     }
 
     public TransformStrategy getTransformStrategy() {
@@ -346,15 +390,21 @@ public class LoadOptions {
         return transformAdapters;
     }
 
-    public final boolean isValidOverride() {
-        return Util.isValidDimensions(targetWidth, targetHeight);
-    }
-
     public int getTargetWidth() {
         return targetWidth;
     }
 
     public int getTargetHeight() {
         return targetHeight;
+    }
+
+
+    /**
+     * 设置的指定目标宽高是否合法有效
+     *
+     * @return true:合法有效
+     */
+    public final boolean isValidOverride() {
+        return Util.isValidDimensions(targetWidth, targetHeight);
     }
 }

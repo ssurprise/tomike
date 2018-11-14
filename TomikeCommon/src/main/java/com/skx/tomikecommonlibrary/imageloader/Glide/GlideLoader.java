@@ -39,20 +39,27 @@ import java.security.MessageDigest;
 /**
  * 作者：shiguotao
  * 日期：2018/10/15 下午3:54
- * 描述：Glide 图片加载封装类
+ * 描述：Glide 图片加载功能封装类。
  * <p>
  * 注意点：
  * 1、占位符是在主线程上加载Android资源加载。 通常希望占位符小，并且可以通过系统资源缓存轻松缓存；
- * 2、转换只应用于请求的资源，不会应用到任何占位符。如果想对placeholder 进行转换可以自定义视图进行裁剪；
- * 3、
+ * 2、变换只应用于请求的资源，不会应用到任何占位符。如果想对placeholder 进行转换可以自定义视图进行裁剪；
+ * 3、变换功能和过渡动画有冲突，不要一起使用。如果要使用变换功能，请不要使用过渡动画；
+ * 4、针对可选配置项中的变换策略和变缓集，变换策略的优先级是高于自定义变换集的，简单来说只有变换策略为{@link TransformStrategy CUSTOMIZATION} 时才会进行自定义变换；
+ * 5、暂时不对外开放加载优先级、硬盘缓存策略的配置
  */
 public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
-    private RequestOptions mOptions;
     private Context mContext;
     private Object mSource;
+    private RequestOptions mOptions;
+    /**
+     * 是否设置过渡动画
+     */
     private boolean transitionAnim = true;
-
+    /**
+     * 转码类型
+     */
     private Class<TranscodeType> transcodeClass;
 
     public GlideLoader(Class<TranscodeType> transcodingClass) {
@@ -68,6 +75,12 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
         mSource = t;
     }
 
+    /**
+     * 应用资源请求可选项配置
+     * 完成从{@link LoadOptions loadOptions} 到 {@link RequestOptions}的可选项转换
+     *
+     * @param loadOptions 可选配置
+     */
     @Override
     public void apply(LoadOptions loadOptions) {
         if (loadOptions == null) {
@@ -164,7 +177,11 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
     }
 
     /**
-     * 创建Glide 内供的 RequestBuilder 对象，以完成加载的动作。
+     * 创建Glide 内供的 RequestBuilder 对象，根据{@link Class<TranscodeType>} 匹配不同的参数化RequestBuilder，以完成加载的动作。
+     * 设置请求资源、应用请求配置、添加请求监听、添加过渡动画。
+     * <p>
+     * 设置请求资源：这里没有统一的使用{@link RequestBuilder#load(java.lang.Object)},之所有做区分是想利用glide 自身为我们做的一些优化配置，减少维护压力。
+     * 设置过渡动画：过渡动画只针对转码类型为Drawable和Bitmap 请求有效，而且有不同的加载类型，需要做不同区分。
      *
      * @return RequestBuilder
      */
@@ -259,16 +276,18 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
     /**
      * 配置转换设置。支持自带的变换和自定义变换。
-     * 1.当没有任何变换策略或者自定义变换时，不执行变换。
+     * 1.当缓存策略为null 时，不执行任何变换；
+     * 2.根据变换策略来区分是加载元变换还是自定义变换；
+     * 3.自定义变换同样支持元变换，只是做了一层转接，实际上还是走的Glide 提供的元变换。
      *
      * @param transformStrategy 转换策略
      * @param transformAdapters 自定义转换集
      */
     private void configTransformSetting(TransformStrategy transformStrategy, TransformAdapter[] transformAdapters) {
-        if (transformStrategy == null && (transformAdapters == null || transformAdapters.length == 0)) {
-            mOptions = mOptions.dontTransform();
-        } else if (transformStrategy != null) {
+        if (transformStrategy != null) {
             switch (transformStrategy) {
+                case NONE:
+                    mOptions.dontTransform();
                 case FIT_CENTER:
                     mOptions.fitCenter();
                     break;
@@ -281,17 +300,22 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
                 case CIRCLE_CROP:
                     mOptions.circleCrop();
                     break;
+                case CUSTOMIZATION:
+                    configCustomTransformations(transformAdapters);
+                    break;
                 default:
                     mOptions.dontTransform();
                     break;
             }
         } else {
-            configCustomTransformations(transformAdapters);
+            mOptions = mOptions.dontTransform();
         }
     }
 
     /**
-     * 配置自定义的bitmap转换集
+     * 配置自定义的bitmap转换集。首先需要将我们自定义的变换适配器转换成Glide 支持的变换对象，然后再使用Glide 的变换。
+     * 1.当变换集为null 或者空，不执行任何变换；
+     * 2.当变换集只有1个变换时，执行{@link RequestOptions#transform(com.bumptech.glide.load.Transformation)}
      *
      * @param transformAdapters bitmap转化集
      */
@@ -312,7 +336,8 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
     }
 
     /**
-     * 生成 Glide 的Transformation类
+     * 生成 Glide 的Transformation类，如果Glide库有提供元变换，则匹配元变换，否则认为是自定义的变换。
+     * 注意：变换的接口的四个方法都是要实现的，详细的影响点参考{@link TransformAdapter}的介绍
      *
      * @param transformAdapter 自定义Bitmap 转换类
      * @return Glide 的Transformation类
