@@ -24,11 +24,11 @@ import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
  * 5.过渡动画（默认开启）
  * 6.指定目标大小
  * 7.内存缓存（默认使用）
+ * 8.硬盘缓存策略
  * <p>
  * 暂时不对外开放的资源：
  * 1.请求超时时间设置，默认阈值是3000ms
  * 2.加载优先级
- * 3.硬盘缓存策略
  * <p>
  * 注意：
  * 1.变换功能：变换策略的优先级高于变换集，当添加自定义变换功能时，会自动设置变换策略为{@link TransformStrategy CUSTOMIZATION}
@@ -50,6 +50,8 @@ public class LoadOptions {
     private static final int TIMEOUT = 1 << 13;
     private static final int TRANSITION_ANIM = 1 << 14;
     private static final int ONLY_RETRIEVE_FROM_CACHE = 1 << 15;
+
+    private final TransformAdapter[] EMPTY_TRANSFORM = new TransformAdapter[0];
 
     private int fields;
 
@@ -89,7 +91,7 @@ public class LoadOptions {
 
     /** 内存缓存 - 目前是用的boolean 表示，当用枚举值不满足需求时改为枚举值，默认为 true，即支持内存缓存 */
     private boolean memoryCacheable = true;
-    /** 硬盘缓存策略 */
+    /** 硬盘缓存策略,默认使用系统的加载策略 */
     private DiskCacheStrategy diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
 
     private Class<?> transcodeClass = Drawable.class;
@@ -281,7 +283,7 @@ public class LoadOptions {
     public LoadOptions transformStrategy(TransformStrategy transformStrategy) {
         this.transformStrategy = transformStrategy != null ? transformStrategy : TransformStrategy.NONE;
         // 设置变换策略后，清空设置的自定义变化。
-        this.transformAdapters = null;
+        this.transformAdapters = EMPTY_TRANSFORM;
         fields |= TRANSFORMATION;
 
         return this;
@@ -335,7 +337,7 @@ public class LoadOptions {
      */
     public LoadOptions dontTransform() {
         transformStrategy = TransformStrategy.NONE;
-        transformAdapters = null;
+        transformAdapters = EMPTY_TRANSFORM;
         fields &= ~TRANSFORMATION;
 
         return this;
@@ -355,14 +357,14 @@ public class LoadOptions {
     }
 
     /**
-     * 设置硬盘缓存策略
+     * 设置硬盘缓存策略。当设置的 diskCacheStrategy 为null 时，默认使用系统缓存，即{@link DiskCacheStrategy#AUTOMATIC}
      *
      * @param diskCacheStrategy 缓存配置
      * @return 加载参数配置
      * @hide 暂时不对外开放此api，使用默认配置即可
      */
     public LoadOptions diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
-        this.diskCacheStrategy = diskCacheStrategy;
+        this.diskCacheStrategy = diskCacheStrategy == null ? DiskCacheStrategy.AUTOMATIC : diskCacheStrategy;
         fields |= DISK_CACHE_STRATEGY;
 
         return this;
@@ -396,33 +398,33 @@ public class LoadOptions {
     }
 
     @Nullable
-    public Drawable getPlaceholderDrawable() {
+    public final Drawable getPlaceholderDrawable() {
         return placeholderDrawable;
     }
 
-    public int getPlaceholderResId() {
+    public final int getPlaceholderResId() {
         return placeholderResId;
     }
 
     @Nullable
-    public Drawable getErrorDrawable() {
+    public final Drawable getErrorDrawable() {
         return errorDrawable;
     }
 
-    public int getErrorResId() {
+    public final int getErrorResId() {
         return errorResId;
     }
 
     @Nullable
-    public Drawable getFallbackDrawable() {
+    public final Drawable getFallbackDrawable() {
         return fallbackDrawable;
     }
 
-    public int getFallbackResId() {
+    public final int getFallbackResId() {
         return fallbackResId;
     }
 
-    public boolean isTransitionAnim() {
+    public final boolean isTransitionAnim() {
         return transitionAnim;
     }
 
@@ -431,15 +433,18 @@ public class LoadOptions {
      * {@hide} 暂时不对外开放
      */
     @NonNull
-    public Priority getPriority() {
+    public final Priority getPriority() {
         return priority;
     }
 
-    public boolean isMemoryCacheable() {
+    public final boolean isMemoryCacheable() {
         return memoryCacheable;
     }
 
-    public DiskCacheStrategy getDiskCacheStrategy() {
+    public final DiskCacheStrategy getDiskCacheStrategy() {
+        if (diskCacheStrategy == null) {
+            diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
+        }
         return diskCacheStrategy;
     }
 
@@ -447,23 +452,23 @@ public class LoadOptions {
         this.transcodeClass = transcodeClass;
     }
 
-    public Class<?> getTranscodeClass() {
+    public final Class<?> getTranscodeClass() {
         return transcodeClass;
     }
 
-    public TransformStrategy getTransformStrategy() {
+    public final TransformStrategy getTransformStrategy() {
         return transformStrategy;
     }
 
-    public TransformAdapter[] getTransformAdapters() {
+    public final TransformAdapter[] getTransformAdapters() {
         return transformAdapters;
     }
 
-    public int getTargetWidth() {
+    public final int getTargetWidth() {
         return targetWidth;
     }
 
-    public int getTargetHeight() {
+    public final int getTargetHeight() {
         return targetHeight;
     }
 
@@ -474,7 +479,7 @@ public class LoadOptions {
      * @param flag 属性值
      * @return true:已设置
      */
-    private boolean isSet(int flag) {
+    private final boolean isSet(int flag) {
         return (this.fields & flag) != 0;
     }
 
@@ -483,7 +488,7 @@ public class LoadOptions {
      *
      * @return true:已设置
      */
-    public boolean isSetDiskCacheStrategy() {
+    public final boolean isSetDiskCacheStrategy() {
         return isSet(DISK_CACHE_STRATEGY);
     }
 
@@ -492,7 +497,7 @@ public class LoadOptions {
      *
      * @return true:已设置
      */
-    public boolean isSetMemoryCacheable() {
+    public final boolean isSetMemoryCacheable() {
         return isSet(MEMORY_CACHEABLE);
     }
 
@@ -501,7 +506,7 @@ public class LoadOptions {
      *
      * @return true:已设置
      */
-    public boolean isSetPlaceholder() {
+    public final boolean isSetPlaceholder() {
         return isSet(PLACEHOLDER) || isSet(PLACEHOLDER_ID);
     }
 
@@ -510,7 +515,7 @@ public class LoadOptions {
      *
      * @return true:已设置
      */
-    public boolean isSetErrorPlaceholder() {
+    public final boolean isSetErrorPlaceholder() {
         return isSet(ERROR_PLACEHOLDER) || isSet(ERROR_ID);
     }
 
@@ -519,7 +524,7 @@ public class LoadOptions {
      *
      * @return true:已设置
      */
-    public boolean isSetFallback() {
+    public final boolean isSetFallback() {
         return isSet(FALLBACK) || isSet(FALLBACK_ID);
     }
 
@@ -528,7 +533,7 @@ public class LoadOptions {
      *
      * @return true:设置过
      */
-    public boolean isSetTransformation() {
+    public final boolean isSetTransformation() {
         return isSet(TRANSFORMATION);
     }
 
@@ -537,7 +542,7 @@ public class LoadOptions {
      *
      * @return true:设置过
      */
-    public boolean isSetResize() {
+    public final boolean isSetResize() {
         return isSet(RESIZE);
     }
 

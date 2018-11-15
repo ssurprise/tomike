@@ -152,9 +152,18 @@ public class ImageLoader {
             mOptions.transitionAnim(false);
             return this;
         }
-
         public Builder<E> resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
             mOptions.resize(targetWidth, targetHeight);
+            return this;
+        }
+
+        public Builder<E> skipMemoryCache() {
+            mOptions.memoryCacheable(false);
+            return this;
+        }
+
+        public Builder<E> diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
+            mOptions.diskCacheStrategy(diskCacheStrategy);
             return this;
         }
     }

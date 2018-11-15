@@ -84,6 +84,15 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
     /**
      * 应用资源请求可选项配置
      * 完成从{@link LoadOptions loadOptions} 到 {@link RequestOptions}的可选项转换
+     * 目前支持的可配置项有：
+     * 1.占位图
+     * 2.错误占位图
+     * 3.后备占位图
+     * 4.变换功能
+     * 5.目标大小调整
+     * 6.内存缓存
+     * 7.硬盘缓存策略
+     * 8.是否使用过渡
      *
      * @param loadOptions 可选配置
      */
@@ -215,7 +224,7 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
     private RequestBuilder<TranscodeType> createGlideRequestBuilder() {
         RequestBuilder<?> drawableRequestBuilder;
 
-        // 输出类型
+        // 输出类型，通过转码class 来区分加载的是那种参数化类型的RequestBuilder
         if (mTranscodeClass.isAssignableFrom(Bitmap.class)) {
             if (mTransitionAnim) {
                 drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
