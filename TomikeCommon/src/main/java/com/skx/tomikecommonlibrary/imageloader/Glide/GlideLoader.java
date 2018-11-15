@@ -12,11 +12,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -42,11 +44,15 @@ import java.security.MessageDigest;
  * 描述：Glide 图片加载功能封装类。
  * <p>
  * 注意点：
- * 1、占位符是在主线程上加载Android资源加载。 通常希望占位符小，并且可以通过系统资源缓存轻松缓存；
+ * 1、占位符是在主线程上加载Android资源加载。 通常希望占位符小，并且可以通过系统资源缓存轻松缓存。对于目标是ImageView的情况，修改的是src 并不是background，
+ * 这会在某些情况下出现问题，解决方案是不适用Glide 的占位图，而是设置ImageView 的background;
  * 2、变换只应用于请求的资源，不会应用到任何占位符。如果想对placeholder 进行转换可以自定义视图进行裁剪；
  * 3、变换功能和过渡动画有冲突，不要一起使用。如果要使用变换功能，请不要使用过渡动画；
  * 4、针对可选配置项中的变换策略和变缓集，变换策略的优先级是高于自定义变换集的，简单来说只有变换策略为{@link TransformStrategy CUSTOMIZATION} 时才会进行自定义变换；
- * 5、暂时不对外开放加载优先级、硬盘缓存策略的配置
+ * 5、暂时不对外开放加载优先级、加载时间的配置
+ * 6、默认的策略叫做 AUTOMATIC ，它会尝试对本地和远程图片使用最佳的策略。当你加载远程数据（比如，从URL下载）时，AUTOMATIC 策略仅会存储未被你的加载过程修改过(比如，变换，
+ * 裁剪–译者注)的原始数据，因为下载远程数据相比调整磁盘上已经存在的数据要昂贵得多。对于本地数据，AUTOMATIC 策略则会仅存储变换过的缩略图，因为即使你需要再次生成另一个尺寸
+ * 或类型的图片，取回原始数据也很容易
  */
 public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
@@ -56,14 +62,14 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
     /**
      * 是否设置过渡动画
      */
-    private boolean transitionAnim = true;
+    private boolean mTransitionAnim = true;
     /**
      * 转码类型
      */
-    private Class<TranscodeType> transcodeClass;
+    private Class<TranscodeType> mTranscodeClass;
 
     public GlideLoader(Class<TranscodeType> transcodingClass) {
-        this.transcodeClass = transcodingClass;
+        this.mTranscodeClass = transcodingClass;
     }
 
     public void init(Context context) {
@@ -88,6 +94,7 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
         }
         mOptions = new RequestOptions();
 
+        // 占位图设置
         if (loadOptions.isSetPlaceholder()) {
             if (loadOptions.getPlaceholderResId() > 0) {
                 mOptions = mOptions.placeholder(loadOptions.getPlaceholderResId());
@@ -95,27 +102,63 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
                 mOptions = mOptions.placeholder(loadOptions.getPlaceholderDrawable());
             }
         }
-
-        if (loadOptions.getErrorResId() > 0) {
-            mOptions = mOptions.error(loadOptions.getErrorResId());
-        } else if (loadOptions.getErrorDrawable() != null) {
-            mOptions = mOptions.error(loadOptions.getErrorDrawable());
+        // 错误占位图设置
+        if (loadOptions.isSetErrorPlaceholder()) {
+            if (loadOptions.getErrorResId() > 0) {
+                mOptions = mOptions.error(loadOptions.getErrorResId());
+            } else if (loadOptions.getErrorDrawable() != null) {
+                mOptions = mOptions.error(loadOptions.getErrorDrawable());
+            }
+        }
+        // 后备占位图设置
+        if (loadOptions.isSetFallback()) {
+            if (loadOptions.getFallbackResId() > 0) {
+                mOptions = mOptions.fallback(loadOptions.getFallbackResId());
+            } else if (loadOptions.getFallbackDrawable() != null) {
+                mOptions = mOptions.fallback(loadOptions.getFallbackDrawable());
+            }
+        }
+        // 变换设置
+        if (loadOptions.isSetFallback()) {
+            configTransformSetting(loadOptions.getTransformStrategy(), loadOptions.getTransformAdapters());
         }
 
-        if (loadOptions.getFallbackResId() > 0) {
-            mOptions = mOptions.fallback(loadOptions.getFallbackResId());
-        } else if (loadOptions.getFallbackDrawable() != null) {
-            mOptions = mOptions.fallback(loadOptions.getFallbackDrawable());
-        }
-        configTransformSetting(loadOptions.getTransformStrategy(), loadOptions.getTransformAdapters());
-
-        transitionAnim = loadOptions.isTransitionAnim();
-
-        if (loadOptions.isValidOverride()) {
+        // 调整大小设置
+        if (loadOptions.isSetResize() && loadOptions.isValidOverride()) {
             mOptions = mOptions.override(loadOptions.getTargetWidth(), loadOptions.getTargetHeight());
         }
 
-//        暂时不对外开放这个缓存配置
+        // 是否使用内存缓存设置
+        if (loadOptions.isSetMemoryCacheable()) {
+            mOptions = mOptions.skipMemoryCache(!loadOptions.isMemoryCacheable());
+        }
+
+        // 硬盘缓存策略设置
+        if (loadOptions.isSetDiskCacheStrategy()) {
+            switch (loadOptions.getDiskCacheStrategy()) {
+                case ALL:
+                    mOptions.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL);
+                    break;
+                case NONE:
+                    mOptions.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.NONE);
+                    break;
+                case DATA:
+                    mOptions.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.DATA);
+                    break;
+                case RESOURCE:
+                    mOptions.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.RESOURCE);
+                    break;
+                case AUTOMATIC:
+                    mOptions.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.RESOURCE);
+                    break;
+            }
+        }
+
+        // 过渡设置
+        mTransitionAnim = loadOptions.isTransitionAnim();
+
+
+//        暂时不对外开放这个加载优先级配置
 //        switch (loadOptions.getPriority()) {
 //            case HIGH:
 //                options.priority(com.bumptech.glide.Priority.HIGH);
@@ -128,24 +171,6 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 //                break;
 //        }
 
-//        暂时不对外开放这个缓存配置
-//        switch (loadOptions.getDiskCacheStrategy()) {
-//            case ALL:
-//                options.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL);
-//                break;
-//            case NONE:
-//                options.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.NONE);
-//                break;
-//            case DATA:
-//                options.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.DATA);
-//                break;
-//            case RESOURCE:
-//                options.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.RESOURCE);
-//                break;
-//            case AUTOMATIC:
-//                options.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.RESOURCE);
-//                break;
-//        }
     }
 
     @Override
@@ -191,29 +216,31 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
         RequestBuilder<?> drawableRequestBuilder;
 
         // 输出类型
-        if (transcodeClass.isAssignableFrom(Bitmap.class)) {
-            if (transitionAnim) {
+        if (mTranscodeClass.isAssignableFrom(Bitmap.class)) {
+            if (mTransitionAnim) {
                 drawableRequestBuilder = Glide.with(mContext).asBitmap().transition(BitmapTransitionOptions.withCrossFade());
             } else {
                 drawableRequestBuilder = Glide.with(mContext).asBitmap();
             }
 
-        } else if (transcodeClass.isAssignableFrom(Drawable.class)) {
-            if (transitionAnim) {
+        } else if (mTranscodeClass.isAssignableFrom(Drawable.class)) {
+            if (mTransitionAnim) {
                 drawableRequestBuilder = Glide.with(mContext).asDrawable().transition(DrawableTransitionOptions.withCrossFade());
             } else {
                 drawableRequestBuilder = Glide.with(mContext).asDrawable();
             }
 
-        } else if (transcodeClass.isAssignableFrom(SGifDrawable.class)) {
+        } else if (mTranscodeClass.isAssignableFrom(SGifDrawable.class)) {
             drawableRequestBuilder = Glide.with(mContext).asGif();
+            // 解决加载gif 格式的资源可能存在的异常问题。
+            mOptions = mOptions.diskCacheStrategy(DiskCacheStrategy.DATA);
 
-        } else if (transcodeClass.isAssignableFrom(File.class)) {
+        } else if (mTranscodeClass.isAssignableFrom(File.class)) {
             drawableRequestBuilder = Glide.with(mContext).asFile();
 
         } else {
             throw new IllegalArgumentException(
-                    "Unhandled class: " + transcodeClass + ", try .as*(Class).transcode(ResourceTranscoder)");
+                    "Unhandled class: " + mTranscodeClass + ", try .as*(Class).transcode(ResourceTranscoder)");
         }
 
         // 加载类型，之所以没有统一使用 object 的加载方法是想保留glide给我们做的一些优化。
@@ -257,7 +284,7 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
     @Override
     public void onlyDownload() {
-
+        FutureTarget<File> submit = Glide.with(mContext).download(mSource).submit();
     }
 
     @Override

@@ -21,8 +21,9 @@ import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
  * 2.错误图
  * 3.备用图
  * 4.变换（元转换、自定义转换）
- * 5.过渡动画
+ * 5.过渡动画（默认开启）
  * 6.指定目标大小
+ * 7.内存缓存（默认使用）
  * <p>
  * 暂时不对外开放的资源：
  * 1.请求超时时间设置，默认阈值是3000ms
@@ -35,9 +36,22 @@ import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
 public class LoadOptions {
 
     private static final int UNSET = -1;
+    private static final int MEMORY_CACHEABLE = 1 << 2;
+    private static final int DISK_CACHE_STRATEGY = 1 << 3;
+    private static final int PRIORITY = 1 << 4;
+    private static final int PLACEHOLDER = 1 << 5;
+    private static final int PLACEHOLDER_ID = 1 << 6;
+    private static final int ERROR_PLACEHOLDER = 1 << 7;
+    private static final int ERROR_ID = 1 << 8;
+    private static final int FALLBACK = 1 << 9;
+    private static final int FALLBACK_ID = 1 << 10;
+    private static final int RESIZE = 1 << 11;
+    private static final int TRANSFORMATION = 1 << 12;
+    private static final int TIMEOUT = 1 << 13;
+    private static final int TRANSITION_ANIM = 1 << 14;
+    private static final int ONLY_RETRIEVE_FROM_CACHE = 1 << 15;
 
-    /** 是否显示占位图，默认为显示 */
-    private boolean setPlaceholder = true;
+    private int fields;
 
     /**
      * 占位图。占位符是当请求正在执行时被展示的 Drawable 。当请求成功完成时，占位符会被请求到的资源替换。
@@ -66,12 +80,17 @@ public class LoadOptions {
     private int targetHeight = UNSET;
 
     /** 过渡动画 */
-    private boolean transitionAnim;
+    private boolean transitionAnim = true;
 
     /** 资源变换策略 */
     private TransformStrategy transformStrategy = TransformStrategy.NONE;
     /** 自定义资源变换集合 */
     private TransformAdapter[] transformAdapters;
+
+    /** 内存缓存 - 目前是用的boolean 表示，当用枚举值不满足需求时改为枚举值，默认为 true，即支持内存缓存 */
+    private boolean memoryCacheable = true;
+    /** 硬盘缓存策略 */
+    private DiskCacheStrategy diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
 
     private Class<?> transcodeClass = Drawable.class;
     /** 设置加载超时时间 */
@@ -79,21 +98,17 @@ public class LoadOptions {
     /** 加载优先级 */
     @NonNull
     private Priority priority = Priority.NORMAL;
-    /** 硬盘缓存策略 */
-    private DiskCacheStrategy diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
 
     /**
      * 获取默认配置的加载配置对象
      * 默认设置为：
      * 1.占位图颜色为"#f5f5f5"；
-     * 2.默认开启淡入淡出的过渡动画；
      *
      * @return 默认配置的加载配置对象
      */
     public static LoadOptions getDefaultLoadOptions() {
         LoadOptions options = new LoadOptions();
         options.placeholder(R.color.skx_f5f5f5);
-        options.transitionAnim(true);
         return options;
     }
 
@@ -103,9 +118,10 @@ public class LoadOptions {
      * @return 默认配置的加载配置对象
      */
     public LoadOptions noPlaceholder() {
-        setPlaceholder = false;
         this.placeholderDrawable = null;
         this.placeholderResId = 0;
+        fields &= ~PLACEHOLDER;
+        fields &= ~PLACEHOLDER_ID;
         return this;
     }
 
@@ -116,14 +132,15 @@ public class LoadOptions {
      * @return 默认配置的加载配置对象
      */
     public LoadOptions placeholder(@Nullable Drawable placeholderDrawable) {
-        if (!setPlaceholder) {
-            throw new IllegalStateException("Already explicitly declared as no placeholder.");
+        if (placeholderDrawable == null) {
+            throw new IllegalStateException("Placeholder image resource invalid.");
         }
         if (placeholderResId != 0) {
             throw new IllegalStateException("Placeholder image already set.");
         }
         this.placeholderDrawable = placeholderDrawable;
-        this.setPlaceholder = true;
+        fields |= PLACEHOLDER;
+
         return this;
     }
 
@@ -141,7 +158,8 @@ public class LoadOptions {
             throw new IllegalStateException("Placeholder image already set.");
         }
         this.placeholderResId = placeholderResId;
-        this.setPlaceholder = true;
+        fields |= PLACEHOLDER_ID;
+
         return this;
     }
 
@@ -152,7 +170,12 @@ public class LoadOptions {
      * @return 可选参数对象
      */
     public LoadOptions error(@Nullable Drawable errorDrawable) {
+        if (errorResId != 0) {
+            throw new IllegalStateException("Error image already set.");
+        }
         this.errorDrawable = errorDrawable;
+        fields |= ERROR_PLACEHOLDER;
+
         return this;
     }
 
@@ -163,7 +186,15 @@ public class LoadOptions {
      * @return 可选参数对象
      */
     public LoadOptions error(int errorResId) {
+        if (errorResId == 0) {
+            throw new IllegalArgumentException("Error image resource invalid.");
+        }
+        if (errorDrawable != null) {
+            throw new IllegalStateException("Error image already set.");
+        }
         this.errorResId = errorResId;
+        fields |= ERROR_ID;
+
         return this;
     }
 
@@ -174,7 +205,12 @@ public class LoadOptions {
      * @return 可选参数对象
      */
     public LoadOptions fallback(@Nullable Drawable fallbackDrawable) {
+        if (fallbackResId != 0) {
+            throw new IllegalStateException("Fallback image already set.");
+        }
         this.fallbackDrawable = fallbackDrawable;
+        fields |= FALLBACK;
+
         return this;
     }
 
@@ -185,7 +221,15 @@ public class LoadOptions {
      * @return 可选参数对象
      */
     public LoadOptions fallback(int fallbackResId) {
+        if (fallbackResId == 0) {
+            throw new IllegalArgumentException("Fallback image resource invalid.");
+        }
+        if (fallbackDrawable != null) {
+            throw new IllegalStateException("Fallback image already set.");
+        }
         this.fallbackResId = fallbackResId;
+        fields |= FALLBACK_ID;
+
         return this;
     }
 
@@ -210,6 +254,8 @@ public class LoadOptions {
 
         this.targetWidth = targetWidth;
         this.targetHeight = targetHeight;
+        fields |= RESIZE;
+
         return this;
     }
 
@@ -221,6 +267,8 @@ public class LoadOptions {
      */
     public LoadOptions transitionAnim(boolean transitionAnim) {
         this.transitionAnim = transitionAnim;
+        fields |= TRANSITION_ANIM;
+
         return this;
     }
 
@@ -234,6 +282,7 @@ public class LoadOptions {
         this.transformStrategy = transformStrategy != null ? transformStrategy : TransformStrategy.NONE;
         // 设置变换策略后，清空设置的自定义变化。
         this.transformAdapters = null;
+        fields |= TRANSFORMATION;
 
         return this;
     }
@@ -251,8 +300,8 @@ public class LoadOptions {
         }
         // 设置自定义变换后，置变换策略为自定义类型。
         this.transformStrategy = TransformStrategy.CUSTOMIZATION;
-
         this.transformAdapters = new TransformAdapter[]{transformAdapter};
+        fields |= TRANSFORMATION;
 
         return this;
     }
@@ -271,8 +320,8 @@ public class LoadOptions {
 
         // 设置自定义变换后，置变换策略为自定义类型。
         this.transformStrategy = TransformStrategy.CUSTOMIZATION;
-
         this.transformAdapters = transformAdapters;
+        fields |= TRANSFORMATION;
 
         return this;
     }
@@ -287,18 +336,21 @@ public class LoadOptions {
     public LoadOptions dontTransform() {
         transformStrategy = TransformStrategy.NONE;
         transformAdapters = null;
+        fields &= ~TRANSFORMATION;
+
         return this;
     }
 
     /**
-     * 设置加载优先级
+     * 设置是否支持内存缓存
      *
-     * @param priority 加载优先级
+     * @param memoryCacheable 是否支持内存缓存
      * @return 可选参数对象
-     * @hide 暂时不对外开放此api，使用默认配置即可
      */
-    public LoadOptions priority(@NonNull Priority priority) {
-        this.priority = priority;
+    public LoadOptions memoryCacheable(boolean memoryCacheable) {
+        this.memoryCacheable = memoryCacheable;
+        fields |= MEMORY_CACHEABLE;
+
         return this;
     }
 
@@ -311,6 +363,22 @@ public class LoadOptions {
      */
     public LoadOptions diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
         this.diskCacheStrategy = diskCacheStrategy;
+        fields |= DISK_CACHE_STRATEGY;
+
+        return this;
+    }
+
+    /**
+     * 设置加载优先级
+     *
+     * @param priority 加载优先级
+     * @return 可选参数对象
+     * @hide 暂时不对外开放此api，使用默认配置即可
+     */
+    public LoadOptions priority(@NonNull Priority priority) {
+        this.priority = priority;
+        fields |= PRIORITY;
+
         return this;
     }
 
@@ -320,8 +388,10 @@ public class LoadOptions {
      * @param timeout 加载超时时间
      * @return 加载参数配置
      */
-    public LoadOptions setTimeout(int timeout) {
+    public LoadOptions timeout(int timeout) {
         this.timeout = timeout;
+        fields |= TIMEOUT;
+
         return this;
     }
 
@@ -332,10 +402,6 @@ public class LoadOptions {
 
     public int getPlaceholderResId() {
         return placeholderResId;
-    }
-
-    public boolean isSetPlaceholder() {
-        return setPlaceholder;
     }
 
     @Nullable
@@ -369,10 +435,13 @@ public class LoadOptions {
         return priority;
     }
 
+    public boolean isMemoryCacheable() {
+        return memoryCacheable;
+    }
+
     public DiskCacheStrategy getDiskCacheStrategy() {
         return diskCacheStrategy;
     }
-
 
     public void setTranscodeClass(Class<?> transcodeClass) {
         this.transcodeClass = transcodeClass;
@@ -398,6 +467,79 @@ public class LoadOptions {
         return targetHeight;
     }
 
+
+    /**
+     * 是否设置了指定的属性
+     *
+     * @param flag 属性值
+     * @return true:已设置
+     */
+    private boolean isSet(int flag) {
+        return (this.fields & flag) != 0;
+    }
+
+    /**
+     * 是否设置了硬盘缓存策略
+     *
+     * @return true:已设置
+     */
+    public boolean isSetDiskCacheStrategy() {
+        return isSet(DISK_CACHE_STRATEGY);
+    }
+
+    /**
+     * 是否设置了内存缓存策略
+     *
+     * @return true:已设置
+     */
+    public boolean isSetMemoryCacheable() {
+        return isSet(MEMORY_CACHEABLE);
+    }
+
+    /**
+     * 是否设置了占位图
+     *
+     * @return true:已设置
+     */
+    public boolean isSetPlaceholder() {
+        return isSet(PLACEHOLDER) || isSet(PLACEHOLDER_ID);
+    }
+
+    /**
+     * 是否设置了错误占位图
+     *
+     * @return true:已设置
+     */
+    public boolean isSetErrorPlaceholder() {
+        return isSet(ERROR_PLACEHOLDER) || isSet(ERROR_ID);
+    }
+
+    /**
+     * 是否设置了后备占位图
+     *
+     * @return true:已设置
+     */
+    public boolean isSetFallback() {
+        return isSet(FALLBACK) || isSet(FALLBACK_ID);
+    }
+
+    /**
+     * 是否设置过变化操作
+     *
+     * @return true:设置过
+     */
+    public boolean isSetTransformation() {
+        return isSet(TRANSFORMATION);
+    }
+
+    /**
+     * 是否设置过调整大小
+     *
+     * @return true:设置过
+     */
+    public boolean isSetResize() {
+        return isSet(RESIZE);
+    }
 
     /**
      * 设置的指定目标宽高是否合法有效
