@@ -128,7 +128,7 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
             }
         }
         // 变换设置
-        if (loadOptions.isSetFallback()) {
+        if (loadOptions.isSetTransformation()) {
             configTransformSetting(loadOptions.getTransformStrategy(), loadOptions.getTransformAdapters());
         }
 
