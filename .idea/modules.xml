@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TomikeCommon/TomikeCommon.iml" filepath="$PROJECT_DIR$/TomikeCommon/TomikeCommon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/aopaspectlib/aopaspectlib.iml" filepath="$PROJECT_DIR$/aopaspectlib/aopaspectlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/skxlaboratory.iml" filepath="$PROJECT_DIR$/skxlaboratory.iml" />
     </modules>
