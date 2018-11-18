@@ -8,9 +8,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.skx.tomikecommonlibrary.imageloader.Glide.GlideLoader;
-import com.skx.tomikecommonlibrary.imageloader.transform.Transformation;
+import com.skx.tomikecommonlibrary.imageloader.target.Target;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
 
 import java.io.File;
 
@@ -23,23 +24,42 @@ import java.io.File;
 public class ImageLoader {
 
 
-    public static Creator with(@NonNull Context context) {
-        return new Creator(context);
+    public static Builder<Drawable> with(@NonNull Context context) {
+        return new Builder<Drawable>(context).setTranscodeClass(Drawable.class);
     }
 
-    public static class Creator {
-        final Context context;
-        LoadOptions options = LoadOptions.getDefaultLoadOptions();
-        Object source;
+    public static Builder<Bitmap> asBitmap(@NonNull Context context) {
+        return new Builder<Bitmap>(context).setTranscodeClass(Bitmap.class);
+    }
 
-        private ILoader iLoader = new GlideLoader();
+    public static Builder<File> asFile(@NonNull Context context) {
+        return new Builder<File>(context).setTranscodeClass(File.class);
+    }
 
-        Creator(Context context) {
-            this.context = context;
+    public static Builder<SGifDrawable> asGif(@NonNull Context context) {
+        return new Builder<SGifDrawable>(context).setTranscodeClass(SGifDrawable.class);
+    }
+
+    public static class Builder<E> {
+        final Context mContext;
+        LoadOptions mOptions = LoadOptions.getDefaultLoadOptions();
+        Object mSource;
+        Class<E> mTranscodeClass;
+
+        private ILoader<E> iLoader;
+
+        Builder(Context context) {
+            this.mContext = context;
         }
 
-        public Creator load(Object source) {
-            this.source = source;
+        Builder<E> setTranscodeClass(Class<E> transcodeClass) {
+            this.mTranscodeClass = transcodeClass;
+            iLoader = new GlideLoader<>(transcodeClass);
+            return this;
+        }
+
+        public Builder<E> load(Object source) {
+            this.mSource = source;
             return this;
         }
 
@@ -49,112 +69,101 @@ public class ImageLoader {
          * @param builder 可选配置对象
          * @return 构造器
          */
-        public Creator apply(LoadOptions builder) {
-            options = builder;
+        public Builder<E> apply(LoadOptions builder) {
+            mOptions = builder;
             return this;
         }
 
-        public <E, T extends Target<E>> void into(T target) {
-            iLoader.init(context);
-            iLoader.load(source);
-            iLoader.apply(options);
+        public <T extends Target<E>> void into(T target) {
+            iLoader.init(mContext);
+            iLoader.load(mSource);
+            iLoader.apply(mOptions);
             iLoader.into(target);
         }
 
         public void into(ImageView targetImageView) {
-            iLoader.init(context);
-            iLoader.load(source);
-            iLoader.apply(options);
+            iLoader.init(mContext);
+            iLoader.load(mSource);
+            iLoader.apply(mOptions);
             iLoader.into(targetImageView);
         }
 
-        public Creator noPlaceholder() {
-            options.noPlaceholder();
+        public Builder<E> noPlaceholder() {
+            mOptions.noPlaceholder();
             return this;
         }
 
-        public Creator placeholder(@Nullable Drawable placeholderDrawable) {
-            options.placeholder(placeholderDrawable);
+        public Builder<E> placeholder(@Nullable Drawable placeholderDrawable) {
+            mOptions.placeholder(placeholderDrawable);
             return this;
         }
 
-        public Creator placeholder(int placeholderResId) {
-            options.placeholder(placeholderResId);
+        public Builder<E> placeholder(int placeholderResId) {
+            mOptions.placeholder(placeholderResId);
             return this;
         }
 
-        public Creator error(@Nullable Drawable errorDrawable) {
-            options.error(errorDrawable);
+        public Builder<E> error(@Nullable Drawable errorDrawable) {
+            mOptions.error(errorDrawable);
             return this;
         }
 
-        public Creator error(int errorResId) {
-            options.error(errorResId);
+        public Builder<E> error(int errorResId) {
+            mOptions.error(errorResId);
             return this;
         }
 
-        public Creator fallback(@Nullable Drawable fallbackDrawable) {
-            options.fallback(fallbackDrawable);
+        public Builder<E> fallback(@Nullable Drawable fallbackDrawable) {
+            mOptions.fallback(fallbackDrawable);
             return this;
         }
 
-        public Creator fallback(int fallbackResId) {
-            options.fallback(fallbackResId);
+        public Builder<E> fallback(int fallbackResId) {
+            mOptions.fallback(fallbackResId);
             return this;
         }
 
-        public Creator dontTransform() {
-            options.dontTransform();
+        public Builder<E> dontTransform() {
+            mOptions.dontTransform();
             return this;
         }
 
-        public Creator transformStrategy(TransformStrategy transformStrategy) {
-            options.transformStrategy(transformStrategy);
+        public Builder<E> transformStrategy(TransformStrategy transformStrategy) {
+            mOptions.transformStrategy(transformStrategy);
             return this;
         }
 
-        public Creator transform(Transformation transformation) {
-            options.transform(transformation);
+        public Builder<E> transform(TransformAdapter transformAdapter) {
+            mOptions.transform(transformAdapter);
             return this;
         }
 
-        public Creator transforms(Transformation... transformation) {
-            options.transform(transformation);
+        public Builder<E> transforms(TransformAdapter... transformAdapters) {
+            mOptions.transform(transformAdapters);
             return this;
         }
 
-        public Creator useTransitionAnim() {
-            options.transitionAnim(true);
+        public Builder<E> useTransitionAnim() {
+            mOptions.transitionAnim(true);
             return this;
         }
 
-        public Creator noTransitionAnim() {
-            options.transitionAnim(false);
+        public Builder<E> noTransitionAnim() {
+            mOptions.transitionAnim(false);
+            return this;
+        }
+        public Builder<E> resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
+            mOptions.resize(targetWidth, targetHeight);
             return this;
         }
 
-        public Creator resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
-            options.resize(targetWidth, targetHeight);
+        public Builder<E> skipMemoryCache() {
+            mOptions.memoryCacheable(false);
             return this;
         }
 
-        public Creator asFile() {
-            options.setSourceType(File.class);
-            return this;
-        }
-
-        public Creator asGif() {
-            options.setSourceType(GifDrawable.class);
-            return this;
-        }
-
-        public Creator asBitmap() {
-            options.setSourceType(Bitmap.class);
-            return this;
-        }
-
-        public Creator asDrawable() {
-            options.setSourceType(Drawable.class);
+        public Builder<E> diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
+            mOptions.diskCacheStrategy(diskCacheStrategy);
             return this;
         }
     }

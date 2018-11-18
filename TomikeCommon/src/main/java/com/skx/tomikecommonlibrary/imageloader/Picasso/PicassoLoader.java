@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
-import com.skx.tomikecommonlibrary.imageloader.Target;
+import com.skx.tomikecommonlibrary.imageloader.target.Target;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -16,14 +16,13 @@ import com.squareup.picasso.Transformation;
  * 日期：2018/11/7 4:55 PM
  * 描述：Picasso 图片加载库封装类
  */
-public class PicassoLoader implements ILoader {
+public class PicassoLoader<TranscodeType extends Bitmap> implements ILoader<TranscodeType> {
 
     private Object mSource;
-
+    private LoadOptions mLoadOptions;
 
     @Override
     public void init(Context context) {
-
     }
 
     @Override
@@ -33,29 +32,29 @@ public class PicassoLoader implements ILoader {
 
     @Override
     public void apply(LoadOptions loadOptions) {
-
+        this.mLoadOptions = loadOptions;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public <E, T extends Target<E>> T into(T target) {
+    public <T extends Target<TranscodeType>> T into(final T target) {
         Picasso.get().load((String) mSource).centerCrop().into(new com.squareup.picasso.Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-
+                target.onResourceReady((TranscodeType) bitmap);
             }
 
             @Override
             public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
+                target.onLoadFailed(errorDrawable);
             }
 
             @Override
             public void onPrepareLoad(Drawable placeHolderDrawable) {
-
+                target.onLoadStarted(placeHolderDrawable);
             }
         });
-
-        return null;
+        return target;
     }
 
     @Override

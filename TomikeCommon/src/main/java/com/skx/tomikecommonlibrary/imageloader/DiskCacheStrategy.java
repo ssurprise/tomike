@@ -3,7 +3,7 @@ package com.skx.tomikecommonlibrary.imageloader;
 /**
  * 硬盘缓存策略枚举
  */
-enum DiskCacheStrategy {
+public enum DiskCacheStrategy {
     /**
      * 缓存所有版本图（默认行为）
      */

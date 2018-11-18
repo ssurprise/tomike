@@ -20,7 +20,7 @@ import java.security.MessageDigest;
  * 如果您使用的是简单的String键，则执行此操作的简单方法是在键上附加版本号。如果不这样做，将意味着用户可能会看到从缓存加载的图像已应用旧版本的转换。
  * 更改这些方法的返回值将确保缓存键已更改，因此将使用更新的Transformation重新生成任何缓存的资源。
  */
-public interface Transformation {
+public interface TransformAdapter {
 
     String STRING_CHARSET_NAME = "UTF-8";
     Charset CHARSET = Charset.forName(STRING_CHARSET_NAME);

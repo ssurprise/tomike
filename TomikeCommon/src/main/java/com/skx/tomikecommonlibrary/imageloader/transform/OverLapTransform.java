@@ -20,9 +20,11 @@ import java.security.MessageDigest;
 /**
  * 作者：shiguotao
  * 日期：2018/11/8 2:37 PM
- * 描述：水印转换
+ * 描述：水印转换，如果传入的水印Bitmap 为null，则不进行变换，返回加载后的资源。
+ * 传入的Bitmap 作为一个参数因子，在{@link OverLapTransform#hashCode()}、{@link OverLapTransform#hashCode()}
+ * 和{@link OverLapTransform#updateDiskCacheKey(java.security.MessageDigest)}函数对都需要做处理以保证内存缓存、硬盘缓存的正确使用。
  */
-public final class OverLapTransform implements Transformation {
+public final class OverLapTransform implements TransformAdapter {
 
     private static final String ID = "com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform";
     private static final byte[] ID_BYTES = ID.getBytes(CHARSET);
