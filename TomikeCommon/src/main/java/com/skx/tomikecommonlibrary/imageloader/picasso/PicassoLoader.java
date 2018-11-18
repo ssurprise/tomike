@@ -1,4 +1,4 @@
-package com.skx.tomikecommonlibrary.imageloader.Picasso;
+package com.skx.tomikecommonlibrary.imageloader.picasso;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -1,4 +1,4 @@
-package com.skx.tomikecommonlibrary.imageloader.Glide;
+package com.skx.tomikecommonlibrary.imageloader.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;

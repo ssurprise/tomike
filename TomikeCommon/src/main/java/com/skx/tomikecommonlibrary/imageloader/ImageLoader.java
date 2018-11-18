@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.skx.tomikecommonlibrary.imageloader.Glide.GlideLoader;
+import com.skx.tomikecommonlibrary.imageloader.glide.GlideLoader;
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
