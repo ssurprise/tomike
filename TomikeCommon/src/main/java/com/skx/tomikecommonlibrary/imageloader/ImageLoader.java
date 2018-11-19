@@ -76,9 +76,9 @@ public final class ImageLoader {
 
         @NonNull
         @CheckResult
-        private <ResourceType> Builder<ResourceType> as(
-                @NonNull Class<ResourceType> resourceClass) {
-            return new Builder<>(context, resourceClass);
+        private <TranscodeType> Builder<TranscodeType> as(
+                @NonNull Class<TranscodeType> transcodeType) {
+            return new Builder<>(context, transcodeType);
         }
     }
 
@@ -88,20 +88,20 @@ public final class ImageLoader {
      * 版本 : V1
      * 创建时间 : 2018/11/19 4:15 PM
      */
-    public final static class Builder<ResourceType> implements SourceType<Builder<ResourceType>> {
+    public final static class Builder<TranscodeType> implements SourceType<Builder<TranscodeType>> {
         private final Context mContext;
-        private final ILoader<ResourceType> iLoader;
+        private final ILoader<TranscodeType> iLoader;
         private LoadOptions mOptions = LoadOptions.getDefaultLoadOptions();
         private Object mSource;
 
-        public Builder(Context mContext, Class<ResourceType> transcodeClass) {
+        public Builder(Context mContext, Class<TranscodeType> TranscodeType) {
             this.mContext = mContext;
-            this.iLoader = new GlideLoader<>(transcodeClass);
+            this.iLoader = new GlideLoader<>(TranscodeType);
         }
 
         @NonNull
         @Override
-        public Builder<ResourceType> load(Object source) {
+        public Builder<TranscodeType> load(Object source) {
             this.mSource = source;
             return this;
         }
@@ -112,12 +112,12 @@ public final class ImageLoader {
          * @param builder 可选配置对象
          * @return 构造器
          */
-        public Builder<ResourceType> apply(LoadOptions builder) {
+        public Builder<TranscodeType> apply(LoadOptions builder) {
             mOptions = builder;
             return this;
         }
 
-        public <T extends Target<ResourceType>> void into(T target) {
+        public <T extends Target<TranscodeType>> void into(T target) {
             iLoader.init(mContext).load(mSource).apply(mOptions).into(target);
         }
 
@@ -125,82 +125,82 @@ public final class ImageLoader {
             iLoader.init(mContext).load(mSource).apply(mOptions).into(targetImageView);
         }
 
-        public Builder<ResourceType> noPlaceholder() {
+        public Builder<TranscodeType> noPlaceholder() {
             mOptions.noPlaceholder();
             return this;
         }
 
-        public Builder<ResourceType> placeholder(@Nullable Drawable placeholderDrawable) {
+        public Builder<TranscodeType> placeholder(@Nullable Drawable placeholderDrawable) {
             mOptions.placeholder(placeholderDrawable);
             return this;
         }
 
-        public Builder<ResourceType> placeholder(int placeholderResId) {
+        public Builder<TranscodeType> placeholder(int placeholderResId) {
             mOptions.placeholder(placeholderResId);
             return this;
         }
 
-        public Builder<ResourceType> error(@Nullable Drawable errorDrawable) {
+        public Builder<TranscodeType> error(@Nullable Drawable errorDrawable) {
             mOptions.error(errorDrawable);
             return this;
         }
 
-        public Builder<ResourceType> error(int errorResId) {
+        public Builder<TranscodeType> error(int errorResId) {
             mOptions.error(errorResId);
             return this;
         }
 
-        public Builder<ResourceType> fallback(@Nullable Drawable fallbackDrawable) {
+        public Builder<TranscodeType> fallback(@Nullable Drawable fallbackDrawable) {
             mOptions.fallback(fallbackDrawable);
             return this;
         }
 
-        public Builder<ResourceType> fallback(int fallbackResId) {
+        public Builder<TranscodeType> fallback(int fallbackResId) {
             mOptions.fallback(fallbackResId);
             return this;
         }
 
-        public Builder<ResourceType> dontTransform() {
+        public Builder<TranscodeType> dontTransform() {
             mOptions.dontTransform();
             return this;
         }
 
-        public Builder<ResourceType> transformStrategy(TransformStrategy transformStrategy) {
+        public Builder<TranscodeType> transformStrategy(TransformStrategy transformStrategy) {
             mOptions.transformStrategy(transformStrategy);
             return this;
         }
 
-        public Builder<ResourceType> transform(TransformAdapter transformAdapter) {
+        public Builder<TranscodeType> transform(TransformAdapter transformAdapter) {
             mOptions.transform(transformAdapter);
             return this;
         }
 
-        public Builder<ResourceType> transforms(TransformAdapter... transformAdapters) {
+        public Builder<TranscodeType> transforms(TransformAdapter... transformAdapters) {
             mOptions.transform(transformAdapters);
             return this;
         }
 
-        public Builder<ResourceType> useTransitionAnim() {
+        public Builder<TranscodeType> useTransitionAnim() {
             mOptions.transitionAnim(true);
             return this;
         }
 
-        public Builder<ResourceType> noTransitionAnim() {
+        public Builder<TranscodeType> noTransitionAnim() {
             mOptions.transitionAnim(false);
             return this;
         }
 
-        public Builder<ResourceType> resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
+        public Builder<TranscodeType> resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
             mOptions.resize(targetWidth, targetHeight);
             return this;
         }
 
-        public Builder<ResourceType> skipMemoryCache() {
+        public Builder<TranscodeType> skipMemoryCache() {
             mOptions.memoryCacheable(false);
             return this;
         }
 
-        public Builder<ResourceType> diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
+        public Builder<TranscodeType> diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
             mOptions.diskCacheStrategy(diskCacheStrategy);
             return this;
         }
