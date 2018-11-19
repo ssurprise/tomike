@@ -1,4 +1,4 @@
-package com.skx.tomikecommonlibrary.imageloader.Picasso;
+package com.skx.tomikecommonlibrary.imageloader.picasso;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -22,17 +22,20 @@ public class PicassoLoader<TranscodeType extends Bitmap> implements ILoader<Tran
     private LoadOptions mLoadOptions;
 
     @Override
-    public void init(Context context) {
+    public ILoader<TranscodeType> init(Context context) {
+        return this;
     }
 
     @Override
-    public <Source> void load(Source source) {
+    public <Source> ILoader<TranscodeType> load(Source source) {
         this.mSource = source;
+        return this;
     }
 
     @Override
-    public void apply(LoadOptions loadOptions) {
+    public ILoader<TranscodeType> apply(LoadOptions loadOptions) {
         this.mLoadOptions = loadOptions;
+        return this;
     }
 
     @SuppressWarnings("unchecked")

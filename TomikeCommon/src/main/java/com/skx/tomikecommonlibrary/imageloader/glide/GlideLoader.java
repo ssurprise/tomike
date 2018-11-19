@@ -1,4 +1,4 @@
-package com.skx.tomikecommonlibrary.imageloader.Glide;
+package com.skx.tomikecommonlibrary.imageloader.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -72,13 +72,15 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
         this.mTranscodeClass = transcodingClass;
     }
 
-    public void init(Context context) {
+    public ILoader<TranscodeType> init(Context context) {
         this.mContext = context;
+        return this;
     }
 
     @Override
-    public <T> void load(T t) {
+    public <T> ILoader<TranscodeType> load(T t) {
         mSource = t;
+        return this;
     }
 
     /**
@@ -97,7 +99,7 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
      * @param loadOptions 可选配置
      */
     @Override
-    public void apply(LoadOptions loadOptions) {
+    public ILoader<TranscodeType> apply(LoadOptions loadOptions) {
         if (loadOptions == null) {
             loadOptions = LoadOptions.getDefaultLoadOptions();
         }
@@ -180,6 +182,7 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 //                break;
 //        }
 
+        return this;
     }
 
     @Override

@@ -19,7 +19,7 @@ public interface ILoader<TranscodeType> {
      *
      * @param context 上下文
      */
-    void init(Context context);
+    ILoader<TranscodeType> init(Context context);
 
     /**
      * 加载资源
@@ -27,14 +27,14 @@ public interface ILoader<TranscodeType> {
      * @param source   资源
      * @param <Source> 资源类型
      */
-    <Source> void load(Source source);
+    <Source> ILoader<TranscodeType> load(Source source);
 
     /**
      * 应用资源请求可选项配置
      *
      * @param loadOptions 可选配置
      */
-    void apply(LoadOptions loadOptions);
+    ILoader<TranscodeType> apply(LoadOptions loadOptions);
 
     /**
      * 设置资源将要载入的目标

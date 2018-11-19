@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.skx.tomikecommonlibrary.imageloader.Glide.GlideLoader;
+import com.skx.tomikecommonlibrary.imageloader.glide.GlideLoader;
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
@@ -75,17 +75,11 @@ public class ImageLoader {
         }
 
         public <T extends Target<E>> void into(T target) {
-            iLoader.init(mContext);
-            iLoader.load(mSource);
-            iLoader.apply(mOptions);
-            iLoader.into(target);
+            iLoader.init(mContext).load(mSource).apply(mOptions).into(target);
         }
 
         public void into(ImageView targetImageView) {
-            iLoader.init(mContext);
-            iLoader.load(mSource);
-            iLoader.apply(mOptions);
-            iLoader.into(targetImageView);
+            iLoader.init(mContext).load(mSource).apply(mOptions).into(targetImageView);
         }
 
         public Builder<E> noPlaceholder() {
@@ -152,6 +146,7 @@ public class ImageLoader {
             mOptions.transitionAnim(false);
             return this;
         }
+
         public Builder<E> resize(@IntRange(from = 0) int targetWidth, @IntRange(from = 0) int targetHeight) {
             mOptions.resize(targetWidth, targetHeight);
             return this;

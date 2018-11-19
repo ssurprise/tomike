@@ -17,11 +17,11 @@ import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
  * 描述：加载可选项
  * <p>
  * 功能点包括：
- * 1.占位图（默认的颜色值时 ：#f5f5f5）
+ * 1.占位图
  * 2.错误图
  * 3.备用图
  * 4.变换（元转换、自定义转换）
- * 5.过渡动画（默认开启）
+ * 5.过渡动画（默认关闭）
  * 6.指定目标大小
  * 7.内存缓存（默认使用）
  * 8.硬盘缓存策略
@@ -82,7 +82,7 @@ public class LoadOptions {
     private int targetHeight = UNSET;
 
     /** 过渡动画 */
-    private boolean transitionAnim = true;
+    private boolean transitionAnim = false;
 
     /** 资源变换策略 */
     private TransformStrategy transformStrategy = TransformStrategy.NONE;
