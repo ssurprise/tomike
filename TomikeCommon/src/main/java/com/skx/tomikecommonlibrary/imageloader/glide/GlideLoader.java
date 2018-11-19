@@ -18,7 +18,6 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -77,9 +76,10 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
         return this;
     }
 
+    @NonNull
     @Override
-    public <T> ILoader<TranscodeType> load(T t) {
-        mSource = t;
+    public ILoader<TranscodeType> load(@Nullable Object model) {
+        this.mSource = model;
         return this;
     }
 
@@ -295,11 +295,6 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
     };
 
     @Override
-    public void onlyDownload() {
-        FutureTarget<File> submit = Glide.with(mContext).download(mSource).submit();
-    }
-
-    @Override
     public void resume() {
         Glide.with(mContext).resumeRequests();
     }
@@ -420,4 +415,5 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
             };
         }
     }
+
 }

@@ -3,6 +3,8 @@ package com.skx.tomikecommonlibrary.imageloader.picasso;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.skx.tomikecommonlibrary.imageloader.ILoader;
@@ -26,9 +28,10 @@ public class PicassoLoader<TranscodeType extends Bitmap> implements ILoader<Tran
         return this;
     }
 
+    @NonNull
     @Override
-    public <Source> ILoader<TranscodeType> load(Source source) {
-        this.mSource = source;
+    public ILoader<TranscodeType> load(@Nullable Object model) {
+        this.mSource = model;
         return this;
     }
 
@@ -73,11 +76,6 @@ public class PicassoLoader<TranscodeType extends Bitmap> implements ILoader<Tran
                 return null;
             }
         }).into(target);
-    }
-
-    @Override
-    public void onlyDownload() {
-
     }
 
     @Override
