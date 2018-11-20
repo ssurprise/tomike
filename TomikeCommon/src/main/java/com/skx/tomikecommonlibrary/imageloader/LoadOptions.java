@@ -1,6 +1,7 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.CheckResult;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,11 +18,11 @@ import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
  * 描述：加载可选项
  * <p>
  * 功能点包括：
- * 1.占位图（默认的颜色值时 ：#f5f5f5）
+ * 1.占位图
  * 2.错误图
  * 3.备用图
  * 4.变换（元转换、自定义转换）
- * 5.过渡动画（默认开启）
+ * 5.过渡动画（默认关闭）
  * 6.指定目标大小
  * 7.内存缓存（默认使用）
  * 8.硬盘缓存策略
@@ -33,7 +34,7 @@ import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
  * 注意：
  * 1.变换功能：变换策略的优先级高于变换集，当添加自定义变换功能时，会自动设置变换策略为{@link TransformStrategy CUSTOMIZATION}
  */
-public class LoadOptions {
+public class LoadOptions implements Cloneable {
 
     private static final int UNSET = -1;
     private static final int MEMORY_CACHEABLE = 1 << 2;
@@ -82,7 +83,7 @@ public class LoadOptions {
     private int targetHeight = UNSET;
 
     /** 过渡动画 */
-    private boolean transitionAnim = true;
+    private boolean transitionAnim = false;
 
     /** 资源变换策略 */
     private TransformStrategy transformStrategy = TransformStrategy.NONE;
@@ -137,11 +138,12 @@ public class LoadOptions {
         if (placeholderDrawable == null) {
             throw new IllegalStateException("Placeholder image resource invalid.");
         }
-        if (placeholderResId != 0) {
-            throw new IllegalStateException("Placeholder image already set.");
-        }
+
         this.placeholderDrawable = placeholderDrawable;
         fields |= PLACEHOLDER;
+
+        placeholderResId = 0;
+        fields &= ~PLACEHOLDER_ID;
 
         return this;
     }
@@ -156,11 +158,12 @@ public class LoadOptions {
         if (placeholderResId == 0) {
             throw new IllegalArgumentException("Placeholder image resource invalid.");
         }
-        if (placeholderDrawable != null) {
-            throw new IllegalStateException("Placeholder image already set.");
-        }
+
         this.placeholderResId = placeholderResId;
         fields |= PLACEHOLDER_ID;
+
+        placeholderDrawable = null;
+        fields &= ~PLACEHOLDER;
 
         return this;
     }
@@ -172,11 +175,15 @@ public class LoadOptions {
      * @return 可选参数对象
      */
     public LoadOptions error(@Nullable Drawable errorDrawable) {
-        if (errorResId != 0) {
-            throw new IllegalStateException("Error image already set.");
+        if (errorDrawable == null) {
+            throw new IllegalStateException("Error image resource invalid.");
         }
+
         this.errorDrawable = errorDrawable;
         fields |= ERROR_PLACEHOLDER;
+
+        this.errorResId = 0;
+        fields &= ~ERROR_ID;
 
         return this;
     }
@@ -191,11 +198,12 @@ public class LoadOptions {
         if (errorResId == 0) {
             throw new IllegalArgumentException("Error image resource invalid.");
         }
-        if (errorDrawable != null) {
-            throw new IllegalStateException("Error image already set.");
-        }
+
         this.errorResId = errorResId;
         fields |= ERROR_ID;
+
+        this.errorDrawable = null;
+        fields &= ~ERROR_PLACEHOLDER;
 
         return this;
     }
@@ -207,11 +215,15 @@ public class LoadOptions {
      * @return 可选参数对象
      */
     public LoadOptions fallback(@Nullable Drawable fallbackDrawable) {
-        if (fallbackResId != 0) {
-            throw new IllegalStateException("Fallback image already set.");
+        if (errorDrawable == null) {
+            throw new IllegalStateException("Fallback image resource invalid.");
         }
+
         this.fallbackDrawable = fallbackDrawable;
         fields |= FALLBACK;
+
+        fallbackResId = 0;
+        fields &= ~FALLBACK_ID;
 
         return this;
     }
@@ -226,11 +238,12 @@ public class LoadOptions {
         if (fallbackResId == 0) {
             throw new IllegalArgumentException("Fallback image resource invalid.");
         }
-        if (fallbackDrawable != null) {
-            throw new IllegalStateException("Fallback image already set.");
-        }
+
         this.fallbackResId = fallbackResId;
         fields |= FALLBACK_ID;
+
+        fallbackDrawable = null;
+        fields &= ~FALLBACK;
 
         return this;
     }
@@ -553,5 +566,22 @@ public class LoadOptions {
      */
     public final boolean isValidOverride() {
         return Util.isValidDimensions(targetWidth, targetHeight);
+    }
+
+    @SuppressWarnings({
+            "unchecked",
+            // we don't want to throw to be user friendly
+            "PMD.CloneThrowsCloneNotSupportedException"
+    })
+    @CheckResult
+    @Override
+    public LoadOptions clone() {
+        try {
+            LoadOptions result = (LoadOptions) super.clone();
+            result.transformAdapters = transformAdapters.clone();
+            return result;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

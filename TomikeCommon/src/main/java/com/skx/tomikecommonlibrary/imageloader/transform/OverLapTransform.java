@@ -113,7 +113,7 @@ public final class OverLapTransform implements TransformAdapter {
 
         Rect desRect = new Rect(aimX, aimY, (int) (aimX + desW), (int) (aimY + desH));
         canvas.drawBitmap(overlapBitmap, null, desRect, paint);
-        canvas.save(Canvas.ALL_SAVE_FLAG);
+        canvas.save();
         canvas.restore();
         return targetBitmapCopy;
     }

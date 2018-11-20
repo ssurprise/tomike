@@ -1,6 +1,7 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
 import android.content.Context;
+import android.support.annotation.CheckResult;
 import android.widget.ImageView;
 
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
@@ -12,29 +13,22 @@ import com.skx.tomikecommonlibrary.imageloader.target.Target;
  *
  * @param <TranscodeType> 目标转码类型，目前支持的类型包括：Bitmap/Drawable/File
  */
-public interface ILoader<TranscodeType> {
+public interface ILoader<TranscodeType> extends SourceType<ILoader<TranscodeType>> {
 
     /**
      * 初始化
      *
      * @param context 上下文
      */
-    void init(Context context);
-
-    /**
-     * 加载资源
-     *
-     * @param source   资源
-     * @param <Source> 资源类型
-     */
-    <Source> void load(Source source);
+    ILoader<TranscodeType> init(Context context);
 
     /**
      * 应用资源请求可选项配置
      *
      * @param loadOptions 可选配置
      */
-    void apply(LoadOptions loadOptions);
+    @CheckResult
+    ILoader<TranscodeType> apply(LoadOptions loadOptions);
 
     /**
      * 设置资源将要载入的目标
@@ -49,14 +43,9 @@ public interface ILoader<TranscodeType> {
      * 设置资源将要载入的目标ImageView
      *
      * @param target 目标ImageView
-     * @param <T>
+     * @param <T>    ImageView
      */
     <T extends ImageView> void into(T target);
-
-    /**
-     * 仅仅下载图片资源
-     */
-    void onlyDownload();
 
     /**
      * 重启
