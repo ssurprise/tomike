@@ -84,8 +84,7 @@ public class GlideActivity extends AppCompatActivity {
                         }
                         final ImageView targetImgv = (ImageView) gridLayout.getChildAt(i);
 
-                        final int index = i;
-                        switch (index) {
+                        switch (i) {
                             // 第1行
                             case 0:
                                 ImageLoader.with(GlideActivity.this)
@@ -144,7 +143,7 @@ public class GlideActivity extends AppCompatActivity {
                             case 7:
                                 ImageLoader.with(GlideActivity.this)
                                         .load(imageArray[i])
-//                                        .transform(new CenterCrop())
+                                        .transform(new CenterCrop())
                                         .into(targetImgv);
                                 break;
                             case 8:
@@ -173,8 +172,11 @@ public class GlideActivity extends AppCompatActivity {
                                         .into(targetImgv);
                                 break;
                             case 11:
-                                ImageLoader.asGif(GlideActivity.this)
+                                ImageLoader.with(GlideActivity.this)
+                                        .asGif()
                                         .load(imageArray[i])
+                                        .noTransitionAnim()
+                                        .transforms(new CenterInside(), new RoundedCorners(90))
                                         .into(targetImgv);
                                 break;
 
@@ -199,6 +201,7 @@ public class GlideActivity extends AppCompatActivity {
                                 break;
                             case 13:
                                 ImageLoader.with(GlideActivity.this)
+                                        .download()
                                         .load(imageArray[i])
                                         .into(targetImgv);
                                 break;

@@ -15,12 +15,12 @@ public enum DiskCacheStrategy {
     NONE,
 
     /**
-     * 在解码之前将检索到的数据直接写入磁盘缓存。
+     * 在解码之前将检索到的数据直接写入磁盘缓存。可以理解为只缓存原始图片。
      */
     DATA,
 
     /**
-     * 缓存解码后的数据
+     * 缓存解码后的数据，可以理解为只缓存转换后的图片
      * Writes resources to disk after they've been decoded.
      */
     RESOURCE,

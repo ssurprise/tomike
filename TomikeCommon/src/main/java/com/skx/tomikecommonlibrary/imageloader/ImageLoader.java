@@ -80,6 +80,21 @@ public final class ImageLoader {
                 @NonNull Class<TranscodeType> transcodeType) {
             return new Builder<>(context, transcodeType);
         }
+
+        /**
+         * 重新启动尚未完成的任何负载。
+         */
+        public void resume() {
+            as(Drawable.class).pause();
+        }
+
+        /**
+         * 取消正在进行的任何负载，但不清除已完成负载的资源。
+         * 注意在管理器暂停完成之前或暂停期间发出的任何请求都必须调用{@link Manager#resume()}.
+         */
+        public void pause() {
+            as(Drawable.class).resume();
+        }
     }
 
     /**
@@ -203,6 +218,31 @@ public final class ImageLoader {
         public Builder<TranscodeType> diskCacheStrategy(DiskCacheStrategy diskCacheStrategy) {
             mOptions.diskCacheStrategy(diskCacheStrategy);
             return this;
+        }
+
+        public void resume() {
+            iLoader.resume();
+        }
+
+        public void pause() {
+            iLoader.pause();
+        }
+
+        @SuppressWarnings({
+                "unchecked",
+                // we don't want to throw to be user friendly
+                "PMD.CloneThrowsCloneNotSupportedException"
+        })
+        @CheckResult
+        @Override
+        public Builder<TranscodeType> clone() {
+            try {
+                Builder<TranscodeType> result = (Builder<TranscodeType>) super.clone();
+                result.mOptions = mOptions.clone();
+                return result;
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

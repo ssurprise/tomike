@@ -13,6 +13,11 @@ import android.support.annotation.Nullable;
 public interface Target<T> {
 
     /**
+     * Indicates that we want the resource in its original unmodified width and/or height.
+     */
+    int SIZE_ORIGINAL = Integer.MIN_VALUE;
+
+    /**
      * A lifecycle callback that is called when a load is started.
      * <p>
      * <p> Note - This may not be called for every load, it is possible for example for loads to fail

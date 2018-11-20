@@ -2,6 +2,7 @@ package com.skx.tomikecommonlibrary.imageloader.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -187,6 +188,9 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
     @Override
     public <T extends Target<TranscodeType>> T into(final T target) {
+        /*
+        Glide 4.8.0 版本 SimpleTarget 置为过时的类，主要原因是因为如果不指定目标的宽高，可能会造成OOM，推荐使用CustomViewTarget 或者完全实现Target 接口.
+        */
         createGlideRequestBuilder().into(new SimpleTarget<TranscodeType>() {
             @Override
             public void onLoadStarted(@Nullable Drawable placeholder) {
@@ -202,6 +206,12 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
             @Override
             public void onResourceReady(@NonNull TranscodeType resource, @Nullable Transition<? super TranscodeType> transition) {
+                /*
+                如果你没有加载到View中，直接使用ViewTarget或使用像SimpleTarget这样的自定义目标并且你正在加载像GifDrawable这样的动画资源，你需要确保在onResourceReady中启动动画Drawable：
+                 */
+                if (resource instanceof Animatable) {
+                    ((Animatable) resource).start();
+                }
                 target.onResourceReady(resource);
             }
         });
