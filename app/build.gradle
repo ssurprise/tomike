@@ -1,23 +1,34 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.application'//Android应用插件（打包得到的是.apk文件文件）
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
+    buildToolsVersion rootProject.ext.android.buildToolsVersion // 设置编译时使用的构建工具的版本
 
-    defaultConfig {
+    defaultConfig {// 设置一些默认属性
         applicationId "com.skx.tomike"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
+            minifyEnabled true // 设置是否执行代码缩减（混淆）
+            zipAlignEnabled true //设置是否对APK包执行ZIP对齐优化
+            shrinkResources true //资源缩减器可以识别应用程序仍在使用哪些资源，未被使用的资源，将会被资源缩减器移除
+            debuggable false //设置生成的APK是否支持调试本地代码
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
             minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -29,46 +40,41 @@ android {
         }
     }
 
+    // 使用packagingOptions排除不想添加到apk中的文件
     packagingOptions {
         // 要不然在华为的机器上运行不了
-        exclude 'lib/arm64-v8a/libcardioDecider.so'
-        exclude 'lib/arm64-v8a/libcardioRecognizer.so'
-        exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
-        exclude 'lib/arm64-v8a/libopencv_core.so'
-        exclude 'lib/arm64-v8a/libopencv_imgproc.so'
-        exclude 'lib/x86_64/libcardioDecider.so'
-        exclude 'lib/x86_64/libcardioRecognizer.so'
-        exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
-        exclude 'lib/x86_64/libopencv_core.so'
-        exclude 'lib/x86_64/libopencv_imgproc.so'
+//        exclude 'lib/arm64-v8a/libcardioDecider.so'
+//        exclude 'lib/arm64-v8a/libcardioRecognizer.so'
+//        exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
+//        exclude 'lib/arm64-v8a/libopencv_core.so'
+//        exclude 'lib/arm64-v8a/libopencv_imgproc.so'
+//        exclude 'lib/x86_64/libcardioDecider.so'
+//        exclude 'lib/x86_64/libcardioRecognizer.so'
+//        exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
+//        exclude 'lib/x86_64/libopencv_core.so'
+//        exclude 'lib/x86_64/libopencv_imgproc.so'
     }
-
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation project(path: ':TomikeCommon')
-    implementation 'com.google.code.gson:gson:2.8.5'
 
     // 支持库
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    //    implementation "android.arch.lifecycle:common-java8:1.1.1"
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:cardview-v7:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
+    implementation rootProject.ext.dependencies.design
+    implementation rootProject.ext.dependencies.appcompatV7
+    implementation rootProject.ext.dependencies.supportV4
+    implementation rootProject.ext.dependencies.supportMultidex
+    implementation rootProject.ext.dependencies.lifecycle
+    implementation rootProject.ext.dependencies.constraint_layout
+    implementation rootProject.ext.dependencies.cardview
 
-    // RX
-    implementation 'io.reactivex:rxjava:1.0.14'
-    implementation 'io.reactivex:rxandroid:1.0.0'
-
-    // retrofit2
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-
-    // AspectJ
-    implementation 'org.aspectj:aspectjrt:1.8.9'
+    // 功能库
+    implementation rootProject.ext.dependencies.gson
+    implementation rootProject.ext.dependencies.rxjava
+    implementation rootProject.ext.dependencies.rxandroid
+    implementation rootProject.ext.dependencies.retrofit
+    implementation rootProject.ext.dependencies.aspectjrt
 }
 
 

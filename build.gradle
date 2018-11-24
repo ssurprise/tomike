@@ -1,4 +1,4 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: "config.gradle"
 
 buildscript {
     // buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
