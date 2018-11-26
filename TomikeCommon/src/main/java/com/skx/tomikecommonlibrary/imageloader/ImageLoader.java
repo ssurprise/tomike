@@ -85,7 +85,7 @@ public final class ImageLoader {
          * 重新启动尚未完成的任何负载。
          */
         public void resume() {
-            as(Drawable.class).pause();
+            as(Drawable.class).resume();
         }
 
         /**
@@ -93,7 +93,7 @@ public final class ImageLoader {
          * 注意在管理器暂停完成之前或暂停期间发出的任何请求都必须调用{@link Manager#resume()}.
          */
         public void pause() {
-            as(Drawable.class).resume();
+            as(Drawable.class).pause();
         }
     }
 
@@ -111,7 +111,7 @@ public final class ImageLoader {
 
         public Builder(Context mContext, Class<TranscodeType> TranscodeType) {
             this.mContext = mContext;
-            this.iLoader = new GlideLoader<>(TranscodeType);
+            this.iLoader = new GlideLoader<>(TranscodeType).init(mContext);
         }
 
         @NonNull
@@ -133,11 +133,11 @@ public final class ImageLoader {
         }
 
         public <T extends Target<TranscodeType>> void into(T target) {
-            iLoader.init(mContext).load(mSource).apply(mOptions).into(target);
+            iLoader.load(mSource).apply(mOptions).into(target);
         }
 
         public void into(ImageView targetImageView) {
-            iLoader.init(mContext).load(mSource).apply(mOptions).into(targetImageView);
+            iLoader.load(mSource).apply(mOptions).into(targetImageView);
         }
 
         public Builder<TranscodeType> noPlaceholder() {

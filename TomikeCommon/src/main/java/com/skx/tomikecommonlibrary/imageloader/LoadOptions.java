@@ -111,7 +111,7 @@ public class LoadOptions implements Cloneable {
      */
     public static LoadOptions getDefaultLoadOptions() {
         LoadOptions options = new LoadOptions();
-        options.placeholder(R.color.skx_f5f5f5);
+        options.placeholder(Config.PLACEHOLDER);
         return options;
     }
 
