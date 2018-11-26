@@ -1,11 +1,11 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'// Android的库插件（打包得到的是.aar文件）
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
