@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_martix_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.skx.tomike.activity.LightDarkTextActivity">
+
+    <LinearLayout
+        android:id="@+id/lightDarkText_input_master"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/lightDarkText_input"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="1"
+            android:nextFocusForward="@id/lightDarkText_input1" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/lightDarkText_input1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="1"
+            android:nextFocusForward="@id/lightDarkText_input2" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/lightDarkText_input2"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="1"
+            android:privateImeOptions=""
+            android:nextFocusForward="@id/lightDarkText_input3" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/lightDarkText_input3"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="1" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/lightDarkText_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lightDarkText_input_master"
+        android:text="" />
+
+</RelativeLayout>

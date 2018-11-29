@@ -1,6 +1,7 @@
 package com.skx.tomike.model;
 
 import com.skx.tomike.activity.GenericTestActivity;
+import com.skx.tomike.activity.LightDarkTextActivity;
 import com.skx.tomike.activity.PrecomputedTextActivity;
 import com.skx.tomike.activity.designpattern.ChainOfResponsibilityPatternActivity;
 import com.skx.tomike.activity.designpattern.StrategyPatternActivity;
@@ -173,6 +174,7 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
 
 
+        mViewCatalogs.add(new CatalogItem("EditText明暗文切换", LightDarkTextActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("PrecomputedText", PrecomputedTextActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ConstraintLayout约束布局", ConstraintLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CoordinatorLayout", CoordinatorLayoutActivity.class.getName()));

@@ -322,6 +322,7 @@
         <activity android:name=".activity.designpattern.ObserverPatternActivity" />
         <activity android:name=".activity.PrecomputedTextActivity" />
         <activity android:name=".activity.GenericTestActivity" />
+        <activity android:name=".activity.LightDarkTextActivity" />
     </application>
 
 </manifest>
