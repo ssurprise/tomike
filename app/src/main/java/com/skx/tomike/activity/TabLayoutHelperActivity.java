@@ -205,10 +205,10 @@ public class TabLayoutHelperActivity extends SkxBaseActivity {
             textView.setText(name);
             textView.setGravity(Gravity.CENTER);
             textView.setBackground(
-                    new SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE)
-                    .setStroke(ContextCompat.getColor(this, R.color.skx_2c3e50),3)
-                    .setCornerRadius(4)
-                    .create());
+                    SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                            .setStroke(ContextCompat.getColor(this, R.color.skx_2c3e50), 3)
+                            .setCornerRadius(4)
+                            .create());
 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override

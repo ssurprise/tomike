@@ -165,7 +165,7 @@ public class SkxDrawableUtil {
 
         GradientDrawable mGradientDrawable;
 
-        public Builder(int shape) {
+        private Builder(int shape) {
             mGradientDrawable = new GradientDrawable();
             mGradientDrawable.setShape(shape == RECTANGLE || shape == OVAL || shape == LINE ? shape : RECTANGLE);
         }

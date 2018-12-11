@@ -51,7 +51,7 @@ public class PopupWindowActivity extends AppCompatActivity implements View.OnCli
     public void showPopupWindow(View view) {
         View contentView = LayoutInflater.from(this).inflate(R.layout.popupwindow_test, null);
 
-        Drawable shapeDrawable = new SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE)
+        Drawable shapeDrawable = SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
                 .setColor(Color.parseColor("#2cb298"))
                 .setStroke(Color.parseColor("#30c3a6"), 3)
                 .setCornerRadius(3)
