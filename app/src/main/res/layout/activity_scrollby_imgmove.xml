@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="@dimen/view_padding">
 
-    <com.skx.tomike.customview.SkxImageView
+    <com.skx.tomike.customview.TranslateImageView
         android:id="@+id/transImageView"
         android:layout_width="match_parent"
         android:layout_height="400dp"

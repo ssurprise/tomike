@@ -1,8 +1,6 @@
 package com.skx.tomike.activity;
 
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -57,17 +55,16 @@ public class Tint_DrawableTintActivity extends AppCompatActivity {
 //        ColorDrawable
 
         Drawable originBitmapDrawable = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
+
         mImageView1.setBackground(SkxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#30c3a6")));
+        mImageView2.setImageDrawable(SkxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#ff4081")));
 
-        Drawable originBitmapDrawable2 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
-        mImageView2.setImageDrawable(SkxDrawableUtil.tintDrawable(originBitmapDrawable2, Color.parseColor("#ff4081")));
-
-
-        Bitmap bitmap = ((BitmapDrawable) originBitmapDrawable).getBitmap();
-        mImageView3.setBackground(new BitmapDrawable(getResources(), bitmap));
-
-        Bitmap bitmap2 = ((BitmapDrawable) originBitmapDrawable2).getBitmap();
-        mImageView4.setImageBitmap(bitmap2);
+//
+//        Bitmap bitmap = ((BitmapDrawable) originBitmapDrawable).getBitmap();
+//        mImageView3.setBackground(new BitmapDrawable(getResources(), bitmap));
+//
+//        Bitmap bitmap2 = ((BitmapDrawable) originBitmapDrawable2).getBitmap();
+//        mImageView4.setImageBitmap(bitmap2);
 
 
     }

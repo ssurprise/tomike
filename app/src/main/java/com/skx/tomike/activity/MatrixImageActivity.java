@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.skx.tomike.R;
-import com.skx.tomike.customview.SkxImageView;
+import com.skx.tomike.customview.TranslateImageView;
 
 public class MatrixImageActivity extends AppCompatActivity {
 
@@ -14,9 +14,9 @@ public class MatrixImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_martix_image);
 
-        SkxImageView mImage = (SkxImageView) findViewById(R.id.matrixImage_mainImage);
+        TranslateImageView mImage = findViewById(R.id.matrixImage_mainImage);
         mImage.setImageResource(R.drawable.image_01);
-        mImage.setPosition(SkxImageView.Position.RIGHT);
+        mImage.setPosition(TranslateImageView.Position.RIGHT);
     }
     /**
      *

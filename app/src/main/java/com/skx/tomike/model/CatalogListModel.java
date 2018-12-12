@@ -76,10 +76,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 目录列表model
- *
- * @author shiguotao
- * Created on 2017/12/29.
+ * 描述 : 目录列表model
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2017/12/29 6:08 PM
  */
 public class CatalogListModel {
 
@@ -135,16 +135,8 @@ public class CatalogListModel {
 
         mAnimatorCatalogs.add(new CatalogItem("Layout添加/删除子view过渡效果", LayoutTransitionActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("共享元素转场动画", ShareElementActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("TabLayout联动", TabLayoutActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("抽屉效果", DrawerLayoutActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("下拉放大头图", ZoomHeaderListViewActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("下拉刷新", SwipeRefreshLayoutActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("N种页签指示器", PageIndicatorActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("CoordinatorLayout效果", CoordinatorLayoutCaseActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("圆形揭示效果", CircularRevealActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("属性动画", PropertyAnimatorActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("ViewPager无限循环+自动轮播", ViewPagerInfiniteLoopActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("ViewPager一屏多展示", VpMultiplePageActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("view内容移动", ScrollerPracticeActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_ANIMATOR, mAnimatorCatalogs);
 
@@ -159,7 +151,15 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("Glide图片加载", GlideActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("6.0权限", PermissionIntroActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("大图片加载", ImageLoadActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("下拉放大头图", ZoomHeaderListViewActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("N种页签指示器", PageIndicatorActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("相册", PhotoAlbumsActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("CoordinatorLayout效果", CoordinatorLayoutCaseActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("TabLayout联动", TabLayoutActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("抽屉效果", DrawerLayoutActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("下拉刷新", SwipeRefreshLayoutActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("ViewPager一屏多展示", VpMultiplePageActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("ViewPager无限循环+自动轮播", ViewPagerInfiniteLoopActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 
