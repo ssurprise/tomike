@@ -31,9 +31,10 @@ public class LayoutTransitionActivity extends AppCompatActivity {
     }
 
     public void remove(View view) {
-        mContainer.removeViewAt(0);
-        mViewList.remove(0);
-
+        if (mViewList.size() > 0) {
+            mContainer.removeViewAt(0);
+            mViewList.remove(0);
+        }
     }
 
     public void add(View view) {

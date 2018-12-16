@@ -3,6 +3,7 @@ package com.skx.tomike.model;
 import com.skx.tomike.activity.GenericTestActivity;
 import com.skx.tomike.activity.LightDarkTextActivity;
 import com.skx.tomike.activity.PrecomputedTextActivity;
+import com.skx.tomike.activity.ShakeAnimatorActivity;
 import com.skx.tomike.activity.designpattern.ChainOfResponsibilityPatternActivity;
 import com.skx.tomike.activity.designpattern.StrategyPatternActivity;
 import com.skx.tomike.activity.designpattern.ViewModelActivity;
@@ -137,6 +138,7 @@ public class CatalogListModel {
         mAnimatorCatalogs.add(new CatalogItem("共享元素转场动画", ShareElementActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("圆形揭示效果", CircularRevealActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("属性动画", PropertyAnimatorActivity.class.getName()));
+        mAnimatorCatalogs.add(new CatalogItem("shake动画", ShakeAnimatorActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("view内容移动", ScrollerPracticeActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_ANIMATOR, mAnimatorCatalogs);
 

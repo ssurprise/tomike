@@ -27,7 +27,7 @@ public class GenericTestActivity extends SkxBaseActivity {
         super.initializeData();
 
 
-        List<String> strings = new ArrayList<String>();
+        List<String> strings = new ArrayList<>();
 //        strings.add(new Integer((42)));
 //        unsafeAdd(strings, new Integer(42));
         String s = strings.get(0);

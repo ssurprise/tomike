@@ -323,6 +323,7 @@
         <activity android:name=".activity.PrecomputedTextActivity" />
         <activity android:name=".activity.GenericTestActivity" />
         <activity android:name=".activity.LightDarkTextActivity" />
+        <activity android:name=".activity.ShakeAnimatorActivity" />
     </application>
 
 </manifest>
