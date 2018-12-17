@@ -7,15 +7,16 @@ import android.util.Log;
 import android.view.View;
 
 import com.skx.tomike.R;
-import com.skx.tomike.customview.SkxImageView;
+import com.skx.tomike.customview.TranslateImageView;
 
 /**
- * Created by shiguotao on 2016/4/19.
- * <p>
- * Scroller实践页面
+ * 描述 : Scroller实践页面
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2016/4/19 5:59 PM
  */
 public class ScrollerPracticeActivity extends SkxBaseActivity {
-    private SkxImageView mIv;
+    private TranslateImageView mIv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,8 +30,8 @@ public class ScrollerPracticeActivity extends SkxBaseActivity {
         super.initializeView();
         setContentView(R.layout.activity_scrollby_imgmove);
         mIv = findViewById(R.id.transImageView);
-        mIv.setScaleTypeEx(SkxImageView.ScaleTypeEx.CROP);
-        mIv.setPosition(SkxImageView.Position.RIGHT);
+        mIv.setScaleTypeEx(TranslateImageView.ScaleTypeEx.CROP);
+        mIv.setPosition(TranslateImageView.Position.RIGHT);
     }
 
 

@@ -77,10 +77,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 目录列表model
- *
- * @author shiguotao
- * Created on 2017/12/29.
+ * 描述 : 目录列表model
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2017/12/29 6:08 PM
  */
 public class CatalogListModel {
 

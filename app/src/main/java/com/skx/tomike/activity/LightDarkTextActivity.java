@@ -40,6 +40,19 @@ public class LightDarkTextActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_light_dark_text);
 
+
+//        String a = "abc";
+//        String e = "ab";
+//        e = e + "c";
+//        Log.e("a==e", (a == e) + "");
+
+
+        String a = "abc";
+        final String e = "ab";
+        String b = e + "c";
+        Log.e("a==b", (a == b) + "");
+
+
         input = findViewById(R.id.lightDarkText_input);
         input1 = findViewById(R.id.lightDarkText_input1);
         input2 = findViewById(R.id.lightDarkText_input2);
@@ -69,14 +82,12 @@ public class LightDarkTextActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 int length = s.length();
                 if (length >= 1 && index < editTexts.size() - 1) {
-//                    currentEt.clearFocus();
                     (editTexts.get(++index)).requestFocus(EditorInfo.IME_ACTION_NEXT);
 
                 } else if (length == 0) {

@@ -3,9 +3,11 @@ package com.skx.tomike.customview;
 import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewTreeObserver;
+import android.view.animation.TranslateAnimation;
 import android.widget.Scroller;
 
 /**
@@ -18,8 +20,8 @@ import android.widget.Scroller;
  * @author shiguotao
  * Created on 2016/11/30.
  */
-public class SkxImageView extends android.support.v7.widget.AppCompatImageView implements ViewTreeObserver.OnGlobalLayoutListener {
-    private final String TAG = SkxImageView.class.getName();
+public class TranslateImageView extends android.support.v7.widget.AppCompatImageView implements ViewTreeObserver.OnGlobalLayoutListener {
+    private final String TAG = TranslateImageView.class.getName();
 
     private boolean once = true;
     private Matrix mMatrix;
@@ -50,15 +52,15 @@ public class SkxImageView extends android.support.v7.widget.AppCompatImageView i
      */
     private boolean mAnimatorFlag = false;
 
-    public SkxImageView(Context context) {
+    public TranslateImageView(Context context) {
         this(context, null);
     }
 
-    public SkxImageView(Context context, AttributeSet attrs) {
+    public TranslateImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SkxImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TranslateImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initSkxImageView(context);
     }
@@ -244,7 +246,11 @@ public class SkxImageView extends android.support.v7.widget.AppCompatImageView i
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        } else {
+            getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        }
     }
 
     /**
@@ -314,7 +320,6 @@ public class SkxImageView extends android.support.v7.widget.AppCompatImageView i
 
         void onAnimatorEnd();
     }
-
 
     public static abstract class SmoothScrollAnimatorAdapter implements ISmoothScrollAnimatorListener {
 
