@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/activity_collapsing_toolbar_layout">
+        tools:showIn="@layout/activity_nestedscrollview_viewpager">
 
         <TextView
             android:layout_width="wrap_content"
