@@ -244,7 +244,7 @@
         <activity android:name=".activity.TextWordSpacingActivity" />
         <activity android:name=".activity.designpattern.MementoPatternActivity" />
         <activity
-            android:name=".activity.widget.CollapsingToolbarLayoutActivity"
+            android:name=".activity.widget.NestedScrollViewViewPagerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activity.widget.CustomViewActivity" />
         <activity android:name=".activity.CoordinatorLayoutCaseActivity" />

@@ -13,7 +13,7 @@ import com.skx.tomike.activity.designpattern.ClonePatternActivity;
 import com.skx.tomike.activity.function.AopTestActivity;
 import com.skx.tomike.activity.function.OutterStartActivity;
 import com.skx.tomike.activity.function.FloatingWindowActivity;
-import com.skx.tomike.activity.widget.CollapsingToolbarLayoutActivity;
+import com.skx.tomike.activity.widget.NestedScrollViewViewPagerActivity;
 import com.skx.tomike.activity.ColorMatrix2Activity;
 import com.skx.tomike.activity.ColorMatrixActivity;
 import com.skx.tomike.activity.widget.ConstraintLayoutActivity;
@@ -180,7 +180,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("PrecomputedText", PrecomputedTextActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ConstraintLayout约束布局", ConstraintLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CoordinatorLayout", CoordinatorLayoutActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("CollapsingToolbarLayout", CollapsingToolbarLayoutActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("自定义View", CustomViewActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("导航栏封装", NavigationBarActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("Tint 着色1 -DrawableCompat", Tint_DrawableTintActivity.class.getName()));
