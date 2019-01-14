@@ -42,10 +42,6 @@ captures/
 .idea/libraries
 .idea/caches
 
-# Android Studio
-*.iml
-.idea
-
 # Gradle files
 .gradle/
 build/
