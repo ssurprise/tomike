@@ -25,7 +25,7 @@ ext {
             gson             : 'com.google.code.gson:gson:2.8.5',
 
             // RX
-            rxjava           : 'io.reactivex:rxjava:1.0.14',
+            rxjava           : 'io.reactivex.rxjava2:rxjava:2.2.5',
             rxandroid        : 'io.reactivex:rxandroid:1.0.0',
 
             // retrofit2
