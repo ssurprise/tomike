@@ -325,6 +325,9 @@
         <activity android:name=".activity.GenericTestActivity" />
         <activity android:name=".activity.LightDarkTextActivity" />
         <activity android:name=".activity.ShakeAnimatorActivity" />
+        <activity
+            android:name=".activity.function.TransparentThemeActivity"
+            android:theme="@style/GlobalCaptchaTheme.Transparent" />
     </application>
 
 </manifest>

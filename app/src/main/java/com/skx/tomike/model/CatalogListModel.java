@@ -13,6 +13,7 @@ import com.skx.tomike.activity.designpattern.ClonePatternActivity;
 import com.skx.tomike.activity.function.AopTestActivity;
 import com.skx.tomike.activity.function.OutterStartActivity;
 import com.skx.tomike.activity.function.FloatingWindowActivity;
+import com.skx.tomike.activity.function.TransparentThemeActivity;
 import com.skx.tomike.activity.widget.NestedScrollViewViewPagerActivity;
 import com.skx.tomike.activity.ColorMatrix2Activity;
 import com.skx.tomike.activity.ColorMatrixActivity;
@@ -144,6 +145,7 @@ public class CatalogListModel {
 
 
         mFunctionCatalogs.add(new CatalogItem("打开其他App", OutterStartActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("透明Activity", TransparentThemeActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("全局浮层", FloatingWindowActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AOP 测试", AopTestActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", NfcGroupActivity.class.getName()));
