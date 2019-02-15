@@ -8,12 +8,197 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.1'
         classpath 'org.aspectj:aspectjtools:1.8.9'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+//    copy("/Users/shiguotao/giteeworkspace/skxlaboratory/local.properties","/Users/shiguotao/giteeworkspace/skxlaboratory/local2.properties")
+
+/**
+ * 配置阶段开始前的回调
+ */
+this.beforeEvaluate {}
+/**
+ * 配置阶段完成后回调
+ */
+this.afterEvaluate {}
+/**
+ * gradle 配置完成以后的回调监听
+ */
+this.gradle.buildFinished {}
+
+//this.getProjects11()
+//this.project('app') { ->
+//    println "project.name = $project.name"
+//}
+
+//getFileContent('config.gradle')
+//getFileContent('/Users/shiguotao/giteeworkspace/skxlaboratory/config.gradle')
+// 文件定位demo
+//def getFileContent(String path) {
+//    try {
+//        def file = file(path)
+//        println file.text
+//    } catch (GradleException e) {
+//        println "file not found"
+//    }
+//}
+
+// 文件拷贝demo
+//copy {
+//    from file('README.md')
+//    into getBuildDir()
+//}
+
+// 对文件树进行遍历demo
+//fileTree('build/generated/') { ConfigurableFileTree fileTree ->
+//    fileTree.visit { FileVisitDetails fileVisitDetails ->
+//        println fileVisitDetails.name
+//    }
+//}
+
+// groovy实现文件拷贝demo
+//def copy(String source, String targetPath) {
+//    def targetFile = new File(targetPath)
+//    if (!targetFile.exists()) {
+//        targetFile.createNewFile()
+//    }
+//    new File(source).withReader { reader ->
+//        def lines = reader.readLines()
+//        targetFile.withWriter { writer ->
+//            lines.each { line ->
+//                writer.writeLine(line)
+//            }
+//        }
+//    }
+//}
+
+//对对象的读写demo
+//def saveObject(Object o, String targetPath) {
+//    def targetFile = new File(targetPath)
+//    if (!targetFile.exists()) {
+//        targetFile.createNewFile()
+//    }
+//    targetFile.withObjectOutputStream { out ->
+//        out.writeObject(o)
+//    }
+//}
+//def readObject(String targetPath) {
+//    def obj = null
+//    def targetFile = new File(targetPath)
+//    try {
+//        if (targetFile == null || !targetFile.exists()) {
+//            return null
+//
+//        } else {
+//            targetFile.withObjectInputStream { input ->
+//                obj = input.readObject()
+//            }
+//        }
+//    } catch (Exception e) {
+//
+//    }
+//    return obj
+//}
+
+// Task定义demo
+//task helloTask1 {
+//    println 'I am helloTask1'
+//}
+//
+//task(group: 'study', helloTask2) {
+//    println 'I am helloTask2'
+//}
+//
+//this.getTasks().create('helloTask3') {
+//    println 'I am helloTask3'
+//}
+//
+//this.getTasks().create(group: 'study', name: 'helloTask4') {
+//    println 'I am helloTask4'
+//}
+//
+//task(helloTask5) {
+//    setGroup('study')
+//    println 'I am helloTask5'
+//}
+
+// Task指定在执行阶段执行demo
+//this.getTasks().create('helloTask6') {
+//    setGroup('study')
+//    setDescription('gradle study')
+//    println 'I am helloTask6'
+//
+//    doFirst {
+//        println '内部 doFirst'
+//    }
+//
+//    doLast {
+//        println '内部 doLast'
+//    }
+//}
+//
+//helloTask6.doFirst {
+//    println '外部 doFirst'
+//}
+//
+//helloTask6.doLast {
+//    println '外部 doLast'
+//}
+
+// 执行外部命令 demo
+//task(name: 'apkcopy') {
+//    doLast {
+//        def sourcePath = this.buildDir.path + '/outputs/apk'
+//        def targetPath = "/Users/shiguotao/Downloads/"
+//        def command = "mv -f ${sourcePath} ${targetPath}"
+//        exec {
+//            try {
+//                executable 'bash'
+//                args '-c', command
+//
+//            } catch (Exception e) {
+//
+//            }
+//        }
+//    }
+//}
+
+// 计算build 执行时长demo
+//def startBuildTime, endBuildTime
+//this.afterEvaluate { Project project ->
+//    // 保证要找的task 已经配置完毕
+//    def preBuildTask = project.tasks.getByName('preBuild')
+//    preBuildTask.doFirst {
+//        startBuildTime = System.currentTimeMillis()
+//    }
+//
+//    def buildTask = project.tasks.getByName('build')
+//    buildTask.doLast {
+//        endBuildTime = System.currentTimeMillis()
+//    }
+//    println 'build 时长为：' + (endBuildTime - startBuildTime)
+//}
+
+// task 添加依赖demo
+//task(taskX) {
+//    doLast {
+//        println 'taskX'
+//    }
+//}
+//task(dependsOn: taskX, taskY) {
+//    doLast {
+//        println 'taskY'
+//    }
+//}
+//task taskZ(dependsOn: taskY) {
+//    doLast {
+//        println 'taskZ'
+//    }
+//}
+
 
 allprojects {
     // allprojects块的repositories用于多项目构建，为所有项目提供共同所需依赖包。而子项目可以配置自己的repositories以获取自己独需的依赖包。
