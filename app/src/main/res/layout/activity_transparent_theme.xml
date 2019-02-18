@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:background="@android:color/darker_gray"
         android:gravity="center"
-        android:text="内容测试"
+        android:text="透明主题测试"
         tools:layout_editor_absoluteX="105dp"
         tools:layout_editor_absoluteY="215dp" />
 

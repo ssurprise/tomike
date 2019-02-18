@@ -327,7 +327,15 @@
         <activity android:name=".activity.ShakeAnimatorActivity" />
         <activity
             android:name=".activity.function.TransparentThemeActivity"
-            android:theme="@style/GlobalCaptchaTheme.Transparent" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:theme="@style/GlobalCaptchaTheme.Transparent"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+
+        <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+        <!--android:launchMode="singleTask"-->
+        <!--android:theme="@style/GlobalCaptchaTheme.Transparent"-->
+        <!--android:windowSoftInputMode="stateHidden|stateAlwaysHidden"-->
     </application>
 
 </manifest>
