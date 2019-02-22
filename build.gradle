@@ -182,7 +182,7 @@ this.gradle.buildFinished {}
 //    println 'build 时长为：' + (endBuildTime - startBuildTime)
 //}
 
-// task 添加依赖demo
+// task dependsOn添加依赖demo
 //task(taskX) {
 //    doLast {
 //        println 'taskX'
@@ -198,7 +198,73 @@ this.gradle.buildFinished {}
 //        println 'taskZ'
 //    }
 //}
+//task taskZ2 << {
+//    println 'taskZ2'
+//}
+//taskZ2.dependsOn(taskX, taskY)
 
+//task lib1 << {
+//    println 'lib1'
+//}
+//task lib2 << {
+//    println 'lib2'
+//}
+//
+//task common {
+//    dependsOn this.tasks.findAll { task ->
+//        return task.name.startsWith('lib')
+//    }
+//    doLast {
+//        println 'common'
+//    }
+//}
+//task biz << {
+//    println 'biz'
+//}
+//biz.dependsOn(lib1, lib2)
+
+// task dependsOn添加依赖demo
+//task taskX {
+//    doLast {
+//        println 'taskX'
+//    }
+//}
+//task(taskY) {
+//    mustRunAfter taskX
+//    doLast {
+//        println 'taskY'
+//    }
+//}
+//task taskZ {
+//    mustRunAfter taskY
+//    doLast {
+//        def a = 1
+//        println 'taskZ:'+(a+10)
+//    }
+//}
+
+//ext {
+//    versionName = '1.0.0'
+//    versionCode = '1'
+//    versionInfo = 'app 第一个版本'
+//    destFile = file('release.xml')
+//    if (destFile != null && !destFile.exists()) {
+//        destFile.createNewFile()
+//    }
+//}
+//
+//task writeTask { Task task ->
+//    task.inputs.property('versionName', this.versionName)
+//    task.inputs.property('versionCode', this.versionCode)
+//    task.inputs.property('versionInfo', this.versionInfo)
+//    task.outputs.file destFile
+//
+//    task.doLast {
+//        def data = inputs.getProperties();
+//        File file = outputs.getFiles().getSingleFile();
+//
+//    }
+//}
 
 allprojects {
     // allprojects块的repositories用于多项目构建，为所有项目提供共同所需依赖包。而子项目可以配置自己的repositories以获取自己独需的依赖包。
