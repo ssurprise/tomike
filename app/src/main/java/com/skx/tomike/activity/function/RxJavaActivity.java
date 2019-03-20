@@ -2,9 +2,15 @@ package com.skx.tomike.activity.function;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.util.Pair;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.skx.tomike.R;
+import com.skx.tomike.javabean.Student;
+import com.skx.tomike.javabean.Transcript;
+import com.skx.tomike.util.ToastTool;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -12,60 +18,85 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaActivity extends AppCompatActivity {
 
+    private LinearLayout rl_rxjava_loading;
+    private TextView rl_rxjava_loadingText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java);
+        initView();
+    }
 
-        // 被观察者
-        Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+    private void initView() {
+        rl_rxjava_loading = findViewById(R.id.rl_rxjava_loading);
+        rl_rxjava_loadingText = findViewById(R.id.rl_rxjava_loadingText);
+    }
+
+    public void begin(View view) {
+        Observable.create(new ObservableOnSubscribe<Student>() {
             @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                Log.e("subscribe", "1");
-                emitter.onNext("1");
-                Log.e("subscribe", "2");
-                emitter.onNext("2");
-                Log.e("subscribe", "3");
-                emitter.onNext("3");
-                emitter.onComplete();
+            public void subscribe(ObservableEmitter<Student> emitter) throws Exception {
+                rl_rxjava_loadingText.setText("学生信息获取中...");
 
-                Log.e("subscribe", "4");
-                emitter.onNext("4");
+                Thread.sleep(3000);
 
-                Log.e("subscribe", "5");
-                emitter.onNext("5");
+                Student student = new Student();
+                student.id = 101;
+                student.sex = "男";
+                student.name = "小黑";
+                student.clazz = "3年级2班";
 
-                Log.e("subscribe", "6");
-                emitter.onNext("6");
-            }
-//        }).map(new Function<String, String>() {
-//            @Override
-//            public String apply(String s) throws Exception {
-//                return null;
-//            }
-        }).flatMap(new Function<String, ObservableSource<String>>() {
-            @Override
-            public ObservableSource<String> apply(String s) throws Exception {
-                return null;
+                emitter.onNext(student);
             }
         })
-//                .observeOn(.mainThread())//回调在主线程
-                .subscribeOn(Schedulers.io());//执行在io线程;
+                .observeOn(Schedulers.io())
+//                .subscribeOn(AndroidS)
+                .flatMap(new Function<Student, ObservableSource<Pair<Student, Transcript>>>() {
+            @Override
+            public ObservableSource<Pair<Student, Transcript>> apply(Student student) {
+                return Observable.zip(Observable.just(student), Observable.create(new ObservableOnSubscribe<Transcript>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Transcript> emitter) throws Exception {
 
-        Observer<String> observer = new Observer<String>() {
+                        rl_rxjava_loadingText.setText("成绩单获取中...");
+
+                        Thread.sleep(3000);
+
+                        Transcript transcript = new Transcript();
+                        transcript.id = 101;
+                        transcript.Chinese = 100;
+                        transcript.English = 98;
+                        transcript.Mathematics = 99;
+
+                        emitter.onNext(transcript);
+                    }
+                }), new BiFunction<Student, Transcript, Pair<Student, Transcript>>() {
+                    @Override
+                    public Pair<Student, Transcript> apply(Student student, Transcript transcript) {
+                        return new Pair<>(student, transcript);
+                    }
+                });
+            }
+        }).subscribe(new Observer<Pair<Student, Transcript>>() {
             @Override
             public void onSubscribe(Disposable d) {
-                Log.e("onSubscribe", d.toString());
+                rl_rxjava_loading.setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void onNext(String s) {
-                Log.e("onNext", s);
+            public void onNext(Pair<Student, Transcript> studentTranscriptPair) {
+                String studentTranscript = String.format("%s的语文成绩为：%s",
+                        studentTranscriptPair.first.name,
+                        studentTranscriptPair.second.Chinese);
+
+                ToastTool.showToast(RxJavaActivity.this, studentTranscript);
             }
 
             @Override
@@ -75,38 +106,8 @@ public class RxJavaActivity extends AppCompatActivity {
 
             @Override
             public void onComplete() {
-
+                rl_rxjava_loading.setVisibility(View.GONE);
             }
-        };
-
-        // 订阅
-        observable.subscribe(observer);
-
-
-
-
-//        Observable intervalObservable = Observable.interval(3, TimeUnit.SECONDS).subscribe(new Action);
-//        Observable.range(0,5).subscribe(new Observer<Integer>() {
-//            @Override
-//            public void onSubscribe(Disposable d) {
-//
-//            }
-//
-//            @Override
-//            public void onNext(Integer integer) {
-//
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//
-//            }
-//
-//            @Override
-//            public void onComplete() {
-//
-//            }
-//        });
-
+        });
     }
 }
