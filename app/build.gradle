@@ -75,7 +75,7 @@ dependencies {
     // 功能库
     implementation rootProject.ext.dependencies.gson
     implementation rootProject.ext.dependencies.rxjava
-    //    implementation rootProject.ext.dependencies.rxandroid
+    implementation rootProject.ext.dependencies.rxandroid
     implementation rootProject.ext.dependencies.retrofit
     implementation rootProject.ext.dependencies.aspectjrt
 }
