@@ -23,6 +23,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
+import io.reactivex.observables.ConnectableObservable;
 import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaActivity extends AppCompatActivity {
@@ -208,6 +209,73 @@ public class RxJavaActivity extends AppCompatActivity {
         3. 内部a没有指定线程，b指定线程    -> 串行执行 （不建议，可能会造成主线程卡顿）
 
          */
+    }
 
+    public void serialOrder2Begin(View view) {
+        ConnectableObservable<Double> PAY = Observable.create(new ObservableOnSubscribe<Double>() {
+            @Override
+            public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                Log.e("Observable", "1.1");
+                SystemClock.sleep(2000);
+                Log.e("Observable", "1.2");
+
+//                emitter.onNext(10d);
+                emitter.onError(new Throwable());
+
+//                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io())
+                .publish();
+
+        Observable<Double> flatMap = PAY
+                .flatMap(new Function<Double, ObservableSource<Double>>() {
+                    @Override
+                    public ObservableSource<Double> apply(Double aDouble) throws Exception {
+                        return Observable.create(new ObservableOnSubscribe<Double>() {
+                            @Override
+                            public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                                Log.e("Observable", "2.1");
+                                SystemClock.sleep(2000);
+                                Log.e("Observable", "2.2");
+
+                                emitter.onNext(20d);
+
+//                                emitter.onError(new Throwable());
+                                emitter.onComplete();
+                            }
+                        });
+                    }
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        Observable.zip(PAY, flatMap, new BiFunction<Double, Double, Double>() {
+            @Override
+            public Double apply(Double aDouble, Double aDouble2) throws Exception {
+                return aDouble + aDouble2;
+            }
+        }).subscribe(new Observer<Double>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.e("Observer-onSubscribe", "subscribe");
+                rl_rxjava_loading.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNext(Double aDouble) {
+                ToastTool.showToast(RxJavaActivity.this, aDouble + "");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e("Observer-onError", "error");
+                rl_rxjava_loading.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e("Observer-onComplete", "complete");
+                rl_rxjava_loading.setVisibility(View.GONE);
+            }
+        });
+        PAY.connect();
     }
 }
