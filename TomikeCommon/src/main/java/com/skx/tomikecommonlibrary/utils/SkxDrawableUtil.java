@@ -184,8 +184,9 @@ public class SkxDrawableUtil {
          * @see # mutate()
          * @see #setColor(int)
          */
-        public Builder setColors(@Nullable int[] colors) {
+        public Builder setGradientColors(@Nullable int[] colors) {
             this.mGradientColors = colors;
+            this.mSolidColors = null;
             return this;
         }
 
@@ -200,6 +201,7 @@ public class SkxDrawableUtil {
          */
         public Builder setColor(@ColorInt int argb) {
             this.mSolidColors = ColorStateList.valueOf(argb);
+            this.mGradientColors = null;
             return this;
         }
 
@@ -217,6 +219,7 @@ public class SkxDrawableUtil {
          */
         public Builder setColor(@Nullable ColorStateList colorStateList) {
             this.mSolidColors = colorStateList;
+            this.mGradientColors = null;
             return this;
         }
 
@@ -331,6 +334,7 @@ public class SkxDrawableUtil {
         }
 
         public Drawable create() {
+            // 圆角
             if (mRadiusArray != null) {
                 mGradientDrawable.setCornerRadii(mRadiusArray);
 
@@ -338,15 +342,32 @@ public class SkxDrawableUtil {
                 mGradientDrawable.setCornerRadius(mRadius);
             }
 
+            // 填充色
+            if (mSolidColors != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mGradientDrawable.setColor(mSolidColors);
+                } else {
+                    mGradientDrawable.setColor(mSolidColors.getDefaultColor());
+                }
+
+            } else if (mGradientColors != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    mGradientDrawable.setColors(mGradientColors);
+                }
+            } else {
+                mGradientDrawable.setColor(Color.TRANSPARENT);
+
+            }
+
+            // 描边
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mGradientDrawable.setColor(mSolidColors);
                 //显示一条虚线，破折线的宽度为dashWith，破折线之间的空隙的宽度为dashGap，当dashGap=0dp时，为实线
                 mGradientDrawable.setStroke(mStrokeWidth, mStrokeColors, mStrokeDashWidth, mStrokeDashGap);
             } else {
-                mGradientDrawable.setColor(mSolidColors.getDefaultColor());
                 //显示一条虚线，破折线的宽度为dashWith，破折线之间的空隙的宽度为dashGap，当dashGap=0dp时，为实线
                 mGradientDrawable.setStroke(mStrokeWidth, mStrokeColors.getDefaultColor(), mStrokeDashWidth, mStrokeDashGap);
             }
+
             return mGradientDrawable;
         }
     }
