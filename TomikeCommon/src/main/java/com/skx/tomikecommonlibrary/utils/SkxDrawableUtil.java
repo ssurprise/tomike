@@ -7,9 +7,13 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.DrawableCompat;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * Drawable 工具类
@@ -142,12 +146,41 @@ public class SkxDrawableUtil {
          */
         public static final int LINE = GradientDrawable.LINE;
 
+        /**
+         * Gradient is linear (default.)
+         */
+        public static final int LINEAR_GRADIENT = GradientDrawable.LINEAR_GRADIENT;
+
+        /**
+         * Gradient is circular.
+         */
+        public static final int RADIAL_GRADIENT = GradientDrawable.RADIAL_GRADIENT;
+
+        /**
+         * Gradient is a sweep.
+         */
+        public static final int SWEEP_GRADIENT = GradientDrawable.SWEEP_GRADIENT;
+
+
         private ColorStateList mSolidColors;
         /**
          * The color state list of the stroke
          */
         private ColorStateList mStrokeColors;
         private @ColorInt int[] mGradientColors;
+
+        /**
+         * @hide
+         */
+        @IntDef({LINEAR_GRADIENT, RADIAL_GRADIENT, SWEEP_GRADIENT})
+        @Retention(RetentionPolicy.SOURCE)
+        public @interface GradientType {
+        }
+
+        private @GradientType
+        int mGradient = LINEAR_GRADIENT;
+        private GradientDrawable.Orientation mOrientation;
+
         /**
          * The width in pixels of the stroke
          */
@@ -160,6 +193,7 @@ public class SkxDrawableUtil {
          * The gap in pixels between dashes
          */
         private float mStrokeDashGap = 0.0f;
+
         private float mRadius = 0.0f; // use this if mRadiusArray is null
         private float[] mRadiusArray = null;
 
@@ -168,26 +202,6 @@ public class SkxDrawableUtil {
         private Builder(int shape) {
             mGradientDrawable = new GradientDrawable();
             mGradientDrawable.setShape(shape == RECTANGLE || shape == OVAL || shape == LINE ? shape : RECTANGLE);
-        }
-
-        /**
-         * Sets the colors used to draw the gradient.
-         * <p>
-         * Each color is specified as an ARGB integer and the array must contain at
-         * least 2 colors.
-         * <p>
-         * <strong>Note</strong>: changing colors will affect all instances of a
-         * drawable loaded from a resource. It is recommended to invoke
-         * {@link # GradientDrawable.mutate()} before changing the colors.
-         *
-         * @param colors an array containing 2 or more ARGB colors
-         * @see # mutate()
-         * @see #setColor(int)
-         */
-        public Builder setGradientColors(@Nullable int[] colors) {
-            this.mGradientColors = colors;
-            this.mSolidColors = null;
-            return this;
         }
 
         /**
@@ -223,6 +237,47 @@ public class SkxDrawableUtil {
             return this;
         }
 
+        /**
+         * Sets the colors used to draw the gradient.
+         * <p>
+         * Each color is specified as an ARGB integer and the array must contain at
+         * least 2 colors.
+         * <p>
+         * <strong>Note</strong>: changing colors will affect all instances of a
+         * drawable loaded from a resource. It is recommended to invoke
+         * {@link # GradientDrawable.mutate()} before changing the colors.
+         *
+         * @param colors an array containing 2 or more ARGB colors
+         * @see # mutate()
+         * @see #setColor(int)
+         */
+        public Builder setGradientColors(@Nullable int[] colors) {
+            this.mGradientColors = colors;
+            this.mSolidColors = null;
+            return this;
+        }
+
+        /**
+         * Sets the type of gradient used by this drawable.
+         * <p>
+         * <strong>Note</strong>: changing this property will affect all instances
+         * of a drawable loaded from a resource. It is recommended to invoke
+         */
+        public Builder setGradientType(@GradientType int gradient) {
+            this.mGradient = gradient;
+            return this;
+        }
+
+        /**
+         * Sets the orientation of the gradient defined in this drawable.
+         * <p>
+         * <strong>Note</strong>: changing orientation will affect all instances
+         * of a drawable loaded from a resource. It is recommended to invoke
+         */
+        public Builder setOrientation(GradientDrawable.Orientation orientation) {
+            this.mOrientation = orientation;
+            return this;
+        }
 
         /**
          * <p>Set the stroke width and color for the drawable. If width is zero,
@@ -353,10 +408,11 @@ public class SkxDrawableUtil {
             } else if (mGradientColors != null) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     mGradientDrawable.setColors(mGradientColors);
+                    mGradientDrawable.setGradientType(mGradient);
+                    mGradientDrawable.setOrientation(mOrientation);
                 }
             } else {
                 mGradientDrawable.setColor(Color.TRANSPARENT);
-
             }
 
             // 描边
