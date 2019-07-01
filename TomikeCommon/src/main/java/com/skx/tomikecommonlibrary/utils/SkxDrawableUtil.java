@@ -416,12 +416,14 @@ public class SkxDrawableUtil {
             }
 
             // 描边
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                //显示一条虚线，破折线的宽度为dashWith，破折线之间的空隙的宽度为dashGap，当dashGap=0dp时，为实线
-                mGradientDrawable.setStroke(mStrokeWidth, mStrokeColors, mStrokeDashWidth, mStrokeDashGap);
-            } else {
-                //显示一条虚线，破折线的宽度为dashWith，破折线之间的空隙的宽度为dashGap，当dashGap=0dp时，为实线
-                mGradientDrawable.setStroke(mStrokeWidth, mStrokeColors.getDefaultColor(), mStrokeDashWidth, mStrokeDashGap);
+            if (mStrokeColors != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    //显示一条虚线，破折线的宽度为dashWith，破折线之间的空隙的宽度为dashGap，当dashGap=0dp时，为实线
+                    mGradientDrawable.setStroke(mStrokeWidth, mStrokeColors, mStrokeDashWidth, mStrokeDashGap);
+                } else {
+                    //显示一条虚线，破折线的宽度为dashWith，破折线之间的空隙的宽度为dashGap，当dashGap=0dp时，为实线
+                    mGradientDrawable.setStroke(mStrokeWidth, mStrokeColors.getDefaultColor(), mStrokeDashWidth, mStrokeDashGap);
+                }
             }
 
             return mGradientDrawable;
