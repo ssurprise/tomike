@@ -2,8 +2,8 @@ package com.skx.tomike.activity;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,12 +51,12 @@ public class PopupWindowActivity extends AppCompatActivity implements View.OnCli
     public void showPopupWindow(View view) {
         View contentView = LayoutInflater.from(this).inflate(R.layout.popupwindow_test, null);
 
-        Drawable shapeDrawable = SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                .setColor(Color.parseColor("#2cb298"))
-                .setStroke(Color.parseColor("#30c3a6"), 3)
-                .setCornerRadius(3)
-                .create();
-        contentView.setBackground(shapeDrawable);
+        ViewCompat.setBackground(contentView,
+                (new SkxDrawableUtil()).getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setColor(Color.parseColor("#2cb298"))
+                        .setStroke(Color.parseColor("#30c3a6"), 3)
+                        .setCornerRadius(3)
+                        .create());
         // 这里最后一个参数设置成false,点击其他区域，popupWindow 不会消失，返回键也无效。只要给popupWindow 设置了背景，可以返回，点击其他区域无效
         // 设置成true, 没有设置背景，按返回键 和 点击其他区域无效
         PopupWindow popupWindow = new PopupWindow(contentView, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT, true);

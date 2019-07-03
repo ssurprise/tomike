@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
@@ -204,11 +205,10 @@ public class TabLayoutHelperActivity extends SkxBaseActivity {
             TextView textView = new TextView(this);
             textView.setText(name);
             textView.setGravity(Gravity.CENTER);
-            textView.setBackground(
-                    SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                            .setStroke(ContextCompat.getColor(this, R.color.skx_2c3e50), 3)
-                            .setCornerRadius(4)
-                            .create());
+            ViewCompat.setBackground(textView, (new SkxDrawableUtil()).getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                    .setStroke(ContextCompat.getColor(this, R.color.skx_2c3e50), 3)
+                    .setCornerRadius(4)
+                    .create());
 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override

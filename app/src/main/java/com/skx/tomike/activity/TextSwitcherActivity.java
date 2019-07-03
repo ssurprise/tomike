@@ -65,7 +65,7 @@ public class TextSwitcherActivity extends Activity {
 
     private void addPageView(int offset, int length) {
         for (int i = offset; i < length; i++) {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.dip2px(this,25), ViewGroup.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.INSTANCE.dip2px(this,25), ViewGroup.LayoutParams.MATCH_PARENT);
             TextView tv = new TextView(this);
             tv.setTextSize(24);
             tv.setGravity(Gravity.CENTER);

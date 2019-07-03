@@ -57,8 +57,8 @@ public class ClipViewPager extends ViewPager {
     public ClipViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        parentPadding = DpPxSpTool.dip2px(context, 5);
-        rectWidth = DpPxSpTool.dip2px(context, 40);
+        parentPadding = DpPxSpTool.INSTANCE.dip2px(context, 5);
+        rectWidth = DpPxSpTool.INSTANCE.dip2px(context, 40);
         pageMargin = (WidthHeightTool.getScreenWidth(context) - parentPadding * 2 - rectWidth * 5) / 4;
 
         paint = new Paint();

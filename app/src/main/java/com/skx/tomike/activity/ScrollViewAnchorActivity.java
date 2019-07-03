@@ -631,6 +631,6 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
      * 计算导航标签偏移距离
      */
     public void calculateNavigationTagTranslateDistance() {
-        translationDistance = DpPxSpTool.dip2px(mContext, 268 - 24 - 9);
+        translationDistance = DpPxSpTool.INSTANCE.dip2px(mContext, 268 - 24 - 9);
     }
 }

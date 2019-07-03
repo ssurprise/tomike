@@ -38,7 +38,7 @@ public class HomepageSearchBtnLayout extends RelativeLayout {
     }
 
     private void initView(Context context) {
-        smallStateViewWidth = DpPxSpTool.dip2px(context, 120);
+        smallStateViewWidth = DpPxSpTool.INSTANCE.dip2px(context, 120);
         bigStateViewWidth = WidthHeightTool.getScreenWidth(context);
 
         LayoutInflater.from(context).inflate(R.layout.layout_xzhomepage_search_btn, this, true);

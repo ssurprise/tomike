@@ -91,7 +91,7 @@ public class VpMultiplePageActivity extends SkxBaseActivity {
 
         clipChildrenVp.setOffscreenPageLimit(8);
 //        clipChildrenVp.setPageMargin(30);
-        clipChildrenVp.setPageMargin((WidthHeightTool.getScreenWidth(this) - DpPxSpTool.dip2px(this, 5) * 2 - DpPxSpTool.dip2px(this, 40) * 5) / 4);
+        clipChildrenVp.setPageMargin((WidthHeightTool.getScreenWidth(this) - DpPxSpTool.INSTANCE.dip2px(this, 5) * 2 - DpPxSpTool.INSTANCE.dip2px(this, 40) * 5) / 4);
         clipChildrenVp.setPageTransformer(false, new ScalePageTransformer());
         InfiniteLoopAdapter adapter2 = new InfiniteLoopAdapter(this, mList2Ex);
         clipChildrenVp.setAdapter(adapter2);

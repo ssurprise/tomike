@@ -77,21 +77,21 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
         tv_scoreNum.setVisibility(INVISIBLE);
 
         // 初始状态的控件宽高
-        initWidth = DpPxSpTool.dip2px(context, 114);
-        initHeight = DpPxSpTool.dip2px(context, 114);
+        initWidth = DpPxSpTool.INSTANCE.dip2px(context, 114);
+        initHeight = DpPxSpTool.INSTANCE.dip2px(context, 114);
 
         // 折叠后的控件宽高
-        collapseWidth = DpPxSpTool.dip2px(context, 134);
-        collapseHeight = DpPxSpTool.dip2px(context, 25);
+        collapseWidth = DpPxSpTool.INSTANCE.dip2px(context, 134);
+        collapseHeight = DpPxSpTool.INSTANCE.dip2px(context, 25);
 
 
         // 初始化分数view 结束点的坐标
-        scoreEndPosX = DpPxSpTool.dip2px(mContext, 15);
-        scoreEndPosY = (collapseHeight - DpPxSpTool.sp2px(mContext, 14)) / 2;
+        scoreEndPosX = DpPxSpTool.INSTANCE.dip2px(mContext, 15);
+        scoreEndPosY = (collapseHeight - DpPxSpTool.INSTANCE.sp2px(mContext, 14)) / 2;
 
         // 初始化星星view 结束点的坐标
-        starEndPosX = collapseWidth - DpPxSpTool.dip2px(mContext, 15);
-        starEndPosY = (collapseHeight - DpPxSpTool.sp2px(mContext, 14)) / 2;
+        starEndPosX = collapseWidth - DpPxSpTool.INSTANCE.dip2px(mContext, 15);
+        starEndPosY = (collapseHeight - DpPxSpTool.INSTANCE.sp2px(mContext, 14)) / 2;
 
     }
 

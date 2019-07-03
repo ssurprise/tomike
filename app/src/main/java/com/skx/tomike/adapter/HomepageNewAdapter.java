@@ -389,7 +389,7 @@ public class HomepageNewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         }
                         // 初始化页签
                         for (int i = 1, j = ugcItemList.size(); i <= j; i++) {
-                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.dip2px(mContext, 25), ViewGroup.LayoutParams.WRAP_CONTENT);
+                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.INSTANCE.dip2px(mContext, 25), ViewGroup.LayoutParams.WRAP_CONTENT);
                             TextView tv = new TextView(mContext);
                             tv.setText(String.valueOf(i));
                             tv.setTextColor(Color.parseColor("#323232"));
@@ -404,7 +404,7 @@ public class HomepageNewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         ugcViewHolder.vp_content.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                             @Override
                             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                                ugcViewHolder.ll_pageIndicator_currentPage.scrollTo((int) ((position + positionOffset) * DpPxSpTool.dip2px(mContext, 25)), 0);
+                                ugcViewHolder.ll_pageIndicator_currentPage.scrollTo((int) ((position + positionOffset) * DpPxSpTool.INSTANCE.dip2px(mContext, 25)), 0);
                             }
 
                             @Override

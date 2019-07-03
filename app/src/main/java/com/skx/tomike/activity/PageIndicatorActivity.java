@@ -86,7 +86,7 @@ public class PageIndicatorActivity extends SkxBaseActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 ll_pageIndicator_type1.indicatorScroll(position, positionOffset);
-                ll_pageIndicator_type2.scrollTo((int) ((position + positionOffset) * DpPxSpTool.dip2px(PageIndicatorActivity.this, 25)), 0);
+                ll_pageIndicator_type2.scrollTo((int) ((position + positionOffset) * DpPxSpTool.INSTANCE.dip2px(PageIndicatorActivity.this, 25)), 0);
             }
 
             @Override
@@ -134,7 +134,7 @@ public class PageIndicatorActivity extends SkxBaseActivity {
      */
     private void addPageView(int offset, int length) {
         for (int i = offset; i <= length; i++) {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.dip2px(this, 25), ViewGroup.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.INSTANCE.dip2px(this, 25), ViewGroup.LayoutParams.MATCH_PARENT);
             TextView tv = new TextView(this);
             tv.setTextSize(24);
             tv.setGravity(Gravity.CENTER);

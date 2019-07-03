@@ -44,9 +44,9 @@ public class CustomCommentLayoutView extends LinearLayout {
         super(context, attrs, defStyleAttr);
         mContext = context;
 
-        mTitleHeightPx = DpPxSpTool.dip2px(context, 56);
-        mSecondChildOffsetY = DpPxSpTool.dip2px(context, 210);
-        mChildStartChangeThreshold = DpPxSpTool.dip2px(context, 30);
+        mTitleHeightPx = DpPxSpTool.INSTANCE.dip2px(context, 56);
+        mSecondChildOffsetY = DpPxSpTool.INSTANCE.dip2px(context, 210);
+        mChildStartChangeThreshold = DpPxSpTool.INSTANCE.dip2px(context, 30);
 
     }
 
@@ -66,7 +66,7 @@ public class CustomCommentLayoutView extends LinearLayout {
                 View view = getChildAt(i);
                 if (i == getChildCount() - 1) {
                     if (view.getVisibility() != GONE) {
-                        minLocalHeight += view.getMeasuredHeight() + DpPxSpTool.dip2px(mContext, 30);
+                        minLocalHeight += view.getMeasuredHeight() + DpPxSpTool.INSTANCE.dip2px(mContext, 30);
                     }
                 }
             }
@@ -118,7 +118,7 @@ public class CustomCommentLayoutView extends LinearLayout {
                 if (child instanceof LuCommentScoreWidget) {
 
                     // 子view 滑动的区间
-                    int moveRange = mTitleHeightPx / 2 + DpPxSpTool.dip2px(mContext, 25) / 2;
+                    int moveRange = mTitleHeightPx / 2 + DpPxSpTool.INSTANCE.dip2px(mContext, 25) / 2;
 
                     // 计算公式：子View 的滑动偏移量 = view的实际变化距离 * 子view的总滑动区间 / 子view 的总滑动区间
                     int i = (rect.top - mChildStartChangeThreshold) * moveRange / (mTotalScrollRange - mChildStartChangeThreshold);
@@ -148,13 +148,13 @@ public class CustomCommentLayoutView extends LinearLayout {
             } else {
 
                 // 子view 滑动的区间。计算公式：总偏移量 - 标题栏高度 - 和下一个View的间距。
-                int moveRange = mSecondChildOffsetY - mTitleHeightPx - DpPxSpTool.dip2px(mContext, 30);
+                int moveRange = mSecondChildOffsetY - mTitleHeightPx - DpPxSpTool.INSTANCE.dip2px(mContext, 30);
 
                 // 子View 的滑动偏移量
                 int i = (rect.top - mChildStartChangeThreshold) * moveRange / (mTotalScrollRange - mChildStartChangeThreshold);
 
                 // 子view 滑动，因为是向上滑动的，所以应当是减去滑动偏移，同时要减去之前未滑动的距离
-                child.setTranslationY(rect.top - DpPxSpTool.dip2px(mContext, 30) - i);
+                child.setTranslationY(rect.top - DpPxSpTool.INSTANCE.dip2px(mContext, 30) - i);
                 // 子View 形变
                 child.setAlpha(1 - i * 1.0f / moveRange);
             }

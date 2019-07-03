@@ -60,8 +60,8 @@ public class PageIndicatorLayout extends LinearLayout {
         super(context, attrs, defStyleAttr);
         this.mContent = context;
         mIndicatorBitmap = BitmapFactory.decodeResource(mContent.getResources(), R.drawable.page_indicator);
-        mDefaultUnitWight = DpPxSpTool.dip2px(mContent, 15);
-        mDefaultUnitHeight = DpPxSpTool.dip2px(mContent, 12);
+        mDefaultUnitWight = DpPxSpTool.INSTANCE.dip2px(mContent, 15);
+        mDefaultUnitHeight = DpPxSpTool.INSTANCE.dip2px(mContent, 12);
         mOffsetDistance = mDefaultUnitWight;
     }
 

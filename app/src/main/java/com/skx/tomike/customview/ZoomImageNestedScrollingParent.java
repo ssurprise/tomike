@@ -51,8 +51,8 @@ public class ZoomImageNestedScrollingParent extends RelativeLayout implements Ne
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mNestedScrollingParentHelper = new NestedScrollingParentHelper(this);
-        mInitTop = DpPxSpTool.dip2px(context, 90);
-        mMaxTop = DpPxSpTool.dip2px(context, 240);
+        mInitTop = DpPxSpTool.INSTANCE.dip2px(context, 90);
+        mMaxTop = DpPxSpTool.INSTANCE.dip2px(context, 240);
     }
 
 

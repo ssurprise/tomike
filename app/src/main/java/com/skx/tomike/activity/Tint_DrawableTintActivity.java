@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
@@ -40,24 +41,17 @@ public class Tint_DrawableTintActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawable_compat_tint);
 
-        mImageView1 = (ImageView) findViewById(R.id.tintTest_ImageView1);
-        mImageView2 = (ImageView) findViewById(R.id.tintTest_ImageView2);
-        mImageView3 = (ImageView) findViewById(R.id.tintTest_ImageView3);
-        mImageView4 = (ImageView) findViewById(R.id.tintTest_ImageView4);
-
-//        PorterDuffXfermode
-//        AppCompatTextView
-//        AppCompatEditText
-//        AppCompatTextView
-
-
-//        BitmapDrawable
-//        ColorDrawable
+        mImageView1 = findViewById(R.id.tintTest_ImageView1);
+        mImageView2 = findViewById(R.id.tintTest_ImageView2);
+        mImageView3 = findViewById(R.id.tintTest_ImageView3);
+        mImageView4 = findViewById(R.id.tintTest_ImageView4);
 
         Drawable originBitmapDrawable = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
 
-        mImageView1.setBackground(SkxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#30c3a6")));
-        mImageView2.setImageDrawable(SkxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#ff4081")));
+        SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
+        ViewCompat.setBackground(mImageView1, skxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#30c3a6")));
+
+        ViewCompat.setBackground(mImageView2, skxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#ff4081")));
 
 //
 //        Bitmap bitmap = ((BitmapDrawable) originBitmapDrawable).getBitmap();
@@ -65,8 +59,6 @@ public class Tint_DrawableTintActivity extends AppCompatActivity {
 //
 //        Bitmap bitmap2 = ((BitmapDrawable) originBitmapDrawable2).getBitmap();
 //        mImageView4.setImageBitmap(bitmap2);
-
-
     }
     /*
       mMutated 是个标签，已保证mutate 只会设置一次，也就解释了在Drawable中对mutate（）方法的一个解释，

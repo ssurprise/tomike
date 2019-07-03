@@ -3,6 +3,7 @@ package com.skx.tomike.activity;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,38 +52,44 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity {
         super.refreshView();
         int[][] strokeState = {{-android.R.attr.state_pressed}, {android.R.attr.state_pressed}};
 
-        imageView1.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                .setColor(Color.parseColor("#ff4081"))
-                .setCornerRadius(20.f)
-                .create());
-        textView1.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                .setColor(Color.parseColor("#ff4081"))
-                .setStroke(3, Color.parseColor("#3a39a6"))
-                .create());
+        SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
+        ViewCompat.setBackground(imageView1,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setColor(Color.parseColor("#ff4081"))
+                        .setCornerRadius(20.f)
+                        .create());
+        ViewCompat.setBackground(textView1,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setColor(Color.parseColor("#ff4081"))
+                        .setStroke(3, Color.parseColor("#3a39a6"))
+                        .create());
 
 
         int[] imageSolidColors = {R.drawable.image_01, R.drawable.image_02};
-        btn1.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                .setColor(new ColorStateList(strokeState, imageSolidColors))
-                .setCornerRadius(20)
-                .setStroke(3, Color.parseColor("#3a39a6"))
-                .create());
+        ViewCompat.setBackground(btn1,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setColor(new ColorStateList(strokeState, imageSolidColors))
+                        .setCornerRadius(20)
+                        .setStroke(3, Color.parseColor("#3a39a6"))
+                        .create());
 
         int[] strokeColors = {Color.parseColor("#3a39a6"), Color.parseColor("#ff4081")};
         ColorStateList strokeColorStateList = new ColorStateList(strokeState, strokeColors);
 
         int[] solidColors = {Color.parseColor("#ff4081"), Color.parseColor("#3a39a6")};
         ColorStateList solidColorStateList = new ColorStateList(strokeState, solidColors);
-        view1.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                .setColor(solidColorStateList)
-                .setStroke(5, strokeColorStateList)
-                .setCornerRadii(new float[]{0.0f, 0.0f, 40.0f, 100.0f, 0.0f, 0.0f, 40.0f, 20.0f})
-                .create());
-        view2.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                .setColor(Color.parseColor("#ff4081"))
-                .setCornerRadius(20)
-                .setStroke(5, Color.parseColor("#3a39a6"), 15, 5)
-                .create());
+        ViewCompat.setBackground(view1,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setColor(solidColorStateList)
+                        .setStroke(5, strokeColorStateList)
+                        .setCornerRadii(new float[]{0.0f, 0.0f, 40.0f, 100.0f, 0.0f, 0.0f, 40.0f, 20.0f})
+                        .create());
+        ViewCompat.setBackground(view2,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setColor(Color.parseColor("#ff4081"))
+                        .setCornerRadius(20)
+                        .setStroke(5, Color.parseColor("#3a39a6"), 15, 5)
+                        .create());
 
         int[][] state = {{-android.R.attr.state_pressed}, {android.R.attr.state_pressed}};
         int[] colors = {Color.parseColor("#ff4081"), Color.parseColor("#3a39a6")};
@@ -91,30 +98,34 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity {
 
 //        view3.setBackground(SkxDrawableUtil.getShapeDrawable(colorStateList, strokeColorStateList, 5, 15, 5, 20));
 
-        view4.setBackground(SkxDrawableUtil.getSelectorDrawable(Color.parseColor("#3a39a6"), Color.parseColor("#ff4081"), 20));
-
+        ViewCompat.setBackground(view4,
+                skxDrawableUtil.getSelectorDrawable(Color.parseColor("#3a39a6"), Color.parseColor("#ff4081"), 20));
 
         View view7 = mLlContainer.getChildAt(7);
-        view7.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.OVAL)
-                .setCornerRadius(5)
-                .setStroke(5, Color.parseColor("#3a39a6"), 15, 5)
-                .create());
+        ViewCompat.setBackground(view7,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.OVAL)
+                        .setCornerRadius(5)
+                        .setStroke(5, Color.parseColor("#3a39a6"), 15, 5)
+                        .create());
 
         View view8 = mLlContainer.getChildAt(8);
-        view8.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.OVAL)
-                .setColor(Color.parseColor("#ff4081"))
-                .setCornerRadius(5)
-                .setStroke(15, Color.parseColor("#3a39a6"), 15, 5)
-                .create());
+        ViewCompat.setBackground(view8,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.OVAL)
+                        .setColor(Color.parseColor("#ff4081"))
+                        .setCornerRadius(5)
+                        .setStroke(15, Color.parseColor("#3a39a6"), 15, 5)
+                        .create());
 
         View view9 = mLlContainer.getChildAt(9);
-        view9.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.LINE)
-                .setStroke(15, Color.parseColor("#3a39a6"), 15, 5)
-                .create());
+        ViewCompat.setBackground(view9,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.LINE)
+                        .setStroke(15, Color.parseColor("#3a39a6"), 15, 5)
+                        .create());
 
         View view10 = mLlContainer.getChildAt(10);
-        view10.setBackground(SkxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.LINE)
-                .setStroke(5, Color.parseColor("#3a39a6"), 15, 5)
-                .create());
+        ViewCompat.setBackground(view10,
+                skxDrawableUtil.getBuilder(SkxDrawableUtil.Builder.LINE)
+                        .setStroke(5, Color.parseColor("#3a39a6"), 15, 5)
+                        .create());
     }
 }
