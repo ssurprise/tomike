@@ -1,5 +1,6 @@
 package com.skx.tomike.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -10,7 +11,7 @@ public class SharedPreferencesUtils {
     SharedPreferences sp;
 
 
-    public void init(Context context, String name) {
+    public void init(Activity context, String name) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         sp.edit().putString("aa","aaa").putString("bb","bb").apply();
     }

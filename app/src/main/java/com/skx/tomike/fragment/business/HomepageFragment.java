@@ -1,49 +1,41 @@
 package com.skx.tomike.fragment.business;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.skx.tomike.R;
+import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HomepageFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HomepageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HomepageFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+    private final int[] mainImgRes = {R.drawable.main_clear_sky, R.drawable.main_cloud,
+            R.drawable.main_lucky, R.drawable.main_night, R.drawable.main_snow,
+            R.drawable.main_dazhongsi_1, R.drawable.main_dazhongsi_2, R.drawable.main_dazhongsi_3};
+
+    private ImageView mIvMainImg1;
+    private ImageView mIvMainImg2;
+    private ImageView mIvMainImg3;
+    private ImageView mIvMainImg4;
+    private ImageView mIvMainImg5;
+    private ImageView mIvMainImg6;
+
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private Context mContext;
 
     public HomepageFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomepageFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HomepageFragment newInstance(String param1, String param2) {
         HomepageFragment fragment = new HomepageFragment();
         Bundle args = new Bundle();
@@ -65,19 +57,30 @@ public class HomepageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
-        TextView textView = (TextView) view.findViewById(R.id.fragment_homepage_text);
-        textView.setText("首页");
+        mIvMainImg1 = view.findViewById(R.id.homepage_main_1);
+        mIvMainImg2 = view.findViewById(R.id.homepage_main_2);
+        mIvMainImg3 = view.findViewById(R.id.homepage_main_3);
+        mIvMainImg4 = view.findViewById(R.id.homepage_main_4);
+        mIvMainImg5 = view.findViewById(R.id.homepage_main_5);
+        mIvMainImg6 = view.findViewById(R.id.homepage_main_6);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ImageLoader.with(mContext).load(R.drawable.main_clear_sky).into(mIvMainImg1);
+        ImageLoader.with(mContext).load(R.drawable.main_cloud).into(mIvMainImg2);
+        ImageLoader.with(mContext).load(R.drawable.main_lucky).into(mIvMainImg3);
+        ImageLoader.with(mContext).load(R.drawable.main_dazhongsi_1).into(mIvMainImg4);
+        ImageLoader.with(mContext).load(R.drawable.main_dazhongsi_2).into(mIvMainImg5);
+        ImageLoader.with(mContext).load(R.drawable.main_dazhongsi_3).into(mIvMainImg6);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mContext = context;
 //        if (context instanceof OnFragmentInteractionListener) {
 //            mListener = (OnFragmentInteractionListener) context;
 //        } else {
@@ -89,21 +92,6 @@ public class HomepageFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        mContext = null;
     }
 }

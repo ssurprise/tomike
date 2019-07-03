@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,8 +27,6 @@ import com.skx.tomike.service.LocalService;
 import com.skx.tomike.service.RemoteService;
 import com.skx.tomike.util.ToastTool;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,69 +104,19 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
         tabList.add(myTab);
     }
 
-    public static String getDeviceId(Context context) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-//        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-//            return DEFAULT_DEVICE_ID;
-//        }
-        return md5(telephonyManager.getDeviceId()).substring(0, 16);
-    }
-
-    private static final String TAG = HomeActivity.class.getName();
-
-    private static final String DEFAULT_DEVICE_ID = "00000000000000000000000000000000";
-
-    public static String md5(String s) {
-        try {
-            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
-            digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
-            StringBuffer hexString = new StringBuffer();
-            for (int i = 0; i < messageDigest.length; i++) {
-                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            Log.e(TAG, "no md5 algorithm found.");
-        }
-        return DEFAULT_DEVICE_ID;
-    }
-
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        switch (requestCode) {
-//            case 1: {
-//                // 如果授权被取消，结果数组是 空的，注意这里是empty ，而不是null
-//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    // 已经授权，在这里做你想要做的事
-//                    String deviceId = telephonyManager.getDeviceId();
-//                    Log.e("deviceId", deviceId);
-//                } else {
-//                    // 拒绝授权
-//                }
-//                return;
-//            }
-//            // 其他的权限请求处理
-//        }
-//    }
-
     @Override
     public void initializeView() {
         setContentView(R.layout.activity_main);
-        fl_content_container = (FrameLayout) findViewById(R.id.homepage_content_container);
+        fl_content_container = findViewById(R.id.homepage_content_container);
 
-        imv_homepageTab_icon = (ImageView) findViewById(R.id.homepage_navigation_homepageTab_icon);
-        tv_homepageTab_text = (TextView) findViewById(R.id.homepage_navigation_homepageTab_text);
+        imv_homepageTab_icon = findViewById(R.id.homepage_navigation_homepageTab_icon);
+        tv_homepageTab_text = findViewById(R.id.homepage_navigation_homepageTab_text);
 
-        imv_catalogTab_icon = (ImageView) findViewById(R.id.homepage_navigation_catalogTab_icon);
-        tv_catalogTab_text = (TextView) findViewById(R.id.homepage_navigation_catalogTab_text);
+        imv_catalogTab_icon = findViewById(R.id.homepage_navigation_catalogTab_icon);
+        tv_catalogTab_text = findViewById(R.id.homepage_navigation_catalogTab_text);
 
-        imv_myTab_icon = (ImageView) findViewById(R.id.homepage_navigation_myTab_icon);
-        tv_myTab_text = (TextView) findViewById(R.id.homepage_navigation_myTab_text);
-
-//        LinearLayout homepage_navigation_container = (LinearLayout) findViewById(R.id.homepage_navigation_container);
+        imv_myTab_icon = findViewById(R.id.homepage_navigation_myTab_icon);
+        tv_myTab_text = findViewById(R.id.homepage_navigation_myTab_text);
     }
 
     @Override

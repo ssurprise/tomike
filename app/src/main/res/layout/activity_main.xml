@@ -8,15 +8,16 @@
         android:id="@+id/homepage_navigation_container"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:background="@android:color/white"
+        android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingEnd="@dimen/view_paddingRight_15"
+        android:paddingStart="@dimen/view_paddingLeft_15"
         android:paddingLeft="@dimen/view_paddingLeft_15"
-        android:paddingRight="@dimen/view_paddingRight_15"
-        android:paddingStart="@dimen/view_paddingLeft_15">
+        android:paddingEnd="@dimen/view_paddingRight_15"
+        android:paddingRight="@dimen/view_paddingRight_15">
 
         <LinearLayout
             android:id="@+id/homepage_navigation_homepageTab"

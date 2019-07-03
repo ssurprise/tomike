@@ -4,11 +4,11 @@ buildscript {
     // buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        jcenter()
         google()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath 'org.aspectj:aspectjtools:1.8.9'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -226,7 +226,9 @@ this.gradle.buildFinished {}
 // task dependsOn添加依赖demo
 //task taskX {
 //    doLast {
-//        println 'taskX'
+////        def a = new NestedClosures()
+//        def a = new EnclosedInInnerClass()
+//        a.run()
 //    }
 //}
 //task(taskY) {
@@ -240,6 +242,31 @@ this.gradle.buildFinished {}
 //    doLast {
 //        def a = 1
 //        println 'taskZ:'+(a+10)
+//    }
+//}
+
+//class NestedClosures {
+//    void run() {
+//        def nestedClosures = {
+//            def cl = { this }
+//            cl()
+//        }
+//        println(nestedClosures() == this)
+//    }
+//}
+//
+//class EnclosedInInnerClass {
+//    class Inner {
+//        def cl = {
+//            def cl = { this }
+//            cl()
+//        }
+//    }
+//
+//    void run() {
+//        def inner = new Inner()
+//        println(inner.cl() == inner)
+//
 //    }
 //}
 
@@ -266,12 +293,13 @@ this.gradle.buildFinished {}
 //    }
 //}
 
+
 allprojects {
     // allprojects块的repositories用于多项目构建，为所有项目提供共同所需依赖包。而子项目可以配置自己的repositories以获取自己独需的依赖包。
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        jcenter()
         google()
+        jcenter()
         mavenCentral()
     }
 }

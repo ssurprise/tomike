@@ -20,9 +20,6 @@ public class HomepageNavigationTabBo {
      */
     private String tabTargetPage;
 
-    public HomepageNavigationTabBo() {
-    }
-
     public HomepageNavigationTabBo(String tabName, int tabIcon, String tabTargetPage) {
         super();
         this.tabName = tabName;
