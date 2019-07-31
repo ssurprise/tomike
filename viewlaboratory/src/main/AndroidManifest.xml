@@ -1,0 +1,45 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.skx.tomike.viewlaboratory">
+
+    <application>
+        <!-- PopupWindow 实例 -->
+        <activity
+            android:name=".activity.PopupWindowActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.CardViewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.FlowLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.FloatingActionButtonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SnackBarActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.CoordinatorLayoutActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.SetTextIsSelectableTestActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.NestedScrollViewViewPagerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".activity.NavigationBarActivity" />
+
+        <activity android:name=".activity.ConstraintLayoutActivity" />
+
+        <activity android:name=".activity.LightDarkTextActivity" />
+
+
+    </application>
+</manifest>
