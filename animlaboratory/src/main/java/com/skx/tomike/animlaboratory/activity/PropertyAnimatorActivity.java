@@ -1,24 +1,20 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.animlaboratory.activity;
 
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.util.ViewPropertyHelper;
+import com.skx.tomike.animlaboratory.R;
 
 /**
  * 属性动画事例
  */
-public class PropertyAnimatorActivity extends SkxBaseActivity {
+public class PropertyAnimatorActivity extends AppCompatActivity {
     //    TextView textView_object;
 //    TextView textView_value;
     ImageView imageView_animator;
@@ -36,9 +32,7 @@ public class PropertyAnimatorActivity extends SkxBaseActivity {
         installListener();
     }
 
-    @Override
-    public void initializeView() {
-        super.initializeView();
+    private void initializeView() {
 //        textView_object = (TextView) findViewById(R.id.textView_object);
 //        textView_value = (TextView) findViewById(R.id.textView_value);
 //        container = (RelativeLayout) findViewById(R.id.container);
@@ -46,16 +40,12 @@ public class PropertyAnimatorActivity extends SkxBaseActivity {
         imageView2_animator = findViewById(R.id.imageView2_animator);
     }
 
-    @Override
-    public void refreshView() {
-        super.refreshView();
+    private void refreshView() {
 //        textViewTest = new ViewPropertyHelper(textView_value);
 //        layoutViewProperty = new ViewPropertyHelper(container);
     }
 
-    @Override
-    public void installListener() {
-        super.installListener();
+    private void installListener() {
 //        textView_object.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

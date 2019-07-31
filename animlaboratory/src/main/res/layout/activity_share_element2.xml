@@ -7,13 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.skx.tomike.activity.effect.ShareElementActivity">
+    tools:context="com.skx.tomike.animlaboratory.activity.ShareElement2Activity">
+
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:src="@drawable/image_04"
         android:transitionName="shareElement" />
 

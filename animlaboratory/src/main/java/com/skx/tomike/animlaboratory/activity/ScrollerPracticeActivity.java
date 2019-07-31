@@ -1,13 +1,13 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.animlaboratory.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.skx.tomike.R;
-import com.skx.tomike.customview.TranslateImageView;
+import com.skx.tomike.animlaboratory.R;
+import com.skx.tomike.animlaboratory.view.TranslateImageView;
 
 /**
  * 描述 : Scroller实践页面
@@ -15,35 +15,18 @@ import com.skx.tomike.customview.TranslateImageView;
  * 版本 : V1
  * 创建时间 : 2016/4/19 5:59 PM
  */
-public class ScrollerPracticeActivity extends SkxBaseActivity {
+public class ScrollerPracticeActivity extends AppCompatActivity {
     private TranslateImageView mIv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeView();
-        refreshView();
-    }
-
-    @Override
-    public void initializeView() {
-        super.initializeView();
         setContentView(R.layout.activity_scrollby_imgmove);
         mIv = findViewById(R.id.transImageView);
         mIv.setScaleTypeEx(TranslateImageView.ScaleTypeEx.CROP);
         mIv.setPosition(TranslateImageView.Position.RIGHT);
-    }
 
 
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Log.e("onAttachedToWindow", "onAttachedToWindow");
-    }
-
-    @Override
-    public void refreshView() {
-        super.refreshView();
         mIv.setImageResource(R.drawable.image_03);
         mIv.post(new Runnable() {
             @Override

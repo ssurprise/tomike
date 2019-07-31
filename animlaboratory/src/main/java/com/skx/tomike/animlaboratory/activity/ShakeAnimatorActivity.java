@@ -1,20 +1,21 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.animlaboratory.activity;
 
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.animlaboratory.R;
 
 /**
  * 属性动画事例
  */
-public class ShakeAnimatorActivity extends SkxBaseActivity {
+public class ShakeAnimatorActivity extends AppCompatActivity {
 
     ImageView mTargetView;
 
@@ -22,27 +23,7 @@ public class ShakeAnimatorActivity extends SkxBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shake_animatior);
-        initializeView();
-        refreshView();
-        installListener();
-    }
-
-    @Override
-    public void initializeView() {
-        super.initializeView();
         mTargetView = findViewById(R.id.shakeAnimator_target);
-    }
-
-    @Override
-    public void refreshView() {
-        super.refreshView();
-
-    }
-
-    @Override
-    public void installListener() {
-        super.installListener();
-
     }
 
     public void propertyAnimator(View view) {

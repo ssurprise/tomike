@@ -26,6 +26,7 @@ android {
             zipAlignEnabled true //设置是否对APK包执行ZIP对齐优化
             shrinkResources true //资源缩减器可以识别应用程序仍在使用哪些资源，未被使用的资源，将会被资源缩减器移除
             debuggable false //设置生成的APK是否支持调试本地代码
+            /* 混淆规则配置文件 */
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -34,6 +35,7 @@ android {
             shrinkResources false
             zipAlignEnabled false
             debuggable true
+            /* 混淆规则配置文件 */
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -64,6 +66,9 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation project(path: ':TomikeCommon')
+    implementation project(path: ':animlaboratory')
+    implementation project(path: ':viewlaboratory')
+    implementation project(path: ':cannonlaboratory')
     // 支持库
     implementation rootProject.ext.dependencies.design
     implementation rootProject.ext.dependencies.supportV4
@@ -78,6 +83,7 @@ dependencies {
     implementation rootProject.ext.dependencies.rxandroid
     implementation rootProject.ext.dependencies.retrofit
     implementation rootProject.ext.dependencies.aspectjrt
+    implementation 'com.android.support:support-annotations:28.0.0'
 }
 
 

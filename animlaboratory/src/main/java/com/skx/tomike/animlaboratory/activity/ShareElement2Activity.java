@@ -1,15 +1,15 @@
-package com.skx.tomike.activity.effect;
+package com.skx.tomike.animlaboratory.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
+import com.skx.tomike.animlaboratory.R;
 
 /**
  * 共享元素2
  */
-public class ShareElement2Activity extends SkxBaseActivity {
+public class ShareElement2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

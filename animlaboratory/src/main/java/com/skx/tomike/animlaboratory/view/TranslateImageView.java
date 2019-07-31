@@ -1,4 +1,4 @@
-package com.skx.tomike.customview;
+package com.skx.tomike.animlaboratory.view;
 
 import android.content.Context;
 import android.graphics.Matrix;
@@ -7,7 +7,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewTreeObserver;
-import android.view.animation.TranslateAnimation;
 import android.widget.Scroller;
 
 /**

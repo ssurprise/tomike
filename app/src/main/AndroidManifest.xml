@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.skx.tomike">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -82,11 +81,6 @@
             android:name=".activity.function.ImageLoadActivity"
             android:screenOrientation="portrait" />
 
-        <!-- scrollBy 之图片移动 activity -->
-        <activity
-            android:name=".activity.ScrollerPracticeActivity"
-            android:screenOrientation="portrait" />
-
         <!-- viewpager一屏多展示item activity -->
         <activity
             android:name=".activity.VpMultiplePageActivity"
@@ -97,17 +91,6 @@
             android:name=".activity.ViewPagerInfiniteLoopActivity"
             android:screenOrientation="portrait" />
 
-
-        <!-- 属性动画 -->
-        <activity
-            android:name=".activity.PropertyAnimatorActivity"
-            android:screenOrientation="portrait" />
-
-
-        <!-- 圆形揭示 -->
-        <activity
-            android:name=".activity.effect.CircularRevealActivity"
-            android:screenOrientation="portrait" />
 
         <!-- Double 格式转换工具 -->
         <activity
@@ -140,12 +123,7 @@
         <activity
             android:name=".activity.effect.CardViewActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.effect.ShareElementActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.effect.ShareElement2Activity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.widget.FlowLayoutActivity"
             android:screenOrientation="portrait" />
@@ -293,7 +271,6 @@
         <activity android:name=".activity.xzdz.EffectGroupActivity" />
         <activity android:name=".activity.xzdz.ScrollZoomImageActivity" />
         <activity android:name=".activity.xzdz.ScrollZoomImage2Activity" />
-        <activity android:name=".activity.effect.LayoutTransitionActivity" />
         <activity android:name=".activity.xzdz.ScrollZoomImage3Activity" />
 
         <service android:name=".service.LocalService" />
@@ -325,7 +302,6 @@
         <activity android:name=".activity.PrecomputedTextActivity" />
         <activity android:name=".activity.GenericTestActivity" />
         <activity android:name=".activity.LightDarkTextActivity" />
-        <activity android:name=".activity.ShakeAnimatorActivity" />
         <activity
             android:name=".activity.function.TransparentThemeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

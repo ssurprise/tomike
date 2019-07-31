@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.skx.tomike.activity.ShakeAnimatorActivity">
+    tools:context="com.skx.tomike.animlaboratory.activity.ShakeAnimatorActivity">
 
     <ImageView
         android:id="@+id/shakeAnimator_target"

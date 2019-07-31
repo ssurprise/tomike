@@ -1,0 +1,41 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.skx.tomike.animlaboratory">
+
+    <application>
+
+        <!-- 属性动画 -->
+        <activity
+            android:name=".activity.PropertyAnimatorActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 圆形揭示 -->
+        <activity
+            android:name=".activity.CircularRevealActivity"
+            android:screenOrientation="portrait" />
+
+        <!--共享元素-->
+        <activity
+            android:name=".activity.ShareElementActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ShareElement2Activity" />
+
+        <!--摇晃动效-->
+        <activity android:name=".activity.ShakeAnimatorActivity" />
+
+        <!--贝塞尔曲线动效-->
+        <activity
+            android:name=".activity.BezierAnimatorActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- scrollBy 之图片移动 activity -->
+        <activity
+            android:name=".activity.ScrollerPracticeActivity"
+            android:screenOrientation="portrait" />
+
+        <!--Layout 添加/删除子view的过渡效果-->
+        <activity
+            android:name=".activity.LayoutTransitionActivity"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

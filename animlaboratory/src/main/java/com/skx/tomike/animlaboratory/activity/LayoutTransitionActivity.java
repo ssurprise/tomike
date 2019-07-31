@@ -1,4 +1,4 @@
-package com.skx.tomike.activity.effect;
+package com.skx.tomike.animlaboratory.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.animlaboratory.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 描述 : Layout 添加/删除ziview的过渡效果
+ * 描述 : Layout 添加/删除子view的过渡效果
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2018/12/16 5:43 PM

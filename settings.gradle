@@ -1,1 +1,1 @@
-include ':app', ':TomikeCommon'
+include ':app', ':TomikeCommon', ':viewlaboratory', ':animlaboratory', ':cannonlaboratory'

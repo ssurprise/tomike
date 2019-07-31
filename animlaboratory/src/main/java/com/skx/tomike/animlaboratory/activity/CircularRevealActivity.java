@@ -1,4 +1,4 @@
-package com.skx.tomike.activity.effect;
+package com.skx.tomike.animlaboratory.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -9,7 +9,8 @@ import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.animlaboratory.R;
+
 
 public class CircularRevealActivity extends AppCompatActivity {
 

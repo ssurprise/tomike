@@ -1,19 +1,19 @@
-package com.skx.tomike.activity.effect;
+package com.skx.tomike.animlaboratory.activity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
+import com.skx.tomike.animlaboratory.R;
 
 /**
  * 共享元素1
  */
-public class ShareElementActivity extends SkxBaseActivity {
+public class ShareElementActivity extends AppCompatActivity {
     private ImageView imageView;
 
     @Override
