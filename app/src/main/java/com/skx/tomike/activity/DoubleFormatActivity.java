@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.skx.tomike.R;
-import com.skx.tomike.util.DoubleFormatTool;
+import com.skx.tomikecommonlibrary.utils.DoubleFormatTool;
 
 public class DoubleFormatActivity extends AppCompatActivity {
 

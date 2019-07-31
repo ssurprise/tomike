@@ -1,7 +1,7 @@
 package com.skx.tomike.interf;
 
 import com.skx.tomike.javabean.RespContent;
-import com.skx.tomike.javabean.WeatherMini;
+import com.skx.tomike.cannonlaboratory.bean.WeatherMini;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

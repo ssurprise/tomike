@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.skx.tomike.R;
-import com.skx.tomike.data.bean.HomepageBean;
+import com.skx.tomike.cannonlaboratory.bean.HomepageBean;
 
 import java.util.ArrayList;
 import java.util.List;

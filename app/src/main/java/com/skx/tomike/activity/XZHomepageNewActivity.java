@@ -14,9 +14,9 @@ import com.skx.tomike.data.bo.HomepageLodgeUnitBo;
 import com.skx.tomike.data.bo.HomepageOperationBo;
 import com.skx.tomike.data.bo.HomepageUGCBo;
 import com.skx.tomike.data.bo.HomepageVideoBo;
-import com.skx.tomike.data.bean.HomepageBean;
+import com.skx.tomike.cannonlaboratory.bean.HomepageBean;
 import com.skx.tomike.interf.IViewType;
-import com.skx.tomike.util.ToastTool;
+import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

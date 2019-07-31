@@ -27,8 +27,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.skx.tomike.R;
-import com.skx.tomike.customview.ScrollChangedScrollView;
-import com.skx.tomike.util.ToastTool;
+import com.skx.tomike.cannonlaboratory.widget.ScrollChangedScrollView;
+import com.skx.tomikecommonlibrary.utils.ToastTool;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 /**

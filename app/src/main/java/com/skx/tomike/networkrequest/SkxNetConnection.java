@@ -1,19 +1,12 @@
 package com.skx.tomike.networkrequest;
 
-import android.util.Log;
-
-import com.skx.tomike.javabean.WeatherMini;
 import com.skx.tomike.networkrequest.Interface.INetConnection;
 import com.skx.tomike.networkrequest.Interface.ReqResultCallBack;
 import com.skx.tomike.networkrequest.config.NetConnectionConfig;
-import com.skx.tomike.networkrequest.javabean.GitHubRepo;
 import com.skx.tomike.networkrequest.javabean.JuheRespContent;
-import com.skx.tomike.networkrequest.javabean.RespContent;
 import com.skx.tomike.networkrequest.javabean.TrainAllInfo;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;

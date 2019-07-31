@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.skx.tomike.cannonlaboratory.widget.WrapContentHeightViewPager
+        android:id="@+id/wrapContentHeightViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp" />
+
+    <RelativeLayout
+        android:id="@+id/clipChildren_relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/wrapContentHeightViewPager"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:clipChildren="false"
+        android:gravity="center"
+        android:layerType="software">
+
+        <com.skx.tomike.cannonlaboratory.widget.ClipViewPager
+            android:id="@+id/show_multiple_clipViewPager"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:clipChildren="false"
+            android:overScrollMode="never" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

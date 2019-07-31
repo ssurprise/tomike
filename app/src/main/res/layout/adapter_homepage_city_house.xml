@@ -61,7 +61,7 @@
             android:layout_toRightOf="@id/homepage_city_name_container"
             android:src="@drawable/arrow_homepage_city" />
 
-        <com.skx.tomike.customview.customlayout.PageIndicatorLayout
+        <com.skx.tomike.cannonlaboratory.widget.PageIndicatorLayout
             android:id="@+id/homepage_cityHouse_housePageIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:layout_alignParentRight="true"
             android:background="@color/skx_f3f3f3">
 
-        </com.skx.tomike.customview.customlayout.PageIndicatorLayout>
+        </com.skx.tomike.cannonlaboratory.widget.PageIndicatorLayout>
 
     </RelativeLayout>
 

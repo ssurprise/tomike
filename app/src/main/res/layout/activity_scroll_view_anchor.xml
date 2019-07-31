@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.skx.tomike.activity.ScrollViewAnchorActivity">
 
-    <com.skx.tomike.customview.ScrollChangedScrollView
+    <com.skx.tomike.cannonlaboratory.widget.ScrollChangedScrollView
         android:id="@+id/anchor_bodyContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -104,7 +104,7 @@
                 android:text="10" />
 
         </LinearLayout>
-    </com.skx.tomike.customview.ScrollChangedScrollView>
+    </com.skx.tomike.cannonlaboratory.widget.ScrollChangedScrollView>
 
     <RelativeLayout
         android:id="@+id/luDetail_navigationTag_container"

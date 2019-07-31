@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.skx.tomike.R;
-import com.skx.tomike.util.KeyboardTool;
+import com.skx.tomikecommonlibrary.utils.KeyboardTool;
 
 import java.util.Timer;
 import java.util.TimerTask;

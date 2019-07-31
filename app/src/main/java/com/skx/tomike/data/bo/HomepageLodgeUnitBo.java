@@ -1,6 +1,6 @@
 package com.skx.tomike.data.bo;
 
-import com.skx.tomike.data.bean.HomepageBean;
+import com.skx.tomike.cannonlaboratory.bean.HomepageBean;
 import com.skx.tomike.interf.IViewType;
 
 /**

@@ -18,7 +18,7 @@ import android.widget.ImageView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.customview.ZoomImageView;
-import com.skx.tomike.util.WidthHeightTool;
+import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
 
 public class ZoomImageActivity extends SkxBaseActivity {
     ViewPager mViewPager;

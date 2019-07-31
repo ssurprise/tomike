@@ -25,7 +25,7 @@ import com.skx.tomike.fragment.business.HomepageFragment;
 import com.skx.tomike.fragment.business.PersonalFragment;
 import com.skx.tomike.service.LocalService;
 import com.skx.tomike.service.RemoteService;
-import com.skx.tomike.util.ToastTool;
+import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.ArrayList;
 import java.util.List;

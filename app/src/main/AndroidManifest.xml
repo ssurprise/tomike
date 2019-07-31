@@ -76,19 +76,11 @@
             android:name=".activity.function.PhotographActivity"
             android:screenOrientation="portrait" />
 
-        <!-- 图片加载 -->
-        <activity
-            android:name=".activity.function.ImageLoadActivity"
-            android:screenOrientation="portrait" />
 
-        <!-- viewpager一屏多展示item activity -->
-        <activity
-            android:name=".activity.VpMultiplePageActivity"
-            android:screenOrientation="portrait" />
 
         <!-- viewpager无限循环 activity -->
         <activity
-            android:name=".activity.ViewPagerInfiniteLoopActivity"
+            android:name=".cannonlaboratory.activity.ViewPagerInfiniteLoopActivity"
             android:screenOrientation="portrait" />
 
 
@@ -105,29 +97,23 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity
-            android:name=".activity.function.PermissionIntroActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.StatusBarNavigationBarActivity"
             android:screenOrientation="portrait" />
-            <activity
-            android:name=".activity.function.RxJavaActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.function.RetrofitActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SpannableStringBuilderActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.function.OkHttpActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.xzdz.ScrollChangeTitleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DrawerLayoutActivity"
+            android:name=".cannonlaboratory.activity.DrawerLayoutActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ZoomImageActivity"
@@ -136,7 +122,7 @@
             android:name=".activity.ScrollViewAnchorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TabLayoutActivity"
+            android:name=".cannonlaboratory.activity.TabLayoutActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -156,12 +142,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.UrlEncodeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.function.GlideActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.ZoomHeaderListViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MatrixImageActivity"
@@ -197,9 +177,7 @@
         <activity
             android:name=".activity.TextSwitcherActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.PageIndicatorActivity"
-            android:screenOrientation="portrait" />
+
         <activity android:name=".activity.EmojiFilterActivity" />
         <activity android:name=".activity.TextWordSpacingActivity" />
         <activity android:name=".activity.designpattern.MementoPatternActivity" />
@@ -208,43 +186,7 @@
         <activity android:name=".activity.CoordinatorLayoutCaseActivity" />
         <activity android:name=".activity.ShadowActivity" />
         <activity android:name=".activity.TabLayoutHelperActivity" />
-        <activity
-            android:name=".activity.function.NfcGroupActivity"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
-            </intent-filter>
 
-            <meta-data
-                android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/nfc_tech_filter" />
-
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.function.NfcWriteTextActivity"
-            android:launchMode="singleTask">
-
-        </activity>
-        <activity
-            android:name=".activity.function.NfcReadTextActivity"
-            android:launchMode="singleTask">
-
-        </activity>
-        <activity
-            android:name=".activity.function.NfcPermissionTestActivity"
-            android:launchMode="singleTask">
-
-        </activity>
         <activity android:name=".activity.xzdz.EffectGroupActivity" />
         <activity android:name=".activity.xzdz.ScrollZoomImageActivity" />
         <activity android:name=".activity.xzdz.ScrollZoomImage2Activity" />
@@ -258,29 +200,10 @@
 
         <activity android:name=".activity.designpattern.ChainOfResponsibilityPatternActivity" />
         <activity android:name=".activity.function.AopTestActivity" />
-        <activity android:name=".activity.function.FloatingWindowActivity" />
-        <activity android:name=".activity.function.OutterStartActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!--tenvideo2://?action=66&from= qn2at72s9jb3xk-->
-                <data
-                    android:host="tomike.com"
-                    android:scheme="skxdad" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activity.designpattern.ViewModelActivity" />
         <activity android:name=".activity.designpattern.ObserverPatternActivity" />
         <activity android:name=".activity.GenericTestActivity" />
-        <activity
-            android:name=".activity.function.TransparentThemeActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/GlobalCaptchaTheme.Transparent"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
         <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
         <!--android:launchMode="singleTask"-->

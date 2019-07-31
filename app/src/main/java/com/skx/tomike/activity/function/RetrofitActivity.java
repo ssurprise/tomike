@@ -14,7 +14,7 @@ import com.skx.tomike.networkrequest.Interface.ReqResultCallBack;
 import com.skx.tomike.networkrequest.SkxNetConnection;
 import com.skx.tomike.javabean.WeatherMini;
 import com.skx.tomike.networkrequest.javabean.TrainAllInfo;
-import com.skx.tomike.util.ToastTool;
+import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.HashMap;
 

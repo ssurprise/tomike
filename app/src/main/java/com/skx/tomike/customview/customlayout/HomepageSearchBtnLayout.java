@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 
 import com.skx.tomike.R;
 import com.skx.tomike.util.ViewPropertyHelper;
-import com.skx.tomike.util.WidthHeightTool;
+import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 /**

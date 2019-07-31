@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <com.skx.tomike.cannonlaboratory.widget.PageIndicatorLayout
+        android:id="@+id/pageIndicator_type1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+    </com.skx.tomike.cannonlaboratory.widget.PageIndicatorLayout>
+
+    <LinearLayout
+        android:id="@+id/pageIndicator_type2"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <com.skx.tomike.cannonlaboratory.widget.CustomSwitcher
+        android:id="@+id/pageIndicator_type3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/skx_ff4081"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/skx_ff4081"
+            android:textSize="14sp" />
+
+    </com.skx.tomike.cannonlaboratory.widget.CustomSwitcher>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pageIndicator_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="35dp">
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

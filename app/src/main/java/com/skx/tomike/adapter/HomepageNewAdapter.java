@@ -17,16 +17,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.skx.tomike.R;
-import com.skx.tomike.customview.customlayout.PageIndicatorLayout;
+import com.skx.tomike.cannonlaboratory.adapter.HomepageLodgeUnitItemAdapter;
+import com.skx.tomike.cannonlaboratory.widget.PageIndicatorLayout;
 import com.skx.tomike.data.bo.HomepageCityAreaBo;
 import com.skx.tomike.data.bo.HomepageCityGuideBo;
 import com.skx.tomike.data.bo.HomepageLodgeUnitBo;
 import com.skx.tomike.data.bo.HomepageOperationBo;
 import com.skx.tomike.data.bo.HomepageUGCBo;
 import com.skx.tomike.data.bo.HomepageVideoBo;
-import com.skx.tomike.data.bean.HomepageBean;
+import com.skx.tomike.cannonlaboratory.bean.HomepageBean;
 import com.skx.tomike.interf.IViewType;
-import com.skx.tomike.util.WidthHeightTool;
+import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 import java.util.ArrayList;

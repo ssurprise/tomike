@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.skx.tomike.R;
-import com.skx.tomike.util.WidthHeightTool;
+import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
 
 /**
  * 状态栏、底部导航栏高度Activity

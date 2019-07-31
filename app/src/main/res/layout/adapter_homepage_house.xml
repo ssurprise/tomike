@@ -38,14 +38,14 @@
             android:textColor="@color/skx_878787"
             android:textSize="12sp" />
 
-        <com.skx.tomike.customview.customlayout.PageIndicatorLayout
+        <com.skx.tomike.cannonlaboratory.widget.PageIndicatorLayout
             android:id="@+id/homepage_house_pageIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/skx_f2f2f2"
             android:layout_marginTop="10dp">
 
-        </com.skx.tomike.customview.customlayout.PageIndicatorLayout>
+        </com.skx.tomike.cannonlaboratory.widget.PageIndicatorLayout>
 
     </LinearLayout>
 
