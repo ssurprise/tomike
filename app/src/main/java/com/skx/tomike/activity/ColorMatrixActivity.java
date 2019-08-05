@@ -61,7 +61,7 @@ public class ColorMatrixActivity extends AppCompatActivity implements SeekBar.On
         }
 
 //        ImageHelper.handleImageEffect(bitmap, mHue, mSaturation, mLum);
-        main_img.setImageBitmap(ImageHelper.handleImageEffect(bitmap, mHue, mSaturation, mLum));
+        main_img.setImageBitmap(ImageHelper.INSTANCE.handleImageEffect(bitmap, mHue, mSaturation, mLum));
 //        switch (seekBar.getId()) {
 //            case R.id.seekBar_hun:
 //                mHue = (MAX_VALUE - MID_VALUE)

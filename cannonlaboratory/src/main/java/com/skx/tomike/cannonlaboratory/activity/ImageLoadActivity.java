@@ -25,7 +25,7 @@ public class ImageLoadActivity extends AppCompatActivity {
     }
 
     private void refreshView() {
-        Bitmap bitmap = LoadImageUtil.decodeSampledBitmapFromResource(getResources(), R.drawable.big_img_5760_3840, 300, 300);
+        Bitmap bitmap = LoadImageUtil.INSTANCE.decodeSampledBitmapFromResource(getResources(), R.drawable.big_img_5760_3840, 300, 300);
         im.setImageBitmap(bitmap);
     }
 }

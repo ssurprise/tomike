@@ -47,7 +47,7 @@ public class ImageGalleryAdapter extends BaseAdapter {
 
 //        imageView.setImageResource(imageReasouId);
 
-        LoadImageUtil.decodeSampledBitmapFromResource(mContext.getResources(),imageReasouId,50,50);
+        LoadImageUtil.INSTANCE.decodeSampledBitmapFromResource(mContext.getResources(),imageReasouId,50,50);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         return imageView;
     }
