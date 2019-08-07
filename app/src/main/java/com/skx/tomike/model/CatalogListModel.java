@@ -12,6 +12,7 @@ import com.skx.tomike.activity.HeaderFooterRecyclerViewActivity;
 import com.skx.tomike.activity.ImageSpanActivity;
 import com.skx.tomike.activity.KeyboardActivity;
 import com.skx.tomike.activity.MatrixImageActivity;
+import com.skx.tomike.cannonlaboratory.activity.NotificationActivity;
 import com.skx.tomike.cannonlaboratory.activity.PageIndicatorActivity;
 import com.skx.tomike.activity.ScrollViewAnchorActivity;
 import com.skx.tomike.activity.ShadowActivity;
@@ -145,6 +146,7 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_ANIMATOR, mAnimatorCatalogs);
 
 //        加农炮实验室
+        mFunctionCatalogs.add(new CatalogItem("通知", NotificationActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("打开其他App", OutterStartActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("透明Activity", TransparentThemeActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("全局浮层", FloatingWindowActivity.class.getName()));

@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.skx.tomike.cannonlaboratory">
 
     <application>
+        <activity android:name=".activity.NotificationActivity"></activity>
         <activity android:name=".activity.OutterStartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -9,22 +11,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!--tenvideo2://?action=66&from= qn2at72s9jb3xk-->
+                <!-- tenvideo2://?action=66&from= qn2at72s9jb3xk -->
                 <data
                     android:host="tomike.com"
                     android:scheme="skxdad" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.TransparentThemeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:theme="@style/GlobalCaptchaTheme.Transparent"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
-
         <activity android:name=".activity.FloatingWindowActivity" />
-
         <activity
             android:name=".activity.NfcGroupActivity"
             android:launchMode="singleTask">
@@ -49,48 +48,34 @@
         </activity>
         <activity
             android:name=".activity.NfcWriteTextActivity"
-            android:launchMode="singleTask">
-
-        </activity>
+            android:launchMode="singleTask"></activity>
         <activity
             android:name=".activity.NfcReadTextActivity"
-            android:launchMode="singleTask">
-
-        </activity>
+            android:launchMode="singleTask"></activity>
         <activity
             android:name=".activity.NfcPermissionTestActivity"
             android:launchMode="singleTask" />
-
         <activity
             android:name=".activity.PermissionIntroActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.RxJavaActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.OkHttpActivity"
-            android:screenOrientation="portrait" />
-
-        <!-- 图片加载 -->
+            android:screenOrientation="portrait" /> <!-- 图片加载 -->
         <activity
             android:name=".activity.ImageLoadActivity"
-            android:screenOrientation="portrait" />
-
-        <!-- viewpager一屏多展示item activity -->
+            android:screenOrientation="portrait" /> <!-- viewpager一屏多展示item activity -->
         <activity
             android:name=".activity.VpMultiplePageActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.GlideActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.ZoomHeaderListViewActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.PageIndicatorActivity"
             android:screenOrientation="portrait" />
