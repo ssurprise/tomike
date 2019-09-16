@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ViewPagerIndicator">
+        <attr name="color2" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="PageHeaderLayout">
+        <attr name="headerText" format="string" />
+        <attr name="headerTextSize" format="float" />
+        <attr name="headerTextColor" format="color" />
+        <attr name="operateText" format="string" />
+        <attr name="operateTextSize" format="float" />
+        <attr name="operateTextColor" format="color" />
+        <attr name="backBtnSrc" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CanvasTestView">
+        <attr name="shape" format="enum">
+            <enum name="rectangle">0</enum>
+            <enum name="triangle">1</enum>
+            <enum name="circle">2</enum>
+            <enum name="ring">3</enum>
+        </attr>
+        <attr name="stroke" format="integer" />
+        <attr name="solid" format="integer" />
+        <attr name="radius" format="integer" />
+    </declare-styleable>
+</resources>

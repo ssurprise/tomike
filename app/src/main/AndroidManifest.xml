@@ -8,16 +8,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
-
-    <!-- NFC 权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- NFC 权限 -->
     <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-    <!-- NFC 权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- NFC 权限 -->
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true" />
@@ -50,65 +45,48 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-        <!-- 首页 -->
+        </activity> <!-- 首页 -->
         <activity
             android:name=".activity.HomeActivity"
             android:screenOrientation="portrait" />
-
         <!-- 单相册 -->
         <activity
             android:name=".activity.function.PhotoAlbumActivity"
             android:screenOrientation="portrait" />
-
         <!-- 多相册 -->
         <activity
             android:name=".activity.function.PhotoAlbumsActivity"
             android:screenOrientation="portrait" />
-
         <!-- 图片预览 -->
         <activity
             android:name=".activity.function.PicturePreviewActivity"
             android:screenOrientation="portrait" />
-
         <!-- 拍照 -->
         <activity
             android:name=".activity.function.PhotographActivity"
             android:screenOrientation="portrait" />
-
-
-
         <!-- viewpager无限循环 activity -->
         <activity
             android:name=".cannonlaboratory.activity.ViewPagerInfiniteLoopActivity"
             android:screenOrientation="portrait" />
-
-
         <!-- Double 格式转换工具 -->
         <activity
             android:name=".activity.DoubleFormatActivity"
             android:screenOrientation="portrait" />
-
-
-
         <!-- 键盘 实例 -->
         <activity
             android:name=".activity.KeyboardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
-
         <activity
             android:name=".activity.StatusBarNavigationBarActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.function.RetrofitActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SpannableStringBuilderActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.xzdz.ScrollChangeTitleActivity"
             android:screenOrientation="portrait" />
@@ -124,7 +102,6 @@
         <activity
             android:name=".cannonlaboratory.activity.TabLayoutActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.GetTopTestActivity"
             android:screenOrientation="portrait" />
@@ -146,7 +123,6 @@
         <activity
             android:name=".activity.MatrixImageActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.designpattern.StrategyPatternActivity"
             android:screenOrientation="portrait" />
@@ -177,38 +153,63 @@
         <activity
             android:name=".activity.TextSwitcherActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.EmojiFilterActivity" />
-        <activity android:name=".activity.TextWordSpacingActivity" />
-        <activity android:name=".activity.designpattern.MementoPatternActivity" />
-
-        <activity android:name=".viewlaboratory.activity.CustomViewActivity" />
-        <activity android:name=".activity.CoordinatorLayoutCaseActivity" />
-        <activity android:name=".activity.ShadowActivity" />
-        <activity android:name=".activity.TabLayoutHelperActivity" />
-
-        <activity android:name=".activity.xzdz.EffectGroupActivity" />
-        <activity android:name=".activity.xzdz.ScrollZoomImageActivity" />
-        <activity android:name=".activity.xzdz.ScrollZoomImage2Activity" />
-        <activity android:name=".activity.xzdz.ScrollZoomImage3Activity" />
+        <activity
+            android:name=".activity.EmojiFilterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TextWordSpacingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.designpattern.MementoPatternActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".viewlaboratory.activity.CustomViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CoordinatorLayoutCaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ShadowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TabLayoutHelperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.xzdz.EffectGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.xzdz.ScrollZoomImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.xzdz.ScrollZoomImage2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.xzdz.ScrollZoomImage3Activity"
+            android:screenOrientation="portrait" />
 
         <service android:name=".service.LocalService" />
         <service
             android:name=".service.RemoteService"
             android:process=":com.skx.remote" />
 
-
-        <activity android:name=".activity.designpattern.ChainOfResponsibilityPatternActivity" />
-        <activity android:name=".activity.function.AopTestActivity" />
-
-        <activity android:name=".activity.designpattern.ViewModelActivity" />
-        <activity android:name=".activity.designpattern.ObserverPatternActivity" />
-        <activity android:name=".activity.GenericTestActivity" />
-
-        <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
-        <!--android:launchMode="singleTask"-->
-        <!--android:theme="@style/GlobalCaptchaTheme.Transparent"-->
-        <!--android:windowSoftInputMode="stateHidden|stateAlwaysHidden"-->
+        <activity
+            android:name=".activity.designpattern.ChainOfResponsibilityPatternActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.function.AopTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.designpattern.ViewModelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.designpattern.ObserverPatternActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.GenericTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ViewCaptureActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
