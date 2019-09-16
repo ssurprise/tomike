@@ -22,8 +22,9 @@
             <enum name="circle">2</enum>
             <enum name="ring">3</enum>
         </attr>
-        <attr name="stroke" format="integer" />
-        <attr name="solid" format="integer" />
+        <attr name="stroke" format="color" />
+        <attr name="stroke_width" format="integer" />
+        <attr name="solid" format="color" />
         <attr name="radius" format="integer" />
     </declare-styleable>
 </resources>
