@@ -17,14 +17,14 @@
 
     <declare-styleable name="CanvasTestView">
         <attr name="shape" format="enum">
-            <enum name="rectangle">0</enum>
-            <enum name="triangle">1</enum>
-            <enum name="circle">2</enum>
-            <enum name="ring">3</enum>
+            <enum name="rectangle" value="0" />
+            <enum name="triangle" value="1" />
+            <enum name="circle" value="2" />
+            <enum name="ring" value="3" />
         </attr>
-        <attr name="stroke" format="color" />
-        <attr name="stroke_width" format="integer" />
-        <attr name="solid" format="color" />
-        <attr name="radius" format="integer" />
+        <attr name="solid_color" format="color|reference" />
+        <attr name="stroke_color" format="color|reference" />
+        <attr name="stroke_width" format="dimension" />
+        <attr name="radius" format="dimension" />
     </declare-styleable>
 </resources>

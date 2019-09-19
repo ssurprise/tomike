@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,13 +24,28 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="50dp"
-            android:background="@color/skx_1f000000" />
+            android:background="@color/skx_1f000000"
+            app:radius="20dp"
+            app:shape="circle"
+            app:solid_color="@color/skx_ff4081" />
 
         <com.skx.tomike.viewlaboratory.view.CanvasTestView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="50dp"
-            android:background="@color/skx_1f000000" />
+            android:background="@color/skx_1f000000"
+            android:padding="10dp"
+            app:shape="rectangle"
+            app:solid_color="@color/skx_ff4081" />
+
+        <com.skx.tomike.viewlaboratory.view.CanvasTestView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/skx_1f000000"
+            android:padding="10dp"
+            app:shape="rectangle"
+            app:stroke_color="@color/skx_ff4081" />
 
     </LinearLayout>
 
