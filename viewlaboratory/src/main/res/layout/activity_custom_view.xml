@@ -25,7 +25,7 @@
             android:layout_height="150dp"
             android:layout_marginTop="50dp"
             android:background="@color/skx_1f000000"
-            app:radius="20dp"
+            app:radius="70dp"
             app:shape="circle"
             app:solid_color="@color/skx_ff4081" />
 
@@ -45,7 +45,8 @@
             android:background="@color/skx_1f000000"
             android:padding="10dp"
             app:shape="rectangle"
-            app:stroke_color="@color/skx_ff4081" />
+            app:stroke_color="@color/skx_ff4081"
+            app:stroke_width="3dp" />
 
     </LinearLayout>
 

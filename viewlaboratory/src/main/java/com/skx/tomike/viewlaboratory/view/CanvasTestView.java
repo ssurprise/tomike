@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
@@ -43,7 +44,7 @@ public class CanvasTestView extends View {
     public static final int RING = 3;
 
 
-    private final Paint mFillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mSolidPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint mStrokePaint;   // optional, set by the caller
 
     @Shape
@@ -78,26 +79,26 @@ public class CanvasTestView extends View {
         mSolidColor = array.getColorStateList(R.styleable.CanvasTestView_solid_color);
         mStrokeColor = array.getColorStateList(R.styleable.CanvasTestView_stroke_color);
         // 参考 CircularProgressLayout.java:154
-        mStrokeWidth = array.getDimensionPixelSize(R.styleable.CanvasTestView_stroke_width, 30);
+        mStrokeWidth = array.getDimensionPixelSize(R.styleable.CanvasTestView_stroke_width, 0);
         // 类似的可查看CardView 的 CardView_cardCornerRadius 设置
         mRadius = array.getDimension(R.styleable.CanvasTestView_radius, 0.0F);
 
         array.recycle();
 
         // 设置填充色
-        mFillPaint.setAntiAlias(true);// 消除锯齿
-        mFillPaint.setStyle(Paint.Style.FILL);
-        mFillPaint.setColor(mSolidColor.getDefaultColor());
+        mSolidPaint.setAntiAlias(true);// 消除锯齿
+        mSolidPaint.setStyle(Paint.Style.FILL);
+        mSolidPaint.setColor(mSolidColor != null ? mSolidColor.getDefaultColor() : Color.TRANSPARENT);
 
         // 设置描边色
 
         if (mStrokePaint == null) {
             mStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mStrokePaint.setStyle(Paint.Style.STROKE);
-            mStrokePaint.setAntiAlias(true);// 消除锯齿
-            mStrokePaint.setStrokeWidth(mStrokeWidth);
-            mStrokePaint.setColor(mStrokeColor.getDefaultColor());
         }
+        mStrokePaint.setStyle(Paint.Style.STROKE);
+        mStrokePaint.setAntiAlias(true);// 消除锯齿
+        mStrokePaint.setStrokeWidth(mStrokeWidth);
+        mStrokePaint.setColor(mStrokeColor != null ? mStrokeColor.getDefaultColor() : Color.TRANSPARENT);
     }
 
     @Override
@@ -113,16 +114,16 @@ public class CanvasTestView extends View {
         switch (mShape) {
             case RECTANGLE:
                 if (mStrokeWidth > 0 && mStrokePaint != null) {
-                    canvas.drawRect(getPaddingLeft(), getPaddingTop(), getRight() - getPaddingRight(), getBottom() - getPaddingBottom(), mStrokePaint);
+                    canvas.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom(), mStrokePaint);
 
                 } else {
-                    canvas.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom(), mFillPaint);
+                    canvas.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom(), mSolidPaint);
                 }
                 break;
             case TRIANGLE:
                 break;
             case CIRCLE:
-                canvas.drawCircle(getWidth() >> 1, getHeight() >> 1, mRadius, mFillPaint);
+                canvas.drawCircle(getWidth() >> 1, getHeight() >> 1, mRadius, mSolidPaint);
                 break;
             case RING:
                 break;
