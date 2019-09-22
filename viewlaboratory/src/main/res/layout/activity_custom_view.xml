@@ -18,30 +18,54 @@
             android:id="@+id/customView_scoreView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="20dp" />
 
         <com.skx.tomike.viewlaboratory.view.CanvasTestView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
             android:background="@color/skx_1f000000"
-            app:radius="70dp"
+            android:padding="10dp"
+            app:radius="50dp"
             app:shape="circle"
             app:solid_color="@color/skx_ff4081" />
 
         <com.skx.tomike.viewlaboratory.view.CanvasTestView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:padding="10dp"
+            app:radius="50dp"
+            app:shape="circle"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_3a9173"
+            app:stroke_width="3dp" />
+
+        <com.skx.tomike.viewlaboratory.view.CanvasTestView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
             android:background="@color/skx_1f000000"
             android:padding="10dp"
             app:shape="rectangle"
             app:solid_color="@color/skx_ff4081" />
 
         <com.skx.tomike.viewlaboratory.view.CanvasTestView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:padding="10dp"
+            app:shape="rectangle"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_3a9173"
+            app:stroke_width="3dp" />
+
+        <com.skx.tomike.viewlaboratory.view.CanvasTestView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
             android:background="@color/skx_1f000000"
             android:padding="10dp"
             app:shape="rectangle"

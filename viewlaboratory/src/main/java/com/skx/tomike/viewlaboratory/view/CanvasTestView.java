@@ -32,16 +32,10 @@ public class CanvasTestView extends View {
      * Shape is a triangle.
      */
     public static final int TRIANGLE = 1;
-
     /**
      * Shape is an ellipse
      */
     public static final int CIRCLE = 2;
-
-    /**
-     * Shape is a ring.
-     */
-    public static final int RING = 3;
 
 
     private final Paint mSolidPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -55,7 +49,7 @@ public class CanvasTestView extends View {
     private float mStrokeWidth;
     private float mRadius;
 
-    @IntDef({RECTANGLE, TRIANGLE, CIRCLE, RING,})
+    @IntDef({RECTANGLE, TRIANGLE, CIRCLE})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Shape {
     }
@@ -111,21 +105,40 @@ public class CanvasTestView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        final boolean haveStroke = mStrokePaint != null && mStrokePaint.getStrokeWidth() > 0;
+        final boolean haveFill = mSolidPaint != null;
+
         switch (mShape) {
             case RECTANGLE:
-                if (mStrokeWidth > 0 && mStrokePaint != null) {
-                    canvas.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom(), mStrokePaint);
-
-                } else {
-                    canvas.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom(), mSolidPaint);
+                if (mSolidPaint.getColor() != 0 || mSolidPaint.getShader() != null) {
+                    canvas.drawRect(getPaddingLeft(),
+                            getPaddingTop(),
+                            getWidth() - getPaddingRight(),
+                            getHeight() - getPaddingBottom(),
+                            mSolidPaint);
+                }
+                if (haveStroke) {
+                    canvas.drawRect(getPaddingLeft(),
+                            getPaddingTop(),
+                            getWidth() - getPaddingRight(),
+                            getHeight() - getPaddingBottom(),
+                            mStrokePaint);
                 }
                 break;
             case TRIANGLE:
                 break;
             case CIRCLE:
-                canvas.drawCircle(getWidth() >> 1, getHeight() >> 1, mRadius, mSolidPaint);
-                break;
-            case RING:
+                if (mSolidPaint.getColor() != 0 || mSolidPaint.getShader() != null) {
+                    canvas.drawCircle((getWidth()) >> 1,
+                            (getHeight()) >> 1,
+                            mRadius, mSolidPaint);
+                }
+                if (haveStroke) {
+                    canvas.drawCircle((getWidth()) >> 1,
+                            (getHeight()) >> 1,
+                            mRadius, mStrokePaint);
+                }
                 break;
         }
     }

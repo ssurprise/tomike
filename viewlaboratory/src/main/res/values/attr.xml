@@ -20,7 +20,6 @@
             <enum name="rectangle" value="0" />
             <enum name="triangle" value="1" />
             <enum name="circle" value="2" />
-            <enum name="ring" value="3" />
         </attr>
         <attr name="solid_color" format="color|reference" />
         <attr name="stroke_color" format="color|reference" />
