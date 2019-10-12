@@ -9,12 +9,12 @@ import com.skx.tomike.viewlaboratory.view.ScoreView;
 
 import java.util.Random;
 
-public class CustomViewActivity extends AppCompatActivity {
+public class ShapeViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_view);
+        setContentView(R.layout.activity_shape_view);
 
         ScoreView scoreView = findViewById(R.id.customView_scoreView);
         refreshScore(scoreView);

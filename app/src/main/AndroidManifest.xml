@@ -163,7 +163,7 @@
             android:name=".activity.designpattern.MementoPatternActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".viewlaboratory.activity.CustomViewActivity"
+            android:name=".viewlaboratory.activity.ShapeViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CoordinatorLayoutCaseActivity"

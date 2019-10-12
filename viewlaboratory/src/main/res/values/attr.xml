@@ -15,12 +15,13 @@
         <attr name="backBtnSrc" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="CanvasTestView">
+    <declare-styleable name="ShapeView">
         <attr name="shape" format="enum">
             <enum name="rectangle" value="0" />
             <enum name="triangle" value="1" />
             <enum name="circle" value="2" />
-            <enum name="ring" value="3" />
+            <enum name="oval" value="3" />
+            <enum name="ring" value="4" />
         </attr>
         <attr name="solid_color" format="color|reference" />
         <attr name="stroke_color" format="color|reference" />
