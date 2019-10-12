@@ -48,6 +48,36 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@color/skx_1f000000"
+            android:paddingEnd="40dp"
+            android:paddingRight="40dp"
+            app:arc_startAngle="90"
+            app:arc_sweepAngle="90"
+            app:shape="arc"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_2cb298"
+            app:stroke_width="3dp"
+            tools:ignore="RtlSymmetry" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:paddingEnd="40dp"
+            android:paddingRight="40dp"
+            app:arc_startAngle="-90"
+            app:arc_sweepAngle="90"
+            app:shape="arc"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_2cb298"
+            app:stroke_width="3dp"
+            tools:ignore="RtlSymmetry" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
             android:padding="15dp"
             app:shape="oval"
             app:solid_color="@color/skx_ff4081"

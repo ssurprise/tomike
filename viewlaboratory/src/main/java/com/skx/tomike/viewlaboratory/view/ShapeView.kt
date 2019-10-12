@@ -34,10 +34,13 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     private val mStrokeDashWidth = 0.0f
     private val mStrokeDashGap = 0.0f
 
+    private var mStartAngle: Float = 0.0f
+    private var mSweepAngle: Float = 0.0f
+
     private var mRadius = 0.0f // use this if mRadiusArray is null
     private var mRadiusArray: FloatArray? = null
 
-    @IntDef(RECTANGLE, TRIANGLE, CIRCLE, OVAL, RING)
+    @IntDef(RECTANGLE, TRIANGLE, CIRCLE, OVAL, ARC)
     @Retention(RetentionPolicy.SOURCE)
     annotation class Shape
 
@@ -52,6 +55,9 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         mStrokeWidth = array.getDimensionPixelSize(R.styleable.ShapeView_stroke_width, 0).toFloat()
         // 类似的可查看CardView 的 CardView_cardCornerRadius 设置
         mRadius = array.getDimension(R.styleable.ShapeView_radius, 0.0f)
+
+        mStartAngle = array.getFloat(R.styleable.ShapeView_arc_startAngle, 0.0f)
+        mSweepAngle = array.getFloat(R.styleable.ShapeView_arc_sweepAngle, 0.0f)
 
         array.recycle()
 
@@ -90,7 +96,7 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val haveStroke = mStrokePaint != null && mStrokePaint!!.strokeWidth > 0
+        val haveStroke = mStrokePaint != null && mStrokePaint!!.color != 0 && mStrokePaint!!.strokeWidth > 0
 
         mRect.set(paddingLeft.toFloat(), paddingTop.toFloat(), (width - paddingRight).toFloat(), (height - paddingBottom).toFloat())
         when (mShape) {
@@ -120,19 +126,29 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                         Math.min(mRect.width(), mRect.height()) * 0.5f)
                 val posX = paddingLeft + mRect.width() / 2
                 val posY = paddingTop + mRect.height() / 2
-                canvas.drawCircle(posX, posY, rad, mSolidPaint)
+                if (mSolidPaint.color != 0) {
+                    canvas.drawCircle(posX, posY, rad, mSolidPaint)
+                }
 
                 if (haveStroke) {
                     canvas.drawCircle(posX, posY, rad, mStrokePaint!!)
                 }
             }
             OVAL -> {
-                canvas.drawOval(mRect, mSolidPaint)
+                if (mSolidPaint.color != 0) {
+                    canvas.drawOval(mRect, mSolidPaint)
+                }
                 if (haveStroke) {
                     canvas.drawOval(mRect, mStrokePaint!!)
                 }
             }
-            RING -> {
+            ARC -> {
+                if (mSolidPaint.color != 0) {
+                    canvas.drawArc(mRect, mStartAngle, mSweepAngle, true, mSolidPaint)
+                }
+                if (haveStroke) {
+                    canvas.drawArc(mRect, mStartAngle, mSweepAngle, true, mStrokePaint!!)
+                }
             }
             else -> {
             }
@@ -159,9 +175,7 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
          */
         const val OVAL = 3
 
-        /**
-         * Shape is a ring.
-         */
-        const val RING = 4
+
+        const val ARC = 4
     }
 }
