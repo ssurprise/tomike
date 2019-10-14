@@ -24,7 +24,6 @@ import com.skx.tomike.activity.Tint_DrawableTintActivity;
 import com.skx.tomike.activity.UrlEncodeActivity;
 import com.skx.tomike.activity.VectorDrawableActivity;
 import com.skx.tomike.activity.WatermarkActivity;
-import com.skx.tomike.activity.XZHomepageNewActivity;
 import com.skx.tomike.activity.ZoomImageActivity;
 import com.skx.tomike.activity.designpattern.ChainOfResponsibilityPatternActivity;
 import com.skx.tomike.activity.designpattern.ClonePatternActivity;
@@ -131,7 +130,6 @@ public class CatalogListModel {
     private static List<CatalogItem> mOtherCatalogs = new ArrayList<>();
 
     static {
-        mXzCatalogs.add(new CatalogItem("首页V2", XZHomepageNewActivity.class.getName()));
         mXzCatalogs.add(new CatalogItem("订单V2动效", EffectGroupActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_XIAOZHU, mXzCatalogs);
 

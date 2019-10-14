@@ -1,4 +1,4 @@
-package com.skx.tomike.customview.customlayout;
+package com.skx.tomike.customview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

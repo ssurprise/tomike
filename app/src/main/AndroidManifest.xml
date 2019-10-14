@@ -148,9 +148,6 @@
             android:name=".activity.ShapeDrawableHelperActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.XZHomepageNewActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.TextSwitcherActivity"
             android:screenOrientation="portrait" />
         <activity

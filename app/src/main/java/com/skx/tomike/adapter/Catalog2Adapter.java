@@ -112,7 +112,7 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
 
         @Override
         public void bindData(final CatalogCellModel cellModel) {
-            tvCellName.setText(cellModel.title);
+            tvCellName.setText(cellModel.getTitle());
             tvCellName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -121,7 +121,7 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
                         v.setElevation(5.0f);
                     }
                     try {
-                        intent = new Intent(context, Class.forName(cellModel.target));
+                        intent = new Intent(context, Class.forName(cellModel.getTarget()));
                         context.startActivity(intent);
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
@@ -144,7 +144,7 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
 
         @Override
         public void bindData(CatalogCellModel cellModel) {
-            tvGroupTittle.setText(cellModel.title);
+            tvGroupTittle.setText(cellModel.getTitle());
         }
     }
 }
