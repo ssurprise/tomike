@@ -47,6 +47,18 @@
             android:textColor="@color/skx_212121"
             android:textSize="14sp" />
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rectangle_solid_b4ff4081_corner_20dp"
+            android:gravity="center"
+            android:onClick="serialOrde3Begin"
+            android:text="串行3：A->B ->> B  "
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
     <LinearLayout
