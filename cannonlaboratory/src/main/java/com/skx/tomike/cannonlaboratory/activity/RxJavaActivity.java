@@ -222,7 +222,7 @@ public class RxJavaActivity extends AppCompatActivity {
     }
 
     /**
-     * 串行执行
+     * 串行执行.这种方式有问题，当第一个错误的时候，直接就崩掉了
      *
      * @param view
      */
@@ -234,9 +234,9 @@ public class RxJavaActivity extends AppCompatActivity {
                 SystemClock.sleep(2000);
                 Log.e("Observable", "1.2");
 
-                emitter.onNext(10d);
-                emitter.onComplete();
-//                emitter.onError(new Throwable());
+//                emitter.onNext(10d);
+//                emitter.onComplete();
+                emitter.onError(new Throwable());
 
             }
         }).subscribeOn(Schedulers.io())
