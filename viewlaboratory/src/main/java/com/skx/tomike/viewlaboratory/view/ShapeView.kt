@@ -70,10 +70,10 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         if (mStrokePaint == null) {
             mStrokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
         }
-        mStrokePaint!!.style = Paint.Style.STROKE
-        mStrokePaint!!.isAntiAlias = true// 消除锯齿
-        mStrokePaint!!.strokeWidth = mStrokeWidth
-        mStrokePaint!!.color = mStrokeColor?.defaultColor ?: Color.TRANSPARENT
+        mStrokePaint?.style = Paint.Style.STROKE
+        mStrokePaint?.isAntiAlias = true// 消除锯齿
+        mStrokePaint?.strokeWidth = mStrokeWidth
+        mStrokePaint?.color = mStrokeColor?.defaultColor ?: Color.TRANSPARENT
     }
 
     fun setCornerRadius(radius: Float) {
