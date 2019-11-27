@@ -82,8 +82,8 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-//    implementation project(':apt-annotation')
-//    annotationProcessor project(':apt')//核心，有了这个app才会处理apt的代码
+    implementation project(":apt-annotation")
+    annotationProcessor project(":apt-processor")
 }
 
 
