@@ -27,10 +27,10 @@ public class ColorMatrixActivity extends AppCompatActivity implements SeekBar.On
 
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_02);
 
-        main_img = (ImageView) findViewById(R.id.main_img);
-        seekBar_hun = (SeekBar) findViewById(R.id.seekBar_hun);
-        seekBar_saturation = (SeekBar) findViewById(R.id.seekBar_saturation);
-        seekBar_lum = (SeekBar) findViewById(R.id.seekBar_lum);
+        main_img = findViewById(R.id.main_img);
+        seekBar_hun = findViewById(R.id.seekBar_hun);
+        seekBar_saturation = findViewById(R.id.seekBar_saturation);
+        seekBar_lum = findViewById(R.id.seekBar_lum);
 
         seekBar_hun.setOnSeekBarChangeListener(this);
         seekBar_saturation.setOnSeekBarChangeListener(this);
@@ -60,19 +60,7 @@ public class ColorMatrixActivity extends AppCompatActivity implements SeekBar.On
                 break;
         }
 
-//        ImageHelper.handleImageEffect(bitmap, mHue, mSaturation, mLum);
         main_img.setImageBitmap(ImageHelper.INSTANCE.handleImageEffect(bitmap, mHue, mSaturation, mLum));
-//        switch (seekBar.getId()) {
-//            case R.id.seekBar_hun:
-//                mHue = (MAX_VALUE - MID_VALUE)
-//                break;
-//            case R.id.seekBar_hun:
-//                break;
-//            case R.id.seekBar_hun:
-//                break;
-//            default:
-//                break;
-//        }
     }
 
     @Override

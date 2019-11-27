@@ -222,7 +222,7 @@ public class RxJavaActivity extends AppCompatActivity {
     }
 
     /**
-     * 串行执行
+     * 串行执行.这种方式有问题，当第一个错误的时候，直接就崩掉了
      *
      * @param view
      */
@@ -235,9 +235,9 @@ public class RxJavaActivity extends AppCompatActivity {
                 Log.e("Observable", "1.2");
 
 //                emitter.onNext(10d);
+//                emitter.onComplete();
                 emitter.onError(new Throwable());
 
-//                emitter.onComplete();
             }
         }).subscribeOn(Schedulers.io())
                 .publish();
@@ -253,10 +253,9 @@ public class RxJavaActivity extends AppCompatActivity {
                                 SystemClock.sleep(2000);
                                 Log.e("Observable", "2.2");
 
-                                emitter.onNext(20d);
-
-//                                emitter.onError(new Throwable());
-                                emitter.onComplete();
+//                                emitter.onNext(20d);
+//                                emitter.onComplete();
+                                emitter.onError(new Throwable());
                             }
                         });
                     }
@@ -292,5 +291,63 @@ public class RxJavaActivity extends AppCompatActivity {
             }
         });
         PAY.connect();
+    }
+
+    public void serialOrde3Begin(View view) {
+
+        Observable<Double> flatMap = Observable.create(new ObservableOnSubscribe<Double>() {
+            @Override
+            public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                Log.e("Observable", "1.1");
+                SystemClock.sleep(2000);
+                Log.e("Observable", "1.2");
+
+//                emitter.onNext(10d);
+//                emitter.onComplete();
+                emitter.onError(new Throwable());
+            }
+        })
+                .flatMap(new Function<Double, ObservableSource<Double>>() {
+                    @Override
+                    public ObservableSource<Double> apply(Double aDouble) throws Exception {
+                        return Observable.create(new ObservableOnSubscribe<Double>() {
+                            @Override
+                            public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                                Log.e("Observable", "2.1");
+                                SystemClock.sleep(2000);
+                                Log.e("Observable", "2.2");
+
+                                emitter.onNext(20d);
+                                emitter.onComplete();
+//                                emitter.onError(new Throwable());
+                            }
+                        });
+                    }
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        flatMap.subscribe(new Observer<Double>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.e("Observer-onSubscribe", "subscribe");
+                rl_rxjava_loading.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNext(Double aDouble) {
+                Toast.makeText(RxJavaActivity.this, aDouble + "", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e("Observer-onError", "error");
+                rl_rxjava_loading.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e("Observer-onComplete", "complete");
+                rl_rxjava_loading.setVisibility(View.GONE);
+            }
+        });
     }
 }

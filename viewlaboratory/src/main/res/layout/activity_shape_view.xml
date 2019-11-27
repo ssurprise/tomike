@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.skx.tomike.viewlaboratory.activity.ShapeViewActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.skx.tomike.viewlaboratory.view.ScoreView
+            android:id="@+id/customView_scoreView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            app:radius="70dp"
+            app:shape="circle"
+            app:solid_color="@color/skx_ff4081" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:paddingEnd="40dp"
+            android:paddingRight="40dp"
+            app:radius="170dp"
+            app:shape="circle"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_2cb298"
+            app:stroke_width="3dp"
+            tools:ignore="RtlSymmetry" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:paddingEnd="40dp"
+            android:paddingRight="40dp"
+            app:arc_startAngle="90"
+            app:arc_sweepAngle="90"
+            app:shape="arc"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_2cb298"
+            app:stroke_width="3dp"
+            tools:ignore="RtlSymmetry" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:paddingEnd="40dp"
+            android:paddingRight="40dp"
+            app:arc_startAngle="-90"
+            app:arc_sweepAngle="90"
+            app:shape="arc"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_2cb298"
+            app:stroke_width="3dp"
+            tools:ignore="RtlSymmetry" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:padding="15dp"
+            app:shape="oval"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_26a69a"
+            app:stroke_width="3dp" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            app:shape="oval"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_26a69a"
+            app:stroke_width="3dp" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:padding="10dp"
+            app:radius="10dp"
+            app:shape="rectangle"
+            app:solid_color="@color/skx_ff4081" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:padding="10dp"
+            app:radius="30dp"
+            app:shape="rectangle"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_26a69a"
+            app:stroke_width="3dp" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:padding="10dp"
+            app:radius="100dp"
+            app:shape="rectangle"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_26a69a"
+            app:stroke_width="3dp" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="30dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            android:padding="10dp"
+            app:radius="100dp"
+            app:shape="rectangle"
+            app:solid_color="@color/skx_ff4081"
+            app:stroke_color="@color/skx_26a69a"
+            app:stroke_width="3dp" />
+
+        <com.skx.tomike.viewlaboratory.view.ShapeView
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_1f000000"
+            app:shape="rectangle"
+            app:solid_color="@color/skx_26a69a"
+            app:stroke_color="@color/skx_ff4081"
+            app:stroke_width="3dp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="20dp" />
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

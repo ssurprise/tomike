@@ -1,1 +1,1 @@
-include ':app', ':TomikeCommon', ':viewlaboratory', ':animlaboratory', ':cannonlaboratory'
+include ':app', ':TomikeCommon', ':viewlaboratory', ':animlaboratory', ':cannonlaboratory', ':apt-annotation', ':apt-processor'

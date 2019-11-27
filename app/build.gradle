@@ -1,4 +1,6 @@
-apply plugin: 'com.android.application'//Android应用插件（打包得到的是.apk文件文件）
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'//Android应用插件（打包得到的是.apk文件文件）
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
@@ -49,17 +51,10 @@ android {
 
     // 使用packagingOptions排除不想添加到apk中的文件
     packagingOptions {
-        // 要不然在华为的机器上运行不了
+        // eg:要不然在华为的机器上运行不了
 //        exclude 'lib/arm64-v8a/libcardioDecider.so'
 //        exclude 'lib/arm64-v8a/libcardioRecognizer.so'
 //        exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
-//        exclude 'lib/arm64-v8a/libopencv_core.so'
-//        exclude 'lib/arm64-v8a/libopencv_imgproc.so'
-//        exclude 'lib/x86_64/libcardioDecider.so'
-//        exclude 'lib/x86_64/libcardioRecognizer.so'
-//        exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
-//        exclude 'lib/x86_64/libopencv_core.so'
-//        exclude 'lib/x86_64/libopencv_imgproc.so'
     }
 }
 
@@ -85,6 +80,10 @@ dependencies {
     implementation rootProject.ext.dependencies.aspectjrt
     implementation 'com.android.support:support-annotations:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation project(":apt-annotation")
+    annotationProcessor project(":apt-processor")
 }
 
 
@@ -133,4 +132,7 @@ project.android.applicationVariants.all { variant ->
             }
         }
     }
+}
+repositories {
+    mavenCentral()
 }

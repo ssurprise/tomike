@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -11,16 +12,15 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 /**
  * @author shiguotao
- *         <p>
- *         图片操作类
- *         支持对图片的放大、缩小、拖动、双击放大、双击缩小。
- *         支持兼容ViewPager，图片放大后拖拽图片达到边界后，交由ViewPager 处理，进行ViewPager的切换
+ * <p>
+ * 图片操作类
+ * 支持对图片的放大、缩小、拖动、双击放大、双击缩小。
+ * 支持兼容ViewPager，图片放大后拖拽图片达到边界后，交由ViewPager 处理，进行ViewPager的切换
  */
-public class ZoomImageView extends ImageView implements ScaleGestureDetector.OnScaleGestureListener,
+public class ZoomImageView extends AppCompatImageView implements ScaleGestureDetector.OnScaleGestureListener,
         View.OnTouchListener, ViewTreeObserver.OnGlobalLayoutListener {
     private static final String TAG = ZoomImageView.class.getSimpleName();
     public static float SCALE_MAX = 2.0f;

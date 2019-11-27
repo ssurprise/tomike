@@ -36,21 +36,7 @@ public class LightDarkTextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_light_dark_text);
-
-
-//        String a = "abc";
-//        String e = "ab";
-//        e = e + "c";
-//        Log.e("a==e", (a == e) + "");
-
-
-        String a = "abc";
-        final String e = "ab";
-        String b = e + "c";
-        Log.e("a==b", (a == b) + "");
-
 
         input = findViewById(R.id.lightDarkText_input);
         input1 = findViewById(R.id.lightDarkText_input1);
