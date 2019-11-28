@@ -94,11 +94,13 @@ public class BindViewProcessor extends AbstractProcessor {
     }
 
     private void createFile() {
+        // 遍历类型元素（Activity） map，为每个类型元素创建一个文件
         for (TypeElement key : mTypeElementMapHashMap.keySet()) {
-            Map<Integer, VariableElement> elementMap = mTypeElementMapHashMap.get(key);
-            String packageName = mElementsUtils.getPackageOf(key).getQualifiedName().toString();
 
-            JavaFile javaFile = JavaFile.builder(packageName, generateCodeByPoet(key, elementMap)).build();
+            // 获取类型元素所在的包名
+            String packageName = mElementsUtils.getPackageOf(key).getQualifiedName().toString();
+            TypeSpec typeSpec = generateFileCodeByPoet(key, mTypeElementMapHashMap.get(key));
+            JavaFile javaFile = JavaFile.builder(packageName, typeSpec).build();
             try {
                 javaFile.writeTo(processingEnv.getFiler());
             } catch (IOException e) {
@@ -107,7 +109,14 @@ public class BindViewProcessor extends AbstractProcessor {
         }
     }
 
-    private TypeSpec generateCodeByPoet(TypeElement typeElement, Map<Integer, VariableElement> variableElementMap) {
+    /**
+     * 生成文件代码
+     *
+     * @param typeElement        类型元素
+     * @param variableElementMap
+     * @return
+     */
+    private TypeSpec generateFileCodeByPoet(TypeElement typeElement, Map<Integer, VariableElement> variableElementMap) {
         //自动生成的文件以 Activity名 + ViewBinding 进行命名
         return TypeSpec.classBuilder(typeElement.getSimpleName().toString() + "ViewBinding")
                 .addModifiers(Modifier.PUBLIC)
@@ -116,13 +125,15 @@ public class BindViewProcessor extends AbstractProcessor {
     }
 
     /**
+     * 生成方法代码
+     *
      * @param typeElement        注解对象的根元素，即Activity
      * @param variableElementMap Activity包含的注解对象以及注解的目标对象
      * @return MethodSpec
      */
     private MethodSpec generateMethodByPoet(TypeElement typeElement, Map<Integer, VariableElement> variableElementMap) {
         ClassName className = ClassName.bestGuess(typeElement.getQualifiedName().toString());
-        //  _mainActivity.btn_serializeSingle = (android.widget.Button) (_mainActivity.findViewById(2131165221));
+        //  _homeActivity.fl_content_container = (android.widget.FrameLayout)(_homeActivity.findViewById(2131296467));}
         // 第一个转小写+下划线
         String parameter = "_" + toLowerCaseFirstChar(className.simpleName());
         MethodSpec.Builder builder = MethodSpec.methodBuilder("bind") // 方法名
@@ -135,8 +146,12 @@ public class BindViewProcessor extends AbstractProcessor {
             String fieldName = variableElement.getSimpleName().toString();
             // 变量父类的全称
             String fieldType = variableElement.asType().toString();
-            String text = "{0}.{1} = ({2})({3}.findViewById({4}));";
+            String text = "{0}.{1} = ({2})({3}.findViewById({4}));\n";
             builder.addCode(MessageFormat.format(text, parameter, fieldName, fieldType, parameter, String.valueOf(viewId)));
+//            builder.addCode(MessageFormat.format(text, parameter, fieldName, fieldType, parameter, String.valueOf(viewId)));
+//            builder.addCode(MessageFormat.format(text, parameter, fieldName, fieldType, parameter, String.valueOf(viewId)));
+//            builder.addCode(MessageFormat.format(text, parameter, fieldName, fieldType, parameter, String.valueOf(viewId)));
+//            builder.addCode(MessageFormat.format(text, parameter, fieldName, fieldType, parameter, String.valueOf(viewId)));
         }
         return builder.build();
     }
