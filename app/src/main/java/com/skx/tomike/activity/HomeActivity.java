@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.skx.tomike.R;
+import com.skx.tomike.apt_annotation.BindView;
 import com.skx.tomike.data.bo.HomepageNavigationTabBo;
 import com.skx.tomike.fragment.business.CatalogFragment;
 import com.skx.tomike.fragment.business.HomepageFragment;
@@ -34,7 +35,8 @@ import java.util.List;
 public class HomeActivity extends SkxBaseActivity implements OnClickListener {
 
     private FragmentManager mFragmentManager;
-    private FrameLayout fl_content_container;
+    @BindView(R.id.homepage_content_container)
+    FrameLayout fl_content_container;
     private ImageView imv_homepageTab_icon;
     private TextView tv_homepageTab_text;
 
@@ -107,7 +109,10 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
     @Override
     public void initializeView() {
         setContentView(R.layout.activity_main);
-        fl_content_container = findViewById(R.id.homepage_content_container);
+        HomeActivityViewBinding.bind(this);
+
+//        fl_content_container = findViewById(R.id.homepage_content_container);
+        fl_content_container.setVisibility(View.VISIBLE);
 
         imv_homepageTab_icon = findViewById(R.id.homepage_navigation_homepageTab_icon);
         tv_homepageTab_text = findViewById(R.id.homepage_navigation_homepageTab_text);
