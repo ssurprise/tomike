@@ -56,7 +56,7 @@ public class BindViewProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        // 获取所有包含BindView注解的元素
+        // 扫描整个工程，找出含有 BindView 注解的元素(包括类)
         Set<? extends Element> elementSet = roundEnvironment.getElementsAnnotatedWith(BindView.class);
         createTypeElement(elementSet);
         createFile();
