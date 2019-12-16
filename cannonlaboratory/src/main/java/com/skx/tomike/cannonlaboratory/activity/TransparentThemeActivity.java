@@ -40,5 +40,7 @@ public class TransparentThemeActivity extends AppCompatActivity {
     注意：透明主题的使用过程中需要注意 android:screenOrientation 这个属性，不能指定方向，否则在Android 8.0系统上会报错（系统兼容问题）。
     主要是和 android:windowIsTranslucent 这个属性的冲突
 
+    注意：不要使用 android:windowNoDisplay 属性，否则会有如下报错。Activity did not call finish() prior to onResume() completing
+
      */
 }
