@@ -17,13 +17,16 @@
                     android:scheme="skxdad" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.TransparentThemeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:theme="@style/GlobalCaptchaTheme.Transparent"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+
         <activity android:name=".activity.FloatingWindowActivity" />
+
         <activity
             android:name=".activity.NfcGroupActivity"
             android:launchMode="singleTask">
@@ -48,10 +51,10 @@
         </activity>
         <activity
             android:name=".activity.NfcWriteTextActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity
             android:name=".activity.NfcReadTextActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity
             android:name=".activity.NfcPermissionTestActivity"
             android:launchMode="singleTask" />

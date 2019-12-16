@@ -35,8 +35,10 @@ import java.util.List;
 public class HomeActivity extends SkxBaseActivity implements OnClickListener {
 
     private FragmentManager mFragmentManager;
+
     @BindView(R.id.homepage_content_container)
     FrameLayout fl_content_container;
+
     private ImageView imv_homepageTab_icon;
     private TextView tv_homepageTab_text;
 
@@ -109,9 +111,9 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
     @Override
     public void initializeView() {
         setContentView(R.layout.activity_main);
-        HomeActivityViewBinding.bind(this);
+//        HomeActivityViewBinding.bind(this);
 
-//        fl_content_container = findViewById(R.id.homepage_content_container);
+        fl_content_container = findViewById(R.id.homepage_content_container);
         fl_content_container.setVisibility(View.VISIBLE);
 
         imv_homepageTab_icon = findViewById(R.id.homepage_navigation_homepageTab_icon);
