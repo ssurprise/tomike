@@ -27,6 +27,12 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
 
     private Button mBtnAddPeople;
 
+
+    private VipThread vipThread = new VipThread("vip");
+    private ClientThread client1Thread = new ClientThread("client-1");
+    private ClientThread client2Thread = new ClientThread("client-2");
+    private ClientThread client3Thread = new ClientThread("client-3");
+
     private final Queue<Integer> mClientArray = new LinkedList<>();
     private AtomicInteger mAtomicInteger = new AtomicInteger();
 
@@ -36,16 +42,16 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
-                    mTvLogcat.append("\n 请 xxx 到vip 柜台办理");
+                    mTvLogcat.append("\n 请 " + msg.arg1 + " 到vip 柜台办理");
                     break;
                 case 1:
-                    mTvLogcat.append("\n 请 xxx 到柜台1 办理");
+                    mTvLogcat.append("\n 请 " + msg.arg1 + " 到柜台1 办理");
                     break;
                 case 2:
-                    mTvLogcat.append("\n 请 xxx 到柜台2 办理");
+                    mTvLogcat.append("\n 请  " + msg.arg1 + " 到柜台2 办理");
                     break;
                 case 3:
-                    mTvLogcat.append("\n 请 xxx 到柜台3 办理");
+                    mTvLogcat.append("\n 请  " + msg.arg1 + " 到柜台3 办理");
                     break;
             }
         }
@@ -57,6 +63,11 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread);
         initView();
+        init();
+    }
+
+    private void init() {
+
     }
 
     private void initView() {
@@ -77,38 +88,20 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_thread_0) {
-            new VipThread().start();
+            vipThread.setClient(mClientArray.peek());
+            vipThread.start();
 
         } else if (v.getId() == R.id.btn_thread_1) {
-            new ClientThread().start();
+            client1Thread.setClient(mClientArray.peek());
+            client1Thread.start();
 
         } else if (v.getId() == R.id.btn_thread_2) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    Log.e("thread:", Thread.currentThread().getName());
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    mHandler.sendEmptyMessage(2);
-                }
-            };
-            new Thread(runnable).start();
+            client2Thread.setClient(mClientArray.peek());
+            client2Thread.start();
 
         } else if (v.getId() == R.id.btn_thread_3) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    mHandler.sendEmptyMessage(3);
-                }
-            }).start();
+            client3Thread.setClient(mClientArray.peek());
+            client3Thread.start();
 
         } else if (v.getId() == R.id.btn_add_people) {
             int i = mAtomicInteger.addAndGet(1);
@@ -118,19 +111,63 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
 
     class VipThread extends Thread {
 
+        private Integer client;
+
+        public VipThread(String name) {
+            super(name);
+        }
+
+        public void setClient(Integer client) {
+            this.client = client;
+        }
+
         @Override
         public void run() {
             super.run();
-            mHandler.sendEmptyMessage(0);
+            if (client < 0) {
+                return;
+            }
+            Message message = mHandler.obtainMessage(0);
+            message.arg1 = client;
+            mHandler.sendMessage(message);
         }
     }
 
     class ClientThread extends Thread {
 
+        private Integer client;
+
+        public void setClient(Integer client) {
+            this.client = client;
+            mClientArray.poll();
+        }
+
+        public ClientThread(String name) {
+            super(name);
+        }
+
         @Override
         public void run() {
             super.run();
+            if (client < 0) {
+                return;
+            }
             Log.e("thread:", Thread.currentThread().getName());
+            Message message = mHandler.obtainMessage();
+
+            switch (getName()) {
+                case "client-1":
+                    message.what = 1;
+                    break;
+                case "client-2":
+                    message.what = 2;
+                    break;
+                case "client-3":
+                    message.what = 3;
+                    break;
+            }
+            message.arg1 = client;
+            mHandler.sendMessage(message);
         }
     }
 }
