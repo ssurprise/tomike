@@ -7,6 +7,7 @@ import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.GenericTestActivity;
 import com.skx.tomike.activity.GetTopTestActivity;
+import com.skx.tomike.activity.HandlerActivity;
 import com.skx.tomike.activity.HeaderFooterRecyclerViewActivity;
 import com.skx.tomike.activity.ImageSpanActivity;
 import com.skx.tomike.activity.KeyboardActivity;
@@ -19,6 +20,7 @@ import com.skx.tomike.activity.StatusBarNavigationBarActivity;
 import com.skx.tomike.activity.TabLayoutHelperActivity;
 import com.skx.tomike.activity.TextSwitcherActivity;
 import com.skx.tomike.activity.TextWordSpacingActivity;
+import com.skx.tomike.activity.ThreadActivity;
 import com.skx.tomike.activity.Tint_BackgroundTintActivity;
 import com.skx.tomike.activity.Tint_DrawableTintActivity;
 import com.skx.tomike.activity.UrlEncodeActivity;
@@ -205,6 +207,8 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_DESIGN_PATTERNS, mDesignPatternCatalogs);
 
 
+        mOtherCatalogs.add(new CatalogItem("多线程", ThreadActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("getTop()测试", GetTopTestActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("投影", ShadowActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("TextView字间距", TextWordSpacingActivity.class.getName()));
@@ -217,6 +221,7 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("Matrix自定义版", MatrixImageActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("Handler", ColorMatrix2Activity.class.getName()));
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 

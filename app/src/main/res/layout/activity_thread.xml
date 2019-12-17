@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_thread_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="模拟叫号系统 - 多线程"
+        android:textColor="@color/skx_212121"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/sv_thread_tv"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/skx_f5f5f5"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_thread_title">
+
+        <TextView
+            android:id="@+id/tv_thread_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_thread_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="vip"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_1"
+        app:layout_constraintTop_toBottomOf="@id/sv_thread_tv" />
+
+    <Button
+        android:id="@+id/btn_thread_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="柜台1"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_0"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_2"
+        app:layout_constraintTop_toBottomOf="@id/sv_thread_tv" />
+
+    <Button
+        android:id="@+id/btn_thread_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="柜台2"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_1"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_3"
+        app:layout_constraintTop_toBottomOf="@id/sv_thread_tv" />
+
+    <Button
+        android:id="@+id/btn_thread_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="柜台3"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sv_thread_tv" />
+
+    <Button
+        android:id="@+id/btn_add_people"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="又来一个人，+1"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_thread_0" />
+
+</android.support.constraint.ConstraintLayout>

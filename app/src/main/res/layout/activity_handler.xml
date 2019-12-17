@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <ScrollView
+        android:id="@+id/sv_handler_tv"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@color/skx_f5f5f5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_handler_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_handler_sent"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="发送+1"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sv_handler_tv" />
+
+    <Button
+        android:id="@+id/btn_handler_threadSent"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="子线程发送+1"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_handler_sent"
+        app:layout_constraintTop_toBottomOf="@id/sv_handler_tv" />
+
+
+    <Button
+        android:id="@+id/btn_handler_post"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="post+1"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_handler_threadSent"
+        app:layout_constraintTop_toBottomOf="@id/sv_handler_tv" />
+
+</android.support.constraint.ConstraintLayout>
