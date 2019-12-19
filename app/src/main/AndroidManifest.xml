@@ -215,6 +215,10 @@
         <activity
             android:name=".activity.ThreadActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ThreadDaemonActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

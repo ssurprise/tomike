@@ -21,6 +21,7 @@ import com.skx.tomike.activity.TabLayoutHelperActivity;
 import com.skx.tomike.activity.TextSwitcherActivity;
 import com.skx.tomike.activity.TextWordSpacingActivity;
 import com.skx.tomike.activity.ThreadActivity;
+import com.skx.tomike.activity.ThreadDaemonActivity;
 import com.skx.tomike.activity.Tint_BackgroundTintActivity;
 import com.skx.tomike.activity.Tint_DrawableTintActivity;
 import com.skx.tomike.activity.UrlEncodeActivity;
@@ -208,6 +209,7 @@ public class CatalogListModel {
 
 
         mOtherCatalogs.add(new CatalogItem("多线程", ThreadActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("守护线程", ThreadDaemonActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("getTop()测试", GetTopTestActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("投影", ShadowActivity.class.getName()));

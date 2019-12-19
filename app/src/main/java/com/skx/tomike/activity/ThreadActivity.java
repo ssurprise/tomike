@@ -20,6 +20,12 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 描述 : 多线程demo
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2019-12-19 18:46
+ */
 public class ThreadActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mTvLogcat;
@@ -88,10 +94,10 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
 
     public void clearClient(View view) {
         mClientArray.clear();
+        mAtomicInteger = new AtomicInteger();
         for (int i = 0; i < 20; i++) {
             mClientArray.offer(mAtomicInteger.addAndGet(1));
         }
-        mAtomicInteger = new AtomicInteger();
         mTvLogcat.setText("");
         updatePeopleCount();
     }
