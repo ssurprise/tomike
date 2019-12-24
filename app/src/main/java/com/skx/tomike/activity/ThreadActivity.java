@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.skx.tomike.R;
@@ -28,11 +29,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ThreadActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private ScrollView mSvLogcat;
     private TextView mTvLogcat;
     private TextView mTvPeopleCount;
 
     // 叫号机
-    private final Queue<Integer> mClientArray = new LinkedList<>();
+    private final int INIT_COUNT = 50;
+    private Queue<Integer> mClientArray = new LinkedList<>();
     private AtomicInteger mAtomicInteger = new AtomicInteger();
 
     private Handler mHandler = new Handler(Looper.myLooper()) {
@@ -56,6 +59,7 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
                     mTvLogcat.append("\n 请 " + msg.arg1 + " 到柜台3 办理");
                     break;
             }
+            mSvLogcat.fullScroll(View.FOCUS_DOWN);
         }
     };
 
@@ -69,14 +73,15 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void init() {
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < INIT_COUNT; i++) {
             mClientArray.offer(mAtomicInteger.addAndGet(1));
         }
         updatePeopleCount();
     }
 
     private void initView() {
-        mTvLogcat = findViewById(R.id.tv_thread_tv);
+        mSvLogcat = findViewById(R.id.sv_thread_logcat);
+        mTvLogcat = findViewById(R.id.tv_thread_logcat);
         Button mBtnThread0 = findViewById(R.id.btn_thread_0);
         Button mBtnThread1 = findViewById(R.id.btn_thread_1);
         Button mBtnThread2 = findViewById(R.id.btn_thread_2);
@@ -95,7 +100,7 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
     public void clearClient(View view) {
         mClientArray.clear();
         mAtomicInteger = new AtomicInteger();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < INIT_COUNT; i++) {
             mClientArray.offer(mAtomicInteger.addAndGet(1));
         }
         mTvLogcat.setText("");
@@ -130,41 +135,26 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
         mTvPeopleCount.setText(String.format(Locale.CHINA, "当前等待人数：%d人", mClientArray.size()));
     }
 
+    class ClientThread extends Thread {
 
-    class ClientRunnable implements Runnable {
+        private Random rand = new Random(5);
 
-        private Random rand = new Random();
+        public ClientThread(String name) {
+            super(name);
+        }
 
         @Override
         public void run() {
+            super.run();
             if (mClientArray.isEmpty()) {
                 mHandler.sendEmptyMessage(-1);
                 return;
             }
 
             String name = Thread.currentThread().getName();
-
             Log.e("thread", name + "," + Thread.currentThread().getId());
             while (!mClientArray.isEmpty()) {
-                Message message = mHandler.obtainMessage();
-                message.arg1 = mClientArray.peek();
-                mClientArray.poll();
-                switch (name) {
-                    case "vip":
-                        message.what = 0;
-                        break;
-                    case "client-1":
-                        message.what = 1;
-                        break;
-                    case "client-2":
-                        message.what = 2;
-                        break;
-                    case "client-3":
-                        message.what = 3;
-                        break;
-                }
-                mHandler.sendMessage(message);
-
+                // 模拟线程执行时间，随机。
                 try {
                     int sleepInt;
                     switch (name) {
@@ -187,21 +177,35 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+                Message message = mHandler.obtainMessage();
+                message.arg1 = mClientArray.peek();
+                mClientArray.poll();
+                switch (name) {
+                    case "vip":
+                        message.what = 0;
+                        break;
+                    case "client-1":
+                        message.what = 1;
+                        break;
+                    case "client-2":
+                        message.what = 2;
+                        break;
+                    case "client-3":
+                        message.what = 3;
+                        break;
+                }
+                mHandler.sendMessage(message);
             }
         }
     }
 
-    class ClientThread extends Thread {
+    class ClientRunnable implements Runnable {
 
-        private Random rand = new Random(5);
-
-        public ClientThread(String name) {
-            super(name);
-        }
+        private Random rand = new Random();
 
         @Override
         public void run() {
-            super.run();
             if (mClientArray.isEmpty()) {
                 mHandler.sendEmptyMessage(-1);
                 return;

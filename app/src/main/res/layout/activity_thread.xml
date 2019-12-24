@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_thread_0" />
 
     <ScrollView
-        android:id="@+id/sv_thread_tv"
+        android:id="@+id/sv_thread_logcat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="15dp"
@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_people_count">
 
         <TextView
-            android:id="@+id/tv_thread_tv"
+            android:id="@+id/tv_thread_logcat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
