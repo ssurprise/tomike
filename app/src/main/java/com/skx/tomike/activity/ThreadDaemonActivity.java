@@ -22,9 +22,11 @@ import com.skx.tomike.R;
  */
 public class ThreadDaemonActivity extends AppCompatActivity {
 
+    private final static String TAG = "ThreadDaemonActivity";
+
     private CheckBox mCbDaemon;
     private TextView mTvLogcat;
-    private Thread kingThread;
+    private Thread mUserThread;
 
     private volatile boolean isDaemon;
 
@@ -56,12 +58,12 @@ public class ThreadDaemonActivity extends AppCompatActivity {
     }
 
     public void onThreadDaemonStart(View view) {
-        kingThread = new Thread(new Runnable() {
+        mUserThread = new Thread(new Runnable() {
 
             @Override
             public void run() {
                 Message message = mHandler.obtainMessage(0);
-                message.obj = "king 线程 start ";
+                message.obj = "user 线程 start ";
                 mHandler.sendMessage(message);
 
                 // 守护线程
@@ -75,15 +77,15 @@ public class ThreadDaemonActivity extends AppCompatActivity {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                            Log.e("11111111", "11111111111");
                             Message message = mHandler.obtainMessage(1);
                             message.obj = "daemon 线程 running - " + i;
                             mHandler.sendMessage(message);
                             i++;
                         }
                     }
-                });
-                daemonThread.setDaemon(false);
+                }, "daemon");
+                daemonThread.setDaemon(isDaemon);
+                Log.e(TAG, "daemon 是否是守护线程：" + isDaemon);
                 daemonThread.start();
 
                 // 国王线程
@@ -94,20 +96,25 @@ public class ThreadDaemonActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    Log.e("00000000", "000000000000");
 
                     Message message_1 = mHandler.obtainMessage(0);
-                    message_1.obj = "king 线程 running - " + i;
+                    message_1.obj = "user线程 running - " + i;
                     mHandler.sendMessage(message_1);
                     i++;
                 }
             }
-        });
-        kingThread.start();
+        }, "user");
+        mUserThread.start();
+
+        Log.e(TAG, "id:" + mUserThread.getId());
+        Log.e(TAG, "name:" + mUserThread.getName());
+        Log.e(TAG, "priority:" + mUserThread.getPriority());
+        Log.e(TAG, "state:" + mUserThread.getState());
     }
 
     public void onThreadDaemonReset(View view) {
-        kingThread.interrupt();
+        mUserThread.interrupt();
         mTvLogcat.setText("");
+        Log.e(TAG, mUserThread.getName() + "->" + mUserThread.getState());
     }
 }
