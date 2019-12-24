@@ -229,6 +229,7 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 mHandler.sendMessage(message);
 
+                // 模拟线程执行时间，随机。
                 try {
                     int sleepInt;
                     switch (name) {
