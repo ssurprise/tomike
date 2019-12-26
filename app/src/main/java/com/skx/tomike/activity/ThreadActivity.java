@@ -34,9 +34,12 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
     private TextView mTvPeopleCount;
 
     // 叫号机
-    private final int INIT_COUNT = 50;
-    private Queue<Integer> mClientArray = new LinkedList<>();
+    private int INIT_COUNT = 20;
+    private int mIndex = 1;
+    private final Queue<Integer> mClientArray = new LinkedList<>();
     private AtomicInteger mAtomicInteger = new AtomicInteger();
+
+    private ClientRunnable mClientRunnable;
 
     private Handler mHandler = new Handler(Looper.myLooper()) {
         @Override
@@ -77,6 +80,7 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
             mClientArray.offer(mAtomicInteger.addAndGet(1));
         }
         updatePeopleCount();
+        mClientRunnable = new ClientRunnable();
     }
 
     private void initView() {
@@ -98,6 +102,7 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void clearClient(View view) {
+        mIndex = 1;
         mClientArray.clear();
         mAtomicInteger = new AtomicInteger();
         for (int i = 0; i < INIT_COUNT; i++) {
@@ -110,20 +115,20 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_thread_0) {
-            new ClientThread("vip").start();
-//            new Thread(new ClientRunnable(), "vip").start();
+//            new ClientThread("vip").start();
+            new Thread(mClientRunnable, "vip").start();
 
         } else if (v.getId() == R.id.btn_thread_1) {
-            new ClientThread("client-1").start();
-//            new Thread(new ClientRunnable(), "client-1").start();
+//            new ClientThread("client-1").start();
+            new Thread(mClientRunnable, "client-1").start();
 
         } else if (v.getId() == R.id.btn_thread_2) {
-            new ClientThread("client-2").start();
-//            new Thread(new ClientRunnable(), "client-2").start();
+//            new ClientThread("client-2").start();
+            new Thread(mClientRunnable, "client-2").start();
 
         } else if (v.getId() == R.id.btn_thread_3) {
-            new ClientThread("client-3").start();
-//            new Thread(new ClientRunnable(), "client-3").start();
+//            new ClientThread("client-3").start();
+            new Thread(mClientRunnable, "client-3").start();
 
         } else if (v.getId() == R.id.btn_add_people) {
             mClientArray.offer(mAtomicInteger.addAndGet(1));
@@ -206,33 +211,9 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
 
         @Override
         public void run() {
-            if (mClientArray.isEmpty()) {
-                mHandler.sendEmptyMessage(-1);
-                return;
-            }
-
             String name = Thread.currentThread().getName();
             Log.e("thread", name + "," + Thread.currentThread().getId());
-            while (!mClientArray.isEmpty()) {
-                Message message = mHandler.obtainMessage();
-                message.arg1 = mClientArray.peek();
-                mClientArray.poll();
-                switch (name) {
-                    case "vip":
-                        message.what = 0;
-                        break;
-                    case "client-1":
-                        message.what = 1;
-                        break;
-                    case "client-2":
-                        message.what = 2;
-                        break;
-                    case "client-3":
-                        message.what = 3;
-                        break;
-                }
-                mHandler.sendMessage(message);
-
+            while (mIndex <= INIT_COUNT) {
                 // 模拟线程执行时间，随机。
                 try {
                     int sleepInt;
@@ -256,6 +237,25 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+                Message message = mHandler.obtainMessage();
+                message.arg1 = mIndex;
+                switch (name) {
+                    case "vip":
+                        message.what = 0;
+                        break;
+                    case "client-1":
+                        message.what = 1;
+                        break;
+                    case "client-2":
+                        message.what = 2;
+                        break;
+                    case "client-3":
+                        message.what = 3;
+                        break;
+                }
+                mHandler.sendMessage(message);
+                mIndex++;
             }
         }
     }
