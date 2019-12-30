@@ -220,6 +220,7 @@
             android:name=".activity.ThreadDaemonActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.ThreadInterruptActivity" />
+        <activity android:name=".activity.ThreadSynchronizedActivity" />
     </application>
 
 </manifest>

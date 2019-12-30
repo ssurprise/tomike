@@ -23,6 +23,7 @@ import com.skx.tomike.activity.TextWordSpacingActivity;
 import com.skx.tomike.activity.ThreadActivity;
 import com.skx.tomike.activity.ThreadDaemonActivity;
 import com.skx.tomike.activity.ThreadInterruptActivity;
+import com.skx.tomike.activity.ThreadSynchronizedActivity;
 import com.skx.tomike.activity.Tint_BackgroundTintActivity;
 import com.skx.tomike.activity.Tint_DrawableTintActivity;
 import com.skx.tomike.activity.UrlEncodeActivity;
@@ -212,6 +213,7 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("多线程", ThreadActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("线程守护", ThreadDaemonActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("线程中断", ThreadInterruptActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("线程同步", ThreadSynchronizedActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("getTop()测试", GetTopTestActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("投影", ShadowActivity.class.getName()));
