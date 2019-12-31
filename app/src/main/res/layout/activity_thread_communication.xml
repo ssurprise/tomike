@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_threadCommunication_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="线程间通信"
+        android:textColor="@color/skx_212121"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_threadCommunication_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onThreadCommunicationStart"
+        android:text="wait/notify 方式"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_threadCommunication_reset"
+        app:layout_constraintTop_toBottomOf="@id/tv_threadCommunication_title" />
+
+    <Button
+        android:id="@+id/btn_threadCommunication_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onThreadCommunicationReset"
+        android:text="重置"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadCommunication_start"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_threadCommunication_start" />
+
+    <Button
+        android:id="@+id/btn_threadCommunication_production"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onThreadCommunicationFlag"
+        android:text="生产者"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_threadCommunication_consumer"
+        app:layout_constraintTop_toBottomOf="@id/btn_threadCommunication_start" />
+
+    <Button
+        android:id="@+id/btn_threadCommunication_consumer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onThreadCommunicationFunction"
+        android:text="消费者"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadCommunication_production"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_threadCommunication_production" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rectangle_solid_b226a69a_corner_2"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_threadCommunication_production"
+        tools:layout_editor_absoluteY="192dp">
+
+        <TextView
+            android:id="@+id/tv_threadCommunication_logcat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -221,6 +221,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".activity.ThreadInterruptActivity" />
         <activity android:name=".activity.ThreadSynchronizedActivity" />
+        <activity android:name=".activity.ThreadCommunicationActivity" />
     </application>
 
 </manifest>

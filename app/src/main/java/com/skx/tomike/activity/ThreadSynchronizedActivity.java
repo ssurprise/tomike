@@ -7,9 +7,6 @@ import android.util.Log;
 
 import com.skx.tomike.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * 描述 : 线程同步demo
@@ -54,12 +51,6 @@ public class ThreadSynchronizedActivity extends AppCompatActivity {
 
             }
         }, "T3").start();
-
-
-        List<? super String> k = new ArrayList<>();
-        k.add("a");
-
-
     }
 }
 
