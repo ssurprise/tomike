@@ -34,7 +34,7 @@ public class ThreadSynchronizedActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                synchronizedTest.synMethod2();
+                synchronizedTest.fun2();
 
             }
         }, "T1").start();
@@ -42,7 +42,7 @@ public class ThreadSynchronizedActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                synchronizedTest.synMethod2();
+                synchronizedTest.fun2();
 
             }
         }, "T2").start();
@@ -50,7 +50,7 @@ public class ThreadSynchronizedActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                synchronizedTest.synMethod2();
+                synchronizedTest.fun2();
 
             }
         }, "T3").start();
@@ -67,14 +67,15 @@ class SynchronizedTest {
 
     private final static String TAG = "SynchronizedTest";
 
-    private final Object lock = new Object();
+    private final Object LOCK = new Object();
 
-    public void synMethod0() {
+    public void fun0() {
         synchronized (SynchronizedTest.class) {
         }
     }
 
-    public void synMethod1() {
+    // 同步代码块。实际获取的是当前类的monitor
+    public void fun1() {
         synchronized (this) {
             for (int i = 0; i < 5; i++) {
                 Log.e(TAG, Thread.currentThread().getName() + " -> " + i);
@@ -82,25 +83,23 @@ class SynchronizedTest {
         }
     }
 
-    public void synMethod2() {
-        synchronized (lock) {
+    // 同步代码块。获取的是LOCK实例的monitor，如果实例相同，那么只有一个线程能执行该块内容
+    public void fun2() {
+        synchronized (LOCK) {
             for (int i = 0; i < 5; i++) {
                 Log.e(TAG, Thread.currentThread().getName() + " -> " + i);
             }
         }
     }
 
-    /*
-    synchronized修饰静态同步方法。此时锁的是类的class对象。
-    对象锁，方法级别,同一对象争用该锁,普通（非静态）方法,synchronized的锁绑定在调用该方法的对象上
-     */
-    public synchronized void synMethod3() {
+    // 同步方法（非静态）。此时锁的是当前实例的对象，也就是说同一对象争用该锁。
+    public synchronized void fun3() {
         for (int i = 0; i < 5; i++) {
             Log.e(TAG, Thread.currentThread().getName() + " -> " + i);
         }
     }
 
-    public static synchronized void synMethod4() {
+    public static synchronized void fun4() {
     }
 
 }
