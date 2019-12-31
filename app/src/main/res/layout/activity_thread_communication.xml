@@ -19,45 +19,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_threadCommunication_start"
+        android:id="@+id/btn_threadCommunication_unused"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:onClick="onThreadCommunicationStart"
-        android:text="wait/notify 方式"
+        android:text="未进行通信"
         android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btn_threadCommunication_reset"
+        app:layout_constraintRight_toLeftOf="@id/btn_threadCommunication_waitAndNotify"
         app:layout_constraintTop_toBottomOf="@id/tv_threadCommunication_title" />
 
     <Button
-        android:id="@+id/btn_threadCommunication_reset"
+        android:id="@+id/btn_threadCommunication_waitAndNotify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onThreadCommunicationReset"
-        android:text="重置"
+        android:text="wait/notify 方式"
         android:textColor="@color/skx_212121"
-        app:layout_constraintLeft_toRightOf="@id/btn_threadCommunication_start"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadCommunication_unused"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_threadCommunication_start" />
+        app:layout_constraintTop_toTopOf="@id/btn_threadCommunication_unused" />
 
     <Button
         android:id="@+id/btn_threadCommunication_production"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:onClick="onThreadCommunicationFlag"
         android:text="生产者"
         android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btn_threadCommunication_consumer"
-        app:layout_constraintTop_toBottomOf="@id/btn_threadCommunication_start" />
+        app:layout_constraintTop_toBottomOf="@id/btn_threadCommunication_unused" />
 
     <Button
         android:id="@+id/btn_threadCommunication_consumer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onThreadCommunicationFunction"
         android:text="消费者"
         android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toRightOf="@id/btn_threadCommunication_production"
@@ -65,6 +61,7 @@
         app:layout_constraintTop_toTopOf="@id/btn_threadCommunication_production" />
 
     <ScrollView
+        android:id="@+id/sv_threadCommunication_logcat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="15dp"
