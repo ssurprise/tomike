@@ -62,6 +62,7 @@ public class ThreadCommunicationActivity extends AppCompatActivity implements Vi
 
         findViewById(R.id.btn_threadCommunication_unused).setOnClickListener(this);
         findViewById(R.id.btn_threadCommunication_waitAndNotify).setOnClickListener(this);
+        findViewById(R.id.btn_threadCommunication_waitAndNotifyShortcoming).setOnClickListener(this);
 
         mLogcat = findViewById(R.id.tv_threadCommunication_logcat);
     }
@@ -111,6 +112,43 @@ public class ThreadCommunicationActivity extends AppCompatActivity implements Vi
                         }
                     }
                 }, "consumer-thread").start();
+                break;
+
+            case R.id.btn_threadCommunication_waitAndNotifyShortcoming:
+                mLogcat.setText("");
+                mProductionConsumer1 = new ProductionConsumer1();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            mProductionConsumer1.production();
+                        }
+                    }
+                }, "producer-thread").start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            mProductionConsumer1.production();
+                        }
+                    }
+                }, "producer-thread-2").start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            mProductionConsumer1.consumer();
+                        }
+                    }
+                }, "consumer-thread").start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            mProductionConsumer1.consumer();
+                        }
+                    }
+                }, "consumer-thread-2").start();
                 break;
         }
     }
