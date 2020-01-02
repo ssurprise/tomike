@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.bomberlaboratory.ui.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.bomberlaboratory.R;
 
 /**
  * 描述 : 线程中断demo

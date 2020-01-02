@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.bomberlaboratory.ui.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.bomberlaboratory.R;
 
 
 /**
@@ -69,87 +69,82 @@ public class ThreadCommunicationActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_threadCommunication_unused:
-                mLogcat.setText("");
-                mProductionConsumer = new ProductionConsumer();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            mProductionConsumer.production();
-                        }
+        int id = v.getId();
+        if (id == R.id.btn_threadCommunication_unused) {
+            mLogcat.setText("");
+            mProductionConsumer = new ProductionConsumer();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        mProductionConsumer.production();
                     }
-                }, "producer-thread").start();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        int i = 0;
-                        while (i < 5) {
-                            mProductionConsumer.consumer();
-                            i++;
-                        }
+                }
+            }, "producer-thread").start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    int i = 0;
+                    while (i < 5) {
+                        mProductionConsumer.consumer();
+                        i++;
                     }
-                }, "consumer-thread").start();
-                break;
-
-            case R.id.btn_threadCommunication_waitAndNotify:
-                mLogcat.setText("");
-                mProductionConsumer1 = new ProductionConsumer1();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            mProductionConsumer1.production();
-                        }
+                }
+            }, "consumer-thread").start();
+        } else if (id == R.id.btn_threadCommunication_waitAndNotify) {
+            mLogcat.setText("");
+            mProductionConsumer1 = new ProductionConsumer1();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        mProductionConsumer1.production();
                     }
-                }, "producer-thread").start();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            mProductionConsumer1.consumer();
-                        }
+                }
+            }, "producer-thread").start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        mProductionConsumer1.consumer();
                     }
-                }, "consumer-thread").start();
-                break;
-
-            case R.id.btn_threadCommunication_waitAndNotifyShortcoming:
-                mLogcat.setText("");
-                mProductionConsumer1 = new ProductionConsumer1();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            mProductionConsumer1.production();
-                        }
+                }
+            }, "consumer-thread").start();
+        } else if (id == R.id.btn_threadCommunication_waitAndNotifyShortcoming) {
+            mLogcat.setText("");
+            mProductionConsumer1 = new ProductionConsumer1();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        mProductionConsumer1.production();
                     }
-                }, "producer-thread").start();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            mProductionConsumer1.production();
-                        }
+                }
+            }, "producer-thread").start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        mProductionConsumer1.production();
                     }
-                }, "producer-thread-2").start();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            mProductionConsumer1.consumer();
-                        }
+                }
+            }, "producer-thread-2").start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        mProductionConsumer1.consumer();
                     }
-                }, "consumer-thread").start();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            mProductionConsumer1.consumer();
-                        }
+                }
+            }, "consumer-thread").start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        mProductionConsumer1.consumer();
                     }
-                }, "consumer-thread-2").start();
-                break;
+                }
+            }, "consumer-thread-2").start();
         }
     }
 

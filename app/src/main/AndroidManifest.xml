@@ -202,7 +202,7 @@
             android:name=".activity.designpattern.ObserverPatternActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.GenericTestActivity"
+            android:name=".bomberlaboratory.ui.activity.GenericTestActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ViewCaptureActivity"
@@ -213,15 +213,15 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.ThreadActivity"
+            android:name=".bomberlaboratory.ui.activity.ThreadActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.ThreadDaemonActivity"
+            android:name=".bomberlaboratory.ui.activity.ThreadDaemonActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.ThreadInterruptActivity" />
-        <activity android:name=".activity.ThreadSynchronizedActivity" />
-        <activity android:name=".activity.ThreadCommunicationActivity" />
+        <activity android:name=".bomberlaboratory.ui.activity.ThreadInterruptActivity" />
+        <activity android:name=".bomberlaboratory.ui.activity.ThreadSynchronizedActivity" />
+        <activity android:name=".bomberlaboratory.ui.activity.ThreadCommunicationActivity" />
     </application>
 
 </manifest>

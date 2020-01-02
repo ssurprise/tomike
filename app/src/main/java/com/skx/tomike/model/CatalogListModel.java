@@ -5,7 +5,6 @@ import com.skx.tomike.activity.ColorMatrixActivity;
 import com.skx.tomike.activity.CoordinatorLayoutCaseActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
-import com.skx.tomike.activity.GenericTestActivity;
 import com.skx.tomike.activity.GetTopTestActivity;
 import com.skx.tomike.activity.HandlerActivity;
 import com.skx.tomike.activity.HeaderFooterRecyclerViewActivity;
@@ -20,11 +19,6 @@ import com.skx.tomike.activity.StatusBarNavigationBarActivity;
 import com.skx.tomike.activity.TabLayoutHelperActivity;
 import com.skx.tomike.activity.TextSwitcherActivity;
 import com.skx.tomike.activity.TextWordSpacingActivity;
-import com.skx.tomike.activity.ThreadActivity;
-import com.skx.tomike.activity.ThreadCommunicationActivity;
-import com.skx.tomike.activity.ThreadDaemonActivity;
-import com.skx.tomike.activity.ThreadInterruptActivity;
-import com.skx.tomike.activity.ThreadSynchronizedActivity;
 import com.skx.tomike.activity.Tint_BackgroundTintActivity;
 import com.skx.tomike.activity.Tint_DrawableTintActivity;
 import com.skx.tomike.activity.UrlEncodeActivity;
@@ -48,6 +42,12 @@ import com.skx.tomike.animlaboratory.activity.PropertyAnimatorActivity;
 import com.skx.tomike.animlaboratory.activity.ScrollerPracticeActivity;
 import com.skx.tomike.animlaboratory.activity.ShakeAnimatorActivity;
 import com.skx.tomike.animlaboratory.activity.ShareElementActivity;
+import com.skx.tomike.bomberlaboratory.ui.activity.GenericTestActivity;
+import com.skx.tomike.bomberlaboratory.ui.activity.ThreadActivity;
+import com.skx.tomike.bomberlaboratory.ui.activity.ThreadCommunicationActivity;
+import com.skx.tomike.bomberlaboratory.ui.activity.ThreadDaemonActivity;
+import com.skx.tomike.bomberlaboratory.ui.activity.ThreadInterruptActivity;
+import com.skx.tomike.bomberlaboratory.ui.activity.ThreadSynchronizedActivity;
 import com.skx.tomike.cannonlaboratory.activity.DrawerLayoutActivity;
 import com.skx.tomike.cannonlaboratory.activity.FloatingWindowActivity;
 import com.skx.tomike.cannonlaboratory.activity.GlideActivity;
@@ -211,11 +211,6 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_DESIGN_PATTERNS, mDesignPatternCatalogs);
 
 
-        mOtherCatalogs.add(new CatalogItem("多线程", ThreadActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("线程守护", ThreadDaemonActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("线程中断", ThreadInterruptActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("线程同步", ThreadSynchronizedActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("线程间通信", ThreadCommunicationActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("getTop()测试", GetTopTestActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("投影", ShadowActivity.class.getName()));
@@ -233,6 +228,11 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 
+        mJavaCatalogs.add(new CatalogItem("多线程", ThreadActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程守护", ThreadDaemonActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程中断", ThreadInterruptActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程同步", ThreadSynchronizedActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程间通信", ThreadCommunicationActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("泛型理解", GenericTestActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_JAVA, mJavaCatalogs);
     }

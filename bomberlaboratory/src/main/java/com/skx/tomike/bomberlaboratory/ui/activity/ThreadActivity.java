@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.bomberlaboratory.ui.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.bomberlaboratory.R;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.LinkedList;

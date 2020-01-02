@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.bomberlaboratory.ui.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +12,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.bomberlaboratory.R;
+
 
 /**
  * 描述 : 守护线程demo

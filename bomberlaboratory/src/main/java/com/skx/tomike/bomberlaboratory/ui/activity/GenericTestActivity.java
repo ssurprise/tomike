@@ -1,37 +1,36 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.bomberlaboratory.ui.activity;
 
 import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.skx.tomike.R;
+import com.skx.tomike.bomberlaboratory.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class GenericTestActivity extends SkxBaseActivity {
+public class GenericTestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generic_test);
 
-        initializeData();
+        init();
     }
 
-    @Override
-    public void initializeData() {
-        super.initializeData();
+    public void init() {
 
 
         List<String> strings = new ArrayList<>();
 //        strings.add(new Integer((42)));
 //        unsafeAdd(strings, new Integer(42));
         String s = strings.get(0);
-        Log.e("a","s=" + s);
+        Log.e("a", "s=" + s);
 
 
 //        List<String> strings = new ArrayList<>();
