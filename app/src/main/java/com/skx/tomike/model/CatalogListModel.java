@@ -44,6 +44,7 @@ import com.skx.tomike.animlaboratory.activity.ShakeAnimatorActivity;
 import com.skx.tomike.animlaboratory.activity.ShareElementActivity;
 import com.skx.tomike.bomberlaboratory.ui.activity.GenericTestActivity;
 import com.skx.tomike.bomberlaboratory.ui.activity.ThreadActivity;
+import com.skx.tomike.bomberlaboratory.ui.activity.ThreadCallbackActivity;
 import com.skx.tomike.bomberlaboratory.ui.activity.ThreadCommunicationActivity;
 import com.skx.tomike.bomberlaboratory.ui.activity.ThreadDaemonActivity;
 import com.skx.tomike.bomberlaboratory.ui.activity.ThreadInterruptActivity;
@@ -233,6 +234,7 @@ public class CatalogListModel {
         mJavaCatalogs.add(new CatalogItem("线程中断", ThreadInterruptActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程同步", ThreadSynchronizedActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程间通信", ThreadCommunicationActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程返回值", ThreadCallbackActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("泛型理解", GenericTestActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_JAVA, mJavaCatalogs);
     }
