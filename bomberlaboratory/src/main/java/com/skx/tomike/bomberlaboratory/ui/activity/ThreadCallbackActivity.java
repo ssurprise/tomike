@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -15,6 +16,8 @@ import com.skx.tomike.bomberlaboratory.R;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 
 /**
@@ -49,6 +52,13 @@ public class ThreadCallbackActivity extends AppCompatActivity {
         mTvLogcat = findViewById(R.id.tv_threadCallback_logcat);
     }
 
+
+    private void sendMessageToLogcat(@NonNull String msg) {
+        Message startMsg = mHandler.obtainMessage(1);
+        startMsg.obj = msg;
+        mHandler.sendMessage(startMsg);
+    }
+
     /**
      * 主线程等待法
      */
@@ -57,21 +67,20 @@ public class ThreadCallbackActivity extends AppCompatActivity {
         isWorking = true;
         mTvLogcat.setText("");
 
+        // 模拟主线程
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Message startMsg = mHandler.obtainMessage(0);
-                startMsg.obj = "主线程等待法 start";
-                mHandler.sendMessage(startMsg);
+                sendMessageToLogcat("主线程等待法 start");
 
+                // 开启子线程
                 ReturnValueRunnable returnValueRunnable = new ReturnValueRunnable();
                 Thread thread = new Thread(returnValueRunnable);
                 thread.start();
 
-                while (TextUtils.isEmpty(returnValueRunnable.value)) {
-                    Message loopMsg = mHandler.obtainMessage(0);
-                    loopMsg.obj = "主线程 waiting";
-                    mHandler.sendMessage(loopMsg);
+                // 主线程轮循等待
+                while (TextUtils.isEmpty(returnValueRunnable.getValue())) {
+                    sendMessageToLogcat("主线程 waiting");
                     try {
                         Thread.currentThread().sleep(100);
                     } catch (InterruptedException e) {
@@ -79,15 +88,46 @@ public class ThreadCallbackActivity extends AppCompatActivity {
                     }
                 }
 
-                Message endMsg = mHandler.obtainMessage(0);
-                endMsg.obj = "主线程收到子线程的返回值，return =\"" + returnValueRunnable.value + "\"";
-                mHandler.sendMessage(endMsg);
+                // 主线程收到子线程的返回值，return = returnValueRunnable.value
+                sendMessageToLogcat("主线程收到子线程的返回值，return =\"" + returnValueRunnable.getValue() + "\"");
                 isWorking = false;
             }
         }).start();
     }
 
+
     public void threadJoinFun(View view) {
+        if (isWorking) return;
+        isWorking = true;
+        mTvLogcat.setText("");
+
+        // 模拟主线程
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendMessageToLogcat("使用Thread的join函数 start");
+
+                // 开启子线程
+                ReturnValueRunnable returnValueRunnable = new ReturnValueRunnable();
+                Thread thread = new Thread(returnValueRunnable);
+                thread.start();
+
+                // 主线程join 等待子线程执行完毕
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // 主线程收到子线程的返回值，return = returnValueRunnable.value
+                sendMessageToLogcat("主线程收到子线程的返回值，return =\"" + returnValueRunnable.getValue() + "\"");
+                isWorking = false;
+            }
+        }).start();
+    }
+
+
+    public void onFutureTaskFun(View view) {
         if (isWorking) return;
         isWorking = true;
         mTvLogcat.setText("");
@@ -95,41 +135,35 @@ public class ThreadCallbackActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Message startMsg = mHandler.obtainMessage(1);
-                startMsg.obj = "使用Thread的join函数 start";
-                mHandler.sendMessage(startMsg);
+                sendMessageToLogcat("使用FutureTask实现 start");
 
-                ReturnValueRunnable returnValueRunnable = new ReturnValueRunnable();
-                Thread thread = new Thread(returnValueRunnable);
-                thread.start();
+                FutureTask<String> futureTask = new FutureTask<>(new FunCallable());
+                new Thread(futureTask).start();
+
+                if (!futureTask.isDone()) {
+                    sendMessageToLogcat("主线程 waiting");
+                }
 
                 try {
-                    thread.join();
+                    sendMessageToLogcat("主线程收到子线程的返回值，return =\"" + futureTask.get() + "\"");
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                Message endMsg = mHandler.obtainMessage(1);
-                endMsg.obj = "主线程收到子线程的返回值，return =\"" + returnValueRunnable.value + "\"";
-                mHandler.sendMessage(endMsg);
                 isWorking = false;
             }
         }).start();
     }
 
-    public void onFutureTaskFun(View view) {
-    }
-
     class ReturnValueRunnable implements Runnable {
 
-        public String value;
+        private String value;
         private Random random = new Random();
 
         @Override
         public void run() {
-            Message message = mHandler.obtainMessage(0);
-            message.obj = "子线程 doing";
-            mHandler.sendMessage(message);
+            sendMessageToLogcat("子线程 doing");
 
             try {
                 int i = random.nextInt(3000);
@@ -140,18 +174,33 @@ public class ThreadCallbackActivity extends AppCompatActivity {
             }
             value = "luckin";
 
-            Message message2 = mHandler.obtainMessage(0);
-            message2.obj = "子线程 done，return =\"" + value + "\"";
-            mHandler.sendMessage(message2);
+            sendMessageToLogcat("子线程 done，return =\"" + value + "\"");
+        }
+
+        public String getValue() {
+            return value;
         }
     }
 
-    class FunCallback implements Callable<String> {
+    class FunCallable implements Callable<String> {
+
+        private Random random = new Random();
 
         @Override
         public String call() throws Exception {
+            sendMessageToLogcat("子线程 doing");
 
-            return null;
+            try {
+                int i = random.nextInt(3000);
+                Log.e(TAG, i + "");
+                Thread.currentThread().sleep(i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            String value = "luckin";
+            sendMessageToLogcat("子线程 done，return =\"" + value + "\"");
+
+            return value;
         }
     }
 }
