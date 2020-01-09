@@ -17,6 +17,9 @@ import com.skx.tomike.bomberlaboratory.R;
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
 
@@ -96,6 +99,9 @@ public class ThreadCallbackActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * thread-join 法
+     */
     public void threadJoinFun(View view) {
         if (isWorking) return;
         isWorking = true;
@@ -127,6 +133,9 @@ public class ThreadCallbackActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Callable - FutureTask 法
+     */
     public void onFutureTaskFun(View view) {
         if (isWorking) return;
         isWorking = true;
@@ -135,7 +144,7 @@ public class ThreadCallbackActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                sendMessageToLogcat("使用FutureTask实现 start");
+                sendMessageToLogcat("使用Callable - FutureTask实现 start");
 
                 FutureTask<String> futureTask = new FutureTask<>(new FunCallable());
                 new Thread(futureTask).start();
@@ -150,6 +159,40 @@ public class ThreadCallbackActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+                isWorking = false;
+            }
+        }).start();
+    }
+
+    /**
+     * Callable - ThreadPool 法
+     */
+    public void onThreadPoolFun(View view) {
+        if (isWorking) return;
+        isWorking = true;
+        mTvLogcat.setText("");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendMessageToLogcat("使用Callable - ThreadPool实现 start");
+
+                ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+                Future<String> future = cachedThreadPool.submit(new FunCallable());
+
+                if (!future.isDone()) {
+                    sendMessageToLogcat("主线程 waiting");
+                }
+
+                try {
+                    sendMessageToLogcat("主线程收到子线程的返回值，return =\"" + future.get() + "\"");
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    cachedThreadPool.shutdown();
                 }
                 isWorking = false;
             }
