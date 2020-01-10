@@ -90,7 +90,7 @@ class SynchronizedTest {
         }
     }
 
-    public static synchronized void fun4() {
+    public synchronized static void fun4() {
     }
 
 }

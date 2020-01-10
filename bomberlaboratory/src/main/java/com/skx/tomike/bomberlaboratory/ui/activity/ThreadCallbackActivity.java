@@ -141,18 +141,22 @@ public class ThreadCallbackActivity extends AppCompatActivity {
         isWorking = true;
         mTvLogcat.setText("");
 
+        // 模拟主线程
         new Thread(new Runnable() {
             @Override
             public void run() {
                 sendMessageToLogcat("使用Callable - FutureTask实现 start");
 
+                // 开启子线程
                 FutureTask<String> futureTask = new FutureTask<>(new FunCallable());
                 new Thread(futureTask).start();
 
                 if (!futureTask.isDone()) {
+                    // 子线程未执行完毕，主线程等待
                     sendMessageToLogcat("主线程 waiting");
                 }
 
+                // 主线程收到子线程的返回值，return = returnValueRunnable.value
                 try {
                     sendMessageToLogcat("主线程收到子线程的返回值，return =\"" + futureTask.get() + "\"");
                 } catch (ExecutionException e) {
@@ -173,18 +177,22 @@ public class ThreadCallbackActivity extends AppCompatActivity {
         isWorking = true;
         mTvLogcat.setText("");
 
+        // 模拟主线程
         new Thread(new Runnable() {
             @Override
             public void run() {
                 sendMessageToLogcat("使用Callable - ThreadPool实现 start");
 
+                // 通过线程池开启一个子线程
                 ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
                 Future<String> future = cachedThreadPool.submit(new FunCallable());
 
                 if (!future.isDone()) {
+                    // 子线程未执行完毕，主线程等待
                     sendMessageToLogcat("主线程 waiting");
                 }
 
+                // 主线程收到子线程的返回值，return = returnValueRunnable.value
                 try {
                     sendMessageToLogcat("主线程收到子线程的返回值，return =\"" + future.get() + "\"");
                 } catch (ExecutionException e) {
