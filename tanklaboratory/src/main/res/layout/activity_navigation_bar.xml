@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".widget.activity.NavigationBarActivity">
+
+    <com.skx.tomike.tanklaboratory.widget.view.NavigationBarLayout
+        android:id="@+id/navigationBar_tab"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:tabBackground="@android:color/transparent"
+        app:tabIndicatorColor="@color/skx_323232"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/skx_ff4081"
+        app:tabTextColor="@color/skx_878787">
+
+    </com.skx.tomike.tanklaboratory.widget.view.NavigationBarLayout>
+
+    <TextView
+        android:id="@+id/navigationBar_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#ff4287"
+        android:textSize="24sp">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/navigationBar_notifyBtn1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="刷新1" />
+
+    <Button
+        android:id="@+id/navigationBar_notifyBtn2"
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+        android:text="刷新2" />
+
+    <Button
+        android:id="@+id/navigationBar_notifyBtn3"
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+        android:text="刷新3" />
+
+    <Button
+        android:id="@+id/navigationBar_notifyBtn4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="刷新4" />
+
+</LinearLayout>

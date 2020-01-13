@@ -1,1 +1,1 @@
-include ':app', ':TomikeCommon', ':viewlaboratory', ':animlaboratory', ':cannonlaboratory', ':apt-annotation', ':apt-processor', ':bomberlaboratory'
+include ':app', ':TomikeCommon', ':tanklaboratory', ':tacticallaboratory', ':cannonlaboratory', ':apt-annotation', ':apt-processor', ':bomberlaboratory'

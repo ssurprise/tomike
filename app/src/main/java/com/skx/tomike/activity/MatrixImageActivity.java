@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.skx.tomike.R;
-import com.skx.tomike.animlaboratory.view.TranslateImageView;
+import com.skx.tomike.tanklaboratory.animation.view.TranslateImageView;
 
 public class MatrixImageActivity extends AppCompatActivity {
 

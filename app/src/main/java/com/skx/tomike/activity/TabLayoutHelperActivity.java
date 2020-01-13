@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.fragment.business.TabLayoutContentFragment;
-import com.skx.tomike.viewlaboratory.view.TabLayoutHelper;
+import com.skx.tomike.tanklaboratory.widget.view.TabLayoutHelper;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 
 import java.util.ArrayList;

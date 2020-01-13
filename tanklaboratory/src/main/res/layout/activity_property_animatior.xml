@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.skx.tomike.tanklaboratory.animation.activity.PropertyAnimatorActivity">
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView_object"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/darker_gray"
+            android:gravity="center"
+            android:text="属性动画-ObjectAnimator"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView_value"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/textView_object"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp"
+            android:background="@android:color/darker_gray"
+            android:gravity="center"
+            android:text="属性动画-ValueAnimator"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView2_animator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:scaleType="center"
+        android:src="@drawable/image_01" />
+
+    <ImageView
+        android:id="@+id/imageView_animator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_favorite_yes" />
+</LinearLayout>

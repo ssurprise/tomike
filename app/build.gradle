@@ -61,8 +61,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation project(path: ':TomikeCommon')
-    implementation project(path: ':animlaboratory')
-    implementation project(path: ':viewlaboratory')
+    implementation project(path: ':tacticallaboratory')
+    implementation project(path: ':tanklaboratory')
     implementation project(path: ':cannonlaboratory')
     implementation project(path: ':bomberlaboratory')
     // 支持库
