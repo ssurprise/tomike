@@ -5,11 +5,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 /**
  * 描述 : 线程中断demo
@@ -17,7 +17,7 @@ import com.skx.tomike.bomberlaboratory.R;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
-public class ThreadInterruptActivity extends AppCompatActivity {
+public class ThreadInterruptActivity extends SkxBaseActivity {
 
     private final static String TAG = "ThreadInterruptActivity";
 
@@ -45,12 +45,20 @@ public class ThreadInterruptActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thread_interrupt);
-        initView();
+        mTvLogcat = findViewById(R.id.tv_threadInterrupt_logcat);
     }
 
-    private void initView() {
-        mTvLogcat = findViewById(R.id.tv_threadInterrupt_logcat);
+    @Override
+    protected void initParams() {
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_thread_interrupt;
+    }
+
+    @Override
+    protected void subscribeEvent() {
     }
 
     public void onThreadInterruptFlag(View view) {

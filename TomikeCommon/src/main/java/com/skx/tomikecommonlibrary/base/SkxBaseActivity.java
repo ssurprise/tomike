@@ -27,7 +27,7 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
     /**
      * 初始化主题样式
      */
-    private void nativeThemeStyle() {
+    protected void nativeThemeStyle() {
 
     }
 
@@ -45,7 +45,8 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
             configHeaderTitleView(mTvTitle);
 
             FrameLayout view = findViewById(R.id.fl_baseUI_content);
-            LayoutInflater.from(this).inflate(getLayoutId(), view, true);
+            View inflate = LayoutInflater.from(this).inflate(getLayoutId(), view, false);
+            view.addView(inflate);
 
         } else {
             setContentView(getLayoutId());
@@ -67,10 +68,6 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
      * @param title 页面标题view
      */
     protected void configHeaderTitleView(@NonNull TextView title) {
-
-    }
-
-    protected void configDefaultTitle() {
 
     }
 

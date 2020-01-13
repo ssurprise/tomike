@@ -6,13 +6,13 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -29,7 +29,7 @@ import java.util.concurrent.FutureTask;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
-public class ThreadCallbackActivity extends AppCompatActivity {
+public class ThreadCallbackActivity extends SkxBaseActivity {
 
     private final static String TAG = "ThreadCallbackActivity";
 
@@ -47,14 +47,36 @@ public class ThreadCallbackActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thread_callback);
         initView();
+    }
+
+    @Override
+    protected void initParams() {
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_thread_callback;
+    }
+
+    @Override
+    protected void subscribeEvent() {
     }
 
     private void initView() {
         mTvLogcat = findViewById(R.id.tv_threadCallback_logcat);
     }
 
+    @Override
+    protected boolean useDefaultLayout() {
+        return true;
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        super.configHeaderTitleView(title);
+        title.setText("获取线程返回值");
+    }
 
     private void sendMessageToLogcat(@NonNull String msg) {
         Message startMsg = mHandler.obtainMessage(1);

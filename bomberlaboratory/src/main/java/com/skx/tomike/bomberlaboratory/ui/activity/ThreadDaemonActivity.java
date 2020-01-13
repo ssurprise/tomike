@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 
 /**
@@ -21,7 +22,7 @@ import com.skx.tomike.bomberlaboratory.R;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
-public class ThreadDaemonActivity extends AppCompatActivity {
+public class ThreadDaemonActivity extends SkxBaseActivity {
 
     private final static String TAG = "ThreadDaemonActivity";
 
@@ -42,8 +43,22 @@ public class ThreadDaemonActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thread_daemon);
         initView();
+    }
+
+    @Override
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_thread_daemon;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
     }
 
     private void initView() {
