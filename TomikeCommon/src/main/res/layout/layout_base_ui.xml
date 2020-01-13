@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/iv_baseUI_header_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_btn_back"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_baseUI_header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:lines="1"
+            android:maxWidth="280dp"
+            android:singleLine="true"
+            android:textColor="#212121"
+            android:textSize="16sp"
+            tools:ignore="RelativeOverlap"
+            tools:text="标题标题标题标题标题标题标题标题标题标题" />
+
+        <ImageView
+            android:id="@+id/iv_baseUI_header_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="15dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_btn_more"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="#e0e0e0" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_baseUI_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
