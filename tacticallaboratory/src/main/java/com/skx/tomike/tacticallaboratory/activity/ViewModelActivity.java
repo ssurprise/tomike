@@ -1,20 +1,20 @@
-package com.skx.tomike.activity.designpattern;
+package com.skx.tomike.tacticallaboratory.activity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
-import com.skx.tomike.model.User;
-import com.skx.tomike.viewmodel.UserProfileViewModel;
+import com.skx.tomike.tacticallaboratory.R;
+import com.skx.tomike.tacticallaboratory.bean.User;
+import com.skx.tomike.tacticallaboratory.viewmodel.UserProfileViewModel;
 
-public class ViewModelActivity extends SkxBaseActivity {
+public class ViewModelActivity extends AppCompatActivity {
 
 
-    UserProfileViewModel mViewModel;
+    private UserProfileViewModel mViewModel;
 
     private TextView textView2;
     private TextView textView4;

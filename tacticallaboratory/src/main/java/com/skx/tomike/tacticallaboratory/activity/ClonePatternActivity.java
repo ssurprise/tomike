@@ -1,13 +1,13 @@
-package com.skx.tomike.activity.designpattern;
+package com.skx.tomike.tacticallaboratory.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
-import com.skx.tomike.javabean.User;
-import com.skx.tomike.javabean.UserSetting;
+import com.skx.tomike.tacticallaboratory.R;
+import com.skx.tomike.tacticallaboratory.bean.User;
+import com.skx.tomike.tacticallaboratory.bean.UserSetting;
 
 /**
  * 原型模式
@@ -20,7 +20,7 @@ import com.skx.tomike.javabean.UserSetting;
  *
  * @author shiguotao
  */
-public class ClonePatternActivity extends SkxBaseActivity {
+public class ClonePatternActivity extends AppCompatActivity {
 
     String noteStr = "super.clone 拷贝如果有包含对象，属于浅拷贝。包含的对象属性也需要实现Cloneable接口，重写clone方法。否则修改复制对象的对象值，则会影响到源对象的属性\n"
             + "原型模式可以解决构建复杂对象的资源消耗问题，能狗在某些场景下提升创建对象的效率。另外一个重要的用户就是保护性考拷贝\n " +
@@ -36,33 +36,28 @@ public class ClonePatternActivity extends SkxBaseActivity {
         refreshView();
     }
 
-    @Override
-    public void initializeView() {
-        super.initializeView();
+    private void initializeView() {
         setContentView(R.layout.activity_pattern_clone);
-        TextView note = (TextView) findViewById(R.id.clonePattern_note);
+        TextView note = findViewById(R.id.clonePattern_note);
         note.setText(noteStr);
     }
 
-    @Override
-    public void refreshView() {
-        super.refreshView();
-
+    private void refreshView() {
         User user = new User();
-        user.userName = "墨尔本";
-        user.password = "5684553";
+        user.setName("墨尔本");
+        user.setPassword("5684553");
 
         UserSetting userSetting = new UserSetting();
         userSetting.settingName = "睡眠设置";
         userSetting.settingValue = "YES";
-        user.userSetting = userSetting;
+        user.setUserSetting(userSetting);
 
         Log.e("复制前", user.toString());
         User userClone = user.clone();
         Log.e("复制后", userClone.toString());
 
-        userClone.userName = "墨尔本二代";
-        userClone.userSetting.settingName = "自启动设置";
+        userClone.setName("墨尔本二代");
+        userClone.getUserSetting().settingName = "自启动设置";
         Log.e("修改后，原对象", user.toString());
         Log.e("修改后，复制对象", userClone.toString());
     }

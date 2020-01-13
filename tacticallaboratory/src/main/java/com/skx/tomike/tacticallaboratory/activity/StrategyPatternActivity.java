@@ -1,9 +1,9 @@
-package com.skx.tomike.activity.designpattern;
+package com.skx.tomike.tacticallaboratory.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tacticallaboratory.R;
 
 /**
  * 策略模式

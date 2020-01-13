@@ -1,7 +1,7 @@
-package com.skx.tomike.activity.designpattern;
+package com.skx.tomike.tacticallaboratory.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tacticallaboratory.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,22 +20,23 @@ import java.util.Map;
  *
  * @author shiguotao
  */
-public class MementoPatternActivity extends Activity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class MementoPatternActivity extends AppCompatActivity
+        implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
-    EditText mEtNameInput;
+    private EditText mEtNameInput;
 
-    CheckBox mCbLikeMoney;
-    CheckBox mCbLikeYunv;
-    CheckBox mCbLikeMengmeizi;
-    CheckBox mCbLikeLuoli;
-    CheckBox mCbLikeNvhanzi;
-    CheckBox mCbLikeGay;
+    private CheckBox mCbLikeMoney;
+    private CheckBox mCbLikeYunv;
+    private CheckBox mCbLikeMengmeizi;
+    private CheckBox mCbLikeLuoli;
+    private CheckBox mCbLikeNvhanzi;
+    private CheckBox mCbLikeGay;
 
-    EditText mEtOtherInput;
+    private EditText mEtOtherInput;
 
-    Button mBtnSave;
-    Button mBtnReset;
-    Button mBtnClear;
+    private Button mBtnSave;
+    private Button mBtnReset;
+    private Button mBtnClear;
 
     public static String Like_Money = "Like_Money";
     public static String Like_YuNv = "Like_YuNv";
@@ -72,20 +73,20 @@ public class MementoPatternActivity extends Activity implements CompoundButton.O
     }
 
     private void initView() {
-        mEtNameInput = (EditText) findViewById(R.id.mementoPattern_nameInput);
+        mEtNameInput = findViewById(R.id.mementoPattern_nameInput);
 
-        mCbLikeMoney = (CheckBox) findViewById(R.id.mementoPattern_like_money);
-        mCbLikeYunv = (CheckBox) findViewById(R.id.mementoPattern_like_yunv);
-        mCbLikeMengmeizi = (CheckBox) findViewById(R.id.mementoPattern_like_mengmeizi);
-        mCbLikeLuoli = (CheckBox) findViewById(R.id.mementoPattern_like_luoli);
-        mCbLikeNvhanzi = (CheckBox) findViewById(R.id.mementoPattern_like_nvhanzi);
-        mCbLikeGay = (CheckBox) findViewById(R.id.mementoPattern_like_gay);
+        mCbLikeMoney = findViewById(R.id.mementoPattern_like_money);
+        mCbLikeYunv = findViewById(R.id.mementoPattern_like_yunv);
+        mCbLikeMengmeizi = findViewById(R.id.mementoPattern_like_mengmeizi);
+        mCbLikeLuoli = findViewById(R.id.mementoPattern_like_luoli);
+        mCbLikeNvhanzi = findViewById(R.id.mementoPattern_like_nvhanzi);
+        mCbLikeGay = findViewById(R.id.mementoPattern_like_gay);
 
-        mEtOtherInput = (EditText) findViewById(R.id.mementoPattern_otherInput);
+        mEtOtherInput = findViewById(R.id.mementoPattern_otherInput);
 
-        mBtnSave = (Button) findViewById(R.id.mementoPattern_save);
-        mBtnReset = (Button) findViewById(R.id.mementoPattern_reset);
-        mBtnClear = (Button) findViewById(R.id.mementoPattern_clear);
+        mBtnSave = findViewById(R.id.mementoPattern_save);
+        mBtnReset = findViewById(R.id.mementoPattern_reset);
+        mBtnClear = findViewById(R.id.mementoPattern_clear);
     }
 
     private void renderView() {
@@ -147,45 +148,32 @@ public class MementoPatternActivity extends Activity implements CompoundButton.O
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
-            case R.id.mementoPattern_like_money:
-                mPerson.like.put(Like_Money, isChecked);
-                break;
-            case R.id.mementoPattern_like_yunv:
-                mPerson.like.put(Like_YuNv, isChecked);
-                break;
-            case R.id.mementoPattern_like_mengmeizi:
-                mPerson.like.put(Like_MengMeiZi, isChecked);
-                break;
-            case R.id.mementoPattern_like_luoli:
-                mPerson.like.put(Like_LuoLi, isChecked);
-                break;
-            case R.id.mementoPattern_like_nvhanzi:
-                mPerson.like.put(Like_NvHanZi, isChecked);
-                break;
-            case R.id.mementoPattern_like_gay:
-                mPerson.like.put(Like_Gay, isChecked);
-                break;
-            default:
-                break;
+        int id = buttonView.getId();
+        if (id == R.id.mementoPattern_like_money) {
+            mPerson.like.put(Like_Money, isChecked);
+        } else if (id == R.id.mementoPattern_like_yunv) {
+            mPerson.like.put(Like_YuNv, isChecked);
+        } else if (id == R.id.mementoPattern_like_mengmeizi) {
+            mPerson.like.put(Like_MengMeiZi, isChecked);
+        } else if (id == R.id.mementoPattern_like_luoli) {
+            mPerson.like.put(Like_LuoLi, isChecked);
+        } else if (id == R.id.mementoPattern_like_nvhanzi) {
+            mPerson.like.put(Like_NvHanZi, isChecked);
+        } else if (id == R.id.mementoPattern_like_gay) {
+            mPerson.like.put(Like_Gay, isChecked);
         }
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.mementoPattern_save:
-                mCaretaker.setPersonMemento(mPerson.createMemento());
-                break;
-            case R.id.mementoPattern_reset:
-                mPerson.setMemento(mCaretaker.getPersonMemento());
-                renderView();
-                break;
-            case R.id.mementoPattern_clear:
-                mCaretaker.setPersonMemento(null);
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if (id == R.id.mementoPattern_save) {
+            mCaretaker.setPersonMemento(mPerson.createMemento());
+        } else if (id == R.id.mementoPattern_reset) {
+            mPerson.setMemento(mCaretaker.getPersonMemento());
+            renderView();
+        } else if (id == R.id.mementoPattern_clear) {
+            mCaretaker.setPersonMemento(null);
         }
     }
 

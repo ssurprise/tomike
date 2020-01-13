@@ -1,5 +1,7 @@
 package com.skx.tomike.javabean;
 
+import com.skx.tomike.tacticallaboratory.bean.UserSetting;
+
 /**
  * Created by shiguotao on 2016/11/13.
  */

@@ -1,4 +1,4 @@
-package com.skx.tomike.javabean;
+package com.skx.tomike.tacticallaboratory.bean;
 
 /**
  * Created by shiguotao on 2016/11/13.

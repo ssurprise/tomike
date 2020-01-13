@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context="com.skx.tomike.activity.designpattern.ChainOfResponsibilityPatternActivity">
+    tools:context="com.skx.tomike.tacticallaboratory.activity.ChainOfResponsibilityPatternActivity">
 
     <Button
         android:id="@+id/aop_this"

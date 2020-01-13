@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.skx.tomike.activity.designpattern.ClonePatternActivity">
+    tools:context="com.skx.tomike.tacticallaboratory.activity.ClonePatternActivity">
 
     <TextView
         android:id="@+id/clonePattern_note"

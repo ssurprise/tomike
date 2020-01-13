@@ -1,11 +1,11 @@
-package com.skx.tomike.viewmodel;
+package com.skx.tomike.tacticallaboratory.viewmodel;
 
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.skx.tomike.model.User;
+import com.skx.tomike.tacticallaboratory.bean.User;
 
 public class UserProfileViewModel extends ViewModel {
 

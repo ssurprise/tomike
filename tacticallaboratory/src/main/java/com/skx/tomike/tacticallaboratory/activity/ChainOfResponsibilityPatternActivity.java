@@ -1,4 +1,4 @@
-package com.skx.tomike.activity.designpattern;
+package com.skx.tomike.tacticallaboratory.activity;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tacticallaboratory.R;
 
 import java.util.Random;
 
@@ -39,32 +39,29 @@ public class ChainOfResponsibilityPatternActivity extends AppCompatActivity impl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pattern_chain_of_responsibility);
 
-        mCbComplaintsReasonHosted = (CheckBox) findViewById(R.id.cb_chainOfResponsibility_complaintsReason_hosted);
-        mCbComplaintsReasonActor = (CheckBox) findViewById(R.id.cb_chainOfResponsibility_complaintsReason_actor);
-        mCbComplaintsReasonNegativeAttitude = (CheckBox) findViewById(R.id.cb_chainOfResponsibility_complaintsReason_negativeAttitude);
-        mCbComplaintsReasonVerbalAbuse = (CheckBox) findViewById(R.id.cb_chainOfResponsibility_complaintsReason_verbalAbuse);
+        mCbComplaintsReasonHosted = findViewById(R.id.cb_chainOfResponsibility_complaintsReason_hosted);
+        mCbComplaintsReasonActor = findViewById(R.id.cb_chainOfResponsibility_complaintsReason_actor);
+        mCbComplaintsReasonNegativeAttitude = findViewById(R.id.cb_chainOfResponsibility_complaintsReason_negativeAttitude);
+        mCbComplaintsReasonVerbalAbuse = findViewById(R.id.cb_chainOfResponsibility_complaintsReason_verbalAbuse);
 
-        Button mBtnSubmit = (Button) findViewById(R.id.btn_chainOfResponsibility_submit);
-        mTvSubmitResult = (TextView) findViewById(R.id.tv_chainOfResponsibility_submitResult);
+        Button mBtnSubmit = findViewById(R.id.btn_chainOfResponsibility_submit);
+        mTvSubmitResult = findViewById(R.id.tv_chainOfResponsibility_submitResult);
 
-        mRlLoading = (LinearLayout) findViewById(R.id.rl_chainOfResponsibility_loading);
-        mTvLoadingText = (TextView) findViewById(R.id.rl_chainOfResponsibility_loadingText);
+        mRlLoading = findViewById(R.id.rl_chainOfResponsibility_loading);
+        mTvLoadingText = findViewById(R.id.rl_chainOfResponsibility_loadingText);
 
         mBtnSubmit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_chainOfResponsibility_submit:
-                if (!mCbComplaintsReasonHosted.isChecked() && !mCbComplaintsReasonActor.isChecked()
-                        && !mCbComplaintsReasonNegativeAttitude.isChecked() && !mCbComplaintsReasonVerbalAbuse.isChecked()) {
-                    Toast.makeText(ChainOfResponsibilityPatternActivity.this, "其请选择举报内容", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                complaintsReport();
-                break;
+        if (v.getId() == R.id.btn_chainOfResponsibility_submit) {
+            if (!mCbComplaintsReasonHosted.isChecked() && !mCbComplaintsReasonActor.isChecked()
+                    && !mCbComplaintsReasonNegativeAttitude.isChecked() && !mCbComplaintsReasonVerbalAbuse.isChecked()) {
+                Toast.makeText(ChainOfResponsibilityPatternActivity.this, "其请选择举报内容", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            complaintsReport();
         }
     }
 
