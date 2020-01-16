@@ -18,23 +18,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_threadSynchronized_objectLock_codeBlockObj"
+        android:id="@+id/btn_threadSynchronized_objectLock_codeBlockThis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="同步代码块-monitor"
+        android:text="同步代码块-this"
         android:textColor="@color/skx_212121"
         app:layout_constraintBottom_toBottomOf="@id/btn_threadSynchronized_objectLock"
         app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_objectLock"
         app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_objectLock" />
 
     <Button
-        android:id="@+id/btn_threadSynchronized_objectLock_codeBlockThis"
+        android:id="@+id/btn_threadSynchronized_objectLock_codeBlockMonitor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="同步代码块-this"
+        android:text="同步代码块-monitor"
         android:textColor="@color/skx_212121"
-        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_objectLock_codeBlockObj"
-        app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_objectLock_codeBlockObj" />
+        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_objectLock_codeBlockThis"
+        app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_objectLock_codeBlockThis" />
 
     <Button
         android:id="@+id/btn_threadSynchronized_objectLock_syncMethod"
@@ -43,7 +43,7 @@
         android:text="同步方法"
         android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_objectLock"
-        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_objectLock_codeBlockObj" />
+        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_objectLock_codeBlockThis" />
 
     <TextView
         android:id="@+id/btn_threadSynchronized_classLock"
@@ -56,7 +56,7 @@
         app:layout_constraintRight_toRightOf="@id/btn_threadSynchronized_objectLock"
         app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_objectLock_syncMethod" />
     <Button
-        android:id="@+id/btn_threadSynchronized_classLock_clazz"
+        android:id="@+id/btn_threadSynchronized_classLock_codeBlock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="同步代码块"
@@ -72,7 +72,7 @@
         android:text="静态同步方法"
         android:textColor="@color/skx_212121"
         app:layout_constraintBottom_toBottomOf="@id/btn_threadSynchronized_classLock"
-        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_classLock_clazz"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_classLock_codeBlock"
         app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_classLock" />
 
     <ScrollView
@@ -85,7 +85,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_classLock_clazz"
+        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_classLock_codeBlock"
         tools:layout_editor_absoluteY="192dp">
 
         <TextView
