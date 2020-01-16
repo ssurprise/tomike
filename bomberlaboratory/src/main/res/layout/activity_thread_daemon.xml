@@ -5,19 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_threadDaemon_title"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="守护线程"
-        android:textColor="@color/skx_212121"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <CheckBox
         android:id="@+id/btn_threadDaemon_daemon"
         android:layout_width="wrap_content"
@@ -40,7 +27,7 @@
         android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toRightOf="@id/btn_threadDaemon_daemon"
         app:layout_constraintRight_toLeftOf="@id/btn_threadDaemon_reset"
-        app:layout_constraintTop_toBottomOf="@id/tv_threadDaemon_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_threadDaemon_reset"

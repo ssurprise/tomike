@@ -1,11 +1,13 @@
 package com.skx.tomike.bomberlaboratory.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 
 /**
@@ -14,15 +16,40 @@ import com.skx.tomike.bomberlaboratory.R;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
-public class ThreadSynchronizedActivity extends AppCompatActivity {
+public class ThreadSynchronizedActivity extends SkxBaseActivity {
 
     public final static String TAG = "ThreadSynchronizedActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thread_synchronized);
         initView();
+    }
+
+    @Override
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_thread_synchronized;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
+    @Override
+    protected boolean useDefaultLayout() {
+        return true;
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        super.configHeaderTitleView(title);
+        title.setText("线程同步");
     }
 
     private void initView() {

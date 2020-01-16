@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.ThreadCallbackActivity">
 
-    <TextView
-        android:id="@+id/tv_threadCallback_title"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="获取线程返回值"
-        android:textColor="@color/skx_212121"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btn_threadCallback_mainThreadWait"
         android:layout_width="wrap_content"
@@ -29,7 +16,7 @@
         android:text="主线程等待法"
         android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_threadCallback_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_threadCallback_onThreadJoin"

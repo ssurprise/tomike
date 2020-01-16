@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
@@ -59,6 +60,17 @@ public class ThreadInterruptActivity extends SkxBaseActivity {
 
     @Override
     protected void subscribeEvent() {
+    }
+
+    @Override
+    protected boolean useDefaultLayout() {
+        return true;
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        super.configHeaderTitleView(title);
+        title.setText("线程中断");
     }
 
     public void onThreadInterruptFlag(View view) {

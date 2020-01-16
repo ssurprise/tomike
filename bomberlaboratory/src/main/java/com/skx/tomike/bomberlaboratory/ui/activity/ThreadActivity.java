@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +13,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.LinkedList;
@@ -27,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 版本 : V1
  * 创建时间 : 2019-12-19 18:46
  */
-public class ThreadActivity extends AppCompatActivity implements View.OnClickListener {
+public class ThreadActivity extends SkxBaseActivity implements View.OnClickListener {
 
     private ScrollView mSvLogcat;
     private TextView mTvLogcat;
@@ -70,17 +71,37 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thread);
         initView();
-        init();
     }
 
-    private void init() {
+    @Override
+    protected void initParams() {
         for (int i = 0; i < INIT_COUNT; i++) {
             mClientArray.offer(mAtomicInteger.addAndGet(1));
         }
         updatePeopleCount();
         mClientRunnable = new ClientRunnable();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_thread;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
+    @Override
+    protected boolean useDefaultLayout() {
+        return true;
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        super.configHeaderTitleView(title);
+        title.setText("模拟叫号系统 - 多线程");
     }
 
     private void initView() {
@@ -99,6 +120,8 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
         mBtnThread2.setOnClickListener(this);
         mBtnThread3.setOnClickListener(this);
         mBtnAddPeople.setOnClickListener(this);
+
+        mTvPeopleCount.setText(String.format(Locale.CHINA, "当前等待人数：%d人", mClientArray.size()));
     }
 
     public void clearClient(View view) {
@@ -137,7 +160,9 @@ public class ThreadActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void updatePeopleCount() {
-        mTvPeopleCount.setText(String.format(Locale.CHINA, "当前等待人数：%d人", mClientArray.size()));
+        if (mTvPeopleCount != null) {
+            mTvPeopleCount.setText(String.format(Locale.CHINA, "当前等待人数：%d人", mClientArray.size()));
+        }
     }
 
     class ClientThread extends Thread {

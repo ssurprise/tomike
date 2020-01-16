@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -59,6 +59,17 @@ public class ThreadDaemonActivity extends SkxBaseActivity {
     @Override
     protected void subscribeEvent() {
 
+    }
+
+    @Override
+    protected boolean useDefaultLayout() {
+        return true;
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        super.configHeaderTitleView(title);
+        title.setText("守护线程");
     }
 
     private void initView() {

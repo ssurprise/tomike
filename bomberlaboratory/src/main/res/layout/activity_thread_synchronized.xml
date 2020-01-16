@@ -3,81 +3,89 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
 
     <TextView
-        android:id="@+id/tv_threadSynchronized_title"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_threadSynchronized_objectLock"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:gravity="center"
-        android:text="线程同步"
-        android:textColor="@color/skx_212121"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_vertical"
+        android:text="对象锁："
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_threadSynchronized_start"
+        android:id="@+id/btn_threadSynchronized_objectLock_codeBlockObj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:onClick="onThreadSynchronizedStart"
-        android:text="开始"
+        android:text="同步代码块-monitor"
         android:textColor="@color/skx_212121"
+        app:layout_constraintBottom_toBottomOf="@id/btn_threadSynchronized_objectLock"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_objectLock"
+        app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_objectLock" />
+
+    <Button
+        android:id="@+id/btn_threadSynchronized_objectLock_codeBlockThis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="同步代码块-this"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_objectLock_codeBlockObj"
+        app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_objectLock_codeBlockObj" />
+
+    <Button
+        android:id="@+id/btn_threadSynchronized_objectLock_syncMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="同步方法"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_objectLock"
+        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_objectLock_codeBlockObj" />
+
+    <TextView
+        android:id="@+id/btn_threadSynchronized_classLock"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:text="类锁:"
+        android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btn_threadSynchronized_reset"
-        app:layout_constraintTop_toBottomOf="@id/tv_threadSynchronized_title" />
-
+        app:layout_constraintRight_toRightOf="@id/btn_threadSynchronized_objectLock"
+        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_objectLock_syncMethod" />
     <Button
-        android:id="@+id/btn_threadSynchronized_reset"
+        android:id="@+id/btn_threadSynchronized_classLock_clazz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onThreadSynchronizedReset"
-        android:text="重置"
+        android:text="同步代码块"
         android:textColor="@color/skx_212121"
-        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_start"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_start" />
+        app:layout_constraintBottom_toBottomOf="@id/btn_threadSynchronized_classLock"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_classLock"
+        app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_classLock" />
 
     <Button
-        android:id="@+id/btn_threadSynchronized_flag"
+        android:id="@+id/btn_threadSynchronized_classLock_staticSyncMethod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:onClick="onThreadSynchronizedFlag"
-        android:text="标记位方式中断"
+        android:text="静态同步方法"
         android:textColor="@color/skx_212121"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btn_threadSynchronized_interrupt"
-        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_start" />
-
-    <Button
-        android:id="@+id/btn_threadSynchronized_interrupt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onThreadSynchronizedFunction"
-        android:text="interrupt函数中断"
-        android:textColor="@color/skx_212121"
-        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_flag"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_flag" />
+        app:layout_constraintBottom_toBottomOf="@id/btn_threadSynchronized_classLock"
+        app:layout_constraintLeft_toRightOf="@id/btn_threadSynchronized_classLock_clazz"
+        app:layout_constraintTop_toTopOf="@id/btn_threadSynchronized_classLock" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/rectangle_solid_b226a69a_corner_2"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_flag"
+        app:layout_constraintTop_toBottomOf="@id/btn_threadSynchronized_classLock_clazz"
         tools:layout_editor_absoluteY="192dp">
 
         <TextView
