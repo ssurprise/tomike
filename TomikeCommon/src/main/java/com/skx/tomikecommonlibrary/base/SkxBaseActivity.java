@@ -20,7 +20,6 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
         super.onCreate(savedInstanceState);
         initParams();
         initContentView();
-        setContentView(getLayoutId());
         subscribeEvent();
     }
 
@@ -46,7 +45,9 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
 
             FrameLayout view = findViewById(R.id.fl_baseUI_content);
             View inflate = LayoutInflater.from(this).inflate(getLayoutId(), view, false);
-            view.addView(inflate);
+            if (inflate != null) {
+                view.addView(inflate);
+            }
 
         } else {
             setContentView(getLayoutId());
