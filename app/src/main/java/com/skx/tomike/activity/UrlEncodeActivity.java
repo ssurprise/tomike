@@ -10,7 +10,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class UrlEncodeActivity extends AppCompatActivity {
-    private static String URL_ENCODE = "UTF-8";
+
+    private static final String URL_ENCODE = "UTF-8";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -59,7 +59,7 @@ public class GlideActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_glide);
+        setContentView(R.layout.activity_glide_demo);
 
         mGlPictures = findViewById(R.id.glide_gridLayout);
 

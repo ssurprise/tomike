@@ -21,7 +21,7 @@ public class WatermarkActivity extends SkxBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawable);
+        setContentView(R.layout.activity_watermark);
 
         initializeView();
         refreshView();
@@ -30,13 +30,13 @@ public class WatermarkActivity extends SkxBaseActivity {
     @Override
     public void initializeView() {
         super.initializeView();
-        imageView01 = (ImageView) findViewById(R.id.image01);
-        imageView02 = (ImageView) findViewById(R.id.image02);
-        imageView03 = (ImageView) findViewById(R.id.image03);
+        imageView01 = findViewById(R.id.image01);
+        imageView02 = findViewById(R.id.image02);
+        imageView03 = findViewById(R.id.image03);
 
-        imageView11 = (ImageView) findViewById(R.id.image11);
-        imageView12 = (ImageView) findViewById(R.id.image12);
-        imageView13 = (ImageView) findViewById(R.id.image13);
+        imageView11 = findViewById(R.id.image11);
+        imageView12 = findViewById(R.id.image12);
+        imageView13 = findViewById(R.id.image13);
     }
 
     @Override

@@ -46,9 +46,9 @@ public class DrawerLayoutActivity extends AppCompatActivity implements PlanetFra
     }
 
     private void initializeView() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToolbar = (Toolbar) findViewById(R.id.drawerLayout_toolbar);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        mToolbar = findViewById(R.id.drawerLayout_toolbar);
+        mDrawerList = findViewById(R.id.left_drawer);
     }
 
     private void refreshView() {

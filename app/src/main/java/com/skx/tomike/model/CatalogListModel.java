@@ -170,7 +170,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("CoordinatorLayout效果", CoordinatorLayoutCaseActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("N种页签指示器", PageIndicatorActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("TabLayout联动", TabLayoutActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("下拉放大头图", ZoomHeaderListViewActivity.class.getName()));
+//        mFunctionCatalogs.add(new CatalogItem("下拉放大头图", ZoomHeaderListViewActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("抽屉效果", DrawerLayoutActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
