@@ -28,8 +28,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaActivity extends AppCompatActivity {
 
-    private LinearLayout rl_rxjava_loading;
-    private TextView rl_rxjava_loadingText;
+    private LinearLayout mRlLoading;
+    private TextView mTvLoadingText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class RxJavaActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        rl_rxjava_loading = findViewById(R.id.rl_rxjava_loading);
-        rl_rxjava_loadingText = findViewById(R.id.rl_rxjava_loadingText);
+        mRlLoading = findViewById(R.id.rl_rxjava_loading);
+        mTvLoadingText = findViewById(R.id.rl_rxjava_loadingText);
     }
 
     /**
@@ -91,7 +91,7 @@ public class RxJavaActivity extends AppCompatActivity {
                     @Override
                     public void onSubscribe(Disposable d) {
                         Log.e("Observer-onSubscribe", "subscribe");
-                        rl_rxjava_loading.setVisibility(View.VISIBLE);
+                        mRlLoading.setVisibility(View.VISIBLE);
                     }
 
                     @Override
@@ -102,13 +102,13 @@ public class RxJavaActivity extends AppCompatActivity {
                     @Override
                     public void onError(Throwable e) {
                         Log.e("Observer-onError", "error");
-                        rl_rxjava_loading.setVisibility(View.GONE);
+                        mRlLoading.setVisibility(View.GONE);
                     }
 
                     @Override
                     public void onComplete() {
                         Log.e("Observer-onComplete", "complete");
-                        rl_rxjava_loading.setVisibility(View.GONE);
+                        mRlLoading.setVisibility(View.GONE);
                     }
                 });
 
@@ -138,7 +138,7 @@ public class RxJavaActivity extends AppCompatActivity {
                 .create(new ObservableOnSubscribe<Student>() {
                     @Override
                     public void subscribe(ObservableEmitter<Student> emitter) throws Exception {
-                        rl_rxjava_loadingText.setText("学生信息获取中...");
+                        mTvLoadingText.setText("学生信息获取中...");
 
                         SystemClock.sleep(2000);
 
@@ -165,7 +165,7 @@ public class RxJavaActivity extends AppCompatActivity {
                                             @Override
                                             public void subscribe(ObservableEmitter<Transcript> emitter) throws Exception {
 
-                                                rl_rxjava_loadingText.setText("成绩单获取中...");
+                                                mTvLoadingText.setText("成绩单获取中...");
 
                                                 Thread.sleep(3000);
 
@@ -194,7 +194,7 @@ public class RxJavaActivity extends AppCompatActivity {
                     @Override
                     public void onSubscribe(Disposable d) {
                         Log.e("Observer-onSubscribe", "subscribe");
-                        rl_rxjava_loading.setVisibility(View.VISIBLE);
+                        mRlLoading.setVisibility(View.VISIBLE);
                     }
 
                     @Override
@@ -210,13 +210,13 @@ public class RxJavaActivity extends AppCompatActivity {
                     @Override
                     public void onError(Throwable e) {
                         Log.e("Observer-onError", "error");
-                        rl_rxjava_loading.setVisibility(View.GONE);
+                        mRlLoading.setVisibility(View.GONE);
                     }
 
                     @Override
                     public void onComplete() {
                         Log.e("Observer-onComplete", "complete");
-                        rl_rxjava_loading.setVisibility(View.GONE);
+                        mRlLoading.setVisibility(View.GONE);
                     }
                 });
     }
@@ -270,7 +270,7 @@ public class RxJavaActivity extends AppCompatActivity {
             @Override
             public void onSubscribe(Disposable d) {
                 Log.e("Observer-onSubscribe", "subscribe");
-                rl_rxjava_loading.setVisibility(View.VISIBLE);
+                mRlLoading.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -281,13 +281,13 @@ public class RxJavaActivity extends AppCompatActivity {
             @Override
             public void onError(Throwable e) {
                 Log.e("Observer-onError", "error");
-                rl_rxjava_loading.setVisibility(View.GONE);
+                mRlLoading.setVisibility(View.GONE);
             }
 
             @Override
             public void onComplete() {
                 Log.e("Observer-onComplete", "complete");
-                rl_rxjava_loading.setVisibility(View.GONE);
+                mRlLoading.setVisibility(View.GONE);
             }
         });
         PAY.connect();
@@ -329,7 +329,7 @@ public class RxJavaActivity extends AppCompatActivity {
             @Override
             public void onSubscribe(Disposable d) {
                 Log.e("Observer-onSubscribe", "subscribe");
-                rl_rxjava_loading.setVisibility(View.VISIBLE);
+                mRlLoading.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -340,13 +340,13 @@ public class RxJavaActivity extends AppCompatActivity {
             @Override
             public void onError(Throwable e) {
                 Log.e("Observer-onError", "error");
-                rl_rxjava_loading.setVisibility(View.GONE);
+                mRlLoading.setVisibility(View.GONE);
             }
 
             @Override
             public void onComplete() {
                 Log.e("Observer-onComplete", "complete");
-                rl_rxjava_loading.setVisibility(View.GONE);
+                mRlLoading.setVisibility(View.GONE);
             }
         });
     }
