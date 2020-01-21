@@ -330,8 +330,6 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
     private void configTransformSetting(TransformStrategy transformStrategy, TransformAdapter[] transformAdapters) {
         if (transformStrategy != null) {
             switch (transformStrategy) {
-                case NONE:
-                    mOptions.dontTransform();
                 case FIT_CENTER:
                     mOptions.fitCenter();
                     break;
