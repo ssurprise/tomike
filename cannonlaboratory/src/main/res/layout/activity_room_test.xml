@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    tools:context=".ui.activity.RoomTestActivity">
+
+    <Button
+        android:id="@+id/btn_roomTest_insert"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="插入数据" />
+
+    <Button
+        android:id="@+id/btn_roomTest_update"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/btn_roomTest_insert"
+        android:text="修改数据" />
+
+    <Button
+        android:id="@+id/btn_roomTest_query"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/btn_roomTest_update"
+        android:text="查询数据" />
+
+    <Button
+        android:id="@+id/btn_roomTest_delete"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/btn_roomTest_query"
+        android:text="删除数据" />
+
+    <TextView
+        android:id="@+id/btn_roomTest_logcat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btn_roomTest_delete" />
+
+</RelativeLayout>

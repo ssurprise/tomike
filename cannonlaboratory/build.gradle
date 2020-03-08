@@ -50,4 +50,12 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation project(path: ':TomikeCommon')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation rootProject.ext.room.roomRuntime
+    // For Kotlin use kapt instead of annotationProcessor
+    annotationProcessor rootProject.ext.room.roomCompiler
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation rootProject.ext.room.roomKtx
+    // optional - RxJava support for Room
+    implementation rootProject.ext.room.roomRxjava
 }

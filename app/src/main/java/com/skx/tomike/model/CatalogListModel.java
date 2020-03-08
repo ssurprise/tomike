@@ -47,6 +47,7 @@ import com.skx.tomike.cannonlaboratory.ui.activity.OkHttpActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.OutterStartActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.PageIndicatorActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.PermissionIntroActivity;
+import com.skx.tomike.cannonlaboratory.ui.activity.RoomTestActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.RxJavaActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.TabLayoutActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.TransparentThemeActivity;
@@ -171,6 +172,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("TabLayout联动", TabLayoutActivity.class.getName()));
 //        mFunctionCatalogs.add(new CatalogItem("下拉放大头图", ZoomHeaderListViewActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("抽屉效果", DrawerLayoutActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("Room - 最近浏览案例 ", RoomTestActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 
