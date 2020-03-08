@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingTop="20dp"
     android:showDividers="middle"
-    tools:context="com.skx.tomike.cannonlaboratory.activity.NfcPermissionTestActivity">
+    tools:context=".ui.activity.NfcPermissionTestActivity">
 
     <Button
         android:layout_width="match_parent"

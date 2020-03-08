@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/skx_007aff"
-    tools:context="com.skx.tomike.cannonlaboratory.fragment.PlanetFragment">
+    tools:context=".ui.fragment.PlanetFragment">
 
     <TextView
         android:id="@+id/planet_content"

@@ -7,7 +7,7 @@
     android:divider="@drawable/linearlayout_divider"
     android:orientation="vertical"
     android:showDividers="middle"
-    tools:context="com.skx.tomike.cannonlaboratory.activity.NfcGroupActivity">
+    tools:context=".ui.activity.NfcGroupActivity">
 
     <TextView
         android:layout_width="match_parent"

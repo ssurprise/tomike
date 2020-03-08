@@ -4,9 +4,9 @@
     android:id="@+id/activity_zoom_header_list_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.skx.tomike.cannonlaboratory.activity.ZoomHeaderListViewActivity">
+    tools:context=".ui.activity.ZoomHeaderListViewActivity">
 
-    <com.skx.tomike.cannonlaboratory.widget.Pull2ZoomListView
+    <com.skx.tomike.cannonlaboratory.ui.widget.Pull2ZoomListView
         android:id="@+id/pull2ZoomListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

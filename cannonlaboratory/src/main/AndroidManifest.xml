@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.NFC" />
     <application>
-        <activity android:name=".activity.NotificationActivity"></activity>
-        <activity android:name=".activity.OutterStartActivity">
+        <activity android:name="com.skx.tomike.cannonlaboratory.ui.activity.NotificationActivity"></activity>
+        <activity android:name="com.skx.tomike.cannonlaboratory.ui.activity.OutterStartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -20,16 +20,16 @@
         </activity>
 
         <activity
-            android:name=".activity.TransparentThemeActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.TransparentThemeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:theme="@style/GlobalCaptchaTheme.Transparent"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
-        <activity android:name=".activity.FloatingWindowActivity" />
+        <activity android:name="com.skx.tomike.cannonlaboratory.ui.activity.FloatingWindowActivity" />
 
         <activity
-            android:name=".activity.NfcGroupActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.NfcGroupActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
@@ -51,39 +51,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.NfcWriteTextActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.NfcWriteTextActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.NfcReadTextActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.NfcReadTextActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.NfcPermissionTestActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.NfcPermissionTestActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.PermissionIntroActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.PermissionIntroActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RxJavaActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.RxJavaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.OkHttpActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.OkHttpActivity"
             android:screenOrientation="portrait" /> <!-- 图片加载 -->
         <activity
-            android:name=".activity.ImageLoadActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.ImageLoadActivity"
             android:screenOrientation="portrait" /> <!-- viewpager一屏多展示item activity -->
         <activity
-            android:name=".activity.VpMultiplePageActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.VpMultiplePageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.GlideActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.GlideActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ZoomHeaderListViewActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.ZoomHeaderListViewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.PageIndicatorActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.PageIndicatorActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.RoomTestActivity" />
+        <activity android:name="com.skx.tomike.cannonlaboratory.ui.activity.RoomTestActivity" />
     </application>
 
 </manifest>

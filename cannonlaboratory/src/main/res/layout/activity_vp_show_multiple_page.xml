@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
 
-    <com.skx.tomike.cannonlaboratory.widget.WrapContentHeightViewPager
+    <com.skx.tomike.cannonlaboratory.ui.widget.WrapContentHeightViewPager
         android:id="@+id/wrapContentHeightViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:gravity="center"
         android:layerType="software">
 
-        <com.skx.tomike.cannonlaboratory.widget.ClipViewPager
+        <com.skx.tomike.cannonlaboratory.ui.widget.ClipViewPager
             android:id="@+id/show_multiple_clipViewPager"
             android:layout_width="40dp"
             android:layout_height="40dp"

@@ -14,7 +14,7 @@
         android:padding="15dp"
         android:rowOrderPreserved="true"
         android:useDefaultMargins="true"
-        tools:context="com.skx.tomike.cannonlaboratory.activity.GlideActivity">
+        tools:context=".ui.activity.GlideActivity">
 
         <!--第1行-->
         <ImageView

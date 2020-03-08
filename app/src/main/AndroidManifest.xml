@@ -67,7 +67,7 @@
             android:screenOrientation="portrait" />
         <!-- viewpager无限循环 activity -->
         <activity
-            android:name=".cannonlaboratory.activity.ViewPagerInfiniteLoopActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.ViewPagerInfiniteLoopActivity"
             android:screenOrientation="portrait" />
         <!-- Double 格式转换工具 -->
         <activity
@@ -91,7 +91,7 @@
             android:name=".activity.xzdz.ScrollChangeTitleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".cannonlaboratory.activity.DrawerLayoutActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.DrawerLayoutActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ZoomImageActivity"
@@ -100,7 +100,7 @@
             android:name=".activity.ScrollViewAnchorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".cannonlaboratory.activity.TabLayoutActivity"
+            android:name="com.skx.tomike.cannonlaboratory.ui.activity.TabLayoutActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.GetTopTestActivity"
