@@ -1,15 +1,14 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.CheckResult;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.util.Util;
-import com.skx.tomikecommonlibrary.R;
-import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 
 
 /**
@@ -72,33 +71,53 @@ public class LoadOptions implements Cloneable {
     private Drawable errorDrawable;
     private int errorResId;
 
-    /** 后备图 */
+    /**
+     * 后备图
+     */
     @Nullable
     private Drawable fallbackDrawable;
     private int fallbackResId;
 
-    /** 用于调整大小的目标图像宽度。*/
+    /**
+     * 用于调整大小的目标图像宽度。
+     */
     private int targetWidth = UNSET;
-    /** 调整大小的目标图像高度。*/
+    /**
+     * 调整大小的目标图像高度。
+     */
     private int targetHeight = UNSET;
 
-    /** 过渡动画 */
+    /**
+     * 过渡动画
+     */
     private boolean transitionAnim = false;
 
-    /** 资源变换策略 */
+    /**
+     * 资源变换策略
+     */
     private TransformStrategy transformStrategy = TransformStrategy.NONE;
-    /** 自定义资源变换集合 */
+    /**
+     * 自定义资源变换集合
+     */
     private TransformAdapter[] transformAdapters;
 
-    /** 内存缓存 - 目前是用的boolean 表示，当用枚举值不满足需求时改为枚举值，默认为 true，即支持内存缓存 */
+    /**
+     * 内存缓存 - 目前是用的boolean 表示，当用枚举值不满足需求时改为枚举值，默认为 true，即支持内存缓存
+     */
     private boolean memoryCacheable = true;
-    /** 硬盘缓存策略,默认使用系统的加载策略 */
+    /**
+     * 硬盘缓存策略,默认使用系统的加载策略
+     */
     private DiskCacheStrategy diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
 
     private Class<?> transcodeClass = Drawable.class;
-    /** 设置加载超时时间 */
+    /**
+     * 设置加载超时时间
+     */
     private int timeout = Config.TIMEOUT;
-    /** 加载优先级 */
+    /**
+     * 加载优先级
+     */
     @NonNull
     private Priority priority = Priority.NORMAL;
 
@@ -573,7 +592,6 @@ public class LoadOptions implements Cloneable {
             // we don't want to throw to be user friendly
             "PMD.CloneThrowsCloneNotSupportedException"
     })
-    @CheckResult
     @Override
     public LoadOptions clone() {
         try {

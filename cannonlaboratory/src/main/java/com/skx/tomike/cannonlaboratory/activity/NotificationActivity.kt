@@ -6,12 +6,12 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.NotificationCompat
-import android.support.v4.app.NotificationManagerCompat
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.skx.tomike.cannonlaboratory.R
 
 
@@ -52,7 +52,7 @@ class NotificationActivity : AppCompatActivity() {
         val builder = NotificationCompat.Builder(this, "com.skx.tomike")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("狗子狗子")
-                .setContentText("呼叫卢狗子，你亲爱的师狗子找你ninininininiinininininininininininnnnnnnnnn")
+                .setContentText("呼叫狗子，ninininininiinininininininininininnnnnnnnnn")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
 

@@ -2,19 +2,20 @@ package com.skx.tomike.customview;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 
+import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
+
 /**
  * 回弹效果的NestedScrollView
  *
  * @author shiguotao
- *         Created on 2017/7/31.
+ * Created on 2017/7/31.
  */
 public class ZoomImageNestedScrollingParent2 extends NestedScrollView {
 

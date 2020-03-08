@@ -2,10 +2,11 @@ package com.skx.tomike.customview;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
 
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 

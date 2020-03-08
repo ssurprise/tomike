@@ -2,9 +2,10 @@ package com.skx.tomike.bomberlaboratory.ui.activity;
 
 import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.bomberlaboratory.R;
 

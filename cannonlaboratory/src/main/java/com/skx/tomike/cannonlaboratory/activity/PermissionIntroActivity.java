@@ -4,11 +4,12 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.skx.tomike.cannonlaboratory.R;
 
@@ -45,7 +46,7 @@ public class PermissionIntroActivity extends AppCompatActivity {
                 // 获得定位信息的code
             }
         } else {
-            Toast.makeText(this,"6.0 以下",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "6.0 以下", Toast.LENGTH_SHORT).show();
         }
     }
 

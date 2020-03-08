@@ -1,8 +1,9 @@
 package com.skx.tomike.cannonlaboratory.widget;
 
 import android.os.Build;
-import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by HanHailong on 15/9/27.

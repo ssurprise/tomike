@@ -4,12 +4,13 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 
 import com.skx.tomike.R;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
@@ -42,16 +43,15 @@ public class Tint_BackgroundTintActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawable_compat_tint2);
 
-        mTint_ImageView2 = (ImageView) findViewById(R.id.tintTest2_tint_ImageView2);
-        mTint_Btn2 = (Button) findViewById(R.id.tintTest2_tint_btn2);
-        mCompatBtn4 = (AppCompatButton) findViewById(R.id.tintTest2_tint_btn4);
+        mTint_ImageView2 = findViewById(R.id.tintTest2_tint_ImageView2);
+        mTint_Btn2 = findViewById(R.id.tintTest2_tint_btn2);
+        mCompatBtn4 = findViewById(R.id.tintTest2_tint_btn4);
 
-        mTintSelector_mImageView2 = (ImageView) findViewById(R.id.tintTest2_ImageView2);
-        mTintSelector_mBtn2 = (Button) findViewById(R.id.tintTest2_btn2);
-        mTintSelector_mCompatBtn4 = (AppCompatButton) findViewById(R.id.tintTest2_btn4);
+        mTintSelector_mImageView2 = findViewById(R.id.tintTest2_ImageView2);
+        mTintSelector_mBtn2 = findViewById(R.id.tintTest2_btn2);
+        mTintSelector_mCompatBtn4 = findViewById(R.id.tintTest2_btn4);
 
         SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
-
 
         Drawable imgBgDrawable2 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
         ColorStateList colorStateList = ColorStateList.valueOf(Color.parseColor("#3396a8"));
@@ -64,10 +64,6 @@ public class Tint_BackgroundTintActivity extends AppCompatActivity {
 
         Drawable bgDrawable4 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
         ViewCompat.setBackground(mCompatBtn4, bgDrawable4);
-
-        ColorStateList colorStateList4 = ColorStateList.valueOf(Color.parseColor("#984568"));
-//        mCompatBtn4.setSupportBackgroundTintList(colorStateList4);
-
 
 //----------------------------------------------------------------------------分割线--------------------------------------------------------------------------------------------------------------------------------------------------
 

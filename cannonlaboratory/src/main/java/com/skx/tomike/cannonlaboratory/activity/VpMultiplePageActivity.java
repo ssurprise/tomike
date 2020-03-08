@@ -1,11 +1,12 @@
 package com.skx.tomike.cannonlaboratory.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.adapter.InfiniteLoopAdapter;
@@ -69,9 +70,9 @@ public class VpMultiplePageActivity extends AppCompatActivity {
     private void initializeView() {
         setContentView(R.layout.activity_vp_show_multiple_page);
 
-        wrapContentHeightViewPager = (WrapContentHeightViewPager) findViewById(R.id.wrapContentHeightViewPager);
-        relativeLayout = (RelativeLayout) findViewById(R.id.clipChildren_relativeLayout);
-        clipChildrenVp = (ClipViewPager) findViewById(R.id.show_multiple_clipViewPager);
+        wrapContentHeightViewPager = findViewById(R.id.wrapContentHeightViewPager);
+        relativeLayout = findViewById(R.id.clipChildren_relativeLayout);
+        clipChildrenVp = findViewById(R.id.show_multiple_clipViewPager);
     }
 
     private void refreshView() {

@@ -1,7 +1,6 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
 import android.content.Context;
-import android.support.annotation.CheckResult;
 import android.widget.ImageView;
 
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
@@ -27,7 +26,6 @@ public interface ILoader<TranscodeType> extends SourceType<ILoader<TranscodeType
      *
      * @param loadOptions 可选配置
      */
-    @CheckResult
     ILoader<TranscodeType> apply(LoadOptions loadOptions);
 
     /**

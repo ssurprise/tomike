@@ -9,7 +9,6 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
 import com.skx.tomike.activity.SkxMVPBaseActivity;
 import com.skx.tomike.adapter.PhotoAlbumsAdapter;
 import com.skx.tomike.iview.IPhotoAlbumsView;
@@ -20,8 +19,8 @@ import java.util.List;
 
 /**
  * @author shiguotao
- *         <p>
- *         相册
+ * <p>
+ * 相册
  */
 public class PhotoAlbumsActivity extends SkxMVPBaseActivity<IPhotoAlbumsView, PhotoAlbumsPresenterImpl> implements IPhotoAlbumsView {
     private GridView cAlbumGridView;

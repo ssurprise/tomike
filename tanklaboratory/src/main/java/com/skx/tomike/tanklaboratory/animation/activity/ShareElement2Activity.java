@@ -1,8 +1,9 @@
 package com.skx.tomike.tanklaboratory.animation.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.tanklaboratory.R;
 

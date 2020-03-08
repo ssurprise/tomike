@@ -7,7 +7,7 @@
     tools:context="com.skx.tomike.activity.ZoomImageActivity">
 
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/id_viewpager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

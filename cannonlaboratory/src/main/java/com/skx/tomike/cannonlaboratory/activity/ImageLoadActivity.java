@@ -2,8 +2,9 @@ package com.skx.tomike.cannonlaboratory.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomikecommonlibrary.utils.LoadImageUtil;

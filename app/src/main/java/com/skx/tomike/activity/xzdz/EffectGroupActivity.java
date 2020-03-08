@@ -2,14 +2,12 @@ package com.skx.tomike.activity.xzdz;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.skx.tomike.R;
 import com.skx.tomike.activity.SkxBaseActivity;
-import com.skx.tomike.activity.xzdz.ScrollChangeTitleActivity;
-import com.skx.tomike.activity.xzdz.ScrollZoomImage2Activity;
-import com.skx.tomike.activity.xzdz.ScrollZoomImageActivity;
 
 /**
  * 动效组 activity

@@ -3,16 +3,16 @@ package com.skx.tomikecommonlibrary.imageloader;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.CheckResult;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
+
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.skx.tomikecommonlibrary.imageloader.glide.GlideLoader;
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
-import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 
 import java.io.File;
 
@@ -75,7 +75,6 @@ public final class ImageLoader {
         }
 
         @NonNull
-        @CheckResult
         private <TranscodeType> Builder<TranscodeType> as(
                 @NonNull Class<TranscodeType> transcodeType) {
             return new Builder<>(context, transcodeType);
@@ -233,7 +232,6 @@ public final class ImageLoader {
                 // we don't want to throw to be user friendly
                 "PMD.CloneThrowsCloneNotSupportedException"
         })
-        @CheckResult
         @Override
         public Builder<TranscodeType> clone() {
             try {

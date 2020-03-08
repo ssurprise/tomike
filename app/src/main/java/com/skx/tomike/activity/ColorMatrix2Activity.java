@@ -7,11 +7,12 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.R;
 
@@ -30,8 +31,8 @@ public class ColorMatrix2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_matrix);
 
-        imageMatrix_image = (ImageView) findViewById(R.id.imageMatrix_image);
-        mGroup = (GridLayout) findViewById(R.id.imageMatrix_gridLayout);
+        imageMatrix_image = findViewById(R.id.imageMatrix_image);
+        mGroup = findViewById(R.id.imageMatrix_gridLayout);
 
         mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_03);
 //        imageMatrix_image.setImageBitmap(ImageHelper.handlerImageOld(mBitmap));
@@ -71,15 +72,15 @@ public class ColorMatrix2Activity extends AppCompatActivity {
         }
     }
 
-    public void setImageMatrix(){
-        Bitmap bmp = Bitmap.createBitmap(mBitmap.getWidth(),mBitmap.getHeight(),Bitmap.Config.ARGB_8888);
+    public void setImageMatrix() {
+        Bitmap bmp = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         ColorMatrix colorMatrix = new ColorMatrix();
         colorMatrix.set(mColorMatrix);
 
         Canvas canvas = new Canvas(bmp);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);//抗锯齿
         paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        canvas.drawBitmap(bmp,0,0,paint);
+        canvas.drawBitmap(bmp, 0, 0, paint);
         imageMatrix_image.setImageBitmap(bmp);
     }
 

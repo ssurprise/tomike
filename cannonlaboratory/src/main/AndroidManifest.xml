@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.skx.tomike.cannonlaboratory">
 
+    <uses-permission android:name="android.permission.NFC" />
     <application>
         <activity android:name=".activity.NotificationActivity"></activity>
         <activity android:name=".activity.OutterStartActivity">
@@ -82,6 +83,7 @@
         <activity
             android:name=".activity.PageIndicatorActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.RoomTestActivity" />
     </application>
 
 </manifest>

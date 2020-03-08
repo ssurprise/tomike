@@ -3,7 +3,8 @@ package com.skx.tomike.cannonlaboratory.activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * NFC 基础activity

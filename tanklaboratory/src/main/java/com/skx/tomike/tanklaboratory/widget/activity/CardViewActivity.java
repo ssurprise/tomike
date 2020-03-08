@@ -2,9 +2,10 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.skx.tomike.tanklaboratory.R;
 
@@ -15,13 +16,14 @@ import com.skx.tomike.tanklaboratory.R;
  * 如果要在您的代码中设置圆角半径，请使用 CardView.setRadius 方法。
  */
 public class CardViewActivity extends AppCompatActivity {
+
     private CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_view);
-        final CardView cardView = (CardView) findViewById(R.id.card_view);
+        final CardView cardView = findViewById(R.id.card_view);
         if (cardView != null) {
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override

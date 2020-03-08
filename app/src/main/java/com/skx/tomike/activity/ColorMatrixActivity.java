@@ -3,9 +3,10 @@ package com.skx.tomike.activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.R;
 import com.skx.tomikecommonlibrary.utils.ImageHelper;

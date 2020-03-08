@@ -1,9 +1,10 @@
 package com.skx.tomike.activity;
 
-import android.support.design.widget.AppBarLayout;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
 
+import androidx.core.widget.NestedScrollView;
+
+import com.google.android.material.appbar.AppBarLayout;
 import com.skx.tomike.R;
 import com.skx.tomike.customview.CustomCommentLayoutView;
 
@@ -20,9 +21,9 @@ public class CoordinatorLayoutCaseActivity extends SkxBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coordinator_layout_case);
 
-        appBarLayout = (AppBarLayout) findViewById(R.id.customBehavior_appbar);
-        nestedScrollingChild2 = (CustomCommentLayoutView) findViewById(R.id.customBehavior_head);
-        customBehavior_body = (NestedScrollView) findViewById(R.id.customBehavior_body);
+        appBarLayout = findViewById(R.id.customBehavior_appbar);
+        nestedScrollingChild2 = findViewById(R.id.customBehavior_head);
+        customBehavior_body = findViewById(R.id.customBehavior_body);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override

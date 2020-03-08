@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.ViewTreeObserver;
 import android.widget.Scroller;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 /**
  * ImageView 2.0
  * 功能：
@@ -19,7 +21,7 @@ import android.widget.Scroller;
  * @author shiguotao
  * Created on 2016/11/30.
  */
-public class TranslateImageView extends android.support.v7.widget.AppCompatImageView
+public class TranslateImageView extends AppCompatImageView
         implements ViewTreeObserver.OnGlobalLayoutListener {
 
     private final String TAG = TranslateImageView.class.getName();

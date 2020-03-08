@@ -1,12 +1,13 @@
 package com.skx.tomike.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.R;
 import com.skx.tomikecommonlibrary.utils.DoubleFormatTool;
@@ -46,11 +47,11 @@ public class DoubleFormatActivity extends AppCompatActivity {
                 // 直接运算  1.11+0.09 = 1.2000000000000000002
                 // 直接运算  1.2/3 = 0.3999999999999999997
 
-                doubleFormat_result1.setText("1.11+0.09="+ DoubleFormatTool.add(1.11,0.09));// 1.11   ??????????????
+                doubleFormat_result1.setText("1.11+0.09=" + DoubleFormatTool.add(1.11, 0.09));// 1.11   ??????????????
 
-                Log.e("1.11+0.09=",(1.11+0.09)+"");
-                doubleFormat_result2.setText("1.2/3 = " + DoubleFormatTool.divide(1.2,3,2));// 1.12
-                Log.e("1.2/3=",(1.2/3)+"");
+                Log.e("1.11+0.09=", (1.11 + 0.09) + "");
+                doubleFormat_result2.setText("1.2/3 = " + DoubleFormatTool.divide(1.2, 3, 2));// 1.12
+                Log.e("1.2/3=", (1.2 / 3) + "");
             }
         });
     }

@@ -34,9 +34,9 @@ public class PageHeaderLayout extends RelativeLayout {
 
     private void init(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.layout_page_header, this, true);
-        iv_backImage = (ImageView) findViewById(R.id.layout_page_header_backImage);
-        tv_headerName = (TextView) findViewById(R.id.layout_page_header_name);
-        tv_operate = (TextView) findViewById(R.id.layout_page_header_operate);
+        iv_backImage = findViewById(R.id.layout_page_header_backImage);
+        tv_headerName = findViewById(R.id.layout_page_header_name);
+        tv_operate = findViewById(R.id.layout_page_header_operate);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.PageHeaderLayout);
         String headerText = ta.getString(R.styleable.PageHeaderLayout_headerText);

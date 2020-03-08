@@ -1,16 +1,16 @@
 package com.skx.tomike.activity.function;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.R;
 import com.skx.tomike.aop.Animal;
 import com.skx.tomike.aop.Cat;
 import com.skx.tomike.aop.Dog;
-import com.skx.tomike.aop.LogRecordAnnotation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,9 +79,9 @@ public class AopTestActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-//    @LogRecordAnnotation
+    //    @LogRecordAnnotation
     private void customAnnotation() {
-        Log.e(TAG,"自定义的注解");
+        Log.e(TAG, "自定义的注解");
     }
 
     private void thisTest() {

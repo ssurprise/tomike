@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 /**
  * @author shiguotao 能和 SrcollView 配合使用的ListView
- *         自定义一个类继承自ListView，通过重写其onMeasure方法，达到对ScrollView适配的效果
+ * 自定义一个类继承自ListView，通过重写其onMeasure方法，达到对ScrollView适配的效果
  */
 public class ListViewForScrollView extends ListView {
 
@@ -27,10 +27,10 @@ public class ListViewForScrollView extends ListView {
     }
 
     @Override
-    /**
-     * 重写该方法，达到使ListView适应ScrollView的效果
-     */
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        /*
+         * 重写该方法，达到使ListView适应ScrollView的效果
+         */
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
     }

@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by shiguotao on 2017/8/17.
@@ -17,11 +18,11 @@ public class CustomShadowView extends View {
     private Paint mPaint;
 
     public CustomShadowView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public CustomShadowView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public CustomShadowView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -40,8 +41,8 @@ public class CustomShadowView extends View {
         super.onDraw(canvas);
         //绘制阴影，param1：模糊半径；param2：x轴大小：param3：y轴大小；param4：阴影颜色
         mPaint.setShadowLayer(10F, 15F, 15F, Color.GRAY);
-        RectF rect = new RectF(0 , 0, 200, 200);
-        canvas.drawRoundRect(rect, (float)75, (float)75, mPaint);
+        RectF rect = new RectF(0, 0, 200, 200);
+        canvas.drawRoundRect(rect, (float) 75, (float) 75, mPaint);
 
     }
 }

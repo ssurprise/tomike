@@ -6,7 +6,6 @@ import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.Surface;
@@ -14,6 +13,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.Nullable;
 
 import com.skx.tomike.R;
 import com.skx.tomike.activity.SkxBaseActivity;
@@ -26,8 +27,8 @@ import java.util.Date;
 
 /**
  * @author shiguotao
- *         <p/>
- *         拍照界面
+ * <p/>
+ * 拍照界面
  */
 public class PhotographActivity extends SkxBaseActivity implements View.OnClickListener {
     private SurfaceView surfaceView;
@@ -192,14 +193,15 @@ public class PhotographActivity extends SkxBaseActivity implements View.OnClickL
         camera.stopPreview();
         camera.release();
     }
-    private Camera.AutoFocusCallback autoFocusCallback = new Camera.AutoFocusCallback(){
+
+    private Camera.AutoFocusCallback autoFocusCallback = new Camera.AutoFocusCallback() {
 
         @Override
         public void onAutoFocus(boolean success, Camera camera) {
-            if (success){
-                Log.e("聚焦","成功");
-            }else{
-                Log.e("聚焦","失败");
+            if (success) {
+                Log.e("聚焦", "成功");
+            } else {
+                Log.e("聚焦", "失败");
             }
         }
     };

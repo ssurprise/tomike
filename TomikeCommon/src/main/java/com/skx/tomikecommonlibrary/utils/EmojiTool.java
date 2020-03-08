@@ -1,6 +1,6 @@
 package com.skx.tomikecommonlibrary.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by shiguotao on 2017/3/26.

@@ -7,9 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +14,10 @@ import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.skx.tomike.R;
 import com.skx.tomike.apt_annotation.BindView;
@@ -233,7 +234,7 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
      * @param fragmentTransaction fragment事务
      */
     public void setFragmentAnimation(FragmentTransaction fragmentTransaction) {
-        fragmentTransaction.setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         if (lastIndex < currentIndex) {
             fragmentTransaction.setCustomAnimations(R.anim.enter_right_left, R.anim.exit_right_left);
         } else if (lastIndex > currentIndex) {

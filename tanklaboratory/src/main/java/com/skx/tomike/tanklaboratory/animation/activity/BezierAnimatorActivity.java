@@ -1,7 +1,8 @@
 package com.skx.tomike.tanklaboratory.animation.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.animation.view.TreeView;

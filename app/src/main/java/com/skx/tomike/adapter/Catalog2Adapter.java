@@ -3,13 +3,14 @@ package com.skx.tomike.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.model.CatalogCellModel;
@@ -20,7 +21,7 @@ import java.util.List;
  * 目录列表Adapter
  *
  * @author shiguotao
- *         Created on 2016/4/11.
+ * Created on 2016/4/11.
  */
 public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.CatalogCellViewHolder> {
 

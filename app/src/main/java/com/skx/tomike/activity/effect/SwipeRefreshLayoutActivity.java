@@ -1,10 +1,12 @@
 package com.skx.tomike.activity.effect;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.skx.tomike.R;
 import com.skx.tomike.activity.SkxBaseActivity;
@@ -20,6 +22,7 @@ public class SwipeRefreshLayoutActivity extends SkxBaseActivity implements Swipe
     private ArrayAdapter<String> mAdapter;
     private List<String> mDatas = new ArrayList<>(Arrays.asList("Java", "Javascript", "C++", "Ruby", "Json", "HTML"));
 
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
@@ -51,8 +54,8 @@ public class SwipeRefreshLayoutActivity extends SkxBaseActivity implements Swipe
     @Override
     public void initializeView() {
         super.initializeView();
-        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh_container);
-        swipeRefresh_listView = (ListView) findViewById(R.id.swipeRefresh_listView);
+        mSwipeLayout = findViewById(R.id.swipeRefresh_container);
+        swipeRefresh_listView = findViewById(R.id.swipeRefresh_listView);
 
         mSwipeLayout.setOnRefreshListener(this);
 //        new SwipeRefreshLayout.OnRefreshListener(){

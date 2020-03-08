@@ -1,7 +1,8 @@
 package com.skx.tomike.cannonlaboratory.widget;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by shiguotao on 2016/4/21.
@@ -17,7 +18,7 @@ public class AlphaPageTransformer implements ViewPager.PageTransformer {
             tempPage.setAlpha(1 - Math.abs(position));
         } else if (position <= 0) { // [-1,0]
             tempPage.setAlpha(Math.abs(position));
-        }  else if (position <= 1) { // (0,1]
+        } else if (position <= 1) { // (0,1]
             tempPage.setAlpha(position);
         } else { // (1,+Infinity]
             tempPage.setAlpha(0);

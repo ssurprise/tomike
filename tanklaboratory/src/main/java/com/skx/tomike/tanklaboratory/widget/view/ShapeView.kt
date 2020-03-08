@@ -3,9 +3,9 @@ package com.skx.tomike.tanklaboratory.widget.view
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.*
-import android.support.annotation.IntDef
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.IntDef
 import com.skx.tomike.tanklaboratory.R
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy

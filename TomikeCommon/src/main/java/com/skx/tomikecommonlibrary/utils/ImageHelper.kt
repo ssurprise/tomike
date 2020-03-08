@@ -1,11 +1,6 @@
 package com.skx.tomikecommonlibrary.utils
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.Paint
+import android.graphics.*
 
 /**
  * Created by shiguotao on 2016/11/18.

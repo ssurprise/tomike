@@ -1,7 +1,8 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.tanklaboratory.R;
 

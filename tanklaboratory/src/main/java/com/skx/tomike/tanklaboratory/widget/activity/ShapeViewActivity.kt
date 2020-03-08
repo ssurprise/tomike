@@ -2,7 +2,7 @@ package com.skx.tomike.tanklaboratory.widget.activity
 
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.skx.tomike.tanklaboratory.R
 import com.skx.tomike.tanklaboratory.widget.view.ScoreView
 import java.util.*

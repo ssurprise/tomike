@@ -3,13 +3,14 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;

@@ -5,10 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
@@ -27,12 +28,12 @@ import com.skx.tomikecommonlibrary.imageloader.ILoader;
 import com.skx.tomikecommonlibrary.imageloader.LoadOptions;
 import com.skx.tomikecommonlibrary.imageloader.SGifDrawable;
 import com.skx.tomikecommonlibrary.imageloader.target.Target;
-import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
 import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
 import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformAdapter;
+import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 
 import java.io.File;
 import java.security.MessageDigest;

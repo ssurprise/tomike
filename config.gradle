@@ -1,6 +1,7 @@
 ext {
 
     def supportVersion = "28.0.0"
+    def room_version = "2.2.3"
 
     android = [
             compileSdkVersion: 28,
@@ -11,15 +12,15 @@ ext {
     dependencies = [
 
             /*支持库*/
-            design           : "com.android.support:design:${supportVersion}",
-            appcompatV7      : "com.android.support:appcompat-v7:${supportVersion}",
-            supportV4        : "com.android.support:support-v4:${supportVersion}",
+            design           : 'com.google.android.material:material:1.0.0',
+            appcompatV7      : 'androidx.appcompat:appcompat:1.0.0',
+            supportV4        : 'androidx.legacy:legacy-support-v4:1.0.0',
 
-            supportMultidex  : 'com.android.support:multidex:1.0.1',
-            lifecycle        : 'android.arch.lifecycle:extensions:1.1.1',
+            supportMultidex  : 'androidx.multidex:multidex:2.0.0',
+            lifecycle        : 'androidx.lifecycle:lifecycle-extensions:2.0.0',
             recyclerview     : "com.android.support:recyclerview-v7:${supportVersion}",
-            constraint_layout: 'com.android.support.constraint:constraint-layout:1.1.3',
-            cardview         : "com.android.support:cardview-v7:${supportVersion}",
+            constraint_layout: 'androidx.constraintlayout:constraintlayout:1.1.3',
+            cardview         : 'androidx.cardview:cardview:1.0.0',
 
             /*功能库*/
             gson             : 'com.google.code.gson:gson:2.8.5',
@@ -33,6 +34,13 @@ ext {
 
             // AspectJ
             aspectjrt        : 'org.aspectj:aspectjrt:1.8.9',
+    ]
+
+    room = [
+            roomRuntime : "androidx.room:room-runtime:$room_version",
+            roomCompiler: "androidx.room:room-compiler:$room_version",
+            roomKtx     : "androidx.room:room-ktx:$room_version",
+            roomRxjava  : "androidx.room:room-rxjava2:$room_version"
     ]
 
 }

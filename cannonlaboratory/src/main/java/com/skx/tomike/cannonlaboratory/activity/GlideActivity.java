@@ -2,11 +2,12 @@ package com.skx.tomike.cannonlaboratory.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomikecommonlibrary.imageloader.ImageLoader;

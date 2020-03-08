@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/tintTest2_tint_btn3"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
@@ -103,7 +103,7 @@
                     android:textColor="@color/selector_color_button"
                     app:backgroundTint="#568356" />
 
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/tintTest2_tint_btn4"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
@@ -197,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/tintTest2_btn3"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
@@ -206,7 +206,7 @@
                     android:background="@drawable/icon_beijing"
                     app:backgroundTint="@color/selector_color_button"/>
 
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/tintTest2_btn4"
                     android:layout_width="0dp"
                     android:layout_height="120dp"

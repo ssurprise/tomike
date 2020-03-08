@@ -79,12 +79,20 @@ dependencies {
     implementation rootProject.ext.dependencies.rxandroid
     implementation rootProject.ext.dependencies.retrofit
     implementation rootProject.ext.dependencies.aspectjrt
-    implementation 'com.android.support:support-annotations:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation project(":apt-annotation")
     annotationProcessor project(":apt-processor")
+
+    implementation rootProject.ext.room.roomRuntime
+    // For Kotlin use kapt instead of annotationProcessor
+    annotationProcessor rootProject.ext.room.roomCompiler
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation rootProject.ext.room.roomKtx
+    // optional - RxJava support for Room
+    implementation rootProject.ext.room.roomRxjava
 }
 
 

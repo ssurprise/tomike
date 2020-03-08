@@ -1,16 +1,17 @@
 package com.skx.tomike.customview;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.view.NestedScrollingParent;
-import android.support.v4.view.NestedScrollingParentHelper;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.Nullable;
+import androidx.core.view.NestedScrollingParent;
+import androidx.core.view.NestedScrollingParentHelper;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
 
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
@@ -19,7 +20,7 @@ import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
  * 缩放头图layout
  *
  * @author shiguotao
- *         Created on 2017/7/31.
+ * Created on 2017/7/31.
  */
 public class ZoomImageNestedScrollingParent extends RelativeLayout implements NestedScrollingParent {
 

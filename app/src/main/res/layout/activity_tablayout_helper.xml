@@ -8,7 +8,7 @@
     android:padding="@dimen/view_padding"
     tools:context="com.skx.tomike.activity.ShadowActivity">
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutHelper_tab"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -19,9 +19,9 @@
         app:tabSelectedTextColor="@color/skx_ff4081"
         app:tabTextColor="@color/skx_878787">
 
-    </android.support.design.widget.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/tabLayoutHelper_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -30,7 +30,7 @@
         android:textColor="#ff4287"
         android:textSize="24sp">
 
-    </android.support.v4.view.ViewPager>
+    </androidx.viewpager.widget.ViewPager>
 
     <TextView
         android:id="@+id/tabLayoutHelper_textContent"

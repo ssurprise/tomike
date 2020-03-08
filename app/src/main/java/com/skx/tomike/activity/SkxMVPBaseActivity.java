@@ -1,7 +1,8 @@
 package com.skx.tomike.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import com.skx.tomike.viewmodel.AbsBasePresenter;
 
@@ -18,7 +19,7 @@ public abstract class SkxMVPBaseActivity<V, T extends AbsBasePresenter> extends 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = createPresenter();
-        mPresenter.attachView((V)this);
+        mPresenter.attachView((V) this);
     }
 
     @Override

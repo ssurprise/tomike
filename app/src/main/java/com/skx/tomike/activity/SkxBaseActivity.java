@@ -5,24 +5,24 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.skx.tomike.R;
 import com.skx.tomike.interf.IDataRefresh;
 
 /**
  * @author shiguotao
- *         <p/>
- *         基类 activity
+ * <p/>
+ * 基类 activity
  */
 public abstract class SkxBaseActivity extends AppCompatActivity implements IDataRefresh {
 
@@ -42,7 +42,6 @@ public abstract class SkxBaseActivity extends AppCompatActivity implements IData
                 PixelFormat.TRANSLUCENT);
 
         wmParams.token = getWindow().getDecorView().getWindowToken();
-
 
 
         wmParams.x = 500;
@@ -132,6 +131,7 @@ public abstract class SkxBaseActivity extends AppCompatActivity implements IData
 
     /**
      * 为子类提供一个权限请求方法
+     *
      * @param requestCode
      * @param permissions
      */

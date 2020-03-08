@@ -1,14 +1,15 @@
 package com.skx.tomike.cannonlaboratory.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.widget.ScrollChangedScrollView;
 

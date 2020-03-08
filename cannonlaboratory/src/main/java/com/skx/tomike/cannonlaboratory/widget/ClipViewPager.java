@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 import com.skx.tomikecommonlibrary.utils.WidthHeightTool;

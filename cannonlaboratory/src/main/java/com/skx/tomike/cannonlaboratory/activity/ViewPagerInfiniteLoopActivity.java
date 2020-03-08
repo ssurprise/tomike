@@ -2,13 +2,14 @@ package com.skx.tomike.cannonlaboratory.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.adapter.InfiniteLoopAdapter;

@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.activity.SkxBaseActivity;
+import com.skx.tomike.javabean.WeatherMini;
 import com.skx.tomike.networkrequest.Interface.ReqResultCallBack;
 import com.skx.tomike.networkrequest.SkxNetConnection;
-import com.skx.tomike.javabean.WeatherMini;
 import com.skx.tomike.networkrequest.javabean.TrainAllInfo;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 

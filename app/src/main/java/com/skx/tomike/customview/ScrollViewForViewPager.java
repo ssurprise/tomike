@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.widget.ScrollView;
 
 public class ScrollViewForViewPager extends ScrollView {
+
     private float xDistance, yDistance, xLast, yLast;
 
     public ScrollViewForViewPager(Context context) {

@@ -11,7 +11,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
@@ -26,10 +25,11 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.R;
 import com.skx.tomike.cannonlaboratory.widget.ScrollChangedScrollView;
-import com.skx.tomikecommonlibrary.utils.ToastTool;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 /**
  * 小猪-房间详情页-头部导航
@@ -284,6 +284,7 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
 
         tb_navigationTag.setOnTabSelectedListener(onTabSelectedListener);
     }
+
     TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {

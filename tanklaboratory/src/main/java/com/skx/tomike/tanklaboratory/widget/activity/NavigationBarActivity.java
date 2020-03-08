@@ -2,15 +2,16 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.NavigationBarLayout;
 import com.skx.tomike.tanklaboratory.widget.view.TabLayoutHelper;
@@ -58,8 +59,8 @@ public class NavigationBarActivity extends AppCompatActivity implements View.OnC
         mNavigationBar.setCustomAdapter(R.layout.layout_tab_item, new TabLayoutHelper.TabLayoutAdapter<String>(tabList) {
             @Override
             public void bindData(int position, @NonNull View view, String charSequence) {
-                ImageView imgv_tabIcon = (ImageView) view.findViewById(R.id.tab_icon);
-                TextView tv_tabTitle = (TextView) view.findViewById(R.id.tab_title);
+                ImageView imgv_tabIcon = view.findViewById(R.id.tab_icon);
+                TextView tv_tabTitle = view.findViewById(R.id.tab_title);
                 tv_tabTitle.setText(charSequence);
             }
         }).setOnItemClickListener(new TabLayoutHelper.OnTabCustomViewClick() {
@@ -71,13 +72,13 @@ public class NavigationBarActivity extends AppCompatActivity implements View.OnC
         }).setOnCustomItemSelectorListener(new TabLayoutHelper.OnCustomItemSelectorListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab, int position, View view) {
-                TextView tv_tabTitle = (TextView) view.findViewById(R.id.tab_title);
+                TextView tv_tabTitle = view.findViewById(R.id.tab_title);
                 tv_tabTitle.setTextColor(Color.parseColor("#ff4081"));
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab, int position, View view) {
-                TextView tv_tabTitle = (TextView) view.findViewById(R.id.tab_title);
+                TextView tv_tabTitle = view.findViewById(R.id.tab_title);
                 tv_tabTitle.setTextColor(Color.parseColor("#323232"));
             }
         });

@@ -1,11 +1,12 @@
 package com.skx.tomike.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.adapter.ItemAnimatorAdapter;
@@ -24,7 +25,7 @@ public class HeaderFooterRecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_header_footer_recycler_view);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.andHeaderView_recyclerView);
+        mRecyclerView = findViewById(R.id.andHeaderView_recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);

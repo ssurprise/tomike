@@ -3,7 +3,7 @@ package com.skx.tomike.activity;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;

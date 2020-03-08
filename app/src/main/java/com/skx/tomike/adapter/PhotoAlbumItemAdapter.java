@@ -48,8 +48,8 @@ public class PhotoAlbumItemAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = layoutInflater.inflate(R.layout.adapter_photo_album, parent, false);
 			holder = new Holder();
-			holder.imageView = (ImageView) convertView.findViewById(R.id.image_item);
-			holder.checkBox = (CheckBox) convertView.findViewById(R.id.check);
+			holder.imageView = convertView.findViewById(R.id.image_item);
+			holder.checkBox = convertView.findViewById(R.id.check);
 			convertView.setTag(holder);
 		} else {
 			holder = (Holder) convertView.getTag();

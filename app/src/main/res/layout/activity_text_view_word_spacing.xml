@@ -8,7 +8,7 @@
     android:padding="15dp"
     tools:context="com.skx.tomike.activity.TextWordSpacingActivity">
 
-    <android.support.v4.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
@@ -18,7 +18,7 @@
         android:layout_height="70dp"
         android:textSize="16sp" />
 
-    <android.support.v4.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
@@ -28,7 +28,7 @@
         android:layout_height="200dp"
         android:textSize="16sp" />
 
-    <android.support.v4.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 

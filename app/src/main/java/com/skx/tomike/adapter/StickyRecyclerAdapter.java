@@ -1,12 +1,12 @@
 package com.skx.tomike.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.R;
 
@@ -32,11 +32,11 @@ public class StickyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == ITEM_TYPE_FOOT){
+        if (viewType == ITEM_TYPE_FOOT) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_recycler_item_footer, parent, false);
             return new FooterViewHolder(view);
 
-        }else {
+        } else {
             View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_sticky_recycler_item, parent, false);
             return new CommonItemHolder(view);
 
@@ -50,7 +50,7 @@ public class StickyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemViewType(int position) {
-        if(position ==getItemCount()-1){
+        if (position == getItemCount() - 1) {
             return ITEM_TYPE_FOOT;
         }
         return ITEM_TYPE_COMMENT;

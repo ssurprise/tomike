@@ -1,7 +1,8 @@
 package com.skx.tomikecommonlibrary.imageloader.transform;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;

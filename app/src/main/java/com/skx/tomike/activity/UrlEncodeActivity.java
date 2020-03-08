@@ -1,8 +1,9 @@
 package com.skx.tomike.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.R;
 

@@ -1,8 +1,6 @@
 package com.skx.tomikecommonlibrary.imageloader;
 
-import android.support.annotation.CheckResult;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * 描述 : ImageLoader 加载源接口
@@ -12,8 +10,6 @@ import android.support.annotation.Nullable;
  */
 public interface SourceType<T> {
 
-    @NonNull
-    @CheckResult
     @SuppressWarnings("unchecked")
     T load(@Nullable Object model);
 

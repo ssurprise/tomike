@@ -51,7 +51,7 @@
             android:layout_height="0.5dp"
             android:background="@color/skx_e0e0e0" />
 
-        <android.support.v4.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="5dp" />
 
@@ -99,7 +99,7 @@
             android:layout_marginTop="15dp"
             android:text="提交" />
 
-        <android.support.v4.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 

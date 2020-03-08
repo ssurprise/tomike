@@ -1,7 +1,7 @@
 package com.skx.tomike.activity.xzdz;
 
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.widget.ImageView;
 
 import com.skx.tomike.R;

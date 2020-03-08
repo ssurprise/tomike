@@ -1,8 +1,9 @@
 package com.skx.tomike.customview;
 
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by shiguotao on 2016/4/29.

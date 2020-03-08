@@ -1,9 +1,10 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.skx.tomike.tanklaboratory.R;
 
 public class FloatingActionButtonActivity extends AppCompatActivity {
