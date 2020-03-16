@@ -50,43 +50,40 @@ public class RxJavaActivity extends AppCompatActivity {
      * @param view
      */
     public void parallelBegin(View view) {
-        Observable
-                .zip(
-                        Observable
-                                .create(new ObservableOnSubscribe<Double>() {
-                                    @Override
-                                    public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
-                                        Log.e("Observable", "1.1");
-                                        SystemClock.sleep(3000);
-                                        Log.e("Observable", "1.2");
+        Observable.zip(
+                Observable.create(new ObservableOnSubscribe<Double>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                        Log.e("Observable", "1.1");
+                        SystemClock.sleep(3000);
+                        Log.e("Observable", "1.2");
 
-                                        emitter.onNext(10d);
-                                        emitter.onComplete();
-                                    }
-                                })
-                                .subscribeOn(Schedulers.io())// 指定 subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程。
-                        , Observable
-                                .create(new ObservableOnSubscribe<Double>() {
-                                    @Override
-                                    public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
-                                        Log.e("Observable", "2.1");
-                                        SystemClock.sleep(2000);
-                                        Log.e("Observable", "2.2");
+                        emitter.onNext(10d);
+                        emitter.onComplete();
+                    }
+                }).subscribeOn(Schedulers.io()),// 指定 subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程。
 
-                                        emitter.onNext(8d);
-                                        emitter.onComplete();
-                                    }
-                                })
-                                .subscribeOn(Schedulers.io())// 指定 subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程。
-                        , new BiFunction<Double, Double, Double>() {
-                            @Override
-                            public Double apply(Double aDouble, Double aDouble2) throws Exception {
-                                Log.e("Observable", "3");
-                                return aDouble + aDouble2;
-                            }
-                        }
-                )
-                .subscribeOn(Schedulers.io())// 指定 subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程。
+                Observable.create(new ObservableOnSubscribe<Double>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                        Log.e("Observable", "2.1");
+                        SystemClock.sleep(2000);
+                        Log.e("Observable", "2.2");
+
+                        emitter.onNext(8d);
+                        emitter.onComplete();
+                    }
+                }).subscribeOn(Schedulers.io()),// 指定 subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程。
+
+                new BiFunction<Double, Double, Double>() {
+                    @Override
+                    public Double apply(Double aDouble, Double aDouble2) throws Exception {
+                        Log.e("Observable", "3");
+                        return aDouble + aDouble2;
+                    }
+                }
+
+        ).subscribeOn(Schedulers.io())// 指定 subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程。
                 .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 所运行在的线程。或者叫做事件消费的线程。
                 .subscribe(new Observer<Double>() {
                     @Override
