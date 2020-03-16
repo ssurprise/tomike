@@ -296,7 +296,7 @@ public class RxJavaActivity extends AppCompatActivity {
 
     public void serialOrde3Begin(View view) {
 
-        Observable<Double> flatMap = Observable.create(new ObservableOnSubscribe<Double>() {
+        Observable.create(new ObservableOnSubscribe<Double>() {
             @Override
             public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
                 Log.e("Observable", "1.1");
@@ -325,30 +325,30 @@ public class RxJavaActivity extends AppCompatActivity {
                         });
                     }
                 }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-        flatMap.subscribe(new Observer<Double>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                Log.e("Observer-onSubscribe", "subscribe");
-                mRlLoading.setVisibility(View.VISIBLE);
-            }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Double>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.e("Observer-onSubscribe", "subscribe");
+                        mRlLoading.setVisibility(View.VISIBLE);
+                    }
 
-            @Override
-            public void onNext(Double aDouble) {
-                Toast.makeText(RxJavaActivity.this, aDouble + "", Toast.LENGTH_SHORT).show();
-            }
+                    @Override
+                    public void onNext(Double aDouble) {
+                        Toast.makeText(RxJavaActivity.this, aDouble + "", Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                Log.e("Observer-onError", "error");
-                mRlLoading.setVisibility(View.GONE);
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("Observer-onError", "error");
+                        mRlLoading.setVisibility(View.GONE);
+                    }
 
-            @Override
-            public void onComplete() {
-                Log.e("Observer-onComplete", "complete");
-                mRlLoading.setVisibility(View.GONE);
-            }
-        });
+                    @Override
+                    public void onComplete() {
+                        Log.e("Observer-onComplete", "complete");
+                        mRlLoading.setVisibility(View.GONE);
+                    }
+                });
     }
 }
