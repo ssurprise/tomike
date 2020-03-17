@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'// Android的库插件（打包得到的是.aar文件）
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
