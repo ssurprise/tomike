@@ -1,4 +1,4 @@
-package com.skx.tomike.cannonlaboratory.ui.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,10 +9,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.skx.tomike.cannonlaboratory.R;
-import com.skx.tomike.cannonlaboratory.ui.adapter.InfiniteLoopAdapter;
-import com.skx.tomike.cannonlaboratory.ui.widget.CustomSwitcher;
-import com.skx.tomike.cannonlaboratory.ui.widget.PageIndicatorLayout;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomike.tanklaboratory.widget.adapter.InfiniteLoopAdapter;
+import com.skx.tomike.tanklaboratory.widget.view.CustomSwitcher;
+import com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class PageIndicatorActivity extends AppCompatActivity {
     private void refreshView() {
         ll_pageIndicator_type1.setPageCount(imageList.size());
 
-        InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(this, imageList);
+        InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(imageList);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 

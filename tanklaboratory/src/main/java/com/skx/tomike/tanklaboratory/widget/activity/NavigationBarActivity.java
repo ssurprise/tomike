@@ -8,31 +8,61 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.NavigationBarLayout;
 import com.skx.tomike.tanklaboratory.widget.view.TabLayoutHelper;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 导航栏Activity
+ * 描述 : 导航栏view
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020-03-18 23:16
  */
-public class NavigationBarActivity extends AppCompatActivity implements View.OnClickListener {
+public class NavigationBarActivity extends SkxBaseActivity implements View.OnClickListener {
 
-    NavigationBarLayout mNavigationBar;
-    TextView contentText;
+    private NavigationBarLayout<String> mNavigationBar;
+    private TextView contentText;
 
-    List<String> tabList;
+    private final List<String> mTabList = new ArrayList<>();
+
+
+    @Override
+    protected void initParams() {
+        mTabList.add("天猫");
+        mTabList.add("京东");
+        mTabList.add("唯品会");
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_navigation_bar;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
+    @Override
+    protected boolean useDefaultLayout() {
+        return true;
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        title.setText("TabLayout使用扩展");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation_bar);
 
         mNavigationBar = findViewById(R.id.navigationBar_tab);
         contentText = findViewById(R.id.navigationBar_content);
@@ -46,17 +76,10 @@ public class NavigationBarActivity extends AppCompatActivity implements View.OnC
         navigationBar_notifyBtn3.setOnClickListener(this);
         navigationBar_notifyBtn4.setOnClickListener(this);
 
-        tabList = new ArrayList<>();
-        tabList.add("天猫");
-        tabList.add("京东");
-        tabList.add("唯品会");
-//        tabList.add("亚马逊");
-//        tabList.add("一号店");
-//        tabList.add("聚美优品");
 
         mNavigationBar.setTabMode(TabLayout.MODE_FIXED);
         mNavigationBar.setTabGravity(TabLayout.GRAVITY_FILL);
-        mNavigationBar.setCustomAdapter(R.layout.layout_tab_item, new TabLayoutHelper.TabLayoutAdapter<String>(tabList) {
+        mNavigationBar.setCustomAdapter(R.layout.layout_tab_item, new TabLayoutHelper.TabLayoutAdapter<String>(mTabList) {
             @Override
             public void bindData(int position, @NonNull View view, String charSequence) {
                 ImageView imgv_tabIcon = view.findViewById(R.id.tab_icon);
@@ -67,7 +90,7 @@ public class NavigationBarActivity extends AppCompatActivity implements View.OnC
 
             @Override
             public void onItemClick(TabLayout.Tab tab, int position, View view) {
-                contentText.setText(tabList.get(position));
+                contentText.setText(mTabList.get(position));
             }
         }).setOnCustomItemSelectorListener(new TabLayoutHelper.OnCustomItemSelectorListener() {
             @Override
@@ -82,48 +105,44 @@ public class NavigationBarActivity extends AppCompatActivity implements View.OnC
                 tv_tabTitle.setTextColor(Color.parseColor("#323232"));
             }
         });
-        mNavigationBar.getTabLayoutHelper().setTabDividerLine(ContextCompat.getDrawable(this, R.drawable.linearlayout_divider));
-
-//        ViewGroup childGroup = (ViewGroup) mNavigationBar.getChildAt(0);
-//        for (int i = 0, j = childGroup.getChildCount(); i < j; i++) {
-//            childGroup.getChildAt(i).setBackgroundColor(Color.parseColor("#123456"));
-//        }
+        mNavigationBar.getTabLayoutHelper()
+                .setTabDividerLine(ContextCompat.getDrawable(this, R.drawable.linearlayout_divider));
     }
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.navigationBar_notifyBtn1) {
-            tabList.clear();
-            tabList.add("京东");
-            tabList.add("天猫");
+            mTabList.clear();
+            mTabList.add("京东");
+            mTabList.add("天猫");
             mNavigationBar.notifyDataChanged();
         } else if (i == R.id.navigationBar_notifyBtn2) {
-            tabList.clear();
-            tabList.add("聚美优品");
-            tabList.add("唯品会");
-            tabList.add("天猫");
-            tabList.add("京东");
-            tabList.add("一号店");
-            tabList.add("亚马逊");
+            mTabList.clear();
+            mTabList.add("聚美优品");
+            mTabList.add("唯品会");
+            mTabList.add("天猫");
+            mTabList.add("京东");
+            mTabList.add("一号店");
+            mTabList.add("亚马逊");
             mNavigationBar.notifyDataChanged();
         } else if (i == R.id.navigationBar_notifyBtn3) {
-            tabList.clear();
-            tabList.add("聚美优品");
-            tabList.add("唯品会");
-            tabList.add("京东");
-            tabList.add("天猫");
-            tabList.add("一号店");
-            tabList.add("亚马逊");
+            mTabList.clear();
+            mTabList.add("聚美优品");
+            mTabList.add("唯品会");
+            mTabList.add("京东");
+            mTabList.add("天猫");
+            mTabList.add("一号店");
+            mTabList.add("亚马逊");
             mNavigationBar.notifyDataChanged();
         } else if (i == R.id.navigationBar_notifyBtn4) {
-            tabList.clear();
-            tabList.add("聚美优品");
-            tabList.add("唯品会");
-            tabList.add("京东");
-            tabList.add("一号店");
-            tabList.add("天猫");
-            tabList.add("亚马逊");
+            mTabList.clear();
+            mTabList.add("聚美优品");
+            mTabList.add("唯品会");
+            mTabList.add("京东");
+            mTabList.add("一号店");
+            mTabList.add("天猫");
+            mTabList.add("亚马逊");
             mNavigationBar.notifyDataChanged();
         }
     }

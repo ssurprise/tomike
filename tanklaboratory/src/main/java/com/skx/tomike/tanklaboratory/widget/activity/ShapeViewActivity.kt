@@ -1,29 +1,34 @@
 package com.skx.tomike.tanklaboratory.widget.activity
 
-import android.os.Bundle
-import android.os.Handler
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
 import com.skx.tomike.tanklaboratory.R
-import com.skx.tomike.tanklaboratory.widget.view.ScoreView
-import java.util.*
+import com.skx.tomikecommonlibrary.base.BaseViewModel
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity
 
-class ShapeViewActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shape_view)
+/**
+ * 描述 : 自定义ShapeView
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020-03-18 23:10
+ */
+class ShapeViewActivity : SkxBaseActivity<BaseViewModel>() {
 
-        val scoreView = findViewById<ScoreView>(R.id.customView_scoreView)
-        refreshScore(scoreView)
+    override fun initParams() {
     }
 
-    private fun refreshScore(scoreView: ScoreView) {
-        Handler().postDelayed({
-            val r = Random()
-            val i = r.nextInt(20)
-            scoreView.setIndicatorPos(i)
+    override fun getLayoutId(): Int {
+        return R.layout.activity_shape_view
+    }
 
-            refreshScore(scoreView)
-        }, 2000)
+    override fun subscribeEvent() {
+    }
+
+    override fun useDefaultLayout(): Boolean {
+        return true
+    }
+
+    override fun configHeaderTitleView(title: TextView) {
+        title.text = "自定义ShapeView"
     }
 }

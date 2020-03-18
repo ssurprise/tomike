@@ -1,4 +1,4 @@
-package com.skx.tomike.cannonlaboratory.ui.widget;
+package com.skx.tomike.tanklaboratory.widget.view;
 
 import android.os.Build;
 import android.view.View;

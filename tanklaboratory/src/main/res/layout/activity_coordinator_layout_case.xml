@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.skx.tomike.activity.CoordinatorLayoutCaseActivity">
+    tools:context="com.skx.tomike.tanklaboratory.widget.activity.CoordinatorLayoutCaseActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/customBehavior_appbar"
@@ -13,7 +13,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="0dp">
 
-        <com.skx.tomike.customview.CustomCommentLayoutView
+        <com.skx.tomike.tanklaboratory.widget.view.CustomCommentLayoutView
             android:id="@+id/customBehavior_head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,14 +22,14 @@
             android:orientation="vertical"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-            <com.skx.tomike.customview.LuCommentScoreWidget
+            <com.skx.tomike.tanklaboratory.widget.view.LuCommentScoreWidget
                 android:layout_width="134dp"
                 android:layout_height="134dp"
                 android:layout_marginTop="56dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-            </com.skx.tomike.customview.LuCommentScoreWidget>
+            </com.skx.tomike.tanklaboratory.widget.view.LuCommentScoreWidget>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,16 +43,15 @@
             <LinearLayout
                 android:layout_width="80dp"
                 android:layout_height="25dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@color/skx_2cb298"
                 android:visibility="visible">
 
             </LinearLayout>
 
-        </com.skx.tomike.customview.CustomCommentLayoutView>
+        </com.skx.tomike.tanklaboratory.widget.view.CustomCommentLayoutView>
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/customBehavior_body"

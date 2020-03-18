@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.R;
-import com.skx.tomike.cannonlaboratory.ui.widget.ScrollChangedScrollView;
+import com.skx.tomike.tanklaboratory.widget.view.ScrollChangedScrollView;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 

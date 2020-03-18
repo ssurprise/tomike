@@ -12,6 +12,7 @@
         android:id="@+id/tv_textSpacing_standard"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginTop="50dp"
         android:textSize="16sp" />
 
     <Space
@@ -21,7 +22,7 @@
     <TextView
         android:id="@+id/tv_textSpacing_mutable"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:textSize="16sp" />
 
     <Space
@@ -38,8 +39,8 @@
     <SeekBar
         android:id="@+id/sb_textSpacing_mutable_progress"
         android:layout_width="match_parent"
-        android:max="10"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:max="10" />
 
 </LinearLayout>

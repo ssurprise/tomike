@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:padding="15dp">
 
-    <com.skx.tomike.cannonlaboratory.ui.widget.PageIndicatorLayout
+    <com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout
         android:id="@+id/infinite_loop_viewPager_pageIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/white">
 
-    </com.skx.tomike.cannonlaboratory.ui.widget.PageIndicatorLayout>
+    </com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout>
 
     <LinearLayout
         android:id="@+id/infinite_loop_pageIndicator2_container"

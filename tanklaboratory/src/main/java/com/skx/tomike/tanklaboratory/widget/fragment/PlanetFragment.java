@@ -67,7 +67,7 @@ public class PlanetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_planet, container, false);
-        TextView planet_content = (TextView) view.findViewById(R.id.planet_content);
+        TextView planet_content = view.findViewById(R.id.planet_content);
 
         planet_content.setText(mParam1 + ":" + mParam2);
         Log.e("fragment", "onCreateView");

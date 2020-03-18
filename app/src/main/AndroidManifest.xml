@@ -116,7 +116,7 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".activity.effect.SwipeRefreshLayoutActivity"
+            android:name=".tanklaboratory.widget.activity.SwipeRefreshLayoutActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -136,10 +136,6 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
-        <activity
-            android:name=".activity.ImageSpanActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activity.HeaderFooterRecyclerViewActivity"
             android:screenOrientation="portrait"
@@ -176,7 +172,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".activity.CoordinatorLayoutCaseActivity"
+            android:name=".tanklaboratory.widget.activity.CoordinatorLayoutCaseActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity

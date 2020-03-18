@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:padding="15dp">
 
-    <com.skx.tomike.cannonlaboratory.ui.widget.PageIndicatorLayout
+    <com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout
         android:id="@+id/pageIndicator_type1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/white">
 
-    </com.skx.tomike.cannonlaboratory.ui.widget.PageIndicatorLayout>
+    </com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout>
 
     <LinearLayout
         android:id="@+id/pageIndicator_type2"
@@ -22,7 +22,7 @@
 
     </LinearLayout>
 
-    <com.skx.tomike.cannonlaboratory.ui.widget.CustomSwitcher
+    <com.skx.tomike.tanklaboratory.widget.view.CustomSwitcher
         android:id="@+id/pageIndicator_type3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             android:textColor="@color/skx_ff4081"
             android:textSize="14sp" />
 
-    </com.skx.tomike.cannonlaboratory.ui.widget.CustomSwitcher>
+    </com.skx.tomike.tanklaboratory.widget.view.CustomSwitcher>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pageIndicator_viewPager"

@@ -1,4 +1,4 @@
-package com.skx.tomike.cannonlaboratory.ui.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.skx.tomike.cannonlaboratory.R;
-import com.skx.tomike.cannonlaboratory.ui.adapter.InfiniteLoopAdapter;
-import com.skx.tomike.cannonlaboratory.ui.widget.PageIndicatorLayout;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomike.tanklaboratory.widget.adapter.InfiniteLoopAdapter;
+import com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 import java.util.ArrayList;
@@ -76,7 +76,7 @@ public class ViewPagerInfiniteLoopActivity extends AppCompatActivity {
     private void refreshView() {
         infinite_pageIndicator.setPageCount(infiniteLoopList.size());
         // 无限循环
-        InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(this, infiniteLoopList);
+        InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(infiniteLoopList);
         vp_infiniteLoop.setAdapter(adapter);
         vp_infiniteLoop.setCurrentItem(1);
         vp_infiniteLoop.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -115,7 +115,7 @@ public class ViewPagerInfiniteLoopActivity extends AppCompatActivity {
 
 
         // 自动轮播
-        InfiniteLoopAdapter automaticAdapter = new InfiniteLoopAdapter(this, automaticLoopList);
+        InfiniteLoopAdapter automaticAdapter = new InfiniteLoopAdapter(automaticLoopList);
         vp_automaticLoop.setAdapter(automaticAdapter);
         mHandler.postDelayed(myRunnable, 3000);
     }

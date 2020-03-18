@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
@@ -92,9 +91,6 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
                  */
             } else {
                 // 获得定位信息的code
-
-                String deviceId = telephonyManager.getDeviceId();
-                Log.e("deviceId", deviceId);
             }
         } else {
             ToastTool.showToast(this, "6.0 以下");

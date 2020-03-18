@@ -94,7 +94,7 @@
 
         <!-- viewpager一屏多展示item activity -->
         <activity
-            android:name=".ui.activity.VpMultiplePageActivity"
+            android:name="com.skx.tomike.tanklaboratory.widget.activity.VpMultiplePageActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -102,11 +102,11 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.ZoomHeaderListViewActivity"
+            android:name="com.skx.tomike.tanklaboratory.widget.activity.ZoomHeaderListViewActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.PageIndicatorActivity"
+            android:name="com.skx.tomike.tanklaboratory.widget.activity.PageIndicatorActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -114,12 +114,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.TabLayoutActivity"
+            android:name="com.skx.tomike.tanklaboratory.widget.activity.TabLayoutActivity"
             android:screenOrientation="portrait" />
 
         <!-- viewpager无限循环 activity -->
         <activity
-            android:name=".ui.activity.ViewPagerInfiniteLoopActivity"
+            android:name="com.skx.tomike.tanklaboratory.widget.activity.ViewPagerInfiniteLoopActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
     </application>

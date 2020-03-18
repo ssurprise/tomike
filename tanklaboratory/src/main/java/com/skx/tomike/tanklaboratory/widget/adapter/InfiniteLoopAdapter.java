@@ -1,14 +1,14 @@
-package com.skx.tomike.cannonlaboratory.ui.adapter;
+package com.skx.tomike.tanklaboratory.widget.adapter;
 
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,42 +17,45 @@ import java.util.List;
  * ViewPager 无限循环、自动轮播 Adapter
  */
 public class InfiniteLoopAdapter extends PagerAdapter {
-    private List<Integer> mList;
-    LayoutInflater layoutInflater;
 
-    public InfiniteLoopAdapter(Context context, List<Integer> list) {
+    private final List<Integer> mDataList = new ArrayList<>();
+
+    public InfiniteLoopAdapter(List<Integer> list) {
         super();
-        this.mList = list;
-        layoutInflater = LayoutInflater.from(context);
+        if (list != null) {
+            this.mDataList.addAll(list);
+        }
     }
 
     @Override
     public int getCount() {
-        return mList.size();
+        return mDataList.size();
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         View view = (View) object;
-        ((ViewPager) container).removeView(view);
+        container.removeView(view);
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        ImageView imageView = new ImageView(layoutInflater.getContext());
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        ImageView imageView = new ImageView(container.getContext());
         ViewPager.LayoutParams layoutParams = new ViewPager.LayoutParams();
         layoutParams.height = 168;
         layoutParams.width = 168;
 
         imageView.setLayoutParams(layoutParams);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setImageResource(mList.get(position % mList.size()));
-        ((ViewPager) container).addView(imageView);
+        imageView.setImageResource(mDataList.get(position % mDataList.size()));
+        container.addView(imageView);
         return imageView;
     }
+
 }

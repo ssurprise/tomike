@@ -1,4 +1,4 @@
-package com.skx.tomike.cannonlaboratory.ui.widget;
+package com.skx.tomike.tanklaboratory.widget.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -128,7 +128,8 @@ public class CustomSwitcher extends FrameLayout {
      * @param currentPosOffset 当前view的alpha
      * @param nextPosOffset    下页view的alpha
      */
-    private void setSwitcherAlpha(@FloatRange(from = 0.0, to = 1.0) float currentPosOffset, @FloatRange(from = 0.0, to = 1.0) float nextPosOffset) {
+    private void setSwitcherAlpha(@FloatRange(from = 0.0, to = 1.0) float currentPosOffset,
+                                  @FloatRange(from = 0.0, to = 1.0) float nextPosOffset) {
         if (getChildAt(0) != null) {
             getChildAt(0).setAlpha(nextPosOffset);
         }

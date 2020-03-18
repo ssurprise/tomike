@@ -1,4 +1,4 @@
-package com.skx.tomike.customview;
+package com.skx.tomike.tanklaboratory.widget.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,7 +9,7 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 /**
@@ -19,8 +19,6 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
 
     private LinearLayout widget_totalScoreContainer;
     private TextView tv_totalScore;
-    private TextView tv_scoreNum;
-    private LinearLayout widget_scoreBehavior;
 
     // 初始状态下 控件的宽高
     private int initWidth;
@@ -41,14 +39,6 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
     private float scoreEndPosX;
     private float scoreEndPosY;
 
-    // 初始状态下星星控件的坐标
-    private float starStartPosX;
-    private float starStartPosY;
-    // 折叠状态下星星控件的坐标
-    private float starEndPosX;
-    private float starEndPosY;
-
-    private Context mContext;
 
     public LuCommentScoreWidget(Context context) {
         this(context, null);
@@ -64,17 +54,11 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
     }
 
     private void initView(Context context, AttributeSet attrs) {
-        mContext = context;
         View view = LayoutInflater.from(context).inflate(R.layout.layout_lu_comment_total_score, this, true);
-        widget_totalScoreContainer = (LinearLayout) findViewById(R.id.luCommentTotalScore_totalScoreContainer);
-        tv_totalScore = (TextView) view.findViewById(R.id.luCommentTotalScore_totalScore);
-        tv_scoreNum = (TextView) view.findViewById(R.id.luCommentTotalScore_scoreNum);
-        widget_scoreBehavior = (LinearLayout) view.findViewById(R.id.luCommentTotalScore_behavior);
+        widget_totalScoreContainer = findViewById(R.id.luCommentTotalScore_totalScoreContainer);
+        tv_totalScore = view.findViewById(R.id.luCommentTotalScore_totalScore);
 
         setOrientation(VERTICAL);
-//        setGravity(Gravity.CENTER);
-
-        tv_scoreNum.setVisibility(INVISIBLE);
 
         // 初始状态的控件宽高
         initWidth = DpPxSpTool.INSTANCE.dip2px(context, 114);
@@ -84,15 +68,9 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
         collapseWidth = DpPxSpTool.INSTANCE.dip2px(context, 134);
         collapseHeight = DpPxSpTool.INSTANCE.dip2px(context, 25);
 
-
         // 初始化分数view 结束点的坐标
-        scoreEndPosX = DpPxSpTool.INSTANCE.dip2px(mContext, 15);
-        scoreEndPosY = (collapseHeight - DpPxSpTool.INSTANCE.sp2px(mContext, 14)) / 2;
-
-        // 初始化星星view 结束点的坐标
-        starEndPosX = collapseWidth - DpPxSpTool.INSTANCE.dip2px(mContext, 15);
-        starEndPosY = (collapseHeight - DpPxSpTool.INSTANCE.sp2px(mContext, 14)) / 2;
-
+        scoreEndPosX = DpPxSpTool.INSTANCE.dip2px(context, 15);
+        scoreEndPosY = (collapseHeight - DpPxSpTool.INSTANCE.sp2px(context, 14)) / 2;
     }
 
 
@@ -116,8 +94,6 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
         // 2. 分数变化
         refreshSoreViewPos(rate);
 
-        // 3. 星星位移变化
-        refreshStarView(rate);
     }
 
     /**
@@ -147,24 +123,11 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
         tv_totalScore.setTextSize(size);
     }
 
-    /**
-     * 更新分数表现器的位置
-     *
-     * @param rate 变化率
-     */
-    private void refreshStarView(float rate) {
-        widget_scoreBehavior.setTranslationX((starEndPosX - starStartPosX) * rate);
-        // 此处的 5 乃是误差范围。根据具体情况酌情进行调整
-        widget_scoreBehavior.setTranslationY((starEndPosY - starStartPosY + 5) * rate);
-    }
 
     @Override
     public void onGlobalLayout() {
         scoreStartPosX = tv_totalScore.getLeft();
         scoreStartPosY = tv_totalScore.getTop();
-
-        starStartPosX = widget_scoreBehavior.getRight();
-        starStartPosY = widget_scoreBehavior.getTop();
     }
 
     @Override
@@ -179,22 +142,5 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
         super.onDetachedFromWindow();
         getViewTreeObserver().removeGlobalOnLayoutListener(this);
     }
-
-    public void setScoreInfo(String totalScore, String scoreNum) {
-        tv_totalScore.setText(totalScore);
-        int scoreNumInt = 0;
-        try {
-            scoreNumInt = Integer.parseInt(scoreNum);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (scoreNumInt > 3) {
-            tv_scoreNum.setVisibility(VISIBLE);
-            tv_scoreNum.setText(scoreNum);
-        } else {
-            tv_scoreNum.setVisibility(INVISIBLE);
-        }
-    }
-
 }
 
