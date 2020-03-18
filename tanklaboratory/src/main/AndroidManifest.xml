@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.skx.tomike.tanklaboratory">
 
     <application>
@@ -75,6 +76,19 @@
         <activity
             android:name="com.skx.tomike.tanklaboratory.animation.activity.LayoutTransitionActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.skx.tomike.tanklaboratory.widget.activity.DrawerLayoutActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".widget.activity.TextSwitcherActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".widget.activity.TextWordSpacingActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
     </application>
 </manifest>

@@ -1,4 +1,4 @@
-package com.skx.tomike.cannonlaboratory.ui.fragment;
+package com.skx.tomike.tanklaboratory.widget.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.skx.tomike.cannonlaboratory.R;
+import com.skx.tomike.tanklaboratory.R;
 
 /**
  * A simple {@link Fragment} subclass.

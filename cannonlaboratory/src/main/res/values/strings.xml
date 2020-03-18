@@ -1,16 +1,3 @@
 <resources>
     <string name="app_name">cannonlaboratory</string>
-
-    <string name="action_settings">设置</string>
-    <string name="action_search">搜索</string>
-    <string name="action_favorite">收藏</string>
-    <string name="action_share">分享</string>
-    <string name="drawer_open">打开</string>
-    <string name="drawer_close">关闭</string>
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-    </string-array>
 </resources>

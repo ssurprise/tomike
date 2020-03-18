@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context="com.skx.tomike.activity.TextWordSpacingActivity">
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
+    android:paddingTop="20dp"
+    tools:context=".widget.activity.TextWordSpacingActivity">
 
     <TextView
-        android:id="@+id/textSpacing_original"
+        android:id="@+id/tv_textSpacing_standard"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:textSize="16sp" />
@@ -23,7 +19,7 @@
         android:layout_height="20dp" />
 
     <TextView
-        android:id="@+id/textSpacing_change"
+        android:id="@+id/tv_textSpacing_mutable"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:textSize="16sp" />
@@ -33,15 +29,16 @@
         android:layout_height="20dp" />
 
     <TextView
-        android:id="@+id/textSpacing_label"
+        android:id="@+id/tv_textSpacing_mutable_factor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/skx_ff4081"
         android:textSize="16sp" />
 
     <SeekBar
-        android:id="@+id/textSpacing_seekBar_hun"
+        android:id="@+id/sb_textSpacing_mutable_progress"
         android:layout_width="match_parent"
+        android:max="10"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />
 

@@ -5,153 +5,149 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingEnd="@dimen/view_paddingRight_15"
-    android:paddingLeft="@dimen/view_paddingLeft_15"
-    android:paddingRight="@dimen/view_paddingRight_15"
-    android:paddingStart="@dimen/view_paddingLeft_15"
-    tools:context="com.skx.tomike.tacticallaboratory.activity.MementoPatternActivity">
+    android:padding="15dp"
+    tools:context="com.skx.tomike.tacticallaboratory.pattern.memento.MementoPatternActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="horizontal"
         android:paddingTop="10dp">
 
         <TextView
-            android:id="@+id/mementoPattern_nameLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="5"
-            android:text="姓名"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/mementoPattern_nameInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/mementoPattern_like"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:text="兴趣爱好"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <CheckBox
-                android:id="@+id/mementoPattern_like_money"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="money"
-                tools:layout_editor_absoluteX="85dp"
-                tools:layout_editor_absoluteY="122dp" />
-
-            <CheckBox
-                android:id="@+id/mementoPattern_like_yunv"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="御女"
-                tools:layout_editor_absoluteX="206dp"
-                tools:layout_editor_absoluteY="122dp" />
-
-            <CheckBox
-                android:id="@+id/mementoPattern_like_mengmeizi"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="萌妹子" />
-
-            <CheckBox
-                android:id="@+id/mementoPattern_like_luoli"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="萝莉" />
-
-            <CheckBox
-                android:id="@+id/mementoPattern_like_nvhanzi"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="女汉子" />
-
-            <CheckBox
-                android:id="@+id/mementoPattern_like_gay"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="搞基" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="其他"
+            android:text="姓名:"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/mementoPattern_otherInput"
+            android:id="@+id/tv_mementoPattern_playerName"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginLeft="60dp"
-            android:gravity="start|top"
-            android:hint="自我描述"
-            android:text="父控件阿克江安康的放开控件附带课教案啊看简历父控件安卡接口尽量看旷达科技卡开裆裤卡卡的安居客克力架"
-            android:textColorHint="@android:color/darker_gray"
-            android:textSize="12sp" />
+            android:layout_height="30dp"
+            android:background="@null"
+            android:textSize="12sp"
+            tools:ignore="Autofill,LabelFor,TextFields"
+            tools:text="会跳狙的百里" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="40dp">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/mementoPattern_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="存档" />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="血量:"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/mementoPattern_reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <SeekBar
+            android:id="@+id/sb_mementoPattern_bloodVolume"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="撤销修改" />
+            android:max="100"
+            android:maxHeight="2dp" />
 
-        <Button
-            android:id="@+id/mementoPattern_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="清除备忘录" />
+        <TextView
+            android:id="@+id/tv_mementoPattern_bloodVolume_value"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:textSize="12sp"
+            tools:text="100" />
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/tv_mementoPattern_equipmentLabel"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="装备:"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_98k"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="98k"
+            app:layout_constraintLeft_toRightOf="@id/tv_mementoPattern_equipmentLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="122dp" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_416"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="416"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_98k"
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_98k"
+            tools:layout_editor_absoluteX="206dp"
+            tools:layout_editor_absoluteY="122dp" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_helmet"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="三级盔"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_416"
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_416" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_armor"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="三级甲"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_helmet"
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_helmet" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_grenade"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="手雷"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_armor"
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_armor" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_mementoPattern_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="存档"
+        tools:ignore="ButtonStyle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_mementoPattern_mementoHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 </LinearLayout>

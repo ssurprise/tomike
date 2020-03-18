@@ -1,4 +1,4 @@
-package com.skx.tomike.cannonlaboratory.ui.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -17,8 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.skx.tomike.cannonlaboratory.R;
-import com.skx.tomike.cannonlaboratory.ui.fragment.PlanetFragment;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomike.tanklaboratory.widget.fragment.PlanetFragment;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.ArrayList;
