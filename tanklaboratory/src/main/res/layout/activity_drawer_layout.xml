@@ -4,7 +4,7 @@
     android:id="@+id/activity_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.DrawerLayoutActivity">
+    tools:context="com.skx.tomike.tanklaboratory.widget.activity.DrawerLayoutActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/drawerLayout_toolbar"
