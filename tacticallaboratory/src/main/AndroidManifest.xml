@@ -1,6 +1,30 @@
-<manifest package="com.skx.tomike.tacticallaboratory">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.skx.tomike.tacticallaboratory">
 
     <application>
+        <activity
+            android:name=".pattern.memento.MementoPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".pattern.chainofresponsibility.ChainOfResponsibilityPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".pattern.strategy.StrategyPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ClonePatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ObserverPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ViewModelActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>

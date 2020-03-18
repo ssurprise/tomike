@@ -46,6 +46,7 @@ dependencies {
 
     implementation project(":apt-annotation")
     annotationProcessor project(":apt-processor")
+    implementation project(path: ':TomikeCommon')
 }
 repositories {
     mavenCentral()

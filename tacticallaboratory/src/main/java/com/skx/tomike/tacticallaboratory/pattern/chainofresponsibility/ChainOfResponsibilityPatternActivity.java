@@ -1,4 +1,4 @@
-package com.skx.tomike.tacticallaboratory.activity;
+package com.skx.tomike.tacticallaboratory.pattern.chainofresponsibility;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -80,38 +80,6 @@ public class ChainOfResponsibilityPatternActivity extends AppCompatActivity impl
         collectDataHandler.doHandle();
     }
 
-
-    /**
-     * 责任链节点处理者抽象类
-     */
-    public abstract class ChainNodeHandler {
-
-        /**
-         * 持有后继的责任对象
-         */
-        private ChainNodeHandler mNextHandler;
-
-        ChainNodeHandler() {
-        }
-
-        /**
-         * 处理当前节点的任务
-         */
-        public abstract void doHandle();
-
-        /**
-         * 获取到下一个节点的处理者对象
-         *
-         * @return 处理者对象
-         */
-        ChainNodeHandler getNextHandler() {
-            return mNextHandler;
-        }
-
-        void setNextHandler(ChainNodeHandler nextHandler) {
-            this.mNextHandler = nextHandler;
-        }
-    }
 
     public class CollectDataNodeHandler extends ChainNodeHandler {
 

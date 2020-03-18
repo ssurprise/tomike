@@ -105,9 +105,7 @@
         <activity
             android:name=".activity.GetTopTestActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".tacticallaboratory.activity.ClonePatternActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.effect.SwipeRefreshLayoutActivity"
             android:screenOrientation="portrait" />
@@ -123,9 +121,7 @@
         <activity
             android:name=".activity.MatrixImageActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".tacticallaboratory.activity.StrategyPatternActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.ImageSpanActivity"
             android:screenOrientation="portrait" />
@@ -156,9 +152,7 @@
         <activity
             android:name=".activity.TextWordSpacingActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".tacticallaboratory.activity.MementoPatternActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.skx.tomike.tanklaboratory.widget.activity.ShapeViewActivity"
             android:screenOrientation="portrait" />
@@ -189,18 +183,10 @@
             android:name=".service.RemoteService"
             android:process=":com.skx.remote" />
 
-        <activity
-            android:name=".tacticallaboratory.activity.ChainOfResponsibilityPatternActivity"
-            android:screenOrientation="portrait" />
-        <activity
+             <activity
             android:name=".activity.function.AopTestActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".tacticallaboratory.activity.ViewModelActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".tacticallaboratory.activity.ObserverPatternActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.ViewCaptureActivity"
             android:screenOrientation="portrait" />
