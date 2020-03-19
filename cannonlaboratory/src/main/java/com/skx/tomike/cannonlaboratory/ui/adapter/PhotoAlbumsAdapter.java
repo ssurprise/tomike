@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageBucket;
+import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,12 @@ public class PhotoAlbumsAdapter extends RecyclerView.Adapter<PhotoAlbumsAdapter.
         holder.mTvAlbumName.setText(photoUpImageBucket.bucketName);
         holder.mTvPhotoCount.setText(String.format(Locale.getDefault(), "%d张", photoUpImageBucket.count));
 
+        if (photoUpImageBucket.imageList.size() > 0) {
+            ImageLoader.with(holder.itemView.getContext())
+                    .load(photoUpImageBucket.imageList.get(0).getImagePath())
+                    .into(holder.mIvThumbnailImage);
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,13 +71,14 @@ public class PhotoAlbumsAdapter extends RecyclerView.Adapter<PhotoAlbumsAdapter.
     }
 
     static class PhotoAlbumsViewHolder extends RecyclerView.ViewHolder {
-        ImageView mThumbnailsImage;
+
+        ImageView mIvThumbnailImage;
         TextView mTvAlbumName;
         TextView mTvPhotoCount;
 
         PhotoAlbumsViewHolder(@NonNull View itemView) {
             super(itemView);
-            mThumbnailsImage = itemView.findViewById(R.id.iv_photoAlbum_picture);
+            mIvThumbnailImage = itemView.findViewById(R.id.iv_photoAlbum_picture);
             mTvAlbumName = itemView.findViewById(R.id.tv_photoAlbum_name);
             mTvPhotoCount = itemView.findViewById(R.id.tv_photoAlbum_photoCount);
         }

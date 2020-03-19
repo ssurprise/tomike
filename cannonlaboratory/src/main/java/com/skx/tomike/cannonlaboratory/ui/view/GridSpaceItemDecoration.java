@@ -1,6 +1,7 @@
 package com.skx.tomike.cannonlaboratory.ui.view;
 
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,11 @@ public class GridSpaceItemDecoration extends RecyclerView.ItemDecoration {
         int position = parent.getChildAdapterPosition(view); // item 位置
         int column = position % mSpanCount; // item 所在的列
 
-        outRect.left = column == 0 ? 0 : mColumnSpacing;
+        outRect.left = column * mColumnSpacing / mSpanCount; // column * ((1f / spanCount) * spacing)
+        outRect.right = mColumnSpacing - (column + 1) * mColumnSpacing / mSpanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+
+        Log.e("position:" + position, "column: " + column + " left,right ->" + outRect.left + "," + outRect.right);
+
         if (position >= mSpanCount) {
             outRect.top = mRowSpacing; // item top
         }

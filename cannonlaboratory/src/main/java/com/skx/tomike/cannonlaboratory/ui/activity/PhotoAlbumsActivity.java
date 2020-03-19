@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,15 +19,17 @@ import com.skx.tomike.cannonlaboratory.ui.adapter.PhotoAlbumsAdapter;
 import com.skx.tomike.cannonlaboratory.ui.view.GridSpaceItemDecoration;
 import com.skx.tomike.cannonlaboratory.viewmodel.PhotoAlbumViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 /**
- * @author shiguotao
- * <p>
- * 相册
+ * 描述 : 相册
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020-03-20 00:10
  */
 public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
 
@@ -35,7 +39,6 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
 
     @Override
     protected void initParams() {
-
     }
 
     @Override
@@ -54,13 +57,24 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
     }
 
     @Override
+    protected boolean useDefaultLayout() {
+        return true;
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        super.configHeaderTitleView(title);
+        title.setText("相册");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                /**
+                /*
                  * 这里权限模式
                  */
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -69,7 +83,7 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
                     // 请求权限处理
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION);
                 }
-                /**
+                /*
                  * 如果要用意图模式的话，就不需要用权限模式了，直接跳转到系统设置页面，
                  * 让用户自己控制权限的授权与否，app只承担了一个引导作用
                  */
@@ -84,13 +98,13 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
     private void initView() {
         RecyclerView mRvPhotoAlbums = findViewById(R.id.rv_photoAlbums_content);
         mRvPhotoAlbums.setLayoutManager(new GridLayoutManager(this, 3));
-        mRvPhotoAlbums.addItemDecoration(new GridSpaceItemDecoration(3, 18, 18));
+        mRvPhotoAlbums.addItemDecoration(new GridSpaceItemDecoration(3,
+                DpPxSpTool.INSTANCE.dip2px(this, 26),
+                DpPxSpTool.INSTANCE.dip2px(this, 10)));
         mRvPhotoAlbums.setAdapter(mPhotoAlbumsAdapter = new PhotoAlbumsAdapter());
         mPhotoAlbumsAdapter.setOnItemClickListener(new PhotoAlbumsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, PhotoUpImageBucket photoAlbum) {
-//                mPresenter.showAlbum(position);
-
                 Intent intent = new Intent(PhotoAlbumsActivity.this, PhotoAlbumActivity.class);
                 intent.putExtra("imagelist", photoAlbum);
                 startActivity(intent);
@@ -109,6 +123,7 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
                     mViewModel.loadPhotoData();
                 } else {
                     // 拒绝授权
+                    finish();
                 }
                 break;
             }

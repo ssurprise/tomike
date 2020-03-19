@@ -6,19 +6,12 @@
     android:orientation="vertical"
     tools:context=".ui.activity.PhotoAlbumsActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/skx_30c3a6"
-        android:gravity="center"
-        android:text="相册"
-        android:textSize="16sp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_photoAlbums_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp" />
+        android:paddingLeft="15dp"
+        android:paddingTop="30dp"
+        android:paddingRight="15dp" />
 
 </LinearLayout>
