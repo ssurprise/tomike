@@ -1,4 +1,4 @@
-package com.skx.tomike.javabean;
+package com.skx.tomike.cannonlaboratory.bean;
 
 import java.io.Serializable;
 
@@ -9,16 +9,15 @@ import java.io.Serializable;
  */
 public class PhotoUpImageItem implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6542928624662570240L;
 	// 图片ID
 	private String imageId;
 	// 原图路径
 	private String imagePath;
-	// 是否被选择
-	private boolean isSelected = false;
+
+	public PhotoUpImageItem(String imageId, String imagePath) {
+		this.imageId = imageId;
+		this.imagePath = imagePath;
+	}
 
 	public String getImageId() {
 		return imageId;
@@ -35,13 +34,4 @@ public class PhotoUpImageItem implements Serializable {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-
-	public boolean isSelected() {
-		return isSelected;
-	}
-
-	public void setSelected(boolean isSelected) {
-		this.isSelected = isSelected;
-	}
-
 }

@@ -2,7 +2,7 @@ package com.skx.tomike.model;
 
 import android.content.Context;
 
-import com.skx.tomike.javabean.PhotoUpImageBucket;
+import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageBucket;
 
 import java.util.List;
 

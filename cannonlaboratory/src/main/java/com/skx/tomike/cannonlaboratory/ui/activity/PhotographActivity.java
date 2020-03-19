@@ -1,5 +1,6 @@
-package com.skx.tomike.activity.function;
+package com.skx.tomike.cannonlaboratory.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -16,8 +17,8 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
+import com.skx.tomike.cannonlaboratory.R;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -37,23 +38,34 @@ public class PhotographActivity extends SkxBaseActivity implements View.OnClickL
     private Camera camera = null;
 
     @Override
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_photograph;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeView();
+        initView();
         refreshView();
     }
 
-    @Override
-    public void initializeView() {
-        super.initializeView();
-        setContentView(R.layout.activity_photograph);
-        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
-        take_photo_btn = (Button) findViewById(R.id.take_photo_btn);
+    private void initView() {
+        surfaceView = findViewById(R.id.surfaceView);
+        take_photo_btn = findViewById(R.id.take_photo_btn);
     }
 
-    @Override
-    public void refreshView() {
-        super.refreshView();
+    @SuppressLint("ClickableViewAccessibility")
+    private void refreshView() {
         holder = surfaceView.getHolder();
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         holder.setFixedSize(1080, 1920); //设置Surface分辨率
@@ -174,16 +186,12 @@ public class PhotographActivity extends SkxBaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.take_photo_btn:
-                camera.takePicture(null, null, new MyPictureCallback());
+        if (v.getId() == R.id.take_photo_btn) {
+            camera.takePicture(null, null, new MyPictureCallback());
 
 
-                Intent intent = new Intent(PhotographActivity.this, PicturePreviewActivity.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
+            Intent intent = new Intent(PhotographActivity.this, PicturePreviewActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -205,11 +213,4 @@ public class PhotographActivity extends SkxBaseActivity implements View.OnClickL
             }
         }
     };
-
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        camera.startPreview();
-//    }
 }

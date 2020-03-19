@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_photoAlbum_picture"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_gravity="center"
+        android:scaleType="center"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_photoAlbum_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:maxLines="1"
+        android:singleLine="true"
+        tools:ignore="RtlHardcoded"
+        tools:text="share" />
+
+    <TextView
+        android:id="@+id/tv_photoAlbum_photoCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="5张" />
+
+</LinearLayout>

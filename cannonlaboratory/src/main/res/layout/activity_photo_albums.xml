@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:context=".ui.activity.PhotoAlbumsActivity">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_vertical_height"
+        android:layout_height="48dp"
         android:background="@color/skx_30c3a6"
-        android:textSize="16sp"
         android:gravity="center"
-        android:text="@string/album_str" />
+        android:text="相册"
+        android:textSize="16sp" />
 
-    <GridView
-        android:id="@+id/album_gridv"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_photoAlbums_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:horizontalSpacing="8dp"
-        android:numColumns="auto_fit" >
-    </GridView>
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
 
 </LinearLayout>

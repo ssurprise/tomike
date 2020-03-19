@@ -1,4 +1,4 @@
-package com.skx.tomike.activity.function;
+package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -7,10 +7,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.skx.tomike.R;
-import com.skx.tomike.aop.Animal;
-import com.skx.tomike.aop.Cat;
-import com.skx.tomike.aop.Dog;
+import com.skx.tomike.cannonlaboratory.aop.Animal;
+import com.skx.tomike.cannonlaboratory.aop.Cat;
+import com.skx.tomike.cannonlaboratory.aop.Dog;
+import com.skx.tomike.cannonlaboratory.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,28 +54,21 @@ public class AopTestActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.aop_this:
-                thisTest();
-                break;
-            case R.id.aop_target:
-                targetTest();
-                break;
-            case R.id.aop_args:
-                argsTest();
-                break;
-            case R.id.aop_advice_before:
-                beforeTest();
-                break;
-            case R.id.aop_advice_after:
-                afterTest();
-                break;
-            case R.id.aop_advice_around:
-                aroundTest();
-                break;
-            case R.id.aop_custom_annotation:
-                customAnnotation();
-                break;
+        int id = v.getId();
+        if (id == R.id.aop_this) {
+            thisTest();
+        } else if (id == R.id.aop_target) {
+            targetTest();
+        } else if (id == R.id.aop_args) {
+            argsTest();
+        } else if (id == R.id.aop_advice_before) {
+            beforeTest();
+        } else if (id == R.id.aop_advice_after) {
+            afterTest();
+        } else if (id == R.id.aop_advice_around) {
+            aroundTest();
+        } else if (id == R.id.aop_custom_annotation) {
+            customAnnotation();
         }
     }
 

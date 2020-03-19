@@ -1,4 +1,4 @@
-package com.skx.tomike.activity.function;
+package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,12 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
-import com.skx.tomike.javabean.WeatherMini;
-import com.skx.tomike.networkrequest.Interface.ReqResultCallBack;
-import com.skx.tomike.networkrequest.SkxNetConnection;
-import com.skx.tomike.networkrequest.javabean.TrainAllInfo;
+import com.skx.tomike.cannonlaboratory.R;
+import com.skx.tomike.cannonlaboratory.bean.WeatherMini;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.HashMap;
@@ -28,27 +25,38 @@ public class RetrofitActivity extends SkxBaseActivity {
     private String targetCity;
     private WeatherMini weatherMini;
 
+
+    @Override
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_retrofit;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeView();
-        installListener();
+        initView();
+        initListener();
     }
 
-    @Override
-    public void initializeView() {
-        super.initializeView();
-        setContentView(R.layout.activity_retrofit);
-        inputBox = (EditText) findViewById(R.id.retrofit_inputBox);
-        wendu_value = (TextView) findViewById(R.id.wendu_value);
-        ganmao_value = (TextView) findViewById(R.id.ganmao_value);
-        fengli_value = (TextView) findViewById(R.id.fengli_value);
-        fengxiang_value = (TextView) findViewById(R.id.fengxiang_value);
+    private void initView() {
+        inputBox = findViewById(R.id.retrofit_inputBox);
+        wendu_value = findViewById(R.id.wendu_value);
+        ganmao_value = findViewById(R.id.ganmao_value);
+        fengli_value = findViewById(R.id.fengli_value);
+        fengxiang_value = findViewById(R.id.fengxiang_value);
     }
 
-    @Override
-    public void installListener() {
-        super.installListener();
+    private void initListener() {
         inputBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -67,9 +75,7 @@ public class RetrofitActivity extends SkxBaseActivity {
         });
     }
 
-    @Override
-    public void refreshView() {
-        super.refreshView();
+    private void refreshView() {
         if (weatherMini != null) {
             wendu_value.setText(weatherMini.getWendu());
             ganmao_value.setText(weatherMini.getGanmao());
@@ -94,17 +100,17 @@ public class RetrofitActivity extends SkxBaseActivity {
         HashMap<String, String> paramsHm = new HashMap<>();
         paramsHm.put("name", targetCity);
         paramsHm.put("dtype", "json");
-        SkxNetConnection.getRequestData("train/s", paramsHm, new ReqResultCallBack<TrainAllInfo>() {
-            @Override
-            public void reqSuccess(TrainAllInfo respContent) {
-                ToastTool.showToast(RetrofitActivity.this, "请求成功");
-            }
-
-            @Override
-            public void reqFail() {
-                ToastTool.showToast(RetrofitActivity.this, "请求失败");
-            }
-        });
+//        SkxNetConnection.getRequestData("train/s", paramsHm, new ReqResultCallBack<TrainAllInfo>() {
+//            @Override
+//            public void reqSuccess(TrainAllInfo respContent) {
+//                ToastTool.showToast(RetrofitActivity.this, "请求成功");
+//            }
+//
+//            @Override
+//            public void reqFail() {
+//                ToastTool.showToast(RetrofitActivity.this, "请求失败");
+//            }
+//        });
 
 //
 //

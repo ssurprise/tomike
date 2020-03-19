@@ -3,7 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.skx.tomike.cannonlaboratory">
 
+    <!--本地读写权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.NFC" />
+
     <application>
         <activity
             android:name=".ui.activity.NotificationActivity"
@@ -92,34 +97,32 @@
             android:name=".ui.activity.ImageLoadActivity"
             android:screenOrientation="portrait" />
 
-        <!-- viewpager一屏多展示item activity -->
-        <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.VpMultiplePageActivity"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.GlideActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.ZoomHeaderListViewActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.PageIndicatorActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.activity.RoomTestActivity"
             android:screenOrientation="portrait" />
 
+        <!-- 单相册 -->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.TabLayoutActivity"
-            android:screenOrientation="portrait" />
-
-        <!-- viewpager无限循环 activity -->
+            android:name=".ui.activity.PhotoAlbumActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <!-- 多相册 -->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.ViewPagerInfiniteLoopActivity"
+            android:name=".ui.activity.PhotoAlbumsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <!-- 图片预览 -->
+        <activity
+            android:name=".ui.activity.PicturePreviewActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <!-- 拍照 -->
+        <activity
+            android:name=".ui.activity.PhotographActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
     </application>
