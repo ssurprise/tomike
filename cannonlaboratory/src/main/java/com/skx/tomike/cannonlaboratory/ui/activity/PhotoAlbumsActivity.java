@@ -108,7 +108,7 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
         mPhotoAlbumsAdapter.setOnItemClickListener(new PhotoAlbumsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, PhotoUpImageBucket photoAlbum) {
-                Intent intent = new Intent(PhotoAlbumsActivity.this, PhotoAlbumActivity.class);
+                Intent intent = new Intent(PhotoAlbumsActivity.this, PhotoWallActivity.class);
                 intent.putExtra("imagelist", photoAlbum);
                 startActivity(intent);
             }
