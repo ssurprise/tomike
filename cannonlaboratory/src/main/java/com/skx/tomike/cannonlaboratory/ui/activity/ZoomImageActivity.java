@@ -1,67 +1,68 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.skx.tomike.R;
-import com.skx.tomike.customview.ZoomImageView;
-import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
+import com.skx.tomike.cannonlaboratory.R;
+import com.skx.tomike.cannonlaboratory.ui.view.ZoomImageView;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
-public class ZoomImageActivity extends SkxBaseActivity {
-    ViewPager mViewPager;
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * 描述 : 图片缩放
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020-03-20 23:14
+ */
+public class ZoomImageActivity extends SkxBaseActivity<BaseViewModel> {
+
     private int[] mImageArray;
-    private ImageView[] mImageViews;
+
+    @Override
+    protected void initParams() {
+        mImageArray = new int[]{R.drawable.image_02, R.drawable.changtu, R.drawable.guide_bg_4};
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_zoom_image;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        super.configHeaderTitleView(title);
+        title.setText("图片缩放");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zoom_image);
-        initializeData();
-        initializeView();
-        refreshView();
-
-//        ZoomImageView zoomImg = (ZoomImageView) findViewById(R.id.zoomImage_image);
-//        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.image_02);
-//        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.guide_bg_4);
-//        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.changtu);
-//        zoomImg.setImageBitmap(bitmap);
+        initView();
     }
 
-    @Override
-    public void initializeData() {
-        super.initializeData();
-        mImageArray = new int[]{R.drawable.image_02, R.drawable.changtu, R.drawable.guide_bg_4};
-        mImageViews = new ImageView[mImageArray.length];
-    }
-
-    @Override
-    public void initializeView() {
-        super.initializeView();
-        mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
-        WidthHeightTool.getScreenWidth(this);
-    }
-
-    @Override
-    public void refreshView() {
-        super.refreshView();
+    public void initView() {
+        ViewPager mViewPager = findViewById(R.id.id_viewpager);
         mViewPager.setAdapter(new PagerAdapter() {
 
+            @NotNull
             @Override
-            public Object instantiateItem(ViewGroup container, int position) {
+            public Object instantiateItem(@NotNull ViewGroup container, int position) {
                 ZoomImageView imageView = new ZoomImageView(getApplicationContext());
 
                 // 图片重叠
@@ -71,21 +72,20 @@ public class ZoomImageActivity extends SkxBaseActivity {
                 imageView.setSingleClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         Log.e("xianshi", "xianshi");
                     }
                 });
-                mImageViews[position] = imageView;
                 return imageView;
             }
 
             @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
-                container.removeView(mImageViews[position]);
+            public void destroyItem(@NotNull ViewGroup container, int position, @NotNull Object object) {
+                View view = (View) object;
+                container.removeView(view);
             }
 
             @Override
-            public boolean isViewFromObject(View arg0, Object arg1) {
+            public boolean isViewFromObject(@NotNull View arg0, @NotNull Object arg1) {
                 return arg0 == arg1;
             }
 

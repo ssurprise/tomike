@@ -82,7 +82,7 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".activity.ZoomImageActivity"
+            android:name=".cannonlaboratory.ui.activity.ZoomImageActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
