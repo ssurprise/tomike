@@ -26,7 +26,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 /**
- * 描述 : 相册
+ * 描述 : 相册。主要知识点：ContentProvider 获取相册照片。
+ * <p>
+ * 注意：读取相册需要申请权限（Manifest.permission.READ_EXTERNAL_STORAGE）
+ * <p>
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020-03-20 00:10
@@ -96,12 +99,12 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
     }
 
     private void initView() {
-        RecyclerView mRvPhotoAlbums = findViewById(R.id.rv_photoAlbums_content);
-        mRvPhotoAlbums.setLayoutManager(new GridLayoutManager(this, 3));
-        mRvPhotoAlbums.addItemDecoration(new GridSpaceItemDecoration(3,
-                DpPxSpTool.INSTANCE.dip2px(this, 26),
+        RecyclerView rvPhotoAlbums = findViewById(R.id.rv_photoAlbums_content);
+        rvPhotoAlbums.setLayoutManager(new GridLayoutManager(this, 3));
+        rvPhotoAlbums.addItemDecoration(new GridSpaceItemDecoration(3,
+                DpPxSpTool.INSTANCE.dip2px(this, 30),
                 DpPxSpTool.INSTANCE.dip2px(this, 10)));
-        mRvPhotoAlbums.setAdapter(mPhotoAlbumsAdapter = new PhotoAlbumsAdapter());
+        rvPhotoAlbums.setAdapter(mPhotoAlbumsAdapter = new PhotoAlbumsAdapter());
         mPhotoAlbumsAdapter.setOnItemClickListener(new PhotoAlbumsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, PhotoUpImageBucket photoAlbum) {
