@@ -11,9 +11,9 @@ public class PhotoUpImageBucket implements Serializable {
 
     public int count = 0;
     public String bucketName = "";
-    public final List<PhotoUpImageItem> imageList = new ArrayList<>();
+    public final ArrayList<PhotoUpImageItem> imageList = new ArrayList<>();
 
-    public List<PhotoUpImageItem> getImageList() {
+    public ArrayList<PhotoUpImageItem> getImageList() {
         return imageList;
     }
 

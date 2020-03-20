@@ -1,5 +1,6 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -71,7 +72,10 @@ public class PhotoWallActivity extends SkxBaseActivity {
         mAdapter.setOnItemClickListener(new PhotoWallAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, PhotoUpImageItem photoUpImageItem) {
-
+                Intent intent = new Intent(mActivity, PicturePreviewActivity.class);
+                intent.putExtra("pictureList", mPhotoAlbum.imageList);
+                intent.putExtra("position", position);
+                startActivity(intent);
             }
         });
     }

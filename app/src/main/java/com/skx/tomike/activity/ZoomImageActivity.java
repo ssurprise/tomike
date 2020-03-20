@@ -99,23 +99,23 @@ public class ZoomImageActivity extends SkxBaseActivity {
     @NonNull
     private Bitmap overlapBitmap(int position) {
         Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), mImageArray[position]).copy(Bitmap.Config.ARGB_8888, true);
-        Bitmap bitmap2 = ((BitmapDrawable) ContextCompat.getDrawable(this, R.drawable.icon_beijing)).getBitmap();
-        Bitmap newBitmap;
-        newBitmap = Bitmap.createBitmap(bitmap1);
-        Canvas canvas = new Canvas(newBitmap);
-        Paint paint = new Paint();
-        int w = bitmap1.getWidth();
-        int h = bitmap1.getHeight();
-        int w_2 = bitmap2.getWidth();
-        int h_2 = bitmap2.getHeight();
-        paint.setColor(Color.WHITE);
-        paint.setAlpha(0);
-        canvas.drawRect(0, 0, bitmap1.getWidth(), bitmap1.getHeight(), paint);
-        paint = new Paint();
-        canvas.drawBitmap(bitmap2, Math.abs(w - w_2) / 2, Math.abs(h - h_2) / 2, paint);
-        canvas.save();
-        // 存储新合成的图片
-        canvas.restore();
-        return newBitmap;
+//        Bitmap bitmap2 = ((BitmapDrawable) ContextCompat.getDrawable(this, R.drawable.icon_beijing)).getBitmap();
+//        Bitmap newBitmap;
+//        newBitmap = Bitmap.createBitmap(bitmap1);
+//        Canvas canvas = new Canvas(newBitmap);
+//        Paint paint = new Paint();
+//        int w = bitmap1.getWidth();
+//        int h = bitmap1.getHeight();
+//        int w_2 = bitmap2.getWidth();
+//        int h_2 = bitmap2.getHeight();
+//        paint.setColor(Color.WHITE);
+//        paint.setAlpha(0);
+//        canvas.drawRect(0, 0, bitmap1.getWidth(), bitmap1.getHeight(), paint);
+//        paint = new Paint();
+//        canvas.drawBitmap(bitmap2, Math.abs(w - w_2) / 2, Math.abs(h - h_2) / 2, paint);
+//        canvas.save();
+//        // 存储新合成的图片
+//        canvas.restore();
+        return bitmap1;
     }
 }
