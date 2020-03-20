@@ -19,12 +19,13 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.FocusFinder;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -32,34 +33,40 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
-import android.view.View.OnTouchListener;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
 
 /**
  * Layout container for a view hierarchy that can be scrolled by the user,
- * allowing it to be larger than the physical display. A ScrollView is a
- * {@link FrameLayout}, meaning you should place one child in it containing the
- * entire contents to scroll; this child may itself be a layout manager with a
- * complex hierarchy of objects. A child that is often used is a
- * {@link LinearLayout} in a vertical orientation, presenting a vertical array
- * of top-level items that the user can scroll through.
+ * allowing it to be larger than the physical display.  A ScrollView
+ * is a {@link FrameLayout}, meaning you should place one child in it
+ * containing the entire contents to scroll; this child may itself be a layout
+ * manager with a complex hierarchy of objects.  A child that is often used
+ * is a {@link LinearLayout} in a vertical orientation, presenting a vertical
+ * array of top-level items that the user can scroll through.
+ * <p>You should never use a ScrollView with a {@link ListView}, because
+ * ListView takes care of its own vertical scrolling.  Most importantly, doing this
+ * defeats all of the important optimizations in ListView for dealing with
+ * large lists, since it effectively forces the ListView to display its entire
+ * list of items to fill up the infinite container supplied by ScrollView.
+ * <p>The {@link TextView} class also
+ * takes care of its own scrolling, so does not require a ScrollView, but
+ * using the two together is possible to achieve the effect of a text view
+ * within a larger container.
  * <p>
- * <p>
- * The {@link TextView} class also takes care of its own scrolling, so does not
- * require a ScrollView, but using the two together is possible to achieve the
- * effect of a text view within a larger container.
- * <p>
- * <p>
- * ScrollView only supports vertical scrolling.
+ * <p>ScrollView only supports vertical scrolling. For horizontal scrolling,
+ * use {@link HorizontalScrollView}.
+ *
+ * @attr ref android.R.styleable#ScrollView_fillViewport
  */
 public class OverScrollView extends FrameLayout implements OnTouchListener {
 
     static final int ANIMATED_SCROLL_GAP = 250;
 
-    static final float MAX_SCROLL_FACTOR = 0.3f;
+    static final float MAX_SCROLL_FACTOR = 0.0f;
     static final float OVERSHOOT_TENSION = 0.0f;
 
     private long mLastScroll;
@@ -76,8 +83,8 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     int prevScrollY;
     boolean isInFlingMode = false;
 
+    private final int mDefaultPaddingTop = 700;
     DisplayMetrics metrics;
-    LayoutInflater inflater;
     protected View child;
 
     private Runnable overScrollerSpringbackTask;
@@ -92,18 +99,18 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     /**
      * Position of the last motion event.
      */
-    private float mLastMotionY;
+    private int mLastMotionY;
 
     /**
-     * True when the layout has changed but the traversal has not come through
-     * yet. Ideally the view hierarchy would keep track of this for us.
+     * True when the layout has changed but the traversal has not come through yet.
+     * Ideally the view hierarchy would keep track of this for us.
      */
     private boolean mIsLayoutDirty = true;
 
     /**
-     * The child to give focus to in the event that a child has requested focus
-     * while the layout is dirty. This prevents the scroll from being wrong if
-     * the child has not been laid out before requesting focus.
+     * The child to give focus to in the event that a child has requested focus while the
+     * layout is dirty. This prevents the scroll from being wrong if the child has not been
+     * laid out before requesting focus.
      */
     private View mChildToScrollTo = null;
 
@@ -120,8 +127,8 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     private VelocityTracker mVelocityTracker;
 
     /**
-     * When set to true, the scroll view measure its child to make it fill the
-     * currently visible area.
+     * When set to true, the scroll view measure its child to make it fill the currently
+     * visible area.
      */
     private boolean mFillViewport;
 
@@ -151,7 +158,6 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     public OverScrollView(Context context, AttributeSet attrs) {
-
         this(context, attrs, 0);
     }
 
@@ -198,6 +204,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             try {
                 mScrollYField.setInt(this, value);
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -207,13 +214,14 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             try {
                 mScrollXField.setInt(this, value);
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
 
     public void initChildPointer() {
         child = getChildAt(0);
-        child.setPadding(0, 1500, 0, 1500);
+        child.setPadding(0, mDefaultPaddingTop, 0, mDefaultPaddingTop);
 
     }
 
@@ -248,12 +256,13 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * @return The maximum amount this scroll view will scroll in response to an
-     * arrow event.
+     * @return The maximum amount this scroll view will scroll in response to
+     * an arrow event.
      */
     public int getMaxScrollAmount() {
         return (int) (MAX_SCROLL_FACTOR * (getBottom() - getTop()));
     }
+
 
     private void initScrollView() {
         mScroller = new Scroller(getContext());
@@ -327,18 +336,18 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * Indicates whether this ScrollView's content is stretched to fill the
-     * viewport.
+     * Indicates whether this ScrollView's content is stretched to fill the viewport.
      *
      * @return True if the content fills the viewport, false otherwise.
+     * @attr ref android.R.styleable#ScrollView_fillViewport
      */
     public boolean isFillViewport() {
         return mFillViewport;
     }
 
     /**
-     * Indicates this ScrollView whether it should stretch its content height to
-     * fill the viewport or not.
+     * Indicates this ScrollView whether it should stretch its content height to fill
+     * the viewport or not.
      *
      * @param fillViewport True to stretch the content's height to the viewport's
      *                     boundaries, false otherwise.
@@ -383,7 +392,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             final View child = getChildAt(0);
             int height = getMeasuredHeight();
             if (child.getMeasuredHeight() < height) {
-                final FrameLayout.LayoutParams lp = (LayoutParams) child.getLayoutParams();
+                final LayoutParams lp = (LayoutParams) child.getLayoutParams();
 
                 int childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec, getPaddingLeft() + getPaddingRight(), lp.width);
                 height -= getPaddingTop();
@@ -410,51 +419,58 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
      * @return Return true if the event was handled, else false.
      */
     public boolean executeKeyEvent(KeyEvent event) {
-//        mTempRect.setEmpty();
-//
-//        if (!canScroll()) {
-//            if (isFocused() && event.getKeyCode() != KeyEvent.KEYCODE_BACK) {
-//                View currentFocused = findFocus();
-//                if (currentFocused == this) {
-//                    currentFocused = null;
-//                }
-//                View nextFocused = FocusFinder.getInstance().findNextFocus(this, currentFocused, View.FOCUS_DOWN);
-//                return nextFocused != null && nextFocused != this && nextFocused.requestFocus(View.FOCUS_DOWN);
-//            }
-//            return false;
-//        }
-//
+        mTempRect.setEmpty();
+
+        if (!canScroll()) {
+            if (isFocused() && event.getKeyCode() != KeyEvent.KEYCODE_BACK) {
+                View currentFocused = findFocus();
+                if (currentFocused == this) currentFocused = null;
+                View nextFocused = FocusFinder.getInstance().findNextFocus(this,
+                        currentFocused, View.FOCUS_DOWN);
+                return nextFocused != null
+                        && nextFocused != this
+                        && nextFocused.requestFocus(View.FOCUS_DOWN);
+            }
+            return false;
+        }
+
         boolean handled = false;
-//        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-//            switch (event.getKeyCode()) {
-//                case KeyEvent.KEYCODE_DPAD_UP:
-//                    if (!event.isAltPressed()) {
-//                        handled = arrowScroll(View.FOCUS_UP);
-//                    } else {
-//                        handled = fullScroll(View.FOCUS_UP);
-//                    }
-//                    break;
-//                case KeyEvent.KEYCODE_DPAD_DOWN:
-//                    if (!event.isAltPressed()) {
-//                        handled = arrowScroll(View.FOCUS_DOWN);
-//                    } else {
-//                        handled = fullScroll(View.FOCUS_DOWN);
-//                    }
-//                    break;
-//                case KeyEvent.KEYCODE_SPACE:
-//                    pageScroll(event.isShiftPressed() ? View.FOCUS_UP : View.FOCUS_DOWN);
-//                    break;
-//            }
-//        }
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_DPAD_UP:
+                    if (!event.isAltPressed()) {
+                        handled = arrowScroll(View.FOCUS_UP);
+                    } else {
+                        handled = fullScroll(View.FOCUS_UP);
+                    }
+                    break;
+                case KeyEvent.KEYCODE_DPAD_DOWN:
+                    if (!event.isAltPressed()) {
+                        handled = arrowScroll(View.FOCUS_DOWN);
+                    } else {
+                        handled = fullScroll(View.FOCUS_DOWN);
+                    }
+                    break;
+                case KeyEvent.KEYCODE_SPACE:
+                    pageScroll(event.isShiftPressed() ? View.FOCUS_UP : View.FOCUS_DOWN);
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
         return handled;
     }
 
-    public boolean inChild(int x, int y) {
+    private boolean inChild(int x, int y) {
         if (getChildCount() > 0) {
             final int scrollY = getScrollY();
             final View child = getChildAt(0);
-            return !(y < child.getTop() - scrollY || y >= child.getBottom() - scrollY || x < child.getLeft() || x >= child.getRight());
+            return !(y < child.getTop() - scrollY
+                    || y >= child.getBottom() - scrollY
+                    || x < child.getLeft()
+                    || x >= child.getRight());
         }
         return false;
     }
@@ -463,14 +479,15 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         /*
          * This method JUST determines whether we want to intercept the motion.
-		 * If we return true, onMotionEvent will be called and we do the actual
-		 * scrolling there.
-		 */
+         * If we return true, onMotionEvent will be called and we do the actual
+         * scrolling there.
+         */
 
-		/*
-		 * Shortcut the most recurring case: the user is in the dragging state
-		 * and he is moving his finger. We want to intercept this motion.
-		 */
+        /*
+        * Shortcut the most recurring case: the user is in the dragging
+        * state and he is moving his finger.  We want to intercept this
+        * motion.
+        */
         final int action = ev.getAction();
         if ((action == MotionEvent.ACTION_MOVE) && (mIsBeingDragged)) {
             return true;
@@ -478,26 +495,30 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
 
         switch (action & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_MOVE: {
-			/*
-			 * mIsBeingDragged == false, otherwise the shortcut would have
-			 * caught it. Check whether the user has moved far enough from his
-			 * original down touch.
-			 */
+                /*
+                 * mIsBeingDragged == false, otherwise the shortcut would have caught it. Check
+                 * whether the user has moved far enough from his original down touch.
+                 */
 
-			/*
-			 * Locally do absolute value. mLastMotionY is set to the y value of
-			 * the down event.
-			 */
+                /*
+                * Locally do absolute value. mLastMotionY is set to the y value
+                * of the down event.
+                */
                 final int activePointerId = mActivePointerId;
                 if (activePointerId == INVALID_POINTER) {
-                    // If we don't have a valid id, the touch down wasn't on
-                    // content.
+                    // If we don't have a valid id, the touch down wasn't on content.
                     break;
                 }
 
                 final int pointerIndex = ev.findPointerIndex(activePointerId);
-                final float y = ev.getY(pointerIndex);
-                final int yDiff = (int) Math.abs(y - mLastMotionY);
+                if (pointerIndex == -1) {
+                    Log.e(TAG, "Invalid pointerId=" + activePointerId
+                            + " in onInterceptTouchEvent");
+                    break;
+                }
+
+                final int y = (int) ev.getY(pointerIndex);
+                final int yDiff = Math.abs(y - mLastMotionY);
                 if (yDiff > mTouchSlop) {
                     mIsBeingDragged = true;
                     mLastMotionY = y;
@@ -506,21 +527,21 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             }
 
             case MotionEvent.ACTION_DOWN: {
-                final float y = ev.getY();
+                final int y = (int) ev.getY();
                 if (!inChild((int) ev.getX(), (int) y)) {
                     mIsBeingDragged = false;
                     break;
                 }
 
-			/*
-			 * Remember location of down touch. ACTION_DOWN always refers to
-			 * pointer index 0.
-			 */
+                /*
+                 * Remember location of down touch.
+                 * ACTION_DOWN always refers to pointer index 0.
+                 */
                 mLastMotionY = y;
                 mActivePointerId = ev.getPointerId(0);
 
 			/*
-			 * If being flinged and user touches the screen, initiate drag;
+             * If being flinged and user touches the screen, initiate drag;
 			 * otherwise don't. mScroller.isFinished should be false when being
 			 * flinged.
 			 */
@@ -530,17 +551,20 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
 
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-			/* Release the drag */
+                /* Release the drag */
                 mIsBeingDragged = false;
                 mActivePointerId = INVALID_POINTER;
                 break;
             case MotionEvent.ACTION_POINTER_UP:
                 onSecondaryPointerUp(ev);
                 break;
+
+            default:
+                break;
         }
 
 		/*
-		 * The only time we want to intercept motion events is if we are in the
+         * The only time we want to intercept motion events is if we are in the
 		 * drag mode.
 		 */
         return mIsBeingDragged;
@@ -565,13 +589,13 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
 
         switch (action & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN: {
-                final float y = ev.getY();
+                final int y = (int) ev.getY();
                 if (!(mIsBeingDragged = inChild((int) ev.getX(), (int) y))) {
                     return false;
                 }
 
 			/*
-			 * If being flinged and user touches, stop the fling. isFinished
+             * If being flinged and user touches, stop the fling. isFinished
 			 * will be false if being flinged.
 			 */
                 if (!mScroller.isFinished()) {
@@ -587,14 +611,20 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
                 if (mIsBeingDragged) {
                     // Scroll to follow the motion event
                     final int activePointerIndex = ev.findPointerIndex(mActivePointerId);
-                    final float y = ev.getY(activePointerIndex);
+                    final int y = (int) ev.getY(activePointerIndex);
                     final int deltaY = (int) (mLastMotionY - y);
                     mLastMotionY = y;
 
                     if (isOverScrolled()) {
+                        Log.e("isOverScrolled-scrollY", getScrollY() + "");
                         // when overscrolling, move the scroller just half of the
                         // finger movement, to make it feel like a spring...
-                        scrollBy(0, deltaY / 2);
+
+                        if (mOverScrollingListener != null) {
+                            mOverScrollingListener.onOverScrollingListener(deltaY / 3,
+                                    (1 - (getScrollY() * 1.0f) / mDefaultPaddingTop));
+                        }
+                        scrollBy(0, deltaY / 3);
                     } else {
                         scrollBy(0, deltaY);
                     }
@@ -632,9 +662,38 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             case MotionEvent.ACTION_POINTER_UP:
                 onSecondaryPointerUp(ev);
                 break;
+
+            default:
+                break;
         }
         return true;
     }
+
+    private OnOverScrollingListener mOverScrollingListener;
+
+    public void setScrollingLayoutChangeListener(OnOverScrollingListener onOverScrollingListener) {
+        this.mOverScrollingListener = onOverScrollingListener;
+    }
+
+    /**
+     * 滑动布局改变监听
+     */
+    public interface OnOverScrollingListener {
+
+        /**
+         * 布局改变监听
+         *
+         * @param moveOffset 移动距离
+         * @param scale      缩放值
+         */
+        void onOverScrollingListener(int moveOffset, float scale);
+
+        /**
+         * 触摸手势结束监听
+         */
+        void touchEventEndListener();
+    }
+
 
     public boolean isOverScrolled() {
         return (getScrollY() < child.getPaddingTop() || getScrollY() > child.getBottom() - child.getPaddingBottom() - getHeight());
@@ -648,7 +707,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             // active pointer and adjust accordingly.
             // TODO: Make this decision more intelligent.
             final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-            mLastMotionY = ev.getY(newPointerIndex);
+            mLastMotionY = (int) ev.getY(newPointerIndex);
             mActivePointerId = ev.getPointerId(newPointerIndex);
             if (mVelocityTracker != null) {
                 mVelocityTracker.clear();
@@ -674,8 +733,8 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
      * found
      */
     private View findFocusableViewInMyBounds(final boolean topFocus, final int top, View preferredFocusable) {
-		/*
-		 * The fading edge's transparent side should be considered for focus
+        /*
+         * The fading edge's transparent side should be considered for focus
 		 * since it's mostly visible, so we divide the actual fading edge length
 		 * by 2.
 		 */
@@ -696,28 +755,28 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
      * Finds the next focusable component that fits in the specified bounds.
      * </p>
      *
-     * @param topFocus look for a candidate is the one at the top of the bounds if
-     *                 topFocus is true, or at the bottom of the bounds if topFocus
-     *                 is false
+     * @param topFocus look for a candidate is the one at the top of the bounds
+     *                 if topFocus is true, or at the bottom of the bounds if topFocus is
+     *                 false
      * @param top      the top offset of the bounds in which a focusable must be
      *                 found
-     * @param bottom   the bottom offset of the bounds in which a focusable must be
-     *                 found
-     * @return the next focusable component in the bounds or null if none can be
-     * found
+     * @param bottom   the bottom offset of the bounds in which a focusable must
+     *                 be found
+     * @return the next focusable component in the bounds or null if none can
+     * be found
      */
     private View findFocusableViewInBounds(boolean topFocus, int top, int bottom) {
 
         List<View> focusables = getFocusables(View.FOCUS_FORWARD);
         View focusCandidate = null;
 
-		/*
-		 * A fully contained focusable is one where its top is below the bound's
-		 * top, and its bottom is above the bound's bottom. A partially
-		 * contained focusable is one where some part of it is within the
-		 * bounds, but it also has some part that is not within bounds. A fully
-		 * contained focusable is preferred to a partially contained focusable.
-		 */
+        /*
+         * A fully contained focusable is one where its top is below the bound's
+         * top, and its bottom is above the bound's bottom. A partially
+         * contained focusable is one where some part of it is within the
+         * bounds, but it also has some part that is not within bounds.  A fully contained
+         * focusable is preferred to a partially contained focusable.
+         */
         boolean foundFullyContainedFocusable = false;
 
         int count = focusables.size();
@@ -727,43 +786,43 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             int viewBottom = view.getBottom();
 
             if (top < viewBottom && viewTop < bottom) {
-				/*
-				 * the focusable is in the target area, it is a candidate for
-				 * focusing
-				 */
+                /*
+                 * the focusable is in the target area, it is a candidate for
+                 * focusing
+                 */
 
-                final boolean viewIsFullyContained = (top < viewTop) && (viewBottom < bottom);
+                final boolean viewIsFullyContained = (top < viewTop) &&
+                        (viewBottom < bottom);
 
                 if (focusCandidate == null) {
-					/* No candidate, take this one */
+                    /* No candidate, take this one */
                     focusCandidate = view;
                     foundFullyContainedFocusable = viewIsFullyContained;
                 } else {
-                    final boolean viewIsCloserToBoundary = (topFocus && viewTop < focusCandidate.getTop())
-                            || (!topFocus && viewBottom > focusCandidate.getBottom());
+                    final boolean viewIsCloserToBoundary =
+                            (topFocus && viewTop < focusCandidate.getTop()) ||
+                                    (!topFocus && viewBottom > focusCandidate
+                                            .getBottom());
 
                     if (foundFullyContainedFocusable) {
                         if (viewIsFullyContained && viewIsCloserToBoundary) {
-							/*
-							 * We're dealing with only fully contained views, so
-							 * it has to be closer to the boundary to beat our
-							 * candidate
-							 */
+                            /*
+                             * We're dealing with only fully contained views, so
+                             * it has to be closer to the boundary to beat our
+                             * candidate
+                             */
                             focusCandidate = view;
                         }
                     } else {
                         if (viewIsFullyContained) {
-							/*
-							 * Any fully contained view beats a partially
-							 * contained view
-							 */
+                            /* Any fully contained view beats a partially contained view */
                             focusCandidate = view;
                             foundFullyContainedFocusable = true;
                         } else if (viewIsCloserToBoundary) {
-							/*
-							 * Partially contained view beats another partially
-							 * contained view if it's closer
-							 */
+                            /*
+                             * Partially contained view beats another partially
+                             * contained view if it's closer
+                             */
                             focusCandidate = view;
                         }
                     }
@@ -775,16 +834,15 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * <p>
-     * Handles scrolling in response to a "page up/down" shortcut press. This
-     * method will scroll the view by one page up or down and give the focus to
-     * the topmost/bottommost component in the new visible area. If no component
-     * is a good candidate for focus, this scrollview reclaims the focus.
-     * </p>
+     * <p>Handles scrolling in response to a "page up/down" shortcut press. This
+     * method will scroll the view by one page up or down and give the focus
+     * to the topmost/bottommost component in the new visible area. If no
+     * component is a good candidate for focus, this scrollview reclaims the
+     * focus.</p>
      *
-     * @param direction the scroll direction: {@link android.view.View#FOCUS_UP} to go
-     *                  one page up or {@link android.view.View#FOCUS_DOWN} to go one
-     *                  page down
+     * @param direction the scroll direction: {@link android.view.View#FOCUS_UP}
+     *                  to go one page up or
+     *                  {@link android.view.View#FOCUS_DOWN} to go one page down
      * @return true if the key event is consumed by this method, false otherwise
      */
     public boolean pageScroll(int direction) {
@@ -812,16 +870,15 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * <p>
-     * Handles scrolling in response to a "home/end" shortcut press. This method
-     * will scroll the view to the top or bottom and give the focus to the
-     * topmost/bottommost component in the new visible area. If no component is
-     * a good candidate for focus, this scrollview reclaims the focus.
-     * </p>
+     * <p>Handles scrolling in response to a "home/end" shortcut press. This
+     * method will scroll the view to the top or bottom and give the focus
+     * to the topmost/bottommost component in the new visible area. If no
+     * component is a good candidate for focus, this scrollview reclaims the
+     * focus.</p>
      *
-     * @param direction the scroll direction: {@link android.view.View#FOCUS_UP} to go
-     *                  the top of the view or {@link android.view.View#FOCUS_DOWN} to
-     *                  go the bottom
+     * @param direction the scroll direction: {@link android.view.View#FOCUS_UP}
+     *                  to go the top of the view or
+     *                  {@link android.view.View#FOCUS_DOWN} to go the bottom
      * @return true if the key event is consumed by this method, false otherwise
      */
     public boolean fullScroll(int direction) {
@@ -835,7 +892,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             int count = getChildCount();
             if (count > 0) {
                 View view = getChildAt(count - 1);
-                mTempRect.bottom = view.getBottom();
+                mTempRect.bottom = view.getBottom() + getPaddingBottom();
                 mTempRect.top = mTempRect.bottom - height;
             }
         }
@@ -844,15 +901,13 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * <p>
-     * Scrolls the view to make the area defined by <code>top</code> and
-     * <code>bottom</code> visible. This method attempts to give the focus to a
-     * component visible in this area. If no component can be focused in the new
-     * visible area, the focus is reclaimed by this scrollview.
-     * </p>
+     * <p>Scrolls the view to make the area defined by <code>top</code> and
+     * <code>bottom</code> visible. This method attempts to give the focus
+     * to a component visible in this area. If no component can be focused in
+     * the new visible area, the focus is reclaimed by this ScrollView.</p>
      *
-     * @param direction the scroll direction: {@link android.view.View#FOCUS_UP} to go
-     *                  upward {@link android.view.View#FOCUS_DOWN} to downward
+     * @param direction the scroll direction: {@link android.view.View#FOCUS_UP}
+     *                  to go upward, {@link android.view.View#FOCUS_DOWN} to downward
      * @param top       the top offset of the new area to be made visible
      * @param bottom    the bottom offset of the new area to be made visible
      * @return true if the key event is consumed by this method, false otherwise
@@ -877,10 +932,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             doScrollY(delta);
         }
 
-        if (newFocused != findFocus() && newFocused.requestFocus(direction)) {
-            mScrollViewMovedFocus = true;
-            mScrollViewMovedFocus = false;
-        }
+        if (newFocused != findFocus()) newFocused.requestFocus(direction);
 
         return handled;
     }
@@ -888,15 +940,14 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     /**
      * Handle scrolling in response to an up or down arrow click.
      *
-     * @param direction The direction corresponding to the arrow key that was pressed
+     * @param direction The direction corresponding to the arrow key that was
+     *                  pressed
      * @return True if we consumed the event, false otherwise
      */
     public boolean arrowScroll(int direction) {
 
         View currentFocused = findFocus();
-        if (currentFocused == this) {
-            currentFocused = null;
-        }
+        if (currentFocused == this) currentFocused = null;
 
         View nextFocused = FocusFinder.getInstance().findNextFocus(this, currentFocused, direction);
 
@@ -931,17 +982,17 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             doScrollY(direction == View.FOCUS_DOWN ? scrollDelta : -scrollDelta);
         }
 
-        if (currentFocused != null && currentFocused.isFocused() && isOffScreen(currentFocused)) {
+        if (currentFocused != null && currentFocused.isFocused()
+                && isOffScreen(currentFocused)) {
             // previously focused item still has focus and is off screen, give
             // it up (take it back to ourselves)
-            // (also, need to temporarily force FOCUS_BEFORE_DESCENDANTS so we
-            // are
+            // (also, need to temporarily force FOCUS_BEFORE_DESCENDANTS so we are
             // sure to
             // get it)
-            final int descendantFocusability = getDescendantFocusability(); // save
+            final int descendantFocusability = getDescendantFocusability();  // save
             setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
             requestFocus();
-            setDescendantFocusability(descendantFocusability); // restore
+            setDescendantFocusability(descendantFocusability);  // restore
         }
         return true;
     }
@@ -955,14 +1006,15 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * @return whether the descendant of this scroll view is within delta pixels
-     * of being on the screen.
+     * @return whether the descendant of this scroll view is within delta
+     * pixels of being on the screen.
      */
     private boolean isWithinDeltaOfScreen(View descendant, int delta, int height) {
         descendant.getDrawingRect(mTempRect);
         offsetDescendantRectToMyCoords(descendant, mTempRect);
 
-        return (mTempRect.bottom + delta) >= getScrollY() && (mTempRect.top - delta) <= (getScrollY() + height);
+        return (mTempRect.bottom + delta) >= getScrollY()
+                && (mTempRect.top - delta) <= (getScrollY() + height);
     }
 
     /**
@@ -1010,14 +1062,6 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
         mLastScroll = AnimationUtils.currentAnimationTimeMillis();
     }
 
-    public final void smoothScrollToTop() {
-        smoothScrollTo(0, child.getPaddingTop());
-    }
-
-    public final void smoothScrollToBottom() {
-        smoothScrollTo(0, child.getHeight() - child.getPaddingTop() - getHeight());
-    }
-
     /**
      * Like {@link #scrollTo}, but scroll smoothly instead of immediately.
      *
@@ -1029,10 +1073,8 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * <p>
-     * The scroll range of a scroll view is the overall height of all of its
-     * children.
-     * </p>
+     * <p>The scroll range of a scroll view is the overall height of all of its
+     * children.</p>
      */
     @Override
     protected int computeVerticalScrollRange() {
@@ -1051,22 +1093,25 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     @Override
-    protected void measureChild(View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {
+    protected void measureChild(View child, int parentWidthMeasureSpec,
+                                int parentHeightMeasureSpec) {
         ViewGroup.LayoutParams lp = child.getLayoutParams();
 
         int childWidthMeasureSpec;
         int childHeightMeasureSpec;
 
-        childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, getPaddingLeft() + getPaddingRight(), lp.width);
+        childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, getPaddingLeft()
+                + getPaddingRight(), lp.width);
 
-        childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+        childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
+                0, MeasureSpec.UNSPECIFIED);
 
         child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
     }
 
     @Override
-    protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec,
-                                           int heightUsed) {
+    protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed,
+                                           int parentHeightMeasureSpec, int heightUsed) {
         final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
         final int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, getPaddingLeft() + getPaddingRight() + lp.leftMargin
@@ -1086,26 +1131,21 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
         }
 
         if (mScroller.computeScrollOffset()) {
-            // This is called at drawing time by ViewGroup. We don't want to
+            // This is called at drawing time by ViewGroup.  We don't want to
             // re-show the scrollbars at this point, which scrollTo will do,
             // so we replicate most of scrollTo here.
             //
-            // It's a little odd to call onScrollChanged from inside the
-            // drawing.
+            //         It's a little odd to call onScrollChanged from inside the drawing.
             //
-            // It is, except when you remember that computeScroll() is used to
-            // animate scrolling. So unless we want to defer the
-            // onScrollChanged()
-            // until the end of the animated scrolling, we don't really have a
-            // choice here.
+            //         It is, except when you remember that computeScroll() is used to
+            //         animate scrolling. So unless we want to defer the onScrollChanged()
+            //         until the end of the animated scrolling, we don't really have a
+            //         choice here.
             //
-            // I agree. The alternative, which I think would be worse, is to
-            // post
-            // something and tell the subclasses later. This is bad because
-            // there
-            // will be a window where getScrollX()/Y is different from what the
-            // app
-            // thinks it is.
+            //         I agree.  The alternative, which I think would be worse, is to post
+            //         something and tell the subclasses later.  This is bad because there
+            //         will be a window where mScrollX/Y is different from what the app
+            //         thinks it is.
             //
             int oldX = getScrollX();
             int oldY = getScrollY();
@@ -1122,6 +1162,11 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
                     SetScrollY(y);
                     // mScrollY = y;
                     onScrollChanged(x, y, oldX, oldY);
+
+                    if (isOverScrolled()) {
+                        mOverScrollingListener.onOverScrollingListener(0,
+                                (1 - (getScrollY() * 1.0f) / mDefaultPaddingTop));
+                    }
                 }
             }
             awakenScrollBars();
@@ -1139,7 +1184,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     private void scrollToChild(View child) {
         child.getDrawingRect(mTempRect);
 
-		/* Offset from child's local coordinates to ScrollView coordinates */
+        /* Offset from child's local coordinates to ScrollView coordinates */
         offsetDescendantRectToMyCoords(child, mTempRect);
 
         int scrollDelta = computeScrollDeltaToGetChildRectOnScreen(mTempRect);
@@ -1171,17 +1216,15 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * Compute the amount to scroll in the Y direction in order to get a
-     * rectangle completely on the screen (or, if taller than the screen, at
-     * least the first screen size chunk of it).
+     * Compute the amount to scroll in the Y direction in order to get
+     * a rectangle completely on the screen (or, if taller than the screen,
+     * at least the first screen size chunk of it).
      *
      * @param rect The rect.
      * @return The scroll delta.
      */
     protected int computeScrollDeltaToGetChildRectOnScreen(Rect rect) {
-        if (getChildCount() == 0) {
-            return 0;
-        }
+        if (getChildCount() == 0) return 0;
 
         int height = getHeight();
         int screenTop = getScrollY();
@@ -1194,8 +1237,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             screenTop += fadingEdge;
         }
 
-        // leave room for bottom fading edge as long as rect isn't at very
-        // bottom
+        // leave room for bottom fading edge as long as rect isn't at very bottom
         if (rect.bottom < getChildAt(0).getHeight()) {
             screenBottom -= fadingEdge;
         }
@@ -1233,8 +1275,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
                 scrollYDelta -= (screenTop - rect.top);
             }
 
-            // make sure we aren't scrolling any further than the top our
-            // content
+            // make sure we aren't scrolling any further than the top our content
             scrollYDelta = Math.max(scrollYDelta, -getScrollY());
         }
         return scrollYDelta;
@@ -1242,17 +1283,15 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
 
     @Override
     public void requestChildFocus(View child, View focused) {
-        if (!mScrollViewMovedFocus) {
-            if (!mIsLayoutDirty) {
-                scrollToChild(focused);
-            } else {
-                // The child may not be laid out yet, we can't compute the
-                // scroll yet
-                mChildToScrollTo = focused;
-            }
+        if (!mIsLayoutDirty) {
+            scrollToChild(focused);
+        } else {
+            // The child may not be laid out yet, we can't compute the scroll yet
+            mChildToScrollTo = focused;
         }
         super.requestChildFocus(child, focused);
     }
+
 
     /**
      * When looking for focus in children of a scroll view, need to be a little
@@ -1262,7 +1301,8 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
      * implementation, otherwise this behavior might have been made the default.
      */
     @Override
-    protected boolean onRequestFocusInDescendants(int direction, Rect previouslyFocusedRect) {
+    protected boolean onRequestFocusInDescendants(int direction,
+                                                  Rect previouslyFocusedRect) {
 
         // convert from forward / backward notation to up / down / left / right
         // (ugh).
@@ -1272,8 +1312,10 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             direction = View.FOCUS_UP;
         }
 
-        final View nextFocus = previouslyFocusedRect == null ? FocusFinder.getInstance().findNextFocus(this, null, direction) : FocusFinder
-                .getInstance().findNextFocusFromRect(this, previouslyFocusedRect, direction);
+        final View nextFocus = previouslyFocusedRect == null ?
+                FocusFinder.getInstance().findNextFocus(this, null, direction) :
+                FocusFinder.getInstance().findNextFocusFromRect(this,
+                        previouslyFocusedRect, direction);
 
         if (nextFocus == null) {
             return false;
@@ -1287,9 +1329,11 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     @Override
-    public boolean requestChildRectangleOnScreen(View child, Rect rectangle, boolean immediate) {
+    public boolean requestChildRectangleOnScreen(View child, Rect rectangle,
+                                                 boolean immediate) {
         // offset into coordinate space of this scroll view
-        rectangle.offset(child.getLeft() - child.getScrollX(), child.getTop() - child.getScrollY());
+        rectangle.offset(child.getLeft() - child.getScrollX(),
+                child.getTop() - child.getScrollY());
 
         return scrollToChildRect(rectangle, immediate);
     }
@@ -1298,6 +1342,11 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     public void requestLayout() {
         mIsLayoutDirty = true;
         super.requestLayout();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
     }
 
     @Override
@@ -1319,9 +1368,8 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
         super.onSizeChanged(w, h, oldw, oldh);
 
         View currentFocused = findFocus();
-        if (null == currentFocused || this == currentFocused) {
+        if (null == currentFocused || this == currentFocused)
             return;
-        }
 
         // If the currently-focused view was visible on the screen when the
         // screen was at the old height, then scroll the screen to make that
@@ -1360,10 +1408,9 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     }
 
     /**
-     * Return true if child is an descendant of parent, (or equal to the
-     * parent).
+     * Return true if child is a descendant of parent, (or equal to the parent).
      */
-    private boolean isViewDescendantOf(View child, View parent) {
+    private static boolean isViewDescendantOf(View child, View parent) {
         if (child == parent) {
             return true;
         }
@@ -1375,9 +1422,9 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     /**
      * Fling the scroll view
      *
-     * @param velocityY The initial velocity in the Y direction. Positive numbers mean
-     *                  that the finger/cursor is moving down the screen, which means
-     *                  we want to scroll towards the top.
+     * @param velocityY The initial velocity in the Y direction. Positive
+     *                  numbers mean that the finger/cursor is moving down the screen,
+     *                  which means we want to scroll towards the top.
      */
     public void fling(int velocityY) {
         if (getChildCount() > 0) {
@@ -1405,8 +1452,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
     /**
      * {@inheritDoc}
      * <p>
-     * <p>
-     * This version also clamps the scrolling to the bounds of our child.
+     * <p>This version also clamps the scrolling to the bounds of our child.
      */
     @Override
     public void scrollTo(int x, int y) {
@@ -1421,24 +1467,31 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
         }
     }
 
-    private int clamp(int n, int my, int child) {
+    private static int clamp(int n, int my, int child) {
         if (my >= child || n < 0) {
-			/*
-			 * my >= child is this case: |--------------- me ---------------|
-			 * |------ child ------| or |--------------- me ---------------|
-			 * |------ child ------| or |--------------- me ---------------|
-			 * |------ child ------|
-			 *
-			 * n < 0 is this case: |------ me ------| |-------- child --------|
-			 * |-- getScrollX() --|
-			 */
+            /* my >= child is this case:
+             *                    |--------------- me ---------------|
+             *     |------ child ------|
+             * or
+             *     |--------------- me ---------------|
+             *            |------ child ------|
+             * or
+             *     |--------------- me ---------------|
+             *                                  |------ child ------|
+             *
+             * n < 0 is this case:
+             *     |------ me ------|
+             *                    |-------- child --------|
+             *     |-- getScrollX() --|
+             */
             return 0;
         }
         if ((my + n) > child) {
-			/*
-			 * this case: |------ me ------| |------ child ------| |--
-			 * getScrollX() --|
-			 */
+            /* this case:
+             *                    |------ me ------|
+             *     |------ child ------|
+             *     |-- getScrollX() --|
+             */
             return child - my;
         }
         return n;
@@ -1500,7 +1553,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener {
             isInFlingMode = true;
             return false;
         }
-        mScroller.startScroll(0, currScrollY, 0, scrollBy, 500);
+        mScroller.startScroll(0, currScrollY, 0, scrollBy, 300);
 
         // Start animation.
         post(overScrollerSpringbackTask);

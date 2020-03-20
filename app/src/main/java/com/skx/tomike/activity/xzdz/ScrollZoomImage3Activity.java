@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.activity.SkxBaseActivity;
-import com.skx.tomike.customview.OverScrollView2;
+import com.skx.tomike.customview.OverScrollView;
 
 /**
  * 滑动缩放头图
@@ -19,7 +19,7 @@ public class ScrollZoomImage3Activity extends SkxBaseActivity {
     private final String TAG = "ScrollZoomImage";
 
     private ImageView iv_mainImage;
-    private OverScrollView2 mScrollView;
+    private OverScrollView mScrollView;
 
     float lastScale = 1.0f;
 
@@ -36,13 +36,13 @@ public class ScrollZoomImage3Activity extends SkxBaseActivity {
     public void initializeView() {
         super.initializeView();
 
-        mScrollView = (OverScrollView2) findViewById(R.id.scrollZoom3_scrollView);
+        mScrollView = (OverScrollView) findViewById(R.id.scrollZoom3_scrollView);
         iv_mainImage = (ImageView) findViewById(R.id.scrollZoom3_mainImage);
         iv_mainImage.setScaleType(ImageView.ScaleType.MATRIX);
         iv_mainImage.setEnabled(false);
 
 
-        mScrollView.setScrollingLayoutChangeListener(new OverScrollView2.OnOverScrollingListener() {
+        mScrollView.setScrollingLayoutChangeListener(new OverScrollView.OnOverScrollingListener() {
             @Override
             public void onOverScrollingListener(int moveOffset, float scale) {
                 Log.e(TAG, "onOverScrollingListener - moveOffset:scale - " + moveOffset + "：" + scale);
