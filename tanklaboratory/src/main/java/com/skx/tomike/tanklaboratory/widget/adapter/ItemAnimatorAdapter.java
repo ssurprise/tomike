@@ -1,4 +1,4 @@
-package com.skx.tomike.adapter;
+package com.skx.tomike.tanklaboratory.widget.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +32,18 @@ public class ItemAnimatorAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.mContentList.addAll(contentList);
     }
 
+    @NotNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         return new ItemAnimatorViewHolder(mInflater.inflate(R.layout.adapter_sticky_recycler_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull RecyclerView.ViewHolder holder, int position) {
         Log.e("position", position + "");
         ItemAnimatorViewHolder tHolder = (ItemAnimatorViewHolder) holder;
         String content = mContentList.get(position);
         tHolder.tv_name.setText(content);
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, List<Object> payloads) {
-        super.onBindViewHolder(holder, position, payloads);
     }
 
     @Override
@@ -59,7 +57,7 @@ public class ItemAnimatorAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         ItemAnimatorViewHolder(View itemView) {
             super(itemView);
-            tv_name = (TextView) itemView.findViewById(R.id.nationList_item_name);
+            tv_name = itemView.findViewById(R.id.nationList_item_name);
         }
     }
 

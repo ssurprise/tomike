@@ -5,80 +5,85 @@
     <application>
         <!-- PopupWindow 实例 -->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.PopupWindowActivity"
+            android:name=".widget.activity.PopupWindowActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.CardViewActivity"
+            android:name=".widget.activity.CardViewActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.FlowLayoutActivity"
+            android:name=".widget.activity.FlowLayoutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.FloatingActionButtonActivity"
+            android:name=".widget.activity.FloatingActionButtonActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.SnackBarActivity"
+            android:name=".widget.activity.SnackBarActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.CoordinatorLayoutActivity"
+            android:name=".widget.activity.CoordinatorLayoutActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.SetTextIsSelectableTestActivity"
+            android:name=".widget.activity.SetTextIsSelectableTestActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.NestedScrollViewViewPagerActivity"
+            android:name=".widget.activity.NestedScrollViewViewPagerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name="com.skx.tomike.tanklaboratory.widget.activity.NavigationBarActivity" />
+        <activity
+            android:name=".widget.activity.NavigationBarActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name="com.skx.tomike.tanklaboratory.widget.activity.ConstraintLayoutActivity" />
+        <activity
+            android:name=".widget.activity.ConstraintLayoutActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name="com.skx.tomike.tanklaboratory.widget.activity.LightDarkTextActivity" />
-
+        <activity
+            android:name=".widget.activity.LightDarkTextActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 属性动画 -->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.animation.activity.PropertyAnimatorActivity"
+            android:name=".animation.activity.PropertyAnimatorActivity"
             android:screenOrientation="portrait" />
 
         <!-- 圆形揭示 -->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.animation.activity.CircularRevealActivity"
+            android:name=".animation.activity.CircularRevealActivity"
             android:screenOrientation="portrait" />
 
         <!--共享元素-->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.animation.activity.ShareElementActivity"
+            android:name=".animation.activity.ShareElementActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.skx.tomike.tanklaboratory.animation.activity.ShareElement2Activity" />
+        <activity android:name=".animation.activity.ShareElement2Activity" />
 
         <!--摇晃动效-->
-        <activity android:name="com.skx.tomike.tanklaboratory.animation.activity.ShakeAnimatorActivity" />
+        <activity android:name=".animation.activity.ShakeAnimatorActivity" />
 
         <!--贝塞尔曲线动效-->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.animation.activity.BezierAnimatorActivity"
+            android:name=".animation.activity.BezierAnimatorActivity"
             android:screenOrientation="portrait" />
 
         <!-- scrollBy 之图片移动 activity -->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.animation.activity.ScrollerPracticeActivity"
+            android:name=".animation.activity.ScrollerPracticeActivity"
             android:screenOrientation="portrait" />
 
         <!--Layout 添加/删除子view的过渡效果-->
         <activity
-            android:name="com.skx.tomike.tanklaboratory.animation.activity.LayoutTransitionActivity"
+            android:name=".animation.activity.LayoutTransitionActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.DrawerLayoutActivity"
+            android:name=".widget.activity.DrawerLayoutActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -89,10 +94,6 @@
             android:name=".widget.activity.TextWordSpacingActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".widget.activity.ZoomHeaderListViewActivity"
-            android:screenOrientation="portrait" />
 
         <activity
             android:name=".widget.activity.PageIndicatorActivity"
@@ -108,6 +109,21 @@
         <activity
             android:name=".widget.activity.VpMultiplePageActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".widget.activity.SwipeRefreshLayoutActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".widget.activity.ShapeViewActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".widget.activity.CoordinatorLayoutCaseActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
     </application>
 </manifest>

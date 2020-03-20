@@ -12,37 +12,53 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightDarkTextActivity extends AppCompatActivity {
+public class LightDarkTextActivity extends SkxBaseActivity {
 
-    boolean isDarkStatus;
-    AppCompatEditText input;
-    AppCompatEditText input1;
-    AppCompatEditText input2;
-    AppCompatEditText input3;
-    AppCompatButton btnSwitch;
+    private boolean isDarkStatus;
+    private AppCompatButton btnSwitch;
 
-    List<AppCompatEditText> editTexts = new ArrayList<>(4);
-    int index = 0;
+    private final List<AppCompatEditText> editTexts = new ArrayList<>(4);
+    private int index = 0;
+
+    @Override
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_light_dark_text;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
+    @Override
+    protected void configHeaderTitleView(@NonNull TextView title) {
+        super.configHeaderTitleView(title);
+        title.setText("EditText 明暗文切换");
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_light_dark_text);
-
-        input = findViewById(R.id.lightDarkText_input);
-        input1 = findViewById(R.id.lightDarkText_input1);
-        input2 = findViewById(R.id.lightDarkText_input2);
-        input3 = findViewById(R.id.lightDarkText_input3);
+        AppCompatEditText input = findViewById(R.id.lightDarkText_input);
+        AppCompatEditText input1 = findViewById(R.id.lightDarkText_input1);
+        AppCompatEditText input2 = findViewById(R.id.lightDarkText_input2);
+        AppCompatEditText input3 = findViewById(R.id.lightDarkText_input3);
         editTexts.add(input);
         editTexts.add(input1);
         editTexts.add(input2);
@@ -51,14 +67,10 @@ public class LightDarkTextActivity extends AppCompatActivity {
         btnSwitch = findViewById(R.id.lightDarkText_switch);
         btnSwitch.setText("暗文");
 
-        input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                Log.e("KeyCode", event.getKeyCode() + "");
-                Log.e("action", event.getAction() + "");
-                return false;
-            }
-        });
+        input.setOnEditorActionListener(actionListener);
+        input1.setOnEditorActionListener(actionListener);
+        input2.setOnEditorActionListener(actionListener);
+        input3.setOnEditorActionListener(actionListener);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -75,9 +87,6 @@ public class LightDarkTextActivity extends AppCompatActivity {
                 int length = s.length();
                 if (length >= 1 && index < editTexts.size() - 1) {
                     (editTexts.get(++index)).requestFocus(EditorInfo.IME_ACTION_NEXT);
-
-                } else if (length == 0) {
-
                 }
             }
         };
@@ -93,19 +102,29 @@ public class LightDarkTextActivity extends AppCompatActivity {
                 isDarkStatus = !isDarkStatus;
                 if (isDarkStatus) {
                     btnSwitch.setText("明文");
-                    input.setTransformationMethod(new PasswordCharSequenceStyle());
-                    input.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    for (AppCompatEditText et:editTexts) {
+                        et.setTransformationMethod(new PasswordCharSequenceStyle());
+                        et.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    }
                 } else {
                     btnSwitch.setText("暗文");
-                    input.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    for (AppCompatEditText et:editTexts) {
+                        et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    }
                 }
-
-                Selection.setSelection(input.getEditableText(), input.length());
-
-                Log.e("输入框内容", input.getEditableText().toString());
+//                Selection.setSelection(input.getEditableText(), input.length());
             }
         });
     }
+
+    private TextView.OnEditorActionListener actionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            Log.e("KeyCode", event.getKeyCode() + "");
+            Log.e("action", event.getAction() + "");
+            return false;
+        }
+    };
 
     public class PasswordCharSequenceStyle extends PasswordTransformationMethod {
 

@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,33 +8,34 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.adapter.ItemAnimatorAdapter;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomike.tanklaboratory.widget.adapter.ItemAnimatorAdapter;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class HeaderFooterRecyclerViewActivity extends AppCompatActivity {
+/**
+ * 描述 : RecyclerView 添加/删除item
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/3/20 6:27 PM
+ */
+public class RecyclerViewItemUpdateActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
     private ItemAnimatorAdapter mAdapter;
     private List<String> mCon = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_header_footer_recycler_view);
+        setContentView(R.layout.activity_recyclerview_item_update);
 
-        mRecyclerView = findViewById(R.id.andHeaderView_recyclerView);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        RecyclerView rv = findViewById(R.id.andHeaderView_recyclerView);
+        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rv.setItemAnimator(new DefaultItemAnimator());
 
         generateTestData();
-
-        mAdapter = new ItemAnimatorAdapter(this, mCon);
-        mRecyclerView.setAdapter(mAdapter);
+        rv.setAdapter(mAdapter = new ItemAnimatorAdapter(this, mCon));
     }
 
     private void generateTestData() {
@@ -56,13 +57,13 @@ public class HeaderFooterRecyclerViewActivity extends AppCompatActivity {
     }
 
     public void insertItem(View view) {
-        // TODO 插入一项
+        // 插入一项
         mAdapter.insertFirstPos("aaa");
     }
 
 
     public void insertRange(View view) {
-        // TODO 插入一个区间项
+        // 插入一个区间项
         List<String> list = new LinkedList<>();
         for (int i = 99, j = 101; i < j; i++) {
             list.add("新加的 - 第" + i + "个");

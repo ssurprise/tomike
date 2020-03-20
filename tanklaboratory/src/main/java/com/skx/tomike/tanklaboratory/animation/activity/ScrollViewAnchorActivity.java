@@ -1,10 +1,11 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.animation.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -26,80 +27,97 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.ScrollChangedScrollView;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 /**
- * 小猪-房间详情页-头部导航
+ * 描述 : TabLayout + NestedScrollView 联动效果
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/3/20 6:15 PM
  */
 public class ScrollViewAnchorActivity extends SkxBaseActivity {
 
     // 头部导航标签
-    private String[] mNavigationTag = {"照片", "概览", "描述", "点评", "位置", "日期", "设施", "规则", "退订", "日记", "推荐"};
-    RelativeLayout mRlNavigationTagContainer;
-    ImageButton mBtnBack;
-    RelativeLayout rl_favoriteContainer;
-    ImageButton btn_favorite;
-    ImageButton btn_favoriteHover;
-    ImageButton btn_share;
-    View view_splitLine;
-    TabLayout tb_navigationTag;
-    View view_bottomSplitLine;
-    ImageView iv_image;
-    TextView tv_1;
-    TextView tv_2;
-    TextView tv_3;
-    TextView tv_4;
-    TextView tv_5;
-    TextView tv_6;
-    TextView tv_7;
-    TextView tv_8;
-    TextView tv_9;
-    TextView tv_10;
-    ScrollChangedScrollView mSvContentBody;
-    int translationDistance;
+    private final String[] mNavigationTag = {"照片", "概览", "描述", "点评", "位置", "日期", "设施", "规则", "退订", "日记", "推荐"};
+    private RelativeLayout mRlNavigationTagContainer;
+    private ImageButton mBtnBack;
+    private RelativeLayout rl_favoriteContainer;
+    private ImageButton btn_favorite;
+    private ImageButton btn_favoriteHover;
+    private ImageButton btn_share;
+    private View view_splitLine;
+    private TabLayout tb_navigationTag;
+    private View view_bottomSplitLine;
+    private ImageView iv_image;
+    private TextView tv_1;
+    private TextView tv_2;
+    private TextView tv_3;
+    private TextView tv_4;
+    private TextView tv_5;
+    private TextView tv_6;
+    private TextView tv_7;
+    private TextView tv_8;
+    private TextView tv_9;
+    private TextView tv_10;
+    private ScrollChangedScrollView mSvContentBody;
+    private int translationDistance;
+
+    @Override
+    protected void initParams() {
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_scroll_view_anchor;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+    }
+
+    @Override
+    protected boolean useDefaultLayout() {
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll_view_anchor);
-        initializeView();
+        initView();
         refreshView();
-        installListener();
+        initListener();
     }
 
-    @Override
-    public void initializeView() {
-        super.initializeView();
-        mRlNavigationTagContainer = (RelativeLayout) findViewById(R.id.luDetail_navigationTag_container);
-        mBtnBack = (ImageButton) findViewById(R.id.btn_back);
-        rl_favoriteContainer = (RelativeLayout) findViewById(R.id.rl_favoriteContainer);
-        btn_favorite = (ImageButton) findViewById(R.id.btn_collect);
-        btn_favoriteHover = (ImageButton) findViewById(R.id.btn_favoriteHover);
-        btn_share = (ImageButton) findViewById(R.id.btn_share);
+    private void initView() {
+        mRlNavigationTagContainer = findViewById(R.id.luDetail_navigationTag_container);
+        mBtnBack = findViewById(R.id.btn_back);
+        rl_favoriteContainer = findViewById(R.id.rl_favoriteContainer);
+        btn_favorite = findViewById(R.id.btn_collect);
+        btn_favoriteHover = findViewById(R.id.btn_favoriteHover);
+        btn_share = findViewById(R.id.btn_share);
         view_splitLine = findViewById(R.id.view_splitLine);
-        tb_navigationTag = (TabLayout) findViewById(R.id.luDetail_navigationTag_tabLayout);
+        tb_navigationTag = findViewById(R.id.luDetail_navigationTag_tabLayout);
         view_bottomSplitLine = findViewById(R.id.view_bottomSplitLine);
-        iv_image = (ImageView) findViewById(R.id.iv_image);
-        tv_1 = (TextView) findViewById(R.id.tv_1);
-        tv_2 = (TextView) findViewById(R.id.tv_2);
-        tv_3 = (TextView) findViewById(R.id.tv_3);
-        tv_4 = (TextView) findViewById(R.id.tv_4);
-        tv_5 = (TextView) findViewById(R.id.tv_5);
-        tv_6 = (TextView) findViewById(R.id.tv_6);
-        tv_7 = (TextView) findViewById(R.id.tv_7);
-        tv_8 = (TextView) findViewById(R.id.tv_8);
-        tv_9 = (TextView) findViewById(R.id.tv_9);
-        tv_10 = (TextView) findViewById(R.id.tv_10);
-        mSvContentBody = (ScrollChangedScrollView) findViewById(R.id.anchor_bodyContainer);
+        iv_image = findViewById(R.id.iv_image);
+        tv_1 = findViewById(R.id.tv_1);
+        tv_2 = findViewById(R.id.tv_2);
+        tv_3 = findViewById(R.id.tv_3);
+        tv_4 = findViewById(R.id.tv_4);
+        tv_5 = findViewById(R.id.tv_5);
+        tv_6 = findViewById(R.id.tv_6);
+        tv_7 = findViewById(R.id.tv_7);
+        tv_8 = findViewById(R.id.tv_8);
+        tv_9 = findViewById(R.id.tv_9);
+        tv_10 = findViewById(R.id.tv_10);
+        mSvContentBody = findViewById(R.id.anchor_bodyContainer);
     }
 
-    @Override
-    public void refreshView() {
-        super.refreshView();
-        /**  初始化导航栏透明度 */
+    private void refreshView() {
+        // 初始化导航栏透明度
         initNavigationBar();
 
         tv_1.setText(mNavigationTag[1]);
@@ -125,9 +143,8 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
     private boolean isTagItemClick = false;
     private boolean isFavorite = false;
 
-    @Override
-    public void installListener() {
-        super.installListener();
+    @SuppressLint("ClickableViewAccessibility")
+    private void initListener() {
 
         mBtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +155,7 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
         btn_favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastTool.showToast(mContext, "收藏");
+                ToastTool.showToast(mActivity, "收藏");
                 isFavorite = !isFavorite;
                 if (isFavorite) {
                     AnimatorSet animatorSet = new AnimatorSet();
@@ -191,7 +208,7 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
         btn_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastTool.showToast(mContext, "分享");
+                ToastTool.showToast(mActivity, "分享");
             }
         });
         mSvContentBody.setOnTouchListener(new View.OnTouchListener() {
@@ -222,7 +239,6 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
 
             @Override
             public void onScrollStop(boolean isStop) {
-
                 if (isStop) {
                     int currentTag;
                     int scrollY = mSvContentBody.getScrollY();
@@ -291,13 +307,11 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
             Log.e("onTabSelected", "onTabSelected");
 //                isTagItemClick = false;
             int position = tab.getPosition();
-            /** 计算点击的导航标签所对应内容区域的高度 */
+            // 计算点击的导航标签所对应内容区域的高度
             int targetY = 0;
             // 导航栏的高度
             int navigationHeight = mRlNavigationTagContainer.getHeight();
             switch (position) {
-                case 0:
-                    break;
                 case 1:
                     targetY = tv_1.getTop() - navigationHeight;
                     break;
@@ -632,6 +646,6 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
      * 计算导航标签偏移距离
      */
     public void calculateNavigationTagTranslateDistance() {
-        translationDistance = DpPxSpTool.INSTANCE.dip2px(mContext, 268 - 24 - 9);
+        translationDistance = DpPxSpTool.INSTANCE.dip2px(mActivity, 268 - 24 - 9);
     }
 }

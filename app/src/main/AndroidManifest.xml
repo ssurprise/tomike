@@ -47,7 +47,9 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- 首页 -->
+        </activity>
+
+        <!-- 首页 -->
         <activity
             android:name=".activity.HomeActivity"
             android:screenOrientation="portrait"
@@ -58,18 +60,16 @@
             android:name=".activity.DoubleFormatActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+
         <!-- 键盘 实例 -->
         <activity
             android:name=".activity.KeyboardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name=".activity.StatusBarNavigationBarActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".cannonlaboratory.ui.activity.RetrofitActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -86,7 +86,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".activity.ScrollViewAnchorActivity"
+            android:name=".tanklaboratory.animation.activity.ScrollViewAnchorActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
@@ -95,10 +95,6 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
-        <activity
-            android:name=".tanklaboratory.widget.activity.SwipeRefreshLayoutActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activity.ColorMatrixActivity"
             android:screenOrientation="portrait"
@@ -117,7 +113,7 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".activity.HeaderFooterRecyclerViewActivity"
+            android:name=".tanklaboratory.widget.activity.RecyclerViewItemUpdateActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -146,15 +142,6 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
-
-        <activity
-            android:name="com.skx.tomike.tanklaboratory.widget.activity.ShapeViewActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".tanklaboratory.widget.activity.CoordinatorLayoutCaseActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activity.ShadowActivity"
             android:screenOrientation="portrait"
