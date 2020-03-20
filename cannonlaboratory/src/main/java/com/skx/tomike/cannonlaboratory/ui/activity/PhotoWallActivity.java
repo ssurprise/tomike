@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +14,7 @@ import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageBucket;
 import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageItem;
 import com.skx.tomike.cannonlaboratory.ui.adapter.PhotoWallAdapter;
 import com.skx.tomike.cannonlaboratory.ui.view.GridSpaceItemDecoration;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 /**
@@ -21,7 +23,7 @@ import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
  * 版本 : V1
  * 创建时间 : 2020/3/19 4:08 PM
  */
-public class PhotoWallActivity extends SkxBaseActivity {
+public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
 
     private PhotoWallAdapter mAdapter;
     private PhotoUpImageBucket mPhotoAlbum;
@@ -43,7 +45,7 @@ public class PhotoWallActivity extends SkxBaseActivity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (mPhotoAlbum == null) {
             finish();

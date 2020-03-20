@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.cannonlaboratory.R;
-import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageBucket;
 import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageItem;
 import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
 
