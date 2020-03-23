@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".widget.activity.FlowLayoutActivity">
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="鸡蛋" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:button="@null"
+        android:checked="true"
+        android:drawableStart="@drawable/booking_home_vip_check_state_selector"
+        android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
+        android:padding="5dp"
+        android:text="鸡蛋" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:button="@drawable/booking_home_vip_check_state_selector"
+        android:checked="true"
+        android:padding="5dp"
+        android:text="鸡蛋" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="注意：第二个和第三个的样式上的区别。第二个用的是 drawableLeft，而地上那个是用的button。
+        建议打开开发者选项中布局边界，看区别会更明显。
+        \n 从控制文字与icon 的间距，或者扩大内边距使点击面积更大的角度考虑，使用第二种方式将更合适"
+        android:textColor="@color/skx_bdbdbd"
+        android:textSize="10sp"
+        tools:ignore="SmallSp" />
+
+</LinearLayout>

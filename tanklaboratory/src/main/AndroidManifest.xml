@@ -124,6 +124,7 @@
             android:name=".widget.activity.CoordinatorLayoutCaseActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".widget.activity.CheckBoxActivity" />
 
     </application>
 </manifest>

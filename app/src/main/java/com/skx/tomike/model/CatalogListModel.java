@@ -8,7 +8,6 @@ import com.skx.tomike.activity.GetTopTestActivity;
 import com.skx.tomike.activity.HandlerActivity;
 import com.skx.tomike.activity.KeyboardActivity;
 import com.skx.tomike.activity.MatrixImageActivity;
-import com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity;
 import com.skx.tomike.activity.ShapeDrawableHelperActivity;
 import com.skx.tomike.activity.SpannableStringBuilderActivity;
 import com.skx.tomike.activity.StatusBarNavigationBarActivity;
@@ -56,6 +55,7 @@ import com.skx.tomike.tanklaboratory.animation.activity.ScrollerPracticeActivity
 import com.skx.tomike.tanklaboratory.animation.activity.ShakeAnimatorActivity;
 import com.skx.tomike.tanklaboratory.animation.activity.ShareElementActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CardViewActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.CheckBoxActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ConstraintLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CoordinatorLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CoordinatorLayoutCaseActivity;
@@ -69,6 +69,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.PageIndicatorActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.PopupWindowActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewItemUpdateActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SetTextIsSelectableTestActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShapeViewActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SnackBarActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SwipeRefreshLayoutActivity;
@@ -140,10 +141,11 @@ public class CatalogListModel {
 
 
         // 坦克实验室 - view 篇
-        mViewCatalogs.add(new CatalogItem("TextView字间距", TextWordSpacingActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextView复制测试", SetTextIsSelectableTestActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextView 字间距", TextWordSpacingActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextView 复制测试", SetTextIsSelectableTestActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextSwitcher测试", TextSwitcherActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("EditText明暗文切换", LightDarkTextActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", LightDarkTextActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", CheckBoxActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("自定义ShapeView", ShapeViewActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("FlowLayout", FlowLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ConstraintLayout约束布局", ConstraintLayoutActivity.class.getName()));
