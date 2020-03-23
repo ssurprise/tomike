@@ -3,13 +3,15 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.ItemAnimatorAdapter;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,28 +22,40 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020/3/20 6:27 PM
  */
-public class RecyclerViewItemUpdateActivity extends AppCompatActivity {
+public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewModel> {
 
     private ItemAnimatorAdapter mAdapter;
-    private List<String> mCon = new LinkedList<>();
+    private final List<String> mCon = new LinkedList<>();
+
+    @Override
+    protected void initParams() {
+        for (int i = 0, j = 5; i < j; i++) {
+            mCon.add("第" + i + "个");
+        }
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("RecyclerView 添加/删除item").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_recyclerview_item_update;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recyclerview_item_update);
-
-        RecyclerView rv = findViewById(R.id.andHeaderView_recyclerView);
+        RecyclerView rv = findViewById(R.id.rv_recyclerviewItemUpdate_content);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setItemAnimator(new DefaultItemAnimator());
-
-        generateTestData();
-        rv.setAdapter(mAdapter = new ItemAnimatorAdapter(this, mCon));
-    }
-
-    private void generateTestData() {
-        for (int i = 0, j = 5; i < j; i++) {
-            mCon.add("第" + i + "个");
-        }
+        rv.setAdapter(mAdapter = new ItemAnimatorAdapter(mCon));
     }
 
     public void append(View view) {
@@ -100,6 +114,5 @@ public class RecyclerViewItemUpdateActivity extends AppCompatActivity {
         list.add("第1个");
         mAdapter.removeRange(list);
     }
-
 
 }

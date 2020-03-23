@@ -16,6 +16,8 @@ import com.skx.tomikecommonlibrary.R;
 
 public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmActivity<T> {
 
+    protected final String TAG = getClass().getSimpleName();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         nativeThemeStyle();

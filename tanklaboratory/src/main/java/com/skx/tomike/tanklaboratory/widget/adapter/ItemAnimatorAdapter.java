@@ -1,7 +1,5 @@
 package com.skx.tomike.tanklaboratory.widget.adapter;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +20,8 @@ import java.util.List;
 public class ItemAnimatorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<String> mContentList;
-    private LayoutInflater mInflater;
 
-    public ItemAnimatorAdapter(Context mContext, List<String> contentList) {
-        this.mInflater = LayoutInflater.from(mContext);
+    public ItemAnimatorAdapter(List<String> contentList) {
         if (mContentList == null) {
             mContentList = new ArrayList<>();
         }
@@ -35,15 +31,14 @@ public class ItemAnimatorAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @NotNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
-        return new ItemAnimatorViewHolder(mInflater.inflate(R.layout.adapter_sticky_recycler_item, parent, false));
+        return new ItemAnimatorViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.adapter_sticky_recycler_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NotNull RecyclerView.ViewHolder holder, int position) {
-        Log.e("position", position + "");
         ItemAnimatorViewHolder tHolder = (ItemAnimatorViewHolder) holder;
-        String content = mContentList.get(position);
-        tHolder.tv_name.setText(content);
+        tHolder.tv_name.setText(mContentList.get(position));
     }
 
     @Override
@@ -51,7 +46,7 @@ public class ItemAnimatorAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return mContentList.size();
     }
 
-    private class ItemAnimatorViewHolder extends RecyclerView.ViewHolder {
+    private static class ItemAnimatorViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_name;
 
