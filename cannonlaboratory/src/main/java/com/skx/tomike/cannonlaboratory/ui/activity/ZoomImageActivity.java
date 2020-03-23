@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -16,6 +15,7 @@ import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.ui.view.ZoomImageView;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -45,9 +45,8 @@ public class ZoomImageActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("图片缩放");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("图片缩放").create();
     }
 
     @Override

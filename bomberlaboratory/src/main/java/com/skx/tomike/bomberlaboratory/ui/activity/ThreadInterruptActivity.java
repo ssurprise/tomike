@@ -7,11 +7,11 @@ import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.skx.tomike.bomberlaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 /**
  * 描述 : 线程中断demo
@@ -64,14 +64,8 @@ public class ThreadInterruptActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("线程中断");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("线程中断").create();
     }
 
     public void onThreadInterruptFlag(View view) {

@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="15dp">
 
-    <com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout
-        android:id="@+id/infinite_loop_viewPager_pageIndicator"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white">
-
-    </com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout>
-
-    <LinearLayout
-        android:id="@+id/infinite_loop_pageIndicator2_container"
-        android:layout_width="25dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:orientation="horizontal">
-
-    </LinearLayout>
+        android:text="无限循环（非设置adapter.getCount为某个很大值的方式）"
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp" />
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/infinite_loop_viewPager"
+        android:id="@+id/vp_loopViewPager_infiniteLoop"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="35dp">
+        android:layout_marginTop="5dp">
 
     </androidx.viewpager.widget.ViewPager>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="自动轮播"
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp" />
+
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/automatic_loop_viewPager"
+        android:id="@+id/vp_loopViewPager_autoLoop"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_below="@id/infinite_loop_viewPager"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="5dp">
 
     </androidx.viewpager.widget.ViewPager>
 
-</RelativeLayout>
+</LinearLayout>

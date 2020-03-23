@@ -10,6 +10,7 @@ import com.skx.tomike.tacticallaboratory.R
 import com.skx.tomike.tacticallaboratory.pattern.memento.MementoHistoryAdapter.MementoAccessListener
 import com.skx.tomikecommonlibrary.base.BaseViewModel
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity
+import com.skx.tomikecommonlibrary.base.TitleConfig
 
 /**
  * 描述 : 备忘录模式demo - 仿游戏存档。提供存档，读档，删档功能
@@ -46,13 +47,8 @@ class MementoPatternActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickLis
 
     override fun subscribeEvent() {}
 
-    override fun useDefaultLayout(): Boolean {
-        return true
-    }
-
-    override fun configHeaderTitleView(title: TextView) {
-        super.configHeaderTitleView(title)
-        title.text = "备忘录模式-模拟游戏存档"
+    override fun configHeaderTitle(): TitleConfig? {
+        return TitleConfig.Builder().setTitleText("备忘录模式-模拟游戏存档").create()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

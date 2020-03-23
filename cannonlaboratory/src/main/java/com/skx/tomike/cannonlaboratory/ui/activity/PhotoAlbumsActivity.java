@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,6 +17,7 @@ import com.skx.tomike.cannonlaboratory.ui.adapter.PhotoAlbumsAdapter;
 import com.skx.tomike.cannonlaboratory.ui.view.GridSpaceItemDecoration;
 import com.skx.tomike.cannonlaboratory.viewmodel.PhotoAlbumViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 import org.jetbrains.annotations.NotNull;
@@ -60,14 +59,8 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("相册");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("相册").create();
     }
 
     @Override

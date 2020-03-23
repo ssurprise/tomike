@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.skx.tomike.bomberlaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -69,14 +70,8 @@ public class ThreadCallbackActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("获取线程返回值");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("获取线程返回值").create();
     }
 
     private void sendMessageToLogcat(@NonNull String msg) {

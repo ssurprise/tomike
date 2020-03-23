@@ -1,9 +1,9 @@
 package com.skx.tomike.tanklaboratory.widget.activity
 
-import android.widget.TextView
 import com.skx.tomike.tanklaboratory.R
 import com.skx.tomikecommonlibrary.base.BaseViewModel
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity
+import com.skx.tomikecommonlibrary.base.TitleConfig
 
 
 /**
@@ -24,11 +24,7 @@ class ShapeViewActivity : SkxBaseActivity<BaseViewModel>() {
     override fun subscribeEvent() {
     }
 
-    override fun useDefaultLayout(): Boolean {
-        return true
-    }
-
-    override fun configHeaderTitleView(title: TextView) {
-        title.text = "自定义ShapeView"
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("自定义ShapeView").create()
     }
 }

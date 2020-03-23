@@ -9,10 +9,9 @@ import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import androidx.annotation.NonNull;
-
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 /**
  * 描述 : TextSwitcher demo
@@ -46,14 +45,8 @@ public class TextSwitcherActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("TextSwitcher 实现效果");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("TextSwitcher 实现效果").create();
     }
 
     @Override

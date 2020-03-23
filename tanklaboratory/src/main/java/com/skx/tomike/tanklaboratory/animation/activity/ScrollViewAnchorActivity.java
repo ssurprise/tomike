@@ -80,11 +80,6 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return false;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();

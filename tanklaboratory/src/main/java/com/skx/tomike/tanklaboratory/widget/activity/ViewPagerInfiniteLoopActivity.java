@@ -2,19 +2,14 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.InfiniteLoopAdapter;
-import com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout;
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.ArrayList;
 
@@ -27,38 +22,20 @@ import java.util.ArrayList;
  * <p>
  * 控制ViewPager 的滑动速度   http://stackoverflow.com/questions/8155257/slowing-speed-of-viewpager-controller-in-android
  */
-public class ViewPagerInfiniteLoopActivity extends AppCompatActivity {
+public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel> {
 
-    private ViewPager vp_infiniteLoop;
-    private ViewPager vp_automaticLoop;
-    private LinearLayout infinite_loop_pageIndicator2_container;
-    private PageIndicatorLayout infinite_pageIndicator;
+    private ViewPager mVpInfiniteLoop;
+    private ViewPager mVpAutomaticLoop;
 
-    private ArrayList<Integer> infiniteLoopList = new ArrayList<>();
-    private ArrayList<Integer> automaticLoopList = new ArrayList<>();
+    private final ArrayList<Integer> infiniteLoopList = new ArrayList<>();
+    private final ArrayList<Integer> automaticLoopList = new ArrayList<>();
 
     private Handler mHandler = new Handler();
     private MyRunnable myRunnable = new MyRunnable();
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initializeData();
-        initializeView();
-        refreshView();
-    }
-
-
-    private void initializeView() {
-        setContentView(R.layout.activity_vp_infinite_loop);
-        infinite_pageIndicator = findViewById(R.id.infinite_loop_viewPager_pageIndicator);
-        infinite_loop_pageIndicator2_container = findViewById(R.id.infinite_loop_pageIndicator2_container);
-
-        vp_infiniteLoop = findViewById(R.id.infinite_loop_viewPager);
-        vp_automaticLoop = findViewById(R.id.automatic_loop_viewPager);
-    }
-
-    private void initializeData() {
+    protected void initParams() {
         infiniteLoopList.add(R.drawable.image_07);
         infiniteLoopList.add(R.drawable.image_05);
         infiniteLoopList.add(R.drawable.image_06);
@@ -72,23 +49,45 @@ public class ViewPagerInfiniteLoopActivity extends AppCompatActivity {
         automaticLoopList.add(R.drawable.image_08);
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_vp_infinite_loop;
+    }
 
-    private void refreshView() {
-        infinite_pageIndicator.setPageCount(infiniteLoopList.size());
-        // 无限循环
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("ViewPager 无限循环+自动轮播").create();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
+    }
+
+    private void initView() {
+        mVpInfiniteLoop = findViewById(R.id.vp_loopViewPager_infiniteLoop);
+        mVpAutomaticLoop = findViewById(R.id.vp_loopViewPager_autoLoop);
+
+        initInfiniteLoopView();
+        initAutoLoopView();
+    }
+
+    private void initInfiniteLoopView() {
         InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(infiniteLoopList);
-        vp_infiniteLoop.setAdapter(adapter);
-        vp_infiniteLoop.setCurrentItem(1);
-        vp_infiniteLoop.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mVpInfiniteLoop.setAdapter(adapter);
+        mVpInfiniteLoop.setCurrentItem(1);
+        mVpInfiniteLoop.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             int currentPosition;
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.e("positionOffset", position + "----" + positionOffset);
-                Log.e("positionOffsetPixels", position + "----" + positionOffsetPixels);
-                infinite_pageIndicator.indicatorScroll(position, positionOffset);
-                infinite_loop_pageIndicator2_container.scrollTo((int) ((position + positionOffset) * DpPxSpTool.INSTANCE.dip2px(ViewPagerInfiniteLoopActivity.this, 25)), 0);
             }
 
             @Override
@@ -103,20 +102,18 @@ public class ViewPagerInfiniteLoopActivity extends AppCompatActivity {
 
                 if (currentPosition == 0) {
                     // 当视图在第一个时，将页面号设置为图片的最后一张。
-                    vp_infiniteLoop.setCurrentItem(infiniteLoopList.size() - 2, false);
+                    mVpInfiniteLoop.setCurrentItem(infiniteLoopList.size() - 2, false);
                 } else if (currentPosition == infiniteLoopList.size() - 1) {
                     // 当视图在最后一个是,将页面号设置为图片的第一张。
-                    vp_infiniteLoop.setCurrentItem(1, false);
+                    mVpInfiniteLoop.setCurrentItem(1, false);
                 }
             }
         });
-//        infinite_pageIndicator.initPageIndicatorPosition(0);
-        addPageView(1, infiniteLoopList.size());
+    }
 
-
-        // 自动轮播
+    private void initAutoLoopView() {
         InfiniteLoopAdapter automaticAdapter = new InfiniteLoopAdapter(automaticLoopList);
-        vp_automaticLoop.setAdapter(automaticAdapter);
+        mVpAutomaticLoop.setAdapter(automaticAdapter);
         mHandler.postDelayed(myRunnable, 3000);
     }
 
@@ -128,26 +125,15 @@ public class ViewPagerInfiniteLoopActivity extends AppCompatActivity {
         public void run() {
             i++;
             i = i % automaticLoopList.size();
-            vp_automaticLoop.setCurrentItem(i, true);
+            mVpAutomaticLoop.setCurrentItem(i, true);
             mHandler.postDelayed(myRunnable, 3000);
         }
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         mHandler.removeCallbacks(myRunnable);
     }
 
-    private void addPageView(int offset, int length) {
-        for (int i = offset; i < length; i++) {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.INSTANCE.dip2px(this, 25), ViewGroup.LayoutParams.MATCH_PARENT);
-            TextView tv = new TextView(this);
-            tv.setTextSize(24);
-            tv.setGravity(Gravity.CENTER);
-            tv.setText(i + "");
-            tv.setLayoutParams(lp);
-            infinite_loop_pageIndicator2_container.addView(tv);
-        }
-    }
 }

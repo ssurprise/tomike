@@ -9,10 +9,9 @@ import android.text.style.ScaleXSpan;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.Locale;
 
@@ -44,14 +43,8 @@ public class TextWordSpacingActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("TextView 设置字间距");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("TextView 设置字间距").create();
     }
 
     @Override

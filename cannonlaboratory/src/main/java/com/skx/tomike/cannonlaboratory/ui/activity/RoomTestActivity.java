@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 
@@ -14,6 +13,7 @@ import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.RecentlyBrowsedBean;
 import com.skx.tomike.cannonlaboratory.viewmodel.RecentlyBrowsedViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.List;
 
@@ -62,9 +62,8 @@ public class RoomTestActivity extends SkxBaseActivity<RecentlyBrowsedViewModel> 
     }
 
     @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("Room - 最近浏览案例");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("Room - 最近浏览案例").create();
     }
 
     private void initView() {

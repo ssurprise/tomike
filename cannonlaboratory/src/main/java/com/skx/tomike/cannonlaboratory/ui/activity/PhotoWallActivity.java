@@ -2,9 +2,7 @@ package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +14,7 @@ import com.skx.tomike.cannonlaboratory.ui.adapter.PhotoWallAdapter;
 import com.skx.tomike.cannonlaboratory.ui.view.GridSpaceItemDecoration;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 /**
  * 描述 : 照片墙
@@ -56,14 +55,8 @@ public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText(mPhotoAlbum.bucketName);
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText(mPhotoAlbum.bucketName).create();
     }
 
     private void initView() {

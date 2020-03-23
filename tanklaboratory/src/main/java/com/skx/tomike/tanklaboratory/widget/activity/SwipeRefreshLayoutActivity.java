@@ -3,15 +3,14 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.viewmodel.SwipeRefreshViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,14 +55,8 @@ public class SwipeRefreshLayoutActivity extends SkxBaseActivity<SwipeRefreshView
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("SwipeRefreshLayout 下拉刷新");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("SwipeRefreshLayout 下拉刷新").create();
     }
 
     @Override

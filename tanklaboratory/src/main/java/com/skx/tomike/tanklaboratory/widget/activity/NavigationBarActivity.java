@@ -15,6 +15,7 @@ import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.NavigationBarLayout;
 import com.skx.tomike.tanklaboratory.widget.view.TabLayoutHelper;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +52,8 @@ public class NavigationBarActivity extends SkxBaseActivity implements View.OnCli
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        title.setText("TabLayout使用扩展");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("TabLayout使用扩展").create();
     }
 
     @Override

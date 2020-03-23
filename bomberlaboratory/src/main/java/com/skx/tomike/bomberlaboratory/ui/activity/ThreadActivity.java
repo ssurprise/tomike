@@ -10,11 +10,11 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.skx.tomike.bomberlaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.LinkedList;
@@ -95,14 +95,8 @@ public class ThreadActivity extends SkxBaseActivity implements View.OnClickListe
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("模拟叫号系统 - 多线程");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("模拟叫号系统 - 多线程").create();
     }
 
     private void initView() {

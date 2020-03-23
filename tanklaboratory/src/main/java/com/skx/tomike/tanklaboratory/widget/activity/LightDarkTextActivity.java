@@ -2,7 +2,6 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Selection;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -12,13 +11,13 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +46,8 @@ public class LightDarkTextActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("EditText 明暗文切换");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("EditText 明暗文切换").create();
     }
 
     @Override
@@ -102,13 +100,13 @@ public class LightDarkTextActivity extends SkxBaseActivity {
                 isDarkStatus = !isDarkStatus;
                 if (isDarkStatus) {
                     btnSwitch.setText("明文");
-                    for (AppCompatEditText et:editTexts) {
+                    for (AppCompatEditText et : editTexts) {
                         et.setTransformationMethod(new PasswordCharSequenceStyle());
                         et.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     }
                 } else {
                     btnSwitch.setText("暗文");
-                    for (AppCompatEditText et:editTexts) {
+                    for (AppCompatEditText et : editTexts) {
                         et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     }
                 }

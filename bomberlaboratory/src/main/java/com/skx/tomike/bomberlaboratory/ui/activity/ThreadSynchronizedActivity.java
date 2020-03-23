@@ -7,11 +7,11 @@ import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.skx.tomike.bomberlaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,14 +63,8 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        super.configHeaderTitleView(title);
-        title.setText("线程同步");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("线程同步").create();
     }
 
     private void initView() {

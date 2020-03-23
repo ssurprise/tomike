@@ -5,18 +5,16 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.InfiniteLoopAdapter;
 import com.skx.tomike.tanklaboratory.widget.adapter.MultiplePagerAdapter;
 import com.skx.tomike.tanklaboratory.widget.view.AlphaPageTransformer;
-import com.skx.tomike.tanklaboratory.widget.view.ScalePageTransformer;
 import com.skx.tomike.tanklaboratory.widget.view.ClipViewPager;
+import com.skx.tomike.tanklaboratory.widget.view.ScalePageTransformer;
 import com.skx.tomike.tanklaboratory.widget.view.WrapContentHeightViewPager;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
 
@@ -76,13 +74,8 @@ public class VpMultiplePageActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected boolean useDefaultLayout() {
-        return true;
-    }
-
-    @Override
-    protected void configHeaderTitleView(@NonNull TextView title) {
-        title.setText("ViewPager 一屏显示多个page");
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("ViewPager 一屏显示多个page").create();
     }
 
     private void initView() {
