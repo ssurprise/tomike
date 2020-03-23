@@ -16,7 +16,6 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_settings"
         android:icon="@drawable/ic_action_settings"
         android:title="@string/action_settings"
         app:showAsAction="never" />

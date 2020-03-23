@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_scroll_view_anchor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".animation.activity.ScrollViewAnchorActivity">
@@ -31,7 +30,8 @@
                 android:layout_height="486dp"
                 android:background="@color/skx_33ff4081"
                 android:gravity="center"
-                android:text="1" />
+                android:text="1"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_2"
@@ -39,7 +39,8 @@
                 android:layout_height="420dp"
                 android:background="@color/skx_2cb298"
                 android:gravity="center"
-                android:text="2" />
+                android:text="2"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_3"
@@ -47,7 +48,8 @@
                 android:layout_height="630dp"
                 android:background="#568463"
                 android:gravity="center"
-                android:text="3" />
+                android:text="3"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_4"
@@ -55,7 +57,8 @@
                 android:layout_height="120dp"
                 android:background="@color/skx_2c3e50"
                 android:gravity="center"
-                android:text="4" />
+                android:text="4"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_5"
@@ -63,7 +66,8 @@
                 android:layout_height="420dp"
                 android:background="@color/skx_4dbbcf"
                 android:gravity="center"
-                android:text="5" />
+                android:text="5"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_6"
@@ -71,7 +75,8 @@
                 android:layout_height="320dp"
                 android:background="@color/skx_007aff"
                 android:gravity="center"
-                android:text="6" />
+                android:text="6"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_7"
@@ -79,15 +84,17 @@
                 android:layout_height="503dp"
                 android:background="@color/skx_7f000000"
                 android:gravity="center"
-                android:text="7" />
+                android:text="7"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_8"
                 android:layout_width="match_parent"
                 android:layout_height="472dp"
-                android:background="@color/skx_85f3f3f3"
+                android:background="@color/skx_f3f3f3"
                 android:gravity="center"
-                android:text="8" />
+                android:text="8"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_9"
@@ -95,14 +102,16 @@
                 android:layout_height="338dp"
                 android:background="@color/skx_959ea7"
                 android:gravity="center"
-                android:text="9" />
+                android:text="9"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_10"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:gravity="center"
-                android:text="10" />
+                android:text="10"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
     </com.skx.tomike.tanklaboratory.widget.view.ScrollChangedScrollView>

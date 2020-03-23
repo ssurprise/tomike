@@ -54,7 +54,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/customBehavior_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"

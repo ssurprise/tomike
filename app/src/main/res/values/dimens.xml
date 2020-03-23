@@ -1,34 +1,20 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Default screen margins, per the Android Design guidelines. -->
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="activity_vertical_height">48dp</dimen>
 
     <!-- 分割线的宽度/高度 -->
-    <dimen name="view_margin">16dp</dimen>
-    <dimen name="view_marginLeft">16dp</dimen>
-    <dimen name="view_marginRight">16dp</dimen>
     <dimen name="view_marginLeft_15">15dp</dimen>
     <dimen name="view_marginRight_15">15dp</dimen>
     <dimen name="view_padding">16dp</dimen>
     <dimen name="view_padding_15">15dp</dimen>
-    <dimen name="view_paddingLeft">16dp</dimen>
-    <dimen name="view_paddingRight">16dp</dimen>
     <dimen name="view_paddingLeft_15">15dp</dimen>
     <dimen name="view_paddingRight_15">15dp</dimen>
 
     <dimen name="view_height_48">48dp</dimen>
-    <dimen name="view_height_0.5">0.5dp</dimen>
-    <!-- ocr -->
-    <dimen name="public_30_dp">30dip</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="view_height_0.5" tools:ignore="MissingDefaultResource">0.5dp</dimen>
 
-    <!--
-Refer to App Widget Documentation for margin information
-http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
-    -->
-    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
 </resources>

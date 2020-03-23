@@ -17,7 +17,6 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/nationList_item_mobileNationCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -29,7 +28,6 @@
         android:textSize="14sp" />
 
     <View
-        android:id="@+id/selectTenant_item_dividerLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_height_0.5"
         android:layout_alignParentBottom="true"

@@ -2,6 +2,7 @@ package com.skx.tomikecommonlibrary.imageloader;
 
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -62,21 +63,24 @@ public class LoadOptions implements Cloneable {
      */
     @Nullable
     private Drawable placeholderDrawable;
-    private int placeholderResId;
+    private @DrawableRes
+    int placeholderResId;
 
     /**
      * 错误图。error Drawable 在请求永久性失败时展示。error Drawable 同样也在请求的url/model为 null ，且并没有设置 fallback Drawable 时展示。
      */
     @Nullable
     private Drawable errorDrawable;
-    private int errorResId;
+    private @DrawableRes
+    int errorResId;
 
     /**
      * 后备图
      */
     @Nullable
     private Drawable fallbackDrawable;
-    private int fallbackResId;
+    private @DrawableRes
+    int fallbackResId;
 
     /**
      * 用于调整大小的目标图像宽度。
@@ -173,7 +177,7 @@ public class LoadOptions implements Cloneable {
      * @param placeholderResId 占位图资源
      * @return 默认配置的加载配置对象
      */
-    public LoadOptions placeholder(int placeholderResId) {
+    public LoadOptions placeholder(@DrawableRes int placeholderResId) {
         if (placeholderResId == 0) {
             throw new IllegalArgumentException("Placeholder image resource invalid.");
         }
@@ -213,7 +217,7 @@ public class LoadOptions implements Cloneable {
      * @param errorResId 错误资源id
      * @return 可选参数对象
      */
-    public LoadOptions error(int errorResId) {
+    public LoadOptions error(@DrawableRes int errorResId) {
         if (errorResId == 0) {
             throw new IllegalArgumentException("Error image resource invalid.");
         }
@@ -253,7 +257,7 @@ public class LoadOptions implements Cloneable {
      * @param fallbackResId 后备资源id
      * @return 可选参数对象
      */
-    public LoadOptions fallback(int fallbackResId) {
+    public LoadOptions fallback(@DrawableRes int fallbackResId) {
         if (fallbackResId == 0) {
             throw new IllegalArgumentException("Fallback image resource invalid.");
         }

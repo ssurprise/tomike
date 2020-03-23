@@ -36,7 +36,7 @@ public class PhotoUpImageItem implements Serializable, IPicture {
     }
 
     @Override
-    public String getLoadAddress() {
+    public String getPicturePath() {
         return imagePath;
     }
 }

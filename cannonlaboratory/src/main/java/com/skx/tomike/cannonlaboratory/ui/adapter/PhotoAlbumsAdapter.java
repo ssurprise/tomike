@@ -53,6 +53,7 @@ public class PhotoAlbumsAdapter extends RecyclerView.Adapter<PhotoAlbumsAdapter.
         if (photoUpImageBucket.imageList.size() > 0) {
             ImageLoader.with(holder.itemView.getContext())
                     .load(photoUpImageBucket.imageList.get(0).getImagePath())
+                    .placeholder(R.drawable.icon_picture_placeholer)
                     .into(holder.mIvThumbnailImage);
         }
 

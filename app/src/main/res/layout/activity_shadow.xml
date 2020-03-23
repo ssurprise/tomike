@@ -16,7 +16,6 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/shadow_cardView"
             android:layout_width="140dp"
             android:layout_height="80dp"
             android:layout_marginTop="20dp"
@@ -35,7 +34,6 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/shadow_textView"
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:layout_marginTop="20dp"
@@ -77,7 +75,6 @@
             android:layout_marginTop="20dp">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/shadow_cardView2"
                 android:layout_width="140dp"
                 android:layout_height="80dp"
                 android:background="@color/skx_2cb298"
@@ -102,7 +99,6 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/shadow_textView2"
                 android:layout_width="100dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="20dp"

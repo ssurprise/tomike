@@ -2,36 +2,11 @@
     <string name="app_name">Tomike</string>
     <string name="action_settings">设置</string>
     <string name="action_search">搜索</string>
-    <string name="action_favorite">收藏</string>
     <string name="action_share">分享</string>
 
     <!-- 导航按钮 -->
-    <string name="home_navigation_text1">首页</string>
-    <string name="home_navigation_text2">拍照</string>
-    <string name="home_navigation_text3">相册</string>
-    <string name="home_navigation_text4">我的</string>
-    <string name="album_str">相册</string>
-    <string name="preview_str">预览</string>
     <string name="takePhoto_str">拍照</string>
-    <string name="title_activity_directory">Settings</string>
     <string name="catalog_style">样式</string>
     <string name="catalog">目录</string>
-
-    <string name="pull_to_refresh_pull_label">Pull to refresh...</string>
-    <string name="pull_to_refresh_release_label">Release to refresh...</string>
-    <string name="pull_to_refresh_refreshing_label">Loading...</string>
-    <string name="pull_to_refresh_tap_label">Tap to refresh...</string>
-    <!-- 小猪-保洁项目 -->
-    <string name="cleanSys_comment_noComment">暂无房东进行点评</string>
-    <!-- 小猪-押金 -->
-    <string name="cashPledge_detail_text">押金详情</string>
-    <string name="cashPledge_deduction_reason_text">扣除原因</string>
-    <string name="cashPledge_deduction_price_text">扣除金额</string>
-    <string name="cashPledge_deduction_description_text">详情描述</string>
-    <string name="cashPledge_deduction_images_text">图片</string>
-
-    <string name="filter_number_letter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
 
 </resources>

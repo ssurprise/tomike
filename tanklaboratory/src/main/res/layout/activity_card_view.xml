@@ -26,20 +26,17 @@
             android:padding="15dp">
 
             <TextView
-                android:id="@+id/info_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1" />
 
             <TextView
-                android:id="@+id/info_text1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="2" />
 
             <TextView
-                android:id="@+id/info_text2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

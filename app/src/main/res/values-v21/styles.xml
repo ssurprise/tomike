@@ -7,20 +7,4 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="BaseAppTheme" parent="android:Theme.Material">
-        <!-- enable window content transitions -->
-        <item name="android:windowContentTransitions">true</item>
-
-        <!-- specify enter and exit transitions 指定进入退出转换 -->
-        <!--<item name="android:windowEnterTransition">@transition/explode</item>-->
-        <!--<item name="android:windowExitTransition">@transition/explode</item>-->
-
-        <!-- specify shared element transitions 指定共享元素转换 -->
-        <item name="android:windowSharedElementEnterTransition">
-            @transition/change_image_transform
-        </item>
-        <item name="android:windowSharedElementExitTransition">
-            @transition/change_image_transform
-        </item>
-    </style>
 </resources>

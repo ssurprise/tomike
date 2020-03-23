@@ -6,7 +6,6 @@
     android:paddingBottom="2dp">
 
     <TextView
-        android:id="@+id/pop_Volley"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
@@ -18,7 +17,6 @@
         android:background="@color/skx_e0e0e0" />
 
     <TextView
-        android:id="@+id/pop_Fresco"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
@@ -30,7 +28,6 @@
         android:background="@color/skx_e0e0e0" />
 
     <TextView
-        android:id="@+id/pop_Picasso"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"

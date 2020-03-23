@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -149,7 +150,7 @@ public final class ImageLoader {
             return this;
         }
 
-        public Builder<TranscodeType> placeholder(int placeholderResId) {
+        public Builder<TranscodeType> placeholder(@DrawableRes int placeholderResId) {
             mOptions.placeholder(placeholderResId);
             return this;
         }
@@ -159,7 +160,7 @@ public final class ImageLoader {
             return this;
         }
 
-        public Builder<TranscodeType> error(int errorResId) {
+        public Builder<TranscodeType> error(@DrawableRes int errorResId) {
             mOptions.error(errorResId);
             return this;
         }
@@ -169,7 +170,7 @@ public final class ImageLoader {
             return this;
         }
 
-        public Builder<TranscodeType> fallback(int fallbackResId) {
+        public Builder<TranscodeType> fallback(@DrawableRes int fallbackResId) {
             mOptions.fallback(fallbackResId);
             return this;
         }

@@ -47,7 +47,10 @@ public class PicturePreviewAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView imageView = (ImageView) LayoutInflater.from(container.getContext()).inflate(R.layout.adapter_picture_preview_item, container, false);
-        ImageLoader.with(container.getContext()).load(mPicturesList.get(position).getLoadAddress()).into(imageView);
+        ImageLoader.with(container.getContext())
+                .load(mPicturesList.get(position).getPicturePath())
+                .placeholder(R.drawable.icon_picture_placeholer)
+                .into(imageView);
         container.addView(imageView);
         return imageView;
     }

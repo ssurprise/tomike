@@ -67,7 +67,6 @@
             android:orientation="vertical">
 
             <Space
-                android:id="@+id/scrollChange_placeholderImage"
                 android:layout_width="match_parent"
                 android:layout_height="170dp" />
 

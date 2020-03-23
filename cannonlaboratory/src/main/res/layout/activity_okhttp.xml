@@ -31,7 +31,6 @@
             android:hint="输入想要查询的城市" />
 
         <Button
-            android:id="@+id/okhttp_searchBtn_get"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -40,7 +39,6 @@
             android:text="GO-get"
             android:textColor="@android:color/holo_green_dark" />
         <Button
-            android:id="@+id/okhttp_searchBtn_post"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -60,7 +58,6 @@
         android:paddingTop="15dp">
 
         <TextView
-            android:id="@+id/okhttp_wendu_title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -90,7 +87,6 @@
         android:paddingTop="15dp">
 
         <TextView
-            android:id="@+id/okhttp_ganmao_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -120,7 +116,6 @@
         android:paddingTop="15dp">
 
         <TextView
-            android:id="@+id/okhttp_fengxiang_title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -150,7 +145,6 @@
         android:paddingTop="15dp">
 
         <TextView
-            android:id="@+id/okhttp_fengli_title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"

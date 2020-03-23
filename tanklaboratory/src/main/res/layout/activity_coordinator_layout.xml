@@ -2,7 +2,6 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinatorLayout_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".widget.activity.CoordinatorLayoutActivity">
@@ -30,7 +29,6 @@
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/coordinatorLayout2_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -49,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
+            android:layout_margin="15dp"
             android:text="@string/large_text" />
 
     </androidx.core.widget.NestedScrollView>

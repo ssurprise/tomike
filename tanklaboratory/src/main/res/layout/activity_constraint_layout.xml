@@ -41,7 +41,6 @@
         app:layout_constraintRight_toLeftOf="@id/tab2" />
 
     <TextView
-        android:id="@+id/banner"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#765"
@@ -54,7 +53,6 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <CheckBox
-        android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
@@ -74,7 +72,6 @@
         tools:layout_editor_absoluteY="282dp" />
 
     <SeekBar
-        android:id="@+id/seekBar"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
         android:layout_marginStart="8dp"
