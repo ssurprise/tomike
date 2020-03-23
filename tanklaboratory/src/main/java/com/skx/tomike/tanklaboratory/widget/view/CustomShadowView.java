@@ -1,4 +1,4 @@
-package com.skx.tomike.customview;
+package com.skx.tomike.tanklaboratory.widget.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

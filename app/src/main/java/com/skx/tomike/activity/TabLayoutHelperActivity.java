@@ -38,10 +38,10 @@ public class TabLayoutHelperActivity extends SkxBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tablayout_helper);
 
-        mTabLayout = (TabLayout) findViewById(R.id.tabLayoutHelper_tab);
-        vpContent = (ViewPager) findViewById(R.id.tabLayoutHelper_content);
-        txtContent = (TextView) findViewById(R.id.tabLayoutHelper_textContent);
-        selectorGridLayout = (GridLayout) findViewById(R.id.tabLayoutHelper_selector);
+        mTabLayout = findViewById(R.id.tabLayoutHelper_tab);
+        vpContent = findViewById(R.id.tabLayoutHelper_content);
+        txtContent = findViewById(R.id.tabLayoutHelper_textContent);
+        selectorGridLayout = findViewById(R.id.tabLayoutHelper_selector);
 
 //      系统提供的使用方式
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.layout_tab_item));
@@ -120,21 +120,21 @@ public class TabLayoutHelperActivity extends SkxBaseActivity {
                 .setCustomAdapter(R.layout.layout_tab_item, new TabLayoutHelper.TabLayoutAdapter<String>(tabList) {
                     @Override
                     public void bindData(int position, View view, String charSequence) {
-                        ImageView imgv_tabIcon = (ImageView) view.findViewById(R.id.tab_icon);
-                        TextView tv_tabTitle = (TextView) view.findViewById(R.id.tab_title);
+                        ImageView imgv_tabIcon = view.findViewById(R.id.tab_icon);
+                        TextView tv_tabTitle = view.findViewById(R.id.tab_title);
                         tv_tabTitle.setText(charSequence);
                     }
                 })
                 .setOnCustomItemSelectorListener(new TabLayoutHelper.OnCustomItemSelectorListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab, int position, View view) {
-                        TextView tv_tabTitle = (TextView) view.findViewById(R.id.tab_title);
+                        TextView tv_tabTitle = view.findViewById(R.id.tab_title);
                         tv_tabTitle.setTextColor(Color.parseColor("#ff4081"));
                     }
 
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab, int position, View view) {
-                        TextView tv_tabTitle = (TextView) view.findViewById(R.id.tab_title);
+                        TextView tv_tabTitle = view.findViewById(R.id.tab_title);
                         tv_tabTitle.setTextColor(Color.parseColor("#323232"));
                     }
                 })

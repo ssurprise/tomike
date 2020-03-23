@@ -1,10 +1,10 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
 
 public class ShadowActivity extends AppCompatActivity {
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/view_padding"
-    tools:context="com.skx.tomike.activity.ShadowActivity">
+    tools:context="com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutHelper_tab"

@@ -1,4 +1,4 @@
-package com.skx.tomike.customview;
+package com.skx.tomike.tanklaboratory.widget.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,7 +9,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
 
 /**
  * @author shiguotao

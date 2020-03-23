@@ -8,7 +8,7 @@ import com.skx.tomike.activity.GetTopTestActivity;
 import com.skx.tomike.activity.HandlerActivity;
 import com.skx.tomike.activity.KeyboardActivity;
 import com.skx.tomike.activity.MatrixImageActivity;
-import com.skx.tomike.activity.ShadowActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity;
 import com.skx.tomike.activity.ShapeDrawableHelperActivity;
 import com.skx.tomike.activity.SpannableStringBuilderActivity;
 import com.skx.tomike.activity.StatusBarNavigationBarActivity;

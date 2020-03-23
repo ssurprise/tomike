@@ -5,26 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/skx_f3f3f3"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.skx.tomike.activity.VectorDrawableActivity">
-    <!--app:srcCompat="@drawable/ic_christmas_candy" -->
-    <!--android:src="@drawable/ic_christmas_candy"-->
+
     <LinearLayout
         android:id="@+id/vectorDrawableTest_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/vectorDrawableTest_ImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            app:srcCompat="@drawable/ic_christmas_candy" />
+            app:srcCompat="@drawable/ic_christmas_candy"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/vectorDrawableTest_TextView"
@@ -37,7 +38,7 @@
         android:id="@+id/vectorDrawableTest_animatedImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/vectorDrawableTest_container" />
-
+        android:layout_below="@id/vectorDrawableTest_container"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

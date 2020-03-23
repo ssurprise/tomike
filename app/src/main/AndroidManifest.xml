@@ -143,7 +143,7 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".activity.ShadowActivity"
+            android:name=".tanklaboratory.widget.activity.ShadowActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="@dimen/view_padding"
-    tools:context="com.skx.tomike.activity.ShadowActivity">
+    tools:context="com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -55,7 +55,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/layer_shadow" />
 
-        <com.skx.tomike.customview.CustomShadowView
+        <com.skx.tomike.tanklaboratory.widget.view.CustomShadowView
             android:layout_width="120dp"
             android:layout_height="76dp"
             android:layout_marginTop="20dp" />
