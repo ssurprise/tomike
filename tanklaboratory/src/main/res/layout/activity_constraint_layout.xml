@@ -50,7 +50,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintEnd_toStartOf="@+id/editText"
-        tools:layout_editor_absoluteY="282dp" />
+        tools:layout_editor_absoluteY="282dp"
+        tools:ignore="MissingConstraints,RtlCompat" />
 
     <SeekBar
         android:layout_width="wrap_content"
@@ -78,7 +80,8 @@
         app:layout_constraintEnd_toEndOf="@+id/editText"
         app:layout_constraintHorizontal_bias="0.72"
         app:layout_constraintStart_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        tools:ignore="RtlCompat" />
 
 
     <EditText
