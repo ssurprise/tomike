@@ -3,17 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context="com.skx.tomike.tanklaboratory.animation.activity.ShakeAnimatorActivity">
 
     <ImageView
         android:id="@+id/shakeAnimator_target"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_favorite_yes" />
-
+        android:src="@drawable/icon_favorite_yes"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,14 +26,20 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="viewAnimation"
-            android:text="View Animation" />
+            android:text="View Animation"
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:onClick="propertyAnimator"
-            android:text="Property Animator" />
+            android:text="Property Animator"
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
     </LinearLayout>
 
 </RelativeLayout>

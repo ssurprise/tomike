@@ -28,7 +28,7 @@
             android:id="@+id/serial"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_solid_b4ff4081_corner_20dp"
             android:gravity="center"
             android:onClick="serialOrderBegin"
@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_solid_b4ff4081_corner_20dp"
             android:gravity="center"
             android:onClick="serialOrder2Begin"
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_solid_b4ff4081_corner_20dp"
             android:gravity="center"
             android:onClick="serialOrde3Begin"

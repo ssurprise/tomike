@@ -314,7 +314,6 @@ public class TranslateImageView extends AppCompatImageView
         final int nativeInt;
     }
 
-
     /**
      * 平滑滑动动画监听
      */

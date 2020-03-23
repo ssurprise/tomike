@@ -1,34 +1,65 @@
 package com.skx.tomike.tanklaboratory.animation.activity;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 描述 : Layout 添加/删除子view的过渡效果
+ *
+ * <p>
+ * 知识点：利用LayoutTransition api提供的动效，有两种实现方式。
+ * xml 设置方式->
+ * android:animateLayoutChanges="" 开始子view的动画
+ * android:layoutAnimation=""   设置动画样式
+ * <p>
+ * 代码设置方式->
+ * android.view.ViewGroup#setLayoutAnimation(android.view.animation.LayoutAnimationController)
+ * 可添加动画监听
+ *
+ * <p>
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2018/12/16 5:43 PM
  */
-public class LayoutTransitionActivity extends AppCompatActivity {
+public class LayoutTransitionActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mContainer;
     private List<View> mViewList = new ArrayList<>();
 
     @Override
+    protected void initParams() {
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("LayoutTransition 实现子view动画").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_layout_transition;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_layout_transition);
-
-        mContainer = findViewById(R.id.layoutTransition_container);
+        mContainer = findViewById(R.id.ll_layoutTransition_parent);
     }
 
     public void remove(View view) {
@@ -40,7 +71,8 @@ public class LayoutTransitionActivity extends AppCompatActivity {
 
     public void add(View view) {
         TextView textView = new TextView(this);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 120);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 150);
+        textView.setGravity(Gravity.CENTER_VERTICAL);
         textView.setText(String.valueOf(mViewList.size()));
         textView.setLayoutParams(layoutParams);
         mContainer.addView(textView, 0);

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/view_padding">
+    android:padding="15dp">
 
     <com.skx.tomike.tanklaboratory.animation.view.TranslateImageView
-        android:id="@+id/transImageView"
+        android:id="@+id/tv_scroller_transImageView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:background="@color/skx_e0e0e0"
@@ -21,7 +22,8 @@
         android:onClick="startTranslate"
         android:text="移动"
         android:textColor="@color/skx_212121"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:layout_width="match_parent"
@@ -30,6 +32,7 @@
         android:onClick="reset"
         android:text="重置"
         android:textColor="@color/skx_212121"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

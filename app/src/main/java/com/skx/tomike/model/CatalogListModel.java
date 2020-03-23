@@ -173,7 +173,7 @@ public class CatalogListModel {
         mAnimatorCatalogs.add(new CatalogItem("属性动画", PropertyAnimatorActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("shake动画", ShakeAnimatorActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("贝塞尔曲线", BezierAnimatorActivity.class.getName()));
-        mAnimatorCatalogs.add(new CatalogItem("view内容移动", ScrollerPracticeActivity.class.getName()));
+        mAnimatorCatalogs.add(new CatalogItem("view内容移动 - scroller", ScrollerPracticeActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_ANIMATOR, mAnimatorCatalogs);
 
         // 加农炮实验室
@@ -190,7 +190,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("Room - 最近浏览案例", RoomTestActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("相册", PhotoAlbumsActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("图片缩放", ZoomImageActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("Glide图片加载", GlideActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("Glide图片加载 - 二次封装", GlideActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("大图片加载", ImageLoadActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 

@@ -9,11 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.Student;
 import com.skx.tomike.cannonlaboratory.bean.Transcript;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -27,19 +28,38 @@ import io.reactivex.functions.Function;
 import io.reactivex.observables.ConnectableObservable;
 import io.reactivex.schedulers.Schedulers;
 
-public class RxJavaActivity extends AppCompatActivity {
+/**
+ * 描述 : RxJava 实现并行、串行访问数据
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/3/23 4:25 PM
+ */
+public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mRlLoading;
     private TextView mTvLoadingText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rx_java);
-        initView();
+    protected void initParams() {
     }
 
-    private void initView() {
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText(" RxJava 实现并行、串行").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_rx_java;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mRlLoading = findViewById(R.id.rl_rxjava_loading);
         mTvLoadingText = findViewById(R.id.rl_rxjava_loadingText);
     }

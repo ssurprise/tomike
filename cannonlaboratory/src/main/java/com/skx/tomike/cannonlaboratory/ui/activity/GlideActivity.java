@@ -7,9 +7,11 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.cannonlaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
 import com.skx.tomikecommonlibrary.imageloader.target.AbstractTarget;
 import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
@@ -19,8 +21,13 @@ import com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform;
 import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
 import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
 
-
-public class GlideActivity extends AppCompatActivity {
+/**
+ * 描述 : 对Glide库的二次封装测试demo
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/3/23 4:16 PM
+ */
+public class GlideActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final String[] imageArray = {
             // 第1行
@@ -54,21 +61,34 @@ public class GlideActivity extends AppCompatActivity {
             "http://www.pujia8.com/static/pics/20171014110026_41.jpg",
     };
 
-    private GridLayout mGlPictures;
+    @Override
+    protected void initParams() {
+    }
 
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("Glide 加载图片 - 二次封装").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_glide_demo;
+    }
+
+    @Override
+    protected void subscribeEvent() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_glide_demo);
-
-        mGlPictures = findViewById(R.id.glide_gridLayout);
-
+        GridLayout mGlPictures = findViewById(R.id.glide_gridLayout);
+        ImageView targetIv;
         for (int i = 0, j = imageArray.length; i < j; i++) {
             if (i >= mGlPictures.getChildCount()) {
                 break;
             }
-            final ImageView targetImgv = (ImageView) mGlPictures.getChildAt(i);
+            targetIv = (ImageView) mGlPictures.getChildAt(i);
 
             switch (i) {
                 // 第1行
@@ -77,14 +97,14 @@ public class GlideActivity extends AppCompatActivity {
                             .load(imageArray[i])
                             .placeholder(R.color.skx_ff4081)
                             .transformStrategy(TransformStrategy.CENTER_CROP)
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
                 case 1:
                     ImageLoader.with(GlideActivity.this)
                             .load(imageArray[i])
                             .placeholder(R.color.skx_1f000000)
                             .transformStrategy(TransformStrategy.CENTER_INSIDE)
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
                 // 第2行
                 case 2:
@@ -92,13 +112,13 @@ public class GlideActivity extends AppCompatActivity {
                             .load(imageArray[i])
                             .placeholder(R.color.skx_1f000000)
                             .transformStrategy(TransformStrategy.FIT_CENTER)
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
                 case 3:
                     ImageLoader.with(GlideActivity.this)
                             .load(imageArray[i])
                             .transformStrategy(TransformStrategy.CIRCLE_CROP)
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
 
                 // 第3行
@@ -107,7 +127,7 @@ public class GlideActivity extends AppCompatActivity {
                             .load(imageArray[i])
                             .transforms(new RoundedCorners(90),
                                     new OverLapTransform(GlideActivity.this, R.drawable.icon_used))
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
 
                 // 第4行
@@ -116,13 +136,13 @@ public class GlideActivity extends AppCompatActivity {
                             .load(imageArray[i])
                             .noTransitionAnim()
                             .transform(new RoundedCorners(90))
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
                 case 6:
                     ImageLoader.with(GlideActivity.this)
                             .load(imageArray[i])
                             .transform(new CircleCrop())
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
 
                 // 第5行
@@ -130,13 +150,13 @@ public class GlideActivity extends AppCompatActivity {
                     ImageLoader.with(GlideActivity.this)
                             .load(imageArray[i])
                             .transform(new CenterCrop())
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
                 case 8:
                     ImageLoader.with(GlideActivity.this)
                             .load(imageArray[i])
                             .transforms(new CenterCrop(), new RoundedCorners(90))
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
 
                 // 第6行
@@ -145,8 +165,7 @@ public class GlideActivity extends AppCompatActivity {
                             .load(imageArray[i])
                             .transforms(new RoundedCorners(90),
                                     new OverLapTransform(GlideActivity.this, R.drawable.icon_overdue))
-                            .into(targetImgv);
-
+                            .into(targetIv);
                     break;
 
                 // 第7行
@@ -155,7 +174,7 @@ public class GlideActivity extends AppCompatActivity {
                             .load(imageArray[i])
                             .noTransitionAnim()
                             .transforms(new CenterInside(), new RoundedCorners(90))
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
                 case 11:
                     ImageLoader.with(GlideActivity.this)
@@ -163,11 +182,12 @@ public class GlideActivity extends AppCompatActivity {
                             .load(imageArray[i])
                             .noTransitionAnim()
                             .transforms(new CenterInside(), new RoundedCorners(90))
-                            .into(targetImgv);
+                            .into(targetIv);
                     break;
 
                 // 第8行
                 case 12:
+                    final ImageView finalTargetIv = targetIv;
                     ImageLoader.with(GlideActivity.this)
                             .load(imageArray[i])
                             .transforms(new RoundedCorners(90),
@@ -176,12 +196,12 @@ public class GlideActivity extends AppCompatActivity {
                                 @Override
                                 public void onLoadStarted(@Nullable Drawable placeholder) {
                                     super.onLoadStarted(placeholder);
-                                    targetImgv.setImageDrawable(placeholder);
+                                    finalTargetIv.setImageDrawable(placeholder);
                                 }
 
                                 @Override
                                 public void onResourceReady(@NonNull Drawable resource) {
-                                    targetImgv.setImageDrawable(resource);
+                                    finalTargetIv.setImageDrawable(resource);
                                 }
                             });
                     break;
@@ -191,7 +211,7 @@ public class GlideActivity extends AppCompatActivity {
                         ImageLoader.with(GlideActivity.this)
                                 .download()
                                 .load(imageArray[i])
-                                .into(targetImgv);
+                                .into(targetIv);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -199,6 +219,8 @@ public class GlideActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
     /*
      * asBitmap()   以Bitmap方式加载图片。即使加载的图片可能是gif
