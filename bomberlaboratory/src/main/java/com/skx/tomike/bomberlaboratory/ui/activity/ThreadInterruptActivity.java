@@ -45,13 +45,12 @@ public class ThreadInterruptActivity extends SkxBaseActivity {
     };
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mTvLogcat = findViewById(R.id.tv_threadInterrupt_logcat);
+    protected void initParams() {
     }
 
     @Override
-    protected void initParams() {
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("线程中断").create();
     }
 
     @Override
@@ -64,8 +63,9 @@ public class ThreadInterruptActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("线程中断").create();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mTvLogcat = findViewById(R.id.tv_threadInterrupt_logcat);
     }
 
     public void onThreadInterruptFlag(View view) {

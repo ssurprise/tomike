@@ -68,13 +68,6 @@ public class ThreadActivity extends SkxBaseActivity implements View.OnClickListe
         }
     };
 
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
-
     @Override
     protected void initParams() {
         for (int i = 0; i < INIT_COUNT; i++) {
@@ -85,19 +78,25 @@ public class ThreadActivity extends SkxBaseActivity implements View.OnClickListe
     }
 
     @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("模拟叫号系统 - 多线程").create();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_thread;
     }
 
     @Override
     protected void subscribeEvent() {
-
     }
 
     @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("模拟叫号系统 - 多线程").create();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
     }
+
 
     private void initView() {
         mSvLogcat = findViewById(R.id.sv_thread_logcat);

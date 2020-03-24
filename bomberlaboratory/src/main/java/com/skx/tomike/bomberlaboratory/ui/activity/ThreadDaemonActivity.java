@@ -42,14 +42,12 @@ public class ThreadDaemonActivity extends SkxBaseActivity {
     };
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
+    protected void initParams() {
     }
 
     @Override
-    protected void initParams() {
-
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("守护线程").create();
     }
 
     @Override
@@ -59,12 +57,12 @@ public class ThreadDaemonActivity extends SkxBaseActivity {
 
     @Override
     protected void subscribeEvent() {
-
     }
 
     @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("守护线程").create();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
     }
 
     private void initView() {

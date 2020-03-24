@@ -47,13 +47,12 @@ public class ThreadCallbackActivity extends SkxBaseActivity {
     };
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
+    protected void initParams() {
     }
 
     @Override
-    protected void initParams() {
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("获取线程返回值").create();
     }
 
     @Override
@@ -65,14 +64,16 @@ public class ThreadCallbackActivity extends SkxBaseActivity {
     protected void subscribeEvent() {
     }
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
+    }
+
     private void initView() {
         mTvLogcat = findViewById(R.id.tv_threadCallback_logcat);
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("获取线程返回值").create();
-    }
 
     private void sendMessageToLogcat(@NonNull String msg) {
         Message startMsg = mHandler.obtainMessage(1);

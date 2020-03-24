@@ -26,10 +26,7 @@ import java.util.List;
 public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.OnClickListener {
 
     public final static String TAG = "ThreadSynchronizedActivity";
-
-
     private TextView mTvLogcat;
-
 
     private Handler mHandler = new Handler(Looper.myLooper()) {
         @Override
@@ -43,13 +40,12 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.
     };
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
+    protected void initParams() {
     }
 
     @Override
-    protected void initParams() {
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("线程同步").create();
     }
 
     @Override
@@ -59,12 +55,12 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.
 
     @Override
     protected void subscribeEvent() {
-
     }
 
     @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("线程同步").create();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
     }
 
     private void initView() {
@@ -79,8 +75,7 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.
     @Override
     public void onClick(View v) {
         final int vId = v.getId();
-        if (vId == R.id.btn_threadSynchronized_objectLock_codeBlockThis
-                || vId == R.id.btn_threadSynchronized_objectLock_codeBlockMonitor) {
+        if (vId == R.id.btn_threadSynchronized_objectLock_codeBlockThis) {
             final SynchronizedTest synchronizedTest = new SynchronizedTest(mHandler);
             new Thread(new Runnable() {
                 @Override
@@ -103,23 +98,22 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.
 
         } else if (vId == R.id.btn_threadSynchronized_objectLock_codeBlockMonitor) {
             final SynchronizedTest synchronizedTest = new SynchronizedTest(mHandler);
-            final SynchronizedTest synchronizedTest2 = new SynchronizedTest(mHandler);
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (true)
+                    while (true) {
                         synchronizedTest.fun2();
-
+                    }
                 }
             }, "T1").start();
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (true)
-                        synchronizedTest2.fun2();
-
+                    while (true) {
+                        synchronizedTest.fun2();
+                    }
                 }
             }, "T2").start();
 
@@ -144,8 +138,44 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.
             }, "T2").start();
 
         } else if (vId == R.id.btn_threadSynchronized_classLock_codeBlock) {
-        } else if (vId == R.id.btn_threadSynchronized_classLock_staticSyncMethod) {
+            final SynchronizedTest synchronizedTest = new SynchronizedTest(mHandler);
+            final SynchronizedTest synchronizedTest2 = new SynchronizedTest(mHandler);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true)
+                        synchronizedTest.fun4();
 
+                }
+            }, "T1").start();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true)
+                        synchronizedTest2.fun4();
+
+                }
+            }, "T2").start();
+
+        } else if (vId == R.id.btn_threadSynchronized_classLock_staticSyncMethod) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true)
+                        SynchronizedTest.fun5();
+
+                }
+            }, "T1").start();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true)
+                        SynchronizedTest.fun5();
+
+                }
+            }, "T2").start();
         }
     }
 
@@ -213,7 +243,7 @@ class SynchronizedTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Message message = mHandler.obtainMessage(2);
+            Message message = mHandler.obtainMessage(1);
             message.obj = Thread.currentThread().getName() + ": " + mObjectLockList.get(mIndex);
             mHandler.sendMessage(message);
 
@@ -224,6 +254,18 @@ class SynchronizedTest {
     public void fun4() {
         // 类锁 - 同步代码块。同一类争用该锁，此时锁的是括号内的class对象
         synchronized (SynchronizedTest.class) {
+            if (mIndex < mClassLockLList.size()) {
+                try {
+                    Thread.currentThread().sleep(800);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Message message = mHandler.obtainMessage(2);
+                message.obj = Thread.currentThread().getName() + ": " + mClassLockLList.get(mIndex);
+                mHandler.sendMessage(message);
+
+                mIndex++;
+            }
         }
     }
 
