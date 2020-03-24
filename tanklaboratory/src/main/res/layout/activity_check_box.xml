@@ -11,9 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="鸡蛋" />
+        android:text="西红柿"
+        tools:ignore="HardcodedText" />
 
     <CheckBox
+        android:id="@+id/cb_checkBoxTest_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -23,9 +25,11 @@
         android:drawableStart="@drawable/booking_home_vip_check_state_selector"
         android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
         android:padding="5dp"
-        android:text="鸡蛋" />
+        android:text="鸡蛋"
+        tools:ignore="HardcodedText" />
 
     <CheckBox
+        android:id="@+id/cb_checkBoxTest_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -33,17 +37,30 @@
         android:button="@drawable/booking_home_vip_check_state_selector"
         android:checked="true"
         android:padding="5dp"
-        android:text="鸡蛋" />
+        android:text="黄瓜"
+        tools:ignore="HardcodedText" />
+
+    <CheckBox
+        android:id="@+id/cb_checkBoxTest_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:button="@drawable/booking_home_vip_check_state_selector"
+        android:checked="true"
+        android:drawableStart="@drawable/booking_home_vip_check_state_selector"
+        android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
+        android:padding="5dp"
+        android:text="鸡蛋"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="注意：第二个和第三个的样式上的区别。第二个用的是 drawableLeft，而地上那个是用的button。
-        建议打开开发者选项中布局边界，看区别会更明显。
-        \n 从控制文字与icon 的间距，或者扩大内边距使点击面积更大的角度考虑，使用第二种方式将更合适"
+        android:text="注意：第二个和第三个的样式上的区别。第二个用的是 android:drawableLeft，而第三个是用的 android:button。\n从控制文字与icon 的间距，或者扩大内边距使点击面积更大的角度考虑，使用第二种方式将更合适\n建议打开开发者选项中布局边界，看区别会更明显。"
         android:textColor="@color/skx_bdbdbd"
         android:textSize="10sp"
-        tools:ignore="SmallSp" />
+        tools:ignore="HardcodedText,SmallSp" />
 
 </LinearLayout>
