@@ -294,13 +294,13 @@ public class GlideLoader<TranscodeType> implements ILoader<TranscodeType> {
 
         @Override
         public boolean onLoadFailed(@Nullable GlideException e, Object model, com.bumptech.glide.request.target.Target target, boolean isFirstResource) {
-            Log.e("fail-source", model != null ? (String) model : "");
+            Log.i("fail-source", model != null ? (String) model : "");
             return false;
         }
 
         @Override
         public boolean onResourceReady(Object resource, Object model, com.bumptech.glide.request.target.Target target, DataSource dataSource, boolean isFirstResource) {
-            Log.e("success-source", String.format("来源：%s,%s，是否是第一次加载：%s", dataSource.toString(), model != null ? model.toString() : "", isFirstResource));
+            Log.i("success-source", String.format("来源：%s,%s，是否是第一次加载：%s", dataSource.toString(), model != null ? model.toString() : "", isFirstResource));
             return false;
         }
     };

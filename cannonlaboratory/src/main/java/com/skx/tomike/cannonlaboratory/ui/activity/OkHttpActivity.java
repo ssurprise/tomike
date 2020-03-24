@@ -62,10 +62,10 @@ public class OkHttpActivity extends AppCompatActivity {
     }
 
     private void refreshView() {
-        if (weatherMini != null) {
-            wendu_value.setText(weatherMini.getWendu());
-            ganmao_value.setText(weatherMini.getGanmao());
-        }
+//        if (weatherMini != null) {
+//            wendu_value.setText(weatherMini.getWendu());
+//            ganmao_value.setText(weatherMini.getGanmao());
+//        }
     }
 
     public void onOkHttpClickByGet(View view) {
