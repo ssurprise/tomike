@@ -31,7 +31,6 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
      * 初始化主题样式
      */
     protected void nativeThemeStyle() {
-
     }
 
     private void initContentView() {
@@ -135,8 +134,8 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
     /**
      * 事件订阅。可用于监听LiveData 的变化
      */
-    protected abstract void subscribeEvent();
-
+    protected void subscribeEvent() {
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

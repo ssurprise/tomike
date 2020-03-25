@@ -2,21 +2,40 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.skx.tomike.tanklaboratory.R;
-
+import com.skx.tomike.tanklaboratory.widget.adapter.FlowAdapter;
+import com.skx.tomike.tanklaboratory.widget.view.FlowLayout;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 /**
- * 小猪-在线押金扣除
+ * 描述 : 流式布局
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/3/24 8:05 PM
  */
-public class FlowLayoutActivity extends AppCompatActivity {
+public class FlowLayoutActivity extends SkxBaseActivity<BaseViewModel> {
 
-    private String[] reasons = new String[]{"物品丢失", "物品污损", "水电燃气杂费", "清洁费用", "卫生过差扣费", "违反房屋守则", "加床费用", "其他"};
+    @Override
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("流式布局").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_flow_layout;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flow_layout);
+        FlowLayout flowLayout = findViewById(R.id.fl_flowLayoutTest_content);
+        flowLayout.setAdapter(new FlowAdapter());
     }
 }

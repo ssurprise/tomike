@@ -147,7 +147,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", LightDarkTextActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", CheckBoxActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("自定义ShapeView", ShapeViewActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("FlowLayout", FlowLayoutActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("FlowLayout 流式布局", FlowLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ConstraintLayout约束布局", ConstraintLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CoordinatorLayout", CoordinatorLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CoordinatorLayout效果", CoordinatorLayoutCaseActivity.class.getName()));
