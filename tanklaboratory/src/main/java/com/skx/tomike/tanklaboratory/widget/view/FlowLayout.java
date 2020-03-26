@@ -17,8 +17,8 @@ public class FlowLayout extends ViewGroup {
     private final String TAG = "FlowLayout";
 
     private BaseAdapter mAdapter;
-    private float mRowSpacing;// 行间距
-    private float mColumnSpacing;// 列间距
+    private float mRowSpacing = 0.0f;// 行间距
+    private float mColumnSpacing = 0.0f;// 列间距
 
     public FlowLayout(Context context) {
         super(context);
@@ -61,7 +61,7 @@ public class FlowLayout extends ViewGroup {
                 // 更新最新一行的宽度为此child 的测量宽度
                 lineWidth = childWidth;
                 // 期望高度追加当前行的行高。
-                expectHeight += lineHeight;
+                expectHeight += lineHeight + mRowSpacing;
             }
         }
 
@@ -98,7 +98,7 @@ public class FlowLayout extends ViewGroup {
 
             } else {// 超过一行，换行显示。换行后的左侧偏移为初始值，顶部偏移为当前偏移量+当前行高
                 childLeftOffset = getPaddingLeft();
-                childTopOffset += lineHeight;
+                childTopOffset += lineHeight + mRowSpacing;
                 lineHeight = childHeight;
             }
             child.layout(childLeftOffset, childTopOffset, childLeftOffset + childWidth, childTopOffset + childHeight);
