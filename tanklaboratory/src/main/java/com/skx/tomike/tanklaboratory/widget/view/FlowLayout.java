@@ -40,6 +40,7 @@ public class FlowLayout extends ViewGroup {
         int expectHeight = 0;// 期望高度，累加 child 的 height
         int lineWidth = 0;// 单行宽度，动态计算当前行的宽度。
         int lineHeight = 0;// 单行高度，取该行中高度最大的view
+        float widthSpacing;
 
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
@@ -48,12 +49,14 @@ public class FlowLayout extends ViewGroup {
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
 
+            widthSpacing = i == 0 ? 0 : mColumnSpacing;
+
             // 这里进行的是预判断。追加该child 后，行宽
             // 若未超过提供的最大宽度，则行宽需要追加child 的宽度，并且计算该行的最大高度。
             // 若超过提供的最大宽度，则需要追加该行的行高，并且更新下一行的行宽为当前child 的测量宽度。
-            if (lineWidth + childWidth + getPaddingLeft() + getPaddingRight() <= widthSize) {// 未超过一行
+            if (lineWidth + widthSpacing + childWidth + getPaddingLeft() + getPaddingRight() <= widthSize) {// 未超过一行
                 // 追加行宽。
-                lineWidth += childWidth;
+                lineWidth += widthSpacing + childWidth;
                 // 不断对比，获取该行的最大高度
                 lineHeight = Math.max(lineHeight, childHeight);
 
@@ -103,8 +106,8 @@ public class FlowLayout extends ViewGroup {
             }
             child.layout(childLeftOffset, childTopOffset, childLeftOffset + childWidth, childTopOffset + childHeight);
 
-            // 更新左侧偏移距离
-            childLeftOffset += childWidth;
+            // 更新左侧偏移距离(+间距)，即下一个child 的left
+            childLeftOffset += childWidth + mColumnSpacing;
         }
     }
 
