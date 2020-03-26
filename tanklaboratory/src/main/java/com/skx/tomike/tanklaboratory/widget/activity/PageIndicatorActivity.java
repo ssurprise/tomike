@@ -6,136 +6,161 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.InfiniteLoopAdapter;
 import com.skx.tomike.tanklaboratory.widget.view.CustomSwitcher;
 import com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
- * Created by shiguotao on 2016/4/20.
- * <p>
+ * 描述 : ViewPager 页签指示器demo
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2016/4/20
  */
-public class PageIndicatorActivity extends AppCompatActivity {
-
-    private ViewPager vp_content;
+public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
     /**
      * 边框指示器
      */
-    private PageIndicatorLayout ll_pageIndicator_type1;
+    private PageIndicatorLayout mLayoutIndicator1;
     /**
      * 页码指示器
      */
-    private LinearLayout ll_pageIndicator_type2;
-    private CustomSwitcher ll_pageIndicator_type3;
+    private LinearLayout mLayoutIndicator2;
+    private CustomSwitcher mLayoutIndicator3;
+    private ViewPager mViewPager;
 
-    private ArrayList<Integer> imageList = new ArrayList<>();
-    private ArrayList<String> contentList = new ArrayList<>();
+    private final ArrayList<Integer> mImagesList = new ArrayList<>();
+    private final ArrayList<String> mIndicatorTitleList = new ArrayList<>();
 
+    @Override
+    protected void initParams() {
+        mImagesList.add(R.drawable.image_05);
+        mImagesList.add(R.drawable.image_06);
+        mImagesList.add(R.drawable.image_07);
+        mImagesList.add(R.drawable.image_08);
+
+        mIndicatorTitleList.add("死神白起");
+        mIndicatorTitleList.add("兵神孙子");
+        mIndicatorTitleList.add("千古一帝秦始皇");
+        mIndicatorTitleList.add("西楚霸王项羽");
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("ViewPager 页签指示器").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_page_indicator;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeData();
-        initializeView();
+        initView();
         refreshView();
     }
 
+    private void initView() {
+        mLayoutIndicator1 = findViewById(R.id.layout_pageIndicator_style_1);
+        mLayoutIndicator2 = findViewById(R.id.layout_pageIndicator_style_2);
+        mLayoutIndicator3 = findViewById(R.id.layout_pageIndicator_style_3);
 
-    private void initializeView() {
-        setContentView(R.layout.activity_page_indicator);
-        ll_pageIndicator_type1 = findViewById(R.id.pageIndicator_type1);
-        ll_pageIndicator_type2 = findViewById(R.id.pageIndicator_type2);
-        ll_pageIndicator_type3 = findViewById(R.id.pageIndicator_type3);
-
-        vp_content = findViewById(R.id.pageIndicator_viewPager);
-    }
-
-    private void initializeData() {
-        imageList.add(R.drawable.image_05);
-        imageList.add(R.drawable.image_06);
-        imageList.add(R.drawable.image_07);
-        imageList.add(R.drawable.image_08);
-
-        contentList.add("死神白起");
-        contentList.add("兵神孙子");
-        contentList.add("千古一帝秦始皇");
-        contentList.add("西楚霸王项羽");
+        mViewPager = findViewById(R.id.vp_pageIndicator_content);
     }
 
     private void refreshView() {
-        ll_pageIndicator_type1.setPageCount(imageList.size());
+        renderIndicatorStyle1();
+        renderIndicatorStyle2();
+        renderIndicatorStyle3();
 
-        InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(imageList);
-        vp_content.setAdapter(adapter);
-        vp_content.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(mImagesList);
+        mViewPager.setAdapter(adapter);
+    }
 
-            int currentPosition;
+    private void renderIndicatorStyle1() {
+        mLayoutIndicator1.setPageCount(mImagesList.size());
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                ll_pageIndicator_type1.indicatorScroll(position, positionOffset);
-                ll_pageIndicator_type2.scrollTo((int) ((position + positionOffset) * DpPxSpTool.INSTANCE.dip2px(PageIndicatorActivity.this, 25)), 0);
+                mLayoutIndicator1.indicatorScroll(position, positionOffset);
             }
 
             @Override
             public void onPageSelected(int position) {
-                currentPosition = position;
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
             }
         });
-        addPageView(1, contentList.size());
+    }
 
 
-        TextView textView = (TextView) ll_pageIndicator_type3.getChildAt(1);
-        textView.setText(contentList.get(0));
+    private void renderIndicatorStyle2() {
+        TextView textView = (TextView) mLayoutIndicator3.getChildAt(1);
+        textView.setText(mIndicatorTitleList.get(0));
 
-        ll_pageIndicator_type3.updateSwitcherStateByViewPager(vp_content);
-        ll_pageIndicator_type3.setSwitcherChangeListener(new CustomSwitcher.SwitcherChangeListener() {
+        mLayoutIndicator3.updateSwitcherStateByViewPager(mViewPager);
+        mLayoutIndicator3.setSwitcherChangeListener(new CustomSwitcher.SwitcherChangeListener() {
             @Override
             public void nextPageListener(int position) {
-                TextView textView = (TextView) ll_pageIndicator_type3.getChildAt(0);
-                textView.setText(contentList.get(position));
+                TextView textView = (TextView) mLayoutIndicator3.getChildAt(0);
+                textView.setText(mIndicatorTitleList.get(position));
             }
 
             @Override
             public void previousPageListener(int position) {
-                TextView textView = (TextView) ll_pageIndicator_type3.getChildAt(0);
-                textView.setText(contentList.get(position));
+                TextView textView = (TextView) mLayoutIndicator3.getChildAt(0);
+                textView.setText(mIndicatorTitleList.get(position));
             }
 
             @Override
             public void changeOverListener(int currentPosition) {
-                TextView textView = (TextView) ll_pageIndicator_type3.getChildAt(1);
-                textView.setText(contentList.get(currentPosition));
+                TextView textView = (TextView) mLayoutIndicator3.getChildAt(1);
+                textView.setText(mIndicatorTitleList.get(currentPosition));
             }
         });
     }
 
-    /**
-     * 初始化页码指示器，添加页码view
-     *
-     * @param offset
-     * @param length
-     */
-    private void addPageView(int offset, int length) {
-        for (int i = offset; i <= length; i++) {
+
+    private void renderIndicatorStyle3() {
+        for (int i = 1, j = mIndicatorTitleList.size(); i <= j; i++) {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.INSTANCE.dip2px(this, 25), ViewGroup.LayoutParams.MATCH_PARENT);
             TextView tv = new TextView(this);
             tv.setTextSize(24);
             tv.setGravity(Gravity.CENTER);
-            tv.setText(i + "");
+            tv.setText(String.format(Locale.getDefault(), "%d", i));
             tv.setLayoutParams(lp);
-            ll_pageIndicator_type2.addView(tv);
+            mLayoutIndicator2.addView(tv);
         }
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mLayoutIndicator2.scrollTo((int) ((position + positionOffset) * DpPxSpTool.INSTANCE.dip2px(PageIndicatorActivity.this, 25)), 0);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 }
