@@ -1,5 +1,7 @@
 package com.skx.tomike.tanklaboratory.widget.adapter;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,24 +72,42 @@ public class FlowAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         final TextView textView = new TextView(parent.getContext());
         textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        textView.setPadding(DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 5),
-                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 2),
-                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 5),
-                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 2));
+        textView.setPadding(DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 12),
+                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 3),
+                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 12),
+                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 4));
         textView.setTextSize(12);
         textView.setGravity(Gravity.CENTER);
 
-        textView.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.skx_212121));
-        ViewCompat.setBackground(textView,
-                new SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE)
-                        .setColor(ContextCompat.getColor(parent.getContext(), R.color.skx_ff4081))
-                        .setCornerRadius(8)
-                        .create());
-
         textView.setText(mTagArray.get(position));
+        textView.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.skx_212121));
+        setItemBackground(parent.getContext(), textView);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setSelected(!textView.isSelected());
+                setItemBackground(parent.getContext(), textView);
+            }
+        });
+
         return textView;
+    }
+
+    private void setItemBackground(Context context, TextView textView) {
+        Drawable bg = textView.isSelected() ?
+                new SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setColor(ContextCompat.getColor(context, R.color.skx_f05b72))
+                        .setCornerRadius(DpPxSpTool.INSTANCE.dip2px(context, 10))
+                        .create() :
+                new SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setStroke(DpPxSpTool.INSTANCE.dip2px(context, 1),
+                                ContextCompat.getColor(context, R.color.skx_212121))
+                        .setCornerRadius(DpPxSpTool.INSTANCE.dip2px(context, 10))
+                        .create();
+        ViewCompat.setBackground(textView, bg);
     }
 }
