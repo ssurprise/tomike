@@ -1,10 +1,13 @@
 package com.skx.tomike.tanklaboratory.widget.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.skx.tomike.tanklaboratory.R;
 
 /**
  * 描述 : 流式view
@@ -19,17 +22,24 @@ public class FlowLayout extends ViewGroup {
     private BaseAdapter mAdapter;
     private float mRowSpacing = 0.0f;// 行间距
     private float mColumnSpacing = 0.0f;// 列间距
+    private int mMaxLines = -1;// 最大行数
 
     public FlowLayout(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public FlowLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FlowLayout);
+
+        mRowSpacing = typedArray.getInteger(R.styleable.FlowLayout_maxLines, -1);
+        mRowSpacing = typedArray.getDimensionPixelSize(R.styleable.FlowLayout_rowSpacing, 0);
+        mColumnSpacing = typedArray.getDimensionPixelSize(R.styleable.FlowLayout_columnSpacing, 0);
+        typedArray.recycle();
     }
 
     @Override

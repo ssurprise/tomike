@@ -30,4 +30,10 @@
         <attr name="arc_startAngle" format="float" />
         <attr name="arc_sweepAngle" format="float" />
     </declare-styleable>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="maxLines" format="integer" />
+        <attr name="rowSpacing" format="dimension" />
+        <attr name="columnSpacing" format="dimension" />
+    </declare-styleable>
 </resources>
