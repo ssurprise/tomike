@@ -2,7 +2,6 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,8 +34,8 @@ public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
     /**
      * 页码指示器
      */
-    private LinearLayout mLayoutIndicator2;
-    private CustomSwitcher mLayoutIndicator3;
+    private CustomSwitcher mLayoutIndicator2;
+    private LinearLayout mLayoutIndicator3;
     private ViewPager mViewPager;
 
     private final ArrayList<Integer> mImagesList = new ArrayList<>();
@@ -110,26 +109,26 @@ public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
 
     private void renderIndicatorStyle2() {
-        TextView textView = (TextView) mLayoutIndicator3.getChildAt(1);
+        TextView textView = (TextView) mLayoutIndicator2.getChildAt(1);
         textView.setText(mIndicatorTitleList.get(0));
 
-        mLayoutIndicator3.updateSwitcherStateByViewPager(mViewPager);
-        mLayoutIndicator3.setSwitcherChangeListener(new CustomSwitcher.SwitcherChangeListener() {
+        mLayoutIndicator2.updateSwitcherStateByViewPager(mViewPager);
+        mLayoutIndicator2.setSwitcherChangeListener(new CustomSwitcher.SwitcherChangeListener() {
             @Override
             public void nextPageListener(int position) {
-                TextView textView = (TextView) mLayoutIndicator3.getChildAt(0);
+                TextView textView = (TextView) mLayoutIndicator2.getChildAt(0);
                 textView.setText(mIndicatorTitleList.get(position));
             }
 
             @Override
             public void previousPageListener(int position) {
-                TextView textView = (TextView) mLayoutIndicator3.getChildAt(0);
+                TextView textView = (TextView) mLayoutIndicator2.getChildAt(0);
                 textView.setText(mIndicatorTitleList.get(position));
             }
 
             @Override
             public void changeOverListener(int currentPosition) {
-                TextView textView = (TextView) mLayoutIndicator3.getChildAt(1);
+                TextView textView = (TextView) mLayoutIndicator2.getChildAt(1);
                 textView.setText(mIndicatorTitleList.get(currentPosition));
             }
         });
@@ -138,20 +137,21 @@ public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
     private void renderIndicatorStyle3() {
         for (int i = 1, j = mIndicatorTitleList.size(); i <= j; i++) {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.INSTANCE.dip2px(this, 25), ViewGroup.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.INSTANCE.dip2px(this, 25),
+                    DpPxSpTool.INSTANCE.dip2px(this, 25));
             TextView tv = new TextView(this);
-            tv.setTextSize(24);
+            tv.setTextSize(14);
             tv.setGravity(Gravity.CENTER);
             tv.setText(String.format(Locale.getDefault(), "%d", i));
             tv.setLayoutParams(lp);
-            mLayoutIndicator2.addView(tv);
+            mLayoutIndicator3.addView(tv);
         }
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mLayoutIndicator2.scrollTo((int) ((position + positionOffset) * DpPxSpTool.INSTANCE.dip2px(PageIndicatorActivity.this, 25)), 0);
+                mLayoutIndicator3.scrollTo((int) ((position + positionOffset) * DpPxSpTool.INSTANCE.dip2px(PageIndicatorActivity.this, 25)), 0);
             }
 
             @Override

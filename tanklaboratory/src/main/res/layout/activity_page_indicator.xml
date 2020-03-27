@@ -3,46 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:padding="15dp"
+    tools:context=".widget.activity.PageIndicatorActivity">
 
     <com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout
         android:id="@+id/layout_pageIndicator_style_1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white">
+        android:layout_height="30dp"
+        android:background="@color/skx_30c3a6">
 
     </com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout>
 
-    <LinearLayout
-        android:id="@+id/layout_pageIndicator_style_2"
-        android:layout_width="25dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:orientation="horizontal">
-
-    </LinearLayout>
-
     <com.skx.tomike.tanklaboratory.widget.view.CustomSwitcher
-        android:id="@+id/layout_pageIndicator_style_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/layout_pageIndicator_style_2"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
         android:layout_centerHorizontal="true"
+        android:background="@color/skx_30c3a6"
         tools:ignore="RelativeOverlap">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:textColor="@color/skx_ff4081"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:textColor="@color/skx_ff4081"
             android:textSize="14sp" />
 
     </com.skx.tomike.tanklaboratory.widget.view.CustomSwitcher>
+
+    <LinearLayout
+        android:id="@+id/layout_pageIndicator_style_3"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/skx_30c3a6"
+        android:orientation="horizontal">
+
+    </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_pageIndicator_content"
