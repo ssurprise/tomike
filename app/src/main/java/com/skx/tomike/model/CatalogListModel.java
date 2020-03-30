@@ -5,7 +5,6 @@ import com.skx.tomike.activity.ColorMatrixActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.GetTopTestActivity;
-import com.skx.tomike.activity.HandlerActivity;
 import com.skx.tomike.activity.KeyboardActivity;
 import com.skx.tomike.activity.MatrixImageActivity;
 import com.skx.tomike.activity.ShapeDrawableHelperActivity;
@@ -28,6 +27,7 @@ import com.skx.tomike.bomberlaboratory.ui.activity.ThreadSynchronizedActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.AopTestActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.FloatingWindowActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.GlideActivity;
+import com.skx.tomike.cannonlaboratory.ui.activity.HandlerActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.ImageLoadActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.NfcGroupActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.NotificationActivity;
@@ -186,6 +186,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("AOP 测试", AopTestActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", NfcGroupActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("okhttp", OkHttpActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("retrofit", RetrofitActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("RxJava", RxJavaActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("6.0权限", PermissionIntroActivity.class.getName()));
@@ -221,14 +222,12 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("VectorDrawable", VectorDrawableActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("SnackBar", SnackBarActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("PopupWindow", PopupWindowActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("getTop()测试", GetTopTestActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("SpannableString多样化展示", SpannableStringBuilderActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("Matrix自定义版", MatrixImageActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("Handler", ColorMatrix2Activity.class.getName()));
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 

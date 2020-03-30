@@ -182,10 +182,6 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
-        <activity
-            android:name=".activity.HandlerActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>
