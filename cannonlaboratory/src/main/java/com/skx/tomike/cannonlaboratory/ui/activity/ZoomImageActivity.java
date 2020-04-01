@@ -31,17 +31,12 @@ public class ZoomImageActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void initParams() {
-        mImageArray = new int[]{R.drawable.image_02, R.drawable.changtu, R.drawable.guide_bg_4};
+        mImageArray = new int[]{R.drawable.image_02, R.drawable.kuantu, R.drawable.changtu};
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_zoom_image;
-    }
-
-    @Override
-    protected void subscribeEvent() {
-
     }
 
     @Override

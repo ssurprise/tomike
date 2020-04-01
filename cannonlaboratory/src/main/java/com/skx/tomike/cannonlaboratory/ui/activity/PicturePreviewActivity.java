@@ -43,10 +43,6 @@ public class PicturePreviewActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected void subscribeEvent() {
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ViewPager mVpPictures = findViewById(R.id.vp_picturePreview_pictures);

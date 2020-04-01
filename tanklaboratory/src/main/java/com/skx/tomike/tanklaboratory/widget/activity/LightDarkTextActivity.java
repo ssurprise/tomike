@@ -22,6 +22,12 @@ import com.skx.tomikecommonlibrary.base.TitleConfig;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 描述 : EditText明暗文切换
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/4/1 7:46 PM
+ */
 public class LightDarkTextActivity extends SkxBaseActivity {
 
     private boolean isDarkStatus;
@@ -32,17 +38,11 @@ public class LightDarkTextActivity extends SkxBaseActivity {
 
     @Override
     protected void initParams() {
-
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_light_dark_text;
-    }
-
-    @Override
-    protected void subscribeEvent() {
-
     }
 
     @Override

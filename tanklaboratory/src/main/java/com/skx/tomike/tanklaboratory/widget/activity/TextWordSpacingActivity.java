@@ -38,11 +38,6 @@ public class TextWordSpacingActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected void subscribeEvent() {
-
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText("TextView 设置字间距").create();
     }

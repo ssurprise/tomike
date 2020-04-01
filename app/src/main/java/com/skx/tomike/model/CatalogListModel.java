@@ -25,7 +25,6 @@ import com.skx.tomike.bomberlaboratory.ui.activity.ThreadDaemonActivity;
 import com.skx.tomike.bomberlaboratory.ui.activity.ThreadInterruptActivity;
 import com.skx.tomike.bomberlaboratory.ui.activity.ThreadSynchronizedActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.AopTestActivity;
-import com.skx.tomike.cannonlaboratory.ui.activity.FloatingWindowActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.GlideActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.HandlerActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.ImageLoadActivity;
@@ -184,7 +183,6 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("通知", NotificationActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("打开其他App", OutterStartActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("透明Activity", TransparentThemeActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("全局浮层", FloatingWindowActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AOP 测试", AopTestActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", NfcGroupActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("okhttp", OkHttpActivity.class.getName()));

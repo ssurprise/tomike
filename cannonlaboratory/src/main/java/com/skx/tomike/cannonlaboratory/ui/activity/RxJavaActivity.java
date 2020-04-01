@@ -54,10 +54,6 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void subscribeEvent() {
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRlLoading = findViewById(R.id.rl_rxjava_loading);

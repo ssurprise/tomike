@@ -31,17 +31,11 @@ public class TextSwitcherActivity extends SkxBaseActivity {
 
     @Override
     protected void initParams() {
-
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_text_switcher;
-    }
-
-    @Override
-    protected void subscribeEvent() {
-
     }
 
     @Override

@@ -55,11 +55,6 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
     }
 
     @Override
-    protected void subscribeEvent() {
-
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText("ViewPager 无限循环+自动轮播").create();
     }

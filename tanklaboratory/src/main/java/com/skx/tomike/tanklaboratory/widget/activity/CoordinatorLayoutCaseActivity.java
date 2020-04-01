@@ -14,17 +14,11 @@ public class CoordinatorLayoutCaseActivity extends SkxBaseActivity {
 
     @Override
     protected void initParams() {
-
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_coordinator_layout_case;
-    }
-
-    @Override
-    protected void subscribeEvent() {
-
     }
 
     @Override

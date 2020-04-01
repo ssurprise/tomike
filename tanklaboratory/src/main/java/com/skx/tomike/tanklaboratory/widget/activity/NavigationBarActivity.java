@@ -33,7 +33,6 @@ public class NavigationBarActivity extends SkxBaseActivity implements View.OnCli
 
     private final List<String> mTabList = new ArrayList<>();
 
-
     @Override
     protected void initParams() {
         mTabList.add("天猫");
@@ -44,11 +43,6 @@ public class NavigationBarActivity extends SkxBaseActivity implements View.OnCli
     @Override
     protected int getLayoutId() {
         return R.layout.activity_navigation_bar;
-    }
-
-    @Override
-    protected void subscribeEvent() {
-
     }
 
     @Override

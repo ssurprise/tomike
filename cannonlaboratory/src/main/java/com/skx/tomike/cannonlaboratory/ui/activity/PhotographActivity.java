@@ -39,17 +39,11 @@ public class PhotographActivity extends SkxBaseActivity implements View.OnClickL
 
     @Override
     protected void initParams() {
-
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_photograph;
-    }
-
-    @Override
-    protected void subscribeEvent() {
-
     }
 
     @Override

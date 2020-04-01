@@ -45,11 +45,6 @@ public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewMode
     }
 
     @Override
-    protected void subscribeEvent() {
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RecyclerView rv = findViewById(R.id.rv_recyclerviewItemUpdate_content);

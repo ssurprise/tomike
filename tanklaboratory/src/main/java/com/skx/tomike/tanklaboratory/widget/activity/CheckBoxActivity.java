@@ -35,11 +35,6 @@ public class CheckBoxActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void subscribeEvent() {
-
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CheckBox checkBox = findViewById(R.id.cb_checkBoxTest_1);

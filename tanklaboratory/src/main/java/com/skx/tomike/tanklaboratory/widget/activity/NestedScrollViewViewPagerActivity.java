@@ -2,7 +2,6 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -11,6 +10,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.fragment.NestedViewPagerFragment;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 import java.util.ArrayList;
 
@@ -20,32 +21,36 @@ import java.util.ArrayList;
  * 版本 : V1
  * 创建时间 : 2018/12/21 4:24 PM
  */
-public class NestedScrollViewViewPagerActivity extends AppCompatActivity {
+public class NestedScrollViewViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
 
     private static ArrayList<String> mContent = new ArrayList<>();
+
+
+    @Override
+    protected void initParams() {
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_nestedscrollview_viewpager;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nestedscrollview_viewpager);
-
         ViewPager vpContent = findViewById(R.id.nestedScrollView_vpContent);
         NestedViewPagerAdapter nestedViewPagerAdapter = new NestedViewPagerAdapter(getSupportFragmentManager());
         vpContent.setAdapter(nestedViewPagerAdapter);
-
 
         TabLayout nestedScrollView_tab = findViewById(R.id.nestedScrollView_tab);
         nestedScrollView_tab.setupWithViewPager(vpContent, true);
     }
 
-
-    class NestedViewPagerAdapter extends FragmentStatePagerAdapter {
-
+    static class NestedViewPagerAdapter extends FragmentStatePagerAdapter {
 
         NestedViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-
 
         @Override
         public Fragment getItem(int i) {

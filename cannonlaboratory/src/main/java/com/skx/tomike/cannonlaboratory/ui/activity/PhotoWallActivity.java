@@ -40,10 +40,6 @@ public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void subscribeEvent() {
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (mPhotoAlbum == null) {

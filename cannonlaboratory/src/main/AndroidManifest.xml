@@ -61,11 +61,6 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
         <activity
-            android:name=".ui.activity.FloatingWindowActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name=".ui.activity.NfcWriteTextActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

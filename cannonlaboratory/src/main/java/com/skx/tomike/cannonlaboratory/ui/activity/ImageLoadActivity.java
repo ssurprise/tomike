@@ -39,10 +39,6 @@ public class ImageLoadActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void subscribeEvent() {
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ImageView ivImage = findViewById(R.id.imgLoad_imageView);
