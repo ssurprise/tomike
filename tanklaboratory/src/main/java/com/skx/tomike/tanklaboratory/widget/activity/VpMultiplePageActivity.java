@@ -6,13 +6,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.viewpager.widget.ViewPager;
+
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.InfiniteLoopAdapter;
 import com.skx.tomike.tanklaboratory.widget.adapter.MultiplePagerAdapter;
 import com.skx.tomike.tanklaboratory.widget.view.AlphaPageTransformer;
 import com.skx.tomike.tanklaboratory.widget.view.ClipViewPager;
 import com.skx.tomike.tanklaboratory.widget.view.ScalePageTransformer;
-import com.skx.tomike.tanklaboratory.widget.view.WrapContentHeightViewPager;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
@@ -22,35 +23,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by shiguotao on 2016/4/20.
- * <p/>
- * ViewPager 一屏展示多组page。
+ * 描述 : ViewPager 一屏展示多组page。
+ * <p>
  * 常见的有2种形式：
  * 第一种是展示下一个页面的一部分。
  * 第二种是当前页面居中展示，左右各展示上下一个页面
+ * <p>
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2016/4/20
  */
 public class VpMultiplePageActivity extends SkxBaseActivity {
-
-    private WrapContentHeightViewPager wrapContentHeightViewPager;
-    private ClipViewPager clipChildrenVp;
-    private RelativeLayout relativeLayout;
 
     private final ArrayList<Integer> list = new ArrayList<>();
     private final List<Integer> list2 = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-        refreshView();
-        installListener();
-    }
-
-    @Override
     protected void initParams() {
+        list.add(R.drawable.image_01);
+        list.add(R.drawable.image_02);
+        list.add(R.drawable.image_03);
+        list.add(R.drawable.image_04);
         list.add(R.drawable.image_05);
         list.add(R.drawable.image_06);
         list.add(R.drawable.image_07);
+        list.add(R.drawable.image_08);
 
         list2.add(R.drawable.image_05);
         list2.add(R.drawable.image_05);
@@ -66,11 +63,7 @@ public class VpMultiplePageActivity extends SkxBaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_vp_show_multiple_page;
-    }
-
-    @Override
-    protected void subscribeEvent() {
+        return R.layout.activity_viewpager_multiple_page;
     }
 
     @Override
@@ -78,21 +71,29 @@ public class VpMultiplePageActivity extends SkxBaseActivity {
         return new TitleConfig.Builder().setTitleText("ViewPager 一屏显示多个page").create();
     }
 
-    private void initView() {
-        wrapContentHeightViewPager = findViewById(R.id.wrapContentHeightViewPager);
-        relativeLayout = findViewById(R.id.clipChildren_relativeLayout);
-        clipChildrenVp = findViewById(R.id.show_multiple_clipViewPager);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
     }
 
-    private void refreshView() {
-        // 第一种形式
-        MultiplePagerAdapter adapter = new MultiplePagerAdapter(list);
-        wrapContentHeightViewPager.setPageTransformer(false, new AlphaPageTransformer());
-        wrapContentHeightViewPager.setPageMargin(15);
-        wrapContentHeightViewPager.setAdapter(adapter);
+    private void initView() {
+        renderMultiplePage1();
+        renderMultiplePage2();
+    }
 
+    private void renderMultiplePage1() {
+        ViewPager viewPager = findViewById(R.id.vp_multiplePage_widthFactor);
+        viewPager.setPageTransformer(false, new AlphaPageTransformer());
+        viewPager.setPageMargin(15);
+        viewPager.setAdapter(new MultiplePagerAdapter(list));
+    }
 
-        // 第二种形式
+    @SuppressLint("ClickableViewAccessibility")
+    private void renderMultiplePage2() {
+        RelativeLayout rlCliViewPageWrap = findViewById(R.id.rl_multiplePage_clipWrap);
+        final ClipViewPager clipChildrenVp = findViewById(R.id.vp_multiplePage_clip);
+
         clipChildrenVp.setOffscreenPageLimit(8);
         clipChildrenVp.setPageMargin((WidthHeightTool.getScreenWidth(this)
                 - DpPxSpTool.INSTANCE.dip2px(this, 5) * 2
@@ -100,11 +101,8 @@ public class VpMultiplePageActivity extends SkxBaseActivity {
         clipChildrenVp.setPageTransformer(false, new ScalePageTransformer());
         InfiniteLoopAdapter adapter2 = new InfiniteLoopAdapter(list2);
         clipChildrenVp.setAdapter(adapter2);
-    }
 
-    @SuppressLint("ClickableViewAccessibility")
-    private void installListener() {
-        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
+        rlCliViewPageWrap.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return clipChildrenVp.dispatchTouchEvent(event);

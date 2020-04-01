@@ -43,7 +43,7 @@ public class WrapContentViewPagerActivity extends SkxBaseActivity<BaseViewModel>
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_wrap_content_view_pager;
+        return R.layout.activity_view_pager_wrap_content;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class WrapContentViewPagerActivity extends SkxBaseActivity<BaseViewModel>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewPager viewPager = findViewById(R.id.vp_wrapContentVp_1);
+        ViewPager viewPager = findViewById(R.id.vp_wrapContentVp_content);
         WrapVPagerAdapter adapter = new WrapVPagerAdapter(mImageList);
         viewPager.setAdapter(adapter);
     }

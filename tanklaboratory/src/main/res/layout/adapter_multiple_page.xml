@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="240dp">
+    android:layout_height="240dp"
+    tools:context=".widget.activity.VpMultiplePageActivity">
 
     <ImageView
-        android:id="@+id/multiple_page_img"
+        android:id="@+id/iv_multiplePage_image"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:scaleType="center" />
+        android:scaleType="center"
+        tools:ignore="ContentDescription" />
 
     <ImageView
-        android:id="@+id/multiple_page_hoverImg"
+        android:id="@+id/iv_multiplePage_hoverImage"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:background="#88000000"
-        android:scaleType="center" />
+        android:scaleType="center"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

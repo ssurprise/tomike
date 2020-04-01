@@ -62,8 +62,8 @@ public class MultiplePagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NotNull ViewGroup container, int position) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.adapter_multiple_page, container, false);
-        ImageView imageView = view.findViewById(R.id.multiple_page_img);
-        ImageView hoverImageView = view.findViewById(R.id.multiple_page_hoverImg);
+        ImageView imageView = view.findViewById(R.id.iv_multiplePage_image);
+        ImageView hoverImageView = view.findViewById(R.id.iv_multiplePage_hoverImage);
         imageView.setImageResource(mDataList.get(position % mDataList.size()));
 
         view.setTag(hoverImageView);
