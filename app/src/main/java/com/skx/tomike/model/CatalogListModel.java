@@ -76,8 +76,8 @@ import com.skx.tomike.tanklaboratory.widget.activity.SwipeRefreshLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.TextSwitcherActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.TextWordSpacingActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerInfiniteLoopActivity;
-import com.skx.tomike.tanklaboratory.widget.activity.VpMultiplePageActivity;
-import com.skx.tomike.tanklaboratory.widget.activity.WrapContentViewPagerActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerMultiplePageActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerWrapContentActivity;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -159,8 +159,8 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("投影", ShadowActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("FloatingActionButton", FloatingActionButtonActivity.class.getName()));
 
-        mViewCatalogs.add(new CatalogItem("ViewPager 一屏多展示", VpMultiplePageActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", WrapContentViewPagerActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ViewPager 一屏多展示", ViewPagerMultiplePageActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", ViewPagerWrapContentActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ViewPager 无限循环+自动轮播", ViewPagerInfiniteLoopActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ViewPager N种页签指示器", PageIndicatorActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 添加/删除item", RecyclerViewItemUpdateActivity.class.getName()));

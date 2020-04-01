@@ -33,7 +33,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2016/4/20
  */
-public class VpMultiplePageActivity extends SkxBaseActivity {
+public class ViewPagerMultiplePageActivity extends SkxBaseActivity {
 
     private final ArrayList<Integer> list = new ArrayList<>();
     private final List<Integer> list2 = new ArrayList<>();

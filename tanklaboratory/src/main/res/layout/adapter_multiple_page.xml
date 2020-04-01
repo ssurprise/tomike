@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="240dp"
-    tools:context=".widget.activity.VpMultiplePageActivity">
+    tools:context=".widget.activity.ViewPagerMultiplePageActivity">
 
     <ImageView
         android:id="@+id/iv_multiplePage_image"

@@ -25,7 +25,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2016/4/20.
  */
-public class WrapContentViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
+public class ViewPagerWrapContentActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final ArrayList<Integer> mImageList = new ArrayList<>();
 

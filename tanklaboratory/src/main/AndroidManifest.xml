@@ -101,11 +101,11 @@
 
         <!-- viewpager一屏多展示item activity -->
         <activity
-            android:name=".widget.activity.VpMultiplePageActivity"
+            android:name=".widget.activity.ViewPagerMultiplePageActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".widget.activity.WrapContentViewPagerActivity"
+            android:name=".widget.activity.ViewPagerWrapContentActivity"
             android:screenOrientation="portrait" />
 
         <!-- viewpager无限循环 activity -->
