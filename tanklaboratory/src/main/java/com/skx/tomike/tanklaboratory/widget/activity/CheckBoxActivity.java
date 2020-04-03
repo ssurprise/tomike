@@ -1,10 +1,7 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
-import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-
-import androidx.annotation.Nullable;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
@@ -35,8 +32,7 @@ public class CheckBoxActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         CheckBox checkBox = findViewById(R.id.cb_checkBoxTest_1);
         CheckBox checkBox2 = findViewById(R.id.cb_checkBoxTest_2);
         CheckBox checkBox3 = findViewById(R.id.cb_checkBoxTest_3);

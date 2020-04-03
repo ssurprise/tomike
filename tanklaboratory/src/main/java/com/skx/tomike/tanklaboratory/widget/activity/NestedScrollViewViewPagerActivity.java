@@ -1,7 +1,5 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
-import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -36,8 +34,7 @@ public class NestedScrollViewViewPagerActivity extends SkxBaseActivity<BaseViewM
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         ViewPager vpContent = findViewById(R.id.nestedScrollView_vpContent);
         NestedViewPagerAdapter nestedViewPagerAdapter = new NestedViewPagerAdapter(getSupportFragmentManager());
         vpContent.setAdapter(nestedViewPagerAdapter);

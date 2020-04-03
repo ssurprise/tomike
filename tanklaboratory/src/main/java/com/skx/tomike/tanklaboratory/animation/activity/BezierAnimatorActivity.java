@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomike.tanklaboratory.animation.view.TreeView;
+import com.skx.tomike.tanklaboratory.widget.view.TreeView;
 
 /**
  * 贝塞尔动画事例

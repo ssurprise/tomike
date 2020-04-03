@@ -1,6 +1,5 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -59,21 +58,13 @@ public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-        initListener();
-    }
-
-    private void initView() {
+    protected void initView() {
         mEtCity = findViewById(R.id.et_retrofitTest_city);
         mTvTemperature = findViewById(R.id.tv_retrofitTest_temperature_value);
         mTvHumidity = findViewById(R.id.tv_retrofitTest_humidity_value);
         mTvWindDirection = findViewById(R.id.tv_retrofit_windDirection_value);
         mTvWindPower = findViewById(R.id.tv_retrofit_windPower_value);
-    }
 
-    private void initListener() {
         mEtCity.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -1,7 +1,6 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -41,19 +40,17 @@ public class NavigationBarActivity extends SkxBaseActivity implements View.OnCli
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_navigation_bar;
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText("TabLayout使用扩展").create();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_navigation_bar;
+    }
 
+    @Override
+    protected void initView() {
         mNavigationBar = findViewById(R.id.navigationBar_tab);
         contentText = findViewById(R.id.navigationBar_content);
 

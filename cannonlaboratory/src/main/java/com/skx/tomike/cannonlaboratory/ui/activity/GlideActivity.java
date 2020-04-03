@@ -1,7 +1,6 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
@@ -76,12 +75,7 @@ public class GlideActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void subscribeEvent() {
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         GridLayout mGlPictures = findViewById(R.id.glide_gridLayout);
         ImageView targetIv;
         for (int i = 0, j = imageArray.length; i < j; i++) {
@@ -219,8 +213,6 @@ public class GlideActivity extends SkxBaseActivity<BaseViewModel> {
             }
         }
     }
-
-
 
     /*
      * asBitmap()   以Bitmap方式加载图片。即使加载的图片可能是gif

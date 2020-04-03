@@ -1,7 +1,6 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -39,8 +38,7 @@ public class ImageLoadActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         ImageView ivImage = findViewById(R.id.imgLoad_imageView);
         // 注意：图片的压缩一个耗时操作
         long l = System.currentTimeMillis();

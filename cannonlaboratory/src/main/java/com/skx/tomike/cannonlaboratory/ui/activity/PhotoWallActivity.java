@@ -28,6 +28,16 @@ public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
     private PhotoUpImageBucket mPhotoAlbum;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (mPhotoAlbum == null) {
+            finish();
+            return;
+        }
+        refreshView();
+    }
+
+    @Override
     protected void initParams() {
         if (getIntent().hasExtra("imagelist")) {
             mPhotoAlbum = (PhotoUpImageBucket) getIntent().getSerializableExtra("imagelist");
@@ -40,22 +50,12 @@ public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (mPhotoAlbum == null) {
-            finish();
-            return;
-        }
-        initView();
-        refreshView();
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText(mPhotoAlbum.bucketName).create();
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         RecyclerView rvPhotoWall = findViewById(R.id.rv_photoWall_photos);
         rvPhotoWall.setLayoutManager(new GridLayoutManager(this, 4));
         rvPhotoWall.addItemDecoration(new GridSpaceItemDecoration(4, 15, 15));

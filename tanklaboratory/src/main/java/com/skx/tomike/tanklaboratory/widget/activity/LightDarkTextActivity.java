@@ -1,6 +1,5 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 
@@ -41,18 +39,17 @@ public class LightDarkTextActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_light_dark_text;
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText("EditText 明暗文切换").create();
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_light_dark_text;
+    }
+
+    @Override
+    protected void initView() {
         AppCompatEditText input = findViewById(R.id.lightDarkText_input);
         AppCompatEditText input1 = findViewById(R.id.lightDarkText_input1);
         AppCompatEditText input2 = findViewById(R.id.lightDarkText_input2);

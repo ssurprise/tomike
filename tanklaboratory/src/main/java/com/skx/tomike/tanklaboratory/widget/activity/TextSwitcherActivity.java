@@ -1,7 +1,6 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -34,18 +33,17 @@ public class TextSwitcherActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_text_switcher;
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText("TextSwitcher 实现效果").create();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_text_switcher;
+    }
+
+    @Override
+    protected void initView() {
         textSwitcher = findViewById(R.id.ts_textSwitcher_xml_implement);
 
         Animation in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);

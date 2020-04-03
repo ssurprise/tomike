@@ -1,6 +1,5 @@
 package com.skx.tomike.tanklaboratory.animation.activity;
 
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -52,13 +51,7 @@ public class LayoutTransitionActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void subscribeEvent() {
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         mContainer = findViewById(R.id.ll_layoutTransition_parent);
     }
 

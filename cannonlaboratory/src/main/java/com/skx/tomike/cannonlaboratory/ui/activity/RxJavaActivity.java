@@ -1,6 +1,5 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
-import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.util.Pair;
@@ -54,8 +53,7 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         mRlLoading = findViewById(R.id.rl_rxjava_loading);
         mTvLoadingText = findViewById(R.id.rl_rxjava_loadingText);
     }

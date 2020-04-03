@@ -1,6 +1,5 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
-import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -60,19 +59,13 @@ public class SwipeRefreshLayoutActivity extends SkxBaseActivity<SwipeRefreshView
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
-
-    private void initView() {
+    protected void initView() {
         mSwipeLayout = findViewById(R.id.srl_swipeRefreshDemo_warp);
         mSwipeLayout.setOnRefreshListener(this);
 
         ListView lvTestData = findViewById(R.id.lv_swipeRefreshDem_content);
         lvTestData.setAdapter(mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mData));
     }
-
 
     @Override
     public void onRefresh() {

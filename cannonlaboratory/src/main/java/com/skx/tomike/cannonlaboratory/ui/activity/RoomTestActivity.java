@@ -1,12 +1,10 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 
 import com.skx.tomike.cannonlaboratory.R;
@@ -55,26 +53,18 @@ public class RoomTestActivity extends SkxBaseActivity<RecentlyBrowsedViewModel> 
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-        initListener();
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText("Room - 最近浏览案例").create();
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         mBtnInsert = findViewById(R.id.btn_roomTest_insert);
         mBtnUpdate = findViewById(R.id.btn_roomTest_update);
         mBtnQuery = findViewById(R.id.btn_roomTest_query);
         mBtnDelete = findViewById(R.id.btn_roomTest_delete);
         mTvLogcat = findViewById(R.id.btn_roomTest_logcat);
-    }
 
-    private void initListener() {
         mBtnInsert.setOnClickListener(this);
         mBtnUpdate.setOnClickListener(this);
         mBtnQuery.setOnClickListener(this);

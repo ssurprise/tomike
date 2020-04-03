@@ -67,11 +67,11 @@ public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
         refreshView();
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         mLayoutIndicator1 = findViewById(R.id.layout_pageIndicator_style_1);
         mLayoutIndicator2 = findViewById(R.id.layout_pageIndicator_style_2);
         mLayoutIndicator3 = findViewById(R.id.layout_pageIndicator_style_3);

@@ -1,14 +1,11 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
 
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
@@ -49,12 +46,7 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
-
-    private void initView() {
+    protected void initView() {
         CheckBox cbDelayPost = findViewById(R.id.cb_handler_isDelayPost);
         cbDelayPost.setChecked(false);
         cbDelayPost.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

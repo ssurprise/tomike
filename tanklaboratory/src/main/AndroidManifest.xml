@@ -133,5 +133,9 @@
             android:name=".widget.activity.CheckBoxActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".animation.activity.TweenAnimationActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>

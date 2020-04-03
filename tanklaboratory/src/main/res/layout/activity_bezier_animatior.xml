@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.skx.tomike.tanklaboratory.animation.activity.ShakeAnimatorActivity">
 
-    <com.skx.tomike.tanklaboratory.animation.view.TreeView
+    <com.skx.tomike.tanklaboratory.widget.view.TreeView
         android:id="@+id/bezierAnimator_tree_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

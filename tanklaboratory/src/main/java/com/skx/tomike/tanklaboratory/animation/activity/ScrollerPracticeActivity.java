@@ -1,13 +1,10 @@
 package com.skx.tomike.tanklaboratory.animation.activity;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-import androidx.annotation.Nullable;
-
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomike.tanklaboratory.animation.view.TranslateImageView;
+import com.skx.tomike.tanklaboratory.widget.view.TranslateImageView;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
@@ -37,12 +34,7 @@ public class ScrollerPracticeActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void subscribeEvent() {
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         mIv = findViewById(R.id.tv_scroller_transImageView);
         mIv.setScaleTypeEx(TranslateImageView.ScaleTypeEx.CROP);
         mIv.setPosition(TranslateImageView.Position.RIGHT);

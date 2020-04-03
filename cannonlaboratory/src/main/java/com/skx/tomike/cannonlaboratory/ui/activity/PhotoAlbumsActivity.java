@@ -66,8 +66,6 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 /*
@@ -91,7 +89,8 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
         }
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         RecyclerView rvPhotoAlbums = findViewById(R.id.rv_photoAlbums_content);
         rvPhotoAlbums.setLayoutManager(new GridLayoutManager(this, 3));
         rvPhotoAlbums.addItemDecoration(new GridSpaceItemDecoration(3,

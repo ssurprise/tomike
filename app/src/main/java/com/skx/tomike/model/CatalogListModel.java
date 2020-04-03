@@ -53,6 +53,7 @@ import com.skx.tomike.tanklaboratory.animation.activity.ScrollViewAnchorActivity
 import com.skx.tomike.tanklaboratory.animation.activity.ScrollerPracticeActivity;
 import com.skx.tomike.tanklaboratory.animation.activity.ShakeAnimatorActivity;
 import com.skx.tomike.tanklaboratory.animation.activity.ShareElementActivity;
+import com.skx.tomike.tanklaboratory.animation.activity.TweenAnimationActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CardViewActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CheckBoxActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ConstraintLayoutActivity;
@@ -173,6 +174,7 @@ public class CatalogListModel {
         mAnimatorCatalogs.add(new CatalogItem("Layout添加/删除子view过渡效果", LayoutTransitionActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("共享元素转场动画", ShareElementActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("圆形揭示效果", CircularRevealActivity.class.getName()));
+        mAnimatorCatalogs.add(new CatalogItem("补间动画", TweenAnimationActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("属性动画", PropertyAnimatorActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("shake动画", ShakeAnimatorActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("贝塞尔曲线", BezierAnimatorActivity.class.getName()));

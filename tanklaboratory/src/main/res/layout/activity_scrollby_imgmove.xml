@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-    <com.skx.tomike.tanklaboratory.animation.view.TranslateImageView
+    <com.skx.tomike.tanklaboratory.widget.view.TranslateImageView
         android:id="@+id/tv_scroller_transImageView"
         android:layout_width="match_parent"
         android:layout_height="400dp"

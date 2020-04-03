@@ -47,19 +47,15 @@ public class PhotographActivity extends SkxBaseActivity implements View.OnClickL
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-        refreshView();
-    }
-
-    private void initView() {
+    protected void initView() {
         surfaceView = findViewById(R.id.surfaceView);
         take_photo_btn = findViewById(R.id.take_photo_btn);
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void refreshView() {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         holder = surfaceView.getHolder();
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         holder.setFixedSize(1080, 1920); //设置Surface分辨率

@@ -1,6 +1,5 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
-import android.os.Bundle;
 import android.view.View;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -45,8 +44,7 @@ public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewMode
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         RecyclerView rv = findViewById(R.id.rv_recyclerviewItemUpdate_content);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setItemAnimator(new DefaultItemAnimator());

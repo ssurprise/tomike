@@ -1,6 +1,5 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,23 +41,21 @@ public class ViewPagerWrapContentActivity extends SkxBaseActivity<BaseViewModel>
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_view_pager_wrap_content;
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText("ViewPager 自适应高度").create();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_view_pager_wrap_content;
+    }
+
+    @Override
+    protected void initView() {
         ViewPager viewPager = findViewById(R.id.vp_wrapContentVp_content);
         WrapVPagerAdapter adapter = new WrapVPagerAdapter(mImageList);
         viewPager.setAdapter(adapter);
     }
-
 
     public static class WrapVPagerAdapter extends PagerAdapter {
 

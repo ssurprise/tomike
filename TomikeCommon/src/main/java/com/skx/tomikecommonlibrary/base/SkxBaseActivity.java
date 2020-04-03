@@ -24,6 +24,7 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
         super.onCreate(savedInstanceState);
         initParams();
         initContentView();
+        initView();
         subscribeEvent();
     }
 
@@ -112,16 +113,16 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
     }
 
     /**
+     * 初始化参数
+     */
+    protected abstract void initParams();
+
+    /**
      * 配置页面标题
      */
     protected TitleConfig configHeaderTitle() {
         return null;
     }
-
-    /**
-     * 初始化参数
-     */
-    protected abstract void initParams();
 
     /**
      * 获取页面布局
@@ -130,6 +131,11 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
      */
     protected abstract @LayoutRes
     int getLayoutId();
+
+    /**
+     * 初始化view
+     */
+    protected abstract void initView();
 
     /**
      * 事件订阅。可用于监听LiveData 的变化

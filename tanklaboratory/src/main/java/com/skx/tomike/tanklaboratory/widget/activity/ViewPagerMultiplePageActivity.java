@@ -1,7 +1,6 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -62,22 +61,17 @@ public class ViewPagerMultiplePageActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_viewpager_multiple_page;
-    }
-
-    @Override
     protected TitleConfig configHeaderTitle() {
         return new TitleConfig.Builder().setTitleText("ViewPager 一屏显示多个page").create();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_viewpager_multiple_page;
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         renderMultiplePage1();
         renderMultiplePage2();
     }

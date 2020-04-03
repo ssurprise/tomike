@@ -1,8 +1,5 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import com.skx.tomike.cannonlaboratory.R;
@@ -43,10 +40,10 @@ public class PicturePreviewActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         ViewPager mVpPictures = findViewById(R.id.vp_picturePreview_pictures);
         mVpPictures.setAdapter(new PicturePreviewAdapter(mPicturesList));
         mVpPictures.setCurrentItem(mPosition);
     }
+
 }

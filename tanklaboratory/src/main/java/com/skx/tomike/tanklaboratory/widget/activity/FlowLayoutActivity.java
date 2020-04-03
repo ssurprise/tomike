@@ -1,7 +1,5 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
-import android.os.Bundle;
-
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.FlowAdapter;
 import com.skx.tomike.tanklaboratory.widget.view.FlowLayout;
@@ -33,8 +31,7 @@ public class FlowLayoutActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         FlowLayout flowLayout = findViewById(R.id.fl_flowLayoutTest_content);
         flowLayout.setAdapter(new FlowAdapter());
     }

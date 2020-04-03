@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.skx.tomike.activity.MatrixImageActivity">
 
-    <com.skx.tomike.tanklaboratory.animation.view.TranslateImageView
+    <com.skx.tomike.tanklaboratory.widget.view.TranslateImageView
         android:id="@+id/matrixImage_mainImage"
         android:layout_width="match_parent"
         android:layout_height="300dp"

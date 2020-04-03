@@ -21,10 +21,10 @@ class ShapeViewActivity : SkxBaseActivity<BaseViewModel>() {
         return R.layout.activity_shape_view
     }
 
-    override fun subscribeEvent() {
-    }
-
     override fun configHeaderTitle(): TitleConfig {
         return TitleConfig.Builder().setTitleText("自定义ShapeView").create()
+    }
+
+    override fun initView() {
     }
 }

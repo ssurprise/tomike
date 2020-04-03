@@ -1,6 +1,5 @@
 package com.skx.tomike.bomberlaboratory.ui.activity;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.skx.tomike.bomberlaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
@@ -65,15 +63,9 @@ public class ThreadCallbackActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
-
-    private void initView() {
+    protected void initView() {
         mTvLogcat = findViewById(R.id.tv_threadCallback_logcat);
     }
-
 
     private void sendMessageToLogcat(@NonNull String msg) {
         Message startMsg = mHandler.obtainMessage(1);

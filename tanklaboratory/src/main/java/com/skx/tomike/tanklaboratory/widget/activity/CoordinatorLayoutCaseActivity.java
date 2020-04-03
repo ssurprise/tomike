@@ -22,8 +22,7 @@ public class CoordinatorLayoutCaseActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         AppBarLayout appBarLayout = findViewById(R.id.customBehavior_appbar);
         final CustomCommentLayoutView nestedScrollingChild2 = findViewById(R.id.customBehavior_head);
 

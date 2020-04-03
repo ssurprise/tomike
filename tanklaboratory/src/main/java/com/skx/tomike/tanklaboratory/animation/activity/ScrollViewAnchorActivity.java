@@ -67,6 +67,13 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
     private int translationDistance;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        refreshView();
+        initListener();
+    }
+
+    @Override
     protected void initParams() {
     }
 
@@ -80,14 +87,7 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-        refreshView();
-        initListener();
-    }
-
-    private void initView() {
+    protected void initView() {
         mRlNavigationTagContainer = findViewById(R.id.luDetail_navigationTag_container);
         mBtnBack = findViewById(R.id.btn_back);
         rl_favoriteContainer = findViewById(R.id.rl_favoriteContainer);

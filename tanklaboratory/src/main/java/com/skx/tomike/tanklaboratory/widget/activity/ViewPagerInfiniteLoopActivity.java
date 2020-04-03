@@ -60,15 +60,14 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
-
-    private void initView() {
+    protected void initView() {
         mVpInfiniteLoop = findViewById(R.id.vp_loopViewPager_infiniteLoop);
         mVpAutomaticLoop = findViewById(R.id.vp_loopViewPager_autoLoop);
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         initInfiniteLoopView();
         initAutoLoopView();
     }

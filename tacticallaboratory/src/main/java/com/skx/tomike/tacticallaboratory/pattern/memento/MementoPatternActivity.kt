@@ -53,11 +53,10 @@ class MementoPatternActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickLis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
         renderView()
     }
 
-    private fun initView() {
+    override fun initView() {
         mEtNameInput = findViewById(R.id.tv_mementoPattern_playerName)
         mSeekBarBloodVolume = findViewById(R.id.sb_mementoPattern_bloodVolume)
         mTvBloodVolumeValue = findViewById(R.id.tv_mementoPattern_bloodVolume_value)

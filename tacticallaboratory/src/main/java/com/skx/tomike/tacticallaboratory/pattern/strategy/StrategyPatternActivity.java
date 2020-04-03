@@ -1,9 +1,5 @@
 package com.skx.tomike.tacticallaboratory.pattern.strategy;
 
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-
 import com.skx.tomike.tacticallaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
@@ -17,7 +13,6 @@ public class StrategyPatternActivity extends SkxBaseActivity {
 
     @Override
     protected void initParams() {
-
     }
 
     @Override
@@ -26,13 +21,7 @@ public class StrategyPatternActivity extends SkxBaseActivity {
     }
 
     @Override
-    protected void subscribeEvent() {
-
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
 
     }
 }

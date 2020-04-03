@@ -58,12 +58,7 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
-
-    private void initView() {
+    protected void initView() {
         findViewById(R.id.btn_threadSynchronized_objectLock_codeBlockThis).setOnClickListener(this);
         findViewById(R.id.btn_threadSynchronized_objectLock_codeBlockMonitor).setOnClickListener(this);
         findViewById(R.id.btn_threadSynchronized_objectLock_syncMethod).setOnClickListener(this);

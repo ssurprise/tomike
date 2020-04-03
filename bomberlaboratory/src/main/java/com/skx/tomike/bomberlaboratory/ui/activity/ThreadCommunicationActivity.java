@@ -1,14 +1,11 @@
 package com.skx.tomike.bomberlaboratory.ui.activity;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
 
 import com.skx.tomike.bomberlaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
@@ -71,12 +68,7 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
-
-    private void initView() {
+    protected void initView() {
         mSvLogcat = findViewById(R.id.sv_threadCommunication_logcat);
 
         findViewById(R.id.btn_threadCommunication_unused).setOnClickListener(this);
