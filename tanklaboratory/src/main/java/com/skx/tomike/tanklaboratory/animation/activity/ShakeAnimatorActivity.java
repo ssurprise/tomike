@@ -60,13 +60,6 @@ public class ShakeAnimatorActivity extends SkxBaseActivity<BaseViewModel> {
                 Keyframe.ofFloat(0.9f, -40),
                 Keyframe.ofFloat(1.0f, 0f)
         );
-
-//        ValueAnimator valueAnimator = ValueAnimator.ofPropertyValuesHolder(rotateValuesHolder);
-//        valueAnimator.setDuration(2000);
-//        valueAnimator.setTarget(mTargetView);
-//        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
-//        valueAnimator.start();
-
         ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(mTargetView, rotateValuesHolder);
         objectAnimator.setDuration(2000);
         objectAnimator.start();
