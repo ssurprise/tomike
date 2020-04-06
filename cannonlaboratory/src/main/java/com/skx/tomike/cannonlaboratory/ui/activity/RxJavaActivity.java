@@ -145,9 +145,7 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
     /**
      * 串行执行。
      * <p>
-     * 案例：比如先请求接口A，根据接口A 返回的数据再请求接口B，最终返回接口B的数据
-     *
-     *
+     * 案例：比如先请求接口A，根据接口A 返回的数据再请求接口B，最终返回接口B的数据ø
      *
      * @param view
      */
@@ -160,28 +158,27 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 SystemClock.sleep(2000);
                 Log.e("Observable", "1.2");
 
-//                emitter.onNext(10d);
-//                emitter.onComplete();
-                emitter.onError(new Throwable());
+                emitter.onNext(5d);
+                emitter.onComplete();
+//                emitter.onError(new Throwable());
             }
-        })
-                .flatMap(new Function<Double, ObservableSource<Double>>() {
+        }).flatMap(new Function<Double, ObservableSource<Double>>() {
+            @Override
+            public ObservableSource<Double> apply(Double aDouble) throws Exception {
+                return Observable.create(new ObservableOnSubscribe<Double>() {
                     @Override
-                    public ObservableSource<Double> apply(Double aDouble) throws Exception {
-                        return Observable.create(new ObservableOnSubscribe<Double>() {
-                            @Override
-                            public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
-                                Log.e("Observable", "2.1");
-                                SystemClock.sleep(2000);
-                                Log.e("Observable", "2.2");
+                    public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                        Log.e("Observable", "2.1");
+                        SystemClock.sleep(2000);
+                        Log.e("Observable", "2.2");
 
-                                emitter.onNext(20d);
-                                emitter.onComplete();
+                        emitter.onNext(20d);
+                        emitter.onComplete();
 //                                emitter.onError(new Throwable());
-                            }
-                        });
                     }
-                }).subscribeOn(Schedulers.io())
+                });
+            }
+        }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Double>() {
                     @Override
@@ -192,6 +189,7 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
 
                     @Override
                     public void onNext(Double aDouble) {
+                        Log.e("Observer-onNext", aDouble + "");
                         Toast.makeText(RxJavaActivity.this, aDouble + "", Toast.LENGTH_SHORT).show();
                     }
 
