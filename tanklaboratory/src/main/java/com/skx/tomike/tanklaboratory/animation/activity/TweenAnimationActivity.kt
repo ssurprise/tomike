@@ -11,9 +11,7 @@ import com.skx.tomikecommonlibrary.base.TitleConfig
 /**
  * 描述 : 补间动画
  *
- *
- * 包括：alpha（淡入淡出），translate（位移），scale（缩放大小），rotate（旋转）
- *
+ * 包括：alpha（淡入淡出），translate（位移），scale（缩放大小），rotate（旋转）以及组合动画效果
  *
  * 作者 : shiguotao
  * 版本 : V1
@@ -43,7 +41,7 @@ class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickLi
     }
 
     /**
-     * 平移动画
+     * 平移动画：TranslateAnimation
      */
     private fun translateAnimation() {
         val translateAnimation: Animation = TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
@@ -55,7 +53,7 @@ class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickLi
     }
 
     /**
-     * 缩放动画
+     * 缩放动画：ScaleAnimation.
      */
     private fun scaleAnimation() {
         val scaleAnimation = ScaleAnimation(1.0f, 2.0f, 1.0f, 2.0f,
@@ -73,7 +71,14 @@ class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickLi
     }
 
     /**
-     * 缩放动画
+     * 旋转动画：RotateAnimation
+     *
+     * fromDegrees: 旋转开始角度，正代表顺时针度数，负代表逆时针度数
+     * toDegrees: 旋转结束角度，正代表顺时针度数，负代表逆时针度数
+     * pivotXType: 指定动画中心点的x轴类型。取值 Animation.ABSOLUTE, Animation.RELATIVE_TO_SELF, Animation.RELATIVE_TO_PARENT
+     * pivotXValue: 设置动画中心点在x轴的偏移单位。
+     * pivotYType: 指定动画中心点的y轴类型。取值 Animation.ABSOLUTE, Animation.RELATIVE_TO_SELF, Animation.RELATIVE_TO_PARENT
+     * pivotYValue: 设置动画中心点在y轴的偏移单位。
      */
     private fun rotateAnimation() {
         val rotateAnimation = RotateAnimation(0.0f, 720.0f,
@@ -84,7 +89,9 @@ class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickLi
     }
 
     /**
-     * 淡入淡出动画
+     * 淡入淡出动画：AlphaAnimation
+     * fromAlpha:动画开始时的透明度。范围在0.0-1.0之间，其中0.0表示完全透明，1.0表示完全不透明。
+     * toAlpha:动画结束时的透明度。范围在0.0-1.0之间，其中0.0表示完全透明，1.0表示完全不透明。
      */
     private fun alphaAnimation() {
         val alphaAnimation = AlphaAnimation(1.0f, 0.0f)
