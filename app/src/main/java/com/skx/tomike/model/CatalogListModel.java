@@ -182,13 +182,13 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_ANIMATOR, mAnimatorCatalogs);
 
         // 加农炮实验室
+        mFunctionCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("通知", NotificationActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("打开其他App", OutterStartActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("透明Activity", TransparentThemeActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AOP 测试", AopTestActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", NfcGroupActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("okhttp", OkHttpActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("retrofit", RetrofitActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("RxJava", RxJavaActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("6.0权限", PermissionIntroActivity.class.getName()));

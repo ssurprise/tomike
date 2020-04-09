@@ -70,8 +70,10 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 Observable.create(new ObservableOnSubscribe<Double>() {
                     @Override
                     public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                        Log.e(TAG, "create 1:" + Thread.currentThread().getName());
+
                         Log.e("Observable", "1.1");
-                        SystemClock.sleep(3000);
+                        SystemClock.sleep(2000);
                         Log.e("Observable", "1.2");
 
                         emitter.onNext(10d);
@@ -82,23 +84,26 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 Observable.create(new ObservableOnSubscribe<Double>() {
                     @Override
                     public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                        Log.e(TAG, "create 2:" + Thread.currentThread().getName());
+
                         Log.e("Observable", "2.1");
-                        SystemClock.sleep(2000);
+                        SystemClock.sleep(3000);
                         Log.e("Observable", "2.2");
 
                         emitter.onNext(8d);
                         emitter.onComplete();
                     }
-                }).subscribeOn(Schedulers.io()),// 指定 subscribe() 所发生的线程，简单来说就是发射事件的线程。或者叫做事件产生的线程。
+                })/*.subscribeOn(Schedulers.io())*/,// 指定 subscribe() 所发生的线程，简单来说就是发射事件的线程。或者叫做事件产生的线程。
 
                 new BiFunction<Double, Double, Double>() {
                     @Override
                     public Double apply(Double aDouble, Double aDouble2) throws Exception {
+                        Log.e(TAG, "create 3:" + Thread.currentThread().getName());
+
                         Log.e("Observable", "3");
                         return aDouble + aDouble2;
                     }
                 }
-
         ).subscribeOn(Schedulers.io())// 指定 subscribe() 所发生的线程，简单来说就是发射事件的线程。或者叫做事件产生的线程。
                 .observeOn(AndroidSchedulers.mainThread())// 指定观察者接收事件的线程。或者叫做事件消费的线程。
                 .subscribe(new Observer<Double>() {
@@ -128,16 +133,16 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
 
         /*
         外部指定了线程：
-        1. 内部没有指定线程              -> 串行执行
-        2. 内部a指定线程，b没有指定线程    -> 并行执行
-        3. 内部a没有指定线程，b指定线程    -> 串行执行
-        4. 内部a、b均指定线程            -> 并行执行
+        1. 内部均指定线程                 -> 并行执行 create 1、2 分别执行在不同的子线程，create 3的执行线程在执行时间最长的子线程中
+        2. 内部均没有指定线程              -> 串行执行 create 1:执行在子线程1,待执行完毕后 create 2同样执行在子线程1，而后create 3同
+        3. 内部a指定线程，b没有指定线程    -> 并行执行 同1
+        4. 内部a没有指定线程，b指定线程    -> 串行执行 create 1:执行在子线程1，待执行完毕后 create 2执行在子线程2，create 3 串行执行在子线程2
 
         外部没有指定线程：
         1. 内部均指定线程                -> 并行执行
-        2. 内部均没有指定线程            -> 串行执行  （不建议，可能会造成主线程卡顿）
-        3. 内部a指定线程，b没有指定线程    -> 并行执行 （不建议，可能会造成主线程卡顿）
-        3. 内部a没有指定线程，b指定线程    -> 串行执行 （不建议，可能会造成主线程卡顿）
+        2. 内部均没有指定线程            -> 串行执行  （不建议，可能会造成主线程卡顿）create 1、2、3 顺序执行在main 线程
+        3. 内部a指定线程，b没有指定线程    -> 并行执行 （不建议，可能会造成主线程卡顿）create 2:执行在main 线程，create 1 和create 3 执行在同一个子线程
+        3. 内部a没有指定线程，b指定线程    -> 串行执行 （不建议，可能会造成主线程卡顿）create 1:执行在main 线程，create 2 和create 3 执行在同一个子线程
 
          */
     }
@@ -145,15 +150,15 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
     /**
      * 串行执行。
      * <p>
-     * 案例：比如先请求接口A，根据接口A 返回的数据再请求接口B，最终返回接口B的数据ø
+     * 案例：比如先请求接口A，根据接口A 返回的数据再请求接口B，最终返回接口B的数据
      *
      * @param view
      */
     public void serialExecute(View view) {
-
         Observable.create(new ObservableOnSubscribe<Double>() {
             @Override
             public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                Log.e(TAG, "create :" + Thread.currentThread().getName());
                 Log.e("Observable", "1.1");
                 SystemClock.sleep(2000);
                 Log.e("Observable", "1.2");
@@ -168,6 +173,8 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 return Observable.create(new ObservableOnSubscribe<Double>() {
                     @Override
                     public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                        Log.e(TAG, "flatMap :" + Thread.currentThread().getName());
+
                         Log.e("Observable", "2.1");
                         SystemClock.sleep(2000);
                         Log.e("Observable", "2.2");
@@ -189,6 +196,8 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
 
                     @Override
                     public void onNext(Double aDouble) {
+                        Log.e(TAG, "onNext :" + Thread.currentThread().getName());
+
                         Log.e("Observer-onNext", aDouble + "");
                         Toast.makeText(RxJavaActivity.this, aDouble + "", Toast.LENGTH_SHORT).show();
                     }
@@ -201,6 +210,8 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
 
                     @Override
                     public void onComplete() {
+                        Log.e(TAG, "onComplete :" + Thread.currentThread().getName());
+
                         Log.e("Observer-onComplete", "complete");
                         mRlLoading.setVisibility(View.GONE);
                     }
