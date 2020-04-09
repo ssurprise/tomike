@@ -8,42 +8,52 @@
     tools:context=".ui.activity.HandlerActivity">
 
     <CheckBox
-        android:id="@+id/cb_handler_isDelayPost"
+        android:id="@+id/cb_handler_isDelay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="是否延迟发送（延迟10s）"
+        android:text="是否延迟发送（延迟5s）"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
+    <CheckBox
+        android:id="@+id/cb_handler_isWorkThread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="是否子线程发送"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cb_handler_isDelay"
+        tools:ignore="HardcodedText" />
+
     <TextView
-        android:id="@+id/btn_handler_mainThreadPost"
-        android:layout_width="120dp"
+        android:id="@+id/btn_handler_sendOrPostMessage"
+        android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_selector"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:text="main 线程发送"
+        android:text="发送 Message"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_handler_isDelayPost"
+        app:layout_constraintRight_toLeftOf="@id/btn_handler_sendOrPostRunnable"
+        app:layout_constraintTop_toBottomOf="@id/cb_handler_isWorkThread"
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/btn_handler_workThreadPost"
-        android:layout_width="120dp"
+        android:id="@+id/btn_handler_sendOrPostRunnable"
+        android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/btn_selector"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:text="work 线程发送"
-        app:layout_constraintLeft_toRightOf="@id/btn_handler_mainThreadPost"
-        app:layout_constraintTop_toBottomOf="@id/cb_handler_isDelayPost"
-        app:layout_constraintTop_toTopOf="@id/btn_handler_mainThreadPost"
+        android:text="发送 Runnable"
+        app:layout_constraintLeft_toRightOf="@id/btn_handler_sendOrPostMessage"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_handler_sendOrPostMessage"
         tools:ignore="HardcodedText" />
 
     <TextView
@@ -57,6 +67,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_handler_mainThreadPost" />
+        app:layout_constraintTop_toBottomOf="@id/btn_handler_sendOrPostMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

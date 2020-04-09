@@ -2,6 +2,7 @@ package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -11,10 +12,12 @@ import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * 描述 : Handler demo
@@ -27,7 +30,9 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
     public TextView mHandlerLogcat;
 
     private boolean isDelayPost = false;
-    public final long mDelayMillis = 1000 * 10;//10s
+    private boolean isWorkThread = false;
+
+    public final long DELAY_MILLIS = 1000 * 5;//5s
     private RenderHandler mHandler;
 
     @Override
@@ -47,7 +52,7 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
 
     @Override
     protected void initView() {
-        CheckBox cbDelayPost = findViewById(R.id.cb_handler_isDelayPost);
+        CheckBox cbDelayPost = findViewById(R.id.cb_handler_isDelay);
         cbDelayPost.setChecked(false);
         cbDelayPost.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -55,34 +60,97 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
                 isDelayPost = isChecked;
             }
         });
+
+        CheckBox cbWorkThread = findViewById(R.id.cb_handler_isWorkThread);
+        cbWorkThread.setChecked(false);
+        cbWorkThread.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isWorkThread = isChecked;
+            }
+        });
+
         mHandlerLogcat = findViewById(R.id.tv_handler_logcat);
-        findViewById(R.id.btn_handler_mainThreadPost).setOnClickListener(this);
-        findViewById(R.id.btn_handler_workThreadPost).setOnClickListener(this);
+        findViewById(R.id.btn_handler_sendOrPostMessage).setOnClickListener(this);
+        findViewById(R.id.btn_handler_sendOrPostRunnable).setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.btn_handler_mainThreadPost) {
-            Message message = mHandler.obtainMessage(0);
-            message.obj = "主线程于" + getCurrentTime() + "发送的消息";
-            mHandler.sendMessageDelayed(message, isDelayPost ? mDelayMillis : 0);
+        if (id == R.id.btn_handler_sendOrPostMessage) {
+            sendMessage();
 
-        } else if (id == R.id.btn_handler_workThreadPost) {
+        } else if (id == R.id.btn_handler_sendOrPostRunnable) {
+            sendRunnable();
+        }
+    }
+
+    private final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            ToastTool.showToast(mActivity, "11111");
+        }
+    };
+
+    private void sendRunnable() {
+        if (isWorkThread) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    Message message = mHandler.obtainMessage(0);
-                    message.obj = "工作线程于" + getCurrentTime() + "发送的消息";
-                    mHandler.sendMessageDelayed(message, isDelayPost ? mDelayMillis : 0);
+                    // 为了演示api 专门分开写
+                    if (isDelayPost) {
+                        mHandler.postDelayed(runnable, DELAY_MILLIS);
+
+                    } else {
+                        mHandler.post(runnable);
+                    }
                 }
             }).start();
+        } else {
+            // 为了演示api 专门分开写
+            if (isDelayPost) {
+                mHandler.postDelayed(runnable, DELAY_MILLIS);
+
+            } else {
+                mHandler.post(runnable);
+            }
+        }
+
+    }
+
+    private void sendMessage() {
+        if (isWorkThread) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Message message = mHandler.obtainMessage(1);
+                    message.obj = "工作线程于" + getCurrentTime() + "发送的消息\n";
+                    // 为了演示api 专门分开写
+                    if (isDelayPost) {
+                        mHandler.sendMessageDelayed(message, DELAY_MILLIS);
+                    } else {
+                        mHandler.sendMessage(message);
+                    }
+                }
+            }).start();
+
+        } else {
+            Message message = mHandler.obtainMessage(1);
+            message.obj = "主线程于" + getCurrentTime() + "发送的消息\n";
+            // 为了演示api 专门分开写
+            if (isDelayPost) {
+                mHandler.sendMessageDelayed(message, DELAY_MILLIS);
+            } else {
+                mHandler.sendMessage(message);
+            }
         }
     }
 
     private String getCurrentTime() {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         return format.format(calendar.getTime());
     }
 
@@ -96,18 +164,17 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
 
         @Override
         public void dispatchMessage(Message msg) {
-            if (reference == null || reference.get() == null) return;
             super.dispatchMessage(msg);
-            reference.get().mHandlerLogcat.append("\n" + msg.obj.toString());
-//            switch (msg.what) {
-//                case 1:
-//                    break;
-//                case 2:
-//                    reference.get().mHandlerLogcat.append(msg.obj.toString());
-//                    break;
-//                default:
-//                    break;
-//            }
+            if (reference == null || reference.get() == null) return;
+            switch (msg.what) {
+                case 1:
+                case 2:
+                    reference.get().mHandlerLogcat.append(msg.obj.toString());
+                    break;
+                default:
+                    Log.e("HandlerActivity", "00000");
+                    break;
+            }
         }
     }
 }
