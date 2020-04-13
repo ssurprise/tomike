@@ -30,6 +30,7 @@
         <activity
             android:name=".thread.ThreadCallbackActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".reflect.ReflectTestActivity" />
 
     </application>
 </manifest>
