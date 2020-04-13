@@ -17,17 +17,18 @@ import com.skx.tomike.activity.UrlEncodeActivity;
 import com.skx.tomike.activity.VectorDrawableActivity;
 import com.skx.tomike.activity.WatermarkActivity;
 import com.skx.tomike.activity.xzdz.EffectGroupActivity;
-import com.skx.tomike.bomberlaboratory.ui.activity.GenericTestActivity;
-import com.skx.tomike.bomberlaboratory.ui.activity.ThreadActivity;
-import com.skx.tomike.bomberlaboratory.ui.activity.ThreadCallbackActivity;
-import com.skx.tomike.bomberlaboratory.ui.activity.ThreadCommunicationActivity;
-import com.skx.tomike.bomberlaboratory.ui.activity.ThreadDaemonActivity;
-import com.skx.tomike.bomberlaboratory.ui.activity.ThreadInterruptActivity;
-import com.skx.tomike.bomberlaboratory.ui.activity.ThreadSynchronizedActivity;
+import com.skx.tomike.bomberlaboratory.generic.GenericTestActivity;
+import com.skx.tomike.bomberlaboratory.thread.ThreadActivity;
+import com.skx.tomike.bomberlaboratory.thread.ThreadCallbackActivity;
+import com.skx.tomike.bomberlaboratory.thread.ThreadCommunicationActivity;
+import com.skx.tomike.bomberlaboratory.thread.ThreadDaemonActivity;
+import com.skx.tomike.bomberlaboratory.thread.ThreadInterruptActivity;
+import com.skx.tomike.bomberlaboratory.thread.ThreadSynchronizedActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.AopTestActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.GlideActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.HandlerActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.ImageLoadActivity;
+import com.skx.tomike.cannonlaboratory.ui.activity.LifecycleActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.NfcGroupActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.NotificationActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.OkHttpActivity;
@@ -182,6 +183,7 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_ANIMATOR, mAnimatorCatalogs);
 
         // 加农炮实验室
+        mFunctionCatalogs.add(new CatalogItem("lifecycle", LifecycleActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("通知", NotificationActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("打开其他App", OutterStartActivity.class.getName()));

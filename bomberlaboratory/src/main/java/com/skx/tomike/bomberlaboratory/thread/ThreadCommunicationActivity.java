@@ -1,4 +1,4 @@
-package com.skx.tomike.bomberlaboratory.ui.activity;
+package com.skx.tomike.bomberlaboratory.thread;
 
 import android.os.Handler;
 import android.os.Looper;

@@ -4,31 +4,31 @@
     <application>
 
         <activity
-            android:name=".ui.activity.GenericTestActivity"
+            android:name=".generic.GenericTestActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.ThreadActivity"
+            android:name=".thread.ThreadActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.ThreadDaemonActivity"
+            android:name=".thread.ThreadDaemonActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.ThreadInterruptActivity"
+            android:name=".thread.ThreadInterruptActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.ThreadSynchronizedActivity"
+            android:name=".thread.ThreadSynchronizedActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.ThreadCommunicationActivity"
+            android:name=".thread.ThreadCommunicationActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.ThreadCallbackActivity"
+            android:name=".thread.ThreadCallbackActivity"
             android:screenOrientation="portrait" />
 
     </application>

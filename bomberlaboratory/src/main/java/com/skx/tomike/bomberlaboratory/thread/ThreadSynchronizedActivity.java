@@ -1,13 +1,10 @@
-package com.skx.tomike.bomberlaboratory.ui.activity;
+package com.skx.tomike.bomberlaboratory.thread;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
 
 import com.skx.tomike.bomberlaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
@@ -173,8 +170,6 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity implements View.
             }, "T2").start();
         }
     }
-
-
 }
 
 class SynchronizedTest {
