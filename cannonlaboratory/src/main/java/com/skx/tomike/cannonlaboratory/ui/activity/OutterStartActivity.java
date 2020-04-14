@@ -2,21 +2,34 @@ package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.skx.tomike.cannonlaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 
-public class OutterStartActivity extends AppCompatActivity {
+public class OutterStartActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_outter_start);
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("打开外部APP").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_outter_start;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     public void startXiaoZhu(View view) {
@@ -25,16 +38,4 @@ public class OutterStartActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void startXiaoZhu4Tenant(View view) {
-        Intent intent = new Intent();
-//        intent.setAction(Intent.ACTION_VIEW);// 不确定
-        intent.setData(Uri.parse("qn2at72s9jb3xk://"));
-        startActivity(intent);
-    }
-
-    public void startTenantVideo(View view) {
-        Intent intent = new Intent();
-        intent.setData(Uri.parse("tenvideo2://?action=66&from= qn2at72s9jb3xk"));
-        startActivity(intent);
-    }
 }

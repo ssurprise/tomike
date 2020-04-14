@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/view_padding_15"
     tools:context=".widget.activity.LightDarkTextActivity">
 
     <LinearLayout
@@ -57,10 +58,10 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lightDarkText_switch"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/lightDarkText_input_master"
         android:text="" />
 

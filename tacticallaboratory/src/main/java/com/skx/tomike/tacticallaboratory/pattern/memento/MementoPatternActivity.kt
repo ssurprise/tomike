@@ -2,8 +2,11 @@ package com.skx.tomike.tacticallaboratory.pattern.memento
 
 import android.os.Bundle
 import android.view.View
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skx.tomike.tacticallaboratory.R
@@ -87,7 +90,7 @@ class MementoPatternActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickLis
                 mCaretaker.removeMemento(mementoKey)
             }
         })
-        val btnSave = findViewById<Button>(R.id.btn_mementoPattern_save)
+        val btnSave = findViewById<TextView>(R.id.btn_mementoPattern_save)
         btnSave.setOnClickListener(this)
     }
 

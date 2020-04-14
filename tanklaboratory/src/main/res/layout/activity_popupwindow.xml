@@ -3,36 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
     android:padding="15dp"
     tools:context=".widget.activity.PopupWindowActivity">
 
-
-    <Button
+    <TextView
         android:id="@+id/popupWindow_btn1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:onClick="onClick"
-        android:text="点击我试试"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
+        style="@style/TextBtnStyle"
+        android:layout_width="120dp"
         android:layout_alignTop="@+id/popupWindow_btn2"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/popupWindow_btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="138dp"
-        android:padding="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:onClick="onClick"
         android:text="点击我试试"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/popupWindow_btn2"
+        style="@style/TextBtnStyle"
+        android:layout_width="120dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="138dp"
+        android:layout_marginEnd="31dp"
         android:layout_marginRight="31dp"
-        android:layout_marginEnd="31dp" />
+        android:onClick="onClick"
+        android:text="点击我试试"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

@@ -4,40 +4,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/view_padding_15"
     android:showDividers="middle"
     tools:context=".ui.activity.RoomTestActivity">
 
-    <Button
+    <TextView
         android:id="@+id/btn_roomTest_insert"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="插入数据" />
+        android:text="插入数据"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_roomTest_update"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_below="@id/btn_roomTest_insert"
-        android:text="修改数据" />
+        android:layout_marginTop="10dp"
+        android:text="修改数据"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_roomTest_query"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_below="@id/btn_roomTest_update"
-        android:text="查询数据" />
+        android:layout_marginTop="10dp"
+        android:text="查询数据"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_roomTest_delete"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_below="@id/btn_roomTest_query"
-        android:text="删除数据" />
+        android:layout_marginTop="10dp"
+        android:text="删除数据"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/btn_roomTest_logcat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/btn_roomTest_delete" />
+        android:layout_below="@id/btn_roomTest_delete"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2" />
 
 </RelativeLayout>

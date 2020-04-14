@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
@@ -29,7 +29,7 @@ import java.util.List;
 public class LightDarkTextActivity extends SkxBaseActivity {
 
     private boolean isDarkStatus;
-    private AppCompatButton btnSwitch;
+    private AppCompatTextView btnSwitch;
 
     private final List<AppCompatEditText> editTexts = new ArrayList<>(4);
     private int index = 0;
@@ -121,14 +121,14 @@ public class LightDarkTextActivity extends SkxBaseActivity {
         }
     };
 
-    public class PasswordCharSequenceStyle extends PasswordTransformationMethod {
+    public static class PasswordCharSequenceStyle extends PasswordTransformationMethod {
 
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {
             return new PasswordCharSequence(source);
         }
 
-        private class PasswordCharSequence implements CharSequence {
+        private static class PasswordCharSequence implements CharSequence {
             private CharSequence mSource;
 
             public PasswordCharSequence(CharSequence source) {

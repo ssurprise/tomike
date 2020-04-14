@@ -23,7 +23,8 @@
             android:gravity="center_vertical"
             android:text="姓名:"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/tv_mementoPattern_playerName"
@@ -48,7 +49,8 @@
             android:gravity="center_vertical"
             android:text="血量:"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
         <SeekBar
             android:id="@+id/sb_mementoPattern_bloodVolume"
@@ -85,7 +87,8 @@
             android:textColor="@android:color/black"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <CheckBox
             android:id="@+id/cb_mementoPattern_equipment_98k"
@@ -94,6 +97,7 @@
             android:text="98k"
             app:layout_constraintLeft_toRightOf="@id/tv_mementoPattern_equipmentLabel"
             app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText"
             tools:layout_editor_absoluteX="85dp"
             tools:layout_editor_absoluteY="122dp" />
 
@@ -105,6 +109,7 @@
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_98k"
             app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_98k"
+            tools:ignore="HardcodedText"
             tools:layout_editor_absoluteX="206dp"
             tools:layout_editor_absoluteY="122dp" />
 
@@ -115,7 +120,8 @@
             android:text="三级盔"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_416"
-            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_416" />
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_416"
+            tools:ignore="HardcodedText" />
 
         <CheckBox
             android:id="@+id/cb_mementoPattern_equipment_armor"
@@ -124,7 +130,8 @@
             android:text="三级甲"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_helmet"
-            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_helmet" />
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_helmet"
+            tools:ignore="HardcodedText" />
 
         <CheckBox
             android:id="@+id/cb_mementoPattern_equipment_grenade"
@@ -133,21 +140,23 @@
             android:text="手雷"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_armor"
-            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_armor" />
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_armor"
+            tools:ignore="HardcodedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <TextView
         android:id="@+id/btn_mementoPattern_save"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="存档"
-        tools:ignore="ButtonStyle" />
+        tools:ignore="ButtonStyle,HardcodedText" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_mementoPattern_mementoHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />
+
 </LinearLayout>

@@ -2,7 +2,6 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Color;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,15 +53,10 @@ public class NavigationBarActivity extends SkxBaseActivity implements View.OnCli
         mNavigationBar = findViewById(R.id.navigationBar_tab);
         contentText = findViewById(R.id.navigationBar_content);
 
-        Button navigationBar_notifyBtn1 = findViewById(R.id.navigationBar_notifyBtn1);
-        Button navigationBar_notifyBtn2 = findViewById(R.id.navigationBar_notifyBtn2);
-        Button navigationBar_notifyBtn3 = findViewById(R.id.navigationBar_notifyBtn3);
-        Button navigationBar_notifyBtn4 = findViewById(R.id.navigationBar_notifyBtn4);
-        navigationBar_notifyBtn1.setOnClickListener(this);
-        navigationBar_notifyBtn2.setOnClickListener(this);
-        navigationBar_notifyBtn3.setOnClickListener(this);
-        navigationBar_notifyBtn4.setOnClickListener(this);
-
+        findViewById(R.id.navigationBar_notifyBtn1).setOnClickListener(this);
+        findViewById(R.id.navigationBar_notifyBtn2).setOnClickListener(this);
+        findViewById(R.id.navigationBar_notifyBtn3).setOnClickListener(this);
+        findViewById(R.id.navigationBar_notifyBtn4).setOnClickListener(this);
 
         mNavigationBar.setTabMode(TabLayout.MODE_FIXED);
         mNavigationBar.setTabGravity(TabLayout.GRAVITY_FILL);

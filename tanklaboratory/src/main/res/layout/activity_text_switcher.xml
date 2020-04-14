@@ -54,11 +54,13 @@
 
     </TextSwitcher>
 
-    <Button
+    <TextView
         android:id="@+id/btn_textSwitcher_start"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
         android:layout_below="@id/ts_textSwitcher_xml_implement"
-        android:text="点击切换" />
+        android:background="@drawable/btn_selector"
+        android:text="点击切换"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

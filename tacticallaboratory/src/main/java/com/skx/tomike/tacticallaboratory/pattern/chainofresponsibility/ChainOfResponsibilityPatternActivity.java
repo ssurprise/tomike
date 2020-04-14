@@ -3,18 +3,17 @@ package com.skx.tomike.tacticallaboratory.pattern.chainofresponsibility;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.skx.tomike.tacticallaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 import java.util.Random;
 
@@ -23,7 +22,7 @@ import java.util.Random;
  *
  * @author shiguotao
  */
-public class ChainOfResponsibilityPatternActivity extends AppCompatActivity implements View.OnClickListener {
+public class ChainOfResponsibilityPatternActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private CheckBox mCbComplaintsReasonHosted;
     private CheckBox mCbComplaintsReasonActor;
@@ -36,22 +35,33 @@ public class ChainOfResponsibilityPatternActivity extends AppCompatActivity impl
     private TextView mTvLoadingText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pattern_chain_of_responsibility);
+    protected void initParams() {
 
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("责任链模式").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_pattern_chain_of_responsibility;
+    }
+
+    @Override
+    protected void initView() {
         mCbComplaintsReasonHosted = findViewById(R.id.cb_chainOfResponsibility_complaintsReason_hosted);
         mCbComplaintsReasonActor = findViewById(R.id.cb_chainOfResponsibility_complaintsReason_actor);
         mCbComplaintsReasonNegativeAttitude = findViewById(R.id.cb_chainOfResponsibility_complaintsReason_negativeAttitude);
         mCbComplaintsReasonVerbalAbuse = findViewById(R.id.cb_chainOfResponsibility_complaintsReason_verbalAbuse);
 
-        Button mBtnSubmit = findViewById(R.id.btn_chainOfResponsibility_submit);
         mTvSubmitResult = findViewById(R.id.tv_chainOfResponsibility_submitResult);
 
         mRlLoading = findViewById(R.id.rl_chainOfResponsibility_loading);
         mTvLoadingText = findViewById(R.id.rl_chainOfResponsibility_loadingText);
 
-        mBtnSubmit.setOnClickListener(this);
+        findViewById(R.id.btn_chainOfResponsibility_submit).setOnClickListener(this);
     }
 
     @Override

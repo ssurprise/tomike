@@ -14,25 +14,20 @@
         android:scaleType="matrix"
         android:src="@drawable/image_03" />
 
-    <Button
+    <TextView
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_marginTop="15dp"
-        android:gravity="center"
         android:onClick="startTranslate"
         android:text="移动"
-        android:textColor="@color/skx_212121"
-        android:textSize="16sp"
         tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
+        android:layout_marginTop="10dp"
         android:onClick="reset"
         android:text="重置"
-        android:textColor="@color/skx_212121"
-        android:textSize="16sp"
         tools:ignore="HardcodedText" />
 
 </LinearLayout>

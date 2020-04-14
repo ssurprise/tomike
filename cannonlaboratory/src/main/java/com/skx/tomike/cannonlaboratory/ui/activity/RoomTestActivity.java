@@ -2,7 +2,6 @@ package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.lifecycle.Observer;
@@ -23,15 +22,15 @@ import java.util.List;
  */
 public class RoomTestActivity extends SkxBaseActivity<RecentlyBrowsedViewModel> implements View.OnClickListener {
 
-    private Button mBtnInsert;
-    private Button mBtnUpdate;
-    private Button mBtnQuery;
-    private Button mBtnDelete;
     private TextView mTvLogcat;
 
     @Override
     protected void initParams() {
+    }
 
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("Room - 最近浏览案例").create();
     }
 
     @Override
@@ -53,22 +52,13 @@ public class RoomTestActivity extends SkxBaseActivity<RecentlyBrowsedViewModel> 
     }
 
     @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("Room - 最近浏览案例").create();
-    }
-
-    @Override
     protected void initView() {
-        mBtnInsert = findViewById(R.id.btn_roomTest_insert);
-        mBtnUpdate = findViewById(R.id.btn_roomTest_update);
-        mBtnQuery = findViewById(R.id.btn_roomTest_query);
-        mBtnDelete = findViewById(R.id.btn_roomTest_delete);
         mTvLogcat = findViewById(R.id.btn_roomTest_logcat);
 
-        mBtnInsert.setOnClickListener(this);
-        mBtnUpdate.setOnClickListener(this);
-        mBtnQuery.setOnClickListener(this);
-        mBtnDelete.setOnClickListener(this);
+        findViewById(R.id.btn_roomTest_insert).setOnClickListener(this);
+        findViewById(R.id.btn_roomTest_update).setOnClickListener(this);
+        findViewById(R.id.btn_roomTest_query).setOnClickListener(this);
+        findViewById(R.id.btn_roomTest_delete).setOnClickListener(this);
     }
 
     @Override

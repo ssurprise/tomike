@@ -8,44 +8,42 @@
     tools:context="com.skx.tomike.tanklaboratory.animation.activity.LayoutTransitionActivity">
 
     <LinearLayout
-        android:id="@+id/ll_layoutTransition_btnWrapper"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="add"
-            android:text="添加"
-            tools:ignore="ButtonStyle" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="remove"
-            android:text="移除"
-            tools:ignore="ButtonStyle" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/ll_layoutTransition_parent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="70dp"
         android:animateLayoutChanges="true"
         android:divider="@drawable/linearlayout_divider"
         android:orientation="vertical"
         android:showDividers="middle|end"
-        app:layout_constraintBottom_toTopOf="@id/ll_layoutTransition_btnWrapper"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_layoutTransition_addBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:onClick="add"
+        android:text="添加"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tv_layoutTransition_delBtn"
+        tools:ignore="ButtonStyle,HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_layoutTransition_delBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginLeft="10dp"
+        android:onClick="remove"
+        android:text="移除"
+        app:layout_constraintLeft_toRightOf="@id/tv_layoutTransition_addBtn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_layoutTransition_addBtn"
+        tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

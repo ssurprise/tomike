@@ -31,30 +31,35 @@
 
     </TextView>
 
-    <Button
+    <TextView
         android:id="@+id/navigationBar_notifyBtn1"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="刷新1" />
+        android:text="刷新1"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
         android:id="@+id/navigationBar_notifyBtn2"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="刷新2"
+        tools:ignore="HardcodedText" />
 
-        android:layout_height="50dp"
-        android:text="刷新2" />
-
-    <Button
+    <TextView
         android:id="@+id/navigationBar_notifyBtn3"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="刷新3"
+        tools:ignore="HardcodedText" />
 
-        android:layout_height="50dp"
-        android:text="刷新3" />
-
-    <Button
+    <TextView
         android:id="@+id/navigationBar_notifyBtn4"
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="刷新4" />
+        android:layout_marginTop="10dp"
+        android:text="刷新4"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

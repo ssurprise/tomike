@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,77 +8,100 @@
     android:padding="15dp"
     tools:context=".widget.activity.RecyclerViewItemUpdateActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
+    <TextView
+        android:id="@+id/tv_recyclerItem_append"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:onClick="append"
+        android:text="追加一项"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tv_recyclerItem_appendRange"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="append"
-            android:text="追加一项" />
+    <TextView
+        android:id="@+id/tv_recyclerItem_appendRange"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:onClick="appendRange"
+        android:text="追加多项"
+        app:layout_constraintLeft_toRightOf="@id/tv_recyclerItem_append"
+        app:layout_constraintRight_toLeftOf="@id/tv_recyclerItem_insert"
+        app:layout_constraintTop_toTopOf="@id/tv_recyclerItem_append"
+        tools:ignore="HardcodedText" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="appendRange"
-            android:text="追加多项" />
+    <TextView
+        android:id="@+id/tv_recyclerItem_insert"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:onClick="insertItem"
+        android:text="插入一项"
+        app:layout_constraintLeft_toRightOf="@id/tv_recyclerItem_appendRange"
+        app:layout_constraintRight_toLeftOf="@id/tv_recyclerItem_insertRange"
+        app:layout_constraintTop_toTopOf="@id/tv_recyclerItem_append"
+        tools:ignore="HardcodedText" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="insertItem"
-            android:text="插入一项" />
+    <TextView
+        android:id="@+id/tv_recyclerItem_insertRange"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:onClick="insertRange"
+        android:text="插入多项"
+        app:layout_constraintLeft_toRightOf="@id/tv_recyclerItem_insert"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_recyclerItem_append"
+        tools:ignore="HardcodedText" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="insertRange"
-            android:text="插入多项" />
+    <TextView
+        android:id="@+id/tv_recyclerItem_delFirst"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginTop="15dp"
+        android:onClick="removeFirst"
+        android:text="删除First"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tv_recyclerItem_delLast"
+        app:layout_constraintTop_toBottomOf="@id/tv_recyclerItem_append"
+        tools:ignore="HardcodedText" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_recyclerItem_delLast"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:onClick="removeLast"
+        android:text="删除Last"
+        app:layout_constraintLeft_toRightOf="@id/tv_recyclerItem_delFirst"
+        app:layout_constraintRight_toLeftOf="@id/tv_recyclerItem_delRange"
+        app:layout_constraintTop_toTopOf="@id/tv_recyclerItem_delFirst"
+        tools:ignore="HardcodedText" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="removeFirst"
-            android:text="删除First" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="removeLast"
-            android:text="删除Last" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="removeRange"
-            android:text="删除多项" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_recyclerItem_delRange"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:onClick="removeRange"
+        android:text="删除多项"
+        app:layout_constraintLeft_toRightOf="@id/tv_recyclerItem_delLast"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_recyclerItem_delFirst"
+        tools:ignore="HardcodedText" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recyclerviewItemUpdate_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_recyclerItem_delFirst" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

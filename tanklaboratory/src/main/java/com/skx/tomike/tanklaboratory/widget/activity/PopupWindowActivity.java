@@ -5,9 +5,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
@@ -17,8 +17,8 @@ import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 
 public class PopupWindowActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mBtn1;
-    private Button mBtn2;
+    private TextView mBtn1;
+    private TextView mBtn2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
