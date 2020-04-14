@@ -1,19 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/view_padding_15"
     android:paddingLeft="@dimen/view_padding_15"
-    android:paddingRight="@dimen/view_padding_15"
     android:paddingTop="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingBottom="@dimen/view_padding_15"
     tools:context="com.skx.tomike.tacticallaboratory.pattern.prototype.PrototypePatternActivity">
 
-    <TextView
-        android:id="@+id/clonePattern_note"
+    <RadioGroup
+        android:id="@+id/cb_proxy_cars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/skx_323232"
-        android:textSize="14sp" />
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</RelativeLayout>
+        <RadioButton
+            android:id="@+id/cb_proxy_audi"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="88dp"
+            android:gravity="center"
+            android:text="奥迪"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/cb_proxy_benz"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginLeft="52dp"
+            android:gravity="center"
+            android:text="奔驰"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_proxy_factorySale"
+        style="@style/TextBtnStyle"
+        android:layout_width="100dp"
+        android:layout_marginTop="150dp"
+        android:text="直销"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="84dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="代理："
+        android:textColor="@color/skx_212121"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_proxy_factorySale" />
+
+    <TextView
+        android:id="@+id/tv_proxy_staticProxy"
+        style="@style/TextBtnStyle"
+        android:layout_width="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="静态代理"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_proxy_dynamicProxy"
+        style="@style/TextBtnStyle"
+        android:layout_width="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="动态代理"
+        app:layout_constraintStart_toEndOf="@id/tv_proxy_staticProxy"
+        app:layout_constraintTop_toTopOf="@id/tv_proxy_staticProxy"
+        tools:ignore="HardcodedText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
