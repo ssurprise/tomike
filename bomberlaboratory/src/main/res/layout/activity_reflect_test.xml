@@ -7,6 +7,7 @@
     android:padding="15dp">
 
     <TextView
+        android:id="@+id/tv_reflect_getClass"
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
@@ -14,6 +15,7 @@
         tools:ignore="HardcodedText" />
 
     <TextView
+        android:id="@+id/tv_reflect_getConstructors"
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
@@ -21,6 +23,7 @@
         tools:ignore="HardcodedText" />
 
     <TextView
+        android:id="@+id/tv_reflect_newInstance"
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
@@ -28,17 +31,37 @@
         tools:ignore="HardcodedText" />
 
     <TextView
+        android:id="@+id/tv_reflect_getMethods"
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
-        android:text="通过反射获取类的所有公共方法"
+        android:text="通过反射获取类的所有方法"
+        android:textSize="14sp"
         tools:ignore="HardcodedText" />
 
     <TextView
+        android:id="@+id/tv_reflect_methodInvoke"
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
-        android:text="通过反射获取类自身的所有方法"
+        android:text="通过反射执行具体的方法"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_reflect_getFields"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="通过反射获取所有的字段"
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_reflect_accessField"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="通过反射访问指定的字段"
         tools:ignore="HardcodedText" />
 
 </LinearLayout>

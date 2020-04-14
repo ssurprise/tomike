@@ -28,15 +28,15 @@ public class Dog extends Animal {
     }
 
     private void hearing() {
-        Log.e("Reflect", "听力很好");
+        Log.e("Reflect", "private 修饰的方法 -> 狗的听觉非常棒");
     }
 
     public void run() {
-        Log.e("Reflect", "跑");
+        Log.e("Reflect", "自己的public 方法 -> 跑");
     }
 
     @Override
     public void eat(String food) {
-        Log.e("Reflect", "狗吃" + food);
+        Log.e("Reflect", "重写父类的方法 -> 狗吃" + food);
     }
 }
