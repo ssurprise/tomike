@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/skx_f3f3f3"
-    android:paddingLeft="@dimen/view_padding_15"
-    android:paddingTop="@dimen/view_padding_15"
-    android:paddingRight="@dimen/view_padding_15"
-    android:paddingBottom="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.activity.VectorDrawableActivity">
+    android:padding="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.tanklaboratory.widget.activity.VectorDrawableActivity">
 
     <LinearLayout
         android:id="@+id/vectorDrawableTest_container"
@@ -25,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             app:srcCompat="@drawable/ic_christmas_candy"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/vectorDrawableTest_TextView"

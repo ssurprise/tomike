@@ -1,15 +1,17 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 
 /**
@@ -30,31 +32,39 @@ import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
  * 3.ConstantState 享元模式
  * 4.setTint()  setTintList() 着色方法
  */
-public class Tint_DrawableTintActivity extends AppCompatActivity {
+public class DrawableTintActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawable_compat_tint);
+    protected void initParams() {
+    }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_drawable_compat_tint;
+    }
+
+    @Override
+    protected void initView() {
         ImageView mImageView1 = findViewById(R.id.tintTest_ImageView1);
         ImageView mImageView2 = findViewById(R.id.tintTest_ImageView2);
         ImageView mImageView3 = findViewById(R.id.tintTest_ImageView3);
         ImageView mImageView4 = findViewById(R.id.tintTest_ImageView4);
 
-        Drawable originBitmapDrawable = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
-
         SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
+
+        Drawable originBitmapDrawable = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
         ViewCompat.setBackground(mImageView1, skxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#30c3a6")));
+        mImageView2.setImageDrawable(skxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#ff4081")));
 
-        ViewCompat.setBackground(mImageView2, skxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#ff4081")));
 
-//        Bitmap bitmap = ((BitmapDrawable) originBitmapDrawable).getBitmap();
-//        ViewCompat.setBackground(mImageView3, new BitmapDrawable(getResources(), bitmap));
-//
-//        Bitmap bitmap2 = ((BitmapDrawable) originBitmapDrawable2).getBitmap();
-//        mImageView4.setImageBitmap(bitmap2);
+        Drawable originBitmapDrawable2 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
+        Drawable tintDrawable2 = skxDrawableUtil.tintDrawable(originBitmapDrawable2, Color.parseColor("#30c3a6"));
+        Bitmap bitmap2 = ((BitmapDrawable) tintDrawable2).getBitmap();
+        ViewCompat.setBackground(mImageView3, new BitmapDrawable(getResources(), bitmap2));
+        mImageView4.setImageBitmap(bitmap2);
     }
+
+
     /*
       mMutated 是个标签，已保证mutate 只会设置一次，也就解释了在Drawable中对mutate（）方法的一个解释，
      Calling this method on a mutable Drawable will have no effect.

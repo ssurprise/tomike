@@ -47,41 +47,6 @@
             android:name=".widget.activity.LightDarkTextActivity"
             android:screenOrientation="portrait" />
 
-        <!-- 属性动画 -->
-        <activity
-            android:name=".animation.activity.PropertyAnimatorActivity"
-            android:screenOrientation="portrait" />
-
-        <!-- 圆形揭示 -->
-        <activity
-            android:name=".animation.activity.CircularRevealActivity"
-            android:screenOrientation="portrait" />
-
-        <!--共享元素-->
-        <activity
-            android:name=".animation.activity.ShareElementActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".animation.activity.ShareElement2Activity" />
-
-        <!--摇晃动效-->
-        <activity android:name=".animation.activity.ShakeAnimatorActivity" />
-
-        <!--贝塞尔曲线动效-->
-        <activity
-            android:name=".animation.activity.BezierAnimatorActivity"
-            android:screenOrientation="portrait" />
-
-        <!-- scrollBy 之图片移动 activity -->
-        <activity
-            android:name=".animation.activity.ScrollerPracticeActivity"
-            android:screenOrientation="portrait" />
-
-        <!--Layout 添加/删除子view的过渡效果-->
-        <activity
-            android:name=".animation.activity.LayoutTransitionActivity"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name=".widget.activity.DrawerLayoutActivity"
             android:screenOrientation="portrait" />
@@ -134,7 +99,87 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".widget.activity.RecyclerViewItemUpdateActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".widget.activity.VectorDrawableActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".widget.activity.DrawableTintActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".widget.activity.DrawableTint2Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".widget.activity.ShapeDrawableHelperActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".widget.activity.ShadowActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".widget.activity.TabLayoutHelperActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+
+        <activity
             android:name=".animation.activity.TweenAnimationActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".animation.activity.ScrollViewAnchorActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <!-- 属性动画 -->
+        <activity
+            android:name=".animation.activity.PropertyAnimatorActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 圆形揭示 -->
+        <activity
+            android:name=".animation.activity.CircularRevealActivity"
+            android:screenOrientation="portrait" />
+
+        <!--共享元素-->
+        <activity
+            android:name=".animation.activity.ShareElementActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".animation.activity.ShareElement2Activity"
+            android:screenOrientation="portrait" />
+
+        <!--摇晃动效-->
+        <activity
+            android:name=".animation.activity.ShakeAnimatorActivity"
+            android:screenOrientation="portrait" />
+
+        <!--贝塞尔曲线动效-->
+        <activity
+            android:name=".animation.activity.BezierAnimatorActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- scrollBy 之图片移动 activity -->
+        <activity
+            android:name=".animation.activity.ScrollerPracticeActivity"
+            android:screenOrientation="portrait" />
+
+        <!--Layout 添加/删除子view的过渡效果-->
+        <activity
+            android:name=".animation.activity.LayoutTransitionActivity"
             android:screenOrientation="portrait" />
 
     </application>

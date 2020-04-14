@@ -81,14 +81,8 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
-        <activity
-            android:name=".cannonlaboratory.ui.activity.ZoomImageActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".tanklaboratory.animation.activity.ScrollViewAnchorActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+
+
 
         <activity
             android:name=".activity.ColorMatrixActivity"
@@ -108,27 +102,7 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".tanklaboratory.widget.activity.RecyclerViewItemUpdateActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".activity.VectorDrawableActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".tanklaboratory.widget.activity.Tint_DrawableTintActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".tanklaboratory.widget.activity.Tint_BackgroundTintActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
             android:name=".activity.WatermarkActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".tanklaboratory.widget.activity.ShapeDrawableHelperActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
@@ -137,14 +111,6 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
-        <activity
-            android:name=".tanklaboratory.widget.activity.ShadowActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".tanklaboratory.widget.activity.TabLayoutHelperActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activity.xzdz.EffectGroupActivity"
             android:screenOrientation="portrait"
@@ -163,10 +129,6 @@
             android:name=".service.RemoteService"
             android:process=":com.skx.remote" />
 
-        <activity
-            android:name=".cannonlaboratory.ui.activity.AopTestActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
 
     </application>
 

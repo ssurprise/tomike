@@ -29,7 +29,7 @@ import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
  * setBackgroundTintList（colorStateListSelector）
  * setSupportBackgroundTintList（colorStateListSelector）
  */
-public class Tint_BackgroundTintActivity extends SkxBaseActivity<BaseViewModel> {
+public class DrawableTint2Activity extends SkxBaseActivity<BaseViewModel> {
 
     private ImageView mTint_ImageView2;
     private Button mTint_Btn2;
