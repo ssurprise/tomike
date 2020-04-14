@@ -5,7 +5,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -92,19 +91,13 @@ public class ThreadActivity extends SkxBaseActivity implements View.OnClickListe
     protected void initView() {
         mSvLogcat = findViewById(R.id.sv_thread_logcat);
         mTvLogcat = findViewById(R.id.tv_thread_logcat);
-        Button mBtnThread0 = findViewById(R.id.btn_thread_0);
-        Button mBtnThread1 = findViewById(R.id.btn_thread_1);
-        Button mBtnThread2 = findViewById(R.id.btn_thread_2);
-        Button mBtnThread3 = findViewById(R.id.btn_thread_3);
-
         mTvPeopleCount = findViewById(R.id.tv_people_count);
-        Button mBtnAddPeople = findViewById(R.id.btn_add_people);
 
-        mBtnThread0.setOnClickListener(this);
-        mBtnThread1.setOnClickListener(this);
-        mBtnThread2.setOnClickListener(this);
-        mBtnThread3.setOnClickListener(this);
-        mBtnAddPeople.setOnClickListener(this);
+        findViewById(R.id.btn_thread_0).setOnClickListener(this);
+        findViewById(R.id.btn_thread_1).setOnClickListener(this);
+        findViewById(R.id.btn_thread_2).setOnClickListener(this);
+        findViewById(R.id.btn_thread_3).setOnClickListener(this);
+        findViewById(R.id.btn_add_people).setOnClickListener(this);
 
         mTvPeopleCount.setText(String.format(Locale.CHINA, "当前等待人数：%d人", mClientArray.size()));
     }

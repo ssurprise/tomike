@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/view_padding_15">
 
-    <Button
+    <TextView
         android:id="@+id/btn_thread_0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
         android:text="vip"
-        android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btn_thread_1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_thread_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:text="柜台1"
-        android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toRightOf="@id/btn_thread_0"
         app:layout_constraintRight_toLeftOf="@id/btn_thread_2"
-        app:layout_constraintTop_toTopOf="@id/btn_thread_0" />
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_thread_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:text="柜台2"
-        android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toRightOf="@id/btn_thread_1"
         app:layout_constraintRight_toLeftOf="@id/btn_thread_3"
-        app:layout_constraintTop_toTopOf="@id/btn_thread_0" />
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_thread_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:text="柜台3"
-        android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toRightOf="@id/btn_thread_2"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_thread_0" />
-
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_people_count"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
@@ -58,29 +63,26 @@
         android:text="当前等待人数：0人"
         android:textColor="@color/skx_212121"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_thread_0" />
+        app:layout_constraintTop_toBottomOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_add_people"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextBtnStyle"
+        android:layout_width="120dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
         android:text="又来一个人，+1"
         android:textColor="@color/skx_212121"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_thread_0" />
+        app:layout_constraintTop_toBottomOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
 
     <ScrollView
         android:id="@+id/sv_thread_logcat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/skx_f5f5f5"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,16 +97,14 @@
             android:textSize="14sp" />
     </ScrollView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        style="@style/TextBtnStyle"
+        android:layout_width="100dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
         android:onClick="clearClient"
         android:text="重置"
-        android:textColor="@color/skx_212121"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_add_people" />
+        app:layout_constraintTop_toBottomOf="@id/btn_add_people"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
