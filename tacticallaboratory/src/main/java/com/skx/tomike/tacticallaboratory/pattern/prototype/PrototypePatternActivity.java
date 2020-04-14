@@ -1,4 +1,4 @@
-package com.skx.tomike.tacticallaboratory.activity;
+package com.skx.tomike.tacticallaboratory.pattern.prototype;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +21,7 @@ import com.skx.tomike.tacticallaboratory.bean.UserSetting;
  *
  * @author shiguotao
  */
-public class ClonePatternActivity extends AppCompatActivity {
+public class PrototypePatternActivity extends AppCompatActivity {
 
     String noteStr = "super.clone 拷贝如果有包含对象，属于浅拷贝。包含的对象属性也需要实现Cloneable接口，重写clone方法。否则修改复制对象的对象值，则会影响到源对象的属性\n\n"
             + "原型模式可以解决构建复杂对象的资源消耗问题，能够在某些场景下提升创建对象的效率。另外一个重要的用户就是保护性考拷贝\n\n" +
@@ -38,7 +38,7 @@ public class ClonePatternActivity extends AppCompatActivity {
     }
 
     private void initializeView() {
-        setContentView(R.layout.activity_pattern_clone);
+        setContentView(R.layout.activity_pattern_prototype);
         TextView note = findViewById(R.id.clonePattern_note);
         note.setText(noteStr);
     }

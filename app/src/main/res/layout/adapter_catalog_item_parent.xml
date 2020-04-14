@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:paddingEnd="@dimen/view_paddingRight_15"
-    android:paddingLeft="@dimen/view_paddingLeft_15"
-    android:paddingRight="@dimen/view_paddingRight_15"
-    android:paddingStart="@dimen/view_paddingLeft_15">
+    android:paddingEnd="@dimen/view_padding_15"
+    android:paddingLeft="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingStart="@dimen/view_padding_15">
 
     <View
         android:layout_width="match_parent"

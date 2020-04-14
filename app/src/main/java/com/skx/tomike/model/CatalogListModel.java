@@ -42,10 +42,12 @@ import com.skx.tomike.cannonlaboratory.ui.activity.RxJavaActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.TransparentThemeActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.ZoomImageActivity;
 import com.skx.tomike.javabean.CatalogItem;
-import com.skx.tomike.tacticallaboratory.activity.ClonePatternActivity;
 import com.skx.tomike.tacticallaboratory.activity.ViewModelActivity;
 import com.skx.tomike.tacticallaboratory.pattern.chainofresponsibility.ChainOfResponsibilityPatternActivity;
 import com.skx.tomike.tacticallaboratory.pattern.memento.MementoPatternActivity;
+import com.skx.tomike.tacticallaboratory.pattern.observer.ObserverPatternActivity;
+import com.skx.tomike.tacticallaboratory.pattern.prototype.PrototypePatternActivity;
+import com.skx.tomike.tacticallaboratory.pattern.proxy.ProxyActivity;
 import com.skx.tomike.tacticallaboratory.pattern.strategy.StrategyPatternActivity;
 import com.skx.tomike.tanklaboratory.animation.activity.BezierAnimatorActivity;
 import com.skx.tomike.tanklaboratory.animation.activity.CircularRevealActivity;
@@ -215,10 +217,12 @@ public class CatalogListModel {
 
         // 作战实验室
         mDesignPatternCatalogs.add(new CatalogItem("MVVM-ViewModel", ViewModelActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("观察者模式", ObserverPatternActivity.class.getName()));
         mDesignPatternCatalogs.add(new CatalogItem("备忘录模式", MementoPatternActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("原型模式", ClonePatternActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("原型模式", PrototypePatternActivity.class.getName()));
         mDesignPatternCatalogs.add(new CatalogItem("策略模式", StrategyPatternActivity.class.getName()));
         mDesignPatternCatalogs.add(new CatalogItem("责任链模式", ChainOfResponsibilityPatternActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("代理模式", ProxyActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_DESIGN_PATTERNS, mDesignPatternCatalogs);
 
 

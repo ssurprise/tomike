@@ -1,4 +1,4 @@
-package com.skx.tomike.tacticallaboratory.activity;
+package com.skx.tomike.tacticallaboratory.pattern.observer;
 
 import android.os.Bundle;
 import android.widget.TextView;

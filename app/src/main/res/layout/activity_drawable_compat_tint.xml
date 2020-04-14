@@ -9,10 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/view_padding_15"
         android:paddingTop="15dp"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/view_padding_15"
+        android:paddingBottom="@dimen/view_padding_15"
         tools:context="com.skx.tomike.activity.Tint_DrawableTintActivity">
 
         <TextView

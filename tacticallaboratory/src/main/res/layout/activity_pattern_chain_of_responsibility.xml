@@ -33,8 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_chainOfResponsibility_header"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:paddingLeft="@dimen/view_padding_15"
+        android:paddingRight="@dimen/view_padding_15">
 
         <TextView
             android:layout_width="match_parent"

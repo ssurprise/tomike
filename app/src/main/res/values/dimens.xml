@@ -1,20 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-
-    <!-- 分割线的宽度/高度 -->
-    <dimen name="view_marginLeft_15">15dp</dimen>
-    <dimen name="view_marginRight_15">15dp</dimen>
-    <dimen name="view_padding">16dp</dimen>
-    <dimen name="view_padding_15">15dp</dimen>
-    <dimen name="view_paddingLeft_15">15dp</dimen>
-    <dimen name="view_paddingRight_15">15dp</dimen>
-
-    <dimen name="view_height_48">48dp</dimen>
-    <dimen name="view_height_0.5" tools:ignore="MissingDefaultResource">0.5dp</dimen>
-
-    <dimen name="text_margin">16dp</dimen>
-
 </resources>

@@ -14,10 +14,10 @@
         android:background="@android:color/white"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/view_paddingLeft_15"
-        android:paddingLeft="@dimen/view_paddingLeft_15"
-        android:paddingEnd="@dimen/view_paddingRight_15"
-        android:paddingRight="@dimen/view_paddingRight_15">
+        android:paddingStart="@dimen/view_padding_15"
+        android:paddingLeft="@dimen/view_padding_15"
+        android:paddingEnd="@dimen/view_padding_15"
+        android:paddingRight="@dimen/view_padding_15">
 
         <LinearLayout
             android:id="@+id/homepage_navigation_homepageTab"
@@ -102,7 +102,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/view_height_0.5"
+        android:layout_height="0.5dp"
         android:layout_above="@id/homepage_navigation_container"
         android:background="@color/skx_e0e0e0" />
 

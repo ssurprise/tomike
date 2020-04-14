@@ -15,16 +15,17 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.ClonePatternActivity"
+            android:name=".pattern.prototype.PrototypePatternActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.ObserverPatternActivity"
+            android:name=".pattern.observer.ObserverPatternActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.ViewModelActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".pattern.proxy.ProxyActivity" />
 
     </application>
 </manifest>

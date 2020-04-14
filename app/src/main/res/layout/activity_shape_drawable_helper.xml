@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="@dimen/view_padding">
+        android:padding="@dimen/view_padding_15">
 
         <ImageView
             android:id="@+id/imageView1"
