@@ -47,7 +47,7 @@ import com.skx.tomike.tacticallaboratory.pattern.chainofresponsibility.ChainOfRe
 import com.skx.tomike.tacticallaboratory.pattern.memento.MementoPatternActivity;
 import com.skx.tomike.tacticallaboratory.pattern.observer.ObserverPatternActivity;
 import com.skx.tomike.tacticallaboratory.pattern.prototype.PrototypePatternActivity;
-import com.skx.tomike.tacticallaboratory.pattern.proxy.ProxyActivity;
+import com.skx.tomike.tacticallaboratory.pattern.proxy.ProxyPatternActivity;
 import com.skx.tomike.tacticallaboratory.pattern.strategy.StrategyPatternActivity;
 import com.skx.tomike.tanklaboratory.animation.activity.BezierAnimatorActivity;
 import com.skx.tomike.tanklaboratory.animation.activity.CircularRevealActivity;
@@ -222,7 +222,7 @@ public class CatalogListModel {
         mDesignPatternCatalogs.add(new CatalogItem("原型模式", PrototypePatternActivity.class.getName()));
         mDesignPatternCatalogs.add(new CatalogItem("策略模式", StrategyPatternActivity.class.getName()));
         mDesignPatternCatalogs.add(new CatalogItem("责任链模式", ChainOfResponsibilityPatternActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("代理模式", ProxyActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("代理模式", ProxyPatternActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_DESIGN_PATTERNS, mDesignPatternCatalogs);
 
 

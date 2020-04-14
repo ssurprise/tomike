@@ -26,6 +26,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':TomikeCommon')
+
     // 支持库
     implementation rootProject.ext.dependencies.design
     implementation rootProject.ext.dependencies.supportV4
