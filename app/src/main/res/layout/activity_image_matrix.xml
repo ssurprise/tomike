@@ -10,7 +10,8 @@
         android:id="@+id/imageMatrix_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        tools:ignore="ContentDescription" />
 
     <GridLayout
         android:id="@+id/imageMatrix_gridLayout"

@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 
 /**
@@ -32,20 +32,15 @@ import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
  */
 public class Tint_DrawableTintActivity extends AppCompatActivity {
 
-    private ImageView mImageView1;
-    private ImageView mImageView2;
-    private ImageView mImageView3;
-    private ImageView mImageView4;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawable_compat_tint);
 
-        mImageView1 = findViewById(R.id.tintTest_ImageView1);
-        mImageView2 = findViewById(R.id.tintTest_ImageView2);
-        mImageView3 = findViewById(R.id.tintTest_ImageView3);
-        mImageView4 = findViewById(R.id.tintTest_ImageView4);
+        ImageView mImageView1 = findViewById(R.id.tintTest_ImageView1);
+        ImageView mImageView2 = findViewById(R.id.tintTest_ImageView2);
+        ImageView mImageView3 = findViewById(R.id.tintTest_ImageView3);
+        ImageView mImageView4 = findViewById(R.id.tintTest_ImageView4);
 
         Drawable originBitmapDrawable = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
 
@@ -54,9 +49,8 @@ public class Tint_DrawableTintActivity extends AppCompatActivity {
 
         ViewCompat.setBackground(mImageView2, skxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#ff4081")));
 
-//
 //        Bitmap bitmap = ((BitmapDrawable) originBitmapDrawable).getBitmap();
-//        mImageView3.setBackground(new BitmapDrawable(getResources(), bitmap));
+//        ViewCompat.setBackground(mImageView3, new BitmapDrawable(getResources(), bitmap));
 //
 //        Bitmap bitmap2 = ((BitmapDrawable) originBitmapDrawable2).getBitmap();
 //        mImageView4.setImageBitmap(bitmap2);

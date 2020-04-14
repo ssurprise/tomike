@@ -6,58 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.skx.tomike.activity.xzdz.ScrollChangeTitleActivity">
 
-    <!--底部导航栏-->
-    <LinearLayout
-        android:id="@+id/scrollChange_bottomNavigationBar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/skx_bdbdbd"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="@dimen/view_padding_15"
-            android:text="孙行者" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="@dimen/view_padding_15"
-            android:text="行者孙" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="@dimen/view_padding_15"
-            android:text="者行孙" />
-
-    </LinearLayout>
-
     <!--房源图-->
     <ImageView
         android:id="@+id/scrollChange_mainImage"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:scaleType="fitXY"
-        android:src="@drawable/image_06" />
+        android:src="@drawable/image_06"
+        tools:ignore="ContentDescription" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollChange_scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/scrollChange_bottomNavigationBar"
         android:scrollbars="vertical">
 
         <LinearLayout
@@ -93,10 +54,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:paddingEnd="@dimen/view_padding_15"
+                    android:paddingStart="@dimen/view_padding_15"
                     android:paddingLeft="@dimen/view_padding_15"
-                    android:paddingRight="@dimen/view_padding_15"
-                    android:paddingStart="@dimen/view_padding_15">
+                    android:paddingEnd="@dimen/view_padding_15"
+                    android:paddingRight="@dimen/view_padding_15">
 
                     <RelativeLayout
                         android:id="@+id/expandOrder_state"
@@ -180,8 +141,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:padding="@dimen/view_padding_15"
             android:onClick="onBackPre"
+            android:padding="@dimen/view_padding_15"
             android:src="@drawable/icon_back" />
 
         <TextView

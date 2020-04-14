@@ -13,29 +13,25 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 
 import com.skx.tomike.R;
+import com.skx.tomike.activity.SkxBaseActivity;
 
 /**
  * 滑动改变标题栏透明度、颜色
  */
-public class ScrollChangeTitleActivity extends AppCompatActivity {
+public class ScrollChangeTitleActivity extends SkxBaseActivity {
 
     private Context mContext;
     private RelativeLayout mHeaderView;
     private TextView mTitle;
     private TextView mTvDes;
     private ImageView iv_mainImage;
-    private ImageView mImgvBack;
     private NestedScrollView mScrollView;
 
     private RelativeLayout mExpandOrderState;
-    private CardView mOriginalOrderState;
-    private LinearLayout mLlOrderOther;
 
     private Drawable mBackDrawable;
     private int mAlpha = 0;
@@ -53,10 +49,10 @@ public class ScrollChangeTitleActivity extends AppCompatActivity {
         mHeaderView = findViewById(R.id.scrollChange_header);
         mTitle = findViewById(R.id.scrollChange_title);
         mTvDes = findViewById(R.id.scrollChange_des);
-        mImgvBack = findViewById(R.id.scrollChange_backImg);
         mScrollView = findViewById(R.id.scrollChange_scrollView);
         iv_mainImage = findViewById(R.id.scrollChange_mainImage);
 
+        ImageView mImgvBack = findViewById(R.id.scrollChange_backImg);
         mBackDrawable = ContextCompat.getDrawable(this, R.drawable.icon_back);
         mImgvBack.setImageDrawable(mBackDrawable);
 
@@ -67,8 +63,6 @@ public class ScrollChangeTitleActivity extends AppCompatActivity {
         LinearLayout bodyContainer = findViewById(R.id.orderDetail_bodyContainer);
 
         mExpandOrderState = findViewById(R.id.expandOrder_state);
-        mOriginalOrderState = findViewById(R.id.orderDetail_state);
-        mLlOrderOther = findViewById(R.id.order_other);
 
         LayoutTransition transition = new LayoutTransition();
         transition.setStagger(LayoutTransition.CHANGE_DISAPPEARING, 100);

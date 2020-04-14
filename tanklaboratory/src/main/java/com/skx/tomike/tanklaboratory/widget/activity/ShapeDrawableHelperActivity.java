@@ -1,42 +1,50 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.core.view.ViewCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
+import androidx.core.view.ViewCompat;
+
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 
-public class ShapeDrawableHelperActivity extends SkxBaseActivity {
+public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mLlContainer;
-    ImageView imageView1;
-    TextView textView1;
-    Button btn1;
-    View view1;
-    View view2;
-    View view3;
-    View view4;
+    private ImageView imageView1;
+    private TextView textView1;
+    private Button btn1;
+    private View view1;
+    private View view2;
+    private View view3;
+    private View view4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initializeView();
         refreshView();
     }
 
+    @Override
+    protected void initParams() {
+
+    }
 
     @Override
-    public void initializeView() {
-        super.initializeView();
-        setContentView(R.layout.activity_shape_drawable_helper);
+    protected int getLayoutId() {
+        return R.layout.activity_shape_drawable_helper;
+    }
+
+    @Override
+    protected void initView() {
         mLlContainer = findViewById(R.id.ll_drawableUtils_container);
         imageView1 = findViewById(R.id.imageView1);
         textView1 = findViewById(R.id.textView1);
@@ -47,9 +55,7 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity {
         view4 = findViewById(R.id.view4);
     }
 
-    @Override
-    public void refreshView() {
-        super.refreshView();
+    private void refreshView() {
         int[][] strokeState = {{-android.R.attr.state_pressed}, {android.R.attr.state_pressed}};
 
         SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
@@ -94,7 +100,6 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity {
         int[][] state = {{-android.R.attr.state_pressed}, {android.R.attr.state_pressed}};
         int[] colors = {Color.parseColor("#ff4081"), Color.parseColor("#3a39a6")};
         ColorStateList colorStateList = new ColorStateList(state, colors);
-
 
 //        view3.setBackground(SkxDrawableUtil.getShapeDrawable(colorStateList, strokeColorStateList, 5, 15, 5, 20));
 

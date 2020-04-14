@@ -4,15 +4,14 @@ import com.skx.tomike.activity.ColorMatrix2Activity;
 import com.skx.tomike.activity.ColorMatrixActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
-import com.skx.tomike.activity.GetTopTestActivity;
 import com.skx.tomike.activity.KeyboardActivity;
 import com.skx.tomike.activity.MatrixImageActivity;
-import com.skx.tomike.activity.ShapeDrawableHelperActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ShapeDrawableHelperActivity;
 import com.skx.tomike.activity.SpannableStringBuilderActivity;
-import com.skx.tomike.activity.StatusBarNavigationBarActivity;
-import com.skx.tomike.activity.TabLayoutHelperActivity;
-import com.skx.tomike.activity.Tint_BackgroundTintActivity;
-import com.skx.tomike.activity.Tint_DrawableTintActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.StatusBarNavigationBarActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.TabLayoutHelperActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.Tint_BackgroundTintActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.Tint_DrawableTintActivity;
 import com.skx.tomike.activity.UrlEncodeActivity;
 import com.skx.tomike.activity.VectorDrawableActivity;
 import com.skx.tomike.activity.WatermarkActivity;
@@ -162,6 +161,9 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("抽屉效果", DrawerLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("投影", ShadowActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("FloatingActionButton", FloatingActionButtonActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("SnackBar", SnackBarActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("PopupWindow", PopupWindowActivity.class.getName()));
+
 
         mViewCatalogs.add(new CatalogItem("ViewPager 一屏多展示", ViewPagerMultiplePageActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", ViewPagerWrapContentActivity.class.getName()));
@@ -184,6 +186,7 @@ public class CatalogListModel {
         mAnimatorCatalogs.add(new CatalogItem("贝塞尔曲线", BezierAnimatorActivity.class.getName()));
         mAnimatorCatalogs.add(new CatalogItem("view内容移动 - scroller", ScrollerPracticeActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_ANIMATOR, mAnimatorCatalogs);
+
 
         // 加农炮实验室
         mFunctionCatalogs.add(new CatalogItem("lifecycle", LifecycleActivity.class.getName()));
@@ -215,6 +218,17 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
 
 
+        mOtherCatalogs.add(new CatalogItem("Tint 着色1 -DrawableCompat", Tint_DrawableTintActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("Tint 着色2 -xml、选择器", Tint_BackgroundTintActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("VectorDrawable", VectorDrawableActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("SpannableString多样化展示", SpannableStringBuilderActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("Matrix自定义版", MatrixImageActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
+        mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
+
+
         // 作战实验室
         mDesignPatternCatalogs.add(new CatalogItem("MVVM-ViewModel", ViewModelActivity.class.getName()));
         mDesignPatternCatalogs.add(new CatalogItem("观察者模式", ObserverPatternActivity.class.getName()));
@@ -224,20 +238,6 @@ public class CatalogListModel {
         mDesignPatternCatalogs.add(new CatalogItem("责任链模式", ChainOfResponsibilityPatternActivity.class.getName()));
         mDesignPatternCatalogs.add(new CatalogItem("代理模式", ProxyPatternActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_DESIGN_PATTERNS, mDesignPatternCatalogs);
-
-
-        mOtherCatalogs.add(new CatalogItem("Tint 着色1 -DrawableCompat", Tint_DrawableTintActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("Tint 着色2 -xml、选择器", Tint_BackgroundTintActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("VectorDrawable", VectorDrawableActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("SnackBar", SnackBarActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("PopupWindow", PopupWindowActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("getTop()测试", GetTopTestActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("SpannableString多样化展示", SpannableStringBuilderActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("Matrix自定义版", MatrixImageActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
-        mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 
         // 战略轰炸机实验室

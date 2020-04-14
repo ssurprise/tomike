@@ -1,5 +1,4 @@
-package com.skx.tomike.fragment.business;
-
+package com.skx.tomike.tanklaboratory.widget.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,13 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
 
 public class TabLayoutContentFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "content";
     private String mContent;
-    TextView textView;
+    private TextView textView;
 
     public TabLayoutContentFragment() {
     }
@@ -40,7 +39,7 @@ public class TabLayoutContentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tablayout_content, container, false);
-        textView = (TextView) v.findViewById(R.id.tabLayoutContent_item);
+        textView = v.findViewById(R.id.tabLayoutContent_item);
         return v;
     }
 

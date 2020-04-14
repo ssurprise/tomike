@@ -1,11 +1,10 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -16,33 +15,49 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.skx.tomike.R;
-import com.skx.tomike.fragment.business.TabLayoutContentFragment;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomike.tanklaboratory.widget.fragment.TabLayoutContentFragment;
 import com.skx.tomike.tanklaboratory.widget.view.TabLayoutHelper;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TabLayoutHelperActivity extends SkxBaseActivity {
+public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
 
-    TabLayout mTabLayout;
-    ViewPager vpContent;
-    TextView txtContent;
-    GridLayout selectorGridLayout;
+    private TabLayout mTabLayout;
+    private ViewPager vpContent;
+    private TextView txtContent;
+    private GridLayout selectorGridLayout;
 
-    List<String> tabList;
+    private final List<String> tabList = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tablayout_helper);
+    protected void initParams() {
+        tabList.add("天猫");
+        tabList.add("亚马逊");
+        tabList.add("一号店");
+        tabList.add("聚美优品");
+    }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_tablayout_helper;
+    }
+
+    @Override
+    protected void initView() {
         mTabLayout = findViewById(R.id.tabLayoutHelper_tab);
         vpContent = findViewById(R.id.tabLayoutHelper_content);
         txtContent = findViewById(R.id.tabLayoutHelper_textContent);
         selectorGridLayout = findViewById(R.id.tabLayoutHelper_selector);
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 //      系统提供的使用方式
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.layout_tab_item));
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.layout_tab_item));
@@ -62,15 +77,6 @@ public class TabLayoutHelperActivity extends SkxBaseActivity {
 //        mTabLayout.removeTabAt(mTabLayout.getTabCount() - 1);
 //        mTabLayout.removeTabAt(mTabLayout.getTabCount() - 1);
 //        Log.e("删除后 选中的tab位置", "" + mTabLayout.getSelectedTabPosition());
-//
-
-        tabList = new ArrayList<>();
-        tabList.add("天猫");
-//        tabList.add("京东");
-//        tabList.add("唯品会");
-        tabList.add("亚马逊");
-        tabList.add("一号店");
-        tabList.add("聚美优品");
 
         initGridLayout();
 //        new TabLayoutHelper(mTabLayout).setSimpleAdapter(tabList)
@@ -120,7 +126,6 @@ public class TabLayoutHelperActivity extends SkxBaseActivity {
                 .setCustomAdapter(R.layout.layout_tab_item, new TabLayoutHelper.TabLayoutAdapter<String>(tabList) {
                     @Override
                     public void bindData(int position, View view, String charSequence) {
-                        ImageView imgv_tabIcon = view.findViewById(R.id.tab_icon);
                         TextView tv_tabTitle = view.findViewById(R.id.tab_title);
                         tv_tabTitle.setText(charSequence);
                     }
@@ -170,11 +175,11 @@ public class TabLayoutHelperActivity extends SkxBaseActivity {
         */
     }
 
-    public class FragmentAdapter extends FragmentPagerAdapter {
+    public static class FragmentAdapter extends FragmentPagerAdapter {
 
         private List<Fragment> fragmentList;
 
-        public FragmentAdapter(FragmentManager fm, List<Fragment> fragmentList) {
+        FragmentAdapter(FragmentManager fm, List<Fragment> fragmentList) {
             super(fm);
             this.fragmentList = fragmentList;
         }

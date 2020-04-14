@@ -32,16 +32,6 @@ public class EffectGroupActivity extends SkxBaseActivity {
         startActivity(intent);
     }
 
-    /**
-     * 滑动缩放头图
-     *
-     * @param view
-     */
-    public void onScrollZoomImage(View view) {
-        Intent intent = new Intent(this, ScrollZoomImageActivity.class);
-        startActivity(intent);
-    }
-
     public void onScrollZoomImage2(View view) {
         Intent intent = new Intent(this, ScrollZoomImage2Activity.class);
         startActivity(intent);

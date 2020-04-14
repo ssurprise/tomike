@@ -7,52 +7,38 @@
     android:padding="15dp">
 
     <TextView
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/rectangle_solid_b226a69a_corner_2"
-        android:gravity="center"
+        android:layout_marginTop="10dp"
         android:text="获取类的class 对象"
-        android:textSize="14sp"
         tools:ignore="HardcodedText" />
 
     <TextView
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/rectangle_solid_b226a69a_corner_2"
-        android:gravity="center"
         android:text="通过反射获取类的构造函数"
-        android:textSize="14sp"
         tools:ignore="HardcodedText" />
 
     <TextView
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/rectangle_solid_b226a69a_corner_2"
-        android:gravity="center"
         android:text="通过反射获取类的实例"
-        android:textSize="14sp"
         tools:ignore="HardcodedText" />
 
     <TextView
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/rectangle_solid_b226a69a_corner_2"
-        android:gravity="center"
         android:text="通过反射获取类的所有公共方法"
-        android:textSize="14sp"
         tools:ignore="HardcodedText" />
 
     <TextView
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/rectangle_solid_b226a69a_corner_2"
-        android:gravity="center"
         android:text="通过反射获取类自身的所有方法"
-        android:textSize="14sp"
         tools:ignore="HardcodedText" />
 
 </LinearLayout>

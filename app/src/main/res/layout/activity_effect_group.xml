@@ -25,14 +25,6 @@
             android:layout_width="110dp"
             android:layout_height="100dp"
             android:gravity="center"
-            android:onClick="onScrollZoomImage"
-            android:text="预订页动效"
-            android:textSize="14sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="110dp"
-            android:layout_height="100dp"
-            android:gravity="center"
             android:onClick="onScrollZoomImage2"
             android:text="预订页动效2"
             android:textSize="14sp" />

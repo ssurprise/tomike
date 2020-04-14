@@ -17,7 +17,8 @@
             android:id="@+id/imageView1"
             android:layout_width="240dp"
             android:layout_height="169dp"
-            android:src="@drawable/image_01" />
+            android:src="@drawable/image_01"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView1"
@@ -67,42 +68,49 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="7" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="8" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="9" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="10" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="11" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="12" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="13" />
     </LinearLayout>
 </ScrollView>

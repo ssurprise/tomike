@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 
 /**
@@ -28,7 +29,7 @@ import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
  * setBackgroundTintList（colorStateListSelector）
  * setSupportBackgroundTintList（colorStateListSelector）
  */
-public class Tint_BackgroundTintActivity extends AppCompatActivity {
+public class Tint_BackgroundTintActivity extends SkxBaseActivity<BaseViewModel> {
 
     private ImageView mTint_ImageView2;
     private Button mTint_Btn2;
@@ -39,10 +40,16 @@ public class Tint_BackgroundTintActivity extends AppCompatActivity {
     private AppCompatButton mTintSelector_mCompatBtn4;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawable_compat_tint2);
+    protected void initParams() {
+    }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_drawable_compat_tint2;
+    }
+
+    @Override
+    protected void initView() {
         mTint_ImageView2 = findViewById(R.id.tintTest2_tint_ImageView2);
         mTint_Btn2 = findViewById(R.id.tintTest2_tint_btn2);
         mCompatBtn4 = findViewById(R.id.tintTest2_tint_btn4);
@@ -50,7 +57,15 @@ public class Tint_BackgroundTintActivity extends AppCompatActivity {
         mTintSelector_mImageView2 = findViewById(R.id.tintTest2_ImageView2);
         mTintSelector_mBtn2 = findViewById(R.id.tintTest2_btn2);
         mTintSelector_mCompatBtn4 = findViewById(R.id.tintTest2_btn4);
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        renderView();
+    }
+
+    private void renderView() {
         SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
 
         Drawable imgBgDrawable2 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
