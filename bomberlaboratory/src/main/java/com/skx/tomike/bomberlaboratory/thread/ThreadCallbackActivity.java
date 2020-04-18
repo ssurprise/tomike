@@ -159,7 +159,13 @@ public class ThreadCallbackActivity extends SkxBaseActivity {
                 sendMessageToLogcat("使用Callable - FutureTask实现 start");
 
                 // 开启子线程
-                FutureTask<String> futureTask = new FutureTask<>(new FunCallable());
+                FutureTask<String> futureTask = new FutureTask<String>(new FunCallable()) {
+                    @Override
+                    protected void done() {
+                        super.done();
+                        Log.e("ThreadCallbackActivity", "FutureTask-done");
+                    }
+                };
                 new Thread(futureTask).start();
 
                 if (!futureTask.isDone()) {
