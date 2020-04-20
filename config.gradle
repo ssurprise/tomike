@@ -13,7 +13,7 @@ ext {
 
             /*支持库*/
             design           : 'com.google.android.material:material:1.0.0',
-            appcompatV7      : 'androidx.appcompat:appcompat:1.0.0',
+            appcompatV7      : 'androidx.appcompat:appcompat:1.1.0',
             supportV4        : 'androidx.legacy:legacy-support-v4:1.0.0',
 
             supportMultidex  : 'androidx.multidex:multidex:2.0.0',

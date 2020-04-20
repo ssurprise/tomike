@@ -67,6 +67,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.NavigationBarActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.NestedScrollViewViewPagerActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.PageIndicatorActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.PopupWindowActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.RadioGroupActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewItemUpdateActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SetTextIsSelectableTestActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity;
@@ -148,10 +149,11 @@ public class CatalogListModel {
         // 坦克实验室 - view 篇
         mViewCatalogs.add(new CatalogItem("TextView 字间距", TextWordSpacingActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 复制测试", SetTextIsSelectableTestActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextSwitcher测试", TextSwitcherActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", LightDarkTextActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", CheckBoxActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("自定义ShapeView", ShapeViewActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("单选 RadioGroup", RadioGroupActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("FlowLayout 流式布局", FlowLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ConstraintLayout约束布局", ConstraintLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CoordinatorLayout", CoordinatorLayoutActivity.class.getName()));

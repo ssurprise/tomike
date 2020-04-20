@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/view_padding_15"
+    tools:context=".widget.activity.RadioGroupActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="未加RadioGroup"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_radioGroup_1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="冬瓜"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/rb_radioGroup_2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/rb_radioGroup_2"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="西瓜"
+            app:layout_constraintLeft_toRightOf="@id/rb_radioGroup_1"
+            app:layout_constraintRight_toLeftOf="@id/rb_radioGroup_3"
+            app:layout_constraintTop_toTopOf="@id/rb_radioGroup_1"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/rb_radioGroup_3"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="南瓜"
+            app:layout_constraintLeft_toRightOf="@id/rb_radioGroup_2"
+            app:layout_constraintRight_toLeftOf="@id/rb_radioGroup_4"
+            app:layout_constraintTop_toTopOf="@id/rb_radioGroup_1"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/rb_radioGroup_4"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="北瓜"
+            app:layout_constraintLeft_toRightOf="@id/rb_radioGroup_3"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rb_radioGroup_1"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="RadioGroup + RadioButton"
+        tools:ignore="HardcodedText" />
+
+    <RadioGroup
+        android:id="@+id/rb_radioGroup_wrap1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rb_radioGroup_1">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:paddingRight="20dp"
+            android:text="东风"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:paddingRight="20dp"
+            android:text="西风"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:paddingRight="20dp"
+            android:text="南风"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:paddingRight="20dp"
+            android:text="北风"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="RadioGroup + CheckBox（单选无效）"
+        tools:ignore="HardcodedText" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rb_radioGroup_wrap1">
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:paddingRight="20dp"
+            android:text="东风"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:paddingRight="20dp"
+            android:text="西风"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:paddingRight="20dp"
+            android:text="南风"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:paddingRight="20dp"
+            android:text="北风"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+    </RadioGroup>
+</LinearLayout>
