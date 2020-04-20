@@ -19,6 +19,7 @@ import com.skx.tomike.bomberlaboratory.thread.ThreadDaemonActivity;
 import com.skx.tomike.bomberlaboratory.thread.ThreadInterruptActivity;
 import com.skx.tomike.bomberlaboratory.thread.ThreadSynchronizedActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.AopTestActivity;
+import com.skx.tomike.cannonlaboratory.ui.activity.AsyncTaskActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.GlideActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.HandlerActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.ImageLoadActivity;
@@ -190,7 +191,8 @@ public class CatalogListModel {
 
         // 加农炮实验室
         mFunctionCatalogs.add(new CatalogItem("lifecycle", LifecycleActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("handler", HandlerActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("Handler", HandlerActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("AsyncTask", AsyncTaskActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("通知", NotificationActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("打开其他App", OutterStartActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("透明Activity", TransparentThemeActivity.class.getName()));

@@ -143,6 +143,7 @@
             android:name=".ui.activity.AopTestActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".ui.activity.AsyncTaskActivity" />
     </application>
 
 </manifest>
