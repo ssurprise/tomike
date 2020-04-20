@@ -28,7 +28,6 @@ public class AsyncTaskActivity extends SkxBaseActivity<BaseViewModel> implements
 
     @Override
     protected void initParams() {
-        mDownloadFilesTask = new DownloadFilesTask(this);
     }
 
     @Override
@@ -70,14 +69,13 @@ public class AsyncTaskActivity extends SkxBaseActivity<BaseViewModel> implements
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btn_asyncTask_download) {
-            if (mDownloadFilesTask != null) {
-                mDownloadFilesTask.execute();
-            }
+            mDownloadFilesTask = new DownloadFilesTask(this);
+            mDownloadFilesTask.execute();
 
         } else if (id == R.id.btn_handler_sendOrPostRunnable) {
-//            if (mDownloadFilesTask != null) {
-//                mDownloadFilesTask.cancel();
-//            }
+            if (mDownloadFilesTask != null) {
+                mDownloadFilesTask.cancel(true);
+            }
         }
     }
 
@@ -130,11 +128,11 @@ public class AsyncTaskActivity extends SkxBaseActivity<BaseViewModel> implements
         }
     }
 
-    public static class Params {
+    private static class Params {
 
     }
 
-    public static class Result {
+    private static class Result {
 
     }
 }
