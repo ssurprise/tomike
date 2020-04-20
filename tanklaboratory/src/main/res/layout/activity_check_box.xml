@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".widget.activity.FlowLayoutActivity">
+    tools:context=".widget.activity.CheckBoxActivity">
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -57,8 +57,83 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="10dp"
         android:text="注意：第二个和第三个的样式上的区别。第二个用的是 android:drawableLeft，而第三个是用的 android:button。\n从控制文字与icon 的间距，或者扩大内边距使点击面积更大的角度考虑，使用第二种方式将更合适\n建议打开开发者选项中布局边界，看区别会更明显。"
+        android:textColor="@color/skx_bdbdbd"
+        android:textSize="10sp"
+        tools:ignore="HardcodedText,SmallSp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="下面是用RadioButton 实现"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/linearlayout_divider" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="西红柿"
+        tools:ignore="HardcodedText" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:button="@null"
+        android:checked="true"
+        android:drawableStart="@drawable/booking_home_vip_check_state_selector"
+        android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
+        android:padding="5dp"
+        android:text="鸡蛋"
+        tools:ignore="HardcodedText" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:button="@drawable/booking_home_vip_check_state_selector"
+        android:checked="true"
+        android:padding="5dp"
+        android:text="黄瓜"
+        tools:ignore="HardcodedText" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:button="@drawable/booking_home_vip_check_state_selector"
+        android:checked="true"
+        android:drawableStart="@drawable/booking_home_vip_check_state_selector"
+        android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
+        android:padding="5dp"
+        android:text="鸡蛋"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="RadioButton 继承自 android.widget.CompoundButton，复写了 toggle() 方法。如果单选按钮已被选中，则不会切换单选按钮。"
+        android:textColor="@color/skx_bdbdbd"
+        android:textSize="10sp"
+        tools:ignore="HardcodedText,SmallSp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="结论：其实CheckBox 和 RadioButton 在单独使用时并没有什么不同，两者都是继承自 android.widget.CompoundButton，源码上的差异也很小，唯一的区别就在于RadioGroup 对RadioButton 的支持"
         android:textColor="@color/skx_bdbdbd"
         android:textSize="10sp"
         tools:ignore="HardcodedText,SmallSp" />
