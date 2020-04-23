@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".generic.GenericTestActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_generic_class"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="泛型类"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_generic_method"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="泛型接口"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_generic_interface"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="泛型方法"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_generic_extend"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="通配符 - extend"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_generic_super"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="通配符 - super"
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_generic_any"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="通配符 - ?"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

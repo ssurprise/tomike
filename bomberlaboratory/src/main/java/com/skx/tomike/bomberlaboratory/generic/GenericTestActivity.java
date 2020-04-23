@@ -9,6 +9,12 @@ import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
+/**
+ * 描述 : 泛型demo
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/4/23 9:56 AM
+ */
 public class GenericTestActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
