@@ -100,8 +100,8 @@ public class AsyncTaskActivity extends SkxBaseActivity<BaseViewModel> implements
             super.onPreExecute();
             if (mW.get() != null) {
                 ToastTool.showToast(mW.get().mActivity, "开始下载");
+                Log.e("AsyncTaskActivity", "onPreExecute thread: " + Thread.currentThread().getName());
             }
-            Log.e("AsyncTaskActivity", "onPreExecute thread: " + Thread.currentThread().getName());
         }
 
         @Override
@@ -123,8 +123,10 @@ public class AsyncTaskActivity extends SkxBaseActivity<BaseViewModel> implements
         @Override
         protected void onPostExecute(Result result) {
             super.onPostExecute(result);
-            Log.e("AsyncTaskActivity", "onPostExecute thread: " + Thread.currentThread().getName());
-            ToastTool.showToast(mW.get().mActivity, "下载完成");
+            if (mW.get() != null) {
+                Log.e("AsyncTaskActivity", "onPostExecute thread: " + Thread.currentThread().getName());
+                ToastTool.showToast(mW.get().mActivity, "下载完成");
+            }
         }
     }
 
