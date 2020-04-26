@@ -1,11 +1,9 @@
 package com.skx.tomike.tacticallaboratory.pattern.observer;
 
-import android.os.Bundle;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.skx.tomike.tacticallaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
 /**
  * 观察者模式
@@ -14,19 +12,28 @@ import com.skx.tomike.tacticallaboratory.R;
  *
  * @author shiguotao
  */
-public class ObserverPatternActivity extends AppCompatActivity {
+public class ObserverPatternActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initializeView();
-        refreshView();
+    protected void initParams() {
+
     }
 
-    private void initializeView() {
-        setContentView(R.layout.activity_pattern_observer);
-        TextView note = findViewById(R.id.clonePattern_note);
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("观察者模式").create();
     }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_pattern_observer;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
 
     /*
     观察者模式又被称作发布/订阅模式，观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。
