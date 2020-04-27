@@ -36,7 +36,7 @@ public class FlowLayout extends ViewGroup {
         super(context, attrs, defStyle);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FlowLayout);
 
-        mRowSpacing = typedArray.getInteger(R.styleable.FlowLayout_maxLines, -1);
+        mMaxLines = typedArray.getInteger(R.styleable.FlowLayout_maxLines, -1);
         mRowSpacing = typedArray.getDimensionPixelSize(R.styleable.FlowLayout_rowSpacing, 0);
         mColumnSpacing = typedArray.getDimensionPixelSize(R.styleable.FlowLayout_columnSpacing, 0);
         typedArray.recycle();
