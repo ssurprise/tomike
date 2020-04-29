@@ -40,6 +40,15 @@
         tools:ignore="HardcodedText" />
 
     <TextView
+        android:id="@+id/tv_reflect_getMethod"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="通过反射获取类的指定方法"
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
         android:id="@+id/tv_reflect_methodInvoke"
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"

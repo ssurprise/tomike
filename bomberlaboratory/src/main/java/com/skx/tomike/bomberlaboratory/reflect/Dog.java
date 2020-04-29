@@ -2,9 +2,12 @@ package com.skx.tomike.bomberlaboratory.reflect;
 
 import android.util.Log;
 
+import androidx.annotation.IntRange;
+
 public class Dog extends Animal {
 
-    public String name;
+    public String name = "旺财";
+    @IntRange(from = 0, to = 20)
     private int age;
 
     public Dog() {
@@ -29,6 +32,14 @@ public class Dog extends Animal {
 
     private void hearing() {
         Log.e("Reflect", "private 修饰的方法 -> 狗的听觉非常棒");
+    }
+
+    protected void eatBone() {
+        Log.e("Reflect", "protected 修饰的方法 -> 狗吃骨头");
+    }
+
+    void friend() {
+        Log.e("Reflect", "包方法 -> 狗是人类的好朋友");
     }
 
     public void run() {

@@ -41,6 +41,7 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         findViewById(R.id.tv_reflect_getConstructors).setOnClickListener(this);
         findViewById(R.id.tv_reflect_newInstance).setOnClickListener(this);
         findViewById(R.id.tv_reflect_getMethods).setOnClickListener(this);
+        findViewById(R.id.tv_reflect_getMethod).setOnClickListener(this);
         findViewById(R.id.tv_reflect_methodInvoke).setOnClickListener(this);
         findViewById(R.id.tv_reflect_getFields).setOnClickListener(this);
         findViewById(R.id.tv_reflect_accessField).setOnClickListener(this);
@@ -52,22 +53,25 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
             test1();
 
         } else if (v.getId() == R.id.tv_reflect_getConstructors) {
-            test2();
+            getConstructors();
 
         } else if (v.getId() == R.id.tv_reflect_newInstance) {
-            test3();
+            newInstance();
 
         } else if (v.getId() == R.id.tv_reflect_getMethods) {
-            test4();
+            getMethods();
+
+        } else if (v.getId() == R.id.tv_reflect_getMethod) {
+            getMethod();
 
         } else if (v.getId() == R.id.tv_reflect_methodInvoke) {
-            test5();
+            invokeMethod();
 
         } else if (v.getId() == R.id.tv_reflect_getFields) {
-            test6();
+            getFields();
 
         } else if (v.getId() == R.id.tv_reflect_accessField) {
-            test7();
+            accessField();
         }
     }
 
@@ -84,7 +88,7 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
-    private void test2() {
+    private void getConstructors() {
         try {
             Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
 
@@ -103,7 +107,7 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
-    private void test3() {
+    private void newInstance() {
         try {
             Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
             Dog dog = (Dog) dogClass.newInstance();
@@ -126,14 +130,17 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
-    private void test4() {
+    private void getMethods() {
         try {
             Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
-            Method[] methods = dogClass.getMethods();
-            for (Method method : methods) {
-                Log.e(TAG, "method：" + method.toString());
-            }
 
+            // 获取类的所有公共(public 修饰)方法，包括超类中的公共方法。private/protect 修饰的方法获取不到。
+//            Method[] methods = dogClass.getMethods();
+//            for (Method method : methods) {
+//                Log.e(TAG, "method：" + method.toString());
+//            }
+
+            // 获取类的所有方法，不包括超类超接口中的方法。private/protect/public 修饰的方法。
             Method[] methods2 = dogClass.getDeclaredMethods();
             for (Method method : methods2) {
                 Log.e(TAG, "declare method：" + method.toString());
@@ -144,7 +151,39 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
-    private void test5() {
+    @SuppressWarnings("unchecked")
+    private void getMethod() {
+        try {
+            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+
+            Method eat = dogClass.getMethod("eat", String.class);
+            Log.e(TAG, "getMethod获取Dog类的public方法：" + eat.toString());
+
+            Method sire = dogClass.getMethod("sire");
+            Log.e(TAG, "getMethod获取Dog超类的public方法：" + sire.toString());
+
+
+            // private 修饰的方法
+            Method hearing = dogClass.getDeclaredMethod("hearing");
+            Log.e(TAG, "getDeclaredMethod获取Dog类的private方法：" + hearing.toString());
+
+            // protected 修饰的方法
+            Method eatBone = dogClass.getDeclaredMethod("eatBone");
+            Log.e(TAG, "getDeclaredMethod获取Dog类的protected方法：" + eatBone.toString());
+
+            // package-private 修饰的方法
+            Method friend = dogClass.getDeclaredMethod("friend");
+            Log.e(TAG, "getDeclaredMethod获取Dog类的package-private方法：" + friend.toString());
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void invokeMethod() {
         try {
             Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
 
@@ -168,18 +207,20 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
-    private void test6() {
+    private void getFields() {
         try {
             Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
 
-//            Field[] dogFields = dogClass.getFields();
-//            for (Field f : dogFields) {
-//                Log.e(TAG, f.toString());
-//            }
+            Field[] dogFields = dogClass.getFields();
+            for (Field f : dogFields) {
+                Log.e(TAG, "getFields：" + f.toString());
+            }
+
+            Log.e(TAG, "---------------------------------------分割线------------------------------------------------");
 
             Field[] dogDeclaredFields = dogClass.getDeclaredFields();
             for (Field f : dogDeclaredFields) {
-                Log.e(TAG, f.toString());
+                Log.e(TAG, "getDeclaredFields：" + f.toString());
             }
 
         } catch (ClassNotFoundException e) {
@@ -187,20 +228,26 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
-    private void test7() {
+    private void accessField() {
         try {
             Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+
             Dog dog = (Dog) dogClass.newInstance();
 
+            Log.e(TAG, "name 修改前为：" + dog.name);
+            Field name = dogClass.getField("name");
+            name.set(dog, "二哈");
+            Log.e(TAG, "name 修改前为：" + dog.name);
 
-            Log.e(TAG, "field 修改前为：" + dog.getAge());
+            Log.e(TAG, "---------------------------------------分割线------------------------------------------------");
 
+
+            Log.e(TAG, "age 修改前为：" + dog.getAge());
             Field age = dogClass.getDeclaredField("age");
             age.setAccessible(true);
             age.setInt(dog, 18);
 
-            Log.e(TAG, "field 修改后为：" + dog.getAge());
-
+            Log.e(TAG, "age 修改后为：" + dog.getAge());
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
