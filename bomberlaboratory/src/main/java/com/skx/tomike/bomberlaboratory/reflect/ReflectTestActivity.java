@@ -45,6 +45,7 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         findViewById(R.id.tv_reflect_methodInvoke).setOnClickListener(this);
         findViewById(R.id.tv_reflect_getFields).setOnClickListener(this);
         findViewById(R.id.tv_reflect_accessField).setOnClickListener(this);
+        findViewById(R.id.tv_reflect_annotation).setOnClickListener(this);
     }
 
     @Override
@@ -72,8 +73,12 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
 
         } else if (v.getId() == R.id.tv_reflect_accessField) {
             accessField();
+
+        } else if (v.getId() == R.id.tv_reflect_annotation) {
+            getAnnotation();
         }
     }
+
 
     /**
      * 通过反射获取类的实例
@@ -260,4 +265,19 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
+    private void getAnnotation() {
+        try {
+            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Dog dog = (Dog) dogClass.newInstance();
+
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

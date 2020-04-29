@@ -73,4 +73,12 @@
         android:text="通过反射访问指定的字段"
         tools:ignore="HardcodedText" />
 
+    <TextView
+        android:id="@+id/tv_reflect_annotation"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="通过反射获取注解"
+        tools:ignore="HardcodedText" />
+
 </LinearLayout>
