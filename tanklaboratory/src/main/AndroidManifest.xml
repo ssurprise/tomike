@@ -128,6 +128,7 @@
         <activity
             android:name=".animation.activity.LayoutTransitionActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".widget.activity.Lowercase2UppercaseActivity" />
     </application>
 
 </manifest>

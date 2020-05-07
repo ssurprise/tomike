@@ -14,6 +14,8 @@
         <item>Mars</item>
     </string-array>
 
+    <string name="filter_number_letter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

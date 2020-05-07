@@ -63,6 +63,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.DrawerLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.FloatingActionButtonActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.FlowLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.LightDarkTextActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.Lowercase2UppercaseActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.NavigationBarActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.NestedScrollViewViewPagerActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.PageIndicatorActivity;
@@ -151,6 +152,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("TextView 复制测试", SetTextIsSelectableTestActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", LightDarkTextActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("EditText 小写转大写", Lowercase2UppercaseActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RadioGroup 单选", RadioGroupActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", CheckBoxActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("自定义ShapeView", ShapeViewActivity.class.getName()));
