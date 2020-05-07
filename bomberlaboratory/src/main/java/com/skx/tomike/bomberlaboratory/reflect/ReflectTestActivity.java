@@ -45,7 +45,6 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         findViewById(R.id.tv_reflect_methodInvoke).setOnClickListener(this);
         findViewById(R.id.tv_reflect_getFields).setOnClickListener(this);
         findViewById(R.id.tv_reflect_accessField).setOnClickListener(this);
-        findViewById(R.id.tv_reflect_annotation).setOnClickListener(this);
     }
 
     @Override
@@ -138,12 +137,11 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
     private void getMethods() {
         try {
             Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
-
             // 获取类的所有公共(public 修饰)方法，包括超类中的公共方法。private/protect 修饰的方法获取不到。
-//            Method[] methods = dogClass.getMethods();
-//            for (Method method : methods) {
-//                Log.e(TAG, "method：" + method.toString());
-//            }
+            Method[] methods = dogClass.getMethods();
+            for (Method method : methods) {
+                Log.e(TAG, "method：" + method.toString());
+            }
 
             // 获取类的所有方法，不包括超类超接口中的方法。private/protect/public 修饰的方法。
             Method[] methods2 = dogClass.getDeclaredMethods();

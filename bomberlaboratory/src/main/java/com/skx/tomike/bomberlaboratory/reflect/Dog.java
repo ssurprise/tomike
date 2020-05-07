@@ -6,6 +6,7 @@ import androidx.annotation.IntRange;
 
 public class Dog extends Animal {
 
+    @ReflectAnnotationField
     public String name = "旺财";
     @IntRange(from = 0, to = 20)
     private int age;
@@ -42,12 +43,14 @@ public class Dog extends Animal {
         Log.e("Reflect", "包方法 -> 狗是人类的好朋友");
     }
 
+    @ReflectAnnotationMethod
     public void run() {
         Log.e("Reflect", "自己的public 方法 -> 跑");
     }
 
+    @ReflectAnnotationMethod
     @Override
-    public void eat(String food) {
+    public void eat(@ReflectAnnotationParam String food) {
         Log.e("Reflect", "重写父类的方法 -> 狗吃" + food);
     }
 }
