@@ -3,6 +3,7 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ReplacementTransformationMethod;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,22 +35,24 @@ public class Lowercase2UppercaseActivity extends SkxBaseActivity {
         return R.layout.activity_lowercase_2_uppercase;
     }
 
+    private ReplacementTransformationMethod transformationMethod = new ReplacementTransformationMethod() {
+        @Override
+        protected char[] getOriginal() {
+            return new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        }
+
+        @Override
+        protected char[] getReplacement() {
+            return new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+        }
+    };
+
     @Override
     protected void initView() {
         EditText mEtInputBox = findViewById(R.id.et_lowercase2Uppercase_content);
         final TextView mTvLogcat = findViewById(R.id.tv_lowercase2Uppercase_logcat);
 
-        mEtInputBox.setTransformationMethod(new ReplacementTransformationMethod() {
-            @Override
-            protected char[] getOriginal() {
-                return new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-            }
-
-            @Override
-            protected char[] getReplacement() {
-                return new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-            }
-        });
+        mEtInputBox.setTransformationMethod(transformationMethod);
 
         mEtInputBox.addTextChangedListener(new TextWatcher() {
             @Override
@@ -67,5 +70,9 @@ public class Lowercase2UppercaseActivity extends SkxBaseActivity {
                 mTvLogcat.setText(s.toString());
             }
         });
+
+        TextView mTextView = findViewById(R.id.tv_lowercase2Uppercase_textView);
+        mTextView.setTransformationMethod(transformationMethod);
+        mTextView.setText("aBcDeFgHiJkLmNoPqRsTuVwXyZ1234566789./.,!@#$%^&*()");
     }
 }
