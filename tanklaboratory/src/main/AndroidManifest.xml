@@ -129,6 +129,7 @@
             android:name=".animation.activity.LayoutTransitionActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".widget.activity.Lowercase2UppercaseActivity" />
+        <activity android:name=".widget.activity.ViewFocusActivity" />
     </application>
 
 </manifest>

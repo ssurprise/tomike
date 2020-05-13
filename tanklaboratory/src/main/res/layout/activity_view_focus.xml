@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/view_padding_15"
+    tools:context=".widget.activity.LightDarkTextActivity">
+
+    <EditText
+        android:id="@+id/et_editTextFocus_name"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="top|start"
+        android:hint="姓名"
+        android:nextFocusForward="@id/lightDarkText_input1"
+        tools:ignore="Autofill,HardcodedText,TextFields" />
+
+    <EditText
+        android:id="@+id/et_editTextFocus_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:gravity="top|start"
+        android:hint="昵称"
+        tools:ignore="Autofill,HardcodedText,TextFields" />
+
+    <RadioGroup
+        android:id="@+id/rg_editTextFocus_sex"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbtn_editTextFocus_sex_man"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp"
+            android:text="男"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+        <RadioButton
+            android:id="@+id/rbtn_editTextFocus_sex_women"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp"
+            android:text="女"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/btn_editTextFocus_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="我就是个纯文本view我就是个纯文本view我就是个纯文本view我就是个纯文本view我就是个纯文本view我就是个纯文本view我就是个纯文本view"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_editTextFocus_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="提交" />
+
+</LinearLayout>

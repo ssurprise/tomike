@@ -81,6 +81,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.TabLayoutHelperActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.TextSwitcherActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.TextWordSpacingActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.VectorDrawableActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ViewFocusActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerInfiniteLoopActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerMultiplePageActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerWrapContentActivity;
@@ -148,6 +149,7 @@ public class CatalogListModel {
 
 
         // 坦克实验室 - view 篇
+        mViewCatalogs.add(new CatalogItem("View 焦点", ViewFocusActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 字间距", TextWordSpacingActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 复制测试", SetTextIsSelectableTestActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));
