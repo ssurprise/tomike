@@ -1,6 +1,7 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
@@ -175,6 +176,25 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
                     Log.e("HandlerActivity", "00000");
                     break;
             }
+        }
+    }
+
+    /**
+     * 工作线程，带Handler
+     */
+    class LooperThread extends Thread {
+        public Handler mHandler;
+
+        public void run() {
+            Looper.prepare();
+
+            mHandler = new Handler() {
+                public void handleMessage(Message msg) {
+                    // process incoming messages here
+                }
+            };
+
+            Looper.loop();
         }
     }
 }

@@ -56,17 +56,22 @@
         app:layout_constraintTop_toTopOf="@id/btn_handler_sendOrPostMessage"
         tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/tv_handler_logcat"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_marginTop="20dp"
         android:background="@color/skx_ffdee9"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_handler_sendOrPostMessage" />
+        app:layout_constraintTop_toBottomOf="@id/btn_handler_sendOrPostMessage">
+
+        <TextView
+            android:id="@+id/tv_handler_logcat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
