@@ -43,6 +43,7 @@ public abstract class BaseMvvmActivity<T extends BaseViewModel> extends AppCompa
         if (mViewModel != null) {
             mViewModel = null;
         }
+        mActivity = null;
         super.onDestroy();
     }
 }

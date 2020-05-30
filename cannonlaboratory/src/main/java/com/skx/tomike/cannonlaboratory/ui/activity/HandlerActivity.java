@@ -91,6 +91,7 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
     private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
+            Log.e("Handler", "post -> Runnable -> run()");
             ToastTool.showToast(mActivity, "11111");
         }
     };
@@ -164,8 +165,9 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
         }
 
         @Override
-        public void dispatchMessage(Message msg) {
-            super.dispatchMessage(msg);
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.e("Handler", "handleMessage: " + msg.what);
             if (reference == null || reference.get() == null) return;
             switch (msg.what) {
                 case 1:
@@ -173,7 +175,6 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
                     reference.get().mHandlerLogcat.append(msg.obj.toString());
                     break;
                 default:
-                    Log.e("HandlerActivity", "00000");
                     break;
             }
         }
