@@ -37,9 +37,8 @@ public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
     @Override
     protected void initParams() {
         tabList.add("天猫");
-        tabList.add("亚马逊");
-        tabList.add("一号店");
-        tabList.add("聚美优品");
+        tabList.add("京东");
+        tabList.add("拼多多");
     }
 
     @Override

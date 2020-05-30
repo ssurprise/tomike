@@ -78,6 +78,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.SnackBarActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.StatusBarNavigationBarActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SwipeRefreshLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.TabLayoutHelperActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.TabLayoutIndicatorActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.TextSwitcherActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.TextWordSpacingActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.VectorDrawableActivity;
@@ -164,6 +165,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("CoordinatorLayout效果", CoordinatorLayoutCaseActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("SwipeRefreshLayout 下拉刷新", SwipeRefreshLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("卡片CardView", CardViewActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TabLayout 指示器", TabLayoutIndicatorActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout使用扩展", NavigationBarActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("抽屉效果", DrawerLayoutActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("投影", ShadowActivity.class.getName()));
