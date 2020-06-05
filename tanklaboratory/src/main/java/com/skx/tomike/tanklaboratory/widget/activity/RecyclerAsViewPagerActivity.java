@@ -1,5 +1,7 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
+import android.util.Log;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.ItemAnimatorAdapter;
 import com.skx.tomike.tanklaboratory.widget.adapter.RecyclerViewBannerAdapter;
+import com.skx.tomike.tanklaboratory.widget.view.RecyclerViewPageChangeListenerHelper;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -58,6 +61,23 @@ public class RecyclerAsViewPagerActivity extends SkxBaseActivity {
         mRvBanner.setAdapter(new RecyclerViewBannerAdapter(mBannerList));
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(mRvBanner);
+
+        mRvBanner.addOnScrollListener(new RecyclerViewPageChangeListenerHelper(snapHelper, new RecyclerViewPageChangeListenerHelper.OnPageChangeListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.e(TAG, "page selected -> position:" + position);
+            }
+        }));
 
 
         RecyclerView mRvContent = findViewById(R.id.rv_recyclerviewAsViewPager_content);
