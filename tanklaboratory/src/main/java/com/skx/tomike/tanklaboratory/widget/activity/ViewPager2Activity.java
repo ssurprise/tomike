@@ -44,11 +44,9 @@ public class ViewPager2Activity extends SkxBaseActivity {
 
     @Override
     protected void initView() {
-        ViewPager2 mRvBanner = findViewById(R.id.vp_androidxViewPager_content);
-        mRvBanner.setAdapter(new RecyclerViewBannerAdapter(mBannerList));
-
-
-        mRvBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        ViewPager2 vpHorizontal = findViewById(R.id.vp_androidxViewPager_horizontal);
+        vpHorizontal.setAdapter(new RecyclerViewBannerAdapter(mBannerList));
+        vpHorizontal.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
@@ -66,34 +64,8 @@ public class ViewPager2Activity extends SkxBaseActivity {
                 super.onPageScrollStateChanged(state);
             }
         });
-//        mRvBanner.
 
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
-//        mRvBanner.setLayoutManager(layoutManager);
-//        mRvBanner.setAdapter(new RecyclerViewBannerAdapter(mBannerList));
-//        PagerSnapHelper snapHelper = new PagerSnapHelper();
-//        snapHelper.attachToRecyclerView(mRvBanner);
-//
-//        mRvBanner.addOnScrollListener(new RecyclerViewPageChangeListenerHelper(snapHelper, new RecyclerViewPageChangeListenerHelper.OnPageChangeListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//
-//            }
-//
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                Log.e(TAG, "page selected -> position:" + position);
-//            }
-//        }));
-//
-//
-//        RecyclerView mRvContent = findViewById(R.id.rv_recyclerviewAsViewPager_content);
-//        mRvContent.setLayoutManager(new LinearLayoutManager(this));
-//        mRvContent.setAdapter(new ItemAnimatorAdapter(mContentList));
+        ViewPager2 mVpVertical = findViewById(R.id.vp_androidxViewPager_vertical);
+        mVpVertical.setAdapter(new RecyclerViewBannerAdapter(mBannerList));
     }
 }

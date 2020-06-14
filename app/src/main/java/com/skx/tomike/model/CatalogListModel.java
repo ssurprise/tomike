@@ -180,7 +180,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", ViewPagerWrapContentActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ViewPager 无限循环+自动轮播", ViewPagerInfiniteLoopActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ViewPager N种页签指示器", PageIndicatorActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ViewPager androidx", ViewPager2Activity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ViewPager2 androidx", ViewPager2Activity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 添加/删除item", RecyclerViewItemUpdateActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 仿ViewPager", RecyclerAsViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
