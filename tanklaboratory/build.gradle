@@ -36,6 +36,9 @@ dependencies {
     implementation rootProject.ext.dependencies.lifecycle
     implementation rootProject.ext.dependencies.constraint_layout
     implementation rootProject.ext.dependencies.cardview
+
+    implementation "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+
     // 功能库
     implementation rootProject.ext.dependencies.gson
     implementation rootProject.ext.dependencies.rxjava

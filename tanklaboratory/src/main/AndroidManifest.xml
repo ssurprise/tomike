@@ -132,6 +132,7 @@
         <activity android:name=".widget.activity.ViewFocusActivity" />
         <activity android:name=".widget.activity.TabLayoutIndicatorActivity" />
         <activity android:name=".widget.activity.RecyclerAsViewPagerActivity" />
+        <activity android:name=".widget.activity.ViewPager2Activity" />
     </application>
 
 </manifest>
