@@ -133,6 +133,7 @@
         <activity android:name=".widget.activity.TabLayoutIndicatorActivity" />
         <activity android:name=".widget.activity.RecyclerAsViewPagerActivity" />
         <activity android:name=".widget.activity.ViewPager2Activity" />
+        <activity android:name=".widget.activity.ScrollViewKeyboardActivity" />
     </application>
 
 </manifest>

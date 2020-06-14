@@ -6,7 +6,7 @@ ext {
     android = [
             compileSdkVersion: 28,
             buildToolsVersion: "28.0.3",
-            minSdkVersion    : 14,
+            minSdkVersion    : 21,
             targetSdkVersion : 28,
     ]
     dependencies = [
