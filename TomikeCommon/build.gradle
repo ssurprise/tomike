@@ -32,8 +32,11 @@ dependencies {
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportMultidex
     implementation rootProject.ext.dependencies.lifecycle
+    implementation rootProject.ext.dependencies.recyclerview
     implementation rootProject.ext.dependencies.constraint_layout
     implementation rootProject.ext.dependencies.cardview
+    implementation rootProject.ext.dependencies.viewpager2
+
     // 功能库
     implementation rootProject.ext.dependencies.gson
     implementation rootProject.ext.dependencies.rxjava
