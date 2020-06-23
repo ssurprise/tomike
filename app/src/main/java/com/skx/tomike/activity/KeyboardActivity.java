@@ -12,8 +12,8 @@ import android.widget.RelativeLayout;
 import com.skx.tomike.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.KeyboardTool;
+import com.skx.tomikecommonlibrary.utils.ScreenUtilKt;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
-import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -95,7 +95,7 @@ public class KeyboardActivity extends SkxBaseActivity {
             Rect r = new Rect();
             mRlRoot.getWindowVisibleDisplayFrame(r);
 
-            int screenHeight = WidthHeightTool.getScreenHeight(mActivity);
+            int screenHeight = ScreenUtilKt.getScreenHeight(mActivity);
             int heightDifference = screenHeight - (r.bottom - r.top);
             boolean isKeyboardShowing = heightDifference > screenHeight / 3; //如果之前软键盘状态为显示，现在为关闭，或者之前为关闭，现在为显示，则表示软键盘的状态发生了改变
 

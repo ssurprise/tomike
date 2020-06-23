@@ -13,10 +13,11 @@ import com.skx.tomike.tanklaboratory.widget.adapter.MultiplePagerAdapter;
 import com.skx.tomike.tanklaboratory.widget.view.AlphaPageTransformer;
 import com.skx.tomike.tanklaboratory.widget.view.ClipViewPager;
 import com.skx.tomike.tanklaboratory.widget.view.ScalePageTransformer;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
-import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
+import com.skx.tomikecommonlibrary.utils.ScreenUtilKt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2016/4/20
  */
-public class ViewPagerMultiplePageActivity extends SkxBaseActivity {
+public class ViewPagerMultiplePageActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final ArrayList<Integer> list = new ArrayList<>();
     private final List<Integer> list2 = new ArrayList<>();
@@ -89,9 +90,9 @@ public class ViewPagerMultiplePageActivity extends SkxBaseActivity {
         final ClipViewPager clipChildrenVp = findViewById(R.id.vp_multiplePage_clip);
 
         clipChildrenVp.setOffscreenPageLimit(8);
-        clipChildrenVp.setPageMargin((WidthHeightTool.getScreenWidth(this)
-                - DpPxSpTool.INSTANCE.dip2px(this, 5) * 2
-                - DpPxSpTool.INSTANCE.dip2px(this, 40) * 5) / 4);
+        clipChildrenVp.setPageMargin((ScreenUtilKt.getScreenWidth(this)
+                - DpPxSpToolKt.dip2px(this, 5) * 2
+                - DpPxSpToolKt.dip2px(this, 40) * 5) / 4);
         clipChildrenVp.setPageTransformer(false, new ScalePageTransformer());
         InfiniteLoopAdapter adapter2 = new InfiniteLoopAdapter(list2);
         clipChildrenVp.setAdapter(adapter2);

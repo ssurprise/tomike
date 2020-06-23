@@ -8,7 +8,7 @@ import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.LoadImageUtil;
+import com.skx.tomikecommonlibrary.utils.LoadImageUtilKt;
 
 
 /**
@@ -42,7 +42,7 @@ public class ImageLoadActivity extends SkxBaseActivity<BaseViewModel> {
         ImageView ivImage = findViewById(R.id.imgLoad_imageView);
         // 注意：图片的压缩一个耗时操作
         long l = System.currentTimeMillis();
-        Bitmap bitmap = LoadImageUtil.INSTANCE.decodeSampledBitmapFromResource(getResources(),
+        Bitmap bitmap = LoadImageUtilKt.decodeSampledBitmapFromResource(getResources(),
                 R.drawable.big_img_5760_3840, 300, 300);
         long l2 = System.currentTimeMillis();
         ivImage.setImageBitmap(bitmap);

@@ -9,7 +9,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
 
 /**
  * Created by shiguotao on 2017/7/25.
@@ -61,8 +61,8 @@ public class ScoreView extends View {
             width = widthSize;
 
         } else {
-            int pointTotalWidth = DpPxSpTool.INSTANCE.dip2px(this.getContext(), pointWidth) * pointCount;
-            int pointSpaceTotalWidth = DpPxSpTool.INSTANCE.dip2px(this.getContext(), pointSpace) * (pointCount - 1);
+            int pointTotalWidth = DpPxSpToolKt.dip2px(this.getContext(), pointWidth) * pointCount;
+            int pointSpaceTotalWidth = DpPxSpToolKt.dip2px(this.getContext(), pointSpace) * (pointCount - 1);
             width = getPaddingLeft() + pointTotalWidth + pointSpaceTotalWidth + getPaddingRight();
         }
 
@@ -70,7 +70,7 @@ public class ScoreView extends View {
             height = heightSize;
 
         } else {
-            height = DpPxSpTool.INSTANCE.dip2px(this.getContext(), indicatorHeight);
+            height = DpPxSpToolKt.dip2px(this.getContext(), indicatorHeight);
         }
 
         setMeasuredDimension(width, height);
@@ -95,10 +95,10 @@ public class ScoreView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int pointSpacePix = DpPxSpTool.INSTANCE.dip2px(this.getContext(), pointSpace);
-        int pointWidthPix = DpPxSpTool.INSTANCE.dip2px(this.getContext(), pointWidth);
-        int pointHeightPix = DpPxSpTool.INSTANCE.dip2px(this.getContext(), pointHeight);
-        int pointTopPos = DpPxSpTool.INSTANCE.dip2px(this.getContext(), indicatorHeight - pointHeight) / 2;
+        int pointSpacePix = DpPxSpToolKt.dip2px(this.getContext(), pointSpace);
+        int pointWidthPix = DpPxSpToolKt.dip2px(this.getContext(), pointWidth);
+        int pointHeightPix = DpPxSpToolKt.dip2px(this.getContext(), pointHeight);
+        int pointTopPos = DpPxSpToolKt.dip2px(this.getContext(), indicatorHeight - pointHeight) / 2;
 
         // 画背景层
         for (int i = 0, j = pointCount - 1; i <= j; i++) {
@@ -115,7 +115,7 @@ public class ScoreView extends View {
         // 画指示器
         canvas.drawRect(indicatorPos * (pointSpacePix + pointWidthPix), 0,
                 indicatorPos * (pointSpacePix + pointWidthPix) + pointWidthPix,
-                DpPxSpTool.INSTANCE.dip2px(this.getContext(), indicatorHeight), processPaint);
+                DpPxSpToolKt.dip2px(this.getContext(), indicatorHeight), processPaint);
 
     }
 }

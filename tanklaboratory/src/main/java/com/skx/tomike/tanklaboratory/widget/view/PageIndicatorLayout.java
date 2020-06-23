@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
 
 /**
  * Created by shiguotao on 2017/3/15.
@@ -56,8 +56,8 @@ public class PageIndicatorLayout extends LinearLayout {
         mIndicatorBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.page_indicator);
 
 
-        mDefaultUnitWight = DpPxSpTool.INSTANCE.dip2px(context, 15);
-        mDefaultUnitHeight = DpPxSpTool.INSTANCE.dip2px(context, 12);
+        mDefaultUnitWight = DpPxSpToolKt.dip2px(context, 15);
+        mDefaultUnitHeight = DpPxSpToolKt.dip2px(context, 12);
         mIndicatorWidth = mDefaultUnitWight;
 
         setGravity(Gravity.CENTER_VERTICAL);

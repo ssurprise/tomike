@@ -18,7 +18,7 @@ import com.skx.tomike.cannonlaboratory.ui.view.GridSpaceItemDecoration;
 import com.skx.tomike.cannonlaboratory.viewmodel.PhotoAlbumViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -94,8 +94,8 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
         RecyclerView rvPhotoAlbums = findViewById(R.id.rv_photoAlbums_content);
         rvPhotoAlbums.setLayoutManager(new GridLayoutManager(this, 3));
         rvPhotoAlbums.addItemDecoration(new GridSpaceItemDecoration(3,
-                DpPxSpTool.INSTANCE.dip2px(this, 30),
-                DpPxSpTool.INSTANCE.dip2px(this, 10)));
+                DpPxSpToolKt.dip2px(this, 30),
+                DpPxSpToolKt.dip2px(this, 10)));
         rvPhotoAlbums.setAdapter(mPhotoAlbumsAdapter = new PhotoAlbumsAdapter());
         mPhotoAlbumsAdapter.setOnItemClickListener(new PhotoAlbumsAdapter.OnItemClickListener() {
             @Override

@@ -15,6 +15,7 @@ import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
+import com.skx.tomikecommonlibrary.utils.SkxDrawableUtilKt;
 
 /**
  * 着色测试2
@@ -66,15 +67,15 @@ public class DrawableTint2Activity extends SkxBaseActivity<BaseViewModel> {
     }
 
     private void renderView() {
-        SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
+//        SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
 
         Drawable imgBgDrawable2 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
         ColorStateList colorStateList = ColorStateList.valueOf(Color.parseColor("#3396a8"));
-        ViewCompat.setBackground(mTint_ImageView2, skxDrawableUtil.tintListDrawable(imgBgDrawable2, colorStateList));
+        ViewCompat.setBackground(mTint_ImageView2, SkxDrawableUtilKt.tintListDrawable(imgBgDrawable2, colorStateList));
 
         Drawable bgDrawable2 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
         ColorStateList colorStateList2 = ColorStateList.valueOf(Color.parseColor("#866393"));
-        ViewCompat.setBackground(mTint_Btn2, skxDrawableUtil.tintListDrawable(bgDrawable2, colorStateList2));
+        ViewCompat.setBackground(mTint_Btn2, SkxDrawableUtilKt.tintListDrawable(bgDrawable2, colorStateList2));
 
 
         Drawable bgDrawable4 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
@@ -84,12 +85,12 @@ public class DrawableTint2Activity extends SkxBaseActivity<BaseViewModel> {
 
         Drawable selectorDrawable = ContextCompat.getDrawable(this, R.drawable.selector_drawable_button);
         ColorStateList colorStateListSelector = ContextCompat.getColorStateList(this, R.color.selector_color_button);
-        ViewCompat.setBackground(mTintSelector_mImageView2, skxDrawableUtil.tintListDrawable(
+        ViewCompat.setBackground(mTintSelector_mImageView2, SkxDrawableUtilKt.tintListDrawable(
                 selectorDrawable, colorStateListSelector));
         mTintSelector_mImageView2.setClickable(true);
 
         Drawable selectorDrawable2 = ContextCompat.getDrawable(this, R.drawable.selector_drawable_button);
-        ViewCompat.setBackground(mTintSelector_mBtn2, skxDrawableUtil.tintListDrawable(selectorDrawable2, colorStateListSelector));
+        ViewCompat.setBackground(mTintSelector_mBtn2, SkxDrawableUtilKt.tintListDrawable(selectorDrawable2, colorStateListSelector));
 
         Drawable bgDrawable = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
 //        mTintSelector_mCompatBtn4.setBackground(bgDrawable);

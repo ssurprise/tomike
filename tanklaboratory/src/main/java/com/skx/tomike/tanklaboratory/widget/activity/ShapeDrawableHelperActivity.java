@@ -15,6 +15,7 @@ import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
+import com.skx.tomikecommonlibrary.utils.SkxDrawableUtilKt;
 
 public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> {
 
@@ -104,7 +105,7 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> 
 //        view3.setBackground(SkxDrawableUtil.getShapeDrawable(colorStateList, strokeColorStateList, 5, 15, 5, 20));
 
         ViewCompat.setBackground(view4,
-                skxDrawableUtil.getSelectorDrawable(Color.parseColor("#3a39a6"), Color.parseColor("#ff4081"), 20));
+                SkxDrawableUtilKt.getSelectorDrawable(Color.parseColor("#3a39a6"), Color.parseColor("#ff4081"), 20));
 
         View view7 = mLlContainer.getChildAt(7);
         ViewCompat.setBackground(view7,

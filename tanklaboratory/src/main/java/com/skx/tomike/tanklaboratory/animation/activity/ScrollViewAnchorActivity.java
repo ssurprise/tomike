@@ -29,8 +29,9 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.ScrollChangedScrollView;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 /**
@@ -39,7 +40,7 @@ import com.skx.tomikecommonlibrary.utils.ToastTool;
  * 版本 : V1
  * 创建时间 : 2020/3/20 6:15 PM
  */
-public class ScrollViewAnchorActivity extends SkxBaseActivity {
+public class ScrollViewAnchorActivity extends SkxBaseActivity<BaseViewModel> {
 
     // 头部导航标签
     private final String[] mNavigationTag = {"照片", "概览", "描述", "点评", "位置", "日期", "设施", "规则", "退订", "日记", "推荐"};
@@ -641,6 +642,6 @@ public class ScrollViewAnchorActivity extends SkxBaseActivity {
      * 计算导航标签偏移距离
      */
     public void calculateNavigationTagTranslateDistance() {
-        translationDistance = DpPxSpTool.INSTANCE.dip2px(mActivity, 268 - 24 - 9);
+        translationDistance = DpPxSpToolKt.dip2px(mActivity, 268 - 24 - 9);
     }
 }

@@ -13,8 +13,7 @@ import androidx.core.view.NestedScrollingParentHelper;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
-
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
 
 /**
  * 缩放头图layout
@@ -52,8 +51,8 @@ public class ZoomImageNestedScrollingParent extends RelativeLayout implements Ne
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mNestedScrollingParentHelper = new NestedScrollingParentHelper(this);
-        mInitTop = DpPxSpTool.INSTANCE.dip2px(context, 90);
-        mMaxTop = DpPxSpTool.INSTANCE.dip2px(context, 240);
+        mInitTop = DpPxSpToolKt.dip2px(context, 90);
+        mMaxTop = DpPxSpToolKt.dip2px(context, 240);
     }
 
 

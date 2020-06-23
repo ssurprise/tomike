@@ -13,6 +13,7 @@ import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
+import com.skx.tomikecommonlibrary.utils.SkxDrawableUtilKt;
 
 /**
  * 着色测试1
@@ -50,15 +51,13 @@ public class DrawableTintActivity extends SkxBaseActivity<BaseViewModel> {
         ImageView mImageView3 = findViewById(R.id.tintTest_ImageView3);
         ImageView mImageView4 = findViewById(R.id.tintTest_ImageView4);
 
-        SkxDrawableUtil skxDrawableUtil = new SkxDrawableUtil();
-
         Drawable originBitmapDrawable = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
-        ViewCompat.setBackground(mImageView1, skxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#30c3a6")));
-        mImageView2.setImageDrawable(skxDrawableUtil.tintDrawable(originBitmapDrawable, Color.parseColor("#ff4081")));
+        ViewCompat.setBackground(mImageView1, SkxDrawableUtilKt.tintDrawable(originBitmapDrawable, Color.parseColor("#30c3a6")));
+        mImageView2.setImageDrawable(SkxDrawableUtilKt.tintDrawable(originBitmapDrawable, Color.parseColor("#ff4081")));
 
 
         Drawable originBitmapDrawable2 = ContextCompat.getDrawable(this, R.drawable.icon_beijing);
-        Drawable tintDrawable2 = skxDrawableUtil.tintDrawable(originBitmapDrawable2, Color.parseColor("#30c3a6"));
+        Drawable tintDrawable2 = SkxDrawableUtilKt.tintDrawable(originBitmapDrawable2, Color.parseColor("#30c3a6"));
         Bitmap bitmap2 = ((BitmapDrawable) tintDrawable2).getBitmap();
         ViewCompat.setBackground(mImageView3, new BitmapDrawable(getResources(), bitmap2));
         mImageView4.setImageBitmap(bitmap2);

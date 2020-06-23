@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 
 import java.util.ArrayList;
@@ -75,10 +75,10 @@ public class FlowAdapter extends BaseAdapter {
     public View getView(int position, View convertView, final ViewGroup parent) {
         final TextView textView = new TextView(parent.getContext());
         textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        textView.setPadding(DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 12),
-                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 3),
-                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 12),
-                DpPxSpTool.INSTANCE.dip2px(parent.getContext(), 4));
+        textView.setPadding(DpPxSpToolKt.dip2px(parent.getContext(), 12),
+                DpPxSpToolKt.dip2px(parent.getContext(), 3),
+                DpPxSpToolKt.dip2px(parent.getContext(), 12),
+                DpPxSpToolKt.dip2px(parent.getContext(), 4));
         textView.setTextSize(12);
         textView.setGravity(Gravity.CENTER);
 
@@ -101,12 +101,12 @@ public class FlowAdapter extends BaseAdapter {
         Drawable bg = textView.isSelected() ?
                 new SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE)
                         .setColor(ContextCompat.getColor(context, R.color.skx_f05b72))
-                        .setCornerRadius(DpPxSpTool.INSTANCE.dip2px(context, 10))
+                        .setCornerRadius(DpPxSpToolKt.dip2px(context, 10))
                         .create() :
                 new SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE)
-                        .setStroke(DpPxSpTool.INSTANCE.dip2px(context, 1),
+                        .setStroke(DpPxSpToolKt.dip2px(context, 1),
                                 ContextCompat.getColor(context, R.color.skx_212121))
-                        .setCornerRadius(DpPxSpTool.INSTANCE.dip2px(context, 10))
+                        .setCornerRadius(DpPxSpToolKt.dip2px(context, 10))
                         .create();
         ViewCompat.setBackground(textView, bg);
     }

@@ -14,7 +14,7 @@ import com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -137,8 +137,8 @@ public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
     private void renderIndicatorStyle3() {
         for (int i = 1, j = mIndicatorTitleList.size(); i <= j; i++) {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpTool.INSTANCE.dip2px(this, 25),
-                    DpPxSpTool.INSTANCE.dip2px(this, 25));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(DpPxSpToolKt.dip2px(this, 25),
+                    DpPxSpToolKt.dip2px(this, 25));
             TextView tv = new TextView(this);
             tv.setTextSize(14);
             tv.setGravity(Gravity.CENTER);
@@ -151,7 +151,7 @@ public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mLayoutIndicator3.scrollTo((int) ((position + positionOffset) * DpPxSpTool.INSTANCE.dip2px(PageIndicatorActivity.this, 25)), 0);
+                mLayoutIndicator3.scrollTo((int) ((position + positionOffset) * DpPxSpToolKt.dip2px(PageIndicatorActivity.this, 25)), 0);
             }
 
             @Override

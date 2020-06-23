@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
 
 /**
  * Implementation of App Widget functionality.
@@ -61,16 +61,16 @@ public class LuCommentScoreWidget extends LinearLayout implements ViewTreeObserv
         setOrientation(VERTICAL);
 
         // 初始状态的控件宽高
-        initWidth = DpPxSpTool.INSTANCE.dip2px(context, 114);
-        initHeight = DpPxSpTool.INSTANCE.dip2px(context, 114);
+        initWidth = DpPxSpToolKt.dip2px(context, 114);
+        initHeight = DpPxSpToolKt.dip2px(context, 114);
 
         // 折叠后的控件宽高
-        collapseWidth = DpPxSpTool.INSTANCE.dip2px(context, 134);
-        collapseHeight = DpPxSpTool.INSTANCE.dip2px(context, 25);
+        collapseWidth = DpPxSpToolKt.dip2px(context, 134);
+        collapseHeight = DpPxSpToolKt.dip2px(context, 25);
 
         // 初始化分数view 结束点的坐标
-        scoreEndPosX = DpPxSpTool.INSTANCE.dip2px(context, 15);
-        scoreEndPosY = (collapseHeight - DpPxSpTool.INSTANCE.sp2px(context, 14)) / 2;
+        scoreEndPosX = DpPxSpToolKt.dip2px(context, 15);
+        scoreEndPosY = (collapseHeight - DpPxSpToolKt.sp2px(context, 14)) * 1.0f / 2;
     }
 
 

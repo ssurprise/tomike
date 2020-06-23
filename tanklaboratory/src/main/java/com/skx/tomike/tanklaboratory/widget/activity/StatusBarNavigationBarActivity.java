@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
+import com.skx.tomikecommonlibrary.utils.ScreenUtilKt;
 
 import java.util.Locale;
 
@@ -56,15 +56,15 @@ public class StatusBarNavigationBarActivity extends SkxBaseActivity<BaseViewMode
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.status_bar_height) {
-            int statusBarHeight = WidthHeightTool.getStatusBarHeight(StatusBarNavigationBarActivity.this);
+            int statusBarHeight = ScreenUtilKt.getStatusBarHeight(StatusBarNavigationBarActivity.this);
             status_bar_height_tv.setText(String.format(Locale.getDefault(), "%d", statusBarHeight));
 
         } else if (id == R.id.status_bar_height1) {
-            int statusBarHeight1 = WidthHeightTool.getStatusBarHeightByReflex(StatusBarNavigationBarActivity.this);
+            int statusBarHeight1 = ScreenUtilKt.getStatusBarHeightByReflex(StatusBarNavigationBarActivity.this);
             status_bar_height1_tv.setText(String.format(Locale.getDefault(), "%d", statusBarHeight1));
 
         } else if (id == R.id.status_bar_height2) {
-            int statusBarHeight2 = WidthHeightTool.getStatusBarHeightByWMS(StatusBarNavigationBarActivity.this);
+            int statusBarHeight2 = ScreenUtilKt.getStatusBarHeightByWMS(StatusBarNavigationBarActivity.this);
             status_bar_height2_tv.setText(String.format(Locale.getDefault(), "%d", statusBarHeight2));
         }
     }

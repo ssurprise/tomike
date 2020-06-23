@@ -10,8 +10,8 @@ import android.view.MotionEvent;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.skx.tomikecommonlibrary.utils.DpPxSpTool;
-import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
+import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
+import com.skx.tomikecommonlibrary.utils.ScreenUtilKt;
 
 /**
  * ViewPager 展示多个子页面，可点击移动
@@ -58,9 +58,9 @@ public class ClipViewPager extends ViewPager {
     public ClipViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        parentPadding = DpPxSpTool.INSTANCE.dip2px(context, 5);
-        rectWidth = DpPxSpTool.INSTANCE.dip2px(context, 40);
-        pageMargin = (WidthHeightTool.getScreenWidth(context) - parentPadding * 2 - rectWidth * 5) / 4;
+        parentPadding = DpPxSpToolKt.dip2px(context, 5);
+        rectWidth = DpPxSpToolKt.dip2px(context, 40);
+        pageMargin = (ScreenUtilKt.getScreenWidth(context) - parentPadding * 2 - rectWidth * 5) / 4;
 
         paint = new Paint();
         paint.setColor(Color.parseColor("#30c3a6"));

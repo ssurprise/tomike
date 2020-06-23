@@ -9,7 +9,7 @@ import android.widget.SeekBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.R;
-import com.skx.tomikecommonlibrary.utils.ImageHelper;
+import com.skx.tomikecommonlibrary.utils.ImageHelperKt;
 
 public class ColorMatrixActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -61,7 +61,7 @@ public class ColorMatrixActivity extends AppCompatActivity implements SeekBar.On
                 break;
         }
 
-        main_img.setImageBitmap(ImageHelper.INSTANCE.handleImageEffect(bitmap, mHue, mSaturation, mLum));
+        main_img.setImageBitmap(ImageHelperKt.handleImageEffect(bitmap, mHue, mSaturation, mLum));
     }
 
     @Override

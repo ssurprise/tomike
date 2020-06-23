@@ -17,101 +17,7 @@ import androidx.core.graphics.drawable.DrawableCompat
  */
 class SkxDrawableUtil {
 
-    //----------------------------------------------- Drawable 着色 start -----------------------------------------------------------------
-
-    /**
-     * 对目标Drawable 进行着色
-     *
-     * @param drawable 目标Drawable
-     * @param color    着色的颜色值
-     * @return 着色处理后的Drawable
-     */
-    fun tintDrawable(drawable: Drawable, color: Int): Drawable {
-        // 获取此drawable的共享状态实例
-        val wrappedDrawable = getCanTintDrawable(drawable)
-        // 对 drawable 进行着色
-        DrawableCompat.setTint(wrappedDrawable, color)
-        return wrappedDrawable
-    }
-
-    /**
-     * 对目标Drawable 进行着色
-     *
-     * @param drawable 目标Drawable
-     * @param colors   着色值
-     * @return 着色处理后的Drawable
-     */
-    fun tintListDrawable(drawable: Drawable, colors: ColorStateList): Drawable {
-        val wrappedDrawable = getCanTintDrawable(drawable)
-        // 对 drawable 进行着色
-        DrawableCompat.setTintList(wrappedDrawable, colors)
-        return wrappedDrawable
-    }
-
-    /**
-     * 获取可以进行tint 的Drawable
-     *
-     *
-     * 对原drawable进行重新实例化  newDrawable()
-     * 包装  warp()
-     * 可变操作 mutate()
-     *
-     * @param drawable 原始drawable
-     * @return 可着色的drawable
-     */
-    private fun getCanTintDrawable(drawable: Drawable): Drawable {
-        // 获取此drawable的共享状态实例
-        val state = drawable.constantState
-        // 对drawable 进行重新实例化、包装、可变操作
-        return DrawableCompat.wrap(if (state == null) drawable else state.newDrawable()).mutate()
-    }
-
-    //------------------------------------------------ Drawable 着色 end -----------------------------------------------------------------
-
-    //----------------------------------------------------- Drawable 选择器 start-----------------------------------------------------------
-
-    /**
-     * 获得一个选择器Drawable.
-     * Android 中 在xml中写的"selector"标签映射对象就是StateListDrawable 对象
-     *
-     * @param defaultDrawable 默认时显示的Drawable
-     * @param pressedDrawable 按下时显示的Drawable
-     * @return 选择器Drawable
-     */
-    private fun getSelectorDrawable(defaultDrawable: Drawable?, pressedDrawable: Drawable?): StateListDrawable? {
-        var pressedDrawable = pressedDrawable
-        if (defaultDrawable == null) return null
-        if (pressedDrawable == null) pressedDrawable = defaultDrawable
-        val state = arrayOf(intArrayOf(android.R.attr.state_enabled, -android.R.attr.state_pressed),
-                intArrayOf(android.R.attr.state_enabled, android.R.attr.state_pressed))
-        val stateListDrawable = StateListDrawable()
-        stateListDrawable.addState(state[0], defaultDrawable)
-        stateListDrawable.addState(state[1], pressedDrawable)
-        return stateListDrawable
-    }
-
-    /**
-     * 获得一个选择器Drawable.
-     * Android 中 在xml中写的"selector"标签映射对象就是StateListDrawable 对象
-     *
-     * @param defaultColor 默认时显示的颜色
-     * @param pressedColor 按下时显示的颜色
-     * @param radius       圆角半径
-     * @return 选择器Drawable
-     */
-    fun getSelectorDrawable(defaultColor: Int, pressedColor: Int, radius: Float): StateListDrawable? {
-
-        val defaultDrawable = Builder(Builder.RECTANGLE).setColor(defaultColor).setCornerRadius(radius).create()
-        val pressedDrawable = Builder(Builder.RECTANGLE).setColor(pressedColor).setCornerRadius(radius).create()
-
-        return getSelectorDrawable(defaultDrawable, pressedDrawable)
-    }
-
-    //----------------------------------------------------- Drawable 选择器 end---------------------------------------------------------------
-
-
     // --------------------------------------------- 构造器模式 -------------------------------------------------
-
 
     /**
      * 获取建造者
@@ -130,10 +36,12 @@ class SkxDrawableUtil {
 
 
         private var mSolidColors: ColorStateList? = null
+
         /**
          * The color state list of the stroke
          */
         private var mStrokeColors: ColorStateList? = null
+
         @ColorInt
         private var mGradientColors: IntArray? = null
 
@@ -145,10 +53,12 @@ class SkxDrawableUtil {
          * The width in pixels of the stroke
          */
         private var mStrokeWidth = -1 // if >= 0 use stroking.
+
         /**
          * The length in pixels of the dashes, set to 0 to disable dashes
          */
         private var mStrokeDashWidth = 0.0f
+
         /**
          * The gap in pixels between dashes
          */
@@ -441,3 +351,97 @@ class SkxDrawableUtil {
         }
     }
 }
+
+
+//----------------------------------------------- Drawable 着色 start -----------------------------------------------------------------
+
+/**
+ * 对目标Drawable 进行着色
+ *
+ * @param drawable 目标Drawable
+ * @param color    着色的颜色值
+ * @return 着色处理后的Drawable
+ */
+fun tintDrawable(drawable: Drawable, color: Int): Drawable {
+    // 获取此drawable的共享状态实例
+    val wrappedDrawable = getCanTintDrawable(drawable)
+    // 对 drawable 进行着色
+    DrawableCompat.setTint(wrappedDrawable, color)
+    return wrappedDrawable
+}
+
+/**
+ * 对目标Drawable 进行着色
+ *
+ * @param drawable 目标Drawable
+ * @param colors   着色值
+ * @return 着色处理后的Drawable
+ */
+fun tintListDrawable(drawable: Drawable, colors: ColorStateList): Drawable {
+    val wrappedDrawable = getCanTintDrawable(drawable)
+    // 对 drawable 进行着色
+    DrawableCompat.setTintList(wrappedDrawable, colors)
+    return wrappedDrawable
+}
+
+/**
+ * 获取可以进行tint 的Drawable
+ *
+ *
+ * 对原drawable进行重新实例化  newDrawable()
+ * 包装  warp()
+ * 可变操作 mutate()
+ *
+ * @param drawable 原始drawable
+ * @return 可着色的drawable
+ */
+private fun getCanTintDrawable(drawable: Drawable): Drawable {
+    // 获取此drawable的共享状态实例
+    val state = drawable.constantState
+    // 对drawable 进行重新实例化、包装、可变操作
+    return DrawableCompat.wrap(if (state == null) drawable else state.newDrawable()).mutate()
+}
+
+//------------------------------------------------ Drawable 着色 end -----------------------------------------------------------------
+
+//----------------------------------------------------- Drawable 选择器 start-----------------------------------------------------------
+
+/**
+ * 获得一个选择器Drawable.
+ * Android 中 在xml中写的"selector"标签映射对象就是StateListDrawable 对象
+ *
+ * @param defaultDrawable 默认时显示的Drawable
+ * @param pressedDrawable 按下时显示的Drawable
+ * @return 选择器Drawable
+ */
+private fun getSelectorDrawable(defaultDrawable: Drawable?, pressedDrawable: Drawable?): StateListDrawable? {
+    var pressedDrawable = pressedDrawable
+    if (defaultDrawable == null) return null
+    if (pressedDrawable == null) pressedDrawable = defaultDrawable
+    val state = arrayOf(intArrayOf(android.R.attr.state_enabled, -android.R.attr.state_pressed),
+            intArrayOf(android.R.attr.state_enabled, android.R.attr.state_pressed))
+    val stateListDrawable = StateListDrawable()
+    stateListDrawable.addState(state[0], defaultDrawable)
+    stateListDrawable.addState(state[1], pressedDrawable)
+    return stateListDrawable
+}
+
+/**
+ * 获得一个选择器Drawable.
+ * Android 中 在xml中写的"selector"标签映射对象就是StateListDrawable 对象
+ *
+ * @param defaultColor 默认时显示的颜色
+ * @param pressedColor 按下时显示的颜色
+ * @param radius       圆角半径
+ * @return 选择器Drawable
+ */
+fun getSelectorDrawable(defaultColor: Int, pressedColor: Int, radius: Float): StateListDrawable? {
+
+    val defaultDrawable = SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE).setColor(defaultColor).setCornerRadius(radius).create()
+    val pressedDrawable = SkxDrawableUtil.Builder(SkxDrawableUtil.Builder.RECTANGLE).setColor(pressedColor).setCornerRadius(radius).create()
+
+    return getSelectorDrawable(defaultDrawable, pressedDrawable)
+}
+
+//----------------------------------------------------- Drawable 选择器 end---------------------------------------------------------------
+
