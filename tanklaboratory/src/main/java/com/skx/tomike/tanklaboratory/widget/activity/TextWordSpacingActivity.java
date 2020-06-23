@@ -10,6 +10,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -21,7 +22,7 @@ import java.util.Locale;
  * 版本 : V1
  * 创建时间 : 2020/3/18 8:27 PM
  */
-public class TextWordSpacingActivity extends SkxBaseActivity {
+public class TextWordSpacingActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final String TEST_CONTENT = "壹a贰b弎c肆d伍e陆f柒g捌h玖i拾g佰k仟l万mnaJQK大王小王数1字2";
 

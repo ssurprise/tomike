@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtilKt;
 
 /**

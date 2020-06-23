@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -18,7 +19,7 @@ import com.skx.tomikecommonlibrary.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2020/3/18 8:31 PM
  */
-public class TextSwitcherActivity extends SkxBaseActivity {
+public class TextSwitcherActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final String NAME_COFFEE = "咖啡机";
     private final String NAME_CAKE = "面包机";

@@ -35,17 +35,20 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="天猫" />
+            android:text="天猫"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="京东" />
+            android:text="京东"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="拼多了个多" />
+            android:text="拼多了个多"
+            tools:ignore="HardcodedText" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -79,17 +82,20 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="天猫" />
+            android:text="天猫"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="京东" />
+            android:text="京东"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="拼多了个多" />
+            android:text="拼多了个多"
+            tools:ignore="HardcodedText" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -120,17 +126,20 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="天猫" />
+            android:text="天猫"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="京东" />
+            android:text="京东"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="拼多了个多" />
+            android:text="拼多了个多"
+            tools:ignore="HardcodedText" />
 
     </com.google.android.material.tabs.TabLayout>
 

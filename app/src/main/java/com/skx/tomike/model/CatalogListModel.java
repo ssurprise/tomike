@@ -71,7 +71,6 @@ import com.skx.tomike.tanklaboratory.widget.activity.PopupWindowActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RadioGroupActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerAsViewPagerActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewItemUpdateActivity;
-import com.skx.tomike.tanklaboratory.widget.activity.ScrollViewKeyboardActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SetTextIsSelectableTestActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShapeDrawableHelperActivity;
@@ -184,7 +183,6 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("ViewPager2 androidx", ViewPager2Activity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 添加/删除item", RecyclerViewItemUpdateActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 仿ViewPager", RecyclerAsViewPagerActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ScrollView 和键盘的冲突", ScrollViewKeyboardActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ScrollViewAnchorActivity.class.getName()));
 
@@ -226,7 +224,7 @@ public class CatalogListModel {
 
         mUtilCatalogs.add(new CatalogItem("TabLayout助手", TabLayoutHelperActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("shapeDrawable工具类", ShapeDrawableHelperActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("keyboard", KeyboardActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("键盘、输入法", KeyboardActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("水印图", WatermarkActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Double数据转换", DoubleFormatActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("url编码", UrlEncodeActivity.class.getName()));

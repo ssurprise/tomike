@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 import com.skx.tomikecommonlibrary.utils.SkxDrawableUtilKt;
 
@@ -29,9 +30,8 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> 
     private View view4;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        refreshView();
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("Drawable 工具类demo").create();
     }
 
     @Override
@@ -54,6 +54,12 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> 
         view2 = findViewById(R.id.view2);
         view3 = findViewById(R.id.view3);
         view4 = findViewById(R.id.view4);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        refreshView();
     }
 
     private void refreshView() {
@@ -97,12 +103,6 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> 
                         .setCornerRadius(20)
                         .setStroke(5, Color.parseColor("#3a39a6"), 15, 5)
                         .create());
-
-        int[][] state = {{-android.R.attr.state_pressed}, {android.R.attr.state_pressed}};
-        int[] colors = {Color.parseColor("#ff4081"), Color.parseColor("#3a39a6")};
-        ColorStateList colorStateList = new ColorStateList(state, colors);
-
-//        view3.setBackground(SkxDrawableUtil.getShapeDrawable(colorStateList, strokeColorStateList, 5, 15, 5, 20));
 
         ViewCompat.setBackground(view4,
                 SkxDrawableUtilKt.getSelectorDrawable(Color.parseColor("#3a39a6"), Color.parseColor("#ff4081"), 20));

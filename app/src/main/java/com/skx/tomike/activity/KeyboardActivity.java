@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.skx.tomike.R;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.KeyboardTool;
 import com.skx.tomikecommonlibrary.utils.ScreenUtilKt;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
@@ -46,6 +47,11 @@ public class KeyboardActivity extends SkxBaseActivity {
     @Override
     protected void initParams() {
 
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("键盘（输入法）管理").create();
     }
 
     @Override

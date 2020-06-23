@@ -8,6 +8,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -17,7 +18,7 @@ import com.skx.tomikecommonlibrary.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2020/4/1 7:46 PM
  */
-public class ViewFocusActivity extends SkxBaseActivity {
+public class ViewFocusActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void initParams() {

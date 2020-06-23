@@ -10,6 +10,7 @@ import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.ItemAnimatorAdapter;
 import com.skx.tomike.tanklaboratory.widget.adapter.RecyclerViewBannerAdapter;
 import com.skx.tomike.tanklaboratory.widget.view.RecyclerViewPageChangeListenerHelper;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -23,7 +24,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020/5/30 5:01 PM
  */
-public class RecyclerAsViewPagerActivity extends SkxBaseActivity {
+public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final List<String> mBannerList = new ArrayList<>();
     private final List<String> mContentList = new LinkedList<>();

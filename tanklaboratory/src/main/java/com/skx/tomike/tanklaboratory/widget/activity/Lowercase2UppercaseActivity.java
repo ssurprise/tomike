@@ -3,11 +3,11 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ReplacementTransformationMethod;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -18,7 +18,7 @@ import com.skx.tomikecommonlibrary.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2020/5/7 2:31 PM
  */
-public class Lowercase2UppercaseActivity extends SkxBaseActivity {
+public class Lowercase2UppercaseActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void initParams() {

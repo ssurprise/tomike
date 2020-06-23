@@ -1,14 +1,12 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
-import android.os.Bundle;
-
 import com.google.android.material.appbar.AppBarLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.CustomCommentLayoutView;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
-
-public class CoordinatorLayoutCaseActivity extends SkxBaseActivity {
+public class CoordinatorLayoutCaseActivity extends SkxBaseActivity<BaseViewModel> {
 
     int lastVerticalOffset = -1;
 

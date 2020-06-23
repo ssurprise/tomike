@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.NavigationBarLayout;
 import com.skx.tomike.tanklaboratory.widget.view.TabLayoutHelper;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -24,7 +25,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020-03-18 23:16
  */
-public class NavigationBarActivity extends SkxBaseActivity implements View.OnClickListener {
+public class NavigationBarActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private NavigationBarLayout<String> mNavigationBar;
     private TextView contentText;
