@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/view_padding_15"
     android:paddingRight="@dimen/view_padding_15"
     android:paddingTop="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.activity.MatrixImageActivity">
+    tools:context="com.skx.tomike.tanklaboratory.widget.activity.MatrixImageActivity">
 
     <com.skx.tomike.tanklaboratory.widget.view.TranslateImageView
         android:id="@+id/matrixImage_mainImage"

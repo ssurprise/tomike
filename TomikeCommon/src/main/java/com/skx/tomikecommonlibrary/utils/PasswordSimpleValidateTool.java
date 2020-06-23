@@ -1,4 +1,4 @@
-package com.skx.tomike.util;
+package com.skx.tomikecommonlibrary.utils;
 
 /**
  * Created by shiguotao on 2016/9/27.

@@ -5,7 +5,7 @@ import com.skx.tomike.activity.ColorMatrixActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.KeyboardActivity;
-import com.skx.tomike.activity.MatrixImageActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.MatrixImageActivity;
 import com.skx.tomike.activity.SpannableStringBuilderActivity;
 import com.skx.tomike.activity.UrlEncodeActivity;
 import com.skx.tomike.activity.WatermarkActivity;
@@ -158,6 +158,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", LightDarkTextActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView/EditText 小写转大写", Lowercase2UppercaseActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("自定义显示方向ImageView", MatrixImageActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RadioGroup 单选", RadioGroupActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", CheckBoxActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("自定义ShapeView", ShapeViewActivity.class.getName()));
@@ -237,7 +238,6 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("VectorDrawable", VectorDrawableActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("SpannableString多样化展示", SpannableStringBuilderActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("Matrix自定义版", MatrixImageActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);

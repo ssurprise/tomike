@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.skx.tomike.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.KeyboardTool;
@@ -38,7 +39,7 @@ import java.util.TimerTask;
  * <p/>
  * 5. isFocusable()  返回此控件是否可以获得焦点
  */
-public class KeyboardActivity extends SkxBaseActivity {
+public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
 
     private RelativeLayout mRlRoot;
     private Button btn;
