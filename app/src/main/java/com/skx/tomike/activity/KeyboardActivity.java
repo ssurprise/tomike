@@ -1,14 +1,19 @@
 package com.skx.tomike.activity;
 
-import android.os.Bundle;
+import android.graphics.Rect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.skx.tomike.R;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.utils.KeyboardTool;
+import com.skx.tomikecommonlibrary.utils.ToastTool;
+import com.skx.tomikecommonlibrary.utils.WidthHeightTool;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -34,43 +39,33 @@ import java.util.TimerTask;
  */
 public class KeyboardActivity extends SkxBaseActivity {
 
-    private RelativeLayout keyboard_container;
-    private EditText mEditText;
+    private RelativeLayout mRlRoot;
     private Button btn;
     private Button btn2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_keyboard);
-        keyboard_container = (RelativeLayout) findViewById(R.id.keyboard_container);
-        mEditText = (EditText) findViewById(R.id.keyboard_et);
-        btn = (Button) findViewById(R.id.keyboard_btn);
-        btn2 = (Button) findViewById(R.id.keyboard_btn2);
+    protected void initParams() {
 
-        /**
-         * mEditText.setFocusable(true);
-         * mEditText.setFocusableInTouchMode(true);
-         * mEditText.requestFocus();//获取焦点 光标出现
-         */
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_keyboard;
+    }
+
+    @Override
+    protected void initView() {
+        mRlRoot = (RelativeLayout) findViewById(R.id.rl_keyboard_root);
+        EditText mEditText = (EditText) findViewById(R.id.et_keyboard_inputBox);
+        btn = (Button) findViewById(R.id.btn_keyboard_1);
+        btn2 = (Button) findViewById(R.id.btn_keyboard_2);
+
+        mRlRoot.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutListener);
 
         mEditText.setFocusable(true);
         mEditText.setFocusableInTouchMode(true);
         mEditText.requestFocus();//获取焦点 光标出现
 
-//        mEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//
-//                if (hasFocus) {
-//                    Log.e("edit_hasFocus", hasFocus + "");
-//                    ToastTool.showToast(KeyboardActivity.this, "有焦点");
-//                } else {
-//                    Log.e("edit_hasFocus", hasFocus + "");
-//                    ToastTool.showToast(KeyboardActivity.this, "无焦点");
-//                }
-//            }
-//        });
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
@@ -93,7 +88,29 @@ public class KeyboardActivity extends SkxBaseActivity {
         });
     }
 
-    // 获取点击事件
+    private ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            // 判断窗口可见区域大小
+            Rect r = new Rect();
+            mRlRoot.getWindowVisibleDisplayFrame(r);
+
+            int screenHeight = WidthHeightTool.getScreenHeight(mActivity);
+            int heightDifference = screenHeight - (r.bottom - r.top);
+            boolean isKeyboardShowing = heightDifference > screenHeight / 3; //如果之前软键盘状态为显示，现在为关闭，或者之前为关闭，现在为显示，则表示软键盘的状态发生了改变
+
+            if (isKeyboardShowing) {
+                // 显示键盘 -> 隐藏底部导航栏
+                Log.e(TAG, "onGlobalLayout: 键盘弹出");
+                ToastTool.showToast(mActivity, "键盘弹出");
+            } else {
+                Log.e(TAG, "onGlobalLayout: 键盘关闭");
+                // 输入法键盘 -> 显示导航栏
+                ToastTool.showToast(mActivity, "键盘关闭");
+            }
+        }
+    };
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -107,12 +124,18 @@ public class KeyboardActivity extends SkxBaseActivity {
 
     // 判定是否需要隐藏
     private boolean isHideInput(View v, MotionEvent ev) {
-        if (v != null && (v instanceof EditText)) {
+        if ((v instanceof EditText)) {
             int[] l = {0, 0};
             v.getLocationInWindow(l);
             int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left + v.getWidth();
             return (ev.getX() > left && ev.getX() < right && ev.getY() > top && ev.getY() < bottom);
         }
         return false;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mRlRoot.getViewTreeObserver().removeOnGlobalLayoutListener(mGlobalLayoutListener);
     }
 }
