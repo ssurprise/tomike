@@ -8,6 +8,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -18,17 +19,15 @@ import com.skx.tomikecommonlibrary.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
-public class ThreadCommunicationActivity extends SkxBaseActivity implements View.OnClickListener {
-
-    private final static String TAG = "ThreadCommunicationActivity";
+public class ThreadCommunicationActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private final static int INIT = 20;
 
     private ScrollView mSvLogcat;
     private TextView mLogcat;
 
-    private ProductionConsumer mProductionConsumer;
-    private ProductionConsumer1 mProductionConsumer1;
+    private Production mProduction;
+    private ProductionPro mProductionPro;
 
     private Handler mHandler = new Handler(Looper.myLooper()) {
         @Override
@@ -55,7 +54,7 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("线程间通信").create();
+        return new TitleConfig.Builder().setTitleText("线程间通信 wait/notify").create();
     }
 
     @Override
@@ -83,12 +82,12 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
         int id = v.getId();
         if (id == R.id.btn_threadCommunication_unused) {
             mLogcat.setText("");
-            mProductionConsumer = new ProductionConsumer();
+            mProduction = new Production();
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (true) {
-                        mProductionConsumer.production();
+                        mProduction.production();
                     }
                 }
             }, "producer-thread").start();
@@ -96,20 +95,20 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
                 @Override
                 public void run() {
                     int i = 0;
-                    while (i < 5) {
-                        mProductionConsumer.consumer();
+                    while (i < 20) {
+                        mProduction.consumer();
                         i++;
                     }
                 }
             }, "consumer-thread").start();
         } else if (id == R.id.btn_threadCommunication_waitAndNotify) {
             mLogcat.setText("");
-            mProductionConsumer1 = new ProductionConsumer1();
+            mProductionPro = new ProductionPro();
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (true) {
-                        mProductionConsumer1.production();
+                        mProductionPro.make();
                     }
                 }
             }, "producer-thread").start();
@@ -117,18 +116,18 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
                 @Override
                 public void run() {
                     while (true) {
-                        mProductionConsumer1.consumer();
+                        mProductionPro.consume();
                     }
                 }
             }, "consumer-thread").start();
         } else if (id == R.id.btn_threadCommunication_waitAndNotifyShortcoming) {
             mLogcat.setText("");
-            mProductionConsumer1 = new ProductionConsumer1();
+            mProductionPro = new ProductionPro();
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (true) {
-                        mProductionConsumer1.production();
+                        mProductionPro.make();
                     }
                 }
             }, "producer-thread").start();
@@ -136,7 +135,7 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
                 @Override
                 public void run() {
                     while (true) {
-                        mProductionConsumer1.production();
+                        mProductionPro.make();
                     }
                 }
             }, "producer-thread-2").start();
@@ -144,7 +143,7 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
                 @Override
                 public void run() {
                     while (true) {
-                        mProductionConsumer1.consumer();
+                        mProductionPro.consume();
                     }
                 }
             }, "consumer-thread").start();
@@ -152,14 +151,14 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
                 @Override
                 public void run() {
                     while (true) {
-                        mProductionConsumer1.consumer();
+                        mProductionPro.consume();
                     }
                 }
             }, "consumer-thread-2").start();
         }
     }
 
-    class ProductionConsumer {
+    class Production {
 
         private int i = 1;
 
@@ -178,15 +177,19 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
         }
     }
 
-    class ProductionConsumer1 {
+    class ProductionPro {
 
         private int i = 0;
         private final Object LOCK = new Object();
         private volatile boolean isProdeced = false;
 
-        public void production() {
+        /**
+         * 生产产品
+         */
+        public void make() {
             synchronized (LOCK) {
                 if (isProdeced) {
+                    // 如果已经生产了，就等待
                     try {
                         LOCK.wait();
                     } catch (InterruptedException e) {
@@ -202,13 +205,16 @@ public class ThreadCommunicationActivity extends SkxBaseActivity implements View
                         message.arg1 = i;
                         mHandler.sendMessage(message);
 
-                        LOCK.notify();
+                        LOCK.notifyAll();
                     }
                 }
             }
         }
 
-        public synchronized void consumer() {
+        /**
+         * 消费产品
+         */
+        public void consume() {
             synchronized (LOCK) {
                 if (isProdeced) {
                     Message message = mHandler.obtainMessage(1);

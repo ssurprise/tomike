@@ -9,6 +9,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
@@ -25,7 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 版本 : V1
  * 创建时间 : 2019-12-19 18:46
  */
-public class ThreadActivity extends SkxBaseActivity implements View.OnClickListener {
+public class ThreadActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private ScrollView mSvLogcat;
     private TextView mTvLogcat;
