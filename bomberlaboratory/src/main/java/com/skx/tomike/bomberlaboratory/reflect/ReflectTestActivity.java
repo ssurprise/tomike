@@ -82,9 +82,10 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
     /**
      * 通过反射获取类的实例
      */
+    @SuppressWarnings("unchecked")
     private void test1() {
         try {
-            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
             Log.e("Reflect", dogClass.getName());
 
         } catch (ClassNotFoundException e) {
@@ -92,28 +93,28 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void getConstructors() {
         try {
             Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
 
             Constructor<Dog>[] constructors = (Constructor<Dog>[]) dogClass.getConstructors();
-            for (Constructor constructor : constructors) {
+            for (Constructor<Dog> constructor : constructors) {
                 Log.e(TAG, constructor.toString());
             }
 
             Constructor<Dog> constructor1 = dogClass.getConstructor(String.class, int.class);
             Log.e(TAG, constructor1.toString());
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
             e.printStackTrace();
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void newInstance() {
         try {
-            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
             Dog dog = (Dog) dogClass.newInstance();
             dog.eat("肉");
 
@@ -121,22 +122,15 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
             Dog dog2 = dogConstructor.newInstance("二哈", 3);
             dog2.eat("骨头");
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void getMethods() {
         try {
-            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
             // 获取类的所有公共(public 修饰)方法，包括超类中的公共方法。private/protect 修饰的方法获取不到。
             Method[] methods = dogClass.getMethods();
             for (Method method : methods) {
@@ -157,7 +151,7 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
     @SuppressWarnings("unchecked")
     private void getMethod() {
         try {
-            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
 
             Method eat = dogClass.getMethod("eat", String.class);
             Log.e(TAG, "getMethod获取Dog类的public方法：" + eat.toString());
@@ -178,9 +172,7 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
             Method friend = dogClass.getDeclaredMethod("friend");
             Log.e(TAG, "getDeclaredMethod获取Dog类的package-private方法：" + friend.toString());
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
             e.printStackTrace();
         }
     }
@@ -188,7 +180,7 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
     @SuppressWarnings("unchecked")
     private void invokeMethod() {
         try {
-            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
 
             Method eat = dogClass.getMethod("eat", String.class);
             eat.invoke(dogClass.newInstance(), "大骨头");
@@ -197,22 +189,15 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
             hearinng.setAccessible(true);
             hearinng.invoke(dogClass.newInstance());
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (ClassNotFoundException | InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void getFields() {
         try {
-            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
 
             Field[] dogFields = dogClass.getFields();
             for (Field f : dogFields) {
@@ -231,9 +216,10 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void accessField() {
         try {
-            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
 
             Dog dog = (Dog) dogClass.newInstance();
 
@@ -252,28 +238,19 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
 
             Log.e(TAG, "age 修改后为：" + dog.getAge());
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void getAnnotation() {
         try {
-            Class dogClass = Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
+            Class<Dog> dogClass = (Class<Dog>) Class.forName("com.skx.tomike.bomberlaboratory.reflect.Dog");
             Dog dog = (Dog) dogClass.newInstance();
 
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
 

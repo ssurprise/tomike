@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
 
@@ -29,7 +30,7 @@ import java.util.concurrent.FutureTask;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
-public class ThreadCallbackActivity extends SkxBaseActivity {
+public class ThreadCallbackActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final static String TAG = "ThreadCallbackActivity";
 
