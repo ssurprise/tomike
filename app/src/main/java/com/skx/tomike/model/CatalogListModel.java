@@ -5,7 +5,6 @@ import com.skx.tomike.activity.ColorMatrixActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.KeyboardActivity;
-import com.skx.tomike.tanklaboratory.widget.activity.MatrixImageActivity;
 import com.skx.tomike.activity.SpannableStringBuilderActivity;
 import com.skx.tomike.activity.UrlEncodeActivity;
 import com.skx.tomike.activity.WatermarkActivity;
@@ -36,6 +35,9 @@ import com.skx.tomike.cannonlaboratory.ui.activity.RxJavaActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.TransparentThemeActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.ZoomImageActivity;
 import com.skx.tomike.javabean.CatalogItem;
+import com.skx.tomike.tacticallaboratory.activity.LinkedDemoActivity;
+import com.skx.tomike.tacticallaboratory.activity.QueueDemoActivity;
+import com.skx.tomike.tacticallaboratory.activity.StackDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.ViewModelActivity;
 import com.skx.tomike.tacticallaboratory.pattern.chainofresponsibility.ChainOfResponsibilityPatternActivity;
 import com.skx.tomike.tacticallaboratory.pattern.memento.MementoPatternActivity;
@@ -64,6 +66,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.FloatingActionButtonActivit
 import com.skx.tomike.tanklaboratory.widget.activity.FlowLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.LightDarkTextActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.Lowercase2UppercaseActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.MatrixImageActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.NavigationBarActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.NestedScrollViewViewPagerActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.PageIndicatorActivity;
@@ -110,6 +113,7 @@ public class CatalogListModel {
     private static final String GROUP_DESIGN_PATTERNS = "设计模式";
     private static final String GROUP_JAVA = "JAVA";
     private static final String GROUP_OTHER = "其他";
+    private static final String GROUP_DATA_STRUCTURE_AND_ALGORITHM = "数据结构和算法";
 
     private static LinkedHashMap<String, List<CatalogItem>> mCatalogGroupMap = new LinkedHashMap<>();
 
@@ -145,6 +149,10 @@ public class CatalogListModel {
      * 其他
      */
     private static final List<CatalogItem> mOtherCatalogs = new ArrayList<>();
+    /**
+     * 数据结构和算法
+     */
+    private static final List<CatalogItem> mDataStructureCatalogs = new ArrayList<>();
 
     static {
         mXzCatalogs.add(new CatalogItem("订单V2动效", EffectGroupActivity.class.getName()));
@@ -264,6 +272,13 @@ public class CatalogListModel {
         mJavaCatalogs.add(new CatalogItem("泛型理解", GenericTestActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("反射理解", ReflectTestActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_JAVA, mJavaCatalogs);
+
+
+        // 数据结构和算法
+        mDesignPatternCatalogs.add(new CatalogItem("栈", StackDemoActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("队列", QueueDemoActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("链表", LinkedDemoActivity.class.getName()));
+        mCatalogGroupMap.put(GROUP_DATA_STRUCTURE_AND_ALGORITHM, mDataStructureCatalogs);
     }
 
     /**

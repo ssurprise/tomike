@@ -25,7 +25,22 @@
         <activity
             android:name=".activity.ViewModelActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".pattern.proxy.ProxyPatternActivity" />
+
+        <activity
+            android:name=".pattern.proxy.ProxyPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.StackDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.QueueDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.LinkedDemoActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>
