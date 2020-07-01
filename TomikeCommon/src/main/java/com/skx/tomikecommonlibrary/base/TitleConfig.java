@@ -21,8 +21,8 @@ public class TitleConfig {
     private int mTitleTextSize;
     private @ColorRes
     int mTitleTextColor;
-    private OnClickListener mBackBtnClickListener;
-    private OnClickListener mMoreBtnClickListener;
+    private View.OnClickListener mBackBtnClickListener;
+    private View.OnClickListener mMoreBtnClickListener;
     private View mCustomTitleView;
 
     public int getBackBtnRes() {
@@ -49,11 +49,11 @@ public class TitleConfig {
         return mCustomTitleView;
     }
 
-    public OnClickListener getBackBtnClickListener() {
+    public View.OnClickListener getBackBtnClickListener() {
         return mBackBtnClickListener;
     }
 
-    public OnClickListener getMoreBtnClickListener() {
+    public View.OnClickListener getMoreBtnClickListener() {
         return mMoreBtnClickListener;
     }
 
@@ -66,8 +66,8 @@ public class TitleConfig {
         private int mTitleTextSize;
         private @ColorRes
         int mTitleTextColor;
-        private OnClickListener mBackBtnClickListener;
-        private OnClickListener mMoreBtnClickListener;
+        private View.OnClickListener mBackBtnClickListener;
+        private View.OnClickListener mMoreBtnClickListener;
         private View mCustomTitleView;
 
         public Builder setBackBtnRes(@DrawableRes int backRes) {
@@ -100,12 +100,14 @@ public class TitleConfig {
             return this;
         }
 
-        public void setBackBtnClickListener(OnClickListener backBtnClickListener) {
+        public Builder setBackBtnClickListener(View.OnClickListener backBtnClickListener) {
             this.mBackBtnClickListener = backBtnClickListener;
+            return this;
         }
 
-        public void setMoreBtnClickListener(OnClickListener moreBtnClickListener) {
+        public Builder setMoreBtnClickListener(View.OnClickListener moreBtnClickListener) {
             this.mMoreBtnClickListener = moreBtnClickListener;
+            return this;
         }
 
         public TitleConfig create() {
@@ -120,10 +122,5 @@ public class TitleConfig {
             titleConfig.mMoreBtnClickListener = this.mMoreBtnClickListener;
             return titleConfig;
         }
-    }
-
-    interface OnClickListener {
-
-        void onClick(View view);
     }
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".widget.activity.RecyclerViewItemUpdateActivity">
+
+    <TextView
+        android:id="@+id/tv_recyclerviewChildCount_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查看RecyclerView 的child count 和 adapter 的item count"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_recyclerviewChildCount_horizontal"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginTop="10dp"
+        android:text="横向"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_recyclerviewChildCount_verticalFixHeight"
+        app:layout_constraintTop_toBottomOf="@id/tv_recyclerviewChildCount_description"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_recyclerviewChildCount_verticalFixHeight"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="20dp"
+        android:text="纵向固定高度"
+        app:layout_constraintLeft_toRightOf="@id/btn_recyclerviewChildCount_horizontal"
+        app:layout_constraintRight_toLeftOf="@id/btn_recyclerviewChildCount_verticalMatchParent"
+        app:layout_constraintTop_toTopOf="@id/btn_recyclerviewChildCount_horizontal"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_recyclerviewChildCount_verticalMatchParent"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="20dp"
+        android:text="纵向匹配高度"
+        app:layout_constraintLeft_toRightOf="@id/btn_recyclerviewChildCount_verticalFixHeight"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_recyclerviewChildCount_horizontal"
+        tools:ignore="HardcodedText" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_recyclerviewChildCount_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_recyclerviewChildCount_show"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

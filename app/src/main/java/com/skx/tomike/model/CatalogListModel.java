@@ -73,6 +73,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.PageIndicatorActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.PopupWindowActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RadioGroupActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerAsViewPagerActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewChildCountActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewItemUpdateActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SetTextIsSelectableTestActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity;
@@ -192,6 +193,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("ViewPager2 androidx", ViewPager2Activity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 添加/删除item", RecyclerViewItemUpdateActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 仿ViewPager", RecyclerAsViewPagerActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView child count测试", RecyclerViewChildCountActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ScrollViewAnchorActivity.class.getName()));
 

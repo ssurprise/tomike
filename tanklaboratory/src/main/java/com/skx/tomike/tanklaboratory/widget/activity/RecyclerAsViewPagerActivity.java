@@ -1,18 +1,25 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.ItemAnimatorAdapter;
-import com.skx.tomike.tanklaboratory.widget.adapter.RecyclerViewBannerAdapter;
-import com.skx.tomike.tanklaboratory.widget.view.RecyclerViewPageChangeListenerHelper;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
+import com.skx.tomikecommonlibrary.utils.ScreenUtilKt;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,6 +32,11 @@ import java.util.List;
  * 创建时间 : 2020/5/30 5:01 PM
  */
 public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
+
+    private RecyclerView mRvBanner;
+    private PagerSnapHelper mSnapHelper;
+
+    private RecyclerView mRvContent;
 
     private final List<String> mBannerList = new ArrayList<>();
     private final List<String> mContentList = new LinkedList<>();
@@ -46,7 +58,22 @@ public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> 
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("RecyclerView 仿 ViewPager效果").create();
+        return new TitleConfig.Builder().setTitleText("RecyclerView 仿 ViewPager效果").setMoreBtnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) mRvBanner.getLayoutManager();
+                View viewByPosition = layoutManager.findViewByPosition(1);
+
+                Log.e(TAG, "childCount -> " + mRvBanner.getChildCount());
+                Log.e(TAG, "itemCount -> " + mRvBanner.getAdapter().getItemCount());
+//                Log.e(TAG, "target -> x：" + viewByPosition.getX());
+//                Log.e(TAG, "target -> left：" + viewByPosition.getLeft());
+
+                Log.e(TAG, "content - childCount -> " + mRvContent.getChildCount());
+                Log.e(TAG, "content - itemCount -> " + mRvContent.getAdapter().getItemCount());
+            }
+        }).create();
     }
 
     @Override
@@ -56,33 +83,57 @@ public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> 
 
     @Override
     protected void initView() {
-        RecyclerView mRvBanner = findViewById(R.id.rv_recyclerviewAsViewPager_banner);
+        mRvBanner = findViewById(R.id.rv_recyclerviewAsViewPager_banner);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         mRvBanner.setLayoutManager(layoutManager);
         mRvBanner.setAdapter(new RecyclerViewBannerAdapter(mBannerList));
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(mRvBanner);
 
-        mRvBanner.addOnScrollListener(new RecyclerViewPageChangeListenerHelper(snapHelper, new RecyclerViewPageChangeListenerHelper.OnPageChangeListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.e(TAG, "page selected -> position:" + position);
-            }
-        }));
-
-
-        RecyclerView mRvContent = findViewById(R.id.rv_recyclerviewAsViewPager_content);
+        mRvContent = findViewById(R.id.rv_recyclerviewAsViewPager_content);
         mRvContent.setLayoutManager(new LinearLayoutManager(this));
         mRvContent.setAdapter(new ItemAnimatorAdapter(mContentList));
     }
+
+    private static class RecyclerViewBannerAdapter extends RecyclerView.Adapter<RecyclerViewBannerAdapter.ItemViewHolder> {
+
+        private final List<String> mBannerList = new ArrayList<>();
+
+        public RecyclerViewBannerAdapter(List<String> contentList) {
+            if (contentList != null) {
+                mBannerList.addAll(contentList);
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return mBannerList.size();
+        }
+
+        @NotNull
+        @Override
+        public RecyclerViewBannerAdapter.ItemViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+            return new RecyclerViewBannerAdapter.ItemViewHolder(LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.adapter_recycler_view_banner, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull RecyclerViewBannerAdapter.ItemViewHolder holder, int position) {
+            ImageLoader.with(holder.itemView.getContext()).load(mBannerList.get(position)).into(holder.mIvImage);
+            ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
+            layoutParams.width = ScreenUtilKt.getScreenWidth(holder.itemView.getContext()) - 300;
+            holder.itemView.setLayoutParams(layoutParams);
+        }
+
+        private static class ItemViewHolder extends RecyclerView.ViewHolder {
+
+            ImageView mIvImage;
+
+            ItemViewHolder(View itemView) {
+                super(itemView);
+                mIvImage = itemView.findViewById(R.id.iv_recyclerViewAsViewPager_bannerImage);
+            }
+        }
+    }
+
 }

@@ -1,14 +1,22 @@
 package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomike.tanklaboratory.widget.adapter.RecyclerViewBannerAdapter;
 import com.skx.tomikecommonlibrary.base.BaseViewModel;
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +59,7 @@ public class ViewPager2Activity extends SkxBaseActivity<BaseViewModel> {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                Log.e("onPageScrolled", position + "");
+                Log.e("onPageScrolled", position + " positionOffset:" + positionOffset + " positionOffsetPixels:" + positionOffsetPixels);
             }
 
             @Override
@@ -65,8 +73,48 @@ public class ViewPager2Activity extends SkxBaseActivity<BaseViewModel> {
                 super.onPageScrollStateChanged(state);
             }
         });
-
         ViewPager2 mVpVertical = findViewById(R.id.vp_androidxViewPager_vertical);
         mVpVertical.setAdapter(new RecyclerViewBannerAdapter(mBannerList));
+    }
+
+    private static class RecyclerViewBannerAdapter extends RecyclerView.Adapter<RecyclerViewBannerAdapter.ItemViewHolder> {
+
+        private final List<String> mBannerList = new ArrayList<>();
+
+        public RecyclerViewBannerAdapter(List<String> contentList) {
+            if (contentList != null) {
+                mBannerList.addAll(contentList);
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return mBannerList.size();
+        }
+
+        @NotNull
+        @Override
+        public ItemViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+            return new RecyclerViewBannerAdapter.ItemViewHolder(LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.adapter_recycler_view_banner, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+            ImageLoader.with(holder.itemView.getContext()).load(mBannerList.get(position)).into(holder.mIvImage);
+//            ViewGroup.LayoutParams layoutParams = holder.mIvImage.getLayoutParams();
+//            layoutParams.width = ScreenUtilKt.getScreenWidth(holder.itemView.getContext()) - 200;
+//            holder.mIvImage.setLayoutParams(layoutParams);
+        }
+
+        private static class ItemViewHolder extends RecyclerView.ViewHolder {
+
+            ImageView mIvImage;
+
+            ItemViewHolder(View itemView) {
+                super(itemView);
+                mIvImage = itemView.findViewById(R.id.iv_recyclerViewAsViewPager_bannerImage);
+            }
+        }
     }
 }
