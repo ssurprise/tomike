@@ -62,6 +62,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.CoordinatorLayoutCaseActivi
 import com.skx.tomike.tanklaboratory.widget.activity.DrawableTint2Activity;
 import com.skx.tomike.tanklaboratory.widget.activity.DrawableTintActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.DrawerLayoutActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.EditTextCursorActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.FloatingActionButtonActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.FlowLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.LightDarkTextActivity;
@@ -165,6 +166,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("TextView 字间距", TextWordSpacingActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 复制测试", SetTextIsSelectableTestActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("EditText 光标", EditTextCursorActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", LightDarkTextActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView/EditText 小写转大写", Lowercase2UppercaseActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("自定义显示方向ImageView", MatrixImageActivity.class.getName()));

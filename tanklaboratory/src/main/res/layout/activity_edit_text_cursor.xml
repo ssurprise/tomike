@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/view_padding_15"
+    tools:context=".widget.activity.LightDarkTextActivity">
+
+    <EditText
+        android:id="@+id/et_editTextCursor_default"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:gravity="bottom|start"
+        android:hint="默认"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:lines="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_editTextCursor_cursorNull"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="bottom|end"
+        android:hint="清除光标"
+        android:inputType="number"
+        android:lines="1"
+        android:textCursorDrawable="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_editTextCursor_default" />
+
+    <EditText
+        android:id="@+id/et_editTextCursor_customCursor"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:gravity="bottom|end"
+        android:hint="自定义光标"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:lines="1"
+        android:textCursorDrawable="@drawable/color_cursor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_editTextCursor_cursorNull" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
