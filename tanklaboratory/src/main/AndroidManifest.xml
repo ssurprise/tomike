@@ -135,6 +135,7 @@
         <activity android:name=".widget.activity.ViewPager2Activity" />
         <activity android:name=".widget.activity.RecyclerViewChildCountActivity" />
         <activity android:name=".widget.activity.EditTextCursorActivity" />
+        <activity android:name=".widget.activity.RecyclerViewScrollToPositionActivity" />
     </application>
 
 </manifest>
