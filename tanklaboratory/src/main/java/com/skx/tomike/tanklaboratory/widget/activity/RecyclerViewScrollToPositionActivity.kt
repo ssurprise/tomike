@@ -1,8 +1,15 @@
 package com.skx.tomike.tanklaboratory.widget.activity
 
-import android.widget.LinearLayout
+import android.content.Context
+import android.util.AttributeSet
+import android.util.DisplayMetrics
+import android.util.Log
+import android.widget.ImageView
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.skx.tomike.tanklaboratory.R
 import com.skx.tomike.tanklaboratory.widget.adapter.ItemAnimatorAdapter
@@ -10,6 +17,7 @@ import com.skx.tomikecommonlibrary.base.BaseViewModel
 import com.skx.tomikecommonlibrary.base.SkxBaseActivity
 import com.skx.tomikecommonlibrary.base.TitleConfig
 import java.util.*
+
 
 /**
  * 描述 : RecyclerView 滑动到指定位置
@@ -19,7 +27,11 @@ import java.util.*
  */
 class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), RadioGroup.OnCheckedChangeListener {
 
-    private var mRvShow: RecyclerView? = null
+    private var mTvTargetPos: TextView? = null
+    private var mRecyclerView: RecyclerView? = null
+    private var centerLayoutManager: CenterLayoutManager? = null
+
+    private var mTargetPosition: Int = 0
 
     private val mContentList: MutableList<String> = LinkedList()
 
@@ -42,46 +54,90 @@ class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), 
 
     override fun initView() {
         findViewById<RadioGroup>(R.id.btn_recyclerviewScrollToPosition_configGroup).setOnCheckedChangeListener(this)
+        mTvTargetPos = findViewById(R.id.tv_recyclerviewScrollToPosition_targetPos)
 
-        mRvShow = findViewById(R.id.rv_recyclerviewScrollTpPosition_show)
-        mRvShow?.layoutManager = LinearLayoutManager(this)
-        mRvShow?.adapter = ItemAnimatorAdapter(mContentList)
+        mRecyclerView = findViewById(R.id.rv_recyclerviewScrollTpPosition_show)
+//        centerLayoutManager = CenterLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        mRecyclerView?.layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
+        mRecyclerView?.adapter = ItemAnimatorAdapter(mContentList)
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(mRecyclerView)
+
+        findViewById<TextView>(R.id.tv_recyclerviewScrollToPosition_startBtn).setOnClickListener {
+//            mRecyclerView?.scrollToPosition(mTargetPosition)
+//            mRecyclerView?.smoothScrollToPosition(mTargetPosition)
+
+            val findSnapView = snapHelper.findSnapView(mRecyclerView?.layoutManager)
+            var offset = 0
+            findSnapView?.apply {
+                Log.e(TAG, "child - view width:" + layoutParams.width)
+                val minus = mRecyclerView?.layoutParams?.width?.minus(layoutParams.width)
+                Log.e(TAG, "child - minus:" + minus)
+                offset = minus?.div(2)!!
+                Log.e(TAG, "child - offset:" + offset)
+
+            }
+
+            if (mRecyclerView?.layoutManager is LinearLayoutManager) {
+                (mRecyclerView?.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(mTargetPosition, offset)
+            }
+
+        }
+
+        findViewById<ImageView>(R.id.iv_recyclerviewScrollToPosition_moreBtn).setOnClickListener {
+            mTargetPosition++
+            mTvTargetPos?.text = mTargetPosition.toString()
+        }
+        findViewById<ImageView>(R.id.iv_recyclerviewScrollToPosition_lessBtn).setOnClickListener {
+            mTargetPosition--
+            mTvTargetPos?.text = mTargetPosition.toString()
+        }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
         when (checkedId) {
             R.id.btn_recyclerviewScrollToPosition_horizontal -> {
-                mRvShow?.apply {
-                    val layoutParams = layoutParams
-                    layoutParams.height = 600
-                    setLayoutParams(layoutParams)
-
+                mRecyclerView?.apply {
                     val layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
-                    mRvShow?.layoutManager = layoutManager
-//                    mRvShow?.adapter?.notifyDataSetChanged()
+                    mRecyclerView?.layoutManager = layoutManager
+                    mRecyclerView?.adapter = ItemAnimatorAdapter(mContentList)
                 }
             }
             R.id.btn_recyclerviewScrollToPosition_verticalFixHeight -> {
-                mRvShow?.apply {
-                    val layoutParams = layoutParams
-                    layoutParams.height = 1000
-                    setLayoutParams(layoutParams)
-
-                    val layoutManager = LinearLayoutManager(mActivity)
-                    mRvShow?.layoutManager = layoutManager
-//                    mRvShow?.adapter?.notifyDataSetChanged()
+                mRecyclerView?.apply {
+                    val layoutManager = LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false)
+                    mRecyclerView?.layoutManager = layoutManager
+                    mRecyclerView?.adapter = ItemAnimatorAdapter(mContentList)
                 }
             }
-            R.id.btn_recyclerviewScrollToPosition_verticalMatchParent -> {
-                mRvShow?.apply {
-                    val layoutParams = layoutParams
-                    layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT
-                    setLayoutParams(layoutParams)
+        }
+    }
 
-                    val layoutManager = LinearLayoutManager(mActivity)
-                    mRvShow?.layoutManager = layoutManager
-//                    mRvShow?.adapter?.notifyDataSetChanged()
-                }
+    class CenterLayoutManager : LinearLayoutManager {
+        constructor(context: Context?) : super(context) {}
+        constructor(context: Context?, orientation: Int, reverseLayout: Boolean) : super(context, orientation, reverseLayout) {}
+        constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {}
+
+        override fun smoothScrollToPosition(recyclerView: RecyclerView, state: RecyclerView.State, position: Int) {
+            val smoothScroller: RecyclerView.SmoothScroller = CenterSmoothScroller(recyclerView.context)
+            smoothScroller.targetPosition = position
+            startSmoothScroll(smoothScroller)
+        }
+
+        override fun scrollToPosition(position: Int) {
+            super.scrollToPosition(position)
+
+        }
+
+        private class CenterSmoothScroller internal constructor(context: Context?) : LinearSmoothScroller(context) {
+
+            override fun calculateDtToFit(viewStart: Int, viewEnd: Int, boxStart: Int, boxEnd: Int, snapPreference: Int): Int {
+                return boxStart + (boxEnd - boxStart) / 2 - (viewStart + (viewEnd - viewStart) / 2)
+            }
+
+            override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
+                return 100f / displayMetrics.densityDpi
             }
         }
     }
