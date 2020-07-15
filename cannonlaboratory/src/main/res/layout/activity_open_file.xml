@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".ui.activity.ImageLoadActivity">
+
+    <TextView
+        android:id="@+id/tv_openFile_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/skx_212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_openFile_openBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:padding="20dp"
+        android:text="打开系统目录"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_openFile_openBtn2"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_openFile_openBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+        android:text="打开系统目录2"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

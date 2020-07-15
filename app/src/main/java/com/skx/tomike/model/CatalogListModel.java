@@ -26,6 +26,7 @@ import com.skx.tomike.cannonlaboratory.ui.activity.LifecycleActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.NfcGroupActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.NotificationActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.OkHttpActivity;
+import com.skx.tomike.cannonlaboratory.ui.activity.OpenFileActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.OutterStartActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.PermissionIntroActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.PhotoAlbumsActivity;
@@ -234,6 +235,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("图片缩放", ZoomImageActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("Glide图片加载 - 二次封装", GlideActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("大图片加载", ImageLoadActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("打开文件管理器", OpenFileActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 
