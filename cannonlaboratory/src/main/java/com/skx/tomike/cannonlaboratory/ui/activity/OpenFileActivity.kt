@@ -17,6 +17,7 @@ import com.skx.tomikecommonlibrary.base.SkxBaseActivity
 import com.skx.tomikecommonlibrary.base.TitleConfig
 import com.skx.tomikecommonlibrary.utils.ToastTool
 import java.io.File
+import java.util.*
 
 
 /**
@@ -77,8 +78,7 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
                 intent.addCategory(Intent.CATEGORY_OPENABLE)
                 intent.setDataAndType(Uri.parse(mPath), "*/*")
-                startActivityForResult(intent, 41)
-//                startActivityForResult(Intent.createChooser(intent, "Open folder"), 41)
+                startActivityForResult(Intent.createChooser(intent, "Open folder"), 41)
             }
             R.id.tv_openFile_image -> {
                 // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file
@@ -209,8 +209,8 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
         val dotIndex = fName.lastIndexOf(".")
         if (dotIndex < 0) return type
         /* 获取文件的后缀名 */
-        val fileType = fName.substring(dotIndex, fName.length).toLowerCase()
-        if (fileType == null || "" == fileType) return type
+        val fileType = fName.substring(dotIndex, fName.length).toLowerCase(Locale.getDefault())
+        if ("" == fileType) return type
         //在MIME和文件类型的匹配表中找到对应的MIME类型。
         for (i in MIME_MapTable.indices) {
             if (fileType == MIME_MapTable[i][0]) type = MIME_MapTable[i][1]
