@@ -122,7 +122,7 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
     }
 
     private fun openAndroidFile(filepath: String) {
-        val intent = Intent()
+        val intent = Intent(Intent.ACTION_VIEW)//动作，查看
         // 这是比较流氓的方法，绕过7.0的文件权限检查
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val builder = VmPolicy.Builder()
@@ -130,9 +130,7 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
         }
 
         val file = File(filepath)
-        //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//设置标记
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        intent.action = Intent.ACTION_VIEW //动作，查看
         intent.setDataAndType(Uri.fromFile(file), getMIMEType(file)) //设置类型
         startActivity(intent)
     }
