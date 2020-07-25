@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -66,7 +69,7 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
                 intent.addCategory(Intent.CATEGORY_DEFAULT)
                 intent.setDataAndType(Uri.parse(mPath), "file/*")
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
+                startActivityForResult(intent, 40)
             }
             R.id.tv_openFile_targetPath_openBtn2 -> {
                 // 如果您想让应用获得对文档提供程序所拥有文档的长期、持续性访问权限，请使用 ACTION_OPEN_DOCUMENT。
@@ -75,8 +78,7 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
                 intent.addCategory(Intent.CATEGORY_OPENABLE)
                 intent.setDataAndType(Uri.parse(mPath), "*/*")
                 startActivityForResult(intent, 41)
-
-//                startActivity(Intent.createChooser(intent, "Open folder"))
+//                startActivityForResult(Intent.createChooser(intent, "Open folder"), 41)
             }
             R.id.tv_openFile_image -> {
                 // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file
@@ -92,7 +94,10 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
                 // To search for all documents available via installed storage providers,
                 // it would be "*/*".
                 intent.type = "image/*"
-
+                //intent.setType(“image/*”);//选择图片
+                //intent.setType(“audio/*”); //选择音频
+                //intent.setType(“video/*”); //选择视频 （mp4 3gp 是android支持的视频格式）
+                //intent.setType(“video/*;image/*”);//同时选择视频和图片
                 startActivityForResult(intent, 42)
             }
             R.id.tv_openFile_video -> {
@@ -107,11 +112,112 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
+            val uri: Uri? = data?.data
             data?.run {
-                val uri: Uri? = this.data
                 ToastTool.showToast(mActivity, "Uri: $uri")
-                Log.i(TAG, "Uri: $uri")
+                Log.e(TAG, "Uri: $uri")
             }
+            openAndroidFile(FileUtils.getRealPath(mActivity, uri))
         }
     }
+
+    private fun openAndroidFile(filepath: String) {
+        val intent = Intent()
+        // 这是比较流氓的方法，绕过7.0的文件权限检查
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val builder = VmPolicy.Builder()
+            StrictMode.setVmPolicy(builder.build())
+        }
+
+        val file = File(filepath)
+        //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//设置标记
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.action = Intent.ACTION_VIEW //动作，查看
+        intent.setDataAndType(Uri.fromFile(file), getMIMEType(file)) //设置类型
+        startActivity(intent)
+    }
+
+    private val MIME_MapTable = arrayOf(arrayOf(".3gp", "video/3gpp"),
+            arrayOf(".apk", "application/vnd.android.package-archive"),
+            arrayOf(".asf", "video/x-ms-asf"),
+            arrayOf(".avi", "video/x-msvideo"),
+            arrayOf(".bin", "application/octet-stream"),
+            arrayOf(".bmp", "image/bmp"),
+            arrayOf(".c", "text/plain"),
+            arrayOf(".class", "application/octet-stream"),
+            arrayOf(".conf", "text/plain"),
+            arrayOf(".cpp", "text/plain"),
+            arrayOf(".doc", "application/msword"),
+            arrayOf(".docx", "application/msword"),
+            arrayOf(".exe", "application/octet-stream"),
+            arrayOf(".gif", "image/gif"),
+            arrayOf(".gtar", "application/x-gtar"),
+            arrayOf(".gz", "application/x-gzip"),
+            arrayOf(".h", "text/plain"),
+            arrayOf(".htm", "text/html"),
+            arrayOf(".html", "text/html"),
+            arrayOf(".jar", "application/java-archive"),
+            arrayOf(".java", "text/plain"),
+            arrayOf(".jpeg", "image/jpeg"),
+            arrayOf(".JPEG", "image/jpeg"),
+            arrayOf(".jpg", "image/jpeg"),
+            arrayOf(".js", "application/x-javascript"),
+            arrayOf(".log", "text/plain"),
+            arrayOf(".m3u", "audio/x-mpegurl"),
+            arrayOf(".m4a", "audio/mp4a-latm"),
+            arrayOf(".m4b", "audio/mp4a-latm"),
+            arrayOf(".m4p", "audio/mp4a-latm"),
+            arrayOf(".m4u", "video/vnd.mpegurl"),
+            arrayOf(".m4v", "video/x-m4v"),
+            arrayOf(".mov", "video/quicktime"),
+            arrayOf(".mp2", "audio/x-mpeg"),
+            arrayOf(".mp3", "audio/x-mpeg"),
+            arrayOf(".mp4", "video/mp4"),
+            arrayOf(".mpc", "application/vnd.mpohun.certificate"),
+            arrayOf(".mpe", "video/mpeg"),
+            arrayOf(".mpeg", "video/mpeg"),
+            arrayOf(".mpg", "video/mpeg"),
+            arrayOf(".mpg4", "video/mp4"),
+            arrayOf(".mpga", "audio/mpeg"),
+            arrayOf(".msg", "application/vnd.ms-outlook"),
+            arrayOf(".ogg", "audio/ogg"),
+            arrayOf(".pdf", "application/pdf"),
+            arrayOf(".png", "image/png"),
+            arrayOf(".pps", "application/vnd.ms-powerpoint"),
+            arrayOf(".ppt", "application/vnd.ms-powerpoint"),
+            arrayOf(".pptx", "application/vnd.ms-powerpoint"),
+            arrayOf(".prop", "text/plain"),
+            arrayOf(".rar", "application/x-rar-compressed"),
+            arrayOf(".rc", "text/plain"),
+            arrayOf(".rmvb", "audio/x-pn-realaudio"),
+            arrayOf(".rtf", "application/rtf"),
+            arrayOf(".sh", "text/plain"),
+            arrayOf(".tar", "application/x-tar"),
+            arrayOf(".tgz", "application/x-compressed"),
+            arrayOf(".txt", "text/plain"),
+            arrayOf(".wav", "audio/x-wav"),
+            arrayOf(".wma", "audio/x-ms-wma"),
+            arrayOf(".wmv", "audio/x-ms-wmv"),
+            arrayOf(".wps", "application/vnd.ms-works"),
+            arrayOf(".xml", "text/plain"),
+            arrayOf(".z", "application/x-compress"),
+            arrayOf(".zip", "application/zip"),
+            arrayOf("", "*/*"))
+
+    private fun getMIMEType(file: File): String? {
+        var type = "*/*"
+        val fName = file.name
+        //获取后缀名前的分隔符"."在fName中的位置。
+        val dotIndex = fName.lastIndexOf(".")
+        if (dotIndex < 0) return type
+        /* 获取文件的后缀名 */
+        val fileType = fName.substring(dotIndex, fName.length).toLowerCase()
+        if (fileType == null || "" == fileType) return type
+        //在MIME和文件类型的匹配表中找到对应的MIME类型。
+        for (i in MIME_MapTable.indices) {
+            if (fileType == MIME_MapTable[i][0]) type = MIME_MapTable[i][1]
+        }
+        return type
+    }
+
 }
