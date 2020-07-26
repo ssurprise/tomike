@@ -1,24 +1,30 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.bomberlaboratory.basics;
 
-import android.os.Bundle;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.skx.tomike.R;
+import com.skx.tomike.bomberlaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class UrlEncodeActivity extends AppCompatActivity {
+public class UrlEncodeActivity extends SkxBaseActivity<BaseViewModel> {
 
     private static final String URL_ENCODE = "UTF-8";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_url_encode);
+    protected void initParams() {
 
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_url_encode;
+    }
+
+    @Override
+    protected void initView() {
         String test1 = "12*8";
         String test2 = "556";
         String test3 = "abck.@";

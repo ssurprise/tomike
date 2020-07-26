@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/view_padding_15"
+        tools:context="com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity">
+
+        <TextView
+            android:id="@+id/tv_urlParse_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="目标地址"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/tv_urlParse_targetUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请你输入你要解析的url 地址"
+            android:minHeight="50dp"
+            android:text="www.baidu.com"
+            android:textColor="@color/skx_757575"
+            android:textSize="14sp"
+            tools:ignore="Autofill,HardcodedText,LabelFor,TextFields" />
+
+        <TextView
+            android:id="@+id/tv_urlParse_startParsing"
+            style="@style/TextBtnStyle"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="开始解析"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_urlParse_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_f5f5f5"
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+</ScrollView>

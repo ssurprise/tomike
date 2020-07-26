@@ -6,9 +6,10 @@ import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.KeyboardActivity;
 import com.skx.tomike.activity.SpannableStringBuilderActivity;
-import com.skx.tomike.activity.UrlEncodeActivity;
+import com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity;
 import com.skx.tomike.activity.WatermarkActivity;
 import com.skx.tomike.activity.xzdz.EffectGroupActivity;
+import com.skx.tomike.bomberlaboratory.basics.UrlParseActivity;
 import com.skx.tomike.bomberlaboratory.generic.GenericTestActivity;
 import com.skx.tomike.bomberlaboratory.reflect.ReflectTestActivity;
 import com.skx.tomike.bomberlaboratory.thread.ThreadActivity;
@@ -244,7 +245,8 @@ public class CatalogListModel {
         mUtilCatalogs.add(new CatalogItem("键盘、输入法", KeyboardActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("水印图", WatermarkActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Double数据转换", DoubleFormatActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("url编码", UrlEncodeActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("编码/解码", UrlEncodeActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("Url 解析", UrlParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("状态栏-底部导航栏高度", StatusBarNavigationBarActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
 

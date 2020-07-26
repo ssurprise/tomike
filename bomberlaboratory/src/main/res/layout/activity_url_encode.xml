@@ -7,6 +7,6 @@
     android:paddingLeft="@dimen/view_padding_15"
     android:paddingRight="@dimen/view_padding_15"
     android:paddingTop="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.activity.UrlEncodeActivity">
+    tools:context="com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity">
 
 </RelativeLayout>
