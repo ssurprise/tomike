@@ -1,4 +1,4 @@
-package com.skx.tomike.customview;
+package com.skx.tomikecommonlibrary.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

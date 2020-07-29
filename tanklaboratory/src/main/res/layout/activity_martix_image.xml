@@ -1,21 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/view_padding_15"
     android:paddingLeft="@dimen/view_padding_15"
-    android:paddingRight="@dimen/view_padding_15"
     android:paddingTop="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingBottom="@dimen/view_padding_15"
     tools:context="com.skx.tomike.tanklaboratory.widget.activity.MatrixImageActivity">
 
     <com.skx.tomike.tanklaboratory.widget.view.TranslateImageView
         android:id="@+id/matrixImage_mainImage"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/image_01"
+        android:background="@android:color/holo_blue_light"
         android:scaleType="fitEnd"
-        android:background="@android:color/holo_blue_light"/>
+        android:src="@drawable/image_01"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tv_matrixImage_topLeftBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/matrixImage_mainImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="左上"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tv_matrixImage_topRightBtn"
+        app:layout_constraintTop_toBottomOf="@id/matrixImage_mainImage"
+        tools:ignore="HardcodedText"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="330dp" />
+
+    <TextView
+        android:id="@+id/tv_matrixImage_topRightBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/matrixImage_mainImage"
+        android:layout_centerHorizontal="true"
+        android:text="右上"
+        app:layout_constraintLeft_toRightOf="@id/tv_matrixImage_topLeftBtn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_matrixImage_topLeftBtn"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_matrixImage_bottomLeftBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/matrixImage_mainImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="左下"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tv_matrixImage_bottomRightBtn"
+        app:layout_constraintTop_toBottomOf="@id/tv_matrixImage_topLeftBtn"
+        tools:ignore="HardcodedText"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="330dp" />
+
+    <TextView
+        android:id="@+id/tv_matrixImage_bottomRightBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/matrixImage_mainImage"
+        android:layout_centerHorizontal="true"
+        android:text="右下"
+        app:layout_constraintLeft_toRightOf="@id/tv_matrixImage_bottomLeftBtn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_matrixImage_bottomLeftBtn"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

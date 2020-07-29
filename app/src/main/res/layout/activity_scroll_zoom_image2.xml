@@ -19,7 +19,7 @@
 
     </LinearLayout>
 
-    <com.skx.tomike.customview.ZoomImageNestedScrollingParent2
+    <com.skx.tomikecommonlibrary.view.ZoomImageNestedScrollingParent2
         android:id="@+id/scrollZoom2_scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,6 +59,6 @@
                 android:background="@color/skx_e9596f" />
         </LinearLayout>
 
-    </com.skx.tomike.customview.ZoomImageNestedScrollingParent2>
+    </com.skx.tomikecommonlibrary.view.ZoomImageNestedScrollingParent2>
 
 </RelativeLayout>

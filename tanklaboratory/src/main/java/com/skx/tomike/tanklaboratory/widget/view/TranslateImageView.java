@@ -3,7 +3,6 @@ package com.skx.tomike.tanklaboratory.widget.view;
 import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewTreeObserver;
@@ -21,8 +20,7 @@ import androidx.appcompat.widget.AppCompatImageView;
  * @author shiguotao
  * Created on 2016/11/30.
  */
-public class TranslateImageView extends AppCompatImageView
-        implements ViewTreeObserver.OnGlobalLayoutListener {
+public class TranslateImageView extends AppCompatImageView implements ViewTreeObserver.OnGlobalLayoutListener {
 
     private final String TAG = TranslateImageView.class.getName();
 
@@ -138,6 +136,16 @@ public class TranslateImageView extends AppCompatImageView
         }
     }
 
+    public void setPositionAndUpdate(Position position) {
+        if (mPosition != position) {
+            setScaleType(ScaleType.MATRIX);
+            mPosition = position;
+            once = true;
+            mMatrix = new Matrix();
+            requestLayout();
+        }
+    }
+
     @Override
     public void onGlobalLayout() {
         if (once) {
@@ -168,31 +176,31 @@ public class TranslateImageView extends AppCompatImageView
      * mScaleTypeEx 枚举值等于 CROP：和ScaleType.CENTER_CROP 的缩放原则一致，只是没有指定位置为中间；
      * mScaleTypeEx 枚举值等于 INSIDE：和ScaleType.CENTER_INSIDE 的缩放原则一致，只是没有指定位置为中间；
      *
-     * @param vwidth  view的宽度
-     * @param vheight view高度
-     * @param dwidth  图片的宽度
-     * @param dheight 图片的高度
+     * @param vWidth  view的宽度
+     * @param vHeight view高度
+     * @param dWidth  图片的宽度
+     * @param dHeight 图片的高度
      */
-    private void configureScale(int vwidth, int vheight, int dwidth, int dheight) {
+    private void configureScale(int vWidth, int vHeight, int dWidth, int dHeight) {
         if (mScaleTypeEx == null) {
             return;
         }
         switch (mScaleTypeEx) {
             case CROP:
-                if (dwidth * vheight > vwidth * dheight) {
-                    mScale = (float) vheight / (float) dheight;
+                if (dWidth * vHeight > vWidth * dHeight) {
+                    mScale = (float) vHeight / (float) dHeight;
                 } else {
-                    mScale = (float) vwidth / (float) dwidth;
+                    mScale = (float) vWidth / (float) dWidth;
                 }
                 mMatrix.setScale(mScale, mScale);
                 break;
 
             case INSIDE:
-                if (dwidth <= vwidth && dheight <= vheight) {
+                if (dWidth <= vWidth && dHeight <= vHeight) {
                     mScale = 1.0f;
                 } else {
-                    mScale = Math.min((float) vwidth / (float) dwidth,
-                            (float) vheight / (float) dheight);
+                    mScale = Math.min((float) vWidth / (float) dWidth,
+                            (float) vHeight / (float) dHeight);
                 }
                 mMatrix.setScale(mScale, mScale);
                 break;
@@ -249,11 +257,7 @@ public class TranslateImageView extends AppCompatImageView
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        } else {
-            getViewTreeObserver().removeGlobalOnLayoutListener(this);
-        }
+        getViewTreeObserver().removeOnGlobalLayoutListener(this);
     }
 
     /**

@@ -39,7 +39,6 @@ public class CircleImageDrawable extends Drawable {
 
 	@Override
 	public void setAlpha(int alpha) {
-		// TODO Auto-generated method stub
 		mPaint.setAlpha(alpha);
 	}
 
