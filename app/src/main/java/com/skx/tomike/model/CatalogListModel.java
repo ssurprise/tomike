@@ -1,13 +1,13 @@
 package com.skx.tomike.model;
 
-import com.skx.tomike.activity.ColorMatrix2Activity;
-import com.skx.tomike.activity.ColorMatrixActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ColorMatrix2Activity;
+import com.skx.tomike.tanklaboratory.widget.activity.ColorMatrixActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.KeyboardActivity;
 import com.skx.tomike.activity.SpannableStringBuilderActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity;
-import com.skx.tomike.activity.WatermarkActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.WatermarkActivity;
 import com.skx.tomike.activity.xzdz.EffectGroupActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlParseActivity;
 import com.skx.tomike.bomberlaboratory.generic.GenericTestActivity;

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.activity.SkxBaseActivity;
-import com.skx.tomike.customview.OverScrollView;
+import com.skx.tomikecommonlibrary.view.OverScrollView;
 
 /**
  * 滑动缩放头图

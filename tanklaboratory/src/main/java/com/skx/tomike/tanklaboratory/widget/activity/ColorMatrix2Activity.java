@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,12 +12,12 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 
-import com.skx.tomike.R;
-
-public class ColorMatrix2Activity extends AppCompatActivity {
-
+public class ColorMatrix2Activity extends SkxBaseActivity<BaseViewModel> {
 
     private ImageView imageMatrix_image;
     private GridLayout mGroup;
@@ -27,16 +27,29 @@ public class ColorMatrix2Activity extends AppCompatActivity {
     private float[] mColorMatrix = new float[20];
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_matrix);
+    protected void initParams() {
+    }
 
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return super.configHeaderTitle();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_image_matrix;
+    }
+
+    @Override
+    protected void initView() {
         imageMatrix_image = findViewById(R.id.imageMatrix_image);
         mGroup = findViewById(R.id.imageMatrix_gridLayout);
-
         mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_03);
-//        imageMatrix_image.setImageBitmap(ImageHelper.handlerImageOld(mBitmap));
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mGroup.post(new Runnable() {
             @Override
             public void run() {
@@ -83,7 +96,6 @@ public class ColorMatrix2Activity extends AppCompatActivity {
         canvas.drawBitmap(bmp, 0, 0, paint);
         imageMatrix_image.setImageBitmap(bmp);
     }
-
 
     public void change(View view) {
         getMatrix();

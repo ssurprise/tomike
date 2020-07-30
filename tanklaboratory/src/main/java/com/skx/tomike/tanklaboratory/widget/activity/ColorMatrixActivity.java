@@ -1,20 +1,19 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.skx.tomike.R;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
 import com.skx.tomikecommonlibrary.utils.ImageHelperKt;
 
-public class ColorMatrixActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
+public class ColorMatrixActivity extends SkxBaseActivity<BaseViewModel> implements SeekBar.OnSeekBarChangeListener {
 
     private ImageView main_img;
-    private SeekBar seekBar_hun, seekBar_saturation, seekBar_lum;
     private static int MAX_VALUE = 255;
     private static int MID_VALUE = 127;
 
@@ -22,16 +21,26 @@ public class ColorMatrixActivity extends AppCompatActivity implements SeekBar.On
     private Bitmap bitmap;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_color_matrix);
+    protected void initParams() {}
 
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("修改图片色度、亮度、饱和度").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_color_matrix;
+    }
+
+    @Override
+    protected void initView() {
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_02);
 
         main_img = findViewById(R.id.main_img);
-        seekBar_hun = findViewById(R.id.seekBar_hun);
-        seekBar_saturation = findViewById(R.id.seekBar_saturation);
-        seekBar_lum = findViewById(R.id.seekBar_lum);
+        SeekBar seekBar_hun = findViewById(R.id.seekBar_hun);
+        SeekBar seekBar_saturation = findViewById(R.id.seekBar_saturation);
+        SeekBar seekBar_lum = findViewById(R.id.seekBar_lum);
 
         seekBar_hun.setOnSeekBarChangeListener(this);
         seekBar_saturation.setOnSeekBarChangeListener(this);
@@ -49,16 +58,13 @@ public class ColorMatrixActivity extends AppCompatActivity implements SeekBar.On
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        switch (seekBar.getId()) {
-            case R.id.seekBar_hun:
-                mHue = (progress - MID_VALUE) * 1.0f / MID_VALUE * 180;
-                break;
-            case R.id.seekBar_saturation:
-                mSaturation = progress * 1.0f / MID_VALUE;
-                break;
-            case R.id.seekBar_lum:
-                mLum = progress * 1.0f / MID_VALUE;
-                break;
+        int id = seekBar.getId();
+        if (id == R.id.seekBar_hun) {
+            mHue = (progress - MID_VALUE) * 1.0f / MID_VALUE * 180;
+        } else if (id == R.id.seekBar_saturation) {
+            mSaturation = progress * 1.0f / MID_VALUE;
+        } else if (id == R.id.seekBar_lum) {
+            mLum = progress * 1.0f / MID_VALUE;
         }
 
         main_img.setImageBitmap(ImageHelperKt.handleImageEffect(bitmap, mHue, mSaturation, mLum));

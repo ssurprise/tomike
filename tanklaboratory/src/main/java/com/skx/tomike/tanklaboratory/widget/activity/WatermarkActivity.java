@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -6,9 +6,14 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.skx.tomike.R;
+import androidx.annotation.Nullable;
 
-public class WatermarkActivity extends SkxBaseActivity {
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.tomikecommonlibrary.base.TitleConfig;
+
+public class WatermarkActivity extends SkxBaseActivity<BaseViewModel> {
 
     private ImageView imageView01;
     private ImageView imageView02;
@@ -19,17 +24,21 @@ public class WatermarkActivity extends SkxBaseActivity {
     private ImageView imageView13;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_watermark);
-
-        initializeView();
-        refreshView();
+    protected void initParams() {
     }
 
     @Override
-    public void initializeView() {
-        super.initializeView();
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("给图片添加水印").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_watermark;
+    }
+
+    @Override
+    protected void initView() {
         imageView01 = findViewById(R.id.image01);
         imageView02 = findViewById(R.id.image02);
         imageView03 = findViewById(R.id.image03);
@@ -40,8 +49,8 @@ public class WatermarkActivity extends SkxBaseActivity {
     }
 
     @Override
-    public void refreshView() {
-        super.refreshView();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Bitmap targetBitmap01 = BitmapFactory.decodeResource(getResources(), R.drawable.image_01);
         Bitmap targetBitmap02 = BitmapFactory.decodeResource(getResources(), R.drawable.image_05);
         Bitmap targetBitmap03 = BitmapFactory.decodeResource(getResources(), R.drawable.image_07);

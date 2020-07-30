@@ -3,7 +3,7 @@ package com.skx.tomikecommonlibrary.utils
 import android.graphics.*
 
 /**
- * 修改图片色度、亮度、包含度
+ * 修改图片色度、亮度、饱和度
  *
  * @param bm
  * @param hue        色度

@@ -2,13 +2,14 @@ package com.skx.tomike.javabean;
 
 /**
  * Created by shiguotao on 2016/8/29.
+ * <p>
+ * 网络请求基础接收类
  */
 public class RespContent<T> {
 
     private int status;
     private T data;
-    private String desc;
-    private String error;
+    private String errorMsg;
     private String timeStamp;
 
     public int getStatus() {
@@ -27,12 +28,12 @@ public class RespContent<T> {
         this.data = t;
     }
 
-    public String getError() {
-        return error;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 
     public String getTimeStamp() {
@@ -41,13 +42,5 @@ public class RespContent<T> {
 
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 }
