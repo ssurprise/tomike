@@ -1,14 +1,12 @@
 package com.skx.tomike.model;
 
-import com.skx.tomike.tanklaboratory.widget.activity.ColorMatrix2Activity;
-import com.skx.tomike.tanklaboratory.widget.activity.ColorMatrixActivity;
+import com.skx.tomike.activity.BaseInfoActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.KeyboardActivity;
 import com.skx.tomike.activity.SpannableStringBuilderActivity;
-import com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity;
-import com.skx.tomike.tanklaboratory.widget.activity.WatermarkActivity;
 import com.skx.tomike.activity.xzdz.EffectGroupActivity;
+import com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlParseActivity;
 import com.skx.tomike.bomberlaboratory.generic.GenericTestActivity;
 import com.skx.tomike.bomberlaboratory.reflect.ReflectTestActivity;
@@ -58,6 +56,8 @@ import com.skx.tomike.tanklaboratory.animation.activity.ShareElementActivity;
 import com.skx.tomike.tanklaboratory.animation.activity.TweenAnimationActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CardViewActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CheckBoxActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ColorMatrix2Activity;
+import com.skx.tomike.tanklaboratory.widget.activity.ColorMatrixActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ConstraintLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CoordinatorLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.CoordinatorLayoutCaseActivity;
@@ -96,6 +96,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.ViewPager2Activity;
 import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerInfiniteLoopActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerMultiplePageActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ViewPagerWrapContentActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.WatermarkActivity;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -258,6 +259,7 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("SpannableString多样化展示", SpannableStringBuilderActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("设备、APP 基础信息", BaseInfoActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 
