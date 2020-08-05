@@ -13,8 +13,8 @@ android {
         applicationId "com.skx.tomike"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 140
+        versionName "1.40.00"
         vectorDrawables.useSupportLibrary = true
 
         ndk {

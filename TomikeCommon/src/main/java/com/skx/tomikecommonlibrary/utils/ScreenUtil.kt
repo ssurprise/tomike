@@ -3,21 +3,16 @@ package com.skx.tomikecommonlibrary.utils
 import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
-import android.util.DisplayMetrics
 import android.view.KeyCharacterMap
 import android.view.KeyEvent
 import android.view.ViewConfiguration
-import android.view.WindowManager
 
 
 /**
  * 获取屏幕宽度
  */
 fun getScreenWidth(context: Context): Int {
-    val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-    val displayMetrics = DisplayMetrics()
-    windowManager.defaultDisplay.getMetrics(displayMetrics)
-    return displayMetrics.widthPixels
+    return context.resources.displayMetrics.widthPixels
 }
 
 /**
@@ -27,10 +22,7 @@ fun getScreenWidth(context: Context): Int {
  * @return 高度
  */
 fun getScreenHeight(context: Context): Int {
-    val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-    val displayMetrics = DisplayMetrics()
-    windowManager.defaultDisplay.getMetrics(displayMetrics)
-    return displayMetrics.heightPixels
+    return context.resources.displayMetrics.heightPixels
 }
 
 /**

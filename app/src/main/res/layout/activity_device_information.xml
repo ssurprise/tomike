@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/view_padding_15"
+    android:paddingTop="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingBottom="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.activity.DoubleFormatActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设备信息"
+        android:textColor="@color/skx_212121"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="手机品牌：" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="手机型号：" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_systemVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="系统Android版本：" />
+
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_androidId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        tools:text="ANDROID_ID：" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_deviceId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="device id：" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_imei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="imei：" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_meid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="imid：" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_screenWidth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        tools:text="屏幕宽：" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_screenHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="屏幕高：" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="APP信息"
+        android:textColor="@color/skx_212121"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_appInfo_appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        tools:text="名称：" />
+
+    <TextView
+        android:id="@+id/tv_appInfo_packageName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        tools:text="APP包名：" />
+
+    <TextView
+        android:id="@+id/tv_deviceInfo_appVersionCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        tools:text="versionCode：" />
+
+    <TextView
+        android:id="@+id/tv_appInfo_appVersionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        tools:text="versionName：" />
+
+</LinearLayout>

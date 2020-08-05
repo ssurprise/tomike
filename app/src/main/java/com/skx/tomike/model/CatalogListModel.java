@@ -1,6 +1,6 @@
 package com.skx.tomike.model;
 
-import com.skx.tomike.activity.BaseInfoActivity;
+import com.skx.tomike.activity.DeviceInfomationActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.KeyboardActivity;
@@ -259,7 +259,7 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("SpannableString多样化展示", SpannableStringBuilderActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("设备、APP 基础信息", BaseInfoActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("设备、APP 基础信息", DeviceInfomationActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 
