@@ -287,9 +287,9 @@ public class CatalogListModel {
 
 
         // 数据结构和算法
-        mDesignPatternCatalogs.add(new CatalogItem("栈", StackDemoActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("队列", QueueDemoActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("链表", LinkedDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("栈", StackDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("队列", QueueDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("链表", LinkedDemoActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_DATA_STRUCTURE_AND_ALGORITHM, mDataStructureCatalogs);
     }
 
