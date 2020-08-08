@@ -32,6 +32,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".reflect.ReflectTestActivity" />
         <activity android:name=".basics.UrlParseActivity" />
+        <activity android:name=".thread.ThreadPoolActivity" />
 
     </application>
 </manifest>
