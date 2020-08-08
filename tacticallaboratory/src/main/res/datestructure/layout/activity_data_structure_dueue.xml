@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context="com.skx.tomike.tacticallaboratory.activity.DueueDemoActivity">
+
+    <LinearLayout
+        android:id="@+id/tv_dueue_sourceWrap"
+        android:layout_width="120dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:animateLayoutChanges="true"
+        android:background="@color/skx_bdbdbd"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_dueue_addFirst"
+        style="@style/TextBtnStyle"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="40dp"
+        android:text="队头添加"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_dueue_addLast"
+        style="@style/TextBtnStyle"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="队尾添加"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintRight_toRightOf="@id/tv_dueue_addFirst"
+        app:layout_constraintTop_toBottomOf="@id/tv_dueue_addFirst"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_dueue_removeFirst"
+        style="@style/TextBtnStyle"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="删除队头"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintRight_toRightOf="@id/tv_dueue_addFirst"
+        app:layout_constraintTop_toBottomOf="@id/tv_dueue_addLast"
+        app:layout_constraintVertical_bias="0.113"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_dueue_removeLast"
+        style="@style/TextBtnStyle"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="删除队尾"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintStart_toStartOf="@id/tv_dueue_removeFirst"
+        app:layout_constraintTop_toBottomOf="@id/tv_dueue_removeFirst"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

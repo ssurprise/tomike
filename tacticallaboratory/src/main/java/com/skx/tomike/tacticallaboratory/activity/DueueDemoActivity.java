@@ -16,22 +16,22 @@ import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
 import com.skx.tomikecommonlibrary.utils.ToastTool;
 
 import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.Deque;
 
 /**
- * 描述 : 数据结构 - 队列 demo
+ * 描述 : 数据结构 - 双端队列 demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
-public class QueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
+public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mLlStackWrap;
 
-    private static final int MAX_SIZE = 5;
+    private static final int MAX_SIZE = 8;
 
     private int mIndex = -1;
-    private final Queue<Integer> mQueue = new ArrayDeque<>();
+    private final Deque<Integer> mQueue = new ArrayDeque<>();
 
     @Override
     protected void initParams() {
@@ -39,51 +39,76 @@ public class QueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("数据结构 - 队列").create();
+        return new TitleConfig.Builder().setTitleText("数据结构 - 双端队列").create();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_data_structure_queue;
+        return R.layout.activity_data_structure_dueue;
     }
 
     @Override
     protected void initView() {
-        mLlStackWrap = findViewById(R.id.tv_queue_sourceWrap);
-        findViewById(R.id.tv_queue_pushBtn).setOnClickListener(new View.OnClickListener() {
+        mLlStackWrap = findViewById(R.id.tv_dueue_sourceWrap);
+
+        findViewById(R.id.tv_dueue_addFirst).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                push();
+                push(true);
             }
         });
-        findViewById(R.id.tv_queue_popBtn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.tv_dueue_addLast).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pop();
+                push(false);
+            }
+        });
+
+        findViewById(R.id.tv_dueue_removeFirst).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop(true);
+            }
+        });
+        findViewById(R.id.tv_dueue_removeLast).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop(false);
             }
         });
     }
 
-    private void push() {
+    private void push(boolean isFirst) {
         if (mIndex + 1 >= MAX_SIZE) {
             ToastTool.showToast(this, "最大支持添加" + MAX_SIZE + "个");
             return;
         }
-        mQueue.offer(++mIndex);
-        addView();
+        mIndex++;
+        if (isFirst) {
+            mQueue.offerFirst(mIndex);
+            mLlStackWrap.addView(createChildView(), 0);
+        } else {
+            mQueue.offerLast(mIndex);
+            mLlStackWrap.addView(createChildView());
+        }
     }
 
-    private void pop() {
+    private void pop(boolean isFirst) {
         if (mQueue.size() == 0) {
             ToastTool.showToast(this, "当前栈内没有元素哦~");
             return;
         }
         mIndex--;
-        mQueue.poll();
-        mLlStackWrap.removeViewAt(0);
+        if (isFirst) {
+            mQueue.pollFirst();
+            mLlStackWrap.removeViewAt(0);
+        } else {
+            mQueue.pollLast();
+            mLlStackWrap.removeViewAt(mLlStackWrap.getChildCount() - 1);
+        }
     }
 
-    private void addView() {
+    private TextView createChildView() {
         TextView textView = new TextView(this);
         textView.setText(String.valueOf(mIndex));
         textView.setGravity(Gravity.CENTER);
@@ -96,7 +121,7 @@ public class QueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
         lp.topMargin = 15;
         lp.leftMargin = 15;
         lp.rightMargin = 15;
-        mLlStackWrap.addView(textView, lp);
+        textView.setLayoutParams(lp);
+        return textView;
     }
-
 }
