@@ -10,6 +10,7 @@ import com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlParseActivity;
 import com.skx.tomike.bomberlaboratory.generic.GenericTestActivity;
 import com.skx.tomike.bomberlaboratory.reflect.ReflectTestActivity;
+import com.skx.tomike.bomberlaboratory.thread.ReentrantLockActivity;
 import com.skx.tomike.bomberlaboratory.thread.ThreadActivity;
 import com.skx.tomike.bomberlaboratory.thread.ThreadCallbackActivity;
 import com.skx.tomike.bomberlaboratory.thread.ThreadCommunicationActivity;
@@ -284,6 +285,7 @@ public class CatalogListModel {
         mJavaCatalogs.add(new CatalogItem("线程间通信 - wait/notify", ThreadCommunicationActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程返回值", ThreadCallbackActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程池 - Executors", ThreadPoolActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("ReentrantLock", ReentrantLockActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("泛型理解", GenericTestActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("反射理解", ReflectTestActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_JAVA, mJavaCatalogs);

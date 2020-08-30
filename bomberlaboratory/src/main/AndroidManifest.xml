@@ -33,6 +33,7 @@
         <activity android:name=".reflect.ReflectTestActivity" />
         <activity android:name=".basics.UrlParseActivity" />
         <activity android:name=".thread.ThreadPoolActivity" />
+        <activity android:name=".thread.ReentrantLockActivity" />
 
     </application>
 </manifest>
