@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/view_padding_15"
+    tools:context=".thread.ThreadPoolExecutorsActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="线程获取方式："
+        android:textColor="@color/skx_212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/btn_threadPoolExecutors_newSingleThreadExecutor"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="newSingleThreadExecutor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_threadPoolExecutors_newFixedThreadPool"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="newFixedThreadPool"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_0"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_2"
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_threadPoolExecutors_newCachedThreadPool"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="newCachedThreadPool"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_0"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_2"
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_threadPoolExecutors_newScheduledThreadPool"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="newScheduledThreadPool"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_0"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_2"
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="center"
+        android:text="下载队列"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <SeekBar
+            android:id="@+id/seekb_threadPoolExecutors_process"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp" />
+
+        <TextView
+            android:id="@+id/tv_threadPoolExecutors_processText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="0%"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <SeekBar
+            android:id="@+id/seekb_threadPoolExecutors_process1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp" />
+
+        <TextView
+            android:id="@+id/tv_threadPoolExecutors_processText1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="0%"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText"
+            tools:text="50" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <SeekBar
+            android:id="@+id/seekb_threadPoolExecutors_process2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp" />
+
+        <TextView
+            android:id="@+id/tv_threadPoolExecutors_processText2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="0%"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <SeekBar
+            android:id="@+id/seekb_threadPoolExecutors_process3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp" />
+
+        <TextView
+            android:id="@+id/tv_threadPoolExecutors_processText3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="0%"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="额外任务"
+        android:textColor="@color/skx_212121"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <SeekBar
+            android:id="@+id/seekb_threadPoolExecutors_process5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp" />
+
+        <TextView
+            android:id="@+id/tv_threadPoolExecutors_processText5"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="0%"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <SeekBar
+            android:id="@+id/seekb_threadPoolExecutors_process6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp" />
+
+        <TextView
+            android:id="@+id/tv_threadPoolExecutors_processText6"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="0%"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+</LinearLayout>
