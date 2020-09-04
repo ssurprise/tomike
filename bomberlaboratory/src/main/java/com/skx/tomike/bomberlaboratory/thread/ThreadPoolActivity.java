@@ -117,7 +117,7 @@ public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("线程池 Executors").create();
+        return new TitleConfig.Builder().setTitleText("线程池 ThreadPoolExecutor").create();
     }
 
     @Override

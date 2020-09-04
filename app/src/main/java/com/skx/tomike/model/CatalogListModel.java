@@ -287,7 +287,6 @@ public class CatalogListModel {
         mJavaCatalogs.add(new CatalogItem("线程返回值", ThreadCallbackActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程池 - Executors", ThreadPoolExecutorsActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程池 - ThreadPool", ThreadPoolActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("线程池 - Executors", ThreadPoolActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("ReentrantLock", ReentrantLockActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("泛型理解", GenericTestActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("反射理解", ReflectTestActivity.class.getName()));
