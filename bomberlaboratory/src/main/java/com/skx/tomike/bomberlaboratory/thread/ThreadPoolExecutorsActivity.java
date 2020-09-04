@@ -44,13 +44,13 @@ public class ThreadPoolExecutorsActivity extends SkxBaseActivity<BaseViewModel> 
     private TextView tv_threadPool_processText3;
     private TextView tv_threadPool_task3log;
 
+    private SeekBar seekb_threadPool_process4;
+    private TextView tv_threadPool_processText4;
+    private TextView tv_threadPool_task4log;
+
     private SeekBar seekb_threadPool_process5;
     private TextView tv_threadPool_processText5;
     private TextView tv_threadPool_task5log;
-
-    private SeekBar seekb_threadPool_process6;
-    private TextView tv_threadPool_processText6;
-    private TextView tv_threadPool_task6log;
 
     private Handler mHandler = new Handler(Looper.myLooper()) {
         @Override
@@ -85,19 +85,19 @@ public class ThreadPoolExecutorsActivity extends SkxBaseActivity<BaseViewModel> 
                     seekb_threadPool_process3.setProgress(msg.arg1);
                     tv_threadPool_processText3.setText(String.format(Locale.getDefault(), "%d%%", msg.arg1));
                     break;
+                case 4:
+                    if (msg.obj != null) {
+                        tv_threadPool_task4log.setText(String.format("执行任务的线程为：%s", msg.obj.toString()));
+                    }
+                    seekb_threadPool_process4.setProgress(msg.arg1);
+                    tv_threadPool_processText4.setText(String.format(Locale.getDefault(), "%d%%", msg.arg1));
+                    break;
                 case 5:
                     if (msg.obj != null) {
                         tv_threadPool_task5log.setText(String.format("执行任务的线程为：%s", msg.obj.toString()));
                     }
                     seekb_threadPool_process5.setProgress(msg.arg1);
                     tv_threadPool_processText5.setText(String.format(Locale.getDefault(), "%d%%", msg.arg1));
-                    break;
-                case 6:
-                    if (msg.obj != null) {
-                        tv_threadPool_task6log.setText(String.format("执行任务的线程为：%s", msg.obj.toString()));
-                    }
-                    seekb_threadPool_process6.setProgress(msg.arg1);
-                    tv_threadPool_processText6.setText(String.format(Locale.getDefault(), "%d%%", msg.arg1));
                     break;
             }
         }
@@ -144,13 +144,13 @@ public class ThreadPoolExecutorsActivity extends SkxBaseActivity<BaseViewModel> 
         tv_threadPool_processText3 = findViewById(R.id.tv_threadPoolExecutors_processText3);
         tv_threadPool_task3log = findViewById(R.id.tv_threadPoolExecutors_task3log);
 
+        seekb_threadPool_process4 = findViewById(R.id.seekb_threadPoolExecutors_process4);
+        tv_threadPool_processText4 = findViewById(R.id.tv_threadPoolExecutors_processText4);
+        tv_threadPool_task4log = findViewById(R.id.tv_threadPoolExecutors_task4log);
+
         seekb_threadPool_process5 = findViewById(R.id.seekb_threadPoolExecutors_process5);
         tv_threadPool_processText5 = findViewById(R.id.tv_threadPoolExecutors_processText5);
         tv_threadPool_task5log = findViewById(R.id.tv_threadPoolExecutors_task5log);
-
-        seekb_threadPool_process6 = findViewById(R.id.seekb_threadPoolExecutors_process6);
-        tv_threadPool_processText6 = findViewById(R.id.tv_threadPoolExecutors_processText6);
-        tv_threadPool_task6log = findViewById(R.id.tv_threadPoolExecutors_task6log);
     }
 
     @Override
@@ -166,21 +166,21 @@ public class ThreadPoolExecutorsActivity extends SkxBaseActivity<BaseViewModel> 
             mExecutorService = Executors.newSingleThreadExecutor();
 
         } else if (id == R.id.btn_threadPoolExecutors_newFixedThreadPool) {
-            mExecutorService = Executors.newFixedThreadPool(4);
+            mExecutorService = Executors.newFixedThreadPool(3);
 
         } else if (id == R.id.btn_threadPoolExecutors_newCachedThreadPool) {
             mExecutorService = Executors.newCachedThreadPool();
 
         } else if (id == R.id.btn_threadPoolExecutors_newScheduledThreadPool) {
-            mExecutorService = Executors.newScheduledThreadPool(4);
+            mExecutorService = Executors.newScheduledThreadPool(3);
         }
         if (mExecutorService != null) {
             mExecutorService.execute(runnable0);
             mExecutorService.execute(runnable1);
             mExecutorService.execute(runnable2);
             mExecutorService.execute(runnable3);
+            mExecutorService.execute(runnable4);
             mExecutorService.execute(runnable5);
-            mExecutorService.execute(runnable6);
         }
     }
 
@@ -188,8 +188,8 @@ public class ThreadPoolExecutorsActivity extends SkxBaseActivity<BaseViewModel> 
     private Runnable runnable1 = new PoolRunnable(1);
     private Runnable runnable2 = new PoolRunnable(2);
     private Runnable runnable3 = new PoolRunnable(3);
+    private Runnable runnable4 = new PoolRunnable(4);
     private Runnable runnable5 = new PoolRunnable(5);
-    private Runnable runnable6 = new PoolRunnable(6);
 
     private class PoolRunnable implements Runnable {
 
@@ -213,21 +213,21 @@ public class ThreadPoolExecutorsActivity extends SkxBaseActivity<BaseViewModel> 
                 try {
                     switch (mTaskId) {
                         case 0:
-                            Thread.sleep(100);
+                            Thread.sleep(20);
                             break;
                         case 1:
-                            Thread.sleep(120);
+                            Thread.sleep(70);
                             break;
                         case 2:
                             Thread.sleep(50);
                             break;
                         case 3:
-                            Thread.sleep(80);
+                            Thread.sleep(10);
                             break;
-                        case 5:
+                        case 4:
                             Thread.sleep(110);
                             break;
-                        case 6:
+                        case 5:
                             Thread.sleep(70);
                             break;
                     }
