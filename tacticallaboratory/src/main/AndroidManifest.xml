@@ -30,20 +30,34 @@
             android:name=".pattern.proxy.ProxyPatternActivity"
             android:screenOrientation="portrait" />
 
+        <!--        栈-->
         <activity
             android:name=".activity.StackDemoActivity"
             android:screenOrientation="portrait" />
 
+        <!--        队列-->
         <activity
             android:name=".activity.QueueDemoActivity"
             android:screenOrientation="portrait" />
 
+        <!--        双端队列-->
         <activity
             android:name=".activity.DueueDemoActivity"
             android:screenOrientation="portrait" />
 
+        <!--        链表-->
         <activity
             android:name=".activity.LinkedDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--        数组-->
+        <activity
+            android:name=".activity.ArrayDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--        树-->
+        <activity
+            android:name=".activity.TreeDemoActivity"
             android:screenOrientation="portrait" />
 
     </application>

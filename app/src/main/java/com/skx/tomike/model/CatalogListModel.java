@@ -38,10 +38,12 @@ import com.skx.tomike.cannonlaboratory.ui.activity.RxJavaActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.TransparentThemeActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.ZoomImageActivity;
 import com.skx.tomike.javabean.CatalogItem;
+import com.skx.tomike.tacticallaboratory.activity.ArrayDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.DueueDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.LinkedDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.QueueDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.StackDemoActivity;
+import com.skx.tomike.tacticallaboratory.activity.TreeDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.ViewModelActivity;
 import com.skx.tomike.tacticallaboratory.pattern.chainofresponsibility.ChainOfResponsibilityPatternActivity;
 import com.skx.tomike.tacticallaboratory.pattern.memento.MementoPatternActivity;
@@ -294,10 +296,12 @@ public class CatalogListModel {
 
 
         // 数据结构和算法
+        mDataStructureCatalogs.add(new CatalogItem("数组", ArrayDemoActivity.class.getName()));
         mDataStructureCatalogs.add(new CatalogItem("栈", StackDemoActivity.class.getName()));
         mDataStructureCatalogs.add(new CatalogItem("队列", QueueDemoActivity.class.getName()));
         mDataStructureCatalogs.add(new CatalogItem("双端队列", DueueDemoActivity.class.getName()));
         mDataStructureCatalogs.add(new CatalogItem("链表", LinkedDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("树", TreeDemoActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_DATA_STRUCTURE_AND_ALGORITHM, mDataStructureCatalogs);
     }
 
