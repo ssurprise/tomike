@@ -42,6 +42,7 @@ import com.skx.tomike.tacticallaboratory.activity.ArrayDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.DueueDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.LinkedDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.QueueDemoActivity;
+import com.skx.tomike.tacticallaboratory.activity.SortDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.StackDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.TreeDemoActivity;
 import com.skx.tomike.tacticallaboratory.activity.ViewModelActivity;
@@ -302,6 +303,7 @@ public class CatalogListModel {
         mDataStructureCatalogs.add(new CatalogItem("双端队列", DueueDemoActivity.class.getName()));
         mDataStructureCatalogs.add(new CatalogItem("链表", LinkedDemoActivity.class.getName()));
         mDataStructureCatalogs.add(new CatalogItem("树", TreeDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("排序算法", SortDemoActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_DATA_STRUCTURE_AND_ALGORITHM, mDataStructureCatalogs);
     }
 

@@ -59,6 +59,7 @@
         <activity
             android:name=".activity.TreeDemoActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.SortDemoActivity" />
 
     </application>
 </manifest>
