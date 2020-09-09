@@ -1,66 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp"
-    tools:context="com.skx.tomike.tacticallaboratory.activity.StackDemoActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="原序列："
-        android:textColor="@color/skx_212121"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/tv_sort_source"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/skx_212121"
-        android:textSize="14sp"
-        tools:text="[1,2,3,4,5,21,1,3,9]" />
-
-    <RadioGroup
-        android:id="@+id/rb_sort_sortGroup"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp"
+        tools:context="com.skx.tomike.tacticallaboratory.activity.StackDemoActivity">
 
-        <RadioButton
-            android:id="@+id/rbtn_sort_bubbleSort"
+        <RadioGroup
+            android:id="@+id/rb_sort_sortGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rbtn_sort_bubbleSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="冒泡排序" />
+
+            <RadioButton
+                android:id="@+id/rbtn_sort_selectionSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择排序" />
+
+            <RadioButton
+                android:id="@+id/rbtn_sort_insertSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="插入排序" />
+
+            <RadioButton
+                android:id="@+id/rbtn_sort_quickSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快速排序" />
+
+            <RadioButton
+                android:id="@+id/rbtn_sort_mergeSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="归并排序" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_sort_theory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="冒泡排序" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
 
-        <RadioButton
-            android:id="@+id/rbtn_sort_selectionSort"
+        <ImageView
+            android:id="@+id/iv_sort_exampleImage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerInside"
+            tools:ignore="ContentDescription" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="选择排序" />
+            android:layout_marginTop="10dp"
+            android:text="原序列："
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
 
-        <RadioButton
-            android:id="@+id/rbtn_sort_insertSort"
+        <TextView
+            android:id="@+id/tv_sort_source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="插入排序" />
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:text="[1,2,3,4,5,21,1,3,9]" />
 
-        <RadioButton
-            android:id="@+id/rbtn_sort_mergeSort"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_sort_process"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="归并排序" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
 
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/tv_sort_process"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/skx_212121"
-        android:textSize="14sp" />
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
