@@ -4,10 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context=".ui.activity.NotificationActivity">
 
+    <TextView
+        android:id="@+id/tv_notificationManager_switchLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:text="通知权限"
+        android:textColor="@color/skx_212121"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/sc_notificationManager_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:thumb="@drawable/selector_switch_button_thumb"
+        app:layout_constraintBottom_toBottomOf="@id/tv_notificationManager_switchLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_notificationManager_switchLabel"
+        app:track="@drawable/selector_switch_button_track" />
+
     <Button
-        android:id="@+id/btn_notification_create"
+        android:id="@+id/btn_notificationManager_create"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
@@ -17,10 +43,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="HardcodedText,MissingConstraints" />
 
     <Button
-        android:id="@+id/btn_notification_cancel"
+        android:id="@+id/btn_notificationManager_cancel"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="24dp"
@@ -28,7 +54,7 @@
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_notification_create"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@id/btn_notificationManager_create"
+        tools:ignore="HardcodedText,MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

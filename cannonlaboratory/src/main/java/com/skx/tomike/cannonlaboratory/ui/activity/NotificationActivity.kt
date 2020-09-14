@@ -4,40 +4,99 @@ import android.annotation.TargetApi
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
-import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.skx.tomike.cannonlaboratory.R
+import com.skx.tomikecommonlibrary.base.BaseViewModel
+import com.skx.tomikecommonlibrary.base.SkxBaseActivity
+import com.skx.tomikecommonlibrary.base.TitleConfig
 
 
-class NotificationActivity : AppCompatActivity() {
+class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
 
 
     private var channel_id = 1
 
+    private var mSwitchNotification: SwitchCompat? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notification)
-
-
-        val button = findViewById<Button>(R.id.btn_notification_create)
-        val button2 = findViewById<Button>(R.id.btn_notification_cancel)
-
-        // 构建通知管理器
-//        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-
-        button.setOnClickListener { v: View? -> createNotification() }
-
-        button2.setOnClickListener { View.OnClickListener { v: View? -> cancelNotification() } }
+    override fun initParams() {
     }
 
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("通知权限").create()
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_notification
+    }
+
+    override fun initView() {
+        val button = findViewById<Button>(R.id.btn_notificationManager_create)
+        val button2 = findViewById<Button>(R.id.btn_notificationManager_cancel)
+
+        mSwitchNotification = findViewById(R.id.sc_notificationManager_switch)
+
+        button.setOnClickListener { createNotification() }
+        button2.setOnClickListener { View.OnClickListener { cancelNotification() } }
+
+        mSwitchNotification?.isChecked = isPermissionOpen(this)
+        mSwitchNotification?.setOnClickListener {
+            openNotificationSetting()
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        mSwitchNotification?.isChecked = isPermissionOpen(this)
+    }
+
+    /**
+     * 打开通知设置页
+     */
+    private fun openNotificationSetting() {
+        val localIntent = Intent()
+        localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {//API 26 8.0以上版本
+                localIntent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
+                localIntent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+            }
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {//API 21 5.0 以上版本
+                localIntent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
+                localIntent.putExtra("app_package", packageName)
+                localIntent.putExtra("app_uid", applicationInfo.uid)
+            }
+            else -> {
+                localIntent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                localIntent.addCategory(Intent.CATEGORY_DEFAULT)
+                localIntent.data = Uri.parse("package:$packageName")
+            }
+        }
+        startActivity(localIntent)
+    }
+
+    /**
+     * 检测是否开启通知权限
+     *
+     * @param context 上下文
+     */
+    private fun isPermissionOpen(context: Context?): Boolean {
+        if (context == null) return false
+        return NotificationManagerCompat.from(context).areNotificationsEnabled()
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationManagerCompat.from(context).importance != NotificationManager.IMPORTANCE_NONE
+//        } else {
+
+//        }
+    }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private fun createNotification() {
