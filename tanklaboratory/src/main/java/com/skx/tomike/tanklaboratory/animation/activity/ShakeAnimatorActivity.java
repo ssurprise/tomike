@@ -9,9 +9,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 
 /**
  * 描述 : 摇晃动画

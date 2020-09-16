@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
+import com.skx.common.utils.DpPxSpToolKt;
 
 /**
  * 自定义点评布局view

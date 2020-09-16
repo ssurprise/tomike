@@ -7,9 +7,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.InfiniteLoopAdapter;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 
 import java.util.ArrayList;
 

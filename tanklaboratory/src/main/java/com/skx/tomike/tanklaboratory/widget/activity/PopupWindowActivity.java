@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
+import com.skx.common.utils.SkxDrawableUtil;
 
 public class PopupWindowActivity extends AppCompatActivity implements View.OnClickListener {
 

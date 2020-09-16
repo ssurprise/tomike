@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
+import com.skx.common.imageloader.ImageLoader;
 
 import org.jetbrains.annotations.NotNull;
 

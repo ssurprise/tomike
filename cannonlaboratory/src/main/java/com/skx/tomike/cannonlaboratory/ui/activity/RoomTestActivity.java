@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer;
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.RecentlyBrowsedBean;
 import com.skx.tomike.cannonlaboratory.viewmodel.RecentlyBrowsedViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 
 import java.util.List;
 

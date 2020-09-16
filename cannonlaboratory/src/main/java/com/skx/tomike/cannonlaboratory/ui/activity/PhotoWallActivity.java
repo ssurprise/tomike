@@ -12,9 +12,9 @@ import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageBucket;
 import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageItem;
 import com.skx.tomike.cannonlaboratory.ui.adapter.PhotoWallAdapter;
 import com.skx.tomike.cannonlaboratory.ui.view.GridSpaceItemDecoration;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 
 /**
  * 描述 : 照片墙

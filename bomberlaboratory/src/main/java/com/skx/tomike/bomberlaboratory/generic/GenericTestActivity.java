@@ -5,9 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.skx.tomike.bomberlaboratory.R;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 
 /**
  * 描述 : 泛型demo

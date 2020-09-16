@@ -5,9 +5,9 @@ import android.net.Uri;
 import android.view.View;
 
 import com.skx.tomike.cannonlaboratory.R;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 
 
 public class OutterStartActivity extends SkxBaseActivity<BaseViewModel> {

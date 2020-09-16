@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
+import com.skx.common.utils.DpPxSpToolKt;
 
 /**
  * Implementation of App Widget functionality.

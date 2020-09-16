@@ -12,10 +12,10 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.skx.tomike.cannonlaboratory.R
-import com.skx.tomikecommonlibrary.base.BaseViewModel
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity
-import com.skx.tomikecommonlibrary.base.TitleConfig
-import com.skx.tomikecommonlibrary.utils.ToastTool
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.common.utils.ToastTool
 import java.io.File
 import java.util.*
 

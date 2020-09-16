@@ -3,8 +3,8 @@ package com.skx.tomike.tanklaboratory.widget.activity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.CustomCommentLayoutView;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
 
 public class CoordinatorLayoutCaseActivity extends SkxBaseActivity<BaseViewModel> {
 

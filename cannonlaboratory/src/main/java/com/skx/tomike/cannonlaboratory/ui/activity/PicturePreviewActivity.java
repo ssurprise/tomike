@@ -5,7 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.IPicture;
 import com.skx.tomike.cannonlaboratory.ui.adapter.PicturePreviewAdapter;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.common.base.SkxBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

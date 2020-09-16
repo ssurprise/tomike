@@ -11,9 +11,9 @@ import android.widget.Toast;
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.Student;
 import com.skx.tomike.cannonlaboratory.bean.Transcript;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;

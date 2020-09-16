@@ -9,7 +9,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
+import com.skx.common.utils.DpPxSpToolKt;
 
 /**
  * Created by shiguotao on 2017/7/25.

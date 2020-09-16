@@ -15,9 +15,9 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.skx.tomike.cannonlaboratory.R
-import com.skx.tomikecommonlibrary.base.BaseViewModel
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity
-import com.skx.tomikecommonlibrary.base.TitleConfig
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
 
 
 class NotificationActivity : SkxBaseActivity<BaseViewModel>() {

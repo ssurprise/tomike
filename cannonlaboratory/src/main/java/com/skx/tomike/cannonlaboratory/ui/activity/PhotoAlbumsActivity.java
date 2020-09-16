@@ -16,9 +16,9 @@ import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageBucket;
 import com.skx.tomike.cannonlaboratory.ui.adapter.PhotoAlbumsAdapter;
 import com.skx.tomike.cannonlaboratory.ui.view.GridSpaceItemDecoration;
 import com.skx.tomike.cannonlaboratory.viewmodel.PhotoAlbumViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.utils.DpPxSpToolKt;
 
 import org.jetbrains.annotations.NotNull;
 

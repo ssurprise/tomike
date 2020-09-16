@@ -4,10 +4,10 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.skx.tomike.tacticallaboratory.R;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.ToastTool;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.utils.ToastTool;
 
 /**
  * 描述 : 代理模式

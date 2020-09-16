@@ -29,10 +29,10 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.view.ScrollChangedScrollView;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
-import com.skx.tomikecommonlibrary.utils.ToastTool;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.utils.DpPxSpToolKt;
+import com.skx.common.utils.ToastTool;
 
 /**
  * 描述 : TabLayout + NestedScrollView 联动效果

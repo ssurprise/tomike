@@ -35,7 +35,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':TomikeCommon')
+    implementation project(path: ':common')
 
     // 支持库
     implementation rootProject.ext.dependencies.design
@@ -56,7 +56,7 @@ dependencies {
 
     implementation project(":apt-annotation")
     annotationProcessor project(":apt-processor")
-    implementation project(path: ':TomikeCommon')
+    implementation project(path: ':common')
 }
 repositories {
     mavenCentral()

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageItem;
-import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
+import com.skx.common.imageloader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;

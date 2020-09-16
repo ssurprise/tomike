@@ -13,9 +13,9 @@ import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.BaseBean;
 import com.skx.tomike.cannonlaboratory.bean.WeatherMini;
 import com.skx.tomike.cannonlaboratory.viewmodel.RetrofitViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.ToastTool;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.utils.ToastTool;
 
 /**
  * 描述 : Retrofit demo。模拟请求城市天气数据

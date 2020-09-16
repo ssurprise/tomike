@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.skx.tomike.R;
-import com.skx.tomikecommonlibrary.utils.EmojiTool;
+import com.skx.common.utils.EmojiTool;
 
 /**
  * emoji 表情过滤

@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.skx.tomike.cannonlaboratory.bean.RecentlyBrowsedBean;
 import com.skx.tomike.cannonlaboratory.repository.RecentlyBrowsedRepository;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.common.base.BaseViewModel;
 
 import java.util.List;
 

@@ -18,9 +18,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.fragment.TabLayoutContentFragment;
 import com.skx.tomike.tanklaboratory.widget.view.TabLayoutHelper;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.utils.SkxDrawableUtil;
 
 import java.util.ArrayList;
 import java.util.List;

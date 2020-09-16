@@ -3,8 +3,8 @@ package com.skx.tomike.bomberlaboratory.basics;
 import android.util.Log;
 
 import com.skx.tomike.bomberlaboratory.R;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

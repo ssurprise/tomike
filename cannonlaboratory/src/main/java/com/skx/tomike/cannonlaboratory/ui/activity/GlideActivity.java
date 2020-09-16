@@ -8,17 +8,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.skx.tomike.cannonlaboratory.R;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
-import com.skx.tomikecommonlibrary.imageloader.target.AbstractTarget;
-import com.skx.tomikecommonlibrary.imageloader.transform.CenterCrop;
-import com.skx.tomikecommonlibrary.imageloader.transform.CenterInside;
-import com.skx.tomikecommonlibrary.imageloader.transform.CircleCrop;
-import com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform;
-import com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners;
-import com.skx.tomikecommonlibrary.imageloader.transform.TransformStrategy;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.imageloader.ImageLoader;
+import com.skx.common.imageloader.target.AbstractTarget;
+import com.skx.common.imageloader.transform.CenterCrop;
+import com.skx.common.imageloader.transform.CenterInside;
+import com.skx.common.imageloader.transform.CircleCrop;
+import com.skx.common.imageloader.transform.OverLapTransform;
+import com.skx.common.imageloader.transform.RoundedCorners;
+import com.skx.common.imageloader.transform.TransformStrategy;
 
 /**
  * 描述 : 对Glide库的二次封装测试demo

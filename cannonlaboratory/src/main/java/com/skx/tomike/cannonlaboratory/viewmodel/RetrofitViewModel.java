@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.skx.tomike.cannonlaboratory.bean.BaseBean;
 import com.skx.tomike.cannonlaboratory.bean.WeatherMini;
 import com.skx.tomike.cannonlaboratory.repository.IWeatherService;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.utils.ToastTool;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.utils.ToastTool;
 
 import retrofit2.Call;
 import retrofit2.Callback;

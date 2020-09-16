@@ -11,10 +11,10 @@ import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.adapter.InfiniteLoopAdapter;
 import com.skx.tomike.tanklaboratory.widget.view.CustomSwitcher;
 import com.skx.tomike.tanklaboratory.widget.view.PageIndicatorLayout;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.utils.DpPxSpToolKt;
 
 import java.util.ArrayList;
 import java.util.Locale;

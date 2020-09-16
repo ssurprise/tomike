@@ -12,11 +12,11 @@ import android.widget.TextView;
 import androidx.core.view.ViewCompat;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
-import com.skx.tomikecommonlibrary.utils.SkxDrawableUtilKt;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.utils.SkxDrawableUtil;
+import com.skx.common.utils.SkxDrawableUtilKt;
 
 public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> {
 

@@ -13,11 +13,11 @@ import com.skx.tomike.tanklaboratory.widget.adapter.MultiplePagerAdapter;
 import com.skx.tomike.tanklaboratory.widget.view.AlphaPageTransformer;
 import com.skx.tomike.tanklaboratory.widget.view.ClipViewPager;
 import com.skx.tomike.tanklaboratory.widget.view.ScalePageTransformer;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
-import com.skx.tomikecommonlibrary.utils.ScreenUtilKt;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.utils.DpPxSpToolKt;
+import com.skx.common.utils.ScreenUtilKt;
 
 import java.util.ArrayList;
 import java.util.List;

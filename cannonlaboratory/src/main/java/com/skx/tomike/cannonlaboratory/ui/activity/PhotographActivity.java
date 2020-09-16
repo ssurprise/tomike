@@ -18,7 +18,7 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 
 import com.skx.tomike.cannonlaboratory.R;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
+import com.skx.common.base.SkxBaseActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;

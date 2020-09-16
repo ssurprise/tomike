@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.base.TitleConfig;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

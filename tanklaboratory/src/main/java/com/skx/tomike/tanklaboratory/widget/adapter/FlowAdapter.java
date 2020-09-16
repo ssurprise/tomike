@@ -12,8 +12,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import com.skx.tomike.tanklaboratory.R;
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
-import com.skx.tomikecommonlibrary.utils.SkxDrawableUtil;
+import com.skx.common.utils.DpPxSpToolKt;
+import com.skx.common.utils.SkxDrawableUtil;
 
 import java.util.ArrayList;
 

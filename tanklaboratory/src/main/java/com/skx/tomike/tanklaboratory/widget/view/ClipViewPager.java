@@ -10,8 +10,8 @@ import android.view.MotionEvent;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.skx.tomikecommonlibrary.utils.DpPxSpToolKt;
-import com.skx.tomikecommonlibrary.utils.ScreenUtilKt;
+import com.skx.common.utils.DpPxSpToolKt;
+import com.skx.common.utils.ScreenUtilKt;
 
 /**
  * ViewPager 展示多个子页面，可点击移动

@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.skx.tomike.tanklaboratory.R;
 import com.skx.tomike.tanklaboratory.widget.fragment.PlanetFragment;
-import com.skx.tomikecommonlibrary.utils.ToastTool;
+import com.skx.common.utils.ToastTool;
 
 import java.util.ArrayList;
 import java.util.Collections;

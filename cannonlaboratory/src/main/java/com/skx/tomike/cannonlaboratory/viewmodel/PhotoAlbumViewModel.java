@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.skx.tomike.cannonlaboratory.bean.PhotoUpImageBucket;
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.common.base.BaseViewModel;
 
 import java.util.List;
 

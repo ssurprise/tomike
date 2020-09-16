@@ -10,7 +10,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.skx.tomike.cannonlaboratory.R;
 import com.skx.tomike.cannonlaboratory.bean.IPicture;
-import com.skx.tomikecommonlibrary.imageloader.ImageLoader;
+import com.skx.common.imageloader.ImageLoader;
 
 import org.jetbrains.annotations.NotNull;
 

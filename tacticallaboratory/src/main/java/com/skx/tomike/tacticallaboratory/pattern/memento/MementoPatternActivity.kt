@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skx.tomike.tacticallaboratory.R
 import com.skx.tomike.tacticallaboratory.pattern.memento.MementoHistoryAdapter.MementoAccessListener
-import com.skx.tomikecommonlibrary.base.BaseViewModel
-import com.skx.tomikecommonlibrary.base.SkxBaseActivity
-import com.skx.tomikecommonlibrary.base.TitleConfig
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
 
 /**
  * 描述 : 备忘录模式demo - 仿游戏存档。提供存档，读档，删档功能

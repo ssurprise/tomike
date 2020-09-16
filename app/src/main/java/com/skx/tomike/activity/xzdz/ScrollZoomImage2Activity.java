@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.activity.SkxBaseActivity;
-import com.skx.tomikecommonlibrary.view.ZoomImageNestedScrollingParent2;
+import com.skx.common.view.ZoomImageNestedScrollingParent2;
 
 /**
  * 滑动缩放头图

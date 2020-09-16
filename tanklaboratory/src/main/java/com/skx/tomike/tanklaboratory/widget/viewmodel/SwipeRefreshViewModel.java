@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.skx.tomikecommonlibrary.base.BaseViewModel;
+import com.skx.common.base.BaseViewModel;
 
 import java.util.Arrays;
 import java.util.List;
