@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.core.app.AppOpsManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +30,12 @@ public class PermissionUtils {
      * @param permission 申请的权限
      * @param listener   授权结果回调
      */
-    public static void checkPermission(Context cx, String[] permission, PermissionResultListener listener) {
-
+    public static void checkPermission(FragmentActivity cx, String[] permission, PermissionResultListener listener) {
+        PermissionFragment permissionFragment = PermissionFragment.getInstance(permission);
+        cx.getSupportFragmentManager()
+                .beginTransaction()
+                .add(permissionFragment, "aaa")
+                .commitNow();
     }
 
 
@@ -57,17 +62,21 @@ public class PermissionUtils {
             return true;
         }
         for (String permission : permissions) {
-
-            // 危险权限检查
+            /*
+            小米（6.0以上）
+            定位权限，用户虽然拒绝了权限，但是代码回调中返回的却是同意。
+            解决方法：在权限回调中，运用系统层，判断是否真的获取权限
+             */
             String op = AppOpsManagerCompat.permissionToOp(permission);
-            if (TextUtils.isEmpty(op))
+            if (TextUtils.isEmpty(op)) {
                 continue;
+            }
             int result = AppOpsManagerCompat.noteProxyOp(context, op, context.getPackageName());
             if (result == AppOpsManagerCompat.MODE_IGNORED)
                 return false;
 
             result = ContextCompat.checkSelfPermission(context, permission);
-            if (result != PackageManager.PERMISSION_GRANTED){
+            if (result != PackageManager.PERMISSION_GRANTED) {
                 return false;
             }
 

@@ -33,6 +33,15 @@ public class PermissionDialog extends DialogFragment {
     private TextView mTvCancelBtn;
     private TextView mTvConfirmBtn;
 
+
+    public PermissionDialog getInstance(){
+        PermissionDialog permissionDialog = new PermissionDialog();
+        Bundle bundle = new Bundle();
+
+        permissionDialog.setArguments(bundle);
+        return permissionDialog;
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

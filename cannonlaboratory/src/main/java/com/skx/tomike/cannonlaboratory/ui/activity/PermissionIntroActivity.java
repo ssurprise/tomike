@@ -36,7 +36,8 @@ public class PermissionIntroActivity extends AppCompatActivity {
                     // 解释为什么需要定位权限之类的
                 } else {
                     // 请求权限处理
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.CAMERA}, 1);
                 }
                 /**
                  * 如果要用意图模式的话，就不需要用权限模式了，直接跳转到系统设置页面，
