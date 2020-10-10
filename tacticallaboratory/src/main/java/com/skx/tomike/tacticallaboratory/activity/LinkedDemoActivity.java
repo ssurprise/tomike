@@ -2,10 +2,10 @@ package com.skx.tomike.tacticallaboratory.activity;
 
 import android.widget.TextView;
 
-import com.skx.tomike.tacticallaboratory.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tacticallaboratory.R;
 
 import java.util.HashSet;
 import java.util.Locale;
@@ -37,7 +37,6 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
         mLink.next.next.next.next = new Node(4);
         mLink.next.next.next.next.next = new Node(5);
         mLink.next.next.next.next.next.next = new Node(6);
-//        mLink.next.next.next.next.next.next.next = null;
         mLink.next.next.next.next.next.next.next = mLink.next.next;
     }
 
@@ -156,7 +155,7 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     class Node2<T> {
         public T t;
-        public Node2<T> pre;
+        public Node2<T> prev;
         public Node2<T> next;
 
         public Node2(T t) {
