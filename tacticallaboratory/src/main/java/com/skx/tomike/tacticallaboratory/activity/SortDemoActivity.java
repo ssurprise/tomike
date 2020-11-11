@@ -5,11 +5,11 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.skx.tomike.tacticallaboratory.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.imageloader.ImageLoader;
+import com.skx.tomike.tacticallaboratory.R;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -145,8 +145,9 @@ public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements 
 
             // 每一个元素都和剩下的未排序的元素比较
             for (int j = i + 1; j < intArray.length; j++) {
-                if (intArray[j] < intArray[minIndex]) //找到最小的数
-                    minIndex = j; //将最小数的索引保存
+                if (intArray[j] < intArray[minIndex]) {//找到最小的数
+                    minIndex = j;//将最小数的索引保存
+                }
             }
             int temp = intArray[minIndex];
             intArray[minIndex] = intArray[i];
