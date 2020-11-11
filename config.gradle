@@ -43,4 +43,8 @@ ext {
             roomRxjava  : "androidx.room:room-rxjava2:$room_version"
     ]
 
+    mmkv = [
+            mmkv: "com.tencent:mmkv-static:1.2.2"
+    ]
+
 }

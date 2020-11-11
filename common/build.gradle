@@ -43,6 +43,7 @@ dependencies {
     implementation rootProject.ext.dependencies.rxandroid
     implementation rootProject.ext.dependencies.retrofit
     implementation rootProject.ext.dependencies.aspectjrt
+    implementation rootProject.ext.mmkv.mmkv
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 

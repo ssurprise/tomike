@@ -16,7 +16,7 @@ public class SkxApplication extends Application {
         registerActivityLifecycleCallbacks(new SwitchBackgroundCallbacks());
     }
 
-    private class SwitchBackgroundCallbacks implements Application.ActivityLifecycleCallbacks {
+    private static class SwitchBackgroundCallbacks implements Application.ActivityLifecycleCallbacks {
 
         @Override
         public void onActivityCreated(Activity activity, Bundle bundle) {
