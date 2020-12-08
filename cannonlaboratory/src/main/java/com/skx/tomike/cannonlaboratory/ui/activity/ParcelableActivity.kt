@@ -1,10 +1,11 @@
 package com.skx.tomike.cannonlaboratory.ui.activity
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
+import android.widget.TextView
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannonlaboratory.R
 import com.skx.tomike.cannonlaboratory.bean.Student
 
@@ -16,25 +17,31 @@ import com.skx.tomike.cannonlaboratory.bean.Student
  */
 class ParcelableActivity : SkxBaseActivity<BaseViewModel>() {
 
+    var student: Student? = null
+
     override fun initParams() {
         intent?.run {
             if (hasExtra("student")) {
-                val student = intent.getParcelableExtra<Student>("student")
-
-                Log.e(TAG, String.format("通过 Parcelable 传递的对象为：%s,学号：%s,姓名：%s,性别：%s,出生日期：%s,班级：%s",
-                        student,
-                        student.id,
-                        student.name,
-                        student.sex,
-                        student.birth,
-                        student.clazz))
+                student = intent.getParcelableExtra("student")
             }
         }
+    }
+
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("Parcelable 序列化").create()
     }
 
     override fun getLayoutId(): Int = R.layout.activity_parcelable
 
     override fun initView() {
+        val mTvLogcat = findViewById<TextView>(R.id.tv_parcelable_logcat)
+        mTvLogcat.text = String.format("通过 Parcelable 传递的对象为：%s,\n学号：%s \n姓名：%s \n性别：%s \n出生日期：%s \n班级：%s",
+                student,
+                student?.id,
+                student?.name,
+                student?.sex,
+                student?.birth,
+                student?.clazz)
     }
 
     fun onClick2NextPage(view: View?) {
