@@ -145,6 +145,7 @@
             tools:ignore="LockedOrientationActivity" />
         <activity android:name=".ui.activity.AsyncTaskActivity" />
         <activity android:name=".ui.activity.OpenFileActivity" />
+        <activity android:name=".ui.activity.ParcelableActivity" />
     </application>
 
 </manifest>

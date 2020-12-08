@@ -8,12 +8,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.skx.tomike.cannonlaboratory.R;
-import com.skx.tomike.cannonlaboratory.bean.Student;
-import com.skx.tomike.cannonlaboratory.bean.Transcript;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.cannonlaboratory.R;
+import com.skx.tomike.cannonlaboratory.bean.Student;
+import com.skx.tomike.cannonlaboratory.bean.Transcript;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -21,6 +21,7 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
@@ -62,14 +63,12 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
      * 并行执行
      * <p>
      * 案例：同时请求接口A和接口B，最终返回接口A 和接口B的合并数据。
-     *
-     * @param view
      */
     public void parallelExecute(View view) {
         Observable.zip(
                 Observable.create(new ObservableOnSubscribe<Double>() {
                     @Override
-                    public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                    public void subscribe(@NonNull ObservableEmitter<Double> emitter) {
                         Log.e(TAG, "create 1:" + Thread.currentThread().getName());
 
                         Log.e("Observable", "1.1");
@@ -83,7 +82,7 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
 
                 Observable.create(new ObservableOnSubscribe<Double>() {
                     @Override
-                    public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                    public void subscribe(@NonNull ObservableEmitter<Double> emitter) {
                         Log.e(TAG, "create 2:" + Thread.currentThread().getName());
 
                         Log.e("Observable", "2.1");
@@ -96,8 +95,9 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 })/*.subscribeOn(Schedulers.io())*/,// 指定 subscribe() 所发生的线程，简单来说就是发射事件的线程。或者叫做事件产生的线程。
 
                 new BiFunction<Double, Double, Double>() {
+                    @NonNull
                     @Override
-                    public Double apply(Double aDouble, Double aDouble2) throws Exception {
+                    public Double apply(@NonNull Double aDouble, @NonNull Double aDouble2) {
                         Log.e(TAG, "create 3:" + Thread.currentThread().getName());
 
                         Log.e("Observable", "3");
@@ -108,18 +108,18 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 .observeOn(AndroidSchedulers.mainThread())// 指定观察者接收事件的线程。或者叫做事件消费的线程。
                 .subscribe(new Observer<Double>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onSubscribe(@NonNull Disposable d) {
                         Log.e("Observer-onSubscribe", "subscribe");
                         mRlLoading.setVisibility(View.VISIBLE);
                     }
 
                     @Override
-                    public void onNext(Double aDouble) {
+                    public void onNext(@NonNull Double aDouble) {
                         Toast.makeText(RxJavaActivity.this, aDouble + "", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         Log.e("Observer-onError", "error");
                         mRlLoading.setVisibility(View.GONE);
                     }
@@ -151,13 +151,11 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
      * 串行执行。
      * <p>
      * 案例：比如先请求接口A，根据接口A 返回的数据再请求接口B，最终返回接口B的数据
-     *
-     * @param view
      */
     public void serialExecute(View view) {
         Observable.create(new ObservableOnSubscribe<Double>() {
             @Override
-            public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+            public void subscribe(@NonNull ObservableEmitter<Double> emitter) {
                 Log.e(TAG, "create :" + Thread.currentThread().getName());
                 Log.e("Observable", "1.1");
                 SystemClock.sleep(2000);
@@ -169,10 +167,10 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
             }
         }).flatMap(new Function<Double, ObservableSource<Double>>() {
             @Override
-            public ObservableSource<Double> apply(Double aDouble) throws Exception {
+            public ObservableSource<Double> apply(@NonNull Double aDouble) {
                 return Observable.create(new ObservableOnSubscribe<Double>() {
                     @Override
-                    public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                    public void subscribe(@NonNull ObservableEmitter<Double> emitter) {
                         Log.e(TAG, "flatMap :" + Thread.currentThread().getName());
 
                         Log.e("Observable", "2.1");
@@ -189,13 +187,13 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Double>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onSubscribe(@NonNull Disposable d) {
                         Log.e("Observer-onSubscribe", "subscribe");
                         mRlLoading.setVisibility(View.VISIBLE);
                     }
 
                     @Override
-                    public void onNext(Double aDouble) {
+                    public void onNext(@NonNull Double aDouble) {
                         Log.e(TAG, "onNext :" + Thread.currentThread().getName());
 
                         Log.e("Observer-onNext", aDouble + "");
@@ -203,7 +201,7 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         Log.e("Observer-onError", "error");
                         mRlLoading.setVisibility(View.GONE);
                     }
@@ -223,23 +221,21 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
      * 串行
      * <p>
      * 案例：请求接口A，根据接口A 的返回值再去请求接口B，返回接口A 和接口B 的合并数据。
-     *
-     * @param view
      */
     public void serialAndMerge1(View view) {
         Observable
                 .create(new ObservableOnSubscribe<Student>() {
                     @Override
-                    public void subscribe(ObservableEmitter<Student> emitter) throws Exception {
+                    public void subscribe(@NonNull ObservableEmitter<Student> emitter) {
                         mTvLoadingText.setText("学生信息获取中...");
 
                         SystemClock.sleep(2000);
 
                         Student student = new Student();
-                        student.id = 101;
-                        student.sex = "男";
-                        student.name = "小黑";
-                        student.clazz = "3年级2班";
+                        student.setId(101);
+                        student.setSex("男");
+                        student.setName("小黑");
+                        student.setClazz("3年级2班");
 
                         emitter.onNext(student);
                         emitter.onComplete();
@@ -250,13 +246,13 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 .observeOn(AndroidSchedulers.mainThread())// 指定观察者接受事件所在的线程
                 .flatMap(new Function<Student, ObservableSource<Pair<Student, Transcript>>>() {
                     @Override
-                    public ObservableSource<Pair<Student, Transcript>> apply(Student student) {
+                    public ObservableSource<Pair<Student, Transcript>> apply(@NonNull Student student) {
                         Log.e("flatMap", "222222");
                         return Observable
                                 .zip(Observable.just(student),
                                         Observable.create(new ObservableOnSubscribe<Transcript>() {
                                             @Override
-                                            public void subscribe(ObservableEmitter<Transcript> emitter) throws Exception {
+                                            public void subscribe(@NonNull ObservableEmitter<Transcript> emitter) throws Exception {
 
                                                 mTvLoadingText.setText("成绩单获取中...");
 
@@ -275,8 +271,10 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                                         }).subscribeOn(Schedulers.io())// 指定 subscribe() 所发生的线程，简单来说就是发射事件的线程。或者叫做事件产生的线程。
                                                 .observeOn(AndroidSchedulers.mainThread()),// 指定观察者接受事件所在的线程
                                         new BiFunction<Student, Transcript, Pair<Student, Transcript>>() {
+
+                                            @NonNull
                                             @Override
-                                            public Pair<Student, Transcript> apply(Student student, Transcript transcript) {
+                                            public Pair<Student, Transcript> apply(@NonNull Student student, @NonNull Transcript transcript) {
                                                 Log.e("biz", "333333");
                                                 return new Pair<>(student, transcript);
                                             }
@@ -285,23 +283,23 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 })
                 .subscribe(new Observer<Pair<Student, Transcript>>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onSubscribe(@NonNull Disposable d) {
                         Log.e("Observer-onSubscribe", "subscribe");
                         mRlLoading.setVisibility(View.VISIBLE);
                     }
 
                     @Override
-                    public void onNext(Pair<Student, Transcript> studentTranscriptPair) {
+                    public void onNext(@NonNull Pair<Student, Transcript> studentTranscriptPair) {
                         Log.e("Observer-onNext", "444444");
                         String studentTranscript = String.format("%s %s 语文成绩为：%s",
-                                studentTranscriptPair.first.clazz,
-                                studentTranscriptPair.first.name,
+                                studentTranscriptPair.first.getClazz(),
+                                studentTranscriptPair.first.getName(),
                                 studentTranscriptPair.second.Chinese);
                         Toast.makeText(RxJavaActivity.this, studentTranscript, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         Log.e("Observer-onError", "error");
                         mRlLoading.setVisibility(View.GONE);
                     }
@@ -319,13 +317,11 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
      * <p>
      * 案例：请求接口A，根据接口A 的返回值再去请求接口B，返回接口A 和接口B 的合并数据。
      * 问题：这种方式有问题，当第一个错误的时候，直接就崩掉了
-     *
-     * @param view
      */
     public void serialAndMerge2(View view) {
         ConnectableObservable<Double> PAY = Observable.create(new ObservableOnSubscribe<Double>() {
             @Override
-            public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+            public void subscribe(@NonNull ObservableEmitter<Double> emitter) {
                 Log.e("Observable", "1.1");
                 SystemClock.sleep(2000);
                 Log.e("Observable", "1.2");
@@ -341,10 +337,10 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
         Observable<Double> flatMap = PAY
                 .flatMap(new Function<Double, ObservableSource<Double>>() {
                     @Override
-                    public ObservableSource<Double> apply(Double aDouble) throws Exception {
+                    public ObservableSource<Double> apply(@NonNull Double aDouble) {
                         return Observable.create(new ObservableOnSubscribe<Double>() {
                             @Override
-                            public void subscribe(ObservableEmitter<Double> emitter) throws Exception {
+                            public void subscribe(@NonNull ObservableEmitter<Double> emitter) {
                                 Log.e("Observable", "2.1");
                                 SystemClock.sleep(2000);
                                 Log.e("Observable", "2.2");
@@ -358,24 +354,25 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
                 }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         Observable.zip(PAY, flatMap, new BiFunction<Double, Double, Double>() {
+            @NonNull
             @Override
-            public Double apply(Double aDouble, Double aDouble2) throws Exception {
+            public Double apply(@NonNull Double aDouble, @NonNull Double aDouble2) {
                 return aDouble + aDouble2;
             }
         }).subscribe(new Observer<Double>() {
             @Override
-            public void onSubscribe(Disposable d) {
+            public void onSubscribe(@NonNull Disposable d) {
                 Log.e("Observer-onSubscribe", "subscribe");
                 mRlLoading.setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void onNext(Double aDouble) {
+            public void onNext(@NonNull Double aDouble) {
                 Toast.makeText(RxJavaActivity.this, aDouble + "", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onError(Throwable e) {
+            public void onError(@NonNull Throwable e) {
                 Log.e("Observer-onError", "error");
                 mRlLoading.setVisibility(View.GONE);
             }
