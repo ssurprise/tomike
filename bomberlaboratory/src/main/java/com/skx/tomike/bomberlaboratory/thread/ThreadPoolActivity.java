@@ -12,10 +12,10 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.skx.tomike.bomberlaboratory.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.bomberlaboratory.R;
 
 import java.util.Locale;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -127,6 +127,7 @@ public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void subscribeEvent() {
+         // 测试内容1111
     }
 
     @Override
@@ -234,6 +235,14 @@ public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
                 mExecutor.execute(runnable6);
             }
         });
+        findViewById(R.id.btn_threadPool_rebuildPool).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 60,
+                        TimeUnit.MILLISECONDS,
+                        new LinkedBlockingQueue<>(blockingQueueCapacity));
+            }
+        });
         findViewById(R.id.btn_threadPool_reset).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,12 +273,12 @@ public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
         });
     }
 
-    private Runnable runnable0 = new PoolRunnable(0);
-    private Runnable runnable1 = new PoolRunnable(1);
-    private Runnable runnable2 = new PoolRunnable(2);
-    private Runnable runnable3 = new PoolRunnable(3);
-    private Runnable runnable5 = new PoolRunnable(5);
-    private Runnable runnable6 = new PoolRunnable(6);
+    private final Runnable runnable0 = new PoolRunnable(0);
+    private final Runnable runnable1 = new PoolRunnable(1);
+    private final Runnable runnable2 = new PoolRunnable(2);
+    private final Runnable runnable3 = new PoolRunnable(3);
+    private final Runnable runnable5 = new PoolRunnable(5);
+    private final Runnable runnable6 = new PoolRunnable(6);
 
     private class PoolRunnable implements Runnable {
 
