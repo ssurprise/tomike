@@ -127,7 +127,6 @@ public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void subscribeEvent() {
-         // 测试内容1111--
     }
 
     @Override
