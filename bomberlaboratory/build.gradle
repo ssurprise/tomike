@@ -33,26 +33,13 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':common')
 
-    // 支持库
-    implementation rootProject.ext.dependencies.design
-    implementation rootProject.ext.dependencies.supportV4
-    implementation rootProject.ext.dependencies.appcompatV7
-    implementation rootProject.ext.dependencies.supportMultidex
-    implementation rootProject.ext.dependencies.lifecycle
-    implementation rootProject.ext.dependencies.constraint_layout
-    implementation rootProject.ext.dependencies.cardview
-    // 功能库
-    implementation rootProject.ext.dependencies.gson
-    implementation rootProject.ext.dependencies.rxjava
-    implementation rootProject.ext.dependencies.rxandroid
-    implementation rootProject.ext.dependencies.retrofit
-    implementation rootProject.ext.dependencies.aspectjrt
+    def implementationDependencies = rootProject.ext.implementationDependencies
+    implementationDependencies.each { key, value ->
+        implementation value
+    }
 
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    implementation project(path: ':common')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    def annotationKpt = rootProject.ext.annotationKpt
+    annotationKpt.each { key, value ->
+        kapt value
+    }
 }

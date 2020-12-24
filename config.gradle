@@ -1,6 +1,7 @@
 ext {
 
     def room_version = "2.2.3"
+    def appcompat_version = "1.1.0"
 
     android = [
             compileSdkVersion: 28,
@@ -8,43 +9,55 @@ ext {
             minSdkVersion    : 21,
             targetSdkVersion : 28,
     ]
-    dependencies = [
+    core = [
+            design         : "com.google.android.material:material:1.0.0",
+            appcompat      : "androidx.appcompat:appcompat:$appcompat_version",
+            annotation     : "androidx.annotation:annotation:1.1.0",
+            supportMultidex: "androidx.multidex:multidex:2.0.0",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            lifecycle      : "androidx.lifecycle:lifecycle-extensions:2.0.0",
+            gson           : "com.google.code.gson:gson:2.8.5",
+    ]
 
-            /*支持库*/
-            design           : 'com.google.android.material:material:1.0.0',
-            appcompatV7      : 'androidx.appcompat:appcompat:1.1.0',
-            supportV4        : 'androidx.legacy:legacy-support-v4:1.0.0',
-
-            supportMultidex  : 'androidx.multidex:multidex:2.0.0',
-            lifecycle        : 'androidx.lifecycle:lifecycle-extensions:2.0.0',
+    support = [
             recyclerview     : "androidx.recyclerview:recyclerview:1.1.0",
             constraint_layout: 'androidx.constraintlayout:constraintlayout:1.1.3',
             cardview         : 'androidx.cardview:cardview:1.0.0',
             viewpager2       : 'androidx.viewpager2:viewpager2:1.0.0',
+    ]
 
-            /*功能库*/
-            gson             : 'com.google.code.gson:gson:2.8.5',
+    http = [
+            retrofit: 'com.squareup.retrofit2:converter-gson:2.3.0',
+    ]
 
-            // RX
-            rxjava           : 'io.reactivex.rxjava2:rxjava:2.2.5',
-            rxandroid        : 'io.reactivex.rxjava2:rxandroid:2.1.1',
-
-            // retrofit2
-            retrofit         : 'com.squareup.retrofit2:converter-gson:2.3.0',
-
-            // AspectJ
-            aspectjrt        : 'org.aspectj:aspectjrt:1.8.9',
+    rx = [
+            rxjava   : 'io.reactivex.rxjava2:rxjava:2.2.5',
+            rxandroid: 'io.reactivex.rxjava2:rxandroid:2.1.1',
     ]
 
     room = [
-            roomRuntime : "androidx.room:room-runtime:$room_version",
-            roomCompiler: "androidx.room:room-compiler:$room_version",
-            roomKtx     : "androidx.room:room-ktx:$room_version",
-            roomRxjava  : "androidx.room:room-rxjava2:$room_version"
+            roomKtx   : "androidx.room:room-ktx:$room_version",
+            roomRxjava: "androidx.room:room-rxjava2:$room_version"
     ]
 
     mmkv = [
             mmkv: "com.tencent:mmkv-static:1.2.2"
     ]
 
+    aspectjrt = [
+            aspectjrt: 'org.aspectj:aspectjrt:1.8.9',
+    ]
+
+    annotationKpt = [
+            roomCompiler: "androidx.room:room-compiler:$room_version",
+    ]
+
+    implementationDependencies = new HashMap()
+    implementationDependencies.putAll(core)
+    implementationDependencies.putAll(support)
+    implementationDependencies.putAll(http)
+    implementationDependencies.putAll(rx)
+    implementationDependencies.putAll(room)
+    implementationDependencies.putAll(mmkv)
+    implementationDependencies.putAll(aspectjrt)
 }
