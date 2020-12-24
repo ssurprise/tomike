@@ -39,14 +39,10 @@ dependencies {
     implementation project(path: ':common')
 
     def implementationDependencies = rootProject.ext.implementationDependencies
-    implementationDependencies.each { key, value ->
-        implementation value
-    }
+    implementationDependencies.each { key, value -> implementation value}
 
     def annotationKpt = rootProject.ext.annotationKpt
-    annotationKpt.each { key, value ->
-        kapt value
-    }
+    annotationKpt.each { key, value -> kapt value}
 
     implementation project(":apt-annotation")
     annotationProcessor project(":apt-processor")

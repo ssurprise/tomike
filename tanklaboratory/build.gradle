@@ -35,9 +35,7 @@ dependencies {
     }
 
     def annotationKpt = rootProject.ext.annotationKpt
-    annotationKpt.each { key, value ->
-        kapt value
-    }
+    annotationKpt.each { key, value -> kapt value}
 
     implementation project(":apt-annotation")
     annotationProcessor project(":apt-processor")

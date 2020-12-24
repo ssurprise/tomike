@@ -3,6 +3,11 @@ ext {
     def room_version = "2.2.3"
     def appcompat_version = "1.1.0"
 
+    appVersion = [
+            VERSION_CODE: 140,
+            VERSION_NAME: "1.41.00"
+    ]
+
     android = [
             compileSdkVersion: 28,
             buildToolsVersion: "28.0.3",

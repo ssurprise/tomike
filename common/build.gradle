@@ -29,14 +29,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     def implementationDependencies = rootProject.ext.implementationDependencies
-    implementationDependencies.each { key, value ->
-        implementation value
-    }
+    implementationDependencies.each { key, value -> implementation value }
 
     def annotationKpt = rootProject.ext.annotationKpt
-    annotationKpt.each { key, value ->
-        kapt value
-    }
+    annotationKpt.each { key, value -> kapt value }
 
     implementation 'com.github.bumptech.glide:glide:4.8.0'
 //    Glide 注解的依赖

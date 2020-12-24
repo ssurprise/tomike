@@ -1,6 +1,6 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.application'// 表示这是一个应用程序模块
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-kapt'// kotlin的注解处理器插件
 apply plugin: 'kotlin-parcelize'
 
 import org.aspectj.bridge.IMessage
@@ -9,14 +9,14 @@ import org.aspectj.tools.ajc.Main
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
-    buildToolsVersion rootProject.ext.android.buildToolsVersion // 设置编译时使用的构建工具的版本
+//    buildToolsVersion rootProject.ext.android.buildToolsVersion // 设置编译时使用的构建工具的版本，Android Studio3.0后去除此项配置
 
     defaultConfig {// 设置一些默认属性
         applicationId "com.skx.tomike"
-        minSdkVersion rootProject.ext.android.minSdkVersion
+        minSdkVersion rootProject.ext.android.minSdkVersion // 项目最低兼容的版本
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 140
-        versionName "1.40.00"
+        versionCode rootProject.ext.appVersion[VERSION_CODE]
+        versionName rootProject.ext.appVersion[VERSION_NAME]
         vectorDrawables.useSupportLibrary = true
 
         ndk {
@@ -69,14 +69,10 @@ dependencies {
     implementation project(path: ':bomberlaboratory')
 
     def implementationDependencies = rootProject.ext.implementationDependencies
-    implementationDependencies.each { key, value ->
-        implementation value
-    }
+    implementationDependencies.each { key, value -> implementation value }
 
     def annotationKpt = rootProject.ext.annotationKpt
-    annotationKpt.each { key, value ->
-        kapt value
-    }
+    annotationKpt.each { key, value -> kapt value }
 
     implementation project(":apt-annotation")
     annotationProcessor project(":apt-processor")
