@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/view_padding_15"
     android:paddingRight="@dimen/view_padding_15"
     android:paddingBottom="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.activity.DoubleFormatActivity">
+    tools:context="com.skx.tomike.cannonlaboratory.ui.activity.DeviceInformationActivity">
 
     <TextView
         android:layout_width="wrap_content"

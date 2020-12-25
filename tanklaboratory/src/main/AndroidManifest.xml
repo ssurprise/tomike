@@ -5,6 +5,18 @@
     <application>
         <!-- 控件类 -->
         <activity
+            android:name=".widget.activity.EditTextCursorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.ViewPager2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.TabLayoutIndicatorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.Lowercase2UppercaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".widget.activity.PopupWindowActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -95,6 +107,27 @@
         <activity
             android:name=".widget.activity.RadioGroupActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.ViewFocusActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.RadioGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.WatermarkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.MatrixImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.StatusBarNavigationBarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.ColorMatrixActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.ColorMatrix2Activity"
+            android:screenOrientation="portrait" />
 
 
         <!--    动效类    -->
@@ -128,14 +161,28 @@
         <activity
             android:name=".animation.activity.LayoutTransitionActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".widget.activity.Lowercase2UppercaseActivity" />
-        <activity android:name=".widget.activity.ViewFocusActivity" />
-        <activity android:name=".widget.activity.TabLayoutIndicatorActivity" />
-        <activity android:name=".widget.activity.RecyclerAsViewPagerActivity" />
-        <activity android:name=".widget.activity.ViewPager2Activity" />
-        <activity android:name=".widget.activity.RecyclerViewChildCountActivity" />
-        <activity android:name=".widget.activity.EditTextCursorActivity" />
-        <activity android:name=".widget.activity.RecyclerViewScrollToPositionActivity" />
+        <activity
+            android:name=".widget.activity.RecyclerAsViewPagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.RecyclerViewChildCountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.RecyclerViewScrollToPositionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".animation.activity.ScrollChangeTitleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".animation.activity.EffectGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".animation.activity.ScrollZoomImage2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".animation.activity.ScrollZoomImage3Activity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

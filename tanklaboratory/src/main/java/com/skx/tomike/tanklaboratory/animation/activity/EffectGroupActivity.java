@@ -1,25 +1,32 @@
-package com.skx.tomike.activity.xzdz;
+package com.skx.tomike.tanklaboratory.animation.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
-
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.tomike.tanklaboratory.R;
 
 /**
  * 动效组 activity
  *
  * @author shiguotao
  */
-public class EffectGroupActivity extends SkxBaseActivity {
+public class EffectGroupActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_effect_group);
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_effect_group;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     /**

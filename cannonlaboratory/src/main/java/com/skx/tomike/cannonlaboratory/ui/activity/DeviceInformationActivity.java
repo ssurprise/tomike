@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -12,10 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.RequiresPermission;
 import androidx.core.app.ActivityCompat;
 
-import com.skx.tomike.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.cannonlaboratory.R;
 
 import static android.Manifest.permission.READ_PHONE_STATE;
 
@@ -25,7 +25,7 @@ import static android.Manifest.permission.READ_PHONE_STATE;
  * 版本 : V1
  * 创建时间 : 2020/8/5 4:44 PM
  */
-public class DeviceInfomationActivity extends SkxBaseActivity<BaseViewModel> {
+public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
 
     private TextView mTvAndroidId;
     private TextView mTvDeviceId;

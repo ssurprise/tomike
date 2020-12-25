@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="@dimen/view_padding_15"
     android:showDividers="middle"
-    tools:context="com.skx.tomike.activity.xzdz.EffectGroupActivity">
+    tools:context="com.skx.tomike.tanklaboratory.animation.activity.EffectGroupActivity">
 
     <GridLayout
         android:layout_width="match_parent"

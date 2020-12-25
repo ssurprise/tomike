@@ -8,6 +8,22 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".reflect.ReflectTestActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".basics.UrlEncodeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".basics.UrlParseActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".basics.GsonParseActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".thread.ThreadActivity"
             android:screenOrientation="portrait" />
 
@@ -30,11 +46,18 @@
         <activity
             android:name=".thread.ThreadCallbackActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".reflect.ReflectTestActivity" />
-        <activity android:name=".basics.UrlParseActivity" />
-        <activity android:name=".thread.ThreadPoolExecutorsActivity" />
-        <activity android:name=".thread.ThreadPoolActivity" />
-        <activity android:name=".thread.ReentrantLockActivity" />
+
+        <activity
+            android:name=".thread.ThreadPoolExecutorsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".thread.ThreadPoolActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".thread.ReentrantLockActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>

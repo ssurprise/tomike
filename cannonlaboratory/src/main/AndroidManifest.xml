@@ -141,11 +141,26 @@
 
         <activity
             android:name=".ui.activity.AopTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.AsyncTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.OpenFileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ParcelableActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.DeviceInformationActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 键盘 实例 -->
+        <activity
+            android:name=".ui.activity.KeyboardActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".ui.activity.AsyncTaskActivity" />
-        <activity android:name=".ui.activity.OpenFileActivity" />
-        <activity android:name=".ui.activity.ParcelableActivity" />
     </application>
 
 </manifest>

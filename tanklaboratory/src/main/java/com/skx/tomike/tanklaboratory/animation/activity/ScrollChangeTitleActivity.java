@@ -1,4 +1,4 @@
-package com.skx.tomike.activity.xzdz;
+package com.skx.tomike.tanklaboratory.animation.activity;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
@@ -13,16 +13,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.tomike.tanklaboratory.R;
 
 /**
  * 滑动改变标题栏透明度、颜色
  */
-public class ScrollChangeTitleActivity extends SkxBaseActivity {
+public class ScrollChangeTitleActivity extends SkxBaseActivity<BaseViewModel> {
 
     private Context mContext;
     private RelativeLayout mHeaderView;
@@ -36,16 +38,26 @@ public class ScrollChangeTitleActivity extends SkxBaseActivity {
     private Drawable mBackDrawable;
     private int mAlpha = 0;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_scroll_change_title;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.activity_scroll_change_title);
-        initializeView();
         installListener();
     }
 
-    public void initializeView() {
+    @Override
+    protected void initView() {
         mHeaderView = findViewById(R.id.scrollChange_header);
         mTitle = findViewById(R.id.scrollChange_title);
         mTvDes = findViewById(R.id.scrollChange_des);

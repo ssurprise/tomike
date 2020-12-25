@@ -1,20 +1,20 @@
-package com.skx.tomike.activity.xzdz;
+package com.skx.tomike.tanklaboratory.animation.activity;
 
 import android.graphics.Matrix;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.activity.SkxBaseActivity;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.view.ZoomImageNestedScrollingParent2;
+import com.skx.tomike.tanklaboratory.R;
 
 /**
  * 滑动缩放头图
  *
  * @author shiguotao
  */
-public class ScrollZoomImage2Activity extends SkxBaseActivity {
+public class ScrollZoomImage2Activity extends SkxBaseActivity<BaseViewModel> {
 
     private final String TAG = "ScrollZoomImage";
 
@@ -28,20 +28,19 @@ public class ScrollZoomImage2Activity extends SkxBaseActivity {
     private ZoomImageNestedScrollingParent2 mScrollView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll_zoom_image2);
-        initializeView();
-        refreshView();
-        installListener();
+    protected void initParams() {
+
     }
 
     @Override
-    public void initializeView() {
-        super.initializeView();
+    protected int getLayoutId() {
+        return R.layout.activity_scroll_zoom_image2;
+    }
 
-        mScrollView = (ZoomImageNestedScrollingParent2) findViewById(R.id.scrollZoom2_scrollView);
-        iv_mainImage = (ImageView) findViewById(R.id.scrollZoom2_mainImage);
+    @Override
+    protected void initView() {
+        mScrollView = findViewById(R.id.scrollZoom2_scrollView);
+        iv_mainImage = findViewById(R.id.scrollZoom2_mainImage);
         iv_mainImage.setScaleType(ImageView.ScaleType.MATRIX);
         iv_mainImage.setEnabled(false);
 
@@ -64,7 +63,6 @@ public class ScrollZoomImage2Activity extends SkxBaseActivity {
                 iv_mainImage.postDelayed(new AutoScaleRunnable(1.0f, iv_mainImage.getWidth() / 2, iv_mainImage.getHeight() / 2), 16);
             }
         });
-
     }
 
     private class AutoScaleRunnable implements Runnable {

@@ -1,10 +1,10 @@
 package com.skx.tomike.model;
 
-import com.skx.tomike.activity.DeviceInfomationActivity;
+import com.skx.tomike.cannonlaboratory.ui.activity.DeviceInformationActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
-import com.skx.tomike.activity.KeyboardActivity;
-import com.skx.tomike.activity.xzdz.EffectGroupActivity;
+import com.skx.tomike.cannonlaboratory.ui.activity.KeyboardActivity;
+import com.skx.tomike.tanklaboratory.animation.activity.EffectGroupActivity;
 import com.skx.tomike.bomberlaboratory.basics.GsonParseActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlParseActivity;
@@ -269,7 +269,7 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("设备、APP 基础信息", DeviceInfomationActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("设备、APP 基础信息", DeviceInformationActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 

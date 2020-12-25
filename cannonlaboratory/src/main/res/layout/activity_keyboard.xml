@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.activity.KeyboardActivity">
+    tools:context="com.skx.tomike.cannonlaboratory.ui.activity.KeyboardActivity">
 
     <EditText
         android:id="@+id/et_keyboard_inputBox"

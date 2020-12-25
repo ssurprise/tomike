@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.graphics.Rect;
 import android.util.Log;
@@ -9,13 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
-import com.skx.tomike.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.KeyboardTool;
 import com.skx.common.utils.ScreenUtilKt;
 import com.skx.common.utils.ToastTool;
+import com.skx.tomike.cannonlaboratory.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -62,10 +62,10 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void initView() {
-        mRlRoot = (RelativeLayout) findViewById(R.id.rl_keyboard_root);
-        EditText mEditText = (EditText) findViewById(R.id.et_keyboard_inputBox);
-        btn = (Button) findViewById(R.id.btn_keyboard_1);
-        btn2 = (Button) findViewById(R.id.btn_keyboard_2);
+        mRlRoot = findViewById(R.id.rl_keyboard_root);
+        EditText mEditText = findViewById(R.id.et_keyboard_inputBox);
+        btn = findViewById(R.id.btn_keyboard_1);
+        btn2 = findViewById(R.id.btn_keyboard_2);
 
         mRlRoot.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutListener);
 
@@ -95,7 +95,7 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
         });
     }
 
-    private ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+    private final ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
         public void onGlobalLayout() {
             // 判断窗口可见区域大小

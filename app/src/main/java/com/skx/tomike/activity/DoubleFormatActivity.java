@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.skx.tomike.R;
 import com.skx.common.utils.DoubleFormatToolKt;
+import com.skx.tomike.R;
 
 public class DoubleFormatActivity extends AppCompatActivity {
 
@@ -24,11 +24,10 @@ public class DoubleFormatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_format);
 
-        doubleFormat_editText = (EditText) findViewById(R.id.doubleFormat_editText);
-        doubleFormat_result = (TextView) findViewById(R.id.doubleFormat_result);
-        doubleFormat_result1 = (TextView) findViewById(R.id.doubleFormat_result1);
-        doubleFormat_result2 = (TextView) findViewById(R.id.doubleFormat_result2);
-
+        doubleFormat_editText = findViewById(R.id.doubleFormat_editText);
+        doubleFormat_result = findViewById(R.id.doubleFormat_result);
+        doubleFormat_result1 = findViewById(R.id.doubleFormat_result1);
+        doubleFormat_result2 = findViewById(R.id.doubleFormat_result2);
 
         doubleFormat_editText.addTextChangedListener(new TextWatcher() {
             @Override
