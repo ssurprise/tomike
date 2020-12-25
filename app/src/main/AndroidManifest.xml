@@ -76,7 +76,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".activity.SpannableStringBuilderActivity"
+            android:name=".tanklaboratory.widget.activity.SpannableStringBuilderActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity

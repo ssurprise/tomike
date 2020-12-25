@@ -4,8 +4,8 @@ import com.skx.tomike.activity.DeviceInfomationActivity;
 import com.skx.tomike.activity.DoubleFormatActivity;
 import com.skx.tomike.activity.EmojiFilterActivity;
 import com.skx.tomike.activity.KeyboardActivity;
-import com.skx.tomike.activity.SpannableStringBuilderActivity;
 import com.skx.tomike.activity.xzdz.EffectGroupActivity;
+import com.skx.tomike.bomberlaboratory.basics.GsonParseActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlParseActivity;
 import com.skx.tomike.bomberlaboratory.generic.GenericTestActivity;
@@ -92,6 +92,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShapeDrawableHelperActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShapeViewActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SnackBarActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.SpannableStringBuilderActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.StatusBarNavigationBarActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SwipeRefreshLayoutActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.TabLayoutHelperActivity;
@@ -129,7 +130,7 @@ public class CatalogListModel {
     private static final String GROUP_OTHER = "其他";
     private static final String GROUP_DATA_STRUCTURE_AND_ALGORITHM = "数据结构和算法";
 
-    private static LinkedHashMap<String, List<CatalogItem>> mCatalogGroupMap = new LinkedHashMap<>();
+    private static final LinkedHashMap<String, List<CatalogItem>> mCatalogGroupMap = new LinkedHashMap<>();
 
     /**
      * 小猪分组
@@ -176,6 +177,7 @@ public class CatalogListModel {
         // 坦克实验室 - view 篇
         mViewCatalogs.add(new CatalogItem("View 焦点", ViewFocusActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 字间距", TextWordSpacingActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextView 富文本SpannableString", SpannableStringBuilderActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 复制测试", SetTextIsSelectableTestActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 光标", EditTextCursorActivity.class.getName()));
@@ -199,7 +201,6 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("SnackBar", SnackBarActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("PopupWindow", PopupWindowActivity.class.getName()));
 
-
         mViewCatalogs.add(new CatalogItem("ViewPager 一屏多展示", ViewPagerMultiplePageActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", ViewPagerWrapContentActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ViewPager 无限循环+自动轮播", ViewPagerInfiniteLoopActivity.class.getName()));
@@ -211,6 +212,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("RecyclerView child count测试", RecyclerViewChildCountActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ScrollViewAnchorActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TabLayout 工具类封装检测", TabLayoutHelperActivity.class.getName()));
 
         mCatalogGroupMap.put(GROUP_VIEW, mViewCatalogs);
 
@@ -250,13 +252,13 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 
-        mUtilCatalogs.add(new CatalogItem("TabLayout助手", TabLayoutHelperActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("shapeDrawable工具类", ShapeDrawableHelperActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("键盘、输入法", KeyboardActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("ShapeDrawable工具类", ShapeDrawableHelperActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("水印图", WatermarkActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("键盘、输入法", KeyboardActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Double数据转换", DoubleFormatActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("编码/解码", UrlEncodeActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Url 解析", UrlParseActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("json 解析", GsonParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("状态栏-底部导航栏高度", StatusBarNavigationBarActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
 
@@ -265,7 +267,6 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("Tint 着色2 -xml、选择器", DrawableTint2Activity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("VectorDrawable", VectorDrawableActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("SpannableString多样化展示", SpannableStringBuilderActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("设备、APP 基础信息", DeviceInfomationActivity.class.getName()));

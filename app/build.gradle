@@ -9,14 +9,15 @@ import org.aspectj.tools.ajc.Main
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
-//    buildToolsVersion rootProject.ext.android.buildToolsVersion // 设置编译时使用的构建工具的版本，Android Studio3.0后去除此项配置
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    // 设置编译时使用的构建工具的版本，Android Studio3.0后去除此项配置
 
     defaultConfig {// 设置一些默认属性
         applicationId "com.skx.tomike"
         minSdkVersion rootProject.ext.android.minSdkVersion // 项目最低兼容的版本
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.appVersion[VERSION_CODE]
-        versionName rootProject.ext.appVersion[VERSION_NAME]
+        versionCode 140
+        versionName "1.40.00"
         vectorDrawables.useSupportLibrary = true
 
         ndk {
@@ -25,6 +26,7 @@ android {
         }
     }
     buildTypes {
+        // 用于指定生成正式版安装文件的配置
         release {
             minifyEnabled true // 设置是否执行代码缩减（混淆）
             zipAlignEnabled true //设置是否对APK包执行ZIP对齐优化
@@ -44,9 +46,9 @@ android {
         }
     }
     android {
-        sourceSets {
+        sourceSets {// 配置目录指向
             main {
-                jniLibs.srcDirs = ['libs']
+                jniLibs.srcDirs = ['libs'] // 可以在Android studio的Android视图下生成jniLibs文件夹，可以方便我们存放jar包和库文件，其中Android视图下的jniLibs和project视图下的libs指向同一文件夹（app→libs）
             }
         }
     }
@@ -61,6 +63,7 @@ android {
 }
 
 dependencies {
+    // implementation fileTree是一个本地依赖声明，表示将libs目录下所有.jar后缀的文件都添加到项目的构建路径当中。
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation project(path: ':common')
     implementation project(path: ':tacticallaboratory')

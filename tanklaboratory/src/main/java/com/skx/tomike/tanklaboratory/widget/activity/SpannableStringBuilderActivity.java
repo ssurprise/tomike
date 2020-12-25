@@ -1,7 +1,6 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.tanklaboratory.widget.activity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -11,10 +10,19 @@ import android.text.style.StyleSpan;
 import android.text.style.SuperscriptSpan;
 import android.widget.TextView;
 
-import com.skx.tomike.R;
-import com.skx.tomike.util.TagImageSpan;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tanklaboratory.R;
+import com.skx.tomike.tanklaboratory.widget.view.TagImageSpan;
 
-public class SpannableStringBuilderActivity extends SkxBaseActivity {
+/**
+ * 描述 : 富文本显示 - SpannableString
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/12/25 11:28 AM
+ */
+public class SpannableStringBuilderActivity extends SkxBaseActivity<BaseViewModel> {
 
     TextView textView;
     TextView textView_topMark;
@@ -22,25 +30,25 @@ public class SpannableStringBuilderActivity extends SkxBaseActivity {
     String contentStr1 = "$199.99HDK";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spannable_string_builder);
-
-        initializeView();
-        refreshView();
+    protected void initParams() {
     }
 
     @Override
-    public void initializeView() {
-        super.initializeView();
-        textView = (TextView) findViewById(R.id.textView_value);
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("富文本显示 - SpannableString").create();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_spannable_string_builder;
+    }
+
+    @Override
+    protected void initView() {
+        textView = findViewById(R.id.textView_value);
         textView.setTextColor(Color.parseColor("#ffffff"));
-        textView_topMark = (TextView) findViewById(R.id.textView_topMark);
-    }
+        textView_topMark = findViewById(R.id.textView_topMark);
 
-    @Override
-    public void refreshView() {
-        super.refreshView();
         setStateView(textView, contentStr);
 
         setMarkView();
@@ -50,7 +58,7 @@ public class SpannableStringBuilderActivity extends SkxBaseActivity {
         SpannableString ss = new SpannableString(contentStr1);
         //设置上下标
 //        ss.setSpan(new SubscriptSpan(), 7, contentStr1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);     //下标
-        ss.setSpan(new SuperscriptSpan(),  7, contentStr1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);   //上标
+        ss.setSpan(new SuperscriptSpan(), 7, contentStr1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);   //上标
         textView_topMark.setText(ss);
     }
 
