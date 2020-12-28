@@ -1,5 +1,5 @@
 apply from: "config.gradle"
-//apply from: "dependenciesSetting.gradle"
+apply from: "libDependSetting.gradle"
 
 buildscript {
     ext.kotlin_version = '1.4.20'

@@ -1,0 +1,49 @@
+ext {
+
+    // 声明一个闭包，进行统一的library module 模板配置
+    centralization = { libProject ->
+
+        libProject.apply {
+            plugin "com.android.library"
+            plugin "kotlin-android"
+            plugin "kotlin-kapt"
+            plugin "kotlin-parcelize"
+        }
+
+        libProject.android {
+            compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
+            buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+            defaultConfig {
+                minSdkVersion rootProject.ext.android.minSdkVersion
+                targetSdkVersion rootProject.ext.android.targetSdkVersion
+                versionCode rootProject.ext.appVersion.VERSION_CODE
+                versionName rootProject.ext.appVersion.VERSION_NAME
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+        }
+
+        libProject.dependencies {
+            // implementation fileTree是一个本地依赖声明，表示将libs目录下所有.jar后缀的文件都添加到项目的构建路径当中。
+            implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
+            // 添加对公共module 的依赖
+            if (libProject.name != "common") {
+                implementation project(":common")
+            }
+
+            // 扩展的依赖
+            def implementationDependencies = rootProject.ext.implementationDependencies
+            implementationDependencies.each { key, value -> implementation value }
+
+            // 注解处理器
+            def annotationKpt = rootProject.ext.annotationKpt
+            annotationKpt.each { key, value -> kapt value }
+        }
+    }
+}

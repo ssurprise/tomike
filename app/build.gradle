@@ -45,11 +45,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    android {
-        sourceSets {// 配置目录指向
-            main {
-                jniLibs.srcDirs = ['libs'] // 可以在Android studio的Android视图下生成jniLibs文件夹，可以方便我们存放jar包和库文件，其中Android视图下的jniLibs和project视图下的libs指向同一文件夹（app→libs）
-            }
+
+    sourceSets {// 配置目录指向
+        main {
+            jniLibs.srcDirs = ['libs']
+            // 可以在Android studio的Android视图下生成jniLibs文件夹，可以方便我们存放jar包和库文件，其中Android视图下的jniLibs和project视图下的libs指向同一文件夹（app→libs）
         }
     }
 
