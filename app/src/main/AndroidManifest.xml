@@ -55,15 +55,6 @@
             android:name=".activity.HomeActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Double 格式转换工具 -->
-        <activity
-            android:name=".activity.DoubleFormatActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".activity.EmojiFilterActivity"
-            android:screenOrientation="portrait" />
-
         <service android:name=".service.LocalService" />
         <service
             android:name=".service.RemoteService"

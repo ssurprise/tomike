@@ -15,7 +15,7 @@ public class EmojiTool {
      * @param targetText 目标文本
      * @return
      */
-    public static boolean containsEmoji(String targetText) {
+    public static boolean containsEmoji(CharSequence targetText) {
         int len = targetText.length();
         for (int i = 0; i < len; i++) {
             if (isEmojiCharacter(targetText.charAt(i))) {
@@ -33,7 +33,7 @@ public class EmojiTool {
                 || ((codePoint >= 0x10000) && (codePoint <= 0x10FFFF)));
     }
 
-    public String filterEmoji(String source) {
+    public static CharSequence filterEmoji(CharSequence source) {
         if (!containsEmoji(source)) {
             return source;// 如果不包含，直接返回
         }

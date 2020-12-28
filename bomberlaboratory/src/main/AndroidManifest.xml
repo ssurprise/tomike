@@ -19,6 +19,11 @@
             android:name=".basics.UrlParseActivity"
             android:screenOrientation="portrait" />
 
+        <!-- Double 格式转换工具 -->
+        <activity
+            android:name=".basics.DoubleFormatActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".basics.GsonParseActivity"
             android:screenOrientation="portrait" />

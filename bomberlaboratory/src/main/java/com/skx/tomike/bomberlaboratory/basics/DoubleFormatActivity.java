@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.bomberlaboratory.basics;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.common.utils.DoubleFormatToolKt;
-import com.skx.tomike.R;
+import com.skx.tomike.bomberlaboratory.R;
 
 public class DoubleFormatActivity extends AppCompatActivity {
 

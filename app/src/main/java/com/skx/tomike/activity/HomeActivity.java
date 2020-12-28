@@ -18,6 +18,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.utils.ToastTool;
 import com.skx.tomike.R;
 import com.skx.tomike.apt_annotation.BindView;
 import com.skx.tomike.data.bo.HomepageNavigationTabBo;
@@ -26,13 +29,12 @@ import com.skx.tomike.fragment.business.HomepageFragment;
 import com.skx.tomike.fragment.business.PersonalFragment;
 import com.skx.tomike.service.LocalService;
 import com.skx.tomike.service.RemoteService;
-import com.skx.common.utils.ToastTool;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeActivity extends SkxBaseActivity implements OnClickListener {
+public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnClickListener {
 
     private FragmentManager mFragmentManager;
 
@@ -48,31 +50,50 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
     private ImageView imv_myTab_icon;
     private TextView tv_myTab_text;
 
-    private List<HomepageNavigationTabBo> tabList;
+    private final List<HomepageNavigationTabBo> tabList = new ArrayList<>();
     private int currentIndex = 0;
     private int lastIndex = 0;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initData();
-        initializeView();
-        refreshView();
-        installListener();
+    protected void initParams() {
     }
 
-    TelephonyManager telephonyManager;
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
 
-    private void initData() {
-        if (tabList == null) {
-            tabList = new ArrayList<>();
-        } else {
-            tabList.clear();
-        }
+    @Override
+    protected void initView() {
+        fl_content_container = findViewById(R.id.homepage_content_container);
+        fl_content_container.setVisibility(View.VISIBLE);
+
+        imv_homepageTab_icon = findViewById(R.id.homepage_navigation_homepageTab_icon);
+        tv_homepageTab_text = findViewById(R.id.homepage_navigation_homepageTab_text);
+
+        imv_catalogTab_icon = findViewById(R.id.homepage_navigation_catalogTab_icon);
+        tv_catalogTab_text = findViewById(R.id.homepage_navigation_catalogTab_text);
+
+        imv_myTab_icon = findViewById(R.id.homepage_navigation_myTab_icon);
+        tv_myTab_text = findViewById(R.id.homepage_navigation_myTab_text);
+
+        HomepageNavigationTabBo homepageTab = new HomepageNavigationTabBo("首页", android.R.drawable.ic_dialog_map, "");
+        HomepageNavigationTabBo catalogTab = new HomepageNavigationTabBo("目录", android.R.drawable.ic_menu_save, "");
+        HomepageNavigationTabBo myTab = new HomepageNavigationTabBo("我的", android.R.drawable.ic_menu_manage, "");
+
+        tabList.add(homepageTab);
+        tabList.add(catalogTab);
+        tabList.add(myTab);
+
+        findViewById(R.id.homepage_navigation_homepageTab).setOnClickListener(this);
+        findViewById(R.id.homepage_navigation_catalogTab).setOnClickListener(this);
+        findViewById(R.id.homepage_navigation_myTab).setOnClickListener(this);
+    }
 
 
-        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= 23) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
@@ -96,35 +117,10 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
             ToastTool.showToast(this, "6.0 以下");
         }
 
-        HomepageNavigationTabBo homepageTab = new HomepageNavigationTabBo("首页", android.R.drawable.ic_dialog_map, "");
-        HomepageNavigationTabBo catalogTab = new HomepageNavigationTabBo("目录", android.R.drawable.ic_menu_save, "");
-        HomepageNavigationTabBo myTab = new HomepageNavigationTabBo("我的", android.R.drawable.ic_menu_manage, "");
-
-        tabList.add(homepageTab);
-        tabList.add(catalogTab);
-        tabList.add(myTab);
+        renderView();
     }
 
-    @Override
-    public void initializeView() {
-        setContentView(R.layout.activity_main);
-//        HomeActivityViewBinding.bind(this);
-
-        fl_content_container = findViewById(R.id.homepage_content_container);
-        fl_content_container.setVisibility(View.VISIBLE);
-
-        imv_homepageTab_icon = findViewById(R.id.homepage_navigation_homepageTab_icon);
-        tv_homepageTab_text = findViewById(R.id.homepage_navigation_homepageTab_text);
-
-        imv_catalogTab_icon = findViewById(R.id.homepage_navigation_catalogTab_icon);
-        tv_catalogTab_text = findViewById(R.id.homepage_navigation_catalogTab_text);
-
-        imv_myTab_icon = findViewById(R.id.homepage_navigation_myTab_icon);
-        tv_myTab_text = findViewById(R.id.homepage_navigation_myTab_text);
-    }
-
-    @Override
-    public void refreshView() {
+    private void renderView() {
         // 开启双服务保活
         startService(new Intent(this, LocalService.class));
         startService(new Intent(this, RemoteService.class));
@@ -138,18 +134,9 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
         setCurrentTabColor();
     }
 
-
-    @Override
-    public void installListener() {
-        findViewById(R.id.homepage_navigation_homepageTab).setOnClickListener(this);
-        findViewById(R.id.homepage_navigation_catalogTab).setOnClickListener(this);
-        findViewById(R.id.homepage_navigation_myTab).setOnClickListener(this);
-    }
-
     @Override
     public void onClick(View v) {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-
         switch (v.getId()) {
             case R.id.homepage_navigation_homepageTab:
                 // 点击后重置currentIndex为当前点击的tab
@@ -215,7 +202,6 @@ public class HomeActivity extends SkxBaseActivity implements OnClickListener {
                 } else if (i == 2) {
                     tv_myTab_text.setTextColor(Color.parseColor("#323232"));
                 }
-            } else {
             }
         }
     }
