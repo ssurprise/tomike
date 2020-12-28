@@ -119,8 +119,10 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
     private void renderView() {
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         mTvAndroidId.setText(String.format("androidId：%s", Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID)));
-        mTvDeviceId.setText(String.format("devicedId：%s", tm.getDeviceId()));
-        mTvImei.setText(String.format("imei：%s", tm.getImei()));
-        mTvMeid.setText(String.format("meid：%s", tm.getMeid()));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mTvDeviceId.setText(String.format("devicedId：%s", tm.getDeviceId()));
+            mTvImei.setText(String.format("imei：%s", tm.getImei()));
+            mTvMeid.setText(String.format("meid：%s", tm.getMeid()));
+        }
     }
 }
