@@ -1,3 +1,4 @@
+// 扩展块
 ext {
 
     def room_version = "2.2.3"
