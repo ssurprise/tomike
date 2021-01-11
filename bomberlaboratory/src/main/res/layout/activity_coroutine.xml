@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/view_padding_15">
+
+    <TextView
+        android:id="@+id/btn_thread_0"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:text="vip"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_thread_1"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="柜台1"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_0"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_2"
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_thread_2"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="柜台2"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_1"
+        app:layout_constraintRight_toLeftOf="@id/btn_thread_3"
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_thread_3"
+        style="@style/TextBtnStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="柜台3"
+        app:layout_constraintLeft_toRightOf="@id/btn_thread_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_people_count"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:text="当前等待人数：0人"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/btn_add_people"
+        style="@style/TextBtnStyle"
+        android:layout_width="120dp"
+        android:layout_marginTop="10dp"
+        android:text="又来一个人，+1"
+        android:textColor="@color/skx_212121"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_thread_0"
+        tools:ignore="HardcodedText" />
+
+    <ScrollView
+        android:id="@+id/sv_thread_logcat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rectangle_solid_f5f5f5_corner_2"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_people_count">
+
+        <TextView
+            android:id="@+id/tv_thread_logcat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
+    </ScrollView>
+
+    <TextView
+        style="@style/TextBtnStyle"
+        android:layout_width="100dp"
+        android:layout_marginTop="5dp"
+        android:onClick="clearClient"
+        android:text="重置"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_people"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

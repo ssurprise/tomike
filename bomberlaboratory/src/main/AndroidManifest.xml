@@ -64,5 +64,9 @@
             android:name=".thread.ReentrantLockActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".coroutine.CoroutineActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>
