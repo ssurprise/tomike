@@ -16,7 +16,7 @@ import java.security.MessageDigest;
  * 注：最终转换成Glide 提供的 RoundedCorners，这里不用纠结实现内容，可以忽略。
  */
 public final class RoundedCorners implements TransformAdapter {
-    private static final String ID = "com.skx.tomikecommonlibrary.imageloader.transform.RoundedCorners";
+    private static final String ID = "com.skx.common.imageloader.transform.RoundedCorners";
     private static final byte[] ID_BYTES = ID.getBytes(CHARSET);
 
     private final int roundingRadius;

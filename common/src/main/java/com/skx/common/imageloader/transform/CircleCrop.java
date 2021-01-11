@@ -13,7 +13,7 @@ import java.security.MessageDigest;
  */
 public final class CircleCrop implements TransformAdapter {
     private static final int VERSION = 1;
-    private static final String ID = "com.skx.tomikecommonlibrary.imageloader.transform." + VERSION;
+    private static final String ID = "com.skx.common.imageloader.transform." + VERSION;
     private static final byte[] ID_BYTES = ID.getBytes(CHARSET);
 
     @Override

@@ -27,7 +27,7 @@ import java.security.MessageDigest;
  */
 public final class OverLapTransform implements TransformAdapter {
 
-    private static final String ID = "com.skx.tomikecommonlibrary.imageloader.transform.OverLapTransform";
+    private static final String ID = "com.skx.common.imageloader.transform.OverLapTransform";
     private static final byte[] ID_BYTES = ID.getBytes(CHARSET);
 
     private Bitmap mOverLapBitmap;
