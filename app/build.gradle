@@ -63,20 +63,26 @@ android {
 }
 
 dependencies {
-    // implementation fileTree是一个本地依赖声明，表示将libs目录下所有.jar后缀的文件都添加到项目的构建路径当中。
+    // 本地二进制文件依赖项。声明了对项目的 module_name/libs/ 目录中 JAR、AAR 文件的依赖关系（因为 Gradle 会读取 build.gradle 文件的相对路径）。
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-    implementation project(path: ':common')
-    implementation project(path: ':tacticallaboratory')
-    implementation project(path: ':tanklaboratory')
-    implementation project(path: ':cannonlaboratory')
-    implementation project(path: ':bomberlaboratory')
 
+    // 本地库模块依赖项，表示申明了对一个名为"xxx"的Android 库模块的依赖关系。
+    implementation project(':common')
+    implementation project(':tacticallaboratory')
+    implementation project(':tanklaboratory')
+    implementation project(':cannonlaboratory')
+    implementation project(':bomberlaboratory')
+
+    // 依赖的远程库
     def implementationDependencies = rootProject.ext.implementationDependencies
     implementationDependencies.each { key, value -> implementation value }
+    // implementation 'com.example.android:app-magic:12.3'
+    // 是 implementation group: 'com.example.android', name: 'app-magic', version: '12.3' 的简写形式
 
     def annotationKpt = rootProject.ext.annotationKpt
     annotationKpt.each { key, value -> kapt value }
 
+    // Dependency on a local library module
     implementation project(":apt-annotation")
     annotationProcessor project(":apt-processor")
 }
