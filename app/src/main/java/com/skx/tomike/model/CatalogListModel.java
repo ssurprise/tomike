@@ -4,6 +4,7 @@ import com.skx.tomike.bomberlaboratory.basics.DoubleFormatActivity;
 import com.skx.tomike.bomberlaboratory.basics.GsonParseActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlEncodeActivity;
 import com.skx.tomike.bomberlaboratory.basics.UrlParseActivity;
+import com.skx.tomike.bomberlaboratory.coroutine.CoroutineActivity;
 import com.skx.tomike.bomberlaboratory.generic.GenericTestActivity;
 import com.skx.tomike.bomberlaboratory.reflect.ReflectTestActivity;
 import com.skx.tomike.bomberlaboratory.thread.ReentrantLockActivity;
@@ -87,6 +88,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.RecyclerAsViewPagerActivity
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewChildCountActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewItemUpdateActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewScrollToPositionActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.ScrollViewAndRecyclerViewActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.SetTextIsSelectableTestActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShadowActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ShapeDrawableHelperActivity;
@@ -210,6 +212,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("RecyclerView 滑动到指定position", RecyclerViewScrollToPositionActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 仿ViewPager", RecyclerAsViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView child count测试", RecyclerViewChildCountActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ScrollView + RecyclerView", ScrollViewAndRecyclerViewActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ScrollViewAnchorActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout 工具类封装检测", TabLayoutHelperActivity.class.getName()));
@@ -294,6 +297,7 @@ public class CatalogListModel {
         mJavaCatalogs.add(new CatalogItem("线程池 - ThreadPool", ThreadPoolActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程池 - Executors", ThreadPoolExecutorsActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("ReentrantLock", ReentrantLockActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("协程", CoroutineActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("泛型理解", GenericTestActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("反射理解", ReflectTestActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_JAVA, mJavaCatalogs);
