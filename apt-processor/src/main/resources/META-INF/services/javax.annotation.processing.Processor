@@ -1,2 +1,3 @@
 com.skx.tomike.apt_processor.BindViewProcessor
 com.skx.tomike.apt_processor.TestProcessor
+com.skx.tomike.apt_processor.RouterProcessor

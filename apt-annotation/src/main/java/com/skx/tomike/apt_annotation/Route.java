@@ -5,7 +5,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.CLASS)
-@interface Route {
+@Target(ElementType.TYPE)
+public @interface Route {
+    String path();
+
+    String group();
 }
