@@ -21,6 +21,7 @@ import com.skx.tomike.cannonlaboratory.ui.activity.AsyncTaskActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.DeviceInformationActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.GlideActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.HandlerActivity;
+import com.skx.tomike.cannonlaboratory.ui.activity.HotfixActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.ImageLoadActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.KeyboardActivity;
 import com.skx.tomike.cannonlaboratory.ui.activity.LifecycleActivity;
@@ -252,6 +253,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("大图片加载", ImageLoadActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("打开文件管理器", OpenFileActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("Parcelable序列化", ParcelableActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("热修复-微信Tinker", HotfixActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 

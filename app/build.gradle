@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'// 表示这是一个应用程序模块
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'// kotlin的注解处理器插件
 apply plugin: 'kotlin-parcelize'
+// 热修复 tinker 配置
+apply from: "../tinkerConfig.gradle"
 
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
@@ -18,6 +20,7 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 140
         versionName "1.40.00"
+        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
 
         ndk {

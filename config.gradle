@@ -3,6 +3,7 @@ ext {
 
     def room_version = "2.2.3"
     def appcompat_version = "1.1.0"
+    def TINKER_VERSION = "1.9.14.10"
 
     appVersion = [
             VERSION_CODE: 140,

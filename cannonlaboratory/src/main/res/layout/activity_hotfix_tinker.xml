@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="5 ÷ 0 = "
+        android:textColor="@color/skx_212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_hotfix_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="12sp"
+        tools:hint="0不能当做除数啊！ 啊，啊，啊  bong~ bong ~  爆炸了" />
+
+    <TextView
+        android:id="@+id/tv_hotfix_calculation"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:text="计算" />
+
+    <TextView
+        android:id="@+id/tv_hotfix_fixBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:text="点击修复它" />
+
+</LinearLayout>

@@ -13,11 +13,13 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.android.tools.build:gradle:3.5.3'
         classpath 'org.aspectj:aspectjtools:1.8.9'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath("com.tencent.tinker:tinker-patch-gradle-plugin:${rootProject.ext.TINKER_VERSION}") {
+            changing = TINKER_VERSION?.endsWith("-SNAPSHOT")
+            exclude group: 'com.android.tools.build', module: 'gradle'
+        }
     }
 }
 //    copy("/Users/shiguotao/giteeworkspace/skxlaboratory/local.properties","/Users/shiguotao/giteeworkspace/skxlaboratory/local2.properties")
