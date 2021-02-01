@@ -185,7 +185,12 @@
         <activity
             android:name=".animation.activity.ScrollZoomImage3Activity"
             android:screenOrientation="portrait" />
-        <activity android:name=".widget.activity.ScrollViewAndRecyclerViewActivity" />
+        <activity
+            android:name=".widget.activity.ScrollViewAndRecyclerViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.RecyclerStaggeredGridActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
