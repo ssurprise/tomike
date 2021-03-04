@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".widget.activity.RecyclerViewCountDownTimerActivity">
+
+    <TextView
+        android:id="@+id/tv_recyclerCountDown_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="实现方式:"
+        android:textColor="@color/xz_212121"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <RadioGroup
+        android:id="@+id/tv_recyclerCountDown_implementation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_recyclerCountDown_title">
+
+        <RadioButton
+            android:id="@+id/rbtn_recyclerCountDown_inner"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:onClick="privateCountDownTimer"
+            android:text="每个item一个计时器" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:onClick="publicCountDownTimer"
+            android:text="共同使用一个计时器" />
+
+    </RadioGroup>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_rvCountDown_pull2refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_recyclerCountDown_implementation">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_rvCountDown_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

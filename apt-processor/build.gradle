@@ -3,7 +3,7 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 注解注册处理器
-    implementation 'com.google.auto.service:auto-service:1.0-rc2'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc2'
     // 引入annotation，让注解处理器-处理注解
     implementation project(':apt-annotation')
     // square 开源的代码生成框架，通过API生成指定格式（修饰符 返回值 参数 函数体）的代码

@@ -191,6 +191,7 @@
         <activity
             android:name=".widget.activity.RecyclerStaggeredGridActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".widget.activity.RecyclerViewCountDownTimerActivity" />
 
     </application>
 

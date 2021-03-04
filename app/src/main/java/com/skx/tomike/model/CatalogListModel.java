@@ -88,6 +88,7 @@ import com.skx.tomike.tanklaboratory.widget.activity.RadioGroupActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerAsViewPagerActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerStaggeredGridActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewChildCountActivity;
+import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewCountDownTimerActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewItemUpdateActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.RecyclerViewScrollToPositionActivity;
 import com.skx.tomike.tanklaboratory.widget.activity.ScrollViewAndRecyclerViewActivity;
@@ -215,6 +216,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("RecyclerView 瀑布流", RecyclerStaggeredGridActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 仿ViewPager", RecyclerAsViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView child count测试", RecyclerViewChildCountActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView 倒计时功能", RecyclerViewCountDownTimerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ScrollView + RecyclerView", ScrollViewAndRecyclerViewActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ScrollViewAnchorActivity.class.getName()));

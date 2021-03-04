@@ -12,6 +12,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
@@ -26,6 +27,7 @@ import javax.lang.model.util.Elements;
  * 版本 : V1
  * 创建时间 : 2021/1/19 6:01 PM
  */
+//@AutoService(Processor.class)
 @SupportedAnnotationTypes({"com.skx.tomike.apt_annotation.Route"})
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class RouterProcessor extends AbstractProcessor {
