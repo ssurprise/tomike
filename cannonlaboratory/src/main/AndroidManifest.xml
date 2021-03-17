@@ -164,6 +164,7 @@
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
         <activity android:name=".ui.activity.HotfixActivity" />
+        <activity android:name=".ui.activity.CountDownTimerActivity" />
     </application>
 
 </manifest>
