@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:text="1.如何判断一个单向链表是否有环?\n2.环的长度如何计算?\n3.如何找到环的入口?"
+        android:text="1.如何判断一个单向链表是否有环?\n2.环的长度如何计算?\n3.如何找到环的入口?\n4.倒叙输出"
         android:textColor="@color/skx_212121"
         android:textSize="12sp"
         tools:ignore="HardcodedText" />
@@ -79,6 +79,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="环入口点："
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_linked_answer_reverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="倒叙结果为："
         android:textColor="@color/skx_212121"
         android:textSize="12sp"
         tools:ignore="HardcodedText" />

@@ -23,21 +23,29 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
     private TextView mTvHasRing;
     private TextView mTvRingLength;
     private TextView mTvRingEnter;
+    private TextView mTvReverse;
 
-    private Node mLink = new Node(0);
+    private final Node mRingLink = new Node(0);
+    private final Node mLink = new Node(0);
 
-
-    private static final String QUESTION = "1.如何判断一个单向链表是否有环?\n2.环的长度如何计算?\n3.如何找到环的入口?";
+    private static final String QUESTION = "1.如何判断一个单向链表是否有环?\n2.环的长度如何计算?\n3.如何找到环的入口?\n4.倒叙输出";
 
     @Override
     protected void initParams() {
+        mRingLink.next = new Node(1);
+        mRingLink.next.next = new Node(2);
+        mRingLink.next.next.next = new Node(3);
+        mRingLink.next.next.next.next = new Node(4);
+        mRingLink.next.next.next.next.next = new Node(5);
+        mRingLink.next.next.next.next.next.next = new Node(6);
+        mRingLink.next.next.next.next.next.next.next = mRingLink.next.next;
+
         mLink.next = new Node(1);
         mLink.next.next = new Node(2);
         mLink.next.next.next = new Node(3);
         mLink.next.next.next.next = new Node(4);
         mLink.next.next.next.next.next = new Node(5);
         mLink.next.next.next.next.next.next = new Node(6);
-        mLink.next.next.next.next.next.next.next = mLink.next.next;
     }
 
     @Override
@@ -58,16 +66,48 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
         mTvHasRing = findViewById(R.id.tv_linked_answer_hasRing);
         mTvRingLength = findViewById(R.id.tv_linked_answer_ringLength);
         mTvRingEnter = findViewById(R.id.tv_linked_answer_ringEnterPoint);
+        mTvReverse = findViewById(R.id.tv_linked_answer_reverse);
 
         createExampleText();
-        checkLinkHasRing(mLink);
-        calculateRingLength(mLink);
+        checkLinkHasRing(mRingLink);
+        calculateRingLength(mRingLink);
+        ReverseLink(mLink);
+    }
+
+    private void ReverseLink(Node link) {
+        if (link == null) return;
+
+//        StringBuilder context = new StringBuilder();
+//        while (link.next != null) {
+//            context.append(link.index).append("->");
+//            link = link.next;
+//        }
+//        Log.e("原链表输出为：", context.toString());
+
+        // 1、2、3、4
+        Node cur = null;
+        Node pre = link;
+
+        while (pre != null) {
+            Node next = pre.next;
+            pre.next = cur;
+            cur = pre;
+            pre = next;
+        }
+
+        Node logPoint = cur;
+        StringBuilder context2 = new StringBuilder();
+        while (logPoint != null && logPoint.next != null) {
+            context2.append(logPoint.index).append("->");
+            logPoint = logPoint.next;
+        }
+        mTvReverse.setText(String.format(Locale.getDefault(), "倒叙输出为：%s", context2.toString()));
     }
 
     private void createExampleText() {
         Set<Node> ss = new HashSet<>();
 
-        Node index = mLink;
+        Node index = mRingLink;
         StringBuilder context = new StringBuilder();
         while (index.next != null && !ss.contains(index)) {
             ss.add(index);
