@@ -32,9 +32,6 @@
         android:testOnly="false"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".login.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".activity.WelcomeActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
@@ -59,6 +56,10 @@
         <service
             android:name=".service.RemoteService"
             android:process=":com.skx.remote" />
+
+        <meta-data
+            android:name="TINKER_ID"
+            android:value="1.0" />
 
     </application>
 

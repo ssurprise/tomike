@@ -2,12 +2,9 @@ apply plugin: 'com.android.application'// 表示这是一个应用程序模块
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'// kotlin的注解处理器插件
 apply plugin: 'kotlin-parcelize'
-// 热修复 tinker 配置
-apply from: "../tinkerConfig.gradle"
-
-import org.aspectj.bridge.IMessage
-import org.aspectj.bridge.MessageHandler
-import org.aspectj.tools.ajc.Main
+// 热修复tinker插件
+//apply plugin: 'com.tencent.tinker.patch'
+//apply from: "../tinkerConfig.gradle"
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
@@ -27,6 +24,8 @@ android {
             //设置支持的so库架构，每一种 CPU 构架，都定义了一种 ABI（Application Binary Interface），ABI 决定了二进制文件如何与系统进行交互
             abiFilters 'armeabi', 'x86'//, 'x86','armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
+        multiDexKeepProguard file("tinker_multidexkeep.pro")
+        manifestPlaceholders = [TINKER_ID: rootProject.TINKER_ID]
     }
     buildTypes {
         // 用于指定生成正式版安装文件的配置
@@ -88,54 +87,12 @@ dependencies {
     // Dependency on a local library module
     implementation project(":apt-annotation")
     annotationProcessor project(":apt-processor")
-}
 
-
-final def log = project.logger
-
-project.android.applicationVariants.all { variant ->
-
-    if (!variant.buildType.isDebuggable()) {
-        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
-        return;
-    }
-
-    log.error "========================";
-    log.error "Aspectj切片开始编织Class!";
-    log.error "========================";
-
-    JavaCompile javaCompile = variant.javaCompile
-    javaCompile.doLast {
-        String[] args = ["-showWeaveInfo",
-                         "-1.8",
-                         "-inpath", javaCompile.destinationDir.toString(),
-                         "-aspectpath", javaCompile.classpath.asPath,
-                         "-d", javaCompile.destinationDir.toString(),
-                         "-classpath", javaCompile.classpath.asPath,
-                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
-        log.debug "ajc args: " + Arrays.toString(args)
-
-        MessageHandler handler = new MessageHandler(true);
-        new Main().run(args, handler);
-        for (IMessage message : handler.getMessages(null, true)) {
-            switch (message.getKind()) {
-                case IMessage.ABORT:
-                case IMessage.ERROR:
-                case IMessage.FAIL:
-                    log.error message.message, message.thrown
-                    break;
-                case IMessage.WARNING:
-                    log.warn message.message, message.thrown
-                    break;
-                case IMessage.INFO:
-                    log.info message.message, message.thrown
-                    break;
-                case IMessage.DEBUG:
-                    log.debug message.message, message.thrown
-                    break;
-            }
-        }
-    }
+    // tinker的核心库
+    implementation("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
+    // 可选，用于生成application类
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
+    compileOnly("com.tencent.tinker:tinker-android-anno-support:${TINKER_VERSION}") { changing = true }
 }
 repositories {
     mavenCentral()

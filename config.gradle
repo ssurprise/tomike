@@ -20,7 +20,7 @@ ext {
             design         : "com.google.android.material:material:1.0.0",
             appcompat      : "androidx.appcompat:appcompat:$appcompat_version",
             annotation     : "androidx.annotation:annotation:1.1.0",
-            supportMultidex: "androidx.multidex:multidex:2.0.0",
+            supportMultidex: "androidx.multidex:multidex:2.0.1",
             kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             lifecycle      : "androidx.lifecycle:lifecycle-extensions:2.0.0",
             gson           : "com.google.code.gson:gson:2.8.5",
@@ -51,10 +51,6 @@ ext {
             mmkv: "com.tencent:mmkv-static:1.2.2"
     ]
 
-    aspectjrt = [
-            aspectjrt: 'org.aspectj:aspectjrt:1.8.9',
-    ]
-
     annotationKpt = [
             roomCompiler: "androidx.room:room-compiler:$room_version",
     ]
@@ -66,5 +62,4 @@ ext {
     implementationDependencies.putAll(rx)
     implementationDependencies.putAll(room)
     implementationDependencies.putAll(mmkv)
-    implementationDependencies.putAll(aspectjrt)
 }
