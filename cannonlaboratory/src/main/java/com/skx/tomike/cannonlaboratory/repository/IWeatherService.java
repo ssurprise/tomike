@@ -3,8 +3,12 @@ package com.skx.tomike.cannonlaboratory.repository;
 import com.skx.tomike.cannonlaboratory.bean.BaseBean;
 import com.skx.tomike.cannonlaboratory.bean.WeatherMini;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -17,5 +21,10 @@ public interface IWeatherService {
 
     @GET("weather/index?format=2&key=487a0e269f87aa5c666ebf17b40e80f3")
     Call<BaseBean<WeatherMini>> querySimpleWeather(@Query("cityname") String cityName);
+
+
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @POST("app/upload")
+    Call<String> uploadXzApp(@Body RequestBody body);
 
 }

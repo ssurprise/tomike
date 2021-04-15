@@ -5,12 +5,17 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.gson.Gson;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannonlaboratory.bean.BaseBean;
 import com.skx.tomike.cannonlaboratory.bean.WeatherMini;
 import com.skx.tomike.cannonlaboratory.repository.IWeatherService;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.utils.ToastTool;
 
+import java.util.HashMap;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,5 +66,46 @@ public class RetrofitViewModel extends BaseViewModel {
             public void onFailure(Call<BaseBean<WeatherMini>> call, Throwable t) {
             }
         });
+    }
+
+    public void uploadXzApp() {
+
+        /*
+        接口：http://apk-upload.ops.xiaozhu.com/app/upload/
+方法：post
+body:
+{
+  "pkgurl": ["url1","url2"],
+  "mainChannels": ["xiaozhu","xiaomi","huawei"], // 主渠道包，不包含url 中的名字即可。因为运维那边不是做的全匹配，是包含关系。
+  "env": "prod"
+    "delay_sec_2": 30
+}
+ContentType: application/json
+         */
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://apk-upload.ops.xiaozhu.com/")
+                .addConverterFactory(GsonConverterFactory.create())//使用了gson去解析json
+                .build();
+        IWeatherService weather = retrofit.create(IWeatherService.class);
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("mainChannels", "prod");
+        map.put("env", "prod");
+
+        Call<String> resp = weather.uploadXzApp(RequestBody.create(MediaType.parse("application/json"),
+                new Gson().toJson(map)));
+
+        resp.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+
     }
 }

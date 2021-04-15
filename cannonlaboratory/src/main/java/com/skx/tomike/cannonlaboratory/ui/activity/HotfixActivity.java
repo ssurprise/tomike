@@ -1,6 +1,7 @@
 package com.skx.tomike.cannonlaboratory.ui.activity;
 
 import android.os.Environment;
+import android.view.View;
 import android.widget.TextView;
 
 import com.skx.common.base.BaseViewModel;
@@ -38,13 +39,20 @@ public class HotfixActivity extends SkxBaseActivity<BaseViewModel> {
     @Override
     protected void initView() {
         mTvHint = findViewById(R.id.tv_hotfix_hint);
-        findViewById(R.id.tv_hotfix_calculation).setOnClickListener(v -> {
-            mTvHint.setText("0不能当做除数啊！ 啊，啊，啊  bong~ bong ~  爆炸了");
+        findViewById(R.id.tv_hotfix_calculation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTvHint.setText("0不能当做除数啊！ 啊，啊，啊  bong~ bong ~  爆炸了");
+            }
         });
 
-        findViewById(R.id.tv_hotfix_fixBtn).setOnClickListener(v -> {
-            TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(),
-                    Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
+        findViewById(R.id.tv_hotfix_fixBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(),
+                        Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
+
+            }
         });
     }
 }
