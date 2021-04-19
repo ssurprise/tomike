@@ -166,7 +166,7 @@ if (buildWithTinker()) {
              */
             loader = [
                     //use sample, let BaseBuildInfo unchangeable with tinker
-                    "tinker.sample.android.app.BaseBuildInfo"
+                    "com.skx.tomike.TomikeAppLike"
             ]
         }
 
@@ -269,50 +269,50 @@ if (buildWithTinker()) {
             if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
 
                 it.doLast {
-                    copy {
-                        def fileNamePrefix = "${project.name}-${variant.baseName}"
-                        def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
-
-                        def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
-
-                        if (variant.metaClass.hasProperty(variant, 'packageApplicationProvider')) {
-                            def packageAndroidArtifact = variant.packageApplicationProvider.get()
-                            if (packageAndroidArtifact != null) {
-                                try {
-                                    from new File(packageAndroidArtifact.outputDirectory.getAsFile().get(), variant.outputs.first().apkData.outputFileName)
-                                } catch (Exception e) {
-                                    from new File(packageAndroidArtifact.outputDirectory, variant.outputs.first().apkData.outputFileName)
-                                }
-                            } else {
-                                from variant.outputs.first().mainOutputFile.outputFile
-                            }
-                        } else {
-                            from variant.outputs.first().outputFile
-                        }
-
-                        into destPath
-                        rename { String fileName ->
-                            fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
-                        }
-
-                        def dirName = variant.dirName
-                        if (hasFlavors) {
-                            dirName = taskName
-                        }
-                        from "${buildDir}/outputs/mapping/${dirName}/mapping.txt"
-                        into destPath
-                        rename { String fileName ->
-                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
-                        }
-
-                        from "${buildDir}/intermediates/symbols/${dirName}/R.txt"
-                        from "${buildDir}/intermediates/symbol_list/${dirName}/R.txt"
-                        from "${buildDir}/intermediates/runtime_symbol_list/${dirName}/R.txt"
-                        into destPath
-                        rename { String fileName ->
-                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
-                        }
-                    }
+//                    copy {
+//                        def fileNamePrefix = "${project.name}-${variant.baseName}"
+//                        def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
+//
+//                        def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
+//
+//                        if (variant.metaClass.hasProperty(variant, 'packageApplicationProvider')) {
+//                            def packageAndroidArtifact = variant.packageApplicationProvider.get()
+//                            if (packageAndroidArtifact != null) {
+//                                try {
+//                                    from new File(packageAndroidArtifact.outputDirectory.getAsFile().get(), variant.outputs.first().apkData.outputFileName)
+//                                } catch (Exception e) {
+//                                    from new File(packageAndroidArtifact.outputDirectory, variant.outputs.first().apkData.outputFileName)
+//                                }
+//                            } else {
+//                                from variant.outputs.first().mainOutputFile.outputFile
+//                            }
+//                        } else {
+//                            from variant.outputs.first().outputFile
+//                        }
+//
+//                        into destPath
+//                        rename { String fileName ->
+//                            fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
+//                        }
+//
+//                        def dirName = variant.dirName
+//                        if (hasFlavors) {
+//                            dirName = taskName
+//                        }
+//                        from "${buildDir}/outputs/mapping/${dirName}/mapping.txt"
+//                        into destPath
+//                        rename { String fileName ->
+//                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
+//                        }
+//
+//                        from "${buildDir}/intermediates/symbols/${dirName}/R.txt"
+//                        from "${buildDir}/intermediates/symbol_list/${dirName}/R.txt"
+//                        from "${buildDir}/intermediates/runtime_symbol_list/${dirName}/R.txt"
+//                        into destPath
+//                        rename { String fileName ->
+//                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+//                        }
+//                    }
                 }
             }
         }

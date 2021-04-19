@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'// kotlin的注解处理器插件
 apply plugin: 'kotlin-parcelize'
 // 热修复tinker插件
-//apply plugin: 'com.tencent.tinker.patch'
 //apply from: "../tinkerConfig.gradle"
 
 android {
@@ -18,14 +17,14 @@ android {
         versionCode 140
         versionName "1.40.00"
         multiDexEnabled true
+        multiDexKeepProguard file("tinker_multidexkeep.pro")
+        manifestPlaceholders = [TINKER_ID: rootProject.TINKER_ID]
         vectorDrawables.useSupportLibrary = true
 
         ndk {
             //设置支持的so库架构，每一种 CPU 构架，都定义了一种 ABI（Application Binary Interface），ABI 决定了二进制文件如何与系统进行交互
             abiFilters 'armeabi', 'x86'//, 'x86','armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
-        multiDexKeepProguard file("tinker_multidexkeep.pro")
-        manifestPlaceholders = [TINKER_ID: rootProject.TINKER_ID]
     }
     buildTypes {
         // 用于指定生成正式版安装文件的配置
@@ -90,9 +89,9 @@ dependencies {
 
     // tinker的核心库
     implementation("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
-    // 可选，用于生成application类
-    annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
-    compileOnly("com.tencent.tinker:tinker-android-anno-support:${TINKER_VERSION}") { changing = true }
+    // 可选，用于生成application类。我们这里使用是非gradle方法打拆分包，所以用不到anno库，先注释掉。
+//    annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
+//    compileOnly("com.tencent.tinker:tinker-android-anno-support:${TINKER_VERSION}") { changing = true }
 }
 repositories {
     mavenCentral()
