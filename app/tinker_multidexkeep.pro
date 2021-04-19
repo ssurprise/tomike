@@ -31,6 +31,10 @@
     <init>(...);
 }
 
+-keep class com.skx.tomike.TomikeAppLike {
+    <init>(...);
+}
+
 -keep class com.tencent.tinker.loader.** {
     <init>(...);
 }
