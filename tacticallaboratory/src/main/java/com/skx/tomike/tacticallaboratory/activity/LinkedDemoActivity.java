@@ -25,27 +25,27 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
     private TextView mTvRingEnter;
     private TextView mTvReverse;
 
-    private final Node mRingLink = new Node(0);
-    private final Node mLink = new Node(0);
+    private final ListNode mRingLink = new ListNode(0);
+    private final ListNode mLink = new ListNode(0);
 
     private static final String QUESTION = "1.如何判断一个单向链表是否有环?\n2.环的长度如何计算?\n3.如何找到环的入口?\n4.倒叙输出";
 
     @Override
     protected void initParams() {
-        mRingLink.next = new Node(1);
-        mRingLink.next.next = new Node(2);
-        mRingLink.next.next.next = new Node(3);
-        mRingLink.next.next.next.next = new Node(4);
-        mRingLink.next.next.next.next.next = new Node(5);
-        mRingLink.next.next.next.next.next.next = new Node(6);
+        mRingLink.next = new ListNode(1);
+        mRingLink.next.next = new ListNode(2);
+        mRingLink.next.next.next = new ListNode(3);
+        mRingLink.next.next.next.next = new ListNode(4);
+        mRingLink.next.next.next.next.next = new ListNode(5);
+        mRingLink.next.next.next.next.next.next = new ListNode(6);
         mRingLink.next.next.next.next.next.next.next = mRingLink.next.next;
 
-        mLink.next = new Node(1);
-        mLink.next.next = new Node(2);
-        mLink.next.next.next = new Node(3);
-        mLink.next.next.next.next = new Node(4);
-        mLink.next.next.next.next.next = new Node(5);
-        mLink.next.next.next.next.next.next = new Node(6);
+        mLink.next = new ListNode(1);
+        mLink.next.next = new ListNode(2);
+        mLink.next.next.next = new ListNode(3);
+        mLink.next.next.next.next = new ListNode(4);
+        mLink.next.next.next.next.next = new ListNode(5);
+        mLink.next.next.next.next.next.next = new ListNode(6);
     }
 
     @Override
@@ -72,9 +72,20 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
         checkLinkHasRing(mRingLink);
         calculateRingLength(mRingLink);
         ReverseLink(mLink);
+
+
+        mergeTwoLists(
+                new ListNode(1, new ListNode(2, new ListNode(4, null))),
+                new ListNode(1, new ListNode(3, new ListNode(4, null)))
+        );
     }
 
-    private void ReverseLink(Node link) {
+    /**
+     * 反转链表
+     *
+     * @param link 原链表
+     */
+    private void ReverseLink(ListNode link) {
         if (link == null) return;
 
 //        StringBuilder context = new StringBuilder();
@@ -85,38 +96,73 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
 //        Log.e("原链表输出为：", context.toString());
 
         // 1、2、3、4
-        Node cur = null;
-        Node pre = link;
+        ListNode cur = null;
+        ListNode pre = link;
 
         while (pre != null) {
-            Node next = pre.next;
+            ListNode next = pre.next;
             pre.next = cur;
             cur = pre;
             pre = next;
         }
 
-        Node logPoint = cur;
+        ListNode logPoint = cur;
         StringBuilder context2 = new StringBuilder();
         while (logPoint != null && logPoint.next != null) {
-            context2.append(logPoint.index).append("->");
+            context2.append(logPoint.val).append("->");
             logPoint = logPoint.next;
         }
         mTvReverse.setText(String.format(Locale.getDefault(), "倒叙输出为：%s", context2.toString()));
     }
 
     private void createExampleText() {
-        Set<Node> ss = new HashSet<>();
+        Set<ListNode> ss = new HashSet<>();
 
-        Node index = mRingLink;
+        ListNode index = mRingLink;
         StringBuilder context = new StringBuilder();
         while (index.next != null && !ss.contains(index)) {
             ss.add(index);
-            context.append(" -> ").append(index.index);
+            context.append(" -> ").append(index.val);
             index = index.next;
         }
-        context.append(" -> ").append(index.index);
+        context.append(" -> ").append(index.val);
 
         mTvExample.setText(context.subSequence(" -> ".length(), context.length()));
+    }
+
+    /**
+     * 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+     * <p>
+     * 示例：
+     * 输入：l1 = [1,2,4], l2 = [1,3,4]
+     * 输出：[1,1,2,3,4,4]
+     *
+     * @param l1 链表1
+     * @param l2 链表2
+     * @return 合并后的升序链表
+     */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode result = new ListNode(-1);
+        ListNode index = result;
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                index.next = l1;
+                l1 = l1.next;
+
+            } else {
+                index.next = l2;
+                l2 = l2.next;
+            }
+            index = index.next;
+        }
+        if (l1 == null) {
+            index.next = l2;
+        }
+        if (l2 == null) {
+            index.next = l1;
+        }
+        result = result.next;
+        return result;
     }
 
     /**
@@ -124,15 +170,15 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
      *
      * @return true 有环
      */
-    private void checkLinkHasRing(Node link) {
-        Node fast = link, slow = link;
+    private void checkLinkHasRing(ListNode link) {
+        ListNode fast = link, slow = link;
         boolean hasRing = false;
         int index = 0;
         StringBuilder recordText = new StringBuilder("判断一个单向链表是否有环的检查过程：\n");
         recordText.append("   起点：")
-                .append("fast -> ").append(fast.index)
+                .append("fast -> ").append(fast.val)
                 .append("   ")
-                .append("slow -> ").append(slow.index)
+                .append("slow -> ").append(slow.val)
                 .append("\n");
 
         while (fast != null && fast.next != null) {
@@ -140,9 +186,9 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
             fast = fast.next.next;
             slow = slow.next;
             recordText.append("   第").append(index).append("步：")
-                    .append("fast -> ").append(fast == null ? "null" : fast.index)
+                    .append("fast -> ").append(fast == null ? "null" : fast.val)
                     .append("   ")
-                    .append("slow -> ").append(slow.index)
+                    .append("slow -> ").append(slow.val)
                     .append("\n");
 
             if (fast == slow) {
@@ -154,8 +200,8 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
         mTvHasRing.setText(recordText);
     }
 
-    private void calculateRingLength(Node link) {
-        Node fast = link, slow = link;
+    private void calculateRingLength(ListNode link) {
+        ListNode fast = link, slow = link;
 
         int length = 0;
         int meetCount = 0;// 会面次数
@@ -176,19 +222,19 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
         mTvRingLength.setText(String.format(Locale.getDefault(), "该链表中环的长度为：%d", length));
     }
 
-    static class Node {
-        public int index;
-        public Node next;
+    static class ListNode {
+        public int val;
+        public ListNode next;
 
-        public Node() {
+        public ListNode() {
         }
 
-        public Node(int index) {
-            this.index = index;
+        public ListNode(int val) {
+            this.val = val;
         }
 
-        public Node(int index, Node next) {
-            this.index = index;
+        public ListNode(int val, ListNode next) {
+            this.val = val;
             this.next = next;
         }
     }
