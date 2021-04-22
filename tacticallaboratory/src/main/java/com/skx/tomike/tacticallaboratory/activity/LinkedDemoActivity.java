@@ -166,6 +166,63 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     /**
+     * 判断一个链表是否为回文链表。
+     * <p>
+     * 示例 1:
+     * 输入: 1->2
+     * 输出: false
+     * <p>
+     * 示例 2:
+     * 输入: 1->2->2->1
+     * 输出: true
+     * <p>
+     * 进阶：
+     * 你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
+     *
+     * @param head
+     * @return
+     */
+    public boolean isPalindrome(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        // 1.使用快慢指针找到中间位置的节点，慢指针即表示中间的
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        // 2.反转后半部分节点
+        // 1,2,3,2,1  ->  3/5 -> 1、2、3、1、2
+
+        // 1,2,3,3,2,1 -> 1/3 2/2 3/1
+
+        if (fast != null) {
+            slow = slow.next;
+        }
+
+        ListNode cur = null;
+        ListNode pre = slow;
+
+        while (pre != null) {
+            ListNode next = pre.next;
+            pre.next = cur;
+            cur = pre;
+            pre = next;
+        }
+
+        fast = head;
+        while (cur != null) {
+            //然后比较，判断节点值是否相等
+            if (fast.val != cur.val)
+                return false;
+            fast = fast.next;
+            cur = cur.next;
+        }
+        return true;
+    }
+
+    /**
      * 检查链表是否环
      *
      * @return true 有环
