@@ -12,6 +12,7 @@ import com.skx.tomike.cannonlaboratory.bean.BaseBean;
 import com.skx.tomike.cannonlaboratory.bean.WeatherMini;
 import com.skx.tomike.cannonlaboratory.repository.IWeatherService;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import okhttp3.MediaType;
@@ -72,15 +73,15 @@ public class RetrofitViewModel extends BaseViewModel {
 
         /*
         接口：http://apk-upload.ops.xiaozhu.com/app/upload/
-方法：post
-body:
-{
-  "pkgurl": ["url1","url2"],
-  "mainChannels": ["xiaozhu","xiaomi","huawei"], // 主渠道包，不包含url 中的名字即可。因为运维那边不是做的全匹配，是包含关系。
-  "env": "prod"
-    "delay_sec_2": 30
-}
-ContentType: application/json
+        方法：post
+        body:
+            {
+              "pkgurl": ["url1","url2"],
+              "mainChannels": ["xiaozhu","xiaomi","huawei"], // 主渠道包，不包含url 中的名字即可。因为运维那边不是做的全匹配，是包含关系。
+              "env": "prod"
+              "delay_sec_2": 30
+            }
+        ContentType: application/json
          */
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://apk-upload.ops.xiaozhu.com/")
                 .addConverterFactory(GsonConverterFactory.create())//使用了gson去解析json
@@ -89,8 +90,13 @@ ContentType: application/json
 
         HashMap<String, String> map = new HashMap<>();
 
-        map.put("mainChannels", "prod");
+        String[] pkgurl = {"", ""};
+        String[] mainChannels = {"xiaozhu", "xiaomi", "huawei"};
+
+        map.put("pkgurl", Arrays.toString(pkgurl));
+        map.put("mainChannels", Arrays.toString(mainChannels));
         map.put("env", "prod");
+        map.put("delay_sec_2", "30");
 
         Call<String> resp = weather.uploadXzApp(RequestBody.create(MediaType.parse("application/json"),
                 new Gson().toJson(map)));
