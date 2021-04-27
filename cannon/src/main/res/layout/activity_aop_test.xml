@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context="com.skx.tomike.cannon.ui.activity.AopTestActivity">
+
+    <Button
+        android:id="@+id/aop_this"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="this 测试" />
+
+    <Button
+        android:id="@+id/aop_target"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="target 测试" />
+
+    <Button
+        android:id="@+id/aop_args"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="args 测试" />
+
+    <Button
+        android:id="@+id/aop_advice_before"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Advice-Before 测试" />
+
+    <Button
+        android:id="@+id/aop_advice_after"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Advice-After 测试" />
+
+    <Button
+        android:id="@+id/aop_advice_around"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Advice-Around 测试" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <Button
+        android:id="@+id/aop_custom_annotation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="custom Annotation 测试" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</LinearLayout>

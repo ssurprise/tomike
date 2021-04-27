@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_keyboard_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.cannon.ui.activity.KeyboardActivity">
+
+    <EditText
+        android:id="@+id/et_keyboard_inputBox"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="91dp"
+        android:hint="请输入"
+        android:textSize="14sp"
+        tools:ignore="Autofill,TextFields" />
+
+    <Button
+        android:id="@+id/btn_keyboard_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_keyboard_inputBox"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="31dp"
+        android:text="点击" />
+
+    <Button
+        android:id="@+id/btn_keyboard_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_keyboard_inputBox"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="106dp"
+        android:text="点击2" />
+</RelativeLayout>

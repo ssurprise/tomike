@@ -71,7 +71,7 @@ dependencies {
     implementation project(':common')
     implementation project(':tacticallaboratory')
     implementation project(':tank')
-    implementation project(':cannonlaboratory')
+    implementation project(':cannon')
     implementation project(':bomberlaboratory')
 
     // 依赖的远程库
