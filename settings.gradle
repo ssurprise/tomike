@@ -1,1 +1,1 @@
-include ':app', ':common', ':tank', ':tacticallaboratory', ':cannon', ':apt-annotation', ':apt-processor', ':bomber'
+include ':app', ':common', ':tank', ':missile', ':cannon', ':apt-annotation', ':apt-processor', ':bomber'

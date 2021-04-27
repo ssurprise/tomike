@@ -1,0 +1,65 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.skx.tomike.missile">
+
+    <application>
+        <activity
+            android:name="com.skx.tomike.missile.pattern.memento.MementoPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.skx.tomike.missile.pattern.chainofresponsibility.ChainOfResponsibilityPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.skx.tomike.missile.pattern.strategy.StrategyPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.skx.tomike.missile.pattern.prototype.PrototypePatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.skx.tomike.missile.pattern.observer.ObserverPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.skx.tomike.missile.activity.ViewModelActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.skx.tomike.missile.pattern.proxy.ProxyPatternActivity"
+            android:screenOrientation="portrait" />
+
+        <!--        栈-->
+        <activity
+            android:name="com.skx.tomike.missile.activity.StackDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--        队列-->
+        <activity
+            android:name="com.skx.tomike.missile.activity.QueueDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--        双端队列-->
+        <activity
+            android:name="com.skx.tomike.missile.activity.DueueDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--        链表-->
+        <activity
+            android:name="com.skx.tomike.missile.activity.LinkedDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--        数组-->
+        <activity
+            android:name="com.skx.tomike.missile.activity.ArrayDemoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--        树-->
+        <activity
+            android:name="com.skx.tomike.missile.activity.TreeDemoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.skx.tomike.missile.activity.SortDemoActivity" />
+
+    </application>
+</manifest>

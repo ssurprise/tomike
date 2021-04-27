@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context="com.skx.tomike.missile.pattern.memento.MementoPatternActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="姓名:"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/tv_mementoPattern_playerName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:textSize="12sp"
+            tools:ignore="Autofill,LabelFor,TextFields"
+            tools:text="会跳狙的百里" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="血量:"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <SeekBar
+            android:id="@+id/sb_mementoPattern_bloodVolume"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:max="100"
+            android:maxHeight="2dp" />
+
+        <TextView
+            android:id="@+id/tv_mementoPattern_bloodVolume_value"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:textSize="12sp"
+            tools:text="100" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/tv_mementoPattern_equipmentLabel"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="装备:"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_98k"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="98k"
+            app:layout_constraintLeft_toRightOf="@id/tv_mementoPattern_equipmentLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="122dp" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_416"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="416"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_98k"
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_98k"
+            tools:ignore="HardcodedText"
+            tools:layout_editor_absoluteX="206dp"
+            tools:layout_editor_absoluteY="122dp" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_helmet"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="三级盔"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_416"
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_416"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_armor"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="三级甲"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_helmet"
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_helmet"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/cb_mementoPattern_equipment_grenade"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="手雷"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_armor"
+            app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_armor"
+            tools:ignore="HardcodedText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/btn_mementoPattern_save"
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="存档"
+        tools:ignore="ButtonStyle,HardcodedText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_mementoPattern_mementoHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>

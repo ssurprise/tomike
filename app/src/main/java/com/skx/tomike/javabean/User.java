@@ -1,6 +1,6 @@
 package com.skx.tomike.javabean;
 
-import com.skx.tomike.tacticallaboratory.bean.UserSetting;
+import com.skx.tomike.missile.bean.UserSetting;
 
 /**
  * Created by shiguotao on 2016/11/13.
