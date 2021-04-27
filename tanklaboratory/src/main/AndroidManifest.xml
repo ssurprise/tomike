@@ -5,6 +5,9 @@
     <application>
         <!-- 控件类 -->
         <activity
+            android:name=".widget.activity.ViewFocusActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".widget.activity.TextSwitcherActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -112,9 +115,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".widget.activity.RadioGroupActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".widget.activity.ViewFocusActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".widget.activity.WatermarkActivity"

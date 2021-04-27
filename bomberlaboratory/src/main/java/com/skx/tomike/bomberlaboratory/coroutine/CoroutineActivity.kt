@@ -9,7 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
- * 描述 : 携程demo
+ * 描述 : 协程demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2021/1/7 3:27 PM
