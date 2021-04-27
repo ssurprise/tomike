@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/view_padding_15"
+    android:paddingLeft="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingTop="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.tank.animation.activity.ShareElementActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/image_04"
+        android:transitionName="shareElement" />
+
+</RelativeLayout>

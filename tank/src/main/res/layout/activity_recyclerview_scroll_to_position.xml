@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context="com.skx.tomike.tank.widget.activity.RecyclerViewScrollToPositionActivity">
+
+    <TextView
+        android:id="@+id/tv_recyclerviewScrollToPosition_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="滑动到指定position"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <RadioGroup
+        android:id="@+id/btn_recyclerviewScrollToPosition_configGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_recyclerviewScrollToPosition_description">
+
+        <RadioButton
+            android:id="@+id/btn_recyclerviewScrollToPosition_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="横向"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/btn_recyclerviewScrollToPosition_verticalFixHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:text="纵向"
+            tools:ignore="HardcodedText" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/ll_recyclerviewScrollToPosition_targetWrap"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_recyclerviewScrollToPosition_configGroup">
+
+        <ImageView
+            android:id="@+id/iv_recyclerviewScrollToPosition_lessBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@drawable/calendar_inventory_less_icon"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_recyclerviewScrollToPosition_targetPos"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="16sp"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/iv_recyclerviewScrollToPosition_moreBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:padding="15dp"
+            android:src="@drawable/calendar_inventory_more_icon" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_recyclerviewScrollToPosition_startBtn"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="开始滑动"
+        android:textColor="@color/xz_212121"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@id/ll_recyclerviewScrollToPosition_targetWrap"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ll_recyclerviewScrollToPosition_targetWrap" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_recyclerviewScrollToPosition_targetWrap">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recyclerviewScrollTpPosition_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

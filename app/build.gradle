@@ -70,7 +70,7 @@ dependencies {
     // 本地库模块依赖项，表示申明了对一个名为"xxx"的Android 库模块的依赖关系。
     implementation project(':common')
     implementation project(':tacticallaboratory')
-    implementation project(':tanklaboratory')
+    implementation project(':tank')
     implementation project(':cannonlaboratory')
     implementation project(':bomberlaboratory')
 

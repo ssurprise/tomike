@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="30dp"
+    tools:context=".widget.activity.ViewPagerWrapContentActivity">
+
+    <com.skx.tomike.tank.widget.view.WrapContentViewPager
+        android:id="@+id/vp_wrapContentVp_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/skx_ffdee9" />
+
+</LinearLayout>

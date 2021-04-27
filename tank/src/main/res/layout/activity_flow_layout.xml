@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".widget.activity.FlowLayoutActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="支持可点选哦"
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注：为了方便识别间距，默认设置了背景色"
+        android:textColor="@color/skx_757575"
+        android:textSize="10sp"
+        tools:ignore="HardcodedText,SmallSp" />
+
+
+    <com.skx.tomike.tank.widget.view.FlowLayout
+        android:id="@+id/fl_flowLayoutTest_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/skx_ffdee9"
+        app:columnSpacing="12dp"
+        app:rowSpacing="5dp" />
+
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/view_padding_15"
+    android:paddingLeft="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.tank.widget.activity.SpannableStringBuilderActivity">
+
+    <TextView
+        android:id="@+id/textView_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/skx_323232"/>
+
+    <TextView
+        android:id="@+id/textView_topMark"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</LinearLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.skx.tomike.tank.animation.activity.ScrollChangeTitleActivity">
+
+    <!--房源图-->
+    <ImageView
+        android:id="@+id/scrollChange_mainImage"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_06"
+        tools:ignore="ContentDescription" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollChange_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="170dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="70dp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="600dp"
+                        android:background="@android:color/white" />
+
+                </LinearLayout>
+
+                <!--android:animateLayoutChanges="true"-->
+                <LinearLayout
+                    android:id="@+id/orderDetail_bodyContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/view_padding_15"
+                    android:paddingLeft="@dimen/view_padding_15"
+                    android:paddingEnd="@dimen/view_padding_15"
+                    android:paddingRight="@dimen/view_padding_15">
+
+                    <RelativeLayout
+                        android:id="@+id/expandOrder_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:background="@color/skx_26a69a"
+                            app:cardBackgroundColor="@color/skx_26a69a"
+                            app:cardCornerRadius="5dp" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:onClick="closeExtendOrderState"
+                            android:text="关闭"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/orderDetail_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@color/skx_26a69a"
+                        app:cardBackgroundColor="@color/skx_26a69a"
+                        app:cardCornerRadius="5dp" />
+
+                    <LinearLayout
+                        android:id="@+id/order_other"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:background="@color/skx_ffdee9" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:background="@color/skx_f5066d" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:background="@color/skx_e9596f" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:background="@color/skx_ff4081" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:background="@color/skx_ffdee9" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!--上导航栏-->
+    <RelativeLayout
+        android:id="@+id/scrollChange_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/scrollChange_backImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:onClick="onBackPre"
+            android:padding="@dimen/view_padding_15"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/scrollChange_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="标题"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/scrollChange_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/view_padding_15"
+            android:text="房源详情"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+</RelativeLayout>

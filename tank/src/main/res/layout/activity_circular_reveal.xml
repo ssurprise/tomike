@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/view_padding_15"
+    android:paddingTop="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingBottom="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.tank.animation.activity.CircularRevealActivity">
+
+    <TextView
+        style="@style/TextBtnStyle"
+        android:layout_width="150dp"
+        android:onClick="onBtnClick"
+        android:text="点击下看一看"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/circularReveal_1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/skx_ff4081"
+        android:visibility="visible"
+        tools:ignore="ContentDescription" />
+
+</LinearLayout>

@@ -2,7 +2,7 @@
 
 用于日常demo的整理
 
-###  tanklaboratory：坦克实验室
+###  tank：坦克实验室
 ___
 
 目前存放"view、动效"相关的demo

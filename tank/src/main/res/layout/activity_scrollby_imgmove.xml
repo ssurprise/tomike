@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <com.skx.tomike.tank.widget.view.TranslateImageView
+        android:id="@+id/tv_scroller_transImageView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/skx_e0e0e0"
+        android:scaleType="matrix"
+        android:src="@drawable/image_03" />
+
+    <TextView
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:onClick="startTranslate"
+        android:text="移动"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        style="@style/TextBtnStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:onClick="reset"
+        android:text="重置"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>
