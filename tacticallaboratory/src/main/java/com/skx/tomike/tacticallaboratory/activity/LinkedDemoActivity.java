@@ -81,6 +81,26 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     /**
+     * 判断链表是否有环
+     *
+     * @param head 目标链表
+     * @return true:有环
+     */
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null) return false;
+        ListNode fast = head.next.next;
+        ListNode slow = head.next;
+        while (fast != null && fast.next != null) {
+            if (fast.val == slow.val) {
+                return true;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return false;
+    }
+
+    /**
      * 反转链表
      *
      * @param link 原链表
@@ -131,6 +151,91 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     /**
+     * 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+     *
+     * @param head 目标链表
+     * @param n    删除的倒数第N个位置的节点
+     */
+    private ListNode removeNthFromEnd(ListNode head, int n) {
+        // 示例：1->5->6->8->8->2->7  n=2
+        // 方案：卡尺原理，双指针
+        // 1.找到需要删除位置节点的偏移节点(快指针)。
+        ListNode fast = head;
+        ListNode slow = head;
+        int i = 0;
+        while (i < n && fast != null) {
+            fast = fast.next;
+            i++;
+        }
+        // 2.当快指针到达尾部的时候，慢指针也就到了要删除位置的前一个节点
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        if (fast == null) {
+            return null;
+        }
+        slow.next = slow.next.next;
+        return head;
+    }
+
+    /**
+     * 找到两个单链表相交的起始节点
+     *
+     * @param headA 链表A
+     * @param headB 链表B
+     * @return 相交节点
+     */
+    private ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+        ListNode a = headA;
+        ListNode b = headB;
+
+        while (a != b) {
+            a = a.next;
+            b = b.next;
+
+            if (a == null && b == null) {
+                return null;
+            }
+
+            if (a == null) {
+                a = headB;
+            }
+            if (b == null) {
+                b = headA;
+            }
+        }
+        return a;
+    }
+
+    /**
+     * 删除值为 val 的节点
+     *
+     * @param head 目标链表
+     * @param val  需要删除的值
+     * @return 删除后的链表
+     */
+    private ListNode removeElements(ListNode head, int val) {
+        if (head == null) return null;
+        ListNode index = head;
+        // 如果当前节点的 next节点值和 val相同，则删除。如果不相同，继续执行下一个。
+        while (index != null && index.next != null) {
+            if (index.next.val == val) {
+                index.next = index.next.next;
+                continue;// 这里是关键，防止出现多个目标值时露删的情况
+            }
+            index = index.next;
+        }
+        // 最后处理头部
+        if (head.val == val) {
+            head = head.next;
+        }
+        return head;
+    }
+
+    /**
      * 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
      * <p>
      * 示例：
@@ -141,7 +246,7 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
      * @param l2 链表2
      * @return 合并后的升序链表
      */
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode result = new ListNode(-1);
         ListNode index = result;
         while (l1 != null && l2 != null) {
@@ -179,8 +284,8 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
      * 进阶：
      * 你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
      *
-     * @param head
-     * @return
+     * @param head 目标链表
+     * @return true:是回文链表
      */
     public boolean isPalindrome(ListNode head) {
         ListNode fast = head;
@@ -224,8 +329,6 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     /**
      * 检查链表是否环
-     *
-     * @return true 有环
      */
     private void checkLinkHasRing(ListNode link) {
         ListNode fast = link, slow = link;
