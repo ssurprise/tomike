@@ -72,7 +72,7 @@ dependencies {
     implementation project(':tacticallaboratory')
     implementation project(':tank')
     implementation project(':cannon')
-    implementation project(':bomberlaboratory')
+    implementation project(':bomber')
 
     // 依赖的远程库
     def implementationDependencies = rootProject.ext.implementationDependencies
