@@ -6,19 +6,24 @@ apply plugin: 'kotlin-parcelize'
 //apply from: "../tinkerConfig.gradle"
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
+    compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Android版本
     buildToolsVersion rootProject.ext.android.buildToolsVersion
     // 设置编译时使用的构建工具的版本，Android Studio3.0后去除此项配置
 
     defaultConfig {// 设置一些默认属性
-        applicationId "com.skx.tomike"
+        applicationId "com.xiaozhu.xzdz"
         minSdkVersion rootProject.ext.android.minSdkVersion // 项目最低兼容的版本
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 140
         versionName "1.40.00"
         multiDexEnabled true
         multiDexKeepProguard file("tinker_multidexkeep.pro")
-        manifestPlaceholders = [TINKER_ID: rootProject.TINKER_ID]
+        manifestPlaceholders = [tinker_id: "${rootProject.ext.appVersion.VERSION_NAME}", TINKER_VERSION: "${rootProject.ext.TINKER_VERSION}"]
+        buildConfigField "String", "TINKER_VERSION", "\"${rootProject.ext.appVersion.VERSION_NAME}\""
+        buildConfigField "String", "MESSAGE", "\"I am the base apk\""
+        buildConfigField "String", "TINKER_ID", "\"${getTinkerIdValue()}\""
+        buildConfigField "String", "PLATFORM", "\"all\""
+
         vectorDrawables.useSupportLibrary = true
 
         ndk {
@@ -32,15 +37,15 @@ android {
             minifyEnabled true // 设置是否执行代码缩减（混淆）
             zipAlignEnabled true //设置是否对APK包执行ZIP对齐优化
             shrinkResources true //资源缩减器可以识别应用程序仍在使用哪些资源，未被使用的资源，将会被资源缩减器移除
-            debuggable false //设置生成的APK是否支持调试本地代码
+            debuggable true //设置生成的APK是否支持调试本地代码
             /* 混淆规则配置文件 */
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-            minifyEnabled false
-            shrinkResources false
-            zipAlignEnabled false
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
             debuggable true
             /* 混淆规则配置文件 */
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -61,6 +66,15 @@ android {
 //        exclude 'lib/arm64-v8a/libcardioRecognizer.so'
 //        exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
     }
+
+    dexOptions {
+        //支持大型项目
+        jumboMode = true
+    }
+}
+
+def getTinkerIdValue() {
+    return hasProperty("tinker_id") ? TINKER_ID : "1.0"
 }
 
 dependencies {
@@ -90,8 +104,8 @@ dependencies {
     // tinker的核心库
     implementation("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
     // 可选，用于生成application类。我们这里使用是非gradle方法打拆分包，所以用不到anno库，先注释掉。
-//    annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
-//    compileOnly("com.tencent.tinker:tinker-android-anno-support:${TINKER_VERSION}") { changing = true }
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
+    compileOnly("com.tencent.tinker:tinker-android-anno-support:${TINKER_VERSION}") { changing = true }
 }
 repositories {
     mavenCentral()

@@ -1,16 +1,16 @@
-
 #tinker multidex keep patterns:
 -keep public class * implements com.tencent.tinker.entry.ApplicationLifeCycle {
-    <init>(...);
+    <init>();
     void onBaseContextAttached(android.content.Context);
 }
 
--keep public class com.tencent.tinker.entry.ApplicationLifeCycle {
-    *;
+-keep public class * implements com.tencent.tinker.loader.app.ITinkerInlineFenceBridge {
+    <init>(...);
+    void attachBaseContext(com.tencent.tinker.loader.app.TinkerApplication, android.content.Context);
 }
 
 -keep public class * extends com.tencent.tinker.loader.TinkerLoader {
-    <init>(...);
+    <init>();
 }
 
 -keep public class * extends android.app.Application {
@@ -18,26 +18,34 @@
      void attachBaseContext(android.content.Context);
 }
 
--keep class com.tencent.tinker.loader.TinkerTestAndroidNClassLoader {
-    <init>(...);
+-keep public class com.tencent.tinker.loader.NewClassLoaderInjector {
+    *;
+}
+-keep class com.tencent.tinker.loader.shareutil.TinkerLogInlineFence {
+    *;
 }
 
--keep public class com.tencent.tinker.entry.TinkerApplicationInlineFence {
-    <init>(...);
+-keep class com.tencent.tinker.loader.NewClassLoaderInjector$DispatchClassLoader {
+    *;
+}
+
+-keep class com.tencent.tinker.entry.TinkerApplicationInlineFence {
+    *;
+}
+
+-keep class com.tencent.tinker.loader.app.TinkerInlineFenceAction {
+    *;
+}
+
+-keep class com.tencent.tinker.** {
+    *;
 }
 
 #your dex.loader patterns here
 -keep class com.skx.tomike.SkxApplication {
-    <init>(...);
+    <init>();
 }
 
 -keep class com.skx.tomike.TomikeAppLike {
-    <init>(...);
+    <init>();
 }
-
--keep class com.tencent.tinker.loader.** {
-    <init>(...);
-}
-
--keep class android.support.test.internal** { *; }
--keep class org.junit.** { *; }

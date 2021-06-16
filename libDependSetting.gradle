@@ -11,7 +11,7 @@ ext {
         }
 
         libProject.android {
-            compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Andr​​oid版本
+            compileSdkVersion rootProject.ext.android.compileSdkVersion // 设置编译时用的的Android版本
             buildToolsVersion rootProject.ext.android.buildToolsVersion
 
             defaultConfig {

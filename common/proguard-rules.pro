@@ -20,14 +20,28 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+
+#-----OKHTTP3-----
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+# OkHttp platform used only on JVM and when Conscrypt dependency is available.
+-dontwarn okhttp3.internal.platform.ConscryptPlatform
+#-----OKHTTP3-----
+
 #=========================================glide 混淆 start=================================================
 
+-keep class com.bumptech.glide.Glide { *; }
+-keep class com.bumptech.glide.request.RequestOptions {*;}
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
 }
+-dontwarn com.bumptech.glide.**
 
 #==========================================glide 混淆 end================================================

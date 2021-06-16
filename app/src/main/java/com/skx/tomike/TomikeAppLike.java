@@ -1,12 +1,15 @@
 package com.skx.tomike;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.multidex.MultiDex;
 
+import com.skx.tomike.cannon.ui.AppContext;
 import com.tencent.tinker.entry.DefaultApplicationLike;
 import com.tencent.tinker.lib.listener.DefaultPatchListener;
 import com.tencent.tinker.lib.listener.PatchListener;
@@ -64,10 +67,11 @@ public class TomikeAppLike extends DefaultApplicationLike {
     @Override
     public void onCreate() {
         super.onCreate();
+        AppContext.getInstance().setAppContext(getApplication());
     }
 
-//    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-//    public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
-//        getApplication().registerActivityLifecycleCallbacks(callback);
-//    }
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
+        getApplication().registerActivityLifecycleCallbacks(callback);
+    }
 }
