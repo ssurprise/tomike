@@ -36,8 +36,7 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
 
     private FragmentManager mFragmentManager;
 
-    @BindView(R.id.homepage_content_container)
-    FrameLayout fl_content_container;
+    private FrameLayout fl_content_container;
 
     private ImageView imv_homepageTab_icon;
     private TextView tv_homepageTab_text;

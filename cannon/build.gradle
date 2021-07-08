@@ -1,5 +1,1 @@
 centralization this
-dependencies {
-    // tinker的核心库
-    implementation("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
-}

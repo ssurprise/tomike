@@ -1,19 +1,56 @@
 package com.skx.tomike;
 
-import com.tencent.tinker.loader.app.TinkerApplication;
-import com.tencent.tinker.loader.shareutil.ShareConstants;
+import android.app.Activity;
+import android.app.Application;
+import android.os.Bundle;
 
-public class SkxApplication extends TinkerApplication {
+import java.util.Stack;
 
-    public SkxApplication() {
-        // 注意：除了构造方法之外，最好不要引入其他的类，这将导致它们无法通过补丁修改。
-        super( //tinkerFlags, tinker支持的类型，dex,library，还是全部都支持！
-                ShareConstants.TINKER_ENABLE_ALL,
-                //ApplicationLike的实现类，只能传递字符串
-                "com.skx.tomike.TomikeAppLike",
-                //Tinker的加载器，一般来说用默认的即可
-                "com.tencent.tinker.loader.TinkerLoader",
-                //tinkerLoadVerifyFlag, 运行加载时是否校验dex与,ib与res的Md5
-                false);
+public class SkxApplication extends Application {
+
+    private static final Stack<Activity> activityStack = new Stack<>();
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        registerActivityLifecycleCallbacks(new SwitchBackgroundCallbacks());
+    }
+
+    private static class SwitchBackgroundCallbacks implements Application.ActivityLifecycleCallbacks {
+
+        @Override
+        public void onActivityCreated(Activity activity, Bundle bundle) {
+            activityStack.add(activity);
+        }
+
+        @Override
+        public void onActivityStarted(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivityResumed(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivityPaused(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivityStopped(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+
+        }
+
+        @Override
+        public void onActivityDestroyed(Activity activity) {
+            activityStack.remove(activity);
+        }
     }
 }

@@ -10,54 +10,13 @@
         android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="这是没mmmmmmm问题的文案!!! -> 补丁包2" />
-
-    <TextView
-        android:id="@+id/tv_channel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="当前渠道为："
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_content"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/tv_package_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="包名："
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_channel"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="加载patch包"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/showInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="show info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn"
-        tools:ignore="HardcodedText" />
+        tools:text="详细demo请查看：\n https://github.com/ssurprise/tinkerdemo.git" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
