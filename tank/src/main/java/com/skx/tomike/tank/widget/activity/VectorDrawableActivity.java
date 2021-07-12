@@ -7,15 +7,27 @@ import androidx.core.view.ViewCompat;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
-import com.skx.tomike.tank.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
 
 
+/**
+ * 描述 : 矢量图
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2021/7/8 5:36 下午
+ */
 public class VectorDrawableActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void initParams() {
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("矢量图").create();
     }
 
     @Override
@@ -25,14 +37,11 @@ public class VectorDrawableActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void initView() {
-        ImageView mImageView = findViewById(R.id.vectorDrawableTest_ImageView);
-        ImageView mAnimatedImageView = findViewById(R.id.vectorDrawableTest_animatedImageView);
         TextView mTextView = findViewById(R.id.vectorDrawableTest_TextView);
-
         VectorDrawableCompat vectorDrawableCompat = VectorDrawableCompat.create(getResources(), R.drawable.ic_christmas_candy, null);
         ViewCompat.setBackground(mTextView, vectorDrawableCompat);
 
-
+        ImageView mAnimatedImageView = findViewById(R.id.vectorDrawableTest_animatedImageView);
         AnimatedVectorDrawableCompat animatedVectorDrawableCompat = AnimatedVectorDrawableCompat.create(this, R.drawable.animated_vector);
         mAnimatedImageView.setImageDrawable(animatedVectorDrawableCompat);
         if (animatedVectorDrawableCompat != null) {

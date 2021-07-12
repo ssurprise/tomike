@@ -28,9 +28,9 @@
         android:layout_width="70dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:onClick="onTimerTask"
+        android:onClick="onSettingCountDownTime"
         android:rowOrderPreserved="true"
-        android:text="开始"
+        android:text="设置"
         tools:ignore="HardcodedText" />
 
     <TextView

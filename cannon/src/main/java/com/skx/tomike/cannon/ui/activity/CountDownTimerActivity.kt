@@ -28,19 +28,20 @@ import java.util.concurrent.TimeUnit
 class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val timer1: TextView by lazy {
-        findViewById<TextView>(R.id.tv_countDownTimer_timer)
+        findViewById(R.id.tv_countDownTimer_timer)
     }
     private val timer2: TextView by lazy {
-        findViewById<TextView>(R.id.tv_countDownTimer_scheduledExecutor)
+        findViewById(R.id.tv_countDownTimer_scheduledExecutor)
     }
     private val timer3: TextView by lazy {
-        findViewById<TextView>(R.id.tv_countDownTimer_countDownTimer)
+        findViewById(R.id.tv_countDownTimer_countDownTimer)
     }
     private val mEtTime: EditText by lazy {
-        findViewById<EditText>(R.id.et_countDownTimer_time)
+        findViewById(R.id.et_countDownTimer_time)
     }
 
-    private var mTime: Int = 10000
+    private var mTime: Int = 100
+    private var mTime2: Int = mTime
     private val mTimer: Timer = Timer()
     private var newScheduledThreadPool: ScheduledExecutorService? = null
 
@@ -53,8 +54,8 @@ class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
                     formatTime(timer1, mTime)
                 }
                 1 -> {
-                    Log.e("count-down-timer", "handleMessage $mTime")
-                    formatTime(timer2, mTime)
+                    Log.e("count-down-timer", "handleMessage $mTime2")
+                    formatTime(timer2, mTime2)
                 }
             }
         }
@@ -70,22 +71,6 @@ class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
     override fun getLayoutId(): Int = R.layout.activity_count_down_timer
 
     override fun initView() {
-        mEtTime.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                p0?.takeIf {
-                    TextUtils.isDigitsOnly(it)
-                }?.run {
-                    mTime = this.toString().toInt()
-                }
-            }
-
-        })
         mEtTime.setText(mTime.toString())
     }
 
@@ -93,6 +78,10 @@ class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
     fun onTimerTask(view: View) {
         mTimer.schedule(object : TimerTask() {
             override fun run() {
+                if (mTime <= 0) {
+                    mTimer.cancel()
+                    return
+                }
                 mTime--
                 Log.e("count-down-timer", "onTimerTask:$mTime")
                 val message = mHandler.obtainMessage(0)
@@ -105,8 +94,12 @@ class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
         newScheduledThreadPool = Executors.newScheduledThreadPool(1)
         // scheduleAtFixedRate：延时设定时间（initialDelay）后执行第一次任务，每隔时间间隔（period）再次执行任务。
         newScheduledThreadPool?.scheduleAtFixedRate({
-            mTime--
-            Log.e("count-down-timer", "newScheduledThreadPool: $mTime")
+            if (mTime2 <= 0) {
+                newScheduledThreadPool?.shutdownNow()
+                return@scheduleAtFixedRate
+            }
+            mTime2--
+            Log.e("count-down-timer", "newScheduledThreadPool: $mTime2")
             val message = mHandler.obtainMessage(1)
             mHandler.sendMessage(message)
         }, 0, 1, TimeUnit.SECONDS)
@@ -126,5 +119,10 @@ class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
         val m = (time % 3600) / 60
         val s = (time % 3600) % 60
         tv.text = String.format(Locale.CHINA, "剩余时间为：%02d:%02d:%02d", h, m, s)
+    }
+
+    fun onSettingCountDownTime(view: View) {
+        mTime = mEtTime.text.toString().toInt()
+        mTime2 = mTime
     }
 }
