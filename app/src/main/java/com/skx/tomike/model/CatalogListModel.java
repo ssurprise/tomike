@@ -34,6 +34,7 @@ import com.skx.tomike.cannon.ui.activity.OutterStartActivity;
 import com.skx.tomike.cannon.ui.activity.ParcelableActivity;
 import com.skx.tomike.cannon.ui.activity.PermissionIntroActivity;
 import com.skx.tomike.cannon.ui.activity.PhotoAlbumsActivity;
+import com.skx.tomike.cannon.ui.activity.RebootAppActivity;
 import com.skx.tomike.cannon.ui.activity.RetrofitActivity;
 import com.skx.tomike.cannon.ui.activity.RoomTestActivity;
 import com.skx.tomike.cannon.ui.activity.RxJavaActivity;
@@ -260,6 +261,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("Parcelable序列化", ParcelableActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("倒计时", CountDownTimerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("热修复-微信Tinker", HotfixActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("重启APP", RebootAppActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 

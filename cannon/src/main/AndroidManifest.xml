@@ -163,8 +163,15 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name="com.skx.tomike.cannon.ui.activity.HotfixActivity" />
-        <activity android:name="com.skx.tomike.cannon.ui.activity.CountDownTimerActivity" />
+        <activity
+            android:name="com.skx.tomike.cannon.ui.activity.HotfixActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.skx.tomike.cannon.ui.activity.CountDownTimerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.RebootAppActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
