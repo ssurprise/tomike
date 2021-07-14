@@ -4,6 +4,7 @@ import com.skx.tomike.bomber.basics.DoubleFormatActivity;
 import com.skx.tomike.bomber.basics.GsonParseActivity;
 import com.skx.tomike.bomber.basics.UrlEncodeActivity;
 import com.skx.tomike.bomber.basics.UrlParseActivity;
+import com.skx.tomike.bomber.basics.XmlParseActivity;
 import com.skx.tomike.bomber.coroutine.CoroutineActivity;
 import com.skx.tomike.bomber.generic.GenericTestActivity;
 import com.skx.tomike.bomber.reflect.ReflectTestActivity;
@@ -272,6 +273,7 @@ public class CatalogListModel {
         mUtilCatalogs.add(new CatalogItem("编码/解码", UrlEncodeActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Url 解析", UrlParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("json 解析", GsonParseActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("Xml 解析", XmlParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("状态栏-底部导航栏高度", StatusBarNavigationBarActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
 

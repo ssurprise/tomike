@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/view_padding_15"
+        tools:context="com.skx.tomike.bomber.basics.UrlEncodeActivity">
+
+        <TextView
+            android:id="@+id/tv_xmlParse_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="目标文件"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_xmlParse_fileName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:hint=""
+            android:minHeight="50dp"
+            android:text="assets/subject.xml"
+            android:textColor="@color/skx_757575"
+            android:textSize="14sp"
+            tools:ignore="Autofill,HardcodedText,LabelFor,TextFields" />
+
+        <RadioGroup
+            android:id="@+id/tv_xmlParse_group"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tv_xmlParse_domParse"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="DOM" />
+
+            <RadioButton
+                android:id="@+id/tv_xmlParse_saxParse"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="SAX" />
+
+            <RadioButton
+                android:id="@+id/tv_xmlParse_pullParse"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="PULL" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_xmlParse_startParsing"
+            style="@style/TextBtnStyle"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="开始解析"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_xmlParse_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@color/skx_f5f5f5"
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_xmlParse_costTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/skx_f5f5f5"
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/skx_212121"
+            android:textSize="12sp"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+</ScrollView>

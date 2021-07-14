@@ -101,16 +101,17 @@ ___
 3. URLEncoder
 4. url 解析
 5. json 解析
-6. Double <=> String
-7. 线程
-8. 守护线程
-9. 中断线程
-10. synchronized
-11. 线程间通信 - 生产者消费者模型
-12. 获取线程返回值
-13. 线程池 - Executors
-14. 线程池 - ThreadPoolExecutor
-15. ReentrantLock
+6. xml 解析
+7. Double <=> String
+8. 线程
+9. 守护线程
+10. 中断线程
+11. synchronized
+12. 线程间通信 - 生产者消费者模型
+13. 获取线程返回值
+14. 线程池 - Executors
+15. 线程池 - ThreadPoolExecutor
+16. ReentrantLock
 
 
 ### missile：导弹实验室

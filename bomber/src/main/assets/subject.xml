@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<code>
+    <language id="1">
+        <name>Java</name>
+        <usage>Android</usage>
+    </language>
+    <language id="2">
+        <name>Swift#</name>
+        <usage>iOS</usage>
+    </language>
+    <language id="3">
+        <name>Html5</name>
+        <usage>Web</usage>
+    </language>
+</code>
