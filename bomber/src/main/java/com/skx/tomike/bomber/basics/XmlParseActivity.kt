@@ -12,7 +12,10 @@ import org.w3c.dom.Element
 import org.w3c.dom.NodeList
 import org.xml.sax.Attributes
 import org.xml.sax.helpers.DefaultHandler
+import org.xmlpull.v1.XmlPullParser
+import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStream
+import java.io.InputStreamReader
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.parsers.SAXParser
 import javax.xml.parsers.SAXParserFactory
@@ -47,7 +50,7 @@ class XmlParseActivity : SkxBaseActivity<BaseViewModel>() {
     }
 
     override fun initView() {
-        mRGroup.setOnCheckedChangeListener { group, checkedId ->
+        mRGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.tv_xmlParse_domParse -> {
                     domParse()
@@ -56,18 +59,18 @@ class XmlParseActivity : SkxBaseActivity<BaseViewModel>() {
                     saxParse()
                 }
                 R.id.tv_xmlParse_pullParse -> {
-                    domParse()
+                    pullParse()
                 }
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    fun domParse() {
+    private fun domParse() {
         mTvResult.text = ""
         val start = System.currentTimeMillis()
 
-        //打开xml文件到输入流
+        // 打开xml文件到输入流
         val stream: InputStream = assets.open("subject.xml")
         // 获取一个 DocumentBuilder 的工厂类
         val builderFactory = DocumentBuilderFactory.newInstance()
@@ -75,7 +78,6 @@ class XmlParseActivity : SkxBaseActivity<BaseViewModel>() {
         val builder = builderFactory.newDocumentBuilder()
         // 将给定的输入流解析为xml，并用一个DOM 对象来表示。
         val document = builder.parse(stream)
-        stream.close()
         // 获取xml 的根节点
         val documentElement = document.documentElement
         // 获取根节点下符合标签名称的所有子节点
@@ -87,17 +89,20 @@ class XmlParseActivity : SkxBaseActivity<BaseViewModel>() {
             //获取language的属性（这里即为id）并显示
             mTvResult.append(language.getAttribute("id").toString() + "\n")
             //获取language的子元素 name 并显示
-            mTvResult.append(language.getElementsByTagName("name").item(0).textContent + "\n");
+            mTvResult.append(language.getElementsByTagName("name").item(0).textContent + "\n")
             //获取language的子元素usage 并显示
-            mTvResult.append(language.getElementsByTagName("usage").item(0).textContent + "\n");
+            mTvResult.append(language.getElementsByTagName("usage").item(0).textContent + "\n")
         }
-
+        stream.close()
         val end = System.currentTimeMillis()
         mTvCostTime.text = "DOM 解析消耗的时间为：${end - start}ms"
     }
 
+    /**
+     * SAX（Simple API for XML）解析
+     */
     @SuppressLint("SetTextI18n")
-    fun saxParse() {
+    private fun saxParse() {
         mTvResult.text = ""
         val start = System.currentTimeMillis()
 
@@ -115,6 +120,65 @@ class XmlParseActivity : SkxBaseActivity<BaseViewModel>() {
         stream.close()
         val end = System.currentTimeMillis()
         mTvCostTime.text = "SAX 解析消耗的时间为：${end - start}ms"
+    }
+
+    /**
+     * pull 解析
+     */
+    @SuppressLint("SetTextI18n")
+    private fun pullParse() {
+        mTvResult.text = ""
+        val start = System.currentTimeMillis()
+
+        // 1.获取pull 解析的工厂类
+        val factory = XmlPullParserFactory.newInstance()
+        // 2.生成一个pull 解析器对象
+        val pullParser = factory.newPullParser()
+
+        // 打开xml文件到输入流
+        val stream: InputStream = assets.open("subject.xml")
+        val inputStreamReader = InputStreamReader(stream)
+        // 3.给解析器设置输入源
+        pullParser.setInput(inputStreamReader)
+
+        // 处理解析事件
+        var eventType = pullParser.eventType
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            val name = pullParser.name
+            when (eventType) {
+                XmlPullParser.START_DOCUMENT -> {
+                    Log.i("PULL", "开始解析~")
+                }
+                XmlPullParser.START_TAG -> {
+                    Log.i("PULL", "$name 节点解析开始~")
+                    when (name) {
+                        "language" -> {
+                            val attributeName = pullParser.getAttributeValue(null, "id")
+                            mTvResult.append(attributeName + "\n")
+                        }
+                        "name" -> {
+                            mTvResult.append(pullParser.nextText() + "\n")
+                        }
+                        "usage" -> {
+                            mTvResult.append(pullParser.nextText() + "\n")
+                        }
+                    }
+                }
+                XmlPullParser.END_TAG -> {
+                    Log.i("PULL", "$name 节点解析结束~")
+                }
+                XmlPullParser.TEXT -> {
+                    // 注：当调用了 nextText(）时，就不会再触发 XmlPullParser.TEXT 事件了。
+                    // Log.i("PULL", "XmlPullParser.TEXT-> ${pullParser.text}")
+                }
+            }
+            // 继续下一个解析事件
+            eventType = pullParser.next()
+        }
+        inputStreamReader.close()
+        stream.close()
+        val end = System.currentTimeMillis()
+        mTvCostTime.text = "PULL 解析消耗的时间为：${end - start}ms"
     }
 }
 
