@@ -52,6 +52,7 @@ ext {
 
     annotationKpt = [
             roomCompiler: "androidx.room:room-compiler:$room_version",
+            lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:2.2.0"
     ]
 
     implementationDependencies = new HashMap()

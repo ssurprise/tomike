@@ -7,4 +7,11 @@
     android:orientation="vertical"
     tools:context="com.skx.tomike.cannon.ui.activity.AopTestActivity">
 
+    <TextView
+        android:id="@+id/tv_lifecycle_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/view_padding_15"
+        android:textSize="14sp" />
+
 </LinearLayout>
