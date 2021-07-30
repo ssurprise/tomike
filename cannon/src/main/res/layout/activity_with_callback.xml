@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context="com.skx.tomike.cannon.ui.activity.WithCallbackActivity">
+
+    <TextView
+        android:id="@+id/tv_withCallBack_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="接收到的数据为：" />
+
+    <TextView
+        android:id="@+id/tv_withCallBack_acceptValue"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/skx_2c3e50"
+        android:padding="15dp"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_withCallBack_name"
+        tools:text="1234567890" />
+
+    <TextView
+        android:id="@+id/tv_withCallBack_sendData_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_withCallBack_acceptValue"
+        tools:text="携带的数据为：" />
+
+    <EditText
+        android:id="@+id/tv_withCallBack_sendData_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:importantForAutofill="no"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_withCallBack_sendData_title"
+        tools:ignore="LabelFor,TextFields" />
+
+    <Button
+        android:id="@+id/btn_withCallBack_startActivity"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startActivityWithData"
+        android:padding="15dp"
+        android:text="启动新的Activity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_withCallBack_backWithData"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.598"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_withCallBack_backWithData"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startActivityWithData"
+        android:padding="15dp"
+        android:text="携带参数返回"
+        app:layout_constraintBottom_toBottomOf="@id/btn_withCallBack_startActivity"
+        app:layout_constraintLeft_toRightOf="@id/btn_withCallBack_startActivity"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_withCallBack_startActivity"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

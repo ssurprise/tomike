@@ -3,6 +3,8 @@ ext {
 
     def room_version = "2.2.3"
     def appcompat_version = "1.1.0"
+    def activity_version = "1.2.3"
+    def fragment_version = "1.3.5"
 
     appVersion = [
             VERSION_CODE: 140,
@@ -18,6 +20,10 @@ ext {
     core = [
             design         : "com.google.android.material:material:1.0.0",
             appcompat      : "androidx.appcompat:appcompat:$appcompat_version",
+            activity       : "androidx.activity:activity:$activity_version",
+            activity_ktx   : "androidx.activity:activity-ktx:$activity_version",
+            fragment       : "androidx.fragment:fragment:$fragment_version",
+            fragment_ktx   : "androidx.fragment:fragment-ktx:$fragment_version",
             annotation     : "androidx.annotation:annotation:1.1.0",
             supportMultidex: "androidx.multidex:multidex:2.0.1",
             kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -51,7 +57,7 @@ ext {
     ]
 
     annotationKpt = [
-            roomCompiler: "androidx.room:room-compiler:$room_version",
+            roomCompiler     : "androidx.room:room-compiler:$room_version",
             lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:2.2.0"
     ]
 
