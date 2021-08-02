@@ -172,6 +172,9 @@
         <activity
             android:name=".ui.activity.RebootAppActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.WithCallbackActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

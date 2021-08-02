@@ -11,18 +11,19 @@
         android:id="@+id/tv_withCallBack_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
+        android:text="接收到的数据为："
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="接收到的数据为：" />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_withCallBack_acceptValue"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="@color/skx_2c3e50"
         android:padding="15dp"
         android:textColor="@android:color/white"
@@ -35,18 +36,19 @@
         android:id="@+id/tv_withCallBack_sendData_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
+        android:text="发送的数据为："
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_withCallBack_acceptValue"
-        tools:text="携带的数据为：" />
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/tv_withCallBack_sendData_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:importantForAutofill="no"
         app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -59,14 +61,14 @@
         style="@style/TextBtnStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:onClick="startActivityWithData"
         android:padding="15dp"
         android:text="启动新的Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btn_withCallBack_backWithData"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598"
+        app:layout_constraintTop_toBottomOf="@id/tv_withCallBack_sendData_value"
+        app:layout_constraintVertical_bias="0.42"
         tools:ignore="HardcodedText" />
 
     <Button

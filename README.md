@@ -89,6 +89,7 @@ _________
 20. 消息通知
 21. 热修复 - Tinker
 22. 重启APP
+23. ActivityResultLauncher 替代 StartActivityForResult
 
 
 ### bomber：轰炸机实验室

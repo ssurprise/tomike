@@ -64,7 +64,7 @@ class WithCallbackActivity : SkxBaseActivity<BaseViewModel>() {
     }
 
     fun startActivityWithData(view: View) {
-        val intent = Intent()
+        val intent = Intent(this@WithCallbackActivity, WithCallbackActivity::class.java)
         intent.putExtra(KEY_DATA, mEtSendData.text.toString())
         when (view.id) {
             R.id.btn_withCallBack_startActivity -> {
@@ -72,6 +72,7 @@ class WithCallbackActivity : SkxBaseActivity<BaseViewModel>() {
             }
             R.id.btn_withCallBack_backWithData -> {
                 setResult(RESULT_OK, intent)
+                finish()
             }
         }
     }
