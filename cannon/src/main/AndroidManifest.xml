@@ -140,6 +140,9 @@
         <activity
             android:name="com.skx.tomike.cannon.ui.activity.LifecycleActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.LifecycleActivity2"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.skx.tomike.cannon.ui.activity.AopTestActivity"

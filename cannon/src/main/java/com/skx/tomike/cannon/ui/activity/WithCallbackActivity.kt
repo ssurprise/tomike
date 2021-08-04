@@ -3,6 +3,7 @@ package com.skx.tomike.cannon.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,7 +18,7 @@ import com.skx.tomike.cannon.R
  * 版本 : V1
  * 创建时间 : 2021/7/30 11:18 上午
  */
-class WithCallbackActivity : SkxBaseActivity<BaseViewModel>() {
+class WithCallbackActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
     private val mTvAcceptData: TextView by lazy {
         findViewById(R.id.tv_withCallBack_acceptValue)
@@ -56,6 +57,8 @@ class WithCallbackActivity : SkxBaseActivity<BaseViewModel>() {
     }
 
     override fun initView() {
+        findViewById<Button>(R.id.btn_withCallBack_startActivity).setOnClickListener(this)
+        findViewById<Button>(R.id.btn_withCallBack_backWithData).setOnClickListener(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,10 +66,14 @@ class WithCallbackActivity : SkxBaseActivity<BaseViewModel>() {
         mTvAcceptData.text = mAcceptValue
     }
 
-    fun startActivityWithData(view: View) {
+    companion object {
+        const val KEY_DATA = "data"
+    }
+
+    override fun onClick(v: View?) {
         val intent = Intent(this@WithCallbackActivity, WithCallbackActivity::class.java)
         intent.putExtra(KEY_DATA, mEtSendData.text.toString())
-        when (view.id) {
+        when (v?.id) {
             R.id.btn_withCallBack_startActivity -> {
                 registerForActivityResult.launch(intent)
             }
@@ -75,9 +82,5 @@ class WithCallbackActivity : SkxBaseActivity<BaseViewModel>() {
                 finish()
             }
         }
-    }
-
-    companion object {
-        const val KEY_DATA = "data"
     }
 }

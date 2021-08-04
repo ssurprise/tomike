@@ -29,22 +29,11 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/btn_lifecycle_openTransparentActivity"
-        style="@style/TextBtnStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_lifecycle_showDialog"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:text="跳转透明\nActivity"
-        tools:ignore="HardcodedText" />
-
-    <Button
         android:id="@+id/btn_lifecycle_openNewActivity"
         style="@style/TextBtnStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_lifecycle_openTransparentActivity"
+        android:layout_below="@id/btn_lifecycle_showDialog"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:text="跳转Activity"
