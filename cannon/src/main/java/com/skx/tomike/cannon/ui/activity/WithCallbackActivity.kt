@@ -48,7 +48,7 @@ class WithCallbackActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListe
         intent?.takeIf {
             it.hasExtra(KEY_DATA)
         }?.run {
-            mAcceptValue = getStringExtra(KEY_DATA)
+            mAcceptValue = getStringExtra(KEY_DATA) ?: ""
         }
     }
 

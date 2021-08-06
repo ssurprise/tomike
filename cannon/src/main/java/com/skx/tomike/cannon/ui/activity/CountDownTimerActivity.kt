@@ -3,9 +3,6 @@ package com.skx.tomike.cannon.ui.activity
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.text.Editable
-import android.text.TextUtils
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -46,9 +43,9 @@ class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
     private var newScheduledThreadPool: ScheduledExecutorService? = null
 
     private val mHandler: Handler = object : Handler(Looper.getMainLooper()) {
-        override fun handleMessage(msg: Message?) {
+        override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
-            when (msg?.what) {
+            when (msg.what) {
                 0 -> {
                     Log.e("count-down-timer", "handleMessage $mTime")
                     formatTime(timer1, mTime)
