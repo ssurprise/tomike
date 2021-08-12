@@ -30,19 +30,20 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
     private final ArrayList<Integer> infiniteLoopList = new ArrayList<>();
     private final ArrayList<Integer> automaticLoopList = new ArrayList<>();
 
-    private Handler mHandler = new Handler();
-    private MyRunnable myRunnable = new MyRunnable();
+    private final Handler mHandler = new Handler();
+    private final MyRunnable myRunnable = new MyRunnable();
 
 
     @Override
     protected void initParams() {
-        infiniteLoopList.add(R.drawable.image_07);
+        infiniteLoopList.add(R.drawable.image_08);
         infiniteLoopList.add(R.drawable.image_05);
         infiniteLoopList.add(R.drawable.image_06);
         infiniteLoopList.add(R.drawable.image_07);
+        infiniteLoopList.add(R.drawable.image_08);
         infiniteLoopList.add(R.drawable.image_05);
 
-        automaticLoopList.add(R.drawable.image_05);
+        automaticLoopList.add(R.drawable.image_04);
         automaticLoopList.add(R.drawable.image_05);
         automaticLoopList.add(R.drawable.image_06);
         automaticLoopList.add(R.drawable.image_07);

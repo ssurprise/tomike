@@ -14,20 +14,13 @@ import com.skx.tomike.missile.viewmodel.UserProfileViewModel;
 
 public class ViewModelActivity extends AppCompatActivity {
 
-
     private UserProfileViewModel mViewModel;
-
-    private TextView textView2;
-    private TextView textView4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_view_model);
-
-        textView2 = findViewById(R.id.textView2);
-        textView4 = findViewById(R.id.textView4);
 
         mViewModel = ViewModelProviders.of(this).get(UserProfileViewModel.class);
         Observer<User> userObserver = new Observer<User>() {
