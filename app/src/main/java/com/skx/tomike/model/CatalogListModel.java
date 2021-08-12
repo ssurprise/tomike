@@ -41,6 +41,7 @@ import com.skx.tomike.cannon.ui.activity.RoomTestActivity;
 import com.skx.tomike.cannon.ui.activity.RxJavaActivity;
 import com.skx.tomike.cannon.ui.activity.TransparentThemeActivity;
 import com.skx.tomike.cannon.ui.activity.WithCallbackActivity;
+import com.skx.tomike.cannon.ui.activity.ZXingActivity;
 import com.skx.tomike.cannon.ui.activity.ZoomImageActivity;
 import com.skx.tomike.javabean.CatalogItem;
 import com.skx.tomike.missile.activity.ArrayDemoActivity;
@@ -265,6 +266,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("倒计时", CountDownTimerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("热修复-微信Tinker", HotfixActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("重启APP", RebootAppActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("二维码", ZXingActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 
