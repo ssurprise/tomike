@@ -177,9 +177,6 @@
             android:name=".animation.activity.ScrollChangeTitleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".animation.activity.EffectGroupActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".animation.activity.ScrollZoomImage2Activity"
             android:screenOrientation="portrait" />
         <activity

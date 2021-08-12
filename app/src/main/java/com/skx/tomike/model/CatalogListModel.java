@@ -60,10 +60,12 @@ import com.skx.tomike.missile.pattern.proxy.ProxyPatternActivity;
 import com.skx.tomike.missile.pattern.strategy.StrategyPatternActivity;
 import com.skx.tomike.tank.animation.activity.BezierAnimatorActivity;
 import com.skx.tomike.tank.animation.activity.CircularRevealActivity;
-import com.skx.tomike.tank.animation.activity.EffectGroupActivity;
 import com.skx.tomike.tank.animation.activity.LayoutTransitionActivity;
 import com.skx.tomike.tank.animation.activity.PropertyAnimatorActivity;
+import com.skx.tomike.tank.animation.activity.ScrollChangeTitleActivity;
 import com.skx.tomike.tank.animation.activity.ScrollViewAnchorActivity;
+import com.skx.tomike.tank.animation.activity.ScrollZoomImage2Activity;
+import com.skx.tomike.tank.animation.activity.ScrollZoomImage3Activity;
 import com.skx.tomike.tank.animation.activity.ScrollerPracticeActivity;
 import com.skx.tomike.tank.animation.activity.ShakeAnimatorActivity;
 import com.skx.tomike.tank.animation.activity.ShareElementActivity;
@@ -130,7 +132,6 @@ import java.util.Map;
  */
 public class CatalogListModel {
 
-    private static final String GROUP_XIAOZHU = "小猪";
     private static final String GROUP_ANIMATOR = "动效类";
     private static final String GROUP_VIEW = "控件";
     private static final String GROUP_UTIL = "工具";
@@ -142,10 +143,6 @@ public class CatalogListModel {
 
     private static final LinkedHashMap<String, List<CatalogItem>> mCatalogGroupMap = new LinkedHashMap<>();
 
-    /**
-     * 小猪分组
-     */
-    private static final List<CatalogItem> mXzCatalogs = new ArrayList<>();
     /**
      * view 类分组
      */
@@ -180,10 +177,6 @@ public class CatalogListModel {
     private static final List<CatalogItem> mDataStructureCatalogs = new ArrayList<>();
 
     static {
-        mXzCatalogs.add(new CatalogItem("订单V2动效", EffectGroupActivity.class.getName()));
-        mCatalogGroupMap.put(GROUP_XIAOZHU, mXzCatalogs);
-
-
         // 坦克实验室 - view 篇
         mViewCatalogs.add(new CatalogItem("View 焦点", ViewFocusActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 字间距", TextWordSpacingActivity.class.getName()));
@@ -224,6 +217,9 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("RecyclerView 倒计时功能", RecyclerViewCountDownTimerActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ScrollView + RecyclerView", ScrollViewAndRecyclerViewActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("NestedScrollView滑动改变状态栏", ScrollChangeTitleActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("回弹效果-滑动缩放头图", ScrollZoomImage2Activity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("滑动缩放头图-demo2", ScrollZoomImage3Activity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ScrollViewAnchorActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout 工具类封装检测", TabLayoutHelperActivity.class.getName()));
 
