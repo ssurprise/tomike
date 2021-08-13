@@ -33,7 +33,7 @@
             android:background="@null"
             android:textSize="12sp"
             tools:ignore="Autofill,LabelFor,TextFields"
-            tools:text="会跳狙的百里" />
+            tools:text="保护我方卤蛋" />
 
     </LinearLayout>
 
@@ -105,7 +105,7 @@
             android:id="@+id/cb_mementoPattern_equipment_416"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="416"
+            android:text="M416"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_98k"
             app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_98k"
@@ -117,7 +117,7 @@
             android:id="@+id/cb_mementoPattern_equipment_helmet"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="三级盔"
+            android:text="三级头"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/cb_mementoPattern_equipment_416"
             app:layout_constraintTop_toBottomOf="@id/cb_mementoPattern_equipment_416"

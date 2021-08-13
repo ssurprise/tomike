@@ -37,7 +37,7 @@ class MementoPatternActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickLis
     private val mCaretaker = Caretaker()
 
     override fun initParams() {
-        mPlayer.name = "会跳狙的百里"
+        mPlayer.name = "保护我方卤蛋"
         mPlayer.bloodVolume = 80
         mPlayer.equipment.add(EQUIPMENT_98k)
         mPlayer.equipment.add(EQUIPMENT_HELMET)
@@ -146,9 +146,9 @@ class MementoPatternActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickLis
 
     companion object {
         private const val EQUIPMENT_98k = "98k"
-        private const val EQUIPMENT_416 = "416"
-        private const val EQUIPMENT_HELMET = "3级别盔"
-        private const val EQUIPMENT_ARMOR = "3级别甲"
+        private const val EQUIPMENT_416 = "M416"
+        private const val EQUIPMENT_HELMET = "3级头"
+        private const val EQUIPMENT_ARMOR = "3级甲"
         private const val EQUIPMENT_GRENADE = "手雷"
     }
 }

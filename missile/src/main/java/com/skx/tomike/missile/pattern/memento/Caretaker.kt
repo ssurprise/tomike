@@ -44,7 +44,7 @@ internal class Caretaker {
      *
      * @return 所有备份
      */
-    fun getPlayerMemento(): LinkedHashMap<String, PlayerMemento>? {
+    fun getPlayerMemento(): LinkedHashMap<String, PlayerMemento> {
         return mPlayerMementoMap
     }
 
