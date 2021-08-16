@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="未加RadioGroup（单选无效）"
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
@@ -94,7 +96,6 @@
             android:background="@null"
             android:button="@null"
             android:drawableStart="@drawable/booking_home_vip_check_state_selector"
-            android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
             android:text="西风"
             tools:ignore="HardcodedText,RtlSymmetry" />
 
@@ -114,7 +115,6 @@
             android:background="@null"
             android:button="@drawable/booking_home_vip_check_state_selector"
             android:drawableStart="@drawable/booking_home_vip_check_state_selector"
-            android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
             android:text="北风"
             tools:ignore="HardcodedText,RtlSymmetry" />
 

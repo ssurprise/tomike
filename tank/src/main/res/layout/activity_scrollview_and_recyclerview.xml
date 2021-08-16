@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/xz_757575" />
+            android:background="@color/skx_757575" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_scrollViewAndRecyclerview_show"
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="800dp"
-            android:background="@color/xz_757575" />
+            android:background="@color/skx_757575" />
 
     </LinearLayout>
 </ScrollView>

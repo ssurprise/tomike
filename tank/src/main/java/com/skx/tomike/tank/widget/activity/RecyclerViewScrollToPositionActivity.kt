@@ -1,21 +1,19 @@
 package com.skx.tomike.tank.widget.activity
 
 import android.content.Context
-import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.util.Log
-import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.skx.tomike.tank.R
-import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
+import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter
 import java.util.*
 
 
@@ -73,23 +71,26 @@ class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), 
             findSnapView?.apply {
                 Log.e(TAG, "child - view width:" + layoutParams.width)
                 val minus = mRecyclerView?.layoutParams?.width?.minus(layoutParams.width)
-                Log.e(TAG, "child - minus:" + minus)
+                Log.e(TAG, "child - minus:$minus")
                 offset = minus?.div(2)!!
-                Log.e(TAG, "child - offset:" + offset)
+                Log.e(TAG, "child - offset:$offset")
 
             }
 
             if (mRecyclerView?.layoutManager is LinearLayoutManager) {
-                (mRecyclerView?.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(mTargetPosition, offset)
+                (mRecyclerView?.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
+                    mTargetPosition,
+                    offset
+                )
             }
 
         }
 
-        findViewById<ImageView>(R.id.iv_recyclerviewScrollToPosition_moreBtn).setOnClickListener {
+        findViewById<TextView>(R.id.iv_recyclerviewScrollToPosition_moreBtn).setOnClickListener {
             mTargetPosition++
             mTvTargetPos?.text = mTargetPosition.toString()
         }
-        findViewById<ImageView>(R.id.iv_recyclerviewScrollToPosition_lessBtn).setOnClickListener {
+        findViewById<TextView>(R.id.iv_recyclerviewScrollToPosition_lessBtn).setOnClickListener {
             mTargetPosition--
             mTvTargetPos?.text = mTargetPosition.toString()
         }
@@ -114,10 +115,8 @@ class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), 
         }
     }
 
-    class CenterLayoutManager : LinearLayoutManager {
-        constructor(context: Context?) : super(context) {}
-        constructor(context: Context?, orientation: Int, reverseLayout: Boolean) : super(context, orientation, reverseLayout) {}
-        constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {}
+    class CenterLayoutManager(context: Context?, orientation: Int, reverseLayout: Boolean) :
+        LinearLayoutManager(context, orientation, reverseLayout) {
 
         override fun smoothScrollToPosition(recyclerView: RecyclerView, state: RecyclerView.State, position: Int) {
             val smoothScroller: RecyclerView.SmoothScroller = CenterSmoothScroller(recyclerView.context)
@@ -125,14 +124,15 @@ class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), 
             startSmoothScroll(smoothScroller)
         }
 
-        override fun scrollToPosition(position: Int) {
-            super.scrollToPosition(position)
+        private class CenterSmoothScroller(context: Context?) : LinearSmoothScroller(context) {
 
-        }
-
-        private class CenterSmoothScroller internal constructor(context: Context?) : LinearSmoothScroller(context) {
-
-            override fun calculateDtToFit(viewStart: Int, viewEnd: Int, boxStart: Int, boxEnd: Int, snapPreference: Int): Int {
+            override fun calculateDtToFit(
+                viewStart: Int,
+                viewEnd: Int,
+                boxStart: Int,
+                boxEnd: Int,
+                snapPreference: Int
+            ): Int {
                 return boxStart + (boxEnd - boxStart) / 2 - (viewStart + (viewEnd - viewStart) / 2)
             }
 

@@ -10,12 +10,13 @@
         android:id="@+id/tv_textSwitcher_xml_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="实现方式：xml 布局" />
+        android:text="实现方式：xml 布局"
+        tools:ignore="HardcodedText" />
 
     <TextSwitcher
         android:id="@+id/ts_textSwitcher_xml_implement"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/tv_textSwitcher_xml_title"
         android:layout_marginTop="20dp">
 
@@ -24,14 +25,16 @@
             android:layout_height="match_parent"
             android:text="咖啡机"
             android:textColor="@color/skx_2c3e50"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="面包机"
             android:textColor="@color/skx_ff4081"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
     </TextSwitcher>
 
@@ -40,17 +43,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="实现方式：代码" />
+        android:layout_marginEnd="50dp"
+        android:text="实现方式：代码"
+        tools:ignore="HardcodedText" />
 
     <TextSwitcher
         android:id="@+id/ts_textSwitcher_code_implement"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/tv_textSwitcher_code_title"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp">
+        android:layout_alignLeft="@id/tv_textSwitcher_code_title"
+        android:layout_marginTop="20dp"
+        tools:ignore="RtlHardcoded">
 
     </TextSwitcher>
 
@@ -59,6 +63,7 @@
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"
         android:layout_below="@id/ts_textSwitcher_xml_implement"
+        android:layout_marginTop="50dp"
         android:background="@drawable/btn_selector"
         android:text="点击切换"
         tools:ignore="HardcodedText" />

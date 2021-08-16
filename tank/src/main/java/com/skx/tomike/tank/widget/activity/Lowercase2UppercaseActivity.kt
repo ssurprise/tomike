@@ -1,78 +1,60 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.widget.activity
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.method.ReplacementTransformationMethod;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import com.skx.tomike.tank.R;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
+import android.text.Editable
+import android.text.TextWatcher
+import android.text.method.ReplacementTransformationMethod
+import android.widget.EditText
+import android.widget.TextView
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
 
 /**
  * 描述 : EditText 小写字母转大写.
- * http://www.huati365.com/answer/QM2W8K5WdgmRzw6
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/5/7 2:31 PM
+ * 扩展：inputType 的枚举类型 -> https://blog.csdn.net/chaod5659/article/details/17117193
  */
-public class Lowercase2UppercaseActivity extends SkxBaseActivity<BaseViewModel> {
+class Lowercase2UppercaseActivity : SkxBaseActivity<BaseViewModel?>() {
 
-    @Override
-    protected void initParams() {
+    override fun initParams() {}
 
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("EditText 小写字母转大写").create()
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("EditText 小写字母转大写").create();
+    override fun getLayoutId(): Int {
+        return R.layout.activity_lowercase_2_uppercase
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_lowercase_2_uppercase;
-    }
-
-    private ReplacementTransformationMethod transformationMethod = new ReplacementTransformationMethod() {
-        @Override
-        protected char[] getOriginal() {
-            return new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    private val transformationMethod: ReplacementTransformationMethod = object : ReplacementTransformationMethod() {
+        override fun getOriginal(): CharArray {
+            return charArrayOf(
+                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+                'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+            )
         }
 
-        @Override
-        protected char[] getReplacement() {
-            return new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+        override fun getReplacement(): CharArray {
+            return charArrayOf(
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+                'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+            )
         }
-    };
+    }
 
-    @Override
-    protected void initView() {
-        EditText mEtInputBox = findViewById(R.id.et_lowercase2Uppercase_content);
-        final TextView mTvLogcat = findViewById(R.id.tv_lowercase2Uppercase_logcat);
-
-        mEtInputBox.setTransformationMethod(transformationMethod);
-
-        mEtInputBox.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+    override fun initView() {
+        val mEtInputBox = findViewById<EditText>(R.id.et_lowercase2Uppercase_content)
+        val mTvLogcat = findViewById<TextView>(R.id.tv_lowercase2Uppercase_logcat)
+        mEtInputBox.transformationMethod = transformationMethod
+        mEtInputBox.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                mTvLogcat.text = s.toString()
             }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                mTvLogcat.setText(s.toString());
-            }
-        });
-
-        TextView mTextView = findViewById(R.id.tv_lowercase2Uppercase_textView);
-        mTextView.setTransformationMethod(transformationMethod);
-        mTextView.setText("aBcDeFgHiJkLmNoPqRsTuVwXyZ1234566789./.,!@#$%^&*()");
+        })
     }
 }

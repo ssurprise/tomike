@@ -24,7 +24,7 @@ import java.util.Locale;
  */
 public class TextWordSpacingActivity extends SkxBaseActivity<BaseViewModel> {
 
-    private final String TEST_CONTENT = "壹a贰b弎c肆d伍e陆f柒g捌h玖i拾g佰k仟l万mnaJQK大王小王数1字2";
+    private final String TEST_CONTENT = "不自见，故明；不自是，故彰；不自伐，故有功；不自矜，故长。";
 
     private TextView mTvMutable;
     private TextView mTvMutableLabel;

@@ -7,6 +7,7 @@ import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
 import android.widget.TextView;
 
@@ -26,8 +27,8 @@ public class SpannableStringBuilderActivity extends SkxBaseActivity<BaseViewMode
 
     TextView textView;
     TextView textView_topMark;
-    String contentStr = "房客已退房，如果入住期间对您的财产造成损失需要赔偿，请立即与房客协商解决，若双方不能达成一致，之后可申请小猪介入。\n{23:48}之内可以提交索赔要求，请及时操作。";
-    String contentStr1 = "$199.99HDK";
+    String contentStr = "时间：{23:48}";
+    String contentStr1 = "价格：$199.99HDK";
 
     @Override
     protected void initParams() {
@@ -88,7 +89,7 @@ public class SpannableStringBuilderActivity extends SkxBaseActivity<BaseViewMode
             textView.append(style);
         }
 
-        String contentStr2 = contentStr.substring(tagEnd + 1, contentStr.length());
+        String contentStr2 = contentStr.substring(tagEnd + 1);
         SpannableString contentStr2Style = new SpannableString(contentStr2);
         contentStr2Style.setSpan(new BackgroundColorSpan(Color.parseColor("#ffffff")), 0, contentStr2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         contentStr2Style.setSpan(new ForegroundColorSpan(Color.parseColor("#323232")), 0, contentStr2.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);

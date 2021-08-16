@@ -46,18 +46,19 @@
     <LinearLayout
         android:id="@+id/ll_recyclerviewScrollToPosition_targetWrap"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_recyclerviewScrollToPosition_configGroup">
 
-        <ImageView
+        <TextView
             android:id="@+id/iv_recyclerviewScrollToPosition_lessBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:src="@drawable/calendar_inventory_less_icon"
-            tools:ignore="ContentDescription" />
+            android:text="-"
+            android:textSize="14sp"
+            tools:ignore="ContentDescription,HardcodedText" />
 
         <TextView
             android:id="@+id/tv_recyclerviewScrollToPosition_targetPos"
@@ -68,15 +69,17 @@
             android:gravity="center"
             android:text="1"
             android:textSize="16sp"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
-        <ImageView
+        <TextView
             android:id="@+id/iv_recyclerviewScrollToPosition_moreBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:padding="15dp"
-            android:src="@drawable/calendar_inventory_more_icon" />
+            android:text="+"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
@@ -90,11 +93,12 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:text="开始滑动"
-        android:textColor="@color/xz_212121"
+        android:textColor="@color/skx_212121"
         android:textSize="14sp"
         app:layout_constraintLeft_toRightOf="@id/ll_recyclerviewScrollToPosition_targetWrap"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ll_recyclerviewScrollToPosition_targetWrap" />
+        app:layout_constraintTop_toTopOf="@id/ll_recyclerviewScrollToPosition_targetWrap"
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -185,7 +185,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 光标", EditTextCursorActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", LightDarkTextActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextView/EditText 小写转大写", Lowercase2UppercaseActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("EditText 小写转大写", Lowercase2UppercaseActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("自定义显示方向ImageView", MatrixImageActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RadioGroup 单选", RadioGroupActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", CheckBoxActivity.class.getName()));
@@ -332,23 +332,20 @@ public class CatalogListModel {
      * @return 目录分组结构
      */
     public static List<CatalogCellModel> createCatalogGroup() {
-        if (mCatalogGroupMap != null) {
-            List<CatalogCellModel> allCatalogs = new ArrayList<>();
+        List<CatalogCellModel> allCatalogs = new ArrayList<>();
 
-            for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
-                List<CatalogItem> tempGroup = entry.getValue();
+        for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
+            List<CatalogItem> tempGroup = entry.getValue();
 
-                CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(), "", null, null);
-                allCatalogs.add(parentModel);
-                for (CatalogItem item : tempGroup) {
-                    CatalogCellModel cellModel = new CatalogCellModel(item.getName(), item.getValue(), parentModel, null);
-                    parentModel.addChild(cellModel);
-                    allCatalogs.add(cellModel);
-                }
+            CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(), "", null, null);
+            allCatalogs.add(parentModel);
+            for (CatalogItem item : tempGroup) {
+                CatalogCellModel cellModel = new CatalogCellModel(item.getName(), item.getValue(), parentModel, null);
+                parentModel.addChild(cellModel);
+                allCatalogs.add(cellModel);
             }
-            return allCatalogs;
         }
-        return null;
+        return allCatalogs;
     }
 
     public static LinkedHashMap<String, List<CatalogItem>> getCatalogGroupMp() {

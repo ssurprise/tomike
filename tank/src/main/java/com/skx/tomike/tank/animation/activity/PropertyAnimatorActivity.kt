@@ -1,134 +1,57 @@
-package com.skx.tomike.tank.animation.activity;
+package com.skx.tomike.tank.animation.activity
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.os.Bundle;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.ScaleAnimation;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.animation.tools.ViewPropertyHelper;
+import android.animation.ObjectAnimator
+import android.os.Bundle
+import android.widget.ImageView
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
 
 /**
  * 属性动画事例
  */
-public class PropertyAnimatorActivity extends AppCompatActivity {
-    TextView textView_object;
-    TextView textView_value;
-    ImageView imageView_animator;
-    ImageView imageView2_animator;
-    RelativeLayout container;
-    ViewPropertyHelper textViewTest;
-    ViewPropertyHelper layoutViewProperty;
+class PropertyAnimatorActivity : SkxBaseActivity<BaseViewModel>() {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_property_animatior);
-        initializeView();
-        refreshView();
-        installListener();
+    private val mTargetView: ImageView by lazy {
+        findViewById(R.id.iv_propertyAnim_target)
     }
 
-    private void initializeView() {
-        textView_object = findViewById(R.id.textView_object);
-        textView_value = findViewById(R.id.textView_value);
-        container = findViewById(R.id.container);
-        imageView_animator = findViewById(R.id.imageView_animator);
-        imageView2_animator = findViewById(R.id.imageView2_animator);
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("属性动画").create()
     }
 
-    private void refreshView() {
-        textViewTest = new ViewPropertyHelper(textView_value);
-        layoutViewProperty = new ViewPropertyHelper(container);
+    override fun initParams() {}
+    override fun getLayoutId(): Int {
+        return R.layout.activity_property_animatior
     }
 
-    private void installListener() {
-        textView_object.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ObjectAnimator.ofFloat(textView_object, "translationY", 0.0f, 200.0f).setDuration(500).start();
-//                ObjectAnimator.ofFloat(textView_object, "rotation", 0.0f, 0.0f).setDuration(500).start();
-//                ObjectAnimator.ofFloat(textView_object, "scaleX", 0.0f, 0.0f).setDuration(500).start();
-            }
-        });
-        textView_value.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ValueAnimator valueAnimator = ValueAnimator.ofInt(300, 500);
-                valueAnimator.setDuration(500);
-                valueAnimator.setInterpolator(new LinearInterpolator());
-                valueAnimator.setTarget(textViewTest);
-                valueAnimator.start();
-                valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        Integer animatedValue = (Integer) animation.getAnimatedValue();
-                        textViewTest.setHeight(animatedValue);
-                    }
-                });
-            }
-        });
-        container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ValueAnimator valueAnimator = ValueAnimator.ofInt(48, 210);
-                valueAnimator.setDuration(500);
-                valueAnimator.setInterpolator(new LinearInterpolator());
-                valueAnimator.setTarget(layoutViewProperty);
-                valueAnimator.start();
-                valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        Integer animatedValue = (Integer) animation.getAnimatedValue();
-//                        layoutViewProperty.setPadding(animatedValue);
-                    }
-                });
-            }
-        });
-
-        imageView_animator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isFavorite = !isFavorite;
-                if (!isFavorite) {
-                    AnimationSet animationSet = new AnimationSet(true);
-                    ScaleAnimation scaleAnimation = new ScaleAnimation(1, 0f, 1, 0f,
-                            Animation.RELATIVE_TO_SELF, 0.5f,
-                            Animation.RELATIVE_TO_SELF, 0.5f);
-                    scaleAnimation.setDuration(200);
-                    animationSet.addAnimation(scaleAnimation);
-                    animationSet.setFillAfter(true); //让其保持动画结束时的状态。
-                    imageView_animator.startAnimation(animationSet);
-                } else {
-                    AnimationSet animationSet = new AnimationSet(true);
-                    ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1f, 0, 1f,
-                            Animation.RELATIVE_TO_SELF, 0.5f,
-                            Animation.RELATIVE_TO_SELF, 0.5f);
-                    scaleAnimation.setDuration(200);
-                    animationSet.addAnimation(scaleAnimation);
-                    animationSet.setFillAfter(true); //让其保持动画结束时的状态。
-                    imageView_animator.startAnimation(animationSet);
-                }
-
-            }
-        });
-
-        imageView2_animator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ObjectAnimator.ofFloat(imageView2_animator, "rotationY", 0.0f, 180.0f).setDuration(500).start();
-            }
-        });
+    override fun initView() {
     }
 
-    private boolean isFavorite = true;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        installListener()
+    }
+
+    private fun installListener() {
+        mTargetView.setOnClickListener {
+            ObjectAnimator.ofFloat(it, "translationY", 0.0f, 720.0f)
+                .setDuration(500)
+                .start()
+
+//            val valueAnimator = ValueAnimator.ofInt(300, 500)
+//            valueAnimator.duration = 500
+//            valueAnimator.interpolator = LinearInterpolator()
+//            valueAnimator.setTarget(textViewTest)
+//            valueAnimator.start()
+//            valueAnimator.addUpdateListener { animation: ValueAnimator ->
+//                val animatedValue = animation.animatedValue as Int
+//                textViewTest?.height = animatedValue
+//            }
+
+
+        }
+
+    }
 }

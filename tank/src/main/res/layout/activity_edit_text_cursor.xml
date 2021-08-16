@@ -7,43 +7,44 @@
     android:padding="@dimen/view_padding_15"
     tools:context=".widget.activity.LightDarkTextActivity">
 
+    <TextView
+        style="@style/LogcatTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="注意观察下面几个输入框光标的变化，点击他们查看不同吧~"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
     <EditText
         android:id="@+id/et_editTextCursor_default"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="50dp"
-        android:gravity="bottom|start"
-        android:hint="默认"
-        android:imeOptions="actionNext"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:hint="系统默认设置"
         android:inputType="number"
-        android:lines="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/et_editTextCursor_cursorNull"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:gravity="bottom|end"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:hint="清除光标"
-        android:inputType="number"
-        android:lines="1"
         android:textCursorDrawable="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_editTextCursor_default"
-        tools:ignore="Autofill,HardcodedText" />
+        tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <EditText
         android:id="@+id/et_editTextCursor_customCursor"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_weight="1"
-        android:gravity="bottom|end"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:hint="自定义光标"
-        android:imeOptions="actionNext"
         android:inputType="number"
-        android:lines="1"
         android:textCursorDrawable="@drawable/color_cursor"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_editTextCursor_cursorNull"
