@@ -41,37 +41,37 @@ class LifecycleActivity2 : SkxBaseActivity<BaseViewModel?>(), View.OnClickListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         tv.append("onCreate \n")
-        Log.e("Lifecycle", "Activity2:create")
+        Log.e("Activity_Lifecycle", "Activity2:create")
     }
 
     override fun onStart() {
         super.onStart()
         tv.append("onStart \n")
-        Log.e("Lifecycle", "Activity2:start")
+        Log.e("Activity_Lifecycle", "Activity2:start")
     }
 
     override fun onResume() {
         super.onResume()
         tv.append("onResume \n")
-        Log.e("Lifecycle", "Activity2:resume")
+        Log.e("Activity_Lifecycle", "Activity2:resume")
     }
 
     override fun onPause() {
         super.onPause()
         tv.append("onPause \n")
-        Log.e("Lifecycle", "Activity2:pause")
+        Log.e("Activity_Lifecycle", "Activity2:pause")
     }
 
     override fun onStop() {
         super.onStop()
         tv.append("onStop \n")
-        Log.e("Lifecycle", "Activity2:stop")
+        Log.e("Activity_Lifecycle", "Activity2:stop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         tv.append("onDestroy \n")
-        Log.e("Lifecycle", "Activity2:destroy")
+        Log.e("Activity_Lifecycle", "Activity2:destroy")
     }
 
     override fun onClick(v: View?) {

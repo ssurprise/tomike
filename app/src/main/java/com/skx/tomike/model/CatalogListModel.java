@@ -39,6 +39,7 @@ import com.skx.tomike.cannon.ui.activity.RebootAppActivity;
 import com.skx.tomike.cannon.ui.activity.RetrofitActivity;
 import com.skx.tomike.cannon.ui.activity.RoomTestActivity;
 import com.skx.tomike.cannon.ui.activity.RxJavaActivity;
+import com.skx.tomike.cannon.ui.activity.ServiceDemoActivity;
 import com.skx.tomike.cannon.ui.activity.TransparentThemeActivity;
 import com.skx.tomike.cannon.ui.activity.WithCallbackActivity;
 import com.skx.tomike.cannon.ui.activity.ZXingActivity;
@@ -239,6 +240,7 @@ public class CatalogListModel {
 
 
         // 加农炮实验室
+        mFunctionCatalogs.add(new CatalogItem("服务", ServiceDemoActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("lifecycle", LifecycleActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("Handler", HandlerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AsyncTask", AsyncTaskActivity.class.getName()));

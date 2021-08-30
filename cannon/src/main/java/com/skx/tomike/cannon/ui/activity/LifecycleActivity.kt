@@ -54,6 +54,11 @@ class LifecycleActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListene
 //        lifecycle.addObserver(Re2(tv))
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        Log.e("Activity_Lifecycle", "onRestart()")
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_lifecycle_showDialog -> {
@@ -97,37 +102,37 @@ class LifecycleActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListene
 class Re(private val tv: TextView?) : LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
-        Log.e("Lifecycle", "Activity-Event:create")
+        Log.e("Activity_Lifecycle", "Activity-Event:create")
         tv?.append("Event-1:create \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onStart() {
-        Log.e("Lifecycle", "Activity-Event:start")
+        Log.e("Activity_Lifecycle", "Activity-Event:start")
         tv?.append("Event-1:start \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
-        Log.e("Lifecycle", "Activity-Event:resume")
+        Log.e("Activity_Lifecycle", "Activity-Event:resume")
         tv?.append("Event-1:resume \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause() {
-        Log.e("Lifecycle", "Activity-Event:pause")
+        Log.e("Activity_Lifecycle", "Activity-Event:pause")
         tv?.append("Event-1:pause \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun onStop() {
-        Log.e("Lifecycle", "Activity-Event:stop")
+        Log.e("Activity_Lifecycle", "Activity-Event:stop")
         tv?.append("Event-1:stop \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
-        Log.e("Lifecycle", "Activity-Event:destroy")
+        Log.e("Activity_Lifecycle", "Activity-Event:destroy")
         tv?.append("Event-1:destroy \n")
     }
 }
@@ -135,37 +140,37 @@ class Re(private val tv: TextView?) : LifecycleObserver {
 class Re2(private val tv: TextView?) : LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
-        Log.e("Lifecycle", "Activity-Event-2:create")
+        Log.e("Activity_Lifecycle", "Activity-Event-2:create")
         tv?.append("Event-2:create \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onStart() {
-        Log.e("Lifecycle", "Activity-Event-2:start")
+        Log.e("Activity_Lifecycle", "Activity-Event-2:start")
         tv?.append("Event-2:start \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
-        Log.e("Lifecycle", "Activity-Event-2:resume")
+        Log.e("Activity_Lifecycle", "Activity-Event-2:resume")
         tv?.append("Event-2:resume \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause() {
-        Log.e("Lifecycle", "Activity-Event-2:pause")
+        Log.e("Activity_Lifecycle", "Activity-Event-2:pause")
         tv?.append("Event-2:pause \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun onStop() {
-        Log.e("Lifecycle", "Activity-Event-2:stop")
+        Log.e("Activity_Lifecycle", "Activity-Event-2:stop")
         tv?.append("Event-2:stop \n")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
-        Log.e("Lifecycle", "Activity-Event-2:destroy")
+        Log.e("Activity_Lifecycle", "Activity-Event-2:destroy")
         tv?.append("Event-2:destroy \n")
     }
 }

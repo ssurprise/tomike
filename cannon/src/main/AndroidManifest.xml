@@ -181,6 +181,9 @@
         <activity
             android:name=".ui.activity.ZXingActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.ServiceDemoActivity" />
+
+        <service android:name=".ui.activity.MyService"/>
     </application>
 
 </manifest>

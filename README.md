@@ -90,6 +90,8 @@ _________
 21. 热修复 - Tinker
 22. 重启APP
 23. ActivityResultLauncher 替代 StartActivityForResult
+24. 扫描二维码
+25. 服务Service - 四大组件之一
 
 
 ### bomber：轰炸机实验室
