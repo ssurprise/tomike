@@ -10,13 +10,14 @@ import com.skx.common.base.BaseViewModel;
 import java.util.Arrays;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 
 /**
  * 描述 : 滑动刷新viewmodel
@@ -55,17 +56,17 @@ public class SwipeRefreshViewModel extends BaseViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<String>>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(List<String> strings) {
+                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<String> strings) {
                         mTestDataLiveData.postValue(strings);
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
 
                     }
 

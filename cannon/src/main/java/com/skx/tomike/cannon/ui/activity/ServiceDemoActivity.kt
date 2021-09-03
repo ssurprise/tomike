@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import android.view.View
@@ -12,9 +13,7 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
-import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.TimeUnit
 
 /**
  * 描述 : 服务demo
@@ -23,6 +22,8 @@ import java.util.concurrent.TimeUnit
  * 创建时间 : 2021/8/30 5:00 下午
  */
 class ServiceDemoActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+
+    private val connection = MyServiceConnection()
 
     override fun initParams() {
     }
@@ -53,10 +54,11 @@ class ServiceDemoActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
                 stopService(intent)
             }
             R.id.btn_service_bindService -> {
-
+                val intent = Intent(this, MyService::class.java)
+                bindService(intent, connection, BIND_AUTO_CREATE)
             }
             R.id.btn_service_unbindService -> {
-
+                unbindService(connection)
             }
         }
     }
@@ -91,7 +93,7 @@ class MyService : Service() {
     //  bindService启动方式：重复调用时，onCreate()与onBind()都只会调用一次
     override fun onBind(intent: Intent?): IBinder? {
         Log.e("MyService", "onBind")
-        return null
+        return MyBinder()
     }
 
     override fun onUnbind(intent: Intent?): Boolean {
@@ -104,6 +106,10 @@ class MyService : Service() {
         newScheduledThreadPool?.shutdown()
         Log.e("MyService", "onDestroy")
     }
+}
+
+class MyBinder : Binder() {
+
 }
 
 class MyServiceConnection : ServiceConnection {

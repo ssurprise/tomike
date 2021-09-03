@@ -5,18 +5,19 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
 import com.skx.common.base.BaseViewModel;
+import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
 
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 
 /**
  * 描述 : 相册viewmodel
@@ -35,7 +36,7 @@ public class PhotoAlbumViewModel extends BaseViewModel {
     public void loadPhotoData() {
         Observable.create(new ObservableOnSubscribe<List<PhotoUpImageBucket>>() {
             @Override
-            public void subscribe(ObservableEmitter<List<PhotoUpImageBucket>> emitter) {
+            public void subscribe(@io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<List<PhotoUpImageBucket>> emitter) throws Throwable {
                 PhotoAlbumDao dao = new PhotoAlbumDao(mApplication.getApplicationContext());
                 List<PhotoUpImageBucket> list = dao.getImagesBucketList();
                 emitter.onNext(list);
@@ -45,17 +46,17 @@ public class PhotoAlbumViewModel extends BaseViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<PhotoUpImageBucket>>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(List<PhotoUpImageBucket> o) {
-                        mPhotoAlbumsLiveData.postValue(o);
+                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<PhotoUpImageBucket> photoUpImageBuckets) {
+                        mPhotoAlbumsLiveData.postValue(photoUpImageBuckets);
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
 
                     }
 
