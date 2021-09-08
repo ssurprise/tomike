@@ -6,6 +6,7 @@ import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.missile.R;
+import com.skx.tomike.missile.bean.ListNode;
 
 import java.util.HashSet;
 import java.util.Locale;
@@ -380,23 +381,6 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
             }
         }
         mTvRingLength.setText(String.format(Locale.getDefault(), "该链表中环的长度为：%d", length));
-    }
-
-    static class ListNode {
-        public int val;
-        public ListNode next;
-
-        public ListNode() {
-        }
-
-        public ListNode(int val) {
-            this.val = val;
-        }
-
-        public ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 
     class Node2<T> {

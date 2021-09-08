@@ -22,8 +22,8 @@ import java.util.HashMap;
  */
 public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements RadioGroup.OnCheckedChangeListener {
 
-    //    private static final int[] SOURCE = {9, 7, 2, 1, 3, 5, 8, 6, 4};
-    private final int[] SOURCE = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+    private static final int[] SOURCE = {9, 7, 2, 1, 3, 5, 8, 6, 4};
+//    private final int[] SOURCE = {9, 8, 7, 6, 5, 4, 3, 2, 1};
 //    private final int[] SOURCE = {1, 3, 2, 5, 4, 7, 9, 6, 8};
 
     private TextView tv_sort_theory;
@@ -128,15 +128,14 @@ public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements 
      * 重复第二步，直到所有元素均排序完毕。
      *
      * @param array 待排序数组
-     * @return 排序后的数组
      */
     @SuppressLint("SetTextI18n")
-    private int[] selectionSort(int[] array) {
+    private void selectionSort(int[] array) {
         tv_sort_theory.setText(SORT_THEORY.get("selectionSort"));
         tv_sort_process.setText("");
 
         if (array == null || array.length == 0) {
-            return array;
+            return;
         }
 
         int[] intArray = Arrays.copyOf(array, array.length);
@@ -157,39 +156,43 @@ public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements 
             renderSortProcessView(i, intArray);
         }
         ImageLoader.with(this).asGif().load(R.drawable.sort_selection).into(iv_sort_exampleImage);
-
-        return array;
     }
 
     /**
      * 插入排序
      * 插入排序是一种最简单直观的排序算法，它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。
+     * 空间复杂度：常数阶O(1)
+     * 稳定性分析：
+     * 应用分析：插入排序适用于已经有部分数据已经排好，并且排好的部分越大越好。一般在输入规模大于1000的场合下不建议使用插入排序
      *
      * @param source 待排序的数组
-     * @return 排序后的数组
      */
     @SuppressLint("SetTextI18n")
-    private int[] insertSort(int[] source) {
+    private void insertSort(int[] source) {
         tv_sort_theory.setText(SORT_THEORY.get("insertSort"));
         tv_sort_process.setText("");
 
         if (source == null || source.length == 0) {
-            return source;
+            return;
         }
 
         int[] intArray = Arrays.copyOf(source, source.length);
 
+        // 9, 7, 2
         int next;
         for (int i = 0; i < intArray.length - 1; i++) {
             next = intArray[i + 1];// 下一个要比较的数
             int current = i;// 当前索引
 
             // 取下一个值，不断的向前比较，遇到比next 大的，就把当前索引的值复制到下一个索引上，以此来模拟插入。
+            // current=1 value=9    next=7。  7<9,
             while (current >= 0 && next < intArray[current]) {
+                // 这里就成了 9, 9, 2
                 intArray[current + 1] = intArray[current];
                 // 索引减一，同前一个数据再对比。
                 current--;
             }
+            // 7、9、2
             intArray[++current] = next;// 这里++ 是因为上一步满足条件后，先 "--" 同前一个数据比较，但是条件不符合，所以再其后的一个位置插入
 
             // 渲染排序步骤view
@@ -197,30 +200,26 @@ public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements 
         }
 
         ImageLoader.with(this).asGif().load(R.drawable.sort_insertion).into(iv_sort_exampleImage);
-        return source;
     }
 
     /**
      * 快速排序
      *
      * @param source 待排序的数组
-     * @return 排序后的数组quickSort.gif
      */
-    private int[] quickSort(int[] source) {
+    private void quickSort(int[] source) {
         tv_sort_theory.setText(SORT_THEORY.get("quickSort"));
         tv_sort_process.setText("");
 
         if (source == null || source.length == 0) {
-            return source;
+            return;
         }
 
         int[] intArray = Arrays.copyOf(source, source.length);
         quickSort(intArray, 0, intArray.length - 1);
-
-        return intArray;
     }
 
-    private int[] quickSort(int[] arr, int left, int right) {
+    private void quickSort(int[] arr, int left, int right) {
         if (left < right) {
             int partitionIndex = partition(arr, left, right);
             quickSort(arr, left, partitionIndex - 1);
@@ -228,7 +227,6 @@ public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements 
 
             renderSortProcessView(0, arr);
         }
-        return arr;
     }
 
     private int partition(int[] arr, int left, int right) {
