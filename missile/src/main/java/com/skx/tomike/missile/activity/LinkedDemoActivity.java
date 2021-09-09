@@ -382,14 +382,4 @@ public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
         }
         mTvRingLength.setText(String.format(Locale.getDefault(), "该链表中环的长度为：%d", length));
     }
-
-    class Node2<T> {
-        public T t;
-        public Node2<T> prev;
-        public Node2<T> next;
-
-        public Node2(T t) {
-            this.t = t;
-        }
-    }
 }
