@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
+import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
 
 
@@ -27,8 +28,9 @@ class ZXingActivity : SkxBaseActivity<BaseViewModel>() {
     }
 
     fun toScan(view: View) {
-        val intent = Intent(this, com.skx.qrcode.activity.CaptureActivity::class.java)
-        startActivityForResult(intent, 100)
+        ToastTool.showToast(this,"demo 同步有问题，导致部分代码丢失，该功能暂不可用")
+//        val intent = Intent(this, com.skx.qrcode.activity.CaptureActivity::class.java)
+//        startActivityForResult(intent, 100)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

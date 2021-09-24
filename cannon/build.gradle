@@ -1,5 +1,5 @@
 centralization this
 dependencies {
     implementation 'com.google.zxing:core:3.4.1'
-    implementation project(path: ':libzxing')
+//    implementation project(path: ':libzxing')
 }
