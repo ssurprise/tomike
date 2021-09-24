@@ -1,26 +1,21 @@
 package com.skx.tomike.activity;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.utils.ToastTool;
 import com.skx.tomike.R;
-import com.skx.tomike.apt_annotation.BindView;
 import com.skx.tomike.data.bo.HomepageNavigationTabBo;
 import com.skx.tomike.fragment.business.CatalogFragment;
 import com.skx.tomike.fragment.business.HomepageFragment;
@@ -36,23 +31,27 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
 
     private FragmentManager mFragmentManager;
 
-    private FrameLayout fl_content_container;
+    private ImageView mIvHomeTabIcon;
+    private TextView mTvHomeTabText;
 
-    private ImageView imv_homepageTab_icon;
-    private TextView tv_homepageTab_text;
+    private ImageView mIvCatalogTabIcon;
+    private TextView mTvCatalogTabText;
 
-    private ImageView imv_catalogTab_icon;
-    private TextView tv_catalogTab_text;
+    private ImageView mIvPersonalTabIcon;
+    private TextView mTvPersonalTabText;
 
-    private ImageView imv_myTab_icon;
-    private TextView tv_myTab_text;
+    private static final String HOME_FRAGMENT = "home_fragment";
+    private static final String CATALOG_FRAGMENT = "catalog_fragment";
+    private static final String PERSONAL_FRAGMENT = "personal_fragment";
 
     private final List<HomepageNavigationTabBo> tabList = new ArrayList<>();
     private int currentIndex = 0;
     private int lastIndex = 0;
+    private Fragment from;
 
     @Override
     protected void initParams() {
+        mFragmentManager = getSupportFragmentManager();
     }
 
     @Override
@@ -62,17 +61,14 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
 
     @Override
     protected void initView() {
-        fl_content_container = findViewById(R.id.homepage_content_container);
-        fl_content_container.setVisibility(View.VISIBLE);
+        mIvHomeTabIcon = findViewById(R.id.homepage_navigation_homepageTab_icon);
+        mTvHomeTabText = findViewById(R.id.homepage_navigation_homepageTab_text);
 
-        imv_homepageTab_icon = findViewById(R.id.homepage_navigation_homepageTab_icon);
-        tv_homepageTab_text = findViewById(R.id.homepage_navigation_homepageTab_text);
+        mIvCatalogTabIcon = findViewById(R.id.homepage_navigation_catalogTab_icon);
+        mTvCatalogTabText = findViewById(R.id.homepage_navigation_catalogTab_text);
 
-        imv_catalogTab_icon = findViewById(R.id.homepage_navigation_catalogTab_icon);
-        tv_catalogTab_text = findViewById(R.id.homepage_navigation_catalogTab_text);
-
-        imv_myTab_icon = findViewById(R.id.homepage_navigation_myTab_icon);
-        tv_myTab_text = findViewById(R.id.homepage_navigation_myTab_text);
+        mIvPersonalTabIcon = findViewById(R.id.homepage_navigation_myTab_icon);
+        mTvPersonalTabText = findViewById(R.id.homepage_navigation_myTab_text);
 
         HomepageNavigationTabBo homepageTab = new HomepageNavigationTabBo("首页", android.R.drawable.ic_dialog_map, "");
         HomepageNavigationTabBo catalogTab = new HomepageNavigationTabBo("目录", android.R.drawable.ic_menu_save, "");
@@ -91,29 +87,6 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                /**
-                 * 这里权限模式
-                 */
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)) {
-                    // 解释为什么需要定位权限之类的
-                } else {
-                    // 请求权限处理
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
-                }
-                /**
-                 * 如果要用意图模式的话，就不需要用权限模式了，直接跳转到系统设置页面，
-                 * 让用户自己控制权限的授权与否，app只承担了一个引导作用
-                 */
-            } else {
-                // 获得定位信息的code
-            }
-        } else {
-            ToastTool.showToast(this, "6.0 以下");
-        }
-
         renderView();
     }
 
@@ -122,60 +95,89 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
         startService(new Intent(this, LocalService.class));
         startService(new Intent(this, RemoteService.class));
 
-        mFragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        HomepageFragment homepageFragment = new HomepageFragment();
-        fragmentTransaction.replace(R.id.homepage_content_container, homepageFragment);
-        fragmentTransaction.commit();
+        updateFragment(HOME_FRAGMENT);
 
         setCurrentTabColor();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         switch (v.getId()) {
             case R.id.homepage_navigation_homepageTab:
+                updateFragment(HOME_FRAGMENT);
                 // 点击后重置currentIndex为当前点击的tab
                 currentIndex = 0;
                 if (currentIndex != lastIndex) {// 当点击的不是同一个tab的时候，刷新tab，切换到对应的内容页面
                     setCurrentTabColor();
-                    setFragmentAnimation(fragmentTransaction);
-
-                    HomepageFragment homepageFragment = new HomepageFragment();
-                    fragmentTransaction.replace(R.id.homepage_content_container, homepageFragment);
                     lastIndex = currentIndex;
                 }
                 break;
 
             case R.id.homepage_navigation_catalogTab:
+                updateFragment(CATALOG_FRAGMENT);
                 currentIndex = 1;
                 if (currentIndex != lastIndex) {
                     setCurrentTabColor();
-                    setFragmentAnimation(fragmentTransaction);
-
-                    CatalogFragment catalogFragment = new CatalogFragment();
-                    fragmentTransaction.replace(R.id.homepage_content_container, catalogFragment);
                     lastIndex = currentIndex;
                 }
                 break;
 
             case R.id.homepage_navigation_myTab:
+                updateFragment(PERSONAL_FRAGMENT);
                 currentIndex = 2;
                 if (currentIndex != lastIndex) {
                     setCurrentTabColor();
-                    setFragmentAnimation(fragmentTransaction);
-
-                    PersonalFragment personalFragment = new PersonalFragment();
-                    fragmentTransaction.replace(R.id.homepage_content_container, personalFragment);
                     lastIndex = currentIndex;
                 }
                 break;
             default:
                 break;
         }
-        // 事务提交
-        fragmentTransaction.commit();
+    }
+
+    private void updateFragment(String name) {
+        // 1. 确定对应的fragment
+        Fragment to = mFragmentManager.findFragmentByTag(name);
+        switch (name) {
+            case HOME_FRAGMENT:
+                if (to == null) {
+                    to = HomepageFragment.newInstance("", "");
+                }
+                break;
+            case CATALOG_FRAGMENT:
+                if (to == null) {
+                    to = new CatalogFragment();
+                }
+                break;
+            case PERSONAL_FRAGMENT:
+                if (to == null) {
+                    to = new PersonalFragment();
+                }
+                break;
+        }
+        if (to == null) {
+            return;
+        }
+        if (from == to) {
+            // 说明点击的是同一个tab，无需处理
+            return;
+        }
+        // 3. 处理显示切换
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        if (from != null) {
+            transaction.hide(from);
+        }
+        // 判断是否被add过
+        if (!to.isAdded()) {
+            // 隐藏当前的fragment，add下一个到Activity中
+            transaction.add(R.id.homepage_content_container, to, name).commit();
+        } else {
+            // 隐藏当前的fragment，显示下一个
+            transaction.show(to).commit();
+        }
+        // 4. 更新from
+        from = to;
     }
 
     /**
@@ -185,19 +187,19 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
         for (int i = 0, j = tabList.size(); i < j; i++) {
             if (i == currentIndex) {
                 if (i == 0) {
-                    tv_homepageTab_text.setTextColor(Color.parseColor("#ff4081"));
+                    mTvHomeTabText.setTextColor(Color.parseColor("#ff4081"));
                 } else if (i == 1) {
-                    tv_catalogTab_text.setTextColor(Color.parseColor("#ff4081"));
+                    mTvCatalogTabText.setTextColor(Color.parseColor("#ff4081"));
                 } else if (i == 2) {
-                    tv_myTab_text.setTextColor(Color.parseColor("#ff4081"));
+                    mTvPersonalTabText.setTextColor(Color.parseColor("#ff4081"));
                 }
             } else if (i == lastIndex) {
                 if (i == 0) {
-                    tv_homepageTab_text.setTextColor(Color.parseColor("#323232"));
+                    mTvHomeTabText.setTextColor(Color.parseColor("#323232"));
                 } else if (i == 1) {
-                    tv_catalogTab_text.setTextColor(Color.parseColor("#323232"));
+                    mTvCatalogTabText.setTextColor(Color.parseColor("#323232"));
                 } else if (i == 2) {
-                    tv_myTab_text.setTextColor(Color.parseColor("#323232"));
+                    mTvPersonalTabText.setTextColor(Color.parseColor("#323232"));
                 }
             }
         }
@@ -213,11 +215,11 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
      * @param fragmentTransaction fragment事务
      */
     public void setFragmentAnimation(FragmentTransaction fragmentTransaction) {
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        if (lastIndex < currentIndex) {
-            fragmentTransaction.setCustomAnimations(R.anim.enter_right_left, R.anim.exit_right_left);
-        } else if (lastIndex > currentIndex) {
-            fragmentTransaction.setCustomAnimations(R.anim.enter_left_right, R.anim.exit_left_right);
-        }
+//        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//        if (lastIndex < currentIndex) {
+//            fragmentTransaction.setCustomAnimations(R.anim.enter_right_left, R.anim.exit_right_left);
+//        } else if (lastIndex > currentIndex) {
+//            fragmentTransaction.setCustomAnimations(R.anim.enter_left_right, R.anim.exit_left_right);
+//        }
     }
 }

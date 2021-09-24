@@ -7,14 +7,14 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.widget.GridSpaceItemDecoration;
 import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
 import com.skx.tomike.cannon.bean.PhotoUpImageItem;
 import com.skx.tomike.cannon.ui.adapter.PhotoWallAdapter;
-import com.skx.tomike.cannon.ui.view.GridSpaceItemDecoration;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
 
 /**
  * 描述 : 照片墙

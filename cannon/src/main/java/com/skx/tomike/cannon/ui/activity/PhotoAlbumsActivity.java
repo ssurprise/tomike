@@ -11,14 +11,14 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.skx.tomike.cannon.R;
-import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
-import com.skx.tomike.cannon.ui.adapter.PhotoAlbumsAdapter;
-import com.skx.tomike.cannon.ui.view.GridSpaceItemDecoration;
-import com.skx.tomike.cannon.viewmodel.PhotoAlbumViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.DpPxSpToolKt;
+import com.skx.common.widget.GridSpaceItemDecoration;
+import com.skx.tomike.cannon.R;
+import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
+import com.skx.tomike.cannon.ui.adapter.PhotoAlbumsAdapter;
+import com.skx.tomike.cannon.viewmodel.PhotoAlbumViewModel;
 
 import org.jetbrains.annotations.NotNull;
 

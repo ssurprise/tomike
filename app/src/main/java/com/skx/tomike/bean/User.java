@@ -1,4 +1,4 @@
-package com.skx.tomike.javabean;
+package com.skx.tomike.bean;
 
 import com.skx.tomike.missile.bean.UserSetting;
 

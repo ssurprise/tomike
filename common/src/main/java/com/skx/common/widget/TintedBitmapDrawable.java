@@ -1,4 +1,4 @@
-package com.skx.common.view;
+package com.skx.common.widget;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -13,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
  * Created by shiguotao on 2017/1/13.
  */
 public class TintedBitmapDrawable extends BitmapDrawable {
+
     private int tint;
     private int alpha;
 

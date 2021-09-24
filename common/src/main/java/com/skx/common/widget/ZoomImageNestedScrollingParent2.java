@@ -1,4 +1,4 @@
-package com.skx.common.view;
+package com.skx.common.widget;
 
 import android.content.Context;
 import android.graphics.Rect;

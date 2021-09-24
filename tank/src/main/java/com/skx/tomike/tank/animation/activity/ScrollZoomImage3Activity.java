@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.view.OverScrollView;
+import com.skx.common.widget.OverScrollView;
 import com.skx.tomike.tank.R;
 
 /**

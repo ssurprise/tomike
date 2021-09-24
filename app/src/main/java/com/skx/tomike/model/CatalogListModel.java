@@ -1,5 +1,6 @@
 package com.skx.tomike.model;
 
+import com.skx.tomike.bean.CatalogItem;
 import com.skx.tomike.bomber.basics.DoubleFormatActivity;
 import com.skx.tomike.bomber.basics.GsonParseActivity;
 import com.skx.tomike.bomber.basics.UrlEncodeActivity;
@@ -44,7 +45,6 @@ import com.skx.tomike.cannon.ui.activity.TransparentThemeActivity;
 import com.skx.tomike.cannon.ui.activity.WithCallbackActivity;
 import com.skx.tomike.cannon.ui.activity.ZXingActivity;
 import com.skx.tomike.cannon.ui.activity.ZoomImageActivity;
-import com.skx.tomike.javabean.CatalogItem;
 import com.skx.tomike.missile.activity.ArrayDemoActivity;
 import com.skx.tomike.missile.activity.DueueDemoActivity;
 import com.skx.tomike.missile.activity.LinkedDemoActivity;

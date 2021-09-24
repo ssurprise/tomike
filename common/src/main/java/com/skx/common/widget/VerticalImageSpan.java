@@ -1,4 +1,4 @@
-package com.skx.common.view;
+package com.skx.common.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,6 +13,7 @@ import android.text.style.ImageSpan;
  * 垂直居中显示的ImageSpan
  */
 public class VerticalImageSpan extends ImageSpan {
+
     public VerticalImageSpan(Context context, int resourceId) {
         super(context, resourceId);
     }
@@ -45,7 +46,7 @@ public class VerticalImageSpan extends ImageSpan {
                      float x, int top, int y, int bottom, Paint paint) {
         Drawable drawable = getDrawable();
         canvas.save();
-        int transY = 0;
+        int transY;
         //获得将要显示的文本高度-图片高度除2等居中位置+top(换行情况)
         transY = ((bottom - top) - drawable.getBounds().bottom) / 2 + top;
         canvas.translate(x, transY);

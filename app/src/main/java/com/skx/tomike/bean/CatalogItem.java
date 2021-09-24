@@ -1,4 +1,4 @@
-package com.skx.tomike.javabean;
+package com.skx.tomike.bean;
 
 /**
  * Created by shiguotao on 2016/8/1.
