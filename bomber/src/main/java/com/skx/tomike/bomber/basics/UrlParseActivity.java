@@ -61,12 +61,7 @@ public class UrlParseActivity extends SkxBaseActivity<BaseViewModel> {
             }
         });
         TextView tv_urlParse_startParsing = findViewById(R.id.tv_urlParse_startParsing);
-        tv_urlParse_startParsing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                urlParse();
-            }
-        });
+        tv_urlParse_startParsing.setOnClickListener(v -> urlParse());
 
         mTvResult = findViewById(R.id.tv_urlParse_result);
         mEtTargetUrl.setText(mTargetUrl);

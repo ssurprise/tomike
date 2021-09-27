@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.skx.tomike">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -24,17 +25,25 @@
         android:resizeable="true"
         android:smallScreens="true" />
 
+    <!--
+        AllowBackup:是在Android 2.2中引入的一个系统备份的功能。允许用户备份系统应用和第三方应用的apk安装包和应用数据，
+        以便在刷机或者数据丢失后恢复应用，用户即可通过adb backup和adb restore来进行对应用数据的备份和恢复。
+        第三方应用开发者需要在应用的 AndroidManifest.xml 文件中配置 allowBackup 标志(默认为 true )来设置应用数据是
+        否能能够被备份或恢复。
+    -->
     <application
         android:name=".SkxApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:testOnly="false"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".activity.WelcomeActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,7 +59,8 @@
         <!-- 首页 -->
         <activity
             android:name=".activity.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <service android:name=".service.LocalService" />
         <service

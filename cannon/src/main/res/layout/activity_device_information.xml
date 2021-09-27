@@ -45,27 +45,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        tools:text="ANDROID_ID：" />
+        android:text="ANDROID_ID：未获取到"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_deviceInfo_deviceId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="device id：" />
+        android:text="device id：未获取到"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_deviceInfo_imei"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        tools:text="imei：" />
+        android:text="imei：未获取到"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_deviceInfo_meid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        tools:text="imid：" />
+        android:text="imid：未获取到"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_deviceInfo_screenWidth"

@@ -1,6 +1,6 @@
 package com.skx.tomike.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.skx.tomike.R;
 import com.skx.tomike.model.CatalogCellModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,16 +30,14 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
     private static final int VIEW_TYPE_PARENT = 1;
     private static final int VIEW_TYPE_CHILD = 2;
 
+    private final List<CatalogCellModel> mList = new ArrayList<>();
 
-    private Context context;
-    private List<CatalogCellModel> mList;
-    private LayoutInflater mInflater;
-
-    public Catalog2Adapter(Context context, List<CatalogCellModel> list) {
+    public Catalog2Adapter(List<CatalogCellModel> list) {
         super();
-        this.context = context;
-        this.mList = list;
-        this.mInflater = LayoutInflater.from(context);
+        mList.clear();
+        if (list != null) {
+            mList.addAll(list);
+        }
     }
 
     @Override
@@ -64,7 +64,7 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
 
     @Override
     public int getItemCount() {
-        return mList != null ? mList.size() : 0;
+        return mList.size();
     }
 
 
@@ -78,15 +78,17 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
         }
     }
 
-
+    @NonNull
     @Override
-    public CatalogCellViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case VIEW_TYPE_PARENT:
-                return new CatalogGroupViewHolder(mInflater.inflate(R.layout.adapter_catalog_item_parent, parent, false));
-            default:
-                return new CatalogChildViewHolder(mInflater.inflate(R.layout.adapter_catalog_item, parent, false));
+    public CatalogCellViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == VIEW_TYPE_PARENT) {
+            return new CatalogGroupViewHolder(
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.adapter_catalog_item_parent, parent, false));
         }
+        return new CatalogChildViewHolder(
+                LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.adapter_catalog_item, parent, false));
     }
 
     @Override
@@ -94,7 +96,7 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
         holder.bindData(mList.get(position));
     }
 
-    abstract class CatalogCellViewHolder extends RecyclerView.ViewHolder {
+    abstract static class CatalogCellViewHolder extends RecyclerView.ViewHolder {
 
         CatalogCellViewHolder(View itemView) {
             super(itemView);
@@ -103,7 +105,7 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
         public abstract void bindData(CatalogCellModel cellModel);
     }
 
-    class CatalogChildViewHolder extends CatalogCellViewHolder {
+    static class CatalogChildViewHolder extends CatalogCellViewHolder {
         TextView tvCellName;
 
         CatalogChildViewHolder(View itemView) {
@@ -114,33 +116,29 @@ public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.Catalo
         @Override
         public void bindData(final CatalogCellModel cellModel) {
             tvCellName.setText(cellModel.getTitle());
-            tvCellName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        v.setElevation(5.0f);
-                    }
-                    try {
-                        intent = new Intent(context, Class.forName(cellModel.getTarget()));
-                        context.startActivity(intent);
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
+            tvCellName.setOnClickListener(v -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    v.setElevation(5.0f);
+                }
+                try {
+                    Intent intent = new Intent(itemView.getContext(), Class.forName(cellModel.getTarget()));
+                    ((Activity) itemView.getContext()).startActivity(intent);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
             });
         }
     }
 
-    class CatalogGroupViewHolder extends CatalogCellViewHolder {
+    static class CatalogGroupViewHolder extends CatalogCellViewHolder {
 
         TextView tvGroupTittle;
-        ImageView imgvGroupArrow;
+        ImageView ivGroupArrow;
 
         CatalogGroupViewHolder(View itemView) {
             super(itemView);
             tvGroupTittle = (TextView) itemView.findViewById(R.id.catalog_item_group_name);
-            imgvGroupArrow = (ImageView) itemView.findViewById(R.id.catalog_item_group_arrow);
+            ivGroupArrow = (ImageView) itemView.findViewById(R.id.catalog_item_group_arrow);
         }
 
         @Override

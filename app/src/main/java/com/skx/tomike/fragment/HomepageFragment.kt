@@ -1,4 +1,4 @@
-package com.skx.tomike.fragment.business
+package com.skx.tomike.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

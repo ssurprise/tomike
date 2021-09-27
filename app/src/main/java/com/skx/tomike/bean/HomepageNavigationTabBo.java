@@ -1,4 +1,4 @@
-package com.skx.tomike.data.bo;
+package com.skx.tomike.bean;
 
 /**
  * Created by shiguotao on 2017/2/27.

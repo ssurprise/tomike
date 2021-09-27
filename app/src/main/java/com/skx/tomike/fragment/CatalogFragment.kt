@@ -1,4 +1,4 @@
-package com.skx.tomike.fragment.business
+package com.skx.tomike.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,7 +31,7 @@ class CatalogFragment : BaseFragment() {
         // GridView 展示形式
         mCatalogRecyclerView?.run {
             layoutManager = GridLayoutManager(activity, 4)
-            val mCatalogAdapter = Catalog2Adapter(activity, CatalogListModel.createCatalogGroup())
+            val mCatalogAdapter = Catalog2Adapter(CatalogListModel.createCatalogGroup())
             adapter = mCatalogAdapter
         }
     }

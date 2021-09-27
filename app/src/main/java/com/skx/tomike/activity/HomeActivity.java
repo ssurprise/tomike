@@ -16,10 +16,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.R;
-import com.skx.tomike.data.bo.HomepageNavigationTabBo;
-import com.skx.tomike.fragment.business.CatalogFragment;
-import com.skx.tomike.fragment.business.HomepageFragment;
-import com.skx.tomike.fragment.business.PersonalFragment;
+import com.skx.tomike.bean.HomepageNavigationTabBo;
+import com.skx.tomike.fragment.CatalogFragment;
+import com.skx.tomike.fragment.HomepageFragment;
+import com.skx.tomike.fragment.PersonalFragment;
 import com.skx.tomike.service.LocalService;
 import com.skx.tomike.service.RemoteService;
 

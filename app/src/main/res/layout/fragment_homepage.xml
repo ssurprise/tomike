@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
-    tools:context="com.skx.tomike.fragment.business.HomepageFragment">
+    tools:context="com.skx.tomike.fragment.HomepageFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

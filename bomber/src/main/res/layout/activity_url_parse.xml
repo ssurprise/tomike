@@ -2,14 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.skx.tomike.bomber.basics.UrlParseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/view_padding_15"
-        tools:context="com.skx.tomike.bomber.basics.UrlEncodeActivity">
+        android:padding="@dimen/view_padding_15">
 
         <TextView
             android:id="@+id/tv_urlParse_label"
