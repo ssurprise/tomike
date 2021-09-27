@@ -24,6 +24,9 @@ import java.util.concurrent.ScheduledExecutorService
 class ServiceDemoActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
     private val connection = MyServiceConnection()
+    private val mTvLogcat by lazy {
+        findViewById<TextView>(R.id.tv_service_content)
+    }
 
     override fun initParams() {
     }
@@ -108,9 +111,8 @@ class MyService : Service() {
     }
 }
 
-class MyBinder : Binder() {
 
-}
+class MyBinder : Binder()
 
 class MyServiceConnection : ServiceConnection {
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {

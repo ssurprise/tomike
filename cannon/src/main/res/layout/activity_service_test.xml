@@ -6,7 +6,7 @@
     android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.cannon.ui.activity.LifecycleActivity">
+    tools:context="com.skx.tomike.cannon.ui.activity.ServiceDemoActivity">
 
     <TextView
         android:id="@+id/tv_service_content"

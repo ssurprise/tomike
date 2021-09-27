@@ -240,7 +240,7 @@ public class CatalogListModel {
 
 
         // 加农炮实验室
-        mFunctionCatalogs.add(new CatalogItem("服务", ServiceDemoActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("服务(Service)", ServiceDemoActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("lifecycle", LifecycleActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("Handler", HandlerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AsyncTask", AsyncTaskActivity.class.getName()));
