@@ -1,82 +1,78 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.widget.activity
 
-import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ScaleXSpan;
-import android.widget.SeekBar;
-import android.widget.TextView;
-
-import com.skx.tomike.tank.R;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
-
-import java.util.Locale;
+import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ScaleXSpan
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.TextView
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
+import java.util.*
 
 /**
  * 描述 : TextView 设置字间距
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/3/18 8:27 PM
+ *
+ * 1、android:lineSpacingExtra
+ *   设置行间距，如”3dp”。
+ *
+ * 2、android:lineSpacingMultiplier
+ * 设置行间距的倍数，如”1.2″。
  */
-public class TextWordSpacingActivity extends SkxBaseActivity<BaseViewModel> {
+class TextWordSpacingActivity : SkxBaseActivity<BaseViewModel?>() {
 
-    private final String TEST_CONTENT = "不自见，故明；不自是，故彰；不自伐，故有功；不自矜，故长。";
-
-    private TextView mTvMutable;
-    private TextView mTvMutableLabel;
-
-    @Override
-    protected void initParams() {
+    companion object {
+        const val TEST_CONTENT = "不自见，故明；不自是，故彰；不自伐，故有功；不自矜，故长。"
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_text_view_word_spacing;
+    private var mTvMutable: TextView? = null
+    private val mTvMutableLabel by lazy {
+        findViewById<TextView>(R.id.tv_textSpacing_mutable_factor).apply {
+            text = "字间距：0"
+        }
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("TextView 设置字间距").create();
+    override fun initParams() {}
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_text_view_word_spacing
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("TextView 设置字间距").create()
     }
 
-    public void initView() {
-        TextView tvStandard = findViewById(R.id.tv_textSpacing_standard);
-        tvStandard.setText(TEST_CONTENT);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initView()
+    }
 
-        mTvMutable = findViewById(R.id.tv_textSpacing_mutable);
-        mTvMutable.setText(TEST_CONTENT);
+    public override fun initView() {
+        findViewById<TextView>(R.id.tv_textSpacing_standard).apply {
+            text = TEST_CONTENT
+        }
 
-        SeekBar seekBarMutable = findViewById(R.id.sb_textSpacing_mutable_progress);
-        seekBarMutable.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mTvMutableLabel.setText(String.format(Locale.getDefault(), "字间距：%d", progress));
-                mTvMutable.setText(applyKerning(TEST_CONTENT, progress));
-            }
+        mTvMutable = findViewById<TextView>(R.id.tv_textSpacing_mutable).apply {
+            text = TEST_CONTENT
+        }
+        findViewById<SeekBar>(R.id.sb_textSpacing_mutable_progress)
+                .setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+                    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                        mTvMutableLabel?.text = String.format(Locale.getDefault(), "字间距：%d", progress)
+                        mTvMutable?.text = applyKerning(TEST_CONTENT, progress.toFloat())
+                    }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        mTvMutableLabel = findViewById(R.id.tv_textSpacing_mutable_factor);
-        mTvMutableLabel.setText("字间距：0");
+                    override fun onStartTrackingTouch(seekBar: SeekBar) {}
+                    override fun onStopTrackingTouch(seekBar: SeekBar) {}
+                })
     }
 
     /**
@@ -87,27 +83,21 @@ public class TextWordSpacingActivity extends SkxBaseActivity<BaseViewModel> {
      * @param kerning 缩放倍数
      * @return 调整字间距后的内容
      */
-    public static Spannable applyKerning(CharSequence src, float kerning) {
-        if (src == null) return null;
+    fun applyKerning(src: CharSequence?, kerning: Float): Spannable? {
+        if (src == null) return null
         // 当间距数 <= 0，直接返回
-        if (kerning <= 0) return src instanceof Spannable
-                ? (Spannable) src
-                : new SpannableString(src);
-
-        final int srcLength = src.length();
+        if (kerning <= 0) return if (src is Spannable) src else SpannableString(src)
+        val srcLength = src.length
         // 当源内容长度不足2位时，返回原内容
-        if (srcLength < 2)
-            return src instanceof Spannable ? (Spannable) src : new SpannableString(src);
-
-        final String nonBreakingSpace = "\u00A0";
-        final SpannableStringBuilder builder = src instanceof SpannableStringBuilder
-                ? (SpannableStringBuilder) src : new SpannableStringBuilder(src);
+        if (srcLength < 2) return if (src is Spannable) src else SpannableString(src)
+        val nonBreakingSpace = "\u00A0"
+        val builder = if (src is SpannableStringBuilder) src else SpannableStringBuilder(src)
 
         // 插入间距的
-        for (int i = src.length() - 1; i >= 1; i--) {
-            builder.insert(i, nonBreakingSpace);
-            builder.setSpan(new ScaleXSpan(kerning), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        for (i in src.length - 1 downTo 1) {
+            builder.insert(i, nonBreakingSpace)
+            builder.setSpan(ScaleXSpan(kerning), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
-        return builder;
+        return builder
     }
 }

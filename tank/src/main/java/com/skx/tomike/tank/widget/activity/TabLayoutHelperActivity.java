@@ -2,25 +2,22 @@ package com.skx.tomike.tank.widget.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.utils.ToastTool;
 import com.skx.tomike.tank.R;
 import com.skx.tomike.tank.widget.fragment.TabLayoutContentFragment;
 import com.skx.tomike.tank.widget.view.TabLayoutHelper;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.utils.SkxDrawableUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +26,6 @@ public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
 
     private TabLayout mTabLayout;
     private ViewPager vpContent;
-    private TextView txtContent;
-    private GridLayout selectorGridLayout;
 
     private final List<String> tabList = new ArrayList<>();
 
@@ -39,6 +34,7 @@ public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
         tabList.add("天猫");
         tabList.add("京东");
         tabList.add("拼多多");
+        tabList.add("得物");
     }
 
     @Override
@@ -50,8 +46,6 @@ public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
     protected void initView() {
         mTabLayout = findViewById(R.id.tabLayoutHelper_tab);
         vpContent = findViewById(R.id.tabLayoutHelper_content);
-        txtContent = findViewById(R.id.tabLayoutHelper_textContent);
-        selectorGridLayout = findViewById(R.id.tabLayoutHelper_selector);
     }
 
     @Override
@@ -77,7 +71,6 @@ public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
 //        mTabLayout.removeTabAt(mTabLayout.getTabCount() - 1);
 //        Log.e("删除后 选中的tab位置", "" + mTabLayout.getSelectedTabPosition());
 
-        initGridLayout();
 //        new TabLayoutHelper(mTabLayout).setSimpleAdapter(tabList)
 //                .setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.skx_ff4081))
 //                .setSelectedTabIndicatorHeight(10)
@@ -145,7 +138,7 @@ public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
                 .setOnItemClickListener(new TabLayoutHelper.OnTabCustomViewClick() {
                     @Override
                     public void onItemClick(TabLayout.Tab tab, int position, View view) {
-                        txtContent.setText(tabList.get(position));
+                        ToastTool.showToast(mActivity, tabList.get(position));
                     }
                 })
                 .initSelectedCustomTab(4)
@@ -193,36 +186,5 @@ public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
             return fragmentList.size();
         }
 
-    }
-
-    private void initGridLayout() {
-        for (int i = 0, j = tabList.size(); i < j; i++) {
-            String name = tabList.get(i);
-
-            GridLayout.LayoutParams lp = new GridLayout.LayoutParams();
-            lp.width = 300;
-            lp.height = 200;
-//            lp.columnSpec = 10;
-//            lp.rowSpec
-            lp.topMargin = 10;
-            lp.rightMargin = 20;
-
-            TextView textView = new TextView(this);
-            textView.setText(name);
-            textView.setGravity(Gravity.CENTER);
-            ViewCompat.setBackground(textView, (new SkxDrawableUtil()).getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                    .setStroke(ContextCompat.getColor(this, R.color.skx_2c3e50), 3)
-                    .setCornerRadius(4)
-                    .create());
-
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    mTabLayout.setScrollPosition(2, 0.5f, true);
-                }
-            });
-
-            selectorGridLayout.addView(textView, lp);
-        }
     }
 }

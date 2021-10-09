@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.tank.widget.activity.ShadowActivity">
+    tools:context="com.skx.tomike.tank.widget.activity.TabLayoutHelperActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutHelper_tab"
@@ -31,25 +31,5 @@
         android:textSize="24sp">
 
     </androidx.viewpager.widget.ViewPager>
-
-    <TextView
-        android:id="@+id/tabLayoutHelper_textContent"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:background="@color/skx_2cb298"
-        android:gravity="center"
-        android:textColor="#ff4287"
-        android:textSize="24sp" />
-
-    <GridLayout
-        android:id="@+id/tabLayoutHelper_selector"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:columnCount="3"
-        android:rowCount="4">
-
-    </GridLayout>
 
 </LinearLayout>

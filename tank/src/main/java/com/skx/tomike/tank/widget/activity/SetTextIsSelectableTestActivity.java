@@ -1,13 +1,14 @@
 package com.skx.tomike.tank.widget.activity;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.skx.tomike.tank.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
 
 
 /**
@@ -33,6 +34,7 @@ public class SetTextIsSelectableTestActivity extends SkxBaseActivity<BaseViewMod
         return R.layout.activity_set_text_is_selectable_test;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void initView() {
         TextView tv_textCopyTest_content = findViewById(R.id.textCopyTest_content);

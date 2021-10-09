@@ -1,66 +1,99 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.widget.activity
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.Button
+import android.widget.PopupWindow
+import android.widget.RelativeLayout
+import androidx.core.view.ViewCompat
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.common.utils.SkxDrawableUtil
+import com.skx.tomike.tank.R
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
+class PopupWindowActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
-import com.skx.tomike.tank.R;
-import com.skx.common.utils.SkxDrawableUtil;
 
-public class PopupWindowActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private TextView mBtn1;
-    private TextView mBtn2;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_popupwindow);
-
-        mBtn1 = findViewById(R.id.popupWindow_btn1);
-        mBtn2 = findViewById(R.id.popupWindow_btn2);
-
-        mBtn1.setOnClickListener(this);
-        mBtn2.setOnClickListener(this);
+    override fun initParams() {
     }
 
-    @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.popupWindow_btn1) {
-            showPopupWindow(mBtn1);
-        } else if (i == R.id.popupWindow_btn2) {
-            showPopupWindow(mBtn2);
+    override fun getLayoutId(): Int {
+        return R.layout.activity_popupwindow
+    }
+
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("PopWindow demo").create()
+    }
+
+    override fun initView() {
+        findViewById<Button>(R.id.popupWindow_btn1).also {
+            it.setOnClickListener(this)
+        }
+        findViewById<Button>(R.id.popupWindow_btn2).also {
+            it.setOnClickListener(this)
         }
     }
 
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.popupWindow_btn1 -> showPopupWindow(v)
+            R.id.popupWindow_btn2 -> showPopupWindow2(v)
+        }
+    }
 
-    public void showPopupWindow(View view) {
-        View contentView = LayoutInflater.from(this).inflate(R.layout.popupwindow_test, null);
-
+    private fun showPopupWindow(view: View?) {
+        val contentView = LayoutInflater.from(this)
+                .inflate(R.layout.popupwindow_test, null)
         ViewCompat.setBackground(contentView,
-                (new SkxDrawableUtil()).getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                SkxDrawableUtil().getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
                         .setColor(Color.parseColor("#2cb298"))
                         .setStroke(Color.parseColor("#30c3a6"), 3)
-                        .setCornerRadius(3)
-                        .create());
-        // 这里最后一个参数设置成false,点击其他区域，popupWindow 不会消失，返回键也无效。只要给popupWindow 设置了背景，可以返回，点击其他区域无效
+                        .setCornerRadius(3f)
+                        .create())
+        // 这里最后一个参数设置成false,点击其他区域，popupWindow 不会消失，返回键也无效。
+        // 只要给popupWindow 设置了背景，可以返回，点击其他区域无效
         // 设置成true, 没有设置背景，按返回键 和 点击其他区域无效
-        PopupWindow popupWindow = new PopupWindow(contentView, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT, true);
+        val popupWindow = PopupWindow(contentView,
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                true)
 
         // popupWindow 需要设置背景  返回按钮才生效，否则返回按键不生效
-        ColorDrawable dw = new ColorDrawable(0x00000000);
-        popupWindow.setBackgroundDrawable(dw);
-//         PopupWindow 进入进出动画
-//        popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
-        popupWindow.showAsDropDown(view);
+        val dw = ColorDrawable(0x00000000)
+        popupWindow.setBackgroundDrawable(dw)
+        // PopupWindow 进入进出动画
+        // popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
+        popupWindow.showAsDropDown(view)
+    }
+
+    private fun showPopupWindow2(view: View) {
+        val contentView = LayoutInflater.from(this)
+                .inflate(R.layout.popupwindow_test, null)
+        ViewCompat.setBackground(contentView,
+                SkxDrawableUtil().getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
+                        .setColor(Color.parseColor("#2cb298"))
+                        .setStroke(Color.parseColor("#30c3a6"), 3)
+                        .setCornerRadius(3f)
+                        .create())
+        // 这里最后一个参数设置成false,点击其他区域，popupWindow 不会消失，返回键也无效。只要给popupWindow 设置了背景，可以返回，点击其他区域无效
+        // 设置成true, 没有设置背景，按返回键 和 点击其他区域无效
+        val popupWindow = PopupWindow(contentView,
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                true)
+
+        // popupWindow 需要设置背景  返回按钮才生效，否则返回按键不生效
+        val dw = ColorDrawable(0x00000000)
+        popupWindow.setBackgroundDrawable(dw)
+        // PopupWindow 进入进出动画
+//        popupWindow.animationStyle = R.style.popup_window_anim_style
+        popupWindow.showAsDropDown(view,
+                0,
+                -(view.measuredHeight + 460),
+                Gravity.START)
     }
 }

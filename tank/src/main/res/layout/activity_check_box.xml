@@ -23,7 +23,6 @@
         android:button="@null"
         android:checked="true"
         android:drawableStart="@drawable/booking_home_vip_check_state_selector"
-        android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
         android:padding="5dp"
         android:text="鸡蛋"
         tools:ignore="HardcodedText" />
@@ -49,7 +48,6 @@
         android:button="@drawable/booking_home_vip_check_state_selector"
         android:checked="true"
         android:drawableStart="@drawable/booking_home_vip_check_state_selector"
-        android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
         android:padding="5dp"
         android:text="鸡蛋"
         tools:ignore="HardcodedText" />
@@ -91,7 +89,6 @@
         android:button="@null"
         android:checked="true"
         android:drawableStart="@drawable/booking_home_vip_check_state_selector"
-        android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
         android:padding="5dp"
         android:text="鸡蛋"
         tools:ignore="HardcodedText" />
@@ -115,7 +112,6 @@
         android:button="@drawable/booking_home_vip_check_state_selector"
         android:checked="true"
         android:drawableStart="@drawable/booking_home_vip_check_state_selector"
-        android:drawableLeft="@drawable/booking_home_vip_check_state_selector"
         android:padding="5dp"
         android:text="鸡蛋"
         tools:ignore="HardcodedText" />

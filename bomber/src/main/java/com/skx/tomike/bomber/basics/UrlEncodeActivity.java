@@ -2,11 +2,13 @@ package com.skx.tomike.bomber.basics;
 
 import android.util.Log;
 
+import com.skx.common.base.TitleConfig;
 import com.skx.tomike.bomber.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 public class UrlEncodeActivity extends SkxBaseActivity<BaseViewModel> {
@@ -16,6 +18,11 @@ public class UrlEncodeActivity extends SkxBaseActivity<BaseViewModel> {
     @Override
     protected void initParams() {
 
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("采用utf-8编码/解码").create();
     }
 
     @Override
@@ -29,6 +36,7 @@ public class UrlEncodeActivity extends SkxBaseActivity<BaseViewModel> {
         String test2 = "556";
         String test3 = "abck.@";
         String test4 = "才发呢过@#￥%&*（）";
+
 
         try {
             Log.e("test1", URLEncoder.encode(test1, URL_ENCODE));

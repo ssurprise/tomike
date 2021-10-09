@@ -1,43 +1,34 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.widget.activity
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import com.google.android.material.snackbar.Snackbar
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.tomike.tank.R
 
-import androidx.appcompat.app.AppCompatActivity;
+class SnackBarActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
-import com.google.android.material.snackbar.Snackbar;
-import com.skx.tomike.tank.R;
+    private var mTvLabel: TextView? = null
 
-
-public class SnackBarActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private TextView tv_label;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_snackbar);
-
-        tv_label = findViewById(R.id.snackbar_label);
-
-        Button btn = findViewById(R.id.snackbar_btn);
-        if (btn != null) {
-            btn.setOnClickListener(this);
+    override fun onClick(v: View) {
+        if (v.id == R.id.snackbar_btn) { // 父容器 ,提示信息，持续时间
+            // setAction() 用于给SnackBar设定一个Action， 右侧显示的东西，点击之后会回调OnclickListener中的Onclick方法
+            Snackbar.make(v, "出现了出现了", Snackbar.LENGTH_LONG).setAction("真棒") { mTvLabel!!.text = "这就对了嘛！" }.setCallback(null).show()
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.snackbar_btn) {// 父容器 ,提示信息，持续时间
-            // setAction() 用于给SnackBar设定一个Action， 右侧显示的东西，点击之后会回调OnclickListener中的Onclick方法
-            Snackbar.make(v, "出现了出现了", Snackbar.LENGTH_LONG).setAction("真棒", new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tv_label.setText("这就对了嘛！");
-                }
-            }).setCallback(null).show();
-        }
+    override fun initParams() {
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_snackbar
+    }
+
+    override fun initView() {
+        mTvLabel = findViewById(R.id.snackbar_label)
+        val btn = findViewById<Button>(R.id.snackbar_btn)
+        btn?.setOnClickListener(this)
     }
 }

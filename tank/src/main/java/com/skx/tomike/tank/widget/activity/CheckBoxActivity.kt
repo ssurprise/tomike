@@ -1,12 +1,11 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.widget.activity
 
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-
-import com.skx.tomike.tank.R;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
+import android.util.Log
+import android.widget.CheckBox
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
 
 /**
  * 描述 : CheckBox demo
@@ -14,34 +13,24 @@ import com.skx.common.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2020-03-23 23:23
  */
-public class CheckBoxActivity extends SkxBaseActivity<BaseViewModel> {
+class CheckBoxActivity : SkxBaseActivity<BaseViewModel?>() {
 
-    @Override
-    protected void initParams() {
+    override fun initParams() {}
 
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("CheckBox 实验室").create()
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("CheckBox 实验室").create();
+    override fun getLayoutId(): Int {
+        return R.layout.activity_check_box
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_check_box;
-    }
-
-    @Override
-    protected void initView() {
-        CheckBox checkBox = findViewById(R.id.cb_checkBoxTest_1);
-        CheckBox checkBox2 = findViewById(R.id.cb_checkBoxTest_2);
-        CheckBox checkBox3 = findViewById(R.id.cb_checkBoxTest_3);
-
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-            }
-        });
+    override fun initView() {
+        val checkBox = findViewById<CheckBox>(R.id.cb_checkBoxTest_1)
+//        val checkBox2 = findViewById<CheckBox>(R.id.cb_checkBoxTest_2)
+//        val checkBox3 = findViewById<CheckBox>(R.id.cb_checkBoxTest_3)
+        checkBox.setOnCheckedChangeListener { _, isChecked ->
+            Log.e(TAG, "buttonView：$isChecked")
+        }
     }
 }

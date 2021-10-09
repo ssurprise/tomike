@@ -21,13 +21,11 @@
 
     <TextView
         android:id="@+id/tv_withCallBack_acceptValue"
+        style="@style/LogcatTextStyle"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
-        android:background="@color/skx_2c3e50"
         android:padding="15dp"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_withCallBack_name"
         tools:text="1234567890" />

@@ -1,9 +1,9 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.widget.activity
 
-import com.skx.tomike.tank.R;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
 
 /**
  * 描述 : EditText光标修改
@@ -11,24 +11,17 @@ import com.skx.common.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2020/4/1 7:46 PM
  */
-public class EditTextCursorActivity extends SkxBaseActivity<BaseViewModel> {
+class EditTextCursorActivity : SkxBaseActivity<BaseViewModel?>() {
 
-    @Override
-    protected void initParams() {
+    override fun initParams() {}
+
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("EditText 光标修改").create()
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("EditText 光标修改").create();
+    override fun getLayoutId(): Int {
+        return R.layout.activity_edit_text_cursor
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_edit_text_cursor;
-    }
-
-    @Override
-    protected void initView() {
-
-    }
+    override fun initView() {}
 }

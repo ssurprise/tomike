@@ -180,7 +180,7 @@ public class CatalogListModel {
     static {
         // 坦克实验室 - view 篇
         mViewCatalogs.add(new CatalogItem("View 焦点", ViewFocusActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextView 字间距", TextWordSpacingActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextView 行间距/字间距", TextWordSpacingActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 富文本SpannableString", SpannableStringBuilderActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 复制测试", SetTextIsSelectableTestActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));

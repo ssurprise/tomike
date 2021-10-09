@@ -1,26 +1,18 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.widget.activity
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
-
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatTextView;
-
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
-import com.skx.tomike.tank.R;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.text.Editable
+import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
+import java.util.*
 
 /**
  * 描述 : EditText明暗文切换
@@ -28,121 +20,86 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020/4/1 7:46 PM
  */
-public class LightDarkTextActivity extends SkxBaseActivity<BaseViewModel> {
+class LightDarkTextActivity : SkxBaseActivity<BaseViewModel>() {
 
-    private boolean isDarkStatus;
-    private AppCompatTextView btnSwitch;
+    private var isDarkStatus = false
+    private var btnSwitch: AppCompatTextView? = null
+    private val editTexts: MutableList<AppCompatEditText> = ArrayList(4)
+    private var index = 0
 
-    private final List<AppCompatEditText> editTexts = new ArrayList<>(4);
-    private int index = 0;
+    override fun initParams() {}
 
-    @Override
-    protected void initParams() {
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("EditText 明暗文切换").create()
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("EditText 明暗文切换").create();
+    override fun getLayoutId(): Int {
+        return R.layout.activity_light_dark_text
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_light_dark_text;
-    }
+    override fun initView() {
+        val input = findViewById<AppCompatEditText>(R.id.lightDarkText_input)
+        val input1 = findViewById<AppCompatEditText>(R.id.lightDarkText_input1)
+        val input2 = findViewById<AppCompatEditText>(R.id.lightDarkText_input2)
+        val input3 = findViewById<AppCompatEditText>(R.id.lightDarkText_input3)
 
-    @Override
-    protected void initView() {
-        AppCompatEditText input = findViewById(R.id.lightDarkText_input);
-        AppCompatEditText input1 = findViewById(R.id.lightDarkText_input1);
-        AppCompatEditText input2 = findViewById(R.id.lightDarkText_input2);
-        AppCompatEditText input3 = findViewById(R.id.lightDarkText_input3);
-        editTexts.add(input);
-        editTexts.add(input1);
-        editTexts.add(input2);
-        editTexts.add(input3);
+        editTexts.add(input)
+        editTexts.add(input1)
+        editTexts.add(input2)
+        editTexts.add(input3)
 
-        btnSwitch = findViewById(R.id.lightDarkText_switch);
-        btnSwitch.setText("暗文");
+        btnSwitch = findViewById(R.id.lightDarkText_switch)
+        btnSwitch?.text = "暗文"
 
-        input.setOnEditorActionListener(actionListener);
-        input1.setOnEditorActionListener(actionListener);
-        input2.setOnEditorActionListener(actionListener);
-        input3.setOnEditorActionListener(actionListener);
-
-        TextWatcher textWatcher = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                int length = s.length();
-                if (length >= 1 && index < editTexts.size() - 1) {
-                    (editTexts.get(++index)).requestFocus(EditorInfo.IME_ACTION_NEXT);
+        val textWatcher: TextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                val length = s.length
+                if (length >= 1 && index < editTexts.size - 1) {
+                    editTexts[++index].requestFocus(EditorInfo.IME_ACTION_NEXT)
                 }
             }
-        };
-
-        input.addTextChangedListener(textWatcher);
-        input1.addTextChangedListener(textWatcher);
-        input2.addTextChangedListener(textWatcher);
-        input3.addTextChangedListener(textWatcher);
-
-        btnSwitch.setOnClickListener(v -> {
-            isDarkStatus = !isDarkStatus;
+        }
+        input.addTextChangedListener(textWatcher)
+        input1.addTextChangedListener(textWatcher)
+        input2.addTextChangedListener(textWatcher)
+        input3.addTextChangedListener(textWatcher)
+        btnSwitch?.setOnClickListener {
+            isDarkStatus = !isDarkStatus
             if (isDarkStatus) {
-                btnSwitch.setText("明文");
-                for (AppCompatEditText et : editTexts) {
-                    et.setTransformationMethod(new PasswordCharSequenceStyle());
-                    et.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                btnSwitch?.text = "明文"
+                for (et in editTexts) {
+                    et.transformationMethod = PasswordCharSequenceStyle()
                 }
             } else {
-                btnSwitch.setText("暗文");
-                for (AppCompatEditText et : editTexts) {
-                    et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                btnSwitch?.text = "暗文"
+                for (et in editTexts) {
+                    et.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 }
             }
-//                Selection.setSelection(input.getEditableText(), input.length());
-        });
+        }
     }
 
-    private final TextView.OnEditorActionListener actionListener = (v, actionId, event) -> {
-        Log.e("KeyCode", event.getKeyCode() + "");
-        Log.e("action", event.getAction() + "");
-        return false;
-    };
+    inner class PasswordCharSequenceStyle : PasswordTransformationMethod() {
+        override fun getTransformation(source: CharSequence, view: View): CharSequence {
+            return PasswordCharSequence(source)
+        }
+    }
 
-    public static class PasswordCharSequenceStyle extends PasswordTransformationMethod {
+    inner class PasswordCharSequence(val mSource: CharSequence) : CharSequence {
 
-        @Override
-        public CharSequence getTransformation(CharSequence source, View view) {
-            return new PasswordCharSequence(source);
+        override val length: Int
+            get() = mSource.length
+
+
+        override fun get(index: Int): Char {
+            return '*'
         }
 
-        private static class PasswordCharSequence implements CharSequence {
-            private final CharSequence mSource;
-
-            public PasswordCharSequence(CharSequence source) {
-                mSource = source;
-            }
-
-            public char charAt(int index) {
-                return '*';
-            }
-
-            public int length() {
-                return mSource.length();
-            }
-
-            @NotNull
-            public CharSequence subSequence(int start, int end) {
-                return mSource.subSequence(start, end);
-            }
+        override fun subSequence(startIndex: Int, endIndex: Int): CharSequence {
+            return mSource.subSequence(startIndex, endIndex)
         }
+
     }
 }

@@ -86,12 +86,9 @@ public class FlowAdapter extends BaseAdapter {
         textView.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.skx_212121));
         setItemBackground(parent.getContext(), textView);
 
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textView.setSelected(!textView.isSelected());
-                setItemBackground(parent.getContext(), textView);
-            }
+        textView.setOnClickListener(v -> {
+            textView.setSelected(!textView.isSelected());
+            setItemBackground(parent.getContext(), textView);
         });
 
         return textView;

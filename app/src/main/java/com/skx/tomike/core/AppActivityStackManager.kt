@@ -1,4 +1,4 @@
-package com.skx.tomike.util
+package com.skx.tomike.core
 
 import android.app.Activity
 import java.util.*

@@ -1,23 +1,20 @@
-package com.skx.tomike.adapter;
+package com.skx.tomike.adapter
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.skx.tomike.R;
-import com.skx.tomike.model.CatalogCellModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Activity
+import android.content.Intent
+import android.os.Build
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
+import androidx.recyclerview.widget.RecyclerView
+import com.skx.tomike.R
+import com.skx.tomike.adapter.Catalog2Adapter.CatalogCellViewHolder
+import com.skx.tomike.model.CatalogCellModel
+import java.util.*
 
 /**
  * 目录列表Adapter
@@ -25,125 +22,104 @@ import java.util.List;
  * @author shiguotao
  * Created on 2016/4/11.
  */
-public class Catalog2Adapter extends RecyclerView.Adapter<Catalog2Adapter.CatalogCellViewHolder> {
+class Catalog2Adapter(list: List<CatalogCellModel>?) : RecyclerView.Adapter<CatalogCellViewHolder>() {
 
-    private static final int VIEW_TYPE_PARENT = 1;
-    private static final int VIEW_TYPE_CHILD = 2;
+    private val mList: MutableList<CatalogCellModel> = ArrayList()
 
-    private final List<CatalogCellModel> mList = new ArrayList<>();
+    init {
+        setData(list)
+    }
 
-    public Catalog2Adapter(List<CatalogCellModel> list) {
-        super();
-        mList.clear();
+    fun setData(list: List<CatalogCellModel>?) {
+        mList.clear()
         if (list != null) {
-            mList.addAll(list);
+            mList.addAll(list)
         }
     }
 
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof GridLayoutManager) {
-            GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
-            final int oldSpanCnt = gridLayoutManager.getSpanCount();
-            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int position) {
-                    if (getItemViewType(position) == VIEW_TYPE_PARENT) {
-                        return oldSpanCnt;
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        val layoutManager = recyclerView.layoutManager
+        if (layoutManager is GridLayoutManager) {
+            val oldSpanCnt = layoutManager.spanCount
+            layoutManager.spanSizeLookup = object : SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return if (getItemViewType(position) == VIEW_TYPE_PARENT) {
+                        oldSpanCnt
                     } else {
-                        return 1;
+                        1
                     }
-
                 }
-            });
-            gridLayoutManager.setSpanCount(gridLayoutManager.getSpanCount());
+            }
+            layoutManager.spanCount = layoutManager.spanCount
         }
-        super.onAttachedToRecyclerView(recyclerView);
+        super.onAttachedToRecyclerView(recyclerView)
     }
 
-    @Override
-    public int getItemCount() {
-        return mList.size();
+    override fun getItemCount(): Int {
+        return mList.size
     }
 
-
-    @Override
-    public int getItemViewType(int position) {
-        CatalogCellModel catalogCellModel = mList.get(position);
-        if (catalogCellModel.isParent()) {
-            return VIEW_TYPE_PARENT;
+    override fun getItemViewType(position: Int): Int {
+        val catalogCellModel = mList[position]
+        return if (catalogCellModel.isParent) {
+            VIEW_TYPE_PARENT
         } else {
-            return VIEW_TYPE_CHILD;
+            VIEW_TYPE_CHILD
         }
     }
 
-    @NonNull
-    @Override
-    public CatalogCellViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == VIEW_TYPE_PARENT) {
-            return new CatalogGroupViewHolder(
-                    LayoutInflater.from(parent.getContext())
-                            .inflate(R.layout.adapter_catalog_item_parent, parent, false));
-        }
-        return new CatalogChildViewHolder(
-                LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.adapter_catalog_item, parent, false));
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogCellViewHolder {
+        return if (viewType == VIEW_TYPE_PARENT) {
+            CatalogGroupViewHolder(
+                    LayoutInflater.from(parent.context)
+                            .inflate(R.layout.adapter_catalog_item_parent, parent, false))
+        } else CatalogChildViewHolder(
+                LayoutInflater.from(parent.context)
+                        .inflate(R.layout.adapter_catalog_item, parent, false))
     }
 
-    @Override
-    public void onBindViewHolder(CatalogCellViewHolder holder, int position) {
-        holder.bindData(mList.get(position));
+    override fun onBindViewHolder(holder: CatalogCellViewHolder, position: Int) {
+        holder.bindData(mList[position])
     }
 
-    abstract static class CatalogCellViewHolder extends RecyclerView.ViewHolder {
-
-        CatalogCellViewHolder(View itemView) {
-            super(itemView);
-        }
-
-        public abstract void bindData(CatalogCellModel cellModel);
+    abstract class CatalogCellViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+        abstract fun bindData(cellModel: CatalogCellModel)
     }
 
-    static class CatalogChildViewHolder extends CatalogCellViewHolder {
-        TextView tvCellName;
+    internal class CatalogChildViewHolder(itemView: View) : CatalogCellViewHolder(itemView) {
 
-        CatalogChildViewHolder(View itemView) {
-            super(itemView);
-            tvCellName = (TextView) itemView.findViewById(R.id.catalog_item_child_name);
-        }
+        private var tvCellName: TextView = itemView.findViewById(R.id.catalog_item_child_name)
 
-        @Override
-        public void bindData(final CatalogCellModel cellModel) {
-            tvCellName.setText(cellModel.getTitle());
-            tvCellName.setOnClickListener(v -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    v.setElevation(5.0f);
+        override fun bindData(cellModel: CatalogCellModel) {
+            tvCellName.run {
+                text = cellModel.title
+                setOnClickListener { v: View ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        v.elevation = 5.0f
+                    }
+                    try {
+                        val intent = Intent(itemView.context, Class.forName(cellModel.target))
+                        (itemView.context as Activity).startActivity(intent)
+                    } catch (e: ClassNotFoundException) {
+                        e.printStackTrace()
+                    }
                 }
-                try {
-                    Intent intent = new Intent(itemView.getContext(), Class.forName(cellModel.getTarget()));
-                    ((Activity) itemView.getContext()).startActivity(intent);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-            });
+            }
         }
     }
 
-    static class CatalogGroupViewHolder extends CatalogCellViewHolder {
+    internal class CatalogGroupViewHolder(itemView: View) : CatalogCellViewHolder(itemView) {
 
-        TextView tvGroupTittle;
-        ImageView ivGroupArrow;
+        private var tvGroupTittle: TextView = itemView.findViewById(R.id.catalog_item_group_name)
+        private var ivGroupArrow: ImageView = itemView.findViewById(R.id.catalog_item_group_arrow)
 
-        CatalogGroupViewHolder(View itemView) {
-            super(itemView);
-            tvGroupTittle = (TextView) itemView.findViewById(R.id.catalog_item_group_name);
-            ivGroupArrow = (ImageView) itemView.findViewById(R.id.catalog_item_group_arrow);
+        override fun bindData(cellModel: CatalogCellModel) {
+            tvGroupTittle.text = cellModel.title
         }
+    }
 
-        @Override
-        public void bindData(CatalogCellModel cellModel) {
-            tvGroupTittle.setText(cellModel.getTitle());
-        }
+    companion object {
+        private const val VIEW_TYPE_PARENT = 1
+        private const val VIEW_TYPE_CHILD = 2
     }
 }

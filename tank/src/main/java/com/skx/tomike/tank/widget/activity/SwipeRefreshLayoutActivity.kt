@@ -1,19 +1,14 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.widget.activity
 
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import androidx.lifecycle.Observer;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.widget.viewmodel.SwipeRefreshViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
+import com.skx.tomike.tank.widget.viewmodel.SwipeRefreshViewModel
+import java.util.*
 
 /**
  * 描述 : SwipeRefreshLayout demo
@@ -21,54 +16,43 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020-03-18 22:11
  */
-public class SwipeRefreshLayoutActivity extends SkxBaseActivity<SwipeRefreshViewModel> implements SwipeRefreshLayout.OnRefreshListener {
+class SwipeRefreshLayoutActivity : SkxBaseActivity<SwipeRefreshViewModel>(), OnRefreshListener {
 
-    private SwipeRefreshLayout mSwipeLayout;
-    private ArrayAdapter<String> mAdapter;
+    private var mSwipeLayout: SwipeRefreshLayout? = null
+    private var mAdapter: ArrayAdapter<String>? = null
+    private val mData: MutableList<String> = ArrayList()
 
-    private final List<String> mData = new ArrayList<>();
-
-
-    @Override
-    protected void initParams() {
-        mData.addAll(Arrays.asList("Java", "Javascript", "C++", "Ruby", "Json", "HTML"));
+    override fun initParams() {
+        mData.addAll(listOf("Java", "Javascript", "C++", "Ruby", "Json", "HTML"))
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_swipe_refresh_layout;
+    override fun getLayoutId(): Int {
+        return R.layout.activity_swipe_refresh_layout
     }
 
-    @Override
-    protected void subscribeEvent() {
-        mViewModel.getTestDataLiveData().observe(this, new Observer<List<String>>() {
-            @Override
-            public void onChanged(List<String> strings) {
-                if (strings != null) {
-                    mData.addAll(strings);
-                    mAdapter.notifyDataSetChanged();
-                }
-                mSwipeLayout.setRefreshing(false);
+    override fun subscribeEvent() {
+        mViewModel?.testDataLiveData?.observe(this, { strings: List<String>? ->
+            strings?.run {
+                mData.addAll(this)
+                mAdapter?.notifyDataSetChanged()
             }
-        });
+            mSwipeLayout?.isRefreshing = false
+        })
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("SwipeRefreshLayout 下拉刷新").create();
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("SwipeRefreshLayout 下拉刷新").create()
     }
 
-    @Override
-    protected void initView() {
-        mSwipeLayout = findViewById(R.id.srl_swipeRefreshDemo_warp);
-        mSwipeLayout.setOnRefreshListener(this);
-
-        ListView lvTestData = findViewById(R.id.lv_swipeRefreshDem_content);
-        lvTestData.setAdapter(mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mData));
+    override fun initView() {
+        mSwipeLayout = findViewById(R.id.srl_swipeRefreshDemo_warp)
+        mSwipeLayout?.setOnRefreshListener(this)
+        val lvTestData = findViewById<ListView>(R.id.lv_swipeRefreshDem_content)
+        lvTestData.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mData)
+                .also { mAdapter = it }
     }
 
-    @Override
-    public void onRefresh() {
-        mViewModel.loadData();
+    override fun onRefresh() {
+        mViewModel!!.loadData()
     }
 }

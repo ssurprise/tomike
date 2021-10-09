@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="2dp">
+    android:paddingBottom="1dp">
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="Volley" />
+        android:text="Volley"
+        tools:ignore="HardcodedText" />
 
     <View
         android:layout_width="100dp"
@@ -20,7 +22,8 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="Fresco" />
+        android:text="Fresco"
+        tools:ignore="HardcodedText" />
 
     <View
         android:layout_width="100dp"
@@ -31,5 +34,6 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="Picasso" />
+        android:text="Picasso"
+        tools:ignore="HardcodedText" />
 </LinearLayout>

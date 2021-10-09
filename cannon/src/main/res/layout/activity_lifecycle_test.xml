@@ -10,13 +10,11 @@
 
     <TextView
         android:id="@+id/tv_lifecycle_content"
+        style="@style/LogcatTextStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="100dp"
-        android:background="@color/skx_2c3e50"
         android:padding="10dp"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
         tools:text="aaaa" />
 
     <Button
