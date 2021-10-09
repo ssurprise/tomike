@@ -2,18 +2,17 @@ package com.skx.tomike.missile.activity;
 
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.view.ViewCompat;
 
-import com.skx.tomike.missile.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.SkxDrawableUtil;
 import com.skx.common.utils.ToastTool;
+import com.skx.tomike.missile.R;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -51,31 +50,11 @@ public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
     protected void initView() {
         mLlStackWrap = findViewById(R.id.tv_dueue_sourceWrap);
 
-        findViewById(R.id.tv_dueue_addFirst).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                push(true);
-            }
-        });
-        findViewById(R.id.tv_dueue_addLast).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                push(false);
-            }
-        });
+        findViewById(R.id.tv_dueue_addFirst).setOnClickListener(v -> push(true));
+        findViewById(R.id.tv_dueue_addLast).setOnClickListener(v -> push(false));
 
-        findViewById(R.id.tv_dueue_removeFirst).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pop(true);
-            }
-        });
-        findViewById(R.id.tv_dueue_removeLast).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pop(false);
-            }
-        });
+        findViewById(R.id.tv_dueue_removeFirst).setOnClickListener(v -> pop(true));
+        findViewById(R.id.tv_dueue_removeLast).setOnClickListener(v -> pop(false));
     }
 
     private void push(boolean isFirst) {

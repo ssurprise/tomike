@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 
 
 /**
- * 描述 : 类描述
+ * 描述 : base fragment
+ * 目前只是做了些log 记录。
+ *
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2021/9/24 3:50 下午

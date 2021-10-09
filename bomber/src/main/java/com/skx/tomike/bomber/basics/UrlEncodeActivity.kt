@@ -1,66 +1,58 @@
-package com.skx.tomike.bomber.basics;
+package com.skx.tomike.bomber.basics
 
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.View
+import android.widget.EditText
+import android.widget.TextView
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.bomber.R
+import java.net.URLDecoder
+import java.net.URLEncoder
 
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
-import com.skx.tomike.bomber.R;
+class UrlEncodeActivity : SkxBaseActivity<BaseViewModel>() {
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-
-public class UrlEncodeActivity extends SkxBaseActivity<BaseViewModel> {
-
-    private static final String URL_ENCODE = "UTF-8";
-
-    private EditText mEvOriginalVal;
-    private TextView mTvResult;
-
-    @Override
-    protected void initParams() {
-
+    private val mEvOriginalVal: EditText by lazy {
+        findViewById(R.id.et_urlEncode_original_value)
+    }
+    private val mTvResult: TextView by lazy {
+        findViewById(R.id.tv_urlEncode_result)
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("URL编码").create();
+    override fun initParams() {}
+
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("URL编码").create()
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_url_encode;
+    override fun getLayoutId(): Int {
+        return R.layout.activity_url_encode
     }
 
-    @Override
-    protected void initView() {
-        mEvOriginalVal = findViewById(R.id.et_urlEncode_original_value);
-        mTvResult = findViewById(R.id.tv_urlEncode_result);
-
-
-        findViewById(R.id.tv_urlEncode_encoder).setOnClickListener(v -> {
-            String oriVal = mEvOriginalVal.getText().toString();
-            String encodeResult;
-            try {
-                encodeResult = URLEncoder.encode(oriVal, URL_ENCODE);
-            } catch (Exception e) {
-                e.printStackTrace();
-                encodeResult = e.getMessage();
+    override fun initView() {
+        findViewById<View>(R.id.tv_urlEncode_encoder).setOnClickListener {
+            val oriVal = mEvOriginalVal.text.toString()
+            val encodeResult: String? = try {
+                URLEncoder.encode(oriVal, URL_ENCODE)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                e.message
             }
-            mTvResult.setText(encodeResult);
-        });
-
-        findViewById(R.id.tv_urlEncode_decoder).setOnClickListener(v -> {
-            String oriVal = mEvOriginalVal.getText().toString();
-            String decodeResult;
-            try {
-                decodeResult = URLDecoder.decode(oriVal, URL_ENCODE);
-            } catch (Exception e) {
-                e.printStackTrace();
-                decodeResult = e.getMessage();
+            mTvResult.text = encodeResult
+        }
+        findViewById<View>(R.id.tv_urlEncode_decoder).setOnClickListener {
+            val oriVal = mEvOriginalVal.text.toString()
+            val decodeResult: String? = try {
+                URLDecoder.decode(oriVal, URL_ENCODE)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                e.message
             }
-            mTvResult.setText(decodeResult);
-        });
+            mTvResult.text = decodeResult
+        }
+    }
+
+    companion object {
+        private const val URL_ENCODE = "UTF-8"
     }
 }

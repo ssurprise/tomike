@@ -2,18 +2,17 @@ package com.skx.tomike.missile.activity;
 
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.view.ViewCompat;
 
-import com.skx.tomike.missile.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.SkxDrawableUtil;
 import com.skx.common.utils.ToastTool;
+import com.skx.tomike.missile.R;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -50,18 +49,8 @@ public class QueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
     @Override
     protected void initView() {
         mLlStackWrap = findViewById(R.id.tv_queue_sourceWrap);
-        findViewById(R.id.tv_queue_pushBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                push();
-            }
-        });
-        findViewById(R.id.tv_queue_popBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pop();
-            }
-        });
+        findViewById(R.id.tv_queue_pushBtn).setOnClickListener(v -> push());
+        findViewById(R.id.tv_queue_popBtn).setOnClickListener(v -> pop());
     }
 
     private void push() {

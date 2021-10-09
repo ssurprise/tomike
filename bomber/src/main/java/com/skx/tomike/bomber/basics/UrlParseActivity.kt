@@ -1,19 +1,14 @@
-package com.skx.tomike.bomber.basics;
+package com.skx.tomike.bomber.basics
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import com.skx.tomike.bomber.R;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
-import com.skx.common.utils.ToastTool;
-
-import java.net.MalformedURLException;
-import java.net.URL;
+import android.widget.EditText
+import android.widget.TextView
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.common.utils.ToastTool
+import com.skx.tomike.bomber.R
+import java.net.MalformedURLException
+import java.net.URL
 
 /**
  * 描述 : Url 解析
@@ -21,87 +16,60 @@ import java.net.URL;
  * 版本 : V1
  * 创建时间 : 2020/7/27 12:26 AM
  */
-public class UrlParseActivity extends SkxBaseActivity<BaseViewModel> {
+class UrlParseActivity : SkxBaseActivity<BaseViewModel?>() {
 
-    private String mTargetUrl = "https://haokan.baidu.com/v?vid=17099850856972684618";
-    private TextView mTvResult;
-
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("url 解析").create();
+    private var mTargetUrl = "https://haokan.baidu.com/v?vid=17099850856972684618"
+    private val mTvResult: TextView by lazy {
+        findViewById(R.id.tv_urlParse_result)
     }
 
-    @Override
-    protected void initParams() {
-
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("url 解析").create()
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_url_parse;
+    override fun initParams() {}
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_url_parse
     }
 
-    @Override
-    protected void initView() {
-        EditText mEtTargetUrl = findViewById(R.id.tv_urlParse_targetUrl);
-        mEtTargetUrl.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    override fun initView() {
+        val mEtTargetUrl = findViewById<EditText>(R.id.tv_urlParse_targetUrl)
+        mEtTargetUrl.setText(mTargetUrl)
+        urlParse(mTargetUrl)
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mTargetUrl = s.toString();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        TextView tv_urlParse_startParsing = findViewById(R.id.tv_urlParse_startParsing);
-        tv_urlParse_startParsing.setOnClickListener(v -> urlParse());
-
-        mTvResult = findViewById(R.id.tv_urlParse_result);
-        mEtTargetUrl.setText(mTargetUrl);
-        urlParse();
+        findViewById<TextView>(R.id.tv_urlParse_startParsing).setOnClickListener {
+            mTargetUrl = mEtTargetUrl.text.toString()
+            urlParse(mTargetUrl)
+        }
     }
 
-    private void urlParse() {
+    private fun urlParse(urlStr: String) {
         try {
-            URL url = new URL(mTargetUrl);
-            StringBuilder sb = new StringBuilder();
+            val url = URL(urlStr)
+            val sb = StringBuilder()
 
             // The protocol to use (ftp, http, nntp, ... etc.)
-            sb.append("协议为（protocol）：\n").append(url.getProtocol()).append("\n\n")
-
+            sb.append("协议为（protocol）：\n").append(url.protocol).append("\n\n")
                     // The authority part of this URL.
-                    .append("验证信息（authority）：\n").append(url.getAuthority()).append("\n\n")
-
+                    .append("验证信息（authority）：\n").append(url.authority).append("\n\n")
                     // The host name to connect to.
-                    .append("主机名（host）：\n").append(url.getHost()).append("\n\n")
-
+                    .append("主机名（host）：\n").append(url.host).append("\n\n")
                     // The protocol port to connect to.
-                    .append("端口（port）：\n").append(url.getPort()).append("\n\n")
-                    .append("默认端口（DefaultPort）：\n").append(url.getDefaultPort()).append("\n\n")
-
+                    .append("端口（port）：\n").append(url.port).append("\n\n")
+                    .append("默认端口（DefaultPort）：\n").append(url.defaultPort).append("\n\n")
                     // The specified file name on that host. {@code file} is  defined as {@code path[?query]}
-                    .append("文件名及请求参数（file）：\n").append(url.getFile()).append("\n\n")
-
+                    .append("文件名及请求参数（file）：\n").append(url.file).append("\n\n")
                     // The path part of this URL.
-                    .append("路径（path）：\n").append(url.getPath()).append("\n\n")
-
+                    .append("路径（path）：\n").append(url.path).append("\n\n")
                     // The query part of this URL.
-                    .append("请求参数（query）：\n").append(url.getQuery()).append("\n\n")
-                    .append("定位位置（ref）：\n").append(url.getRef()).append("\n\n");
-
-            mTvResult.setText(sb.toString());
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            ToastTool.showToast(mActivity, e.getMessage());
-            mTvResult.setText("");
+                    .append("请求参数（query）：\n").append(url.query).append("\n\n")
+                    .append("定位位置（ref）：\n").append(url.ref).append("\n\n")
+            mTvResult.text = sb.toString()
+        } catch (e: MalformedURLException) {
+            e.printStackTrace()
+            ToastTool.showToast(mActivity, e.message)
+            mTvResult.text = ""
         }
     }
 }
