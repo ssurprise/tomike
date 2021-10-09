@@ -15,10 +15,10 @@ ___
 	5. TextSwitcher
 	6. EditText 光标修改
 	7. EditText 明暗文切换
-	8. TextView/EditText 小写转大写
+	8. EditText 小写转大写
 	9. 自定义显示方向的ImageView
 	10. RadioGroup 单选
-	11. CheckBox 更换自定义icon
+	11. CheckBox 自定义icon
 	12. 自定义ShapeView
 	13. 流式布局 FlowLayout
 	14. CoordinatorLayout 效果
@@ -68,31 +68,32 @@ ___
 _________
 
 目前存放"功能类实现"的demo
-1. NFC 读写
-2. Android 权限介绍
-3. RxJava 实现串行、并行
-4. OkHttp 网络访问
-5. Retrofit 网络访问
-6. Room数据库使用 - 最近浏览的案例
-7. 图片加载库(Glide)的二次封装
-8. 相册/照片墙
-9. 图片预览 - 支持缩放
-10. 大图压缩加载 
-11. Handler 消息机制
-12. Lifecycle 使用
-13. AsyncTask
-14. 访问系统目录 - 使用存储访问框架访问文件
-15. 序列化 - Parcelable
-16. 获取设备信息、App信息
-17. 键盘操作
-18. 透明Activity主题
-19. 打开指定第三方APP
-20. 消息通知
-21. 热修复 - Tinker
-22. 重启APP
-23. ActivityResultLauncher 替代 StartActivityForResult
-24. 扫描二维码
-25. 服务Service - 四大组件之一
+1. 服务Service - 四大组件之一
+2. Lifecycle demo
+3. Handler 消息机制
+4. AsyncTask
+5. Permission权限管理
+6. 消息通知
+7. 透明Activity主题
+8. ActivityResultLauncher 替代 StartActivityForResult
+9. Room数据库使用 - 最近浏览的案例
+10. OkHttp 网络访问
+11. Retrofit 网络访问
+12. RxJava 实现串行、并行
+13. 图片加载库(Glide)的二次封装
+14. 扫描二维码(zxing)
+15. 相册/照片墙
+16. 图片预览 - 支持缩放
+17. 大图压缩加载
+18. 访问系统目录 - 使用存储访问框架访问文件
+19. 序列化 - Parcelable
+20. Android 倒计时实现方式
+21. 获取设备信息、App信息
+22. 键盘管理
+23. 热修复 - Tinker
+24. 重启APP
+25. 打开指定第三方APP
+26. NFC 读写
 
 
 ### bomber：轰炸机实验室
@@ -102,20 +103,21 @@ ___
 
 1. 泛型
 2. 反射
-3. URLEncoder
+3. URL 编码
 4. url 解析
 5. json 解析
 6. xml 解析
-7. Double <=> String
-8. 线程
-9. 守护线程
-10. 中断线程
-11. synchronized
-12. 线程间通信 - 生产者消费者模型
-13. 获取线程返回值
-14. 线程池 - Executors
-15. 线程池 - ThreadPoolExecutor
-16. ReentrantLock
+7. Base64 加密、解密
+8. Double <=> String
+9. 线程
+10. 守护线程
+11. 中断线程
+12. synchronized
+13. 线程间通信 - 生产者消费者模型
+14. 获取线程返回值
+15. 线程池 - Executors
+16. 线程池 - ThreadPoolExecutor
+17. ReentrantLock
 
 
 ### missile：导弹实验室

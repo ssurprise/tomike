@@ -1,5 +1,6 @@
 package com.skx.tomike.bomber.basics;
 
+import android.util.Base64;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -8,12 +9,7 @@ import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.bomber.R;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-
-public class UrlEncodeActivity extends SkxBaseActivity<BaseViewModel> {
-
-    private static final String URL_ENCODE = "UTF-8";
+public class Base64Activity extends SkxBaseActivity<BaseViewModel> {
 
     private EditText mEvOriginalVal;
     private TextView mTvResult;
@@ -25,25 +21,25 @@ public class UrlEncodeActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("URL编码").create();
+        return new TitleConfig.Builder().setTitleText("Base64 加密/解密").create();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_url_encode;
+        return R.layout.activity_base64_encode;
     }
 
     @Override
     protected void initView() {
-        mEvOriginalVal = findViewById(R.id.et_urlEncode_original_value);
-        mTvResult = findViewById(R.id.tv_urlEncode_result);
+        mEvOriginalVal = findViewById(R.id.et_base64_original_value);
+        mTvResult = findViewById(R.id.tv_base64_result);
 
 
-        findViewById(R.id.tv_urlEncode_encoder).setOnClickListener(v -> {
+        findViewById(R.id.tv_base64_encoder).setOnClickListener(v -> {
             String oriVal = mEvOriginalVal.getText().toString();
             String encodeResult;
             try {
-                encodeResult = URLEncoder.encode(oriVal, URL_ENCODE);
+                encodeResult = Base64.encodeToString(oriVal.getBytes(), Base64.DEFAULT);
             } catch (Exception e) {
                 e.printStackTrace();
                 encodeResult = e.getMessage();
@@ -51,11 +47,11 @@ public class UrlEncodeActivity extends SkxBaseActivity<BaseViewModel> {
             mTvResult.setText(encodeResult);
         });
 
-        findViewById(R.id.tv_urlEncode_decoder).setOnClickListener(v -> {
+        findViewById(R.id.tv_base64_decoder).setOnClickListener(v -> {
             String oriVal = mEvOriginalVal.getText().toString();
             String decodeResult;
             try {
-                decodeResult = URLDecoder.decode(oriVal, URL_ENCODE);
+                decodeResult = new String(Base64.decode(oriVal, Base64.DEFAULT));
             } catch (Exception e) {
                 e.printStackTrace();
                 decodeResult = e.getMessage();

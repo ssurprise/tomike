@@ -1,6 +1,7 @@
 package com.skx.tomike.model;
 
 import com.skx.tomike.bean.CatalogItem;
+import com.skx.tomike.bomber.basics.Base64Activity;
 import com.skx.tomike.bomber.basics.DoubleFormatActivity;
 import com.skx.tomike.bomber.basics.GsonParseActivity;
 import com.skx.tomike.bomber.basics.UrlEncodeActivity;
@@ -244,38 +245,40 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("lifecycle", LifecycleActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("Handler", HandlerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AsyncTask", AsyncTaskActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("替代StartActivityForResult", WithCallbackActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("透明Activity", TransparentThemeActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("权限管理", PermissionIntroActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("通知", NotificationActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("打开其他App", OutterStartActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("透明Activity", TransparentThemeActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("替代StartActivityForResult", WithCallbackActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("Room - 最近浏览案例", RoomTestActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AOP 测试", AopTestActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("NFC功能测试", NfcGroupActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("okhttp", OkHttpActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("retrofit", RetrofitActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("RxJava", RxJavaActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("6.0权限", PermissionIntroActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("Room - 最近浏览案例", RoomTestActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("Glide图片加载 - 二次封装", GlideActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("二维码", ZXingActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("相册", PhotoAlbumsActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("图片缩放", ZoomImageActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("Glide图片加载 - 二次封装", GlideActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("大图片加载", ImageLoadActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("打开文件管理器", OpenFileActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("Parcelable序列化", ParcelableActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("倒计时", CountDownTimerActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("设备、APP 基础信息", DeviceInformationActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("键盘、输入法", KeyboardActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("热修复-微信Tinker", HotfixActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("重启APP", RebootAppActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("二维码", ZXingActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("打开其他App", OutterStartActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("NFC功能测试", NfcGroupActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 
         mUtilCatalogs.add(new CatalogItem("ShapeDrawable工具类", ShapeDrawableHelperActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("水印图", WatermarkActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("键盘、输入法", KeyboardActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Double数据转换", DoubleFormatActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("编码/解码", UrlEncodeActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("URL 编码", UrlEncodeActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Url 解析", UrlParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("json 解析", GsonParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Xml 解析", XmlParseActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("Base64 加密/解密", Base64Activity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("状态栏-底部导航栏高度", StatusBarNavigationBarActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
 
@@ -286,7 +289,6 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("设备、APP 基础信息", DeviceInformationActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 

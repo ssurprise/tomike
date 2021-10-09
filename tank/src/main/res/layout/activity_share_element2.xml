@@ -3,20 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/view_padding_15"
     android:paddingLeft="@dimen/view_padding_15"
-    android:paddingRight="@dimen/view_padding_15"
     android:paddingTop="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingBottom="@dimen/view_padding_15"
     tools:context="com.skx.tomike.tank.animation.activity.ShareElement2Activity">
 
-
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:id="@+id/iv_shareElement_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerInside"
         android:src="@drawable/image_04"
-        android:transitionName="shareElement" />
+        android:transitionName="shareElement"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>
