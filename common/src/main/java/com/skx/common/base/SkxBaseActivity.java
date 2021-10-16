@@ -75,15 +75,12 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
         if (config.getBackBtnRes() > 0) {
             mBtnBack.setImageResource(config.getBackBtnRes());
         }
-        mBtnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (config.getBackBtnClickListener() == null) {
-                    finish();
-                    return;
-                }
-                config.getBackBtnClickListener().onClick(v);
+        mBtnBack.setOnClickListener(v -> {
+            if (config.getBackBtnClickListener() == null) {
+                finish();
+                return;
             }
+            config.getBackBtnClickListener().onClick(v);
         });
 
         // 右边更多按钮
@@ -91,15 +88,12 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
         if (config.getMoreBtnRes() > 0) {
             mBtnMore.setImageResource(config.getMoreBtnRes());
         }
-        mBtnMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (config.getMoreBtnClickListener() == null) {
-                    finish();
-                    return;
-                }
-                config.getMoreBtnClickListener().onClick(v);
+        mBtnMore.setOnClickListener(v -> {
+            if (config.getMoreBtnClickListener() == null) {
+                finish();
+                return;
             }
+            config.getMoreBtnClickListener().onClick(v);
         });
     }
 

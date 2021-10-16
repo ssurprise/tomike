@@ -1,4 +1,4 @@
-package com.skx.tomike.util;
+package com.skx.common.utils;
 
 import android.content.Context;
 import android.hardware.Camera;
@@ -9,7 +9,7 @@ import android.location.LocationManager;
  * <p>
  * 权限许可工具类
  */
-public class PermissionTool {
+public class PermissionCheck {
 
     /**
      * 判断摄像头是否可用
