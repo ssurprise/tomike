@@ -81,7 +81,7 @@ dependencies {
 
     // Dependency on a local library module
     implementation project(":apt-annotation")
-    annotationProcessor project(":apt-processor")
+    kapt project(":apt-processor")
 }
 
 repositories {

@@ -48,6 +48,11 @@ open class BaseFragment : Fragment() {
         Log.e(TAG_LIFECYCLE, "$TAG -> onViewCreated")
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        Log.e(TAG_LIFECYCLE, "$TAG -> onActivityCreated")
+    }
+
     override fun onStart() {
         super.onStart()
         Log.e(TAG_LIFECYCLE, "$TAG -> onStart")

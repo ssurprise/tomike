@@ -14,5 +14,5 @@ android {
 
 dependencies {
     implementation project(":apt-annotation")
-    annotationProcessor project(":apt-processor")
+    kapt project(":apt-processor")
 }

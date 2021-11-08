@@ -67,8 +67,8 @@ public class RemoteService extends Service {
         public void onServiceDisconnected(ComponentName name) {
 
             // 复活本地服务
-            RemoteService.this.startService(new Intent(RemoteService.this,LocalService.class));
-            RemoteService.this.bindService(new Intent(RemoteService.this,LocalService.class),conn,Context.BIND_IMPORTANT);
+//            RemoteService.this.startService(new Intent(RemoteService.this,LocalService.class));
+//            RemoteService.this.bindService(new Intent(RemoteService.this,LocalService.class),conn,Context.BIND_IMPORTANT);
         }
 
     }

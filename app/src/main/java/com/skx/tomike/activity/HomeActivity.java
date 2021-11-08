@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -83,20 +84,62 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
         findViewById(R.id.homepage_navigation_myTab).setOnClickListener(this);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.e("Lifecycle", TAG + " - onNewIntent");
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("Lifecycle", TAG + " - onCreate");
         renderView();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("Lifecycle", TAG + " - onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("Lifecycle", TAG + " - onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("Lifecycle", TAG + " - onStop");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("Lifecycle", TAG + " - onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("Lifecycle", TAG + " - onDestroy");
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("Lifecycle", TAG + " - onRestart");
     }
 
     private void renderView() {
         // 开启双服务保活
-        startService(new Intent(this, LocalService.class));
-        startService(new Intent(this, RemoteService.class));
+//        startService(new Intent(this, LocalService.class));
+//        startService(new Intent(this, RemoteService.class));
 
         updateFragment(HOME_FRAGMENT);
-
         setCurrentTabColor();
     }
 
