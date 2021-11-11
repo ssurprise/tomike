@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -17,12 +18,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_TREE;
+
 /**
  * 描述 : 数据结构 - 树 demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
+@Route(path = ROUTE_PATH_TREE, group = ROUTER_GROUP)
 public class TreeDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     private TreeNode mTree = null;
@@ -182,11 +187,11 @@ public class TreeDemoActivity extends SkxBaseActivity<BaseViewModel> {
     /**
      * 二叉树的层序遍历.
      * 给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。
-     *   3
-     *  / \
+     * 3
+     * / \
      * 9  20
-     *    /  \
-     *   15   7
+     * /  \
+     * 15   7
      * <p>
      * 返回其层序遍历结果：
      * [

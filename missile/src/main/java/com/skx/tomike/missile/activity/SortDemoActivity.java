@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -14,12 +15,16 @@ import com.skx.tomike.missile.R;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_SORT;
+
 /**
  * 描述 : 排序算法
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/9/7 2:25 PM
  */
+@Route(path = ROUTE_PATH_SORT, group = ROUTER_GROUP)
 public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements RadioGroup.OnCheckedChangeListener {
 
     private static final int[] SOURCE = {9, 7, 2, 1, 3, 5, 8, 6, 4};

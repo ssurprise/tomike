@@ -43,6 +43,7 @@ import com.skx.tomike.cannon.ui.activity.RoomTestActivity;
 import com.skx.tomike.cannon.ui.activity.RxJavaActivity;
 import com.skx.tomike.cannon.ui.activity.ServiceDemoActivity;
 import com.skx.tomike.cannon.ui.activity.TransparentThemeActivity;
+import com.skx.tomike.cannon.ui.activity.ViewModelActivity;
 import com.skx.tomike.cannon.ui.activity.WithCallbackActivity;
 import com.skx.tomike.cannon.ui.activity.ZXingActivity;
 import com.skx.tomike.cannon.ui.activity.ZoomImageActivity;
@@ -53,7 +54,6 @@ import com.skx.tomike.missile.activity.QueueDemoActivity;
 import com.skx.tomike.missile.activity.SortDemoActivity;
 import com.skx.tomike.missile.activity.StackDemoActivity;
 import com.skx.tomike.missile.activity.TreeDemoActivity;
-import com.skx.tomike.missile.activity.ViewModelActivity;
 import com.skx.tomike.missile.pattern.chainofresponsibility.ChainOfResponsibilityPatternActivity;
 import com.skx.tomike.missile.pattern.memento.MementoPatternActivity;
 import com.skx.tomike.missile.pattern.observer.ObserverPatternActivity;
@@ -126,6 +126,23 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_CALL_BACK;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_COMMUNICATION;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_DAEMON;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_EXECUTORS;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_INTERRUPT;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_POOL;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_REENTRANT_LOCK;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_SYNCHRONIZED;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_ARRAY;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_DUEUE;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_LINKED;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_QUEUE;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_SORT;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_TREE;
+
 /**
  * 描述 : 目录列表model
  * 作者 : shiguotao
@@ -180,46 +197,46 @@ public class CatalogListModel {
 
     static {
         // 坦克实验室 - view 篇
-        mViewCatalogs.add(new CatalogItem("View 焦点", ViewFocusActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextView 行间距/字间距", TextWordSpacingActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextView 富文本SpannableString", SpannableStringBuilderActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextView 复制测试", SetTextIsSelectableTestActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", TextSwitcherActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("EditText 光标", EditTextCursorActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", LightDarkTextActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("EditText 小写转大写", Lowercase2UppercaseActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("自定义显示方向ImageView", MatrixImageActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("RadioGroup 单选", RadioGroupActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", CheckBoxActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("自定义ShapeView", ShapeViewActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("FlowLayout 流式布局", FlowLayoutActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ConstraintLayout约束布局", ConstraintLayoutActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("CoordinatorLayout", CoordinatorLayoutActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("CoordinatorLayout效果", CoordinatorLayoutCaseActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("SwipeRefreshLayout 下拉刷新", SwipeRefreshLayoutActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("卡片CardView", CardViewActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TabLayout 指示器", TabLayoutIndicatorActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TabLayout使用扩展", NavigationBarActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("抽屉效果", DrawerLayoutActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("投影", ShadowActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("FloatingActionButton", FloatingActionButtonActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("SnackBar", SnackBarActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("PopupWindow", PopupWindowActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("View 焦点", "",ViewFocusActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextView 行间距/字间距","", TextWordSpacingActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextView 富文本SpannableString", "",SpannableStringBuilderActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextView 复制测试", "",SetTextIsSelectableTestActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", "",TextSwitcherActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("EditText 光标","", EditTextCursorActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("EditText 明暗文切换","", LightDarkTextActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("EditText 小写转大写", "",Lowercase2UppercaseActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("自定义显示方向ImageView","", MatrixImageActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RadioGroup 单选","", RadioGroupActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", "",CheckBoxActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("自定义ShapeView", "",ShapeViewActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("FlowLayout 流式布局", "",FlowLayoutActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ConstraintLayout约束布局","", ConstraintLayoutActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("CoordinatorLayout","", CoordinatorLayoutActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("CoordinatorLayout效果","", CoordinatorLayoutCaseActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("SwipeRefreshLayout 下拉刷新", "",SwipeRefreshLayoutActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("卡片CardView","", CardViewActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TabLayout 指示器", "",TabLayoutIndicatorActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TabLayout使用扩展","", NavigationBarActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("抽屉效果", "",DrawerLayoutActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("投影", "",ShadowActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("FloatingActionButton","", FloatingActionButtonActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("SnackBar","", SnackBarActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("PopupWindow", "",PopupWindowActivity.class.getName()));
 
-        mViewCatalogs.add(new CatalogItem("ViewPager 一屏多展示", ViewPagerMultiplePageActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", ViewPagerWrapContentActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ViewPager 无限循环+自动轮播", ViewPagerInfiniteLoopActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ViewPager N种页签指示器", PageIndicatorActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ViewPager2 androidx", ViewPager2Activity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("RecyclerView 添加/删除item", RecyclerViewItemUpdateActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("RecyclerView 滑动到指定position", RecyclerViewScrollToPositionActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("RecyclerView 瀑布流", RecyclerStaggeredGridActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("RecyclerView 仿ViewPager", RecyclerAsViewPagerActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("RecyclerView child count测试", RecyclerViewChildCountActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("RecyclerView 倒计时功能", RecyclerViewCountDownTimerActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ScrollView + RecyclerView", ScrollViewAndRecyclerViewActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", NestedScrollViewViewPagerActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("NestedScrollView滑动改变状态栏", ScrollChangeTitleActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ViewPager 一屏多展示","", ViewPagerMultiplePageActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", "",ViewPagerWrapContentActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ViewPager 无限循环+自动轮播", "",ViewPagerInfiniteLoopActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ViewPager N种页签指示器", "",PageIndicatorActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ViewPager2 androidx", "",ViewPager2Activity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView 添加/删除item", "",RecyclerViewItemUpdateActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView 滑动到指定position", "",RecyclerViewScrollToPositionActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView 瀑布流", "",RecyclerStaggeredGridActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView 仿ViewPager","", RecyclerAsViewPagerActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView child count测试","", RecyclerViewChildCountActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView 倒计时功能", "",RecyclerViewCountDownTimerActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ScrollView + RecyclerView", "",ScrollViewAndRecyclerViewActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", "",NestedScrollViewViewPagerActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("NestedScrollView滑动改变状态栏","", ScrollChangeTitleActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("回弹效果-滑动缩放头图", ScrollZoomImage2Activity.class.getName()));
         mViewCatalogs.add(new CatalogItem("滑动缩放头图-demo2", ScrollZoomImage3Activity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ScrollViewAnchorActivity.class.getName()));
@@ -287,46 +304,46 @@ public class CatalogListModel {
         mOtherCatalogs.add(new CatalogItem("Tint 着色2 -xml、选择器", DrawableTint2Activity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("VectorDrawable", VectorDrawableActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("图像颜色处理", ColorMatrixActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("图像颜色处理2", ColorMatrix2Activity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("图像颜色处理","", ColorMatrixActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("图像颜色处理2","", ColorMatrix2Activity.class.getName()));
         mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 
         // 作战实验室
-        mDesignPatternCatalogs.add(new CatalogItem("MVVM-ViewModel", ViewModelActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("观察者模式", ObserverPatternActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("备忘录模式", MementoPatternActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("原型模式", PrototypePatternActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("策略模式", StrategyPatternActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("责任链模式", ChainOfResponsibilityPatternActivity.class.getName()));
-        mDesignPatternCatalogs.add(new CatalogItem("代理模式", ProxyPatternActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("MVVM-ViewModel","", ViewModelActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("观察者模式","", ObserverPatternActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("备忘录模式", "",MementoPatternActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("原型模式", "",PrototypePatternActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("策略模式","", StrategyPatternActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("责任链模式","", ChainOfResponsibilityPatternActivity.class.getName()));
+        mDesignPatternCatalogs.add(new CatalogItem("代理模式", "",ProxyPatternActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_DESIGN_PATTERNS, mDesignPatternCatalogs);
 
 
         // 战略轰炸机实验室
-        mJavaCatalogs.add(new CatalogItem("多线程", ThreadActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("线程守护", ThreadDaemonActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("线程中断", ThreadInterruptActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("线程同步", ThreadSynchronizedActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("线程间通信 - wait/notify", ThreadCommunicationActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("线程返回值", ThreadCallbackActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("线程池 - ThreadPool", ThreadPoolActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("线程池 - Executors", ThreadPoolExecutorsActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("ReentrantLock", ReentrantLockActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("协程", CoroutineActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("泛型理解", GenericTestActivity.class.getName()));
-        mJavaCatalogs.add(new CatalogItem("反射理解", ReflectTestActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("多线程", ROUTE_PATH_THREAD_START, ThreadActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程守护", ROUTE_PATH_THREAD_DAEMON, ThreadDaemonActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程中断", ROUTE_PATH_THREAD_INTERRUPT, ThreadInterruptActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程同步", ROUTE_PATH_THREAD_SYNCHRONIZED, ThreadSynchronizedActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程间通信 - wait/notify", ROUTE_PATH_THREAD_COMMUNICATION, ThreadCommunicationActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程返回值", ROUTE_PATH_THREAD_CALL_BACK, ThreadCallbackActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程池 - ThreadPool", ROUTE_PATH_THREAD_POOL, ThreadPoolActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("线程池 - Executors", ROUTE_PATH_THREAD_EXECUTORS, ThreadPoolExecutorsActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("ReentrantLock", ROUTE_PATH_THREAD_REENTRANT_LOCK, ReentrantLockActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("协程", "", CoroutineActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("泛型理解", "", GenericTestActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("反射理解", "", ReflectTestActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_JAVA, mJavaCatalogs);
 
 
         // 数据结构和算法
-        mDataStructureCatalogs.add(new CatalogItem("数组", ArrayDemoActivity.class.getName()));
-        mDataStructureCatalogs.add(new CatalogItem("栈", StackDemoActivity.class.getName()));
-        mDataStructureCatalogs.add(new CatalogItem("队列", QueueDemoActivity.class.getName()));
-        mDataStructureCatalogs.add(new CatalogItem("双端队列", DueueDemoActivity.class.getName()));
-        mDataStructureCatalogs.add(new CatalogItem("链表", LinkedDemoActivity.class.getName()));
-        mDataStructureCatalogs.add(new CatalogItem("树", TreeDemoActivity.class.getName()));
-        mDataStructureCatalogs.add(new CatalogItem("排序算法", SortDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("数组", ROUTE_PATH_ARRAY, ArrayDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("栈", ROUTE_PATH_STACK, StackDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("队列", ROUTE_PATH_QUEUE, QueueDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("双端队列", ROUTE_PATH_DUEUE, DueueDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("链表", ROUTE_PATH_LINKED, LinkedDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("树", ROUTE_PATH_TREE, TreeDemoActivity.class.getName()));
+        mDataStructureCatalogs.add(new CatalogItem("排序算法", ROUTE_PATH_SORT, SortDemoActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_DATA_STRUCTURE_AND_ALGORITHM, mDataStructureCatalogs);
     }
 
@@ -341,10 +358,10 @@ public class CatalogListModel {
         for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
             List<CatalogItem> tempGroup = entry.getValue();
 
-            CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(), "", null, null);
+            CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(), "", "", null, null);
             allCatalogs.add(parentModel);
             for (CatalogItem item : tempGroup) {
-                CatalogCellModel cellModel = new CatalogCellModel(item.getName(), item.getValue(), parentModel, null);
+                CatalogCellModel cellModel = new CatalogCellModel(item.getName(), "", item.getValue(), parentModel, null);
                 parentModel.addChild(cellModel);
                 allCatalogs.add(cellModel);
             }

@@ -1,11 +1,17 @@
 package com.skx.tomike.bomber.thread;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_DAEMON;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_REENTRANT_LOCK;
+
+@Route(path = ROUTE_PATH_THREAD_REENTRANT_LOCK, group = ROUTER_GROUP)
 public class ReentrantLockActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -22,12 +23,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_POOL;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
+
 /**
  * 描述 : 线程池
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
+@Route(path = ROUTE_PATH_THREAD_POOL, group = ROUTER_GROUP)
 public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
 
     private SeekBar seekb_threadPool_process;

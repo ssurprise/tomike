@@ -30,6 +30,14 @@ ext {
             kotlinOptions {
                 jvmTarget = "1.8"
             }
+
+            defaultConfig {
+                javaCompileOptions {
+                    annotationProcessorOptions {
+                        arguments = [AROUTER_MODULE_NAME: project.getName()]
+                    }
+                }
+            }
         }
 
         libProject.dependencies {

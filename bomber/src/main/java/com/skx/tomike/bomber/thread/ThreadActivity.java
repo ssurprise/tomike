@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.skx.tomike.bomber.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.ToastTool;
+import com.skx.tomike.bomber.R;
 
 import java.util.LinkedList;
 import java.util.Locale;
@@ -20,12 +21,16 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
+
 /**
  * 描述 : 多线程demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2019-12-19 18:46
  */
+@Route(path = ROUTE_PATH_THREAD_START, group = ROUTER_GROUP)
 public class ThreadActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private ScrollView mSvLogcat;

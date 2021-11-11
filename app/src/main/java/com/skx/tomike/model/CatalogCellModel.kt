@@ -8,7 +8,13 @@ import java.util.*
  * @author shiguotao
  * Created on 2017/12/29.
  */
-class CatalogCellModel(var title: String, var target: String, var parent: CatalogCellModel?, var childs: MutableList<CatalogCellModel>?) {
+class CatalogCellModel(
+    val title: String,
+    val path: String? = "",
+    val target: String,
+    var parent: CatalogCellModel?,
+    var childs: MutableList<CatalogCellModel>?
+) {
 
 
     val isParent: Boolean
@@ -18,11 +24,11 @@ class CatalogCellModel(var title: String, var target: String, var parent: Catalo
         get() = childs == null || childs!!.isEmpty()
 
     fun addChild(catalogCellModel: CatalogCellModel?) {
-        if (childs == null) {
-            childs = ArrayList()
-        }
-        if (catalogCellModel != null) {
-            childs!!.add(catalogCellModel)
+        catalogCellModel?.run {
+            if (childs == null) {
+                childs = ArrayList()
+            }
+            childs?.add(catalogCellModel)
         }
     }
 }

@@ -2,6 +2,7 @@ package com.skx.tomike.missile.activity;
 
 import android.util.Log;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -9,12 +10,16 @@ import com.skx.tomike.missile.R;
 
 import java.util.Arrays;
 
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_ARRAY;
+
 /**
  * 描述 : 数据结构 - 数组 demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
+@Route(path = ROUTE_PATH_ARRAY, group = ROUTER_GROUP)
 public class ArrayDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

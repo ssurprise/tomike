@@ -9,10 +9,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.bomber.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_DAEMON;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
 
 
 /**
@@ -21,6 +26,7 @@ import com.skx.common.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
+@Route(path = ROUTE_PATH_THREAD_DAEMON, group = ROUTER_GROUP)
 public class ThreadDaemonActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final static String TAG = "ThreadDaemonActivity";

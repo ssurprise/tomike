@@ -1,4 +1,4 @@
-package com.skx.tomike.missile.bean
+package com.skx.tomike.cannon.bean
 
 /**
  * 用户信息

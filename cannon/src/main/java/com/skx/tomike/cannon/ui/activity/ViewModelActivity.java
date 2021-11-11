@@ -1,16 +1,16 @@
-package com.skx.tomike.missile.activity;
+package com.skx.tomike.cannon.ui.activity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.skx.tomike.missile.R;
-import com.skx.tomike.missile.bean.User;
-import com.skx.tomike.missile.viewmodel.UserProfileViewModel;
+import com.skx.tomike.cannon.R;
+import com.skx.tomike.cannon.bean.User;
+import com.skx.tomike.cannon.viewmodel.UserProfileViewModel;
+
 
 public class ViewModelActivity extends AppCompatActivity {
 

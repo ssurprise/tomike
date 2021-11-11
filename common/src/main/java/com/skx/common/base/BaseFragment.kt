@@ -88,4 +88,14 @@ open class BaseFragment : Fragment() {
         Log.e(TAG_LIFECYCLE, "$TAG -> onDetach")
         mContext = null
     }
+
+
+    public class Engine {    /**     *  Dagger2 通过@Inject 注解可以在需要这个类实例的时候来找到这个构造函数并把相关实例构造出来，     *  以此来为被@Inject 标记了的变量提供依赖     *         */    @Inject    public Engine() {    }    @NonNull    @Override    public String toString() {        return "Engine{}";    }    public void run() {        Log.i("tag", "引擎转起来了~~~ ");
+
+
+    }
+
+
+
+
 }

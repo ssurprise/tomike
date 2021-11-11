@@ -143,7 +143,9 @@
         <activity
             android:name=".ui.activity.LifecycleActivity2"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.skx.tomike.cannon.ui.activity.ViewModelActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.skx.tomike.cannon.ui.activity.AopTestActivity"
             android:screenOrientation="portrait" />
@@ -183,7 +185,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.ServiceDemoActivity" />
 
-        <service android:name=".ui.activity.MyService"/>
+        <service android:name=".ui.activity.MyService" />
     </application>
 
 </manifest>

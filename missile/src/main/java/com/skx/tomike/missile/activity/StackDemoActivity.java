@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.core.view.ViewCompat;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -16,12 +17,17 @@ import com.skx.tomike.missile.R;
 
 import java.util.Stack;
 
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_SORT;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
+
 /**
  * 描述 : 数据结构 - 栈 demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
+@Route(path = ROUTE_PATH_STACK, group = ROUTER_GROUP)
 public class StackDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     private static final int MAX_SIZE = 5;

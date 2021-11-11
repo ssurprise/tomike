@@ -1,11 +1,12 @@
-package com.skx.tomike.missile.viewmodel;
+package com.skx.tomike.cannon.viewmodel;
 
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.skx.tomike.missile.bean.User;
+import com.skx.tomike.cannon.bean.User;
+
 
 public class UserProfileViewModel extends ViewModel {
 

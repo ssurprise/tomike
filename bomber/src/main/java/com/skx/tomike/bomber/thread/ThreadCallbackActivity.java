@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.bomber.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
@@ -23,6 +24,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_CALL_BACK;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
+
 
 /**
  * 描述 : 获取线程返回值demo
@@ -30,6 +35,7 @@ import java.util.concurrent.FutureTask;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
+@Route(path = ROUTE_PATH_THREAD_CALL_BACK, group = ROUTER_GROUP)
 public class ThreadCallbackActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final static String TAG = "ThreadCallbackActivity";

@@ -3,13 +3,18 @@ package com.skx.tomike.bomber.basics
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.bomber.R
+import com.skx.tomike.bomber.ROUTER_GROUP
+import com.skx.tomike.bomber.ROUTE_PATH_URL_ENCODE
+import com.skx.tomike.bomber.ROUTE_PATH_URL_PARSE
 import java.net.URLDecoder
 import java.net.URLEncoder
 
+@Route(path = ROUTE_PATH_URL_ENCODE, group = ROUTER_GROUP)
 class UrlEncodeActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val mEvOriginalVal: EditText by lazy {

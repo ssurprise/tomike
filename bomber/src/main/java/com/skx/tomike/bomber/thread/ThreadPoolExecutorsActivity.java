@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.bomber.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
@@ -20,12 +21,17 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_EXECUTORS;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
+
 /**
  * 描述 : 线程池 Executors
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
+@Route(path = ROUTE_PATH_THREAD_EXECUTORS, group = ROUTER_GROUP)
 public class ThreadPoolExecutorsActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private SeekBar seekb_threadPool_process;

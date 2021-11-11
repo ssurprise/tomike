@@ -2,11 +2,15 @@ package com.skx.tomike.bomber.basics;
 
 import android.util.Log;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.gson.Gson;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.bomber.R;
+
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GSON;
 
 /**
  * 描述 : json 解析
@@ -14,6 +18,7 @@ import com.skx.tomike.bomber.R;
  * 版本 : V1
  * 创建时间 : 2020/12/25 11:05 AM
  */
+@Route(path = ROUTE_PATH_GSON, group = ROUTER_GROUP)
 public class GsonParseActivity extends SkxBaseActivity<BaseViewModel> {
 
     private static final String URL_ENCODE = "UTF-8";

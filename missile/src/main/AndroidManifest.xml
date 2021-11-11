@@ -23,10 +23,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.missile.activity.ViewModelActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.skx.tomike.missile.pattern.proxy.ProxyPatternActivity"
             android:screenOrientation="portrait" />
 

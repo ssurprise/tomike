@@ -3,7 +3,8 @@ package com.skx.tomike.core;
 import android.app.Application;
 import android.os.StrictMode;
 
-import com.skx.tomike.BuildConfig;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.tencent.mmkv.BuildConfig;
 
 public class SkxApplication extends Application {
 
@@ -11,6 +12,7 @@ public class SkxApplication extends Application {
     public void onCreate() {
         safeCheck();
         super.onCreate();
+        init();
         registerActivityLifecycleCallbacks(new ActivityLifecycleObserver());
     }
 
@@ -33,6 +35,22 @@ public class SkxApplication extends Application {
                     .penaltyDeath()// 违规崩溃
                     .build());
         }
+    }
+
+    private void init() {
+        routerInit();
+    }
+
+    /**
+     * 路由初始化 - 阿里路由
+     * 注：后续会自己实现路线功能
+     */
+    private void routerInit() {
+        if (BuildConfig.DEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this);
     }
 
 }
