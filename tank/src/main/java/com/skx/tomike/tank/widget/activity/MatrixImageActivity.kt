@@ -1,11 +1,14 @@
 package com.skx.tomike.tank.widget.activity
 
 import android.view.View
-import com.skx.tomike.tank.R
-import com.skx.tomike.tank.widget.view.TranslateImageView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTER_GROUP
+import com.skx.tomike.tank.ROUTE_PATH_MATRIXIMAGE
+import com.skx.tomike.tank.widget.view.TranslateImageView
 
 /**
  * 描述 : 自定义显示方向的ImageView
@@ -13,6 +16,7 @@ import com.skx.common.base.TitleConfig
  * 版本 : V1
  * 创建时间 : 2020/6/23 2:16 PM
  */
+@Route(path = ROUTE_PATH_MATRIXIMAGE, group = ROUTER_GROUP)
 class MatrixImageActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
 
     private var mImage: TranslateImageView? = null

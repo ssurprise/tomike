@@ -11,13 +11,18 @@ import android.widget.TextView;
 
 import androidx.core.view.ViewCompat;
 
-import com.skx.tomike.tank.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.SkxDrawableUtil;
 import com.skx.common.utils.SkxDrawableUtilKt;
+import com.skx.tomike.tank.R;
 
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_GRADIENT_DRAWABLE;
+
+@Route(path = ROUTE_PATH_GRADIENT_DRAWABLE, group = ROUTER_GROUP)
 public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mLlContainer;

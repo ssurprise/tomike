@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.DpPxSpToolKt;
@@ -24,6 +25,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_album;
+
 /**
  * 描述 : 相册。主要知识点：ContentProvider 获取相册照片。
  * <p>
@@ -33,6 +37,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020-03-20 00:10
  */
+@Route(path = ROUTE_PATH_photo_album, group = ROUTER_GROUP)
 public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
 
     private static final int REQUEST_PERMISSION = 0;

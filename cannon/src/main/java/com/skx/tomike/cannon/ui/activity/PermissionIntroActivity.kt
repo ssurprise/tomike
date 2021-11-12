@@ -10,14 +10,18 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
 import androidx.core.app.ActivityCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTER_GROUP
+import com.skx.tomike.cannon.ROUTE_PATH_PERMISSION
 
 /**
  * 6.0 权限介绍
  */
+@Route(path = ROUTE_PATH_PERMISSION, group = ROUTER_GROUP)
 class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
 
     private var mActivityResultLauncher: ActivityResultLauncher<Array<String>>? = null

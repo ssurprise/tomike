@@ -7,11 +7,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.User;
 import com.skx.tomike.cannon.viewmodel.UserProfileViewModel;
 
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_view_model;
 
+
+@Route(path = ROUTE_PATH_view_model, group = ROUTER_GROUP)
 public class ViewModelActivity extends AppCompatActivity {
 
     private UserProfileViewModel mViewModel;

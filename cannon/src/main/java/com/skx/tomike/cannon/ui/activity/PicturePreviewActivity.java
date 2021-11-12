@@ -2,13 +2,18 @@ package com.skx.tomike.cannon.ui.activity;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.IPicture;
 import com.skx.tomike.cannon.ui.adapter.PicturePreviewAdapter;
-import com.skx.common.base.SkxBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_preview;
 
 /**
  * 描述 : 图片预览
@@ -16,7 +21,8 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020/3/20 8:30 PM
  */
-public class PicturePreviewActivity extends SkxBaseActivity {
+@Route(path = ROUTE_PATH_photo_preview, group = ROUTER_GROUP)
+public class PicturePreviewActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final List<IPicture> mPicturesList = new ArrayList<>();
     private int mPosition = 0;

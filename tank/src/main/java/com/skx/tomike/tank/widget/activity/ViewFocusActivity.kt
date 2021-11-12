@@ -4,10 +4,13 @@ import android.util.Log
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.widget.*
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTER_GROUP
+import com.skx.tomike.tank.ROUTE_PATH_VIEW_FOCUS
 
 /**
  * 描述 : view 焦点
@@ -15,6 +18,7 @@ import com.skx.tomike.tank.R
  * 版本 : V1
  * 创建时间 : 2020/4/1 7:46 PM
  */
+@Route(path = ROUTE_PATH_VIEW_FOCUS, group = ROUTER_GROUP)
 class ViewFocusActivity : SkxBaseActivity<BaseViewModel?>() {
 
     override fun initParams() {}

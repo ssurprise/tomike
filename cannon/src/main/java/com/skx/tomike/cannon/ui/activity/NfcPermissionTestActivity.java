@@ -8,11 +8,16 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.cannon.R;
+
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_PERMISSION;
 
 /**
  * Created by shiguotao on 2017/12/11.
  */
+@Route(path = ROUTE_PATH_NFC_PERMISSION, group = ROUTER_GROUP)
 public class NfcPermissionTestActivity extends AppCompatActivity {
 
     private final String TAG = "NfcPermissionTest";

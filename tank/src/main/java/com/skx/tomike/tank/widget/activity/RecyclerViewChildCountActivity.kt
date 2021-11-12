@@ -5,10 +5,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTER_GROUP
+import com.skx.tomike.tank.ROUTE_PATH_RECYCLER_CHILD_COUNT
 import com.skx.tomike.tank.widget.adapter.RecyclerViewBannerAdapter
 import java.util.*
 
@@ -18,6 +21,7 @@ import java.util.*
  * 版本 : V1
  * 创建时间 : 2020/5/30 5:01 PM
  */
+@Route(path = ROUTE_PATH_RECYCLER_CHILD_COUNT, group = ROUTER_GROUP)
 class RecyclerViewChildCountActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
 
     private var mRvShow: RecyclerView? = null
@@ -50,8 +54,12 @@ class RecyclerViewChildCountActivity : SkxBaseActivity<BaseViewModel?>(), View.O
 
     override fun initView() {
         findViewById<TextView>(R.id.btn_recyclerviewChildCount_horizontal).setOnClickListener(this)
-        findViewById<TextView>(R.id.btn_recyclerviewChildCount_verticalFixHeight).setOnClickListener(this)
-        findViewById<TextView>(R.id.btn_recyclerviewChildCount_verticalMatchParent).setOnClickListener(this)
+        findViewById<TextView>(R.id.btn_recyclerviewChildCount_verticalFixHeight).setOnClickListener(
+            this
+        )
+        findViewById<TextView>(R.id.btn_recyclerviewChildCount_verticalMatchParent).setOnClickListener(
+            this
+        )
 
         mRvShow = findViewById(R.id.rv_recyclerviewChildCount_show)
         mRvShow?.layoutManager = LinearLayoutManager(this)
@@ -66,7 +74,8 @@ class RecyclerViewChildCountActivity : SkxBaseActivity<BaseViewModel?>(), View.O
                     layoutParams.height = 600
                     setLayoutParams(layoutParams)
 
-                    val layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
+                    val layoutManager =
+                        LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
                     mRvShow?.layoutManager = layoutManager
 //                    mRvShow?.adapter?.notifyDataSetChanged()
                 }

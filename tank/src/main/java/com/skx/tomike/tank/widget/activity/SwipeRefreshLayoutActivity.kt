@@ -4,9 +4,12 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTER_GROUP
+import com.skx.tomike.tank.ROUTE_PATH_SWIPEREFRESH_LAYOUT
 import com.skx.tomike.tank.widget.viewmodel.SwipeRefreshViewModel
 import java.util.*
 
@@ -16,6 +19,7 @@ import java.util.*
  * 版本 : V1
  * 创建时间 : 2020-03-18 22:11
  */
+@Route(path = ROUTE_PATH_SWIPEREFRESH_LAYOUT, group = ROUTER_GROUP)
 class SwipeRefreshLayoutActivity : SkxBaseActivity<SwipeRefreshViewModel>(), OnRefreshListener {
 
     private var mSwipeLayout: SwipeRefreshLayout? = null

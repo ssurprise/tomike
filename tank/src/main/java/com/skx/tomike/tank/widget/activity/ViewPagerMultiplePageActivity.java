@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.tank.R;
 import com.skx.tomike.tank.widget.adapter.InfiniteLoopAdapter;
 import com.skx.tomike.tank.widget.adapter.MultiplePagerAdapter;
@@ -22,6 +23,10 @@ import com.skx.common.utils.ScreenUtilKt;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CONTENT;
+
 /**
  * 描述 : ViewPager 一屏展示多组page。
  * <p>
@@ -33,6 +38,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2016/4/20
  */
+@Route(path = ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE, group = ROUTER_GROUP)
 public class ViewPagerMultiplePageActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final ArrayList<Integer> list = new ArrayList<>();

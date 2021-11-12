@@ -2,10 +2,14 @@ package com.skx.tomike.bomber.coroutine
 
 import android.os.Bundle
 import android.util.Log
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.bomber.R
+import com.skx.tomike.bomber.ROUTER_GROUP
+import com.skx.tomike.bomber.ROUTE_PATH_COROUTINE
+import com.skx.tomike.bomber.ROUTE_PATH_XML_PARSE
 import kotlinx.coroutines.*
 
 /**
@@ -14,6 +18,7 @@ import kotlinx.coroutines.*
  * 版本 : V1
  * 创建时间 : 2021/1/7 3:27 PM
  */
+@Route(path = ROUTE_PATH_COROUTINE, group = ROUTER_GROUP)
 class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {

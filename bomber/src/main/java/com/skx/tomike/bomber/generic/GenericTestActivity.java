@@ -4,10 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.skx.tomike.bomber.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.bomber.R;
+
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GENERIC;
 
 /**
  * 描述 : 泛型demo
@@ -15,6 +19,7 @@ import com.skx.common.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2020/4/23 9:56 AM
  */
+@Route(path = ROUTE_PATH_GENERIC, group = ROUTER_GROUP)
 public class GenericTestActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

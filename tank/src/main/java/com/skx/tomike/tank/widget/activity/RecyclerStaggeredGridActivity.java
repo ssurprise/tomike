@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -23,12 +24,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_STAGGERED_GRID;
+
 /**
  * 描述 : RecyclerView 瀑布流
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/5/30 5:01 PM
  */
+@Route(path = ROUTE_PATH_RECYCLER_STAGGERED_GRID, group = ROUTER_GROUP)
 public class RecyclerStaggeredGridActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final List<Integer> mBannerList = new ArrayList<>();

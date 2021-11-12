@@ -11,7 +11,7 @@
             android:name=".widget.activity.TextSwitcherActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.TextWordSpacingActivity"
+            android:name=".widget.activity.TextWordSpaceActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".widget.activity.SpannableStringBuilderActivity"

@@ -5,13 +5,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.widget.fragment.NestedViewPagerFragment;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
+import com.skx.tomike.tank.R;
+import com.skx.tomike.tank.widget.fragment.NestedViewPagerFragment;
 
 import java.util.ArrayList;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NSCROLLVIEW_VP;
 
 /**
  * 描述 : NestedScrollView 和 ViewPager 配合使用。好处：不用自己处理滑动冲突；坏处：ViewPager 需要指定其高度。
@@ -19,10 +23,10 @@ import java.util.ArrayList;
  * 版本 : V1
  * 创建时间 : 2018/12/21 4:24 PM
  */
+@Route(path = ROUTE_PATH_NSCROLLVIEW_VP, group = ROUTER_GROUP)
 public class NestedScrollViewViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
 
-    private static ArrayList<String> mContent = new ArrayList<>();
-
+    private static final ArrayList<String> mContent = new ArrayList<>();
 
     @Override
     protected void initParams() {

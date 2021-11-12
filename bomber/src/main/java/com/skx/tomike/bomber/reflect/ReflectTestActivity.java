@@ -3,6 +3,7 @@ package com.skx.tomike.bomber.reflect;
 import android.util.Log;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.bomber.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
@@ -13,12 +14,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GENERIC;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_REFLECT;
+
 /**
  * 描述 : 反射demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/4/13 10:06 AM
  */
+@Route(path = ROUTE_PATH_REFLECT, group = ROUTER_GROUP)
 public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     @Override

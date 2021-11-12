@@ -8,16 +8,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.widget.view.NavigationBarLayout;
-import com.skx.tomike.tank.widget.view.TabLayoutHelper;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
+import com.skx.tomike.tank.widget.view.NavigationBarLayout;
+import com.skx.tomike.tank.widget.view.TabLayoutHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NAVIGATION_BAR;
 
 /**
  * 描述 : 导航栏view
@@ -25,6 +29,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020-03-18 23:16
  */
+@Route(path = ROUTE_PATH_NAVIGATION_BAR, group = ROUTER_GROUP)
 public class NavigationBarActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private NavigationBarLayout<String> mNavigationBar;

@@ -7,17 +7,21 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.widget.adapter.InfiniteLoopAdapter;
-import com.skx.tomike.tank.widget.view.CustomSwitcher;
-import com.skx.tomike.tank.widget.view.PageIndicatorLayout;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.DpPxSpToolKt;
+import com.skx.tomike.tank.R;
+import com.skx.tomike.tank.widget.adapter.InfiniteLoopAdapter;
+import com.skx.tomike.tank.widget.view.CustomSwitcher;
+import com.skx.tomike.tank.widget.view.PageIndicatorLayout;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PAGE_INDICATOR_LAYOUT;
 
 /**
  * 描述 : ViewPager 页签指示器demo
@@ -25,6 +29,7 @@ import java.util.Locale;
  * 版本 : V1
  * 创建时间 : 2016/4/20
  */
+@Route(path = ROUTE_PATH_PAGE_INDICATOR_LAYOUT, group = ROUTER_GROUP)
 public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
     /**

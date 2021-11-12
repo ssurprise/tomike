@@ -1,6 +1,7 @@
 package com.skx.tomike.cannon.ui.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -12,12 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.RequiresPermission;
 import androidx.core.app.ActivityCompat;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.cannon.R;
 
 import static android.Manifest.permission.READ_PHONE_STATE;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_COUNT_DOWN_TIMER;
 
 /**
  * 描述 : 设备信息
@@ -25,6 +29,7 @@ import static android.Manifest.permission.READ_PHONE_STATE;
  * 版本 : V1
  * 创建时间 : 2020/8/5 4:44 PM
  */
+@Route(path = ROUTE_PATH_COUNT_DOWN_TIMER, group = ROUTER_GROUP)
 public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
 
     private TextView mTvAndroidId;
@@ -115,6 +120,7 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
         }
     }
 
+    @SuppressLint("HardwareIds")
     @RequiresPermission(READ_PHONE_STATE)
     private void renderView() {
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);

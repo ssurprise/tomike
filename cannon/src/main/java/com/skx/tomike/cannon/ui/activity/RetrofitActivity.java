@@ -9,13 +9,17 @@ import android.widget.TextView;
 
 import androidx.lifecycle.Observer;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.BaseBean;
 import com.skx.tomike.cannon.bean.WeatherMini;
 import com.skx.tomike.cannon.viewmodel.RetrofitViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
-import com.skx.common.utils.ToastTool;
+
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_retrofit;
 
 /**
  * 描述 : Retrofit demo。模拟请求城市天气数据
@@ -23,6 +27,7 @@ import com.skx.common.utils.ToastTool;
  * 版本 : V1
  * 创建时间 : 2016/6/20
  */
+@Route(path = ROUTE_PATH_retrofit, group = ROUTER_GROUP)
 public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
 
     private EditText mEtCity;

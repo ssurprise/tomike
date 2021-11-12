@@ -4,14 +4,17 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
-import com.skx.tomike.tank.R;
+import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_INDICATOR;
 
 /**
  * 描述 : TabLayout 修改 indicator
@@ -19,9 +22,8 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020/5/30 10:55 AM
  */
-public class TabLayoutIndicatorActivity extends SkxBaseActivity {
-
-    private final List<String> tabList = new ArrayList<>();
+@Route(path = ROUTE_PATH_TABLELAYOUT_INDICATOR, group = ROUTER_GROUP)
+public class TabLayoutIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void initParams() {
@@ -51,6 +53,9 @@ public class TabLayoutIndicatorActivity extends SkxBaseActivity {
             mTabStrip.setAccessible(true);
 
             LinearLayout mLlTabStrip = (LinearLayout) mTabStrip.get(tabLayout);
+            if (mLlTabStrip == null) {
+                return;
+            }
             for (int i = 0, j = mLlTabStrip.getChildCount(); i < j; i++) {
                 View tabItem = mLlTabStrip.getChildAt(i);
                 //拿到tabView的mTextView属性
@@ -73,9 +78,7 @@ public class TabLayoutIndicatorActivity extends SkxBaseActivity {
                 mTextView.invalidate();
             }
 
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
 

@@ -7,14 +7,17 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.widget.GridSpaceItemDecoration;
 import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
-import com.skx.tomike.cannon.bean.PhotoUpImageItem;
 import com.skx.tomike.cannon.ui.adapter.PhotoWallAdapter;
+
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_wall;
 
 /**
  * 描述 : 照片墙
@@ -22,6 +25,7 @@ import com.skx.tomike.cannon.ui.adapter.PhotoWallAdapter;
  * 版本 : V1
  * 创建时间 : 2020/3/19 4:08 PM
  */
+@Route(path = ROUTE_PATH_photo_wall, group = ROUTER_GROUP)
 public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
 
     private PhotoWallAdapter mAdapter;
@@ -60,14 +64,11 @@ public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
         rvPhotoWall.setLayoutManager(new GridLayoutManager(this, 4));
         rvPhotoWall.addItemDecoration(new GridSpaceItemDecoration(4, 15, 15));
         rvPhotoWall.setAdapter(mAdapter = new PhotoWallAdapter());
-        mAdapter.setOnItemClickListener(new PhotoWallAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, PhotoUpImageItem photoUpImageItem) {
-                Intent intent = new Intent(mActivity, PicturePreviewActivity.class);
-                intent.putExtra("pictureList", mPhotoAlbum.imageList);
-                intent.putExtra("position", position);
-                startActivity(intent);
-            }
+        mAdapter.setOnItemClickListener((position, photoUpImageItem) -> {
+            Intent intent = new Intent(mActivity, PicturePreviewActivity.class);
+            intent.putExtra("pictureList", mPhotoAlbum.imageList);
+            intent.putExtra("position", position);
+            startActivity(intent);
         });
     }
 

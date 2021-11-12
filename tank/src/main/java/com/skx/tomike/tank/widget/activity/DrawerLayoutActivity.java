@@ -17,14 +17,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.skx.common.utils.ToastTool;
 import com.skx.tomike.tank.R;
 import com.skx.tomike.tank.widget.fragment.PlanetFragment;
-import com.skx.common.utils.ToastTool;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_DRAWER_LAYOUT;
+
+@Route(path = ROUTE_PATH_DRAWER_LAYOUT, group = ROUTER_GROUP)
 public class DrawerLayoutActivity extends AppCompatActivity implements PlanetFragment.OnFragmentInteractionListener {
 
     private String[] mPlanetTitles;

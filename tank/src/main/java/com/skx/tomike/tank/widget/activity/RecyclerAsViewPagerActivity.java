@@ -10,16 +10,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.skx.tomike.tank.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.imageloader.ImageLoader;
+import com.skx.tomike.tank.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_AS_VP;
 
 /**
  * 描述 : RecyclerView 仿ViewPager 实现滑页功能
@@ -27,6 +31,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020/5/30 5:01 PM
  */
+@Route(path = ROUTE_PATH_RECYCLER_AS_VP, group = ROUTER_GROUP)
 public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final List<String> mBannerList = new ArrayList<>();

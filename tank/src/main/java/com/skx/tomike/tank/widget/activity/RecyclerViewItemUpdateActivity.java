@@ -6,14 +6,18 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
+import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_ITEM_UPDATE;
 
 /**
  * 描述 : RecyclerView 添加/删除item
@@ -21,6 +25,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2020/3/20 6:27 PM
  */
+@Route(path = ROUTE_PATH_RECYCLER_ITEM_UPDATE, group = ROUTER_GROUP)
 public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewModel> {
 
     private ItemAnimatorAdapter mAdapter;

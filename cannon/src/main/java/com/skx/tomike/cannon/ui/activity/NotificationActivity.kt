@@ -14,17 +14,18 @@ import android.widget.Button
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.skx.tomike.cannon.R
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTER_GROUP
+import com.skx.tomike.cannon.ROUTE_PATH_notification
 
-
+@Route(path = ROUTE_PATH_notification, group = ROUTER_GROUP)
 class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
 
-
-    private var channel_id = 1
-
+    private var mChannelId = 1
     private var mSwitchNotification: SwitchCompat? = null
 
     override fun initParams() {
@@ -100,23 +101,17 @@ class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private fun createNotification() {
-
         val manager = NotificationManagerCompat.from(this)
         createNotificationChannel()
-
-        channel_id++
-
-        Log.e("channel_id", channel_id.toString())
-
+        mChannelId++
+        Log.e("channel_id", mChannelId.toString())
         val builder = NotificationCompat.Builder(this, "com.skx.tomike")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("狗子狗子")
-                .setContentText("呼叫狗子，ninininininiinininininininininininnnnnnnnnn")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
-
-
-        manager.notify(channel_id, builder.build())
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle("狗子狗子")
+            .setContentText("呼叫狗子，ninininininiinininininininininininnnnnnnnnn")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+        manager.notify(mChannelId, builder.build())
     }
 
     private fun createNotificationChannel() {
@@ -128,12 +123,12 @@ class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
             val importance = NotificationManager.IMPORTANCE_DEFAULT
 
             // channel_id 必须一样才可以发送成功，要不然通知不生效
-            val channel = NotificationChannel(channel_id.toString(), name, importance).apply {
+            val channel = NotificationChannel(mChannelId.toString(), name, importance).apply {
                 description = descriptionText
             }
             // Register the channel with the system
             val notificationManager: NotificationManager =
-                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             notificationManager.createNotificationChannel(channel)
         }

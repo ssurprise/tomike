@@ -5,10 +5,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.tank.R;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SELECTABLE;
 
 
 /**
@@ -17,6 +21,7 @@ import com.skx.tomike.tank.R;
  * vivo x7 ：长按无法复制，双击可实现可选复制
  * 三星note 3：xml中 android:textIsSelectable="true"   java中setTextIsSelectable(false); 这个时候如果跳出当前页面会报错：StackOverflowError，其他情况的设置一切都是ok的
  */
+@Route(path = ROUTE_PATH_TEXTVIEW_SELECTABLE, group = ROUTER_GROUP)
 public class SetTextIsSelectableTestActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

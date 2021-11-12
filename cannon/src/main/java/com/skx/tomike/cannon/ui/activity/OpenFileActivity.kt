@@ -11,11 +11,14 @@ import android.os.StrictMode.VmPolicy
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.skx.tomike.cannon.R
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.common.utils.ToastTool
+import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTER_GROUP
+import com.skx.tomike.cannon.ROUTE_PATH_SAF
 import java.io.File
 import java.util.*
 
@@ -31,6 +34,7 @@ import java.util.*
  * 版本 : V1
  * 创建时间 : 2020/3/23 3:56 PM
  */
+@Route(path = ROUTE_PATH_SAF, group = ROUTER_GROUP)
 class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
 
     private val mPath = Environment.getExternalStorageDirectory().absolutePath +
@@ -135,72 +139,74 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
         startActivity(intent)
     }
 
-    private val MIME_MapTable = arrayOf(arrayOf(".3gp", "video/3gpp"),
-            arrayOf(".apk", "application/vnd.android.package-archive"),
-            arrayOf(".asf", "video/x-ms-asf"),
-            arrayOf(".avi", "video/x-msvideo"),
-            arrayOf(".bin", "application/octet-stream"),
-            arrayOf(".bmp", "image/bmp"),
-            arrayOf(".c", "text/plain"),
-            arrayOf(".class", "application/octet-stream"),
-            arrayOf(".conf", "text/plain"),
-            arrayOf(".cpp", "text/plain"),
-            arrayOf(".doc", "application/msword"),
-            arrayOf(".docx", "application/msword"),
-            arrayOf(".exe", "application/octet-stream"),
-            arrayOf(".gif", "image/gif"),
-            arrayOf(".gtar", "application/x-gtar"),
-            arrayOf(".gz", "application/x-gzip"),
-            arrayOf(".h", "text/plain"),
-            arrayOf(".htm", "text/html"),
-            arrayOf(".html", "text/html"),
-            arrayOf(".jar", "application/java-archive"),
-            arrayOf(".java", "text/plain"),
-            arrayOf(".jpeg", "image/jpeg"),
-            arrayOf(".JPEG", "image/jpeg"),
-            arrayOf(".jpg", "image/jpeg"),
-            arrayOf(".js", "application/x-javascript"),
-            arrayOf(".log", "text/plain"),
-            arrayOf(".m3u", "audio/x-mpegurl"),
-            arrayOf(".m4a", "audio/mp4a-latm"),
-            arrayOf(".m4b", "audio/mp4a-latm"),
-            arrayOf(".m4p", "audio/mp4a-latm"),
-            arrayOf(".m4u", "video/vnd.mpegurl"),
-            arrayOf(".m4v", "video/x-m4v"),
-            arrayOf(".mov", "video/quicktime"),
-            arrayOf(".mp2", "audio/x-mpeg"),
-            arrayOf(".mp3", "audio/x-mpeg"),
-            arrayOf(".mp4", "video/mp4"),
-            arrayOf(".mpc", "application/vnd.mpohun.certificate"),
-            arrayOf(".mpe", "video/mpeg"),
-            arrayOf(".mpeg", "video/mpeg"),
-            arrayOf(".mpg", "video/mpeg"),
-            arrayOf(".mpg4", "video/mp4"),
-            arrayOf(".mpga", "audio/mpeg"),
-            arrayOf(".msg", "application/vnd.ms-outlook"),
-            arrayOf(".ogg", "audio/ogg"),
-            arrayOf(".pdf", "application/pdf"),
-            arrayOf(".png", "image/png"),
-            arrayOf(".pps", "application/vnd.ms-powerpoint"),
-            arrayOf(".ppt", "application/vnd.ms-powerpoint"),
-            arrayOf(".pptx", "application/vnd.ms-powerpoint"),
-            arrayOf(".prop", "text/plain"),
-            arrayOf(".rar", "application/x-rar-compressed"),
-            arrayOf(".rc", "text/plain"),
-            arrayOf(".rmvb", "audio/x-pn-realaudio"),
-            arrayOf(".rtf", "application/rtf"),
-            arrayOf(".sh", "text/plain"),
-            arrayOf(".tar", "application/x-tar"),
-            arrayOf(".tgz", "application/x-compressed"),
-            arrayOf(".txt", "text/plain"),
-            arrayOf(".wav", "audio/x-wav"),
-            arrayOf(".wma", "audio/x-ms-wma"),
-            arrayOf(".wmv", "audio/x-ms-wmv"),
-            arrayOf(".wps", "application/vnd.ms-works"),
-            arrayOf(".xml", "text/plain"),
-            arrayOf(".z", "application/x-compress"),
-            arrayOf(".zip", "application/zip"),
-            arrayOf("", "*/*"))
+    private val MIME_MapTable = arrayOf(
+        arrayOf(".3gp", "video/3gpp"),
+        arrayOf(".apk", "application/vnd.android.package-archive"),
+        arrayOf(".asf", "video/x-ms-asf"),
+        arrayOf(".avi", "video/x-msvideo"),
+        arrayOf(".bin", "application/octet-stream"),
+        arrayOf(".bmp", "image/bmp"),
+        arrayOf(".c", "text/plain"),
+        arrayOf(".class", "application/octet-stream"),
+        arrayOf(".conf", "text/plain"),
+        arrayOf(".cpp", "text/plain"),
+        arrayOf(".doc", "application/msword"),
+        arrayOf(".docx", "application/msword"),
+        arrayOf(".exe", "application/octet-stream"),
+        arrayOf(".gif", "image/gif"),
+        arrayOf(".gtar", "application/x-gtar"),
+        arrayOf(".gz", "application/x-gzip"),
+        arrayOf(".h", "text/plain"),
+        arrayOf(".htm", "text/html"),
+        arrayOf(".html", "text/html"),
+        arrayOf(".jar", "application/java-archive"),
+        arrayOf(".java", "text/plain"),
+        arrayOf(".jpeg", "image/jpeg"),
+        arrayOf(".JPEG", "image/jpeg"),
+        arrayOf(".jpg", "image/jpeg"),
+        arrayOf(".js", "application/x-javascript"),
+        arrayOf(".log", "text/plain"),
+        arrayOf(".m3u", "audio/x-mpegurl"),
+        arrayOf(".m4a", "audio/mp4a-latm"),
+        arrayOf(".m4b", "audio/mp4a-latm"),
+        arrayOf(".m4p", "audio/mp4a-latm"),
+        arrayOf(".m4u", "video/vnd.mpegurl"),
+        arrayOf(".m4v", "video/x-m4v"),
+        arrayOf(".mov", "video/quicktime"),
+        arrayOf(".mp2", "audio/x-mpeg"),
+        arrayOf(".mp3", "audio/x-mpeg"),
+        arrayOf(".mp4", "video/mp4"),
+        arrayOf(".mpc", "application/vnd.mpohun.certificate"),
+        arrayOf(".mpe", "video/mpeg"),
+        arrayOf(".mpeg", "video/mpeg"),
+        arrayOf(".mpg", "video/mpeg"),
+        arrayOf(".mpg4", "video/mp4"),
+        arrayOf(".mpga", "audio/mpeg"),
+        arrayOf(".msg", "application/vnd.ms-outlook"),
+        arrayOf(".ogg", "audio/ogg"),
+        arrayOf(".pdf", "application/pdf"),
+        arrayOf(".png", "image/png"),
+        arrayOf(".pps", "application/vnd.ms-powerpoint"),
+        arrayOf(".ppt", "application/vnd.ms-powerpoint"),
+        arrayOf(".pptx", "application/vnd.ms-powerpoint"),
+        arrayOf(".prop", "text/plain"),
+        arrayOf(".rar", "application/x-rar-compressed"),
+        arrayOf(".rc", "text/plain"),
+        arrayOf(".rmvb", "audio/x-pn-realaudio"),
+        arrayOf(".rtf", "application/rtf"),
+        arrayOf(".sh", "text/plain"),
+        arrayOf(".tar", "application/x-tar"),
+        arrayOf(".tgz", "application/x-compressed"),
+        arrayOf(".txt", "text/plain"),
+        arrayOf(".wav", "audio/x-wav"),
+        arrayOf(".wma", "audio/x-ms-wma"),
+        arrayOf(".wmv", "audio/x-ms-wmv"),
+        arrayOf(".wps", "application/vnd.ms-works"),
+        arrayOf(".xml", "text/plain"),
+        arrayOf(".z", "application/x-compress"),
+        arrayOf(".zip", "application/zip"),
+        arrayOf("", "*/*")
+    )
 
     private fun getMIMEType(file: File): String? {
         var type = "*/*"

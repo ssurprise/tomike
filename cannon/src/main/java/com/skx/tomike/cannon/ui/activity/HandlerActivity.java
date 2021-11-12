@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -20,12 +21,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_handler;
+
 /**
  * 描述 : Handler demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/3/30 4:34 PM
  */
+@Route(path = ROUTE_PATH_handler, group = ROUTER_GROUP)
 public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     public TextView mHandlerLogcat;

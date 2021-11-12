@@ -9,10 +9,13 @@ import android.os.IBinder
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTER_GROUP
+import com.skx.tomike.cannon.ROUTE_PATH_service
 import java.util.concurrent.ScheduledExecutorService
 
 /**
@@ -21,6 +24,7 @@ import java.util.concurrent.ScheduledExecutorService
  * 版本 : V1
  * 创建时间 : 2021/8/30 5:00 下午
  */
+@Route(path = ROUTE_PATH_service, group = ROUTER_GROUP)
 class ServiceDemoActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
     private val connection = MyServiceConnection()

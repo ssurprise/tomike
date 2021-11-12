@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -19,6 +20,9 @@ import com.skx.tomike.cannon.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
 
 /**
  * Created by shiguotao on 2016/7/19.
@@ -39,6 +43,7 @@ import java.util.TimerTask;
  * <p/>
  * 5. isFocusable()  返回此控件是否可以获得焦点
  */
+@Route(path = ROUTE_PATH_KEYBOARD, group = ROUTER_GROUP)
 public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
 
     private RelativeLayout mRlRoot;

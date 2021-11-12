@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -28,12 +29,16 @@ import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.observables.ConnectableObservable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_rxjava;
+
 /**
  * 描述 : RxJava 实现并行、串行访问数据
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/3/23 4:25 PM
  */
+@Route(path = ROUTE_PATH_rxjava, group = ROUTER_GROUP)
 public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mRlLoading;

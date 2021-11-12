@@ -8,15 +8,19 @@ import android.widget.ImageView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.skx.tomike.tank.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CONTENT;
 
 /**
  * 描述 : 适应item高度的ViewPager
@@ -24,6 +28,7 @@ import java.util.List;
  * 版本 : V1
  * 创建时间 : 2016/4/20.
  */
+@Route(path = ROUTE_PATH_VIEWPAGER_WRAP_CONTENT, group = ROUTER_GROUP)
 public class ViewPagerWrapContentActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final ArrayList<Integer> mImageList = new ArrayList<>();

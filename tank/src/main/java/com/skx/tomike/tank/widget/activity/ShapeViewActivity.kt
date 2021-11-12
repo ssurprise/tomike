@@ -1,9 +1,12 @@
 package com.skx.tomike.tank.widget.activity
 
-import com.skx.tomike.tank.R
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTER_GROUP
+import com.skx.tomike.tank.ROUTE_PATH_SHAPE_VIEW
 
 
 /**
@@ -12,6 +15,7 @@ import com.skx.common.base.TitleConfig
  * 版本 : V1
  * 创建时间 : 2020-03-18 23:10
  */
+@Route(path = ROUTE_PATH_SHAPE_VIEW, group = ROUTER_GROUP)
 class ShapeViewActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {

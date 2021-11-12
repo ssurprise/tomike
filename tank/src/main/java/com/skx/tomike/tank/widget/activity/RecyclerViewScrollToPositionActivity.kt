@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTER_GROUP
+import com.skx.tomike.tank.ROUTE_PATH_RECYCLER_SCROLL2POS
 import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter
 import java.util.*
 
@@ -23,7 +26,9 @@ import java.util.*
  * 版本 : V1
  * 创建时间 : 2020/5/30 5:01 PM
  */
-class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), RadioGroup.OnCheckedChangeListener {
+@Route(path = ROUTE_PATH_RECYCLER_SCROLL2POS, group = ROUTER_GROUP)
+class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(),
+    RadioGroup.OnCheckedChangeListener {
 
     private var mTvTargetPos: TextView? = null
     private var mRecyclerView: RecyclerView? = null
@@ -51,12 +56,15 @@ class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), 
     }
 
     override fun initView() {
-        findViewById<RadioGroup>(R.id.btn_recyclerviewScrollToPosition_configGroup).setOnCheckedChangeListener(this)
+        findViewById<RadioGroup>(R.id.btn_recyclerviewScrollToPosition_configGroup).setOnCheckedChangeListener(
+            this
+        )
         mTvTargetPos = findViewById(R.id.tv_recyclerviewScrollToPosition_targetPos)
 
         mRecyclerView = findViewById(R.id.rv_recyclerviewScrollTpPosition_show)
 //        centerLayoutManager = CenterLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        mRecyclerView?.layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
+        mRecyclerView?.layoutManager =
+            LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
         mRecyclerView?.adapter = ItemAnimatorAdapter(mContentList)
 
         val snapHelper = PagerSnapHelper()
@@ -100,7 +108,8 @@ class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), 
         when (checkedId) {
             R.id.btn_recyclerviewScrollToPosition_horizontal -> {
                 mRecyclerView?.apply {
-                    val layoutManager = LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
+                    val layoutManager =
+                        LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false)
                     mRecyclerView?.layoutManager = layoutManager
                     mRecyclerView?.adapter = ItemAnimatorAdapter(mContentList)
                 }
@@ -118,8 +127,13 @@ class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(), 
     class CenterLayoutManager(context: Context?, orientation: Int, reverseLayout: Boolean) :
         LinearLayoutManager(context, orientation, reverseLayout) {
 
-        override fun smoothScrollToPosition(recyclerView: RecyclerView, state: RecyclerView.State, position: Int) {
-            val smoothScroller: RecyclerView.SmoothScroller = CenterSmoothScroller(recyclerView.context)
+        override fun smoothScrollToPosition(
+            recyclerView: RecyclerView,
+            state: RecyclerView.State,
+            position: Int
+        ) {
+            val smoothScroller: RecyclerView.SmoothScroller =
+                CenterSmoothScroller(recyclerView.context)
             smoothScroller.targetPosition = position
             startSmoothScroll(smoothScroller)
         }

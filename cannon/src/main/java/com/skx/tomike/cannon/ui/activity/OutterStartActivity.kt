@@ -3,12 +3,16 @@ package com.skx.tomike.cannon.ui.activity
 import android.content.Intent
 import android.net.Uri
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTER_GROUP
+import com.skx.tomike.cannon.ROUTE_PATH_COUNT_DOWN_TIMER
 
+@Route(path = ROUTE_PATH_COUNT_DOWN_TIMER, group = ROUTER_GROUP)
 class OutterStartActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {}

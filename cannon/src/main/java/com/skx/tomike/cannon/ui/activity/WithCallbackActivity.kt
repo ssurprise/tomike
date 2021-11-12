@@ -7,10 +7,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTER_GROUP
+import com.skx.tomike.cannon.ROUTE_PATH_ACTIVITY4RESULT
 
 /**
  * 描述 : registerForActivityResult 新的用于替换startActivityForResult
@@ -18,6 +21,7 @@ import com.skx.tomike.cannon.R
  * 版本 : V1
  * 创建时间 : 2021/7/30 11:18 上午
  */
+@Route(path = ROUTE_PATH_ACTIVITY4RESULT, group = ROUTER_GROUP)
 class WithCallbackActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
     private val mTvAcceptData: TextView by lazy {

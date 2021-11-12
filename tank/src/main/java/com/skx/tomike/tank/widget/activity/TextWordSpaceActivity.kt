@@ -9,10 +9,13 @@ import android.text.style.ScaleXSpan
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTER_GROUP
+import com.skx.tomike.tank.ROUTE_PATH_TEXTVIEW_WORD_SPACE
 import java.util.*
 
 /**
@@ -27,7 +30,8 @@ import java.util.*
  * 2、android:lineSpacingMultiplier
  * 设置行间距的倍数，如”1.2″。
  */
-class TextWordSpacingActivity : SkxBaseActivity<BaseViewModel?>() {
+@Route(path = ROUTE_PATH_TEXTVIEW_WORD_SPACE, group = ROUTER_GROUP)
+class TextWordSpaceActivity : SkxBaseActivity<BaseViewModel?>() {
 
     companion object {
         const val TEST_CONTENT = "不自见，故明；不自是，故彰；不自伐，故有功；不自矜，故长。"
@@ -64,15 +68,15 @@ class TextWordSpacingActivity : SkxBaseActivity<BaseViewModel?>() {
             text = TEST_CONTENT
         }
         findViewById<SeekBar>(R.id.sb_textSpacing_mutable_progress)
-                .setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-                    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                        mTvMutableLabel?.text = String.format(Locale.getDefault(), "字间距：%d", progress)
-                        mTvMutable?.text = applyKerning(TEST_CONTENT, progress.toFloat())
-                    }
+            .setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                    mTvMutableLabel?.text = String.format(Locale.getDefault(), "字间距：%d", progress)
+                    mTvMutable?.text = applyKerning(TEST_CONTENT, progress.toFloat())
+                }
 
-                    override fun onStartTrackingTouch(seekBar: SeekBar) {}
-                    override fun onStopTrackingTouch(seekBar: SeekBar) {}
-                })
+                override fun onStartTrackingTouch(seekBar: SeekBar) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar) {}
+            })
     }
 
     /**

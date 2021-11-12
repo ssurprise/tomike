@@ -7,15 +7,18 @@ import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.tank.R;
 import com.skx.tomike.tank.widget.view.TagImageSpan;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SPANNABLESTRING;
 
 /**
  * 描述 : 富文本显示 - SpannableString
@@ -23,6 +26,7 @@ import com.skx.tomike.tank.widget.view.TagImageSpan;
  * 版本 : V1
  * 创建时间 : 2020/12/25 11:28 AM
  */
+@Route(path = ROUTE_PATH_TEXTVIEW_SPANNABLESTRING, group = ROUTER_GROUP)
 public class SpannableStringBuilderActivity extends SkxBaseActivity<BaseViewModel> {
 
     TextView textView;

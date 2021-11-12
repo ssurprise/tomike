@@ -1,16 +1,28 @@
 package com.skx.tomike.tank.widget.activity;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.tank.R;
 
-public class CoordinatorLayoutActivity extends AppCompatActivity {
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_COORDINATOR;
+
+@Route(path = ROUTE_PATH_COORDINATOR, group = ROUTER_GROUP)
+public class CoordinatorLayoutActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coordinator_layout);
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_coordinator_layout;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 }

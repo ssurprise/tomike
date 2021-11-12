@@ -1,19 +1,30 @@
 package com.skx.tomike.cannon.ui.activity;
 
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.cannon.R;
 
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_transparent_theme;
 
-public class TransparentThemeActivity extends AppCompatActivity {
+
+@Route(path = ROUTE_PATH_transparent_theme, group = ROUTER_GROUP)
+public class TransparentThemeActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transparent_theme);
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_transparent_theme;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     /*

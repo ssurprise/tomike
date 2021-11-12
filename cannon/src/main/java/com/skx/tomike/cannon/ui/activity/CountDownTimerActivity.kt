@@ -7,10 +7,13 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTER_GROUP
+import com.skx.tomike.cannon.ROUTE_PATH_COUNT_DOWN_TIMER
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -22,6 +25,7 @@ import java.util.concurrent.TimeUnit
  * 版本 : V1
  * 创建时间 : 2020/12/8 1:35 PM
  */
+@Route(path = ROUTE_PATH_COUNT_DOWN_TIMER, group = ROUTER_GROUP)
 class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val timer1: TextView by lazy {

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.skx.tomike.cannon.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
@@ -19,6 +19,10 @@ import com.skx.common.imageloader.transform.CircleCrop;
 import com.skx.common.imageloader.transform.OverLapTransform;
 import com.skx.common.imageloader.transform.RoundedCorners;
 import com.skx.common.imageloader.transform.TransformStrategy;
+import com.skx.tomike.cannon.R;
+
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_GLIDE;
 
 /**
  * 描述 : 对Glide库的二次封装测试demo
@@ -26,6 +30,7 @@ import com.skx.common.imageloader.transform.TransformStrategy;
  * 版本 : V1
  * 创建时间 : 2020/3/23 4:16 PM
  */
+@Route(path = ROUTE_PATH_GLIDE, group = ROUTER_GROUP)
 public class GlideActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final String[] imageArray = {
