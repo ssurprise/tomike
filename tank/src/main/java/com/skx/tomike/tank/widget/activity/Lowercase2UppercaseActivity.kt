@@ -10,7 +10,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
-import com.skx.tomike.tank.ROUTER_GROUP
 import com.skx.tomike.tank.ROUTE_PATH_EDITTEXT_LOWER2UPPER
 
 /**
@@ -20,7 +19,7 @@ import com.skx.tomike.tank.ROUTE_PATH_EDITTEXT_LOWER2UPPER
  * 创建时间 : 2020/5/7 2:31 PM
  * 扩展：inputType 的枚举类型 -> https://blog.csdn.net/chaod5659/article/details/17117193
  */
-@Route(path = ROUTE_PATH_EDITTEXT_LOWER2UPPER, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_EDITTEXT_LOWER2UPPER)
 class Lowercase2UppercaseActivity : SkxBaseActivity<BaseViewModel?>() {
 
     override fun initParams() {}
@@ -34,21 +33,21 @@ class Lowercase2UppercaseActivity : SkxBaseActivity<BaseViewModel?>() {
     }
 
     private val transformationMethod: ReplacementTransformationMethod =
-        object : ReplacementTransformationMethod() {
-            override fun getOriginal(): CharArray {
-                return charArrayOf(
-                    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-                    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-                )
-            }
+            object : ReplacementTransformationMethod() {
+                override fun getOriginal(): CharArray {
+                    return charArrayOf(
+                            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+                            'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+                    )
+                }
 
-            override fun getReplacement(): CharArray {
-                return charArrayOf(
-                    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-                    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-                )
+                override fun getReplacement(): CharArray {
+                    return charArrayOf(
+                            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+                            'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+                    )
+                }
             }
-        }
 
     override fun initView() {
         val mEtInputBox = findViewById<EditText>(R.id.et_lowercase2Uppercase_content)

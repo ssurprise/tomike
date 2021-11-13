@@ -5,13 +5,12 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.skx.tomike.cannon.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.LoadImageUtilKt;
+import com.skx.tomike.cannon.R;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BIG_IMAGE_LOAD;
 
 
@@ -25,7 +24,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BIG_IMAGE_LOAD;
  * 版本 : V1
  * 创建时间 : 2020/3/23 3:56 PM
  */
-@Route(path = ROUTE_PATH_BIG_IMAGE_LOAD, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_BIG_IMAGE_LOAD)
 public class ImageLoadActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

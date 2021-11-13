@@ -15,7 +15,6 @@ import com.skx.tomike.missile.R;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_SORT;
 
 /**
@@ -24,7 +23,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_SORT;
  * 版本 : V1
  * 创建时间 : 2020/9/7 2:25 PM
  */
-@Route(path = ROUTE_PATH_SORT, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_SORT)
 public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements RadioGroup.OnCheckedChangeListener {
 
     private static final int[] SOURCE = {9, 7, 2, 1, 3, 5, 8, 6, 4};

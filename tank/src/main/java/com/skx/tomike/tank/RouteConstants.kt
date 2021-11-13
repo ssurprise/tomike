@@ -1,6 +1,5 @@
 package com.skx.tomike.tank
 
-const val ROUTER_GROUP = "tank"
 
 const val ROUTER_FIRST_LEVEL_widget = "/widget" // view
 const val ROUTER_FIRST_LEVEL_anim = "/anim" // 动画

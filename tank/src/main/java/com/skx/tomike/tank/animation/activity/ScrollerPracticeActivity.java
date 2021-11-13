@@ -3,11 +3,14 @@ package com.skx.tomike.tank.animation.activity;
 import android.os.Handler;
 import android.view.View;
 
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.widget.view.TranslateImageView;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
+import com.skx.tomike.tank.widget.view.TranslateImageView;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLLER;
 
 /**
  * 描述 : View 内容移动 - Scroller实践
@@ -15,6 +18,7 @@ import com.skx.common.base.TitleConfig;
  * 版本 : V1
  * 创建时间 : 2016/4/19 5:59 PM
  */
+@Route(path = ROUTE_PATH_SCROLLER)
 public class ScrollerPracticeActivity extends SkxBaseActivity<BaseViewModel> {
 
     private TranslateImageView mIv;
@@ -40,17 +44,7 @@ public class ScrollerPracticeActivity extends SkxBaseActivity<BaseViewModel> {
         mIv.setPosition(TranslateImageView.Position.RIGHT);
 
         mIv.setImageResource(R.drawable.image_03);
-        mIv.post(new Runnable() {
-            @Override
-            public void run() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mIv.smoothScrollAnimator((int) mIv.getTranslateOffsetX(), 0, 2000);
-                    }
-                }, 500);
-            }
-        });
+        mIv.post(() -> new Handler().postDelayed(() -> mIv.smoothScrollAnimator((int) mIv.getTranslateOffsetX(), 0, 2000), 500));
     }
 
     public void startTranslate(View view) {

@@ -58,13 +58,13 @@ ext {
     ]
 
     router = [
-            router: "com.alibaba:arouter-api:$arouter_version"
+            router: "com.alibaba:arouter-api:${arouter_version}"
     ]
 
     annotationKpt = [
             roomCompiler     : "androidx.room:room-compiler:$room_version",
             lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:2.2.0",
-            routerCompiler   : "com.alibaba:arouter-compiler:$arouter_version"
+            routerCompiler   : "com.alibaba:arouter-compiler:${arouter_version}"
     ]
 
 

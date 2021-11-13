@@ -1,4 +1,10 @@
 centralization this
+kapt {
+    // ARouter配置
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 dependencies {
     implementation 'com.google.zxing:core:3.4.1'
 //    implementation project(path: ':libzxing')

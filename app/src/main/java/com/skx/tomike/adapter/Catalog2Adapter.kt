@@ -3,6 +3,7 @@ package com.skx.tomike.adapter
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.skx.tomike.R
 import com.skx.tomike.adapter.Catalog2Adapter.CatalogCellViewHolder
 import com.skx.tomike.model.CatalogCellModel
@@ -98,8 +100,13 @@ class Catalog2Adapter(list: List<CatalogCellModel>?) : RecyclerView.Adapter<Cata
                         v.elevation = 5.0f
                     }
                     try {
-                        val intent = Intent(itemView.context, Class.forName(cellModel.target))
-                        (itemView.context as Activity).startActivity(intent)
+                        if (!TextUtils.isEmpty(cellModel.path)) {
+                            ARouter.getInstance().build(cellModel.path).navigation()
+
+                        } else {
+                            val intent = Intent(itemView.context, Class.forName(cellModel.target))
+                            (itemView.context as Activity).startActivity(intent)
+                        }
                     } catch (e: ClassNotFoundException) {
                         e.printStackTrace()
                     }

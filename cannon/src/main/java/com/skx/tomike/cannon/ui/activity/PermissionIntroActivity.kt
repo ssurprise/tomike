@@ -15,13 +15,12 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTER_GROUP
 import com.skx.tomike.cannon.ROUTE_PATH_PERMISSION
 
 /**
  * 6.0 权限介绍
  */
-@Route(path = ROUTE_PATH_PERMISSION, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_PERMISSION)
 class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
 
     private var mActivityResultLauncher: ActivityResultLauncher<Array<String>>? = null
@@ -42,7 +41,7 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
     @SuppressLint("SetTextI18n")
     override fun initView() {
         mActivityResultLauncher = registerForActivityResult(
-            RequestMultiplePermissions()
+                RequestMultiplePermissions()
         ) { result: Map<String?, Boolean?> ->
             // 定位权限结果
             val locationLocation = result[Manifest.permission.ACCESS_FINE_LOCATION]
@@ -60,9 +59,9 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
     fun onByPressed(view: View?) {
         if (Build.VERSION.SDK_INT >= 23) {
             if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
+                            this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
             ) {
                 /*
                  * 这里权限模式
@@ -80,7 +79,7 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
                 Log.e(TAG, "申请" + Manifest.permission.CAMERA + " 权限")
 
                 mActivityResultLauncher?.launch(
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CAMERA)
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CAMERA)
                 )
                 /*
                  * 如果要用意图模式的话，就不需要用权限模式了，直接跳转到系统设置页面，

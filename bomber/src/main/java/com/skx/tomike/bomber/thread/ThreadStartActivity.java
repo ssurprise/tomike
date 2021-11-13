@@ -21,7 +21,6 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
 
 /**
@@ -30,8 +29,8 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
  * 版本 : V1
  * 创建时间 : 2019-12-19 18:46
  */
-@Route(path = ROUTE_PATH_THREAD_START, group = ROUTER_GROUP)
-public class ThreadActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+@Route(path = ROUTE_PATH_THREAD_START)
+public class ThreadStartActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private ScrollView mSvLogcat;
     private TextView mTvLogcat;
@@ -51,7 +50,7 @@ public class ThreadActivity extends SkxBaseActivity<BaseViewModel> implements Vi
             super.handleMessage(msg);
             switch (msg.what) {
                 case -1:
-                    ToastTool.showToast(ThreadActivity.this, "当前没人啊！");
+                    ToastTool.showToast(ThreadStartActivity.this, "当前没人啊！");
                     break;
                 case 0:
                     mTvLogcat.append("\n 请 " + msg.arg1 + " 到vip 柜台办理");

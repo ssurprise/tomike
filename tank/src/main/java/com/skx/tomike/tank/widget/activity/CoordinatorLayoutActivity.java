@@ -5,10 +5,9 @@ import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.tank.R;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_COORDINATOR;
 
-@Route(path = ROUTE_PATH_COORDINATOR, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_COORDINATOR)
 public class CoordinatorLayoutActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

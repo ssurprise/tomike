@@ -1,6 +1,5 @@
 package com.skx.tomike.missile
 
-const val ROUTER_GROUP = "missile"
 const val ROUTER_FIRST_LEVEL_DS = "/dataStructure"
 const val ROUTER_FIRST_LEVEL_PATTERN = "/pattern"
 

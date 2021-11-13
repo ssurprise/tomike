@@ -19,10 +19,9 @@ import com.skx.common.utils.SkxDrawableUtil;
 import com.skx.common.utils.SkxDrawableUtilKt;
 import com.skx.tomike.tank.R;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_GRADIENT_DRAWABLE;
 
-@Route(path = ROUTE_PATH_GRADIENT_DRAWABLE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_GRADIENT_DRAWABLE)
 public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mLlContainer;

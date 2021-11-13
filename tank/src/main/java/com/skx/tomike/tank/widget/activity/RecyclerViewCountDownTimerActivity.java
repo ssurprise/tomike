@@ -26,7 +26,6 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_COUNT_DOWN;
 
 /**
@@ -35,7 +34,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_COUNT_DOW
  * 版本 : V1
  * 创建时间 : 2020/3/20 6:27 PM
  */
-@Route(path = ROUTE_PATH_RECYCLER_COUNT_DOWN, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_RECYCLER_COUNT_DOWN)
 public class RecyclerViewCountDownTimerActivity extends SkxBaseActivity<BaseViewModel>
         implements SwipeRefreshLayout.OnRefreshListener {
 

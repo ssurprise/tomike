@@ -1,5 +1,7 @@
 apply from: "config.gradle"
 apply from: "libDependSetting.gradle"
+apply plugin: 'com.alibaba.arouter'
+
 
 buildscript {
     ext.kotlin_version = '1.5.10'
@@ -15,6 +17,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.alibaba:arouter-register:1.0.2"
     }
 }
 //    copy("/Users/shiguotao/giteeworkspace/skxlaboratory/local.properties","/Users/shiguotao/giteeworkspace/skxlaboratory/local2.properties")

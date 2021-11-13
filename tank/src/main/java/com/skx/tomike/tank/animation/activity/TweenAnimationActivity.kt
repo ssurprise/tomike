@@ -3,10 +3,12 @@ package com.skx.tomike.tank.animation.activity
 import android.view.View
 import android.view.animation.*
 import android.widget.ImageView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTE_PATH_TWEEN
 
 /**
  * 描述 : 补间动画
@@ -17,6 +19,7 @@ import com.skx.tomike.tank.R
  * 版本 : V1
  * 创建时间 : 2020/4/3 2:19 PM
  */
+@Route(path = ROUTE_PATH_TWEEN)
 class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
 
     private var mIvTarget: ImageView? = null
@@ -46,8 +49,7 @@ class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickLi
     private fun translateAnimation() {
         val translateAnimation: Animation = TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
                 TranslateAnimation.RELATIVE_TO_PARENT, 0.5f,
-                TranslateAnimation.RELATIVE_TO_SELF, 0f
-                , TranslateAnimation.RELATIVE_TO_SELF, 0f)
+                TranslateAnimation.RELATIVE_TO_SELF, 0f, TranslateAnimation.RELATIVE_TO_SELF, 0f)
         translateAnimation.duration = 1000
         mIvTarget?.startAnimation(translateAnimation)
     }
@@ -107,8 +109,7 @@ class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickLi
 
         val translateAnimation: Animation = TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
                 TranslateAnimation.RELATIVE_TO_PARENT, 0.25f,
-                TranslateAnimation.RELATIVE_TO_SELF, 0f
-                , TranslateAnimation.RELATIVE_TO_SELF, 0f)
+                TranslateAnimation.RELATIVE_TO_SELF, 0f, TranslateAnimation.RELATIVE_TO_SELF, 0f)
 
         val scaleAnimation = ScaleAnimation(1.0f, 2.0f, 1.0f, 2.0f,
                 Animation.RELATIVE_TO_SELF, 0.5f,

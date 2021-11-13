@@ -9,7 +9,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.bomber.R
-import com.skx.tomike.bomber.ROUTER_GROUP
 import com.skx.tomike.bomber.ROUTE_PATH_XML_PARSE
 import org.w3c.dom.Element
 import org.w3c.dom.NodeList
@@ -29,7 +28,7 @@ import javax.xml.parsers.SAXParserFactory
  * 版本 : V1
  * 创建时间 : 2021/7/14 10:09 上午
  */
-@Route(path = ROUTE_PATH_XML_PARSE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_XML_PARSE)
 class XmlParseActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val mTvResult: TextView by lazy {
@@ -200,10 +199,10 @@ class SkxSaxHandler(private val tv: TextView) : DefaultHandler() {
     }
 
     override fun startElement(
-        uri: String?,
-        localName: String?,
-        qName: String?,
-        attributes: Attributes?
+            uri: String?,
+            localName: String?,
+            qName: String?,
+            attributes: Attributes?
     ) {
         super.startElement(uri, localName, qName, attributes)
         if (localName.equals("language")) {

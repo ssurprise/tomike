@@ -3,14 +3,17 @@ package com.skx.tomike.tank.animation.activity
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.widget.ImageView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTE_PATH_PROPERTY
 
 /**
  * 属性动画事例
  */
+@Route(path = ROUTE_PATH_PROPERTY)
 class PropertyAnimatorActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val mTargetView: ImageView by lazy {
@@ -37,8 +40,8 @@ class PropertyAnimatorActivity : SkxBaseActivity<BaseViewModel>() {
     private fun installListener() {
         mTargetView.setOnClickListener {
             ObjectAnimator.ofFloat(it, "translationY", 0.0f, 720.0f)
-                .setDuration(500)
-                .start()
+                    .setDuration(500)
+                    .start()
 
 //            val valueAnimator = ValueAnimator.ofInt(300, 500)
 //            valueAnimator.duration = 500

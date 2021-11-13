@@ -14,7 +14,6 @@ import com.skx.tomike.tank.widget.fragment.NestedViewPagerFragment;
 
 import java.util.ArrayList;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NSCROLLVIEW_VP;
 
 /**
@@ -23,7 +22,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NSCROLLVIEW_VP;
  * 版本 : V1
  * 创建时间 : 2018/12/21 4:24 PM
  */
-@Route(path = ROUTE_PATH_NSCROLLVIEW_VP, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_NSCROLLVIEW_VP)
 public class NestedScrollViewViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
 
     private static final ArrayList<String> mContent = new ArrayList<>();

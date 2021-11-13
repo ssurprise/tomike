@@ -4,11 +4,13 @@ import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.common.utils.ToastTool
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTE_PATH_LAYOUT_TRANSITION
 
 /**
  * 描述 : Layout 添加/删除子view的过渡效果
@@ -26,6 +28,7 @@ import com.skx.tomike.tank.R
  * 版本 : V1
  * 创建时间 : 2018/12/16 5:43 PM
  */
+@Route(path = ROUTE_PATH_LAYOUT_TRANSITION)
 class LayoutTransitionActivity : SkxBaseActivity<BaseViewModel>() {
 
     private var mContainer: LinearLayout? = null

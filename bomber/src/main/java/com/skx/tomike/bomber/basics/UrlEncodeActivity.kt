@@ -8,13 +8,11 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.bomber.R
-import com.skx.tomike.bomber.ROUTER_GROUP
 import com.skx.tomike.bomber.ROUTE_PATH_URL_ENCODE
-import com.skx.tomike.bomber.ROUTE_PATH_URL_PARSE
 import java.net.URLDecoder
 import java.net.URLEncoder
 
-@Route(path = ROUTE_PATH_URL_ENCODE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_URL_ENCODE)
 class UrlEncodeActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val mEvOriginalVal: EditText by lazy {

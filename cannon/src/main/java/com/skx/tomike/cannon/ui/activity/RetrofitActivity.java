@@ -7,18 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.lifecycle.Observer;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannon.R;
-import com.skx.tomike.cannon.bean.BaseBean;
 import com.skx.tomike.cannon.bean.WeatherMini;
 import com.skx.tomike.cannon.viewmodel.RetrofitViewModel;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_retrofit;
 
 /**
@@ -27,7 +23,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_retrofit;
  * 版本 : V1
  * 创建时间 : 2016/6/20
  */
-@Route(path = ROUTE_PATH_retrofit, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_retrofit)
 public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
 
     private EditText mEtCity;
@@ -53,12 +49,9 @@ public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
 
     @Override
     protected void subscribeEvent() {
-        mViewModel.getWeatherLiveData().observe(this, new Observer<BaseBean<WeatherMini>>() {
-            @Override
-            public void onChanged(BaseBean<WeatherMini> weatherMiniBaseBean) {
-                if (weatherMiniBaseBean == null) return;
-                refreshView(weatherMiniBaseBean.getResult());
-            }
+        mViewModel.getWeatherLiveData().observe(this, weatherMiniBaseBean -> {
+            if (weatherMiniBaseBean == null) return;
+            refreshView(weatherMiniBaseBean.getResult());
         });
     }
 

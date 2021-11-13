@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.cannon.R;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_READ;
 
 
@@ -19,7 +18,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_READ;
  *
  * @author shiguotao
  */
-@Route(path = ROUTE_PATH_NFC_READ, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_NFC_READ)
 public class NfcReadTextActivity extends NfcBaseActivity {
 
     @Override

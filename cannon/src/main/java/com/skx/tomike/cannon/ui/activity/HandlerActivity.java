@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_handler;
 
 /**
@@ -30,7 +29,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_handler;
  * 版本 : V1
  * 创建时间 : 2020/3/30 4:34 PM
  */
-@Route(path = ROUTE_PATH_handler, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_handler)
 public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     public TextView mHandlerLogcat;
@@ -146,9 +145,7 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
     }
 
     private void workThreadShowToast() {
-        new Thread(() -> {
-            ToastTool.showToast(this.mActivity, "子线程可以弹出toast吗？");
-        }).start();
+        new Thread(() -> ToastTool.showToast(this.mActivity, "子线程可以弹出toast吗？")).start();
     }
 
     private void workThreadShowDialog() {
@@ -182,7 +179,7 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
 
         private final WeakReference<HandlerActivity> reference;
 
-        RenderHandler(HandlerActivity context) {
+        public RenderHandler(HandlerActivity context) {
             reference = new WeakReference<>(context);
         }
 
@@ -205,7 +202,7 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
     /**
      * 工作线程，带Handler
      */
-    class LooperThread extends Thread {
+    static class LooperThread extends Thread {
         public Handler mHandler;
 
         public void run() {

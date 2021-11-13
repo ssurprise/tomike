@@ -20,7 +20,6 @@ import com.skx.tomike.tank.widget.view.PageIndicatorLayout;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PAGE_INDICATOR_LAYOUT;
 
 /**
@@ -29,7 +28,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PAGE_INDICATOR_LAY
  * 版本 : V1
  * 创建时间 : 2016/4/20
  */
-@Route(path = ROUTE_PATH_PAGE_INDICATOR_LAYOUT, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_PAGE_INDICATOR_LAYOUT)
 public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
     /**

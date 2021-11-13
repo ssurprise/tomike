@@ -1,1 +1,7 @@
 centralization this
+kapt {
+    // ARouter配置
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}

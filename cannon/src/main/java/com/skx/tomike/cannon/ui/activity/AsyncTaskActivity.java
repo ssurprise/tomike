@@ -16,7 +16,6 @@ import com.skx.tomike.cannon.R;
 import java.lang.ref.WeakReference;
 import java.util.Locale;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ASYNC_TASK;
 
 /**
@@ -25,7 +24,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ASYNC_TASK;
  * 版本 : V1
  * 创建时间 : 2020/3/30 4:34 PM
  */
-@Route(path = ROUTE_PATH_ASYNC_TASK, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_ASYNC_TASK)
 public class AsyncTaskActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private SeekBar mSeekBarProcess;

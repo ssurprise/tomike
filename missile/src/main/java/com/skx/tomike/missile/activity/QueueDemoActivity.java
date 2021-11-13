@@ -18,9 +18,7 @@ import com.skx.tomike.missile.R;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_QUEUE;
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
 
 /**
  * 描述 : 数据结构 - 队列 demo
@@ -28,7 +26,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
-@Route(path = ROUTE_PATH_QUEUE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_QUEUE)
 public class QueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mLlStackWrap;

@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.cannon.R;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_WRITE;
 
 /**
@@ -18,7 +17,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_WRITE;
  *
  * @author shiguotao
  */
-@Route(path = ROUTE_PATH_NFC_WRITE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_NFC_WRITE)
 public class NfcWriteTextActivity extends NfcBaseActivity {
 
     @Override

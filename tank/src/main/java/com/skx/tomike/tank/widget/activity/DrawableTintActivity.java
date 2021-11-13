@@ -10,13 +10,11 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.skx.tomike.tank.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.utils.SkxDrawableUtilKt;
+import com.skx.tomike.tank.R;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_CARDVIEW;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TINT;
 
 /**
@@ -37,7 +35,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TINT;
  * 3.ConstantState 享元模式
  * 4.setTint()  setTintList() 着色方法
  */
-@Route(path = ROUTE_PATH_TINT, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_TINT)
 public class DrawableTintActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

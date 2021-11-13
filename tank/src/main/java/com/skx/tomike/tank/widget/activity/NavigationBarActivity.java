@@ -2,7 +2,6 @@ package com.skx.tomike.tank.widget.activity;
 
 import android.graphics.Color;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +19,6 @@ import com.skx.tomike.tank.widget.view.TabLayoutHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NAVIGATION_BAR;
 
 /**
@@ -29,7 +27,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NAVIGATION_BAR;
  * 版本 : V1
  * 创建时间 : 2020-03-18 23:16
  */
-@Route(path = ROUTE_PATH_NAVIGATION_BAR, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_NAVIGATION_BAR)
 public class NavigationBarActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private NavigationBarLayout<String> mNavigationBar;
@@ -69,7 +67,7 @@ public class NavigationBarActivity extends SkxBaseActivity<BaseViewModel> implem
         mNavigationBar.setCustomAdapter(R.layout.layout_tab_item, new TabLayoutHelper.TabLayoutAdapter<String>(mTabList) {
             @Override
             public void bindData(int position, @NonNull View view, String charSequence) {
-                ImageView imgv_tabIcon = view.findViewById(R.id.tab_icon);
+//                ImageView imgv_tabIcon = view.findViewById(R.id.tab_icon);
                 TextView tv_tabTitle = view.findViewById(R.id.tab_title);
                 tv_tabTitle.setText(charSequence);
             }

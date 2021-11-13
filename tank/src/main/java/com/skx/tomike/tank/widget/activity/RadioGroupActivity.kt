@@ -5,7 +5,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
-import com.skx.tomike.tank.ROUTER_GROUP
 import com.skx.tomike.tank.ROUTE_PATH_RADIOGROUP
 
 /**
@@ -14,7 +13,7 @@ import com.skx.tomike.tank.ROUTE_PATH_RADIOGROUP
  * 版本 : V1
  * 创建时间 : 2020/4/20 12:31 PM
  */
-@Route(path = ROUTE_PATH_RADIOGROUP, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_RADIOGROUP)
 class RadioGroupActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {

@@ -8,7 +8,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTER_GROUP
 import com.skx.tomike.cannon.ROUTE_PATH_zxing
 
 
@@ -18,7 +17,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_zxing
  * 版本 : V1
  * 创建时间 : 2021/7/22 4:22 下午
  */
-@Route(path = ROUTE_PATH_zxing, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_zxing)
 class ZXingActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {
@@ -32,7 +31,7 @@ class ZXingActivity : SkxBaseActivity<BaseViewModel>() {
     }
 
     fun toScan(view: View) {
-        ToastTool.showToast(this,"demo 同步有问题，导致部分代码丢失，该功能暂不可用")
+        ToastTool.showToast(this, "demo 同步有问题，导致部分代码丢失，该功能暂不可用")
 //        val intent = Intent(this, com.skx.qrcode.activity.CaptureActivity::class.java)
 //        startActivityForResult(intent, 100)
     }

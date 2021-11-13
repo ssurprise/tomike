@@ -18,7 +18,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_TREE;
 
 /**
@@ -27,7 +26,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_TREE;
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
-@Route(path = ROUTE_PATH_TREE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_TREE)
 public class TreeDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     private TreeNode mTree = null;

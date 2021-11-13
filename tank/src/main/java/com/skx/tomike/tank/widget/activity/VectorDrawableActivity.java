@@ -13,9 +13,7 @@ import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.tank.R;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VECTOR_DRAWABLE;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE;
 
 
 /**
@@ -24,7 +22,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE
  * 版本 : V1
  * 创建时间 : 2021/7/8 5:36 下午
  */
-@Route(path = ROUTE_PATH_VECTOR_DRAWABLE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_VECTOR_DRAWABLE)
 public class VectorDrawableActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

@@ -2,21 +2,20 @@ package com.skx.tomike.tank.widget.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.widget.adapter.InfiniteLoopAdapter;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
+import com.skx.tomike.tank.widget.adapter.InfiniteLoopAdapter;
 
 import java.util.ArrayList;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_LOOP;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE;
 
 /**
  * Created by shiguotao on 2016/4/20.
@@ -27,7 +26,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE
  * <p>
  * 控制ViewPager 的滑动速度   http://stackoverflow.com/questions/8155257/slowing-speed-of-viewpager-controller-in-android
  */
-@Route(path = ROUTE_PATH_VIEWPAGER_LOOP, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_VIEWPAGER_LOOP)
 public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel> {
 
     private ViewPager mVpInfiniteLoop;
@@ -36,7 +35,7 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
     private final ArrayList<Integer> infiniteLoopList = new ArrayList<>();
     private final ArrayList<Integer> automaticLoopList = new ArrayList<>();
 
-    private final Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler(Looper.myLooper());
     private final MyRunnable myRunnable = new MyRunnable();
 
 

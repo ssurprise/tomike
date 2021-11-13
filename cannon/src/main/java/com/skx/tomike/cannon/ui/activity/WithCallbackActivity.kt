@@ -12,7 +12,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTER_GROUP
 import com.skx.tomike.cannon.ROUTE_PATH_ACTIVITY4RESULT
 
 /**
@@ -21,7 +20,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_ACTIVITY4RESULT
  * 版本 : V1
  * 创建时间 : 2021/7/30 11:18 上午
  */
-@Route(path = ROUTE_PATH_ACTIVITY4RESULT, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_ACTIVITY4RESULT)
 class WithCallbackActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
     private val mTvAcceptData: TextView by lazy {
@@ -32,15 +31,15 @@ class WithCallbackActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListe
     }
 
     private val registerForActivityResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { it ->
-            if (it.resultCode == RESULT_OK) {
-                it.data?.takeIf {
-                    it.hasExtra(KEY_DATA)
-                }?.run {
-                    mTvAcceptData.text = it.data?.getStringExtra(KEY_DATA)
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { it ->
+                if (it.resultCode == RESULT_OK) {
+                    it.data?.takeIf {
+                        it.hasExtra(KEY_DATA)
+                    }?.run {
+                        mTvAcceptData.text = it.data?.getStringExtra(KEY_DATA)
+                    }
                 }
             }
-        }
 
     private var mAcceptValue: String = ""
 

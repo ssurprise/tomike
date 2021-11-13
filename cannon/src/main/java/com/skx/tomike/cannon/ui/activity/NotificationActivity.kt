@@ -19,10 +19,9 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTER_GROUP
 import com.skx.tomike.cannon.ROUTE_PATH_notification
 
-@Route(path = ROUTE_PATH_notification, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_notification)
 class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
 
     private var mChannelId = 1
@@ -106,11 +105,11 @@ class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
         mChannelId++
         Log.e("channel_id", mChannelId.toString())
         val builder = NotificationCompat.Builder(this, "com.skx.tomike")
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("狗子狗子")
-            .setContentText("呼叫狗子，ninininininiinininininininininininnnnnnnnnn")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setAutoCancel(true)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("狗子狗子")
+                .setContentText("呼叫狗子，ninininininiinininininininininininnnnnnnnnn")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true)
         manager.notify(mChannelId, builder.build())
     }
 
@@ -128,7 +127,7 @@ class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
             }
             // Register the channel with the system
             val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             notificationManager.createNotificationChannel(channel)
         }

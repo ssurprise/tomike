@@ -9,10 +9,9 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.bomber.R
-import com.skx.tomike.bomber.ROUTER_GROUP
 import com.skx.tomike.bomber.ROUTE_PATH_BASE64
 
-@Route(path = ROUTE_PATH_BASE64, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_BASE64)
 class Base64Activity : SkxBaseActivity<BaseViewModel>() {
 
     private val mEvOriginalVal: EditText by lazy {

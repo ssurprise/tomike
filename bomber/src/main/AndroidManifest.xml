@@ -29,7 +29,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.bomber.thread.ThreadActivity"
+            android:name="com.skx.tomike.bomber.thread.ThreadStartActivity"
             android:screenOrientation="portrait" />
 
         <activity

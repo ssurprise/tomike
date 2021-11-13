@@ -19,7 +19,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CONTENT;
 
 /**
@@ -28,7 +27,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CON
  * 版本 : V1
  * 创建时间 : 2016/4/20.
  */
-@Route(path = ROUTE_PATH_VIEWPAGER_WRAP_CONTENT, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_VIEWPAGER_WRAP_CONTENT)
 public class ViewPagerWrapContentActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final ArrayList<Integer> mImageList = new ArrayList<>();

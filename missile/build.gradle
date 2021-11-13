@@ -11,6 +11,12 @@ android {
         }
     }
 }
+kapt {
+    // ARouter配置
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 
 dependencies {
     implementation project(":apt-annotation")

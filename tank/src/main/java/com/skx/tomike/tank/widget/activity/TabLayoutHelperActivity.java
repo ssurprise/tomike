@@ -23,10 +23,9 @@ import com.skx.tomike.tank.widget.view.TabLayoutHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_HELPER;
 
-@Route(path = ROUTE_PATH_TABLELAYOUT_HELPER, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_TABLELAYOUT_HELPER)
 public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
 
     private TabLayout mTabLayout;

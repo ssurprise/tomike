@@ -11,7 +11,7 @@ import com.skx.tomike.bomber.coroutine.CoroutineActivity;
 import com.skx.tomike.bomber.generic.GenericTestActivity;
 import com.skx.tomike.bomber.reflect.ReflectTestActivity;
 import com.skx.tomike.bomber.thread.ReentrantLockActivity;
-import com.skx.tomike.bomber.thread.ThreadActivity;
+import com.skx.tomike.bomber.thread.ThreadStartActivity;
 import com.skx.tomike.bomber.thread.ThreadCallbackActivity;
 import com.skx.tomike.bomber.thread.ThreadCommunicationActivity;
 import com.skx.tomike.bomber.thread.ThreadDaemonActivity;
@@ -406,7 +406,7 @@ public class CatalogListModel {
 
 
         // 战略轰炸机实验室
-        mJavaCatalogs.add(new CatalogItem("多线程", ROUTE_PATH_THREAD_START, ThreadActivity.class.getName()));
+        mJavaCatalogs.add(new CatalogItem("多线程", ROUTE_PATH_THREAD_START, ThreadStartActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程守护", ROUTE_PATH_THREAD_DAEMON, ThreadDaemonActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程中断", ROUTE_PATH_THREAD_INTERRUPT, ThreadInterruptActivity.class.getName()));
         mJavaCatalogs.add(new CatalogItem("线程同步", ROUTE_PATH_THREAD_SYNCHRONIZED, ThreadSynchronizedActivity.class.getName()));
@@ -446,7 +446,7 @@ public class CatalogListModel {
             CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(), "", "", null, null);
             allCatalogs.add(parentModel);
             for (CatalogItem item : tempGroup) {
-                CatalogCellModel cellModel = new CatalogCellModel(item.getName(), "", item.getValue(), parentModel, null);
+                CatalogCellModel cellModel = new CatalogCellModel(item.getName(), item.getPath(), item.getValue(), parentModel, null);
                 parentModel.addChild(cellModel);
                 allCatalogs.add(cellModel);
             }

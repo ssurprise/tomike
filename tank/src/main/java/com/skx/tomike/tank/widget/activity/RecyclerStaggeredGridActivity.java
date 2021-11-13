@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_STAGGERED_GRID;
 
 /**
@@ -33,7 +32,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_STAGGERED
  * 版本 : V1
  * 创建时间 : 2020/5/30 5:01 PM
  */
-@Route(path = ROUTE_PATH_RECYCLER_STAGGERED_GRID, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_RECYCLER_STAGGERED_GRID)
 public class RecyclerStaggeredGridActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final List<Integer> mBannerList = new ArrayList<>();

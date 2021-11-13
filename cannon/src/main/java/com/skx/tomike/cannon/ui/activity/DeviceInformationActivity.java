@@ -20,7 +20,6 @@ import com.skx.common.base.TitleConfig;
 import com.skx.tomike.cannon.R;
 
 import static android.Manifest.permission.READ_PHONE_STATE;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_COUNT_DOWN_TIMER;
 
 /**
@@ -29,7 +28,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_COUNT_DOWN_TIMER
  * 版本 : V1
  * 创建时间 : 2020/8/5 4:44 PM
  */
-@Route(path = ROUTE_PATH_COUNT_DOWN_TIMER, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_COUNT_DOWN_TIMER)
 public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
 
     private TextView mTvAndroidId;

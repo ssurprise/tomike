@@ -16,7 +16,6 @@ import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_ITEM_UPDATE;
 
 /**
@@ -25,7 +24,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_ITEM_UPDA
  * 版本 : V1
  * 创建时间 : 2020/3/20 6:27 PM
  */
-@Route(path = ROUTE_PATH_RECYCLER_ITEM_UPDATE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_RECYCLER_ITEM_UPDATE)
 public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewModel> {
 
     private ItemAnimatorAdapter mAdapter;
@@ -85,8 +84,6 @@ public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewMode
 
     /**
      * 删除第一项
-     *
-     * @param view
      */
     public void removeFirst(View view) {
         mAdapter.removeFirst();
@@ -94,8 +91,6 @@ public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewMode
 
     /**
      * 删除最后一项
-     *
-     * @param view
      */
     public void removeLast(View view) {
         mAdapter.removeLast();
@@ -103,8 +98,6 @@ public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewMode
 
     /**
      * 删除区间
-     *
-     * @param view
      */
     public void removeRange(View view) {
         List<String> list = new LinkedList<>();

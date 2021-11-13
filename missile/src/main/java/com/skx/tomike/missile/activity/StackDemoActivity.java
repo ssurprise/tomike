@@ -17,8 +17,6 @@ import com.skx.tomike.missile.R;
 
 import java.util.Stack;
 
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_SORT;
 import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
 
 /**
@@ -27,7 +25,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
-@Route(path = ROUTE_PATH_STACK, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_STACK)
 public class StackDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     private static final int MAX_SIZE = 5;

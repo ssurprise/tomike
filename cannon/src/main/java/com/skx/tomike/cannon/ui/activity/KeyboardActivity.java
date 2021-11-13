@@ -21,7 +21,6 @@ import com.skx.tomike.cannon.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
 
 /**
@@ -43,7 +42,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
  * <p/>
  * 5. isFocusable()  返回此控件是否可以获得焦点
  */
-@Route(path = ROUTE_PATH_KEYBOARD, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_KEYBOARD)
 public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
 
     private RelativeLayout mRlRoot;
@@ -85,19 +84,11 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
             }
         }, 256);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KeyboardTool.getInstances(KeyboardActivity.this).toggleKeyboard();
-            }
-        });
+        btn.setOnClickListener(v ->
+                KeyboardTool.getInstances(KeyboardActivity.this).toggleKeyboard());
 
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KeyboardTool.getInstances(KeyboardActivity.this).hideKeyboard(btn);
-            }
-        });
+        btn2.setOnClickListener(v ->
+                KeyboardTool.getInstances(KeyboardActivity.this).hideKeyboard(btn));
     }
 
     private final ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {

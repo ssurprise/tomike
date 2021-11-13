@@ -8,7 +8,6 @@ import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.common.utils.ToastTool
 import com.skx.tomike.bomber.R
-import com.skx.tomike.bomber.ROUTER_GROUP
 import com.skx.tomike.bomber.ROUTE_PATH_URL_PARSE
 import java.net.MalformedURLException
 import java.net.URL
@@ -19,7 +18,7 @@ import java.net.URL
  * 版本 : V1
  * 创建时间 : 2020/7/27 12:26 AM
  */
-@Route(path = ROUTE_PATH_URL_PARSE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_URL_PARSE)
 class UrlParseActivity : SkxBaseActivity<BaseViewModel?>() {
 
     private var mTargetUrl = "https://haokan.baidu.com/v?vid=17099850856972684618"

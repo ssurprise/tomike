@@ -18,7 +18,6 @@ import com.skx.tomike.missile.R;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_DUEUE;
 
 /**
@@ -27,7 +26,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_DUEUE;
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
-@Route(path = ROUTE_PATH_DUEUE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_DUEUE)
 public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mLlStackWrap;

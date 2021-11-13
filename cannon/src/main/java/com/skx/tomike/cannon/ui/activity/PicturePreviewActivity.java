@@ -12,7 +12,6 @@ import com.skx.tomike.cannon.ui.adapter.PicturePreviewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_preview;
 
 /**
@@ -21,7 +20,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_preview;
  * 版本 : V1
  * 创建时间 : 2020/3/20 8:30 PM
  */
-@Route(path = ROUTE_PATH_photo_preview, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_photo_preview)
 public class PicturePreviewActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final List<IPicture> mPicturesList = new ArrayList<>();

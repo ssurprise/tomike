@@ -1,31 +1,27 @@
 package com.skx.tomike.tank.widget.activity;
 
 import android.annotation.SuppressLint;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
+import com.skx.common.utils.DpPxSpToolKt;
+import com.skx.common.utils.ScreenUtilKt;
 import com.skx.tomike.tank.R;
 import com.skx.tomike.tank.widget.adapter.InfiniteLoopAdapter;
 import com.skx.tomike.tank.widget.adapter.MultiplePagerAdapter;
 import com.skx.tomike.tank.widget.view.AlphaPageTransformer;
 import com.skx.tomike.tank.widget.view.ClipViewPager;
 import com.skx.tomike.tank.widget.view.ScalePageTransformer;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
-import com.skx.common.utils.DpPxSpToolKt;
-import com.skx.common.utils.ScreenUtilKt;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CONTENT;
 
 /**
  * 描述 : ViewPager 一屏展示多组page。
@@ -38,7 +34,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CON
  * 版本 : V1
  * 创建时间 : 2016/4/20
  */
-@Route(path = ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE)
 public class ViewPagerMultiplePageActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final ArrayList<Integer> list = new ArrayList<>();
@@ -103,12 +99,7 @@ public class ViewPagerMultiplePageActivity extends SkxBaseActivity<BaseViewModel
         InfiniteLoopAdapter adapter2 = new InfiniteLoopAdapter(list2);
         clipChildrenVp.setAdapter(adapter2);
 
-        rlCliViewPageWrap.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return clipChildrenVp.dispatchTouchEvent(event);
-            }
-        });
+        rlCliViewPageWrap.setOnTouchListener((v, event) -> clipChildrenVp.dispatchTouchEvent(event));
         clipChildrenVp.setCurrentItem(list.size() * 500);
     }
 }

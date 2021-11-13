@@ -1,7 +1,6 @@
 package com.skx.tomike.bomber
 
-const val ROUTER_GROUP = "bomber"
-const val ROUTER_FIRST_LEVEL_BASICS = "/basics"
+const val ROUTER_FIRST_LEVEL_BASICS = "/javaBasics"
 const val ROUTER_FIRST_LEVEL_COROUTINE = "/coroutine"
 const val ROUTER_FIRST_LEVEL_THREAD = "/thread"
 

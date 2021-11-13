@@ -6,12 +6,15 @@ import android.os.Build
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.widget.ImageView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTE_PATH_CIRCULAR_REVEAL
 import kotlin.math.hypot
 
+@Route(path = ROUTE_PATH_CIRCULAR_REVEAL)
 class CircularRevealActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val mIvCircularReveal: ImageView by lazy {

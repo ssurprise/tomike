@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.tomike.cannon.R;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_GROUP;
 
 
@@ -23,7 +22,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_GROUP;
  * @author shiguotao
  */
 @TargetApi(Build.VERSION_CODES.KITKAT)
-@Route(path = ROUTE_PATH_NFC_GROUP, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_NFC_GROUP)
 public class NfcGroupActivity extends AppCompatActivity {
     PendingIntent pi;
     NfcAdapter mNfcAdapter;

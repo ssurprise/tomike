@@ -13,7 +13,6 @@ import com.skx.tomike.tank.R;
 
 import java.lang.reflect.Field;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_INDICATOR;
 
 /**
@@ -22,7 +21,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_INDICA
  * 版本 : V1
  * 创建时间 : 2020/5/30 10:55 AM
  */
-@Route(path = ROUTE_PATH_TABLELAYOUT_INDICATOR, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_TABLELAYOUT_INDICATOR)
 public class TabLayoutIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

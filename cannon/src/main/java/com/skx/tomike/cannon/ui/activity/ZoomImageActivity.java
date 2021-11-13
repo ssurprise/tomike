@@ -12,17 +12,15 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.skx.tomike.cannon.R;
-import com.skx.tomike.cannon.ui.view.ZoomImageView;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.cannon.R;
+import com.skx.tomike.cannon.ui.view.ZoomImageView;
 
 import org.jetbrains.annotations.NotNull;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_IMAGE_zoom;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_transparent_theme;
 
 /**
  * 描述 : 图片缩放
@@ -30,7 +28,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_transparent_them
  * 版本 : V1
  * 创建时间 : 2020-03-20 23:14
  */
-@Route(path = ROUTE_PATH_IMAGE_zoom, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_IMAGE_zoom)
 public class ZoomImageActivity extends SkxBaseActivity<BaseViewModel> {
 
     private int[] mImageArray;
@@ -69,12 +67,7 @@ public class ZoomImageActivity extends SkxBaseActivity<BaseViewModel> {
                 Bitmap newBitmap = overlapBitmap(position);
                 imageView.setImageBitmap(newBitmap);
                 container.addView(imageView);
-                imageView.setSingleClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.e("xianshi", "xianshi");
-                    }
-                });
+                imageView.setSingleClickListener(v -> Log.e("xianshi", "xianshi"));
                 return imageView;
             }
 

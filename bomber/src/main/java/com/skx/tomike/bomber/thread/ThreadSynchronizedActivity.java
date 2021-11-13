@@ -7,16 +7,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.skx.tomike.bomber.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.bomber.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
-import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_SYNCHRONIZED;
 
 
@@ -26,13 +24,12 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_SYNCHRONI
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
-@Route(path = ROUTE_PATH_THREAD_SYNCHRONIZED, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_THREAD_SYNCHRONIZED)
 public class ThreadSynchronizedActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
-    public final static String TAG = "ThreadSynchronizedActivity";
     private TextView mTvLogcat;
 
-    private Handler mHandler = new Handler(Looper.myLooper()) {
+    private final Handler mHandler = new Handler(Looper.myLooper()) {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);

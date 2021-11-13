@@ -1,31 +1,35 @@
 package com.skx.tomike.cannon.ui.activity;
 
 import android.nfc.NfcAdapter;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.cannon.R;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_PERMISSION;
 
 /**
  * Created by shiguotao on 2017/12/11.
  */
-@Route(path = ROUTE_PATH_NFC_PERMISSION, group = ROUTER_GROUP)
-public class NfcPermissionTestActivity extends AppCompatActivity {
-
-    private final String TAG = "NfcPermissionTest";
+@Route(path = ROUTE_PATH_NFC_PERMISSION)
+public class NfcPermissionTestActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfc_premission_test);
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_nfc_premission_test;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
 

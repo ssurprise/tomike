@@ -17,7 +17,6 @@ import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.utils.SkxDrawableUtilKt;
 import com.skx.tomike.tank.R;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TINT2;
 
 /**
@@ -33,7 +32,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TINT2;
  * setBackgroundTintList（colorStateListSelector）
  * setSupportBackgroundTintList（colorStateListSelector）
  */
-@Route(path = ROUTE_PATH_TINT2, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_TINT2)
 public class DrawableTint2Activity extends SkxBaseActivity<BaseViewModel> {
 
     private ImageView mTint_ImageView2;

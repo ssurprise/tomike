@@ -21,7 +21,6 @@ import com.skx.common.imageloader.transform.RoundedCorners;
 import com.skx.common.imageloader.transform.TransformStrategy;
 import com.skx.tomike.cannon.R;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_GLIDE;
 
 /**
@@ -30,7 +29,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_GLIDE;
  * 版本 : V1
  * 创建时间 : 2020/3/23 4:16 PM
  */
-@Route(path = ROUTE_PATH_GLIDE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_GLIDE)
 public class GlideActivity extends SkxBaseActivity<BaseViewModel> {
 
     private final String[] imageArray = {

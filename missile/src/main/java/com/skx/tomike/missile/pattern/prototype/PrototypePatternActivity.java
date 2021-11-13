@@ -1,14 +1,11 @@
 package com.skx.tomike.missile.pattern.prototype;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.skx.tomike.missile.R;
-import com.skx.tomike.missile.bean.User;
-import com.skx.tomike.missile.bean.UserSetting;
 
 /**
  * 原型模式
@@ -44,22 +41,22 @@ public class PrototypePatternActivity extends AppCompatActivity {
     }
 
     private void refreshView() {
-        User user = new User();
-        user.setName("墨尔本");
-        user.setPassword("5684553");
-
-        UserSetting userSetting = new UserSetting();
-        userSetting.settingName = "睡眠设置";
-        userSetting.settingValue = "YES";
-        user.setUserSetting(userSetting);
-
-        Log.e("复制前", user.toString());
-        User userClone = user.clone();
-        Log.e("复制后", userClone.toString());
-
-        userClone.setName("墨尔本二代");
-        userClone.getUserSetting().settingName = "自启动设置";
-        Log.e("修改后，原对象", user.toString());
-        Log.e("修改后，复制对象", userClone.toString());
+//        User user = new User();
+//        user.setName("墨尔本");
+//        user.setPassword("5684553");
+//
+//        UserSetting userSetting = new UserSetting();
+//        userSetting.settingName = "睡眠设置";
+//        userSetting.settingValue = "YES";
+//        user.setUserSetting(userSetting);
+//
+//        Log.e("复制前", user.toString());
+//        User userClone = user.clone();
+//        Log.e("复制后", userClone.toString());
+//
+//        userClone.setName("墨尔本二代");
+//        userClone.getUserSetting().settingName = "自启动设置";
+//        Log.e("修改后，原对象", user.toString());
+//        Log.e("修改后，复制对象", userClone.toString());
     }
 }

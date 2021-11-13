@@ -6,14 +6,17 @@ import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTE_PATH_share_Element
 
 /**
  * 共享元素1
  */
+@Route(path = ROUTE_PATH_share_Element)
 class ShareElementActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
     override fun initParams() {}

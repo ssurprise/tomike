@@ -5,7 +5,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
-import com.skx.tomike.tank.ROUTER_GROUP
 import com.skx.tomike.tank.ROUTE_PATH_EDITTEXT_CURSOR
 
 /**
@@ -14,7 +13,7 @@ import com.skx.tomike.tank.ROUTE_PATH_EDITTEXT_CURSOR
  * 版本 : V1
  * 创建时间 : 2020/4/1 7:46 PM
  */
-@Route(path = ROUTE_PATH_EDITTEXT_CURSOR, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_EDITTEXT_CURSOR)
 class EditTextCursorActivity : SkxBaseActivity<BaseViewModel?>() {
 
     override fun initParams() {}

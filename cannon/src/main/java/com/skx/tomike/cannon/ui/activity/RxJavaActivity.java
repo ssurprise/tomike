@@ -29,7 +29,6 @@ import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.observables.ConnectableObservable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_rxjava;
 
 /**
@@ -38,7 +37,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_rxjava;
  * 版本 : V1
  * 创建时间 : 2020/3/23 4:25 PM
  */
-@Route(path = ROUTE_PATH_rxjava, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_rxjava)
 public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
 
     private LinearLayout mRlLoading;

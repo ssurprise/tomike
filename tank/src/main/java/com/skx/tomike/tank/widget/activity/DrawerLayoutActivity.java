@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,10 +27,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_DRAWER_LAYOUT;
 
-@Route(path = ROUTE_PATH_DRAWER_LAYOUT, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_DRAWER_LAYOUT)
 public class DrawerLayoutActivity extends AppCompatActivity implements PlanetFragment.OnFragmentInteractionListener {
 
     private String[] mPlanetTitles;
@@ -102,7 +102,7 @@ public class DrawerLayoutActivity extends AppCompatActivity implements PlanetFra
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }

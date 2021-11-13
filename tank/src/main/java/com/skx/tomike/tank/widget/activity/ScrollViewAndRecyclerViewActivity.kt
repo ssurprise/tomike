@@ -7,7 +7,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
-import com.skx.tomike.tank.ROUTER_GROUP
 import com.skx.tomike.tank.ROUTE_PATH_SCROLLVIEW_RV
 import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter
 
@@ -17,7 +16,7 @@ import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter
  * 版本 : V1
  * 创建时间 : 2021/1/8 5:08 PM
  */
-@Route(path = ROUTE_PATH_SCROLLVIEW_RV, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_SCROLLVIEW_RV)
 class ScrollViewAndRecyclerViewActivity : SkxBaseActivity<BaseViewModel?>() {
 
     private var mRvShow: RecyclerView? = null

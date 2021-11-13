@@ -22,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER2;
 
 /**
@@ -31,7 +30,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER2;
  * 版本 : V1
  * 创建时间 : 2020/5/30 5:01 PM
  */
-@Route(path = ROUTE_PATH_VIEWPAGER2, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_VIEWPAGER2)
 public class ViewPager2Activity extends SkxBaseActivity<BaseViewModel> {
 
     private final List<String> mBannerList = new ArrayList<>();

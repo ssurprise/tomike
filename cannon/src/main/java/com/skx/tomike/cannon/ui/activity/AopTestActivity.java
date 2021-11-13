@@ -8,16 +8,14 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.aop.Animal;
 import com.skx.tomike.cannon.aop.Cat;
 import com.skx.tomike.cannon.aop.Dog;
-import com.skx.tomike.cannon.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ASYNC_TASK;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_aop;
 
 /**
@@ -25,7 +23,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_aop;
  *
  * @author shiguotao
  */
-@Route(path = ROUTE_PATH_aop, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_aop)
 public class AopTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final static String TAG = "AopTestActivity";

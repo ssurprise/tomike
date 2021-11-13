@@ -23,9 +23,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static com.skx.tomike.bomber.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_POOL;
-import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
 
 /**
  * 描述 : 线程池
@@ -33,7 +31,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
  * 版本 : V1
  * 创建时间 : 2019-12-19 17:03
  */
-@Route(path = ROUTE_PATH_THREAD_POOL, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_THREAD_POOL)
 public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
 
     private SeekBar seekb_threadPool_process;
@@ -66,7 +64,7 @@ public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
 
     private ThreadPoolExecutor mExecutor;
 
-    private Handler mHandler = new Handler(Looper.myLooper()) {
+    private final Handler mHandler = new Handler(Looper.myLooper()) {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);

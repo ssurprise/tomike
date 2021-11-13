@@ -5,11 +5,10 @@ import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.cannon.R;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_transparent_theme;
 
 
-@Route(path = ROUTE_PATH_transparent_theme, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_transparent_theme)
 public class TransparentThemeActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

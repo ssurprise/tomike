@@ -15,8 +15,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTER_GROUP
-import com.skx.tomike.cannon.ROUTE_PATH_COUNT_DOWN_TIMER
 import com.skx.tomike.cannon.ROUTE_PATH_lifecycle
 
 /**
@@ -25,7 +23,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_lifecycle
  * 版本 : V1
  * 创建时间 : 2020/4/10 9:15 AM
  */
-@Route(path = ROUTE_PATH_lifecycle, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_lifecycle)
 class LifecycleActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
 
     private val tv: TextView by lazy {

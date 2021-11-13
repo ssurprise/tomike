@@ -17,7 +17,6 @@ import com.skx.common.base.TitleConfig;
 import com.skx.tomike.tank.R;
 import com.skx.tomike.tank.widget.view.TagImageSpan;
 
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SPANNABLESTRING;
 
 /**
@@ -26,7 +25,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SPANNABLE
  * 版本 : V1
  * 创建时间 : 2020/12/25 11:28 AM
  */
-@Route(path = ROUTE_PATH_TEXTVIEW_SPANNABLESTRING, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_TEXTVIEW_SPANNABLESTRING)
 public class SpannableStringBuilderActivity extends SkxBaseActivity<BaseViewModel> {
 
     TextView textView;

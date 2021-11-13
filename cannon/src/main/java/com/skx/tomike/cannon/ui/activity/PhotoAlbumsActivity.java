@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,15 +16,11 @@ import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.DpPxSpToolKt;
 import com.skx.common.widget.GridSpaceItemDecoration;
 import com.skx.tomike.cannon.R;
-import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
 import com.skx.tomike.cannon.ui.adapter.PhotoAlbumsAdapter;
 import com.skx.tomike.cannon.viewmodel.PhotoAlbumViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTER_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_album;
 
 /**
@@ -37,7 +32,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_album;
  * 版本 : V1
  * 创建时间 : 2020-03-20 00:10
  */
-@Route(path = ROUTE_PATH_photo_album, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_photo_album)
 public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
 
     private static final int REQUEST_PERMISSION = 0;
@@ -55,12 +50,8 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
 
     @Override
     protected void subscribeEvent() {
-        mViewModel.getPhotoAlbumsLiveData().observe(this, new Observer<List<PhotoUpImageBucket>>() {
-            @Override
-            public void onChanged(List<PhotoUpImageBucket> photoUpImageBuckets) {
-                mPhotoAlbumsAdapter.setArrayList(photoUpImageBuckets);
-            }
-        });
+        mViewModel.getPhotoAlbumsLiveData().observe(this, photoUpImageBuckets ->
+                mPhotoAlbumsAdapter.setArrayList(photoUpImageBuckets));
     }
 
     @Override
@@ -102,13 +93,10 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
                 DpPxSpToolKt.dip2px(this, 30),
                 DpPxSpToolKt.dip2px(this, 10)));
         rvPhotoAlbums.setAdapter(mPhotoAlbumsAdapter = new PhotoAlbumsAdapter());
-        mPhotoAlbumsAdapter.setOnItemClickListener(new PhotoAlbumsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, PhotoUpImageBucket photoAlbum) {
-                Intent intent = new Intent(PhotoAlbumsActivity.this, PhotoWallActivity.class);
-                intent.putExtra("imagelist", photoAlbum);
-                startActivity(intent);
-            }
+        mPhotoAlbumsAdapter.setOnItemClickListener((position, photoAlbum) -> {
+            Intent intent = new Intent(PhotoAlbumsActivity.this, PhotoWallActivity.class);
+            intent.putExtra("imagelist", photoAlbum);
+            startActivity(intent);
         });
     }
 

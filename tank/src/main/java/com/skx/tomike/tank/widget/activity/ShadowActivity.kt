@@ -5,10 +5,9 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
-import com.skx.tomike.tank.ROUTER_GROUP
 import com.skx.tomike.tank.ROUTE_PATH_SHADOW
 
-@Route(path = ROUTE_PATH_SHADOW, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_SHADOW)
 class ShadowActivity : SkxBaseActivity<BaseViewModel?>() {
 
     override fun initParams() {}

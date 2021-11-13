@@ -59,6 +59,13 @@ android {
     }
 }
 
+kapt {
+    // ARouter配置
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 dependencies {
     // 本地二进制文件依赖项。声明了对项目的 module_name/libs/ 目录中 JAR、AAR 文件的依赖关系（因为 Gradle 会读取 build.gradle 文件的相对路径）。
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')

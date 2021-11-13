@@ -6,7 +6,6 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
-import com.skx.tomike.tank.ROUTER_GROUP
 import com.skx.tomike.tank.ROUTE_PATH_MATRIXIMAGE
 import com.skx.tomike.tank.widget.view.TranslateImageView
 
@@ -16,7 +15,7 @@ import com.skx.tomike.tank.widget.view.TranslateImageView
  * 版本 : V1
  * 创建时间 : 2020/6/23 2:16 PM
  */
-@Route(path = ROUTE_PATH_MATRIXIMAGE, group = ROUTER_GROUP)
+@Route(path = ROUTE_PATH_MATRIXIMAGE)
 class MatrixImageActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
 
     private var mImage: TranslateImageView? = null

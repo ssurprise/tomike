@@ -6,10 +6,12 @@ import android.animation.PropertyValuesHolder
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.tank.R
+import com.skx.tomike.tank.ROUTE_PATH_SHAKE
 
 /**
  * 描述 : 摇晃动画
@@ -22,6 +24,7 @@ import com.skx.tomike.tank.R
  * 版本 : V1
  * 创建时间 : 2020/3/23 4:55 PM
  */
+@Route(path = ROUTE_PATH_SHAKE)
 class ShakeAnimatorActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val mTargetView: ImageView by lazy {

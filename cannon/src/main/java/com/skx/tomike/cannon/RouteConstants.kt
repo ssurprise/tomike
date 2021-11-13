@@ -1,6 +1,5 @@
 package com.skx.tomike.cannon
 
-const val ROUTER_GROUP = "cannon"
 
 const val ROUTER_FIRST_LEVEL_JETPACK = "/jetpack"
 const val ROUTER_FIRST_LEVEL_third = "/third"
