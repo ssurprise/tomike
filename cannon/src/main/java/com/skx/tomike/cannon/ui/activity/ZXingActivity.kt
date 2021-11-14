@@ -6,6 +6,7 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
 import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_zxing
@@ -28,6 +29,10 @@ class ZXingActivity : SkxBaseActivity<BaseViewModel>() {
     }
 
     override fun initView() {
+    }
+
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("二维码扫描-zxing库").create()
     }
 
     fun toScan(view: View) {

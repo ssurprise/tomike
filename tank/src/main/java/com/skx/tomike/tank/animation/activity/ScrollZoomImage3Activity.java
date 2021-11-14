@@ -4,16 +4,20 @@ import android.graphics.Matrix;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.widget.OverScrollView;
 import com.skx.tomike.tank.R;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM2;
 
 /**
  * 滑动缩放头图
  *
  * @author shiguotao
  */
+@Route(path = ROUTE_PATH_SCROLL_ZOOM2)
 public class ScrollZoomImage3Activity extends SkxBaseActivity<BaseViewModel> {
 
     private final String TAG = "ScrollZoomImage";

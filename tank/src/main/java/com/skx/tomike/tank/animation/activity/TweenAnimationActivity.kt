@@ -107,11 +107,15 @@ class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickLi
     private fun setAnimation() {
         val animationSet = AnimationSet(false)
 
-        val translateAnimation: Animation = TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
+        val translateAnimation: Animation = TranslateAnimation(
+                TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
                 TranslateAnimation.RELATIVE_TO_PARENT, 0.25f,
-                TranslateAnimation.RELATIVE_TO_SELF, 0f, TranslateAnimation.RELATIVE_TO_SELF, 0f)
+                TranslateAnimation.RELATIVE_TO_SELF, 0f,
+                TranslateAnimation.RELATIVE_TO_SELF, 0f)
 
-        val scaleAnimation = ScaleAnimation(1.0f, 2.0f, 1.0f, 2.0f,
+        val scaleAnimation = ScaleAnimation(
+                1.0f, 2.0f,
+                1.0f, 2.0f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f)
 

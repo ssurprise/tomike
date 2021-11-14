@@ -3,23 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/view_padding_15"
     android:paddingLeft="@dimen/view_padding_15"
-    android:paddingRight="@dimen/view_padding_15"
     android:paddingTop="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.bomber.basics.DoubleFormatActivity">
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingBottom="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.bomber.basics.DoubleCalculateActivity">
 
     <TextView
         android:id="@+id/tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="请输入一个数字" />
+        android:text="请输入一个数字"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/doubleFormat_editText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/tag" />
+        android:layout_below="@id/tag"
+        tools:ignore="Autofill,LabelFor,TextFields" />
 
     <LinearLayout
         android:layout_width="match_parent"

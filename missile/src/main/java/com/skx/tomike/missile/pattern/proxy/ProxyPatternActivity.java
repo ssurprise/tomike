@@ -3,11 +3,11 @@ package com.skx.tomike.missile.pattern.proxy;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import com.skx.tomike.missile.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.ToastTool;
+import com.skx.tomike.missile.R;
 
 /**
  * 描述 : 代理模式
@@ -36,14 +36,11 @@ public class ProxyPatternActivity extends SkxBaseActivity<BaseViewModel> impleme
     @Override
     protected void initView() {
         RadioGroup mCbCar = findViewById(R.id.cb_proxy_cars);
-        mCbCar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.cb_proxy_audi) {
-                    iCarFactory = new AudiCareFactory();
-                } else if (checkedId == R.id.cb_proxy_benz) {
-                    iCarFactory = new BenzCareFactory();
-                }
+        mCbCar.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.cb_proxy_audi) {
+                iCarFactory = new AudiCareFactory();
+            } else if (checkedId == R.id.cb_proxy_benz) {
+                iCarFactory = new BenzCareFactory();
             }
         });
 

@@ -15,10 +15,7 @@ import com.skx.tomike.tank.ROUTE_PATH_SHAKE
 
 /**
  * 描述 : 摇晃动画
- *
- *
  * 提供了两种实现方式：View Animation 和 Property Animator
- *
  *
  * 作者 : shiguotao
  * 版本 : V1
@@ -59,9 +56,9 @@ class ShakeAnimatorActivity : SkxBaseActivity<BaseViewModel>() {
                 Keyframe.ofFloat(0.9f, -40f),
                 Keyframe.ofFloat(1.0f, 0f)
         )
-        val objectAnimator = ObjectAnimator.ofPropertyValuesHolder(mTargetView, rotateValuesHolder)
-        objectAnimator.duration = 2000
-        objectAnimator.start()
+        ObjectAnimator.ofPropertyValuesHolder(mTargetView, rotateValuesHolder)
+                .setDuration(2000)
+                .start()
     }
 
     fun viewAnimation(view: View?) {

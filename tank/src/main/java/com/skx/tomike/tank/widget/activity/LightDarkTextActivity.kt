@@ -41,17 +41,17 @@ class LightDarkTextActivity : SkxBaseActivity<BaseViewModel>() {
     }
 
     override fun initView() {
-        val input = findViewById<AppCompatEditText>(R.id.lightDarkText_input)
-        val input1 = findViewById<AppCompatEditText>(R.id.lightDarkText_input1)
-        val input2 = findViewById<AppCompatEditText>(R.id.lightDarkText_input2)
-        val input3 = findViewById<AppCompatEditText>(R.id.lightDarkText_input3)
+        val input = findViewById<AppCompatEditText>(R.id.et_light2dark_input)
+        val input1 = findViewById<AppCompatEditText>(R.id.et_light2dark_input1)
+        val input2 = findViewById<AppCompatEditText>(R.id.et_light2dark_input2)
+        val input3 = findViewById<AppCompatEditText>(R.id.et_light2dark_input3)
 
         editTexts.add(input)
         editTexts.add(input1)
         editTexts.add(input2)
         editTexts.add(input3)
 
-        btnSwitch = findViewById(R.id.lightDarkText_switch)
+        btnSwitch = findViewById(R.id.tv_light2dark_switchBtn)
         btnSwitch?.text = "暗文"
 
         val textWatcher: TextWatcher = object : TextWatcher {

@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="@dimen/view_padding_15"
     tools:context="com.skx.tomike.tank.widget.activity.VectorDrawableActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="同一个矢量图在不同大小的View 上显示对比 - VectorDrawableCompat"
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:id="@+id/vectorDrawableTest_container"
@@ -25,16 +34,34 @@
 
         <TextView
             android:id="@+id/vectorDrawableTest_TextView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
+            android:text="我是（70*70）大小的TextView"
+            android:textSize="12sp"
+            tools:ignore="HardcodedText,SmallSp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/vectorDrawableTest_animatedImageView"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/vectorDrawableTest_container"
+        android:layout_marginTop="20dp"
+        android:text="动态矢量图 - AnimatedVectorDrawableCompat"
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/iv_vectorDrawable_animated"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         tools:ignore="ContentDescription" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_vectorDrawable_animated2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        tools:ignore="ContentDescription" />
+
+</LinearLayout>

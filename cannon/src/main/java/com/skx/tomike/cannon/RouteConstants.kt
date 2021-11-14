@@ -7,10 +7,11 @@ const val ROUTER_FIRST_LEVEL_FUNCTION = "/function"
 const val ROUTER_FIRST_LEVEL_OTHER = "/other"
 
 
-const val ROUTE_PATH_service = "${ROUTER_FIRST_LEVEL_JETPACK}/service"
-const val ROUTE_PATH_lifecycle = "${ROUTER_FIRST_LEVEL_JETPACK}/lifecycle"
-const val ROUTE_PATH_view_model = "${ROUTER_FIRST_LEVEL_JETPACK}/viewmodel"
-const val ROUTE_PATH_room = "${ROUTER_FIRST_LEVEL_JETPACK}/room"
+const val ROUTE_PATH_POPWINDOW = "${ROUTER_FIRST_LEVEL_JETPACK}/popwindow"
+const val ROUTE_PATH_SERVICE = "${ROUTER_FIRST_LEVEL_JETPACK}/service"
+const val ROUTE_PATH_LIFECYCLE = "${ROUTER_FIRST_LEVEL_JETPACK}/lifecycle"
+const val ROUTE_PATH_VIEW_MODEL = "${ROUTER_FIRST_LEVEL_JETPACK}/viewmodel"
+const val ROUTE_PATH_ROOM = "${ROUTER_FIRST_LEVEL_JETPACK}/room"
 const val ROUTE_PATH_ACTIVITY4RESULT = "${ROUTER_FIRST_LEVEL_JETPACK}/activity4result"
 
 

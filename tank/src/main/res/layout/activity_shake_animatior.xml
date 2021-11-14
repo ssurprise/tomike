@@ -37,7 +37,6 @@
         style="@style/TextBtnStyle"
         android:layout_width="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_weight="1"
         android:onClick="propertyAnimator"
         android:text="Property Animator"

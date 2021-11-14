@@ -3,8 +3,8 @@ package com.skx.tomike.missile.pattern.prototype;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.missile.R;
 
 /**
@@ -18,7 +18,7 @@ import com.skx.tomike.missile.R;
  *
  * @author shiguotao
  */
-public class PrototypePatternActivity extends AppCompatActivity {
+public class PrototypePatternActivity extends SkxBaseActivity<BaseViewModel> {
 
     String noteStr = "super.clone 拷贝如果有包含对象，属于浅拷贝。包含的对象属性也需要实现Cloneable接口，重写clone方法。否则修改复制对象的对象值，则会影响到源对象的属性\n\n"
             + "原型模式可以解决构建复杂对象的资源消耗问题，能够在某些场景下提升创建对象的效率。另外一个重要的用户就是保护性考拷贝\n\n" +
@@ -26,18 +26,26 @@ public class PrototypePatternActivity extends AppCompatActivity {
             "优点：原型模式是在内存中二进制流的拷贝，要比直接new一个对象性能好的多，特别是要在一个循环体内产生大量的对象时。\n\n" +
             "缺点：直接在内存中拷贝构造函数是不会执行的，在实际开发中应当要特别注意这点。";
 
+    @Override
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_pattern_prototype;
+    }
+
+    @Override
+    protected void initView() {
+        TextView note = findViewById(R.id.clonePattern_note);
+        note.setText(noteStr);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeView();
         refreshView();
-    }
-
-    private void initializeView() {
-        setContentView(R.layout.activity_pattern_prototype);
-        TextView note = findViewById(R.id.clonePattern_note);
-        note.setText(noteStr);
     }
 
     private void refreshView() {

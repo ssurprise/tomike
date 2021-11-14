@@ -1,4 +1,4 @@
-package com.skx.tomike.tank.widget.activity
+package com.skx.tomike.cannon.ui.activity
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,12 +9,15 @@ import android.widget.Button
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import androidx.core.view.ViewCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.common.utils.SkxDrawableUtil
-import com.skx.tomike.tank.R
+import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTE_PATH_POPWINDOW
 
+@Route(path = ROUTE_PATH_POPWINDOW)
 class PopupWindowActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
 

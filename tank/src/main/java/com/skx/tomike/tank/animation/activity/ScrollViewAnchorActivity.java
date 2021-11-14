@@ -26,13 +26,16 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
-import com.skx.tomike.tank.R;
-import com.skx.tomike.tank.widget.view.ScrollChangedScrollView;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.utils.DpPxSpToolKt;
 import com.skx.common.utils.ToastTool;
+import com.skx.tomike.tank.R;
+import com.skx.tomike.tank.widget.view.ScrollChangedScrollView;
+
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ANCHOR;
 
 /**
  * 描述 : TabLayout + NestedScrollView 联动效果
@@ -40,6 +43,7 @@ import com.skx.common.utils.ToastTool;
  * 版本 : V1
  * 创建时间 : 2020/3/20 6:15 PM
  */
+@Route(path = ROUTE_PATH_SCROLL_ANCHOR)
 public class ScrollViewAnchorActivity extends SkxBaseActivity<BaseViewModel> {
 
     // 头部导航标签

@@ -21,7 +21,7 @@
 
         <!-- Double 格式转换工具 -->
         <activity
-            android:name="com.skx.tomike.bomber.basics.DoubleFormatActivity"
+            android:name="com.skx.tomike.bomber.basics.DoubleCalculateActivity"
             android:screenOrientation="portrait" />
 
         <activity

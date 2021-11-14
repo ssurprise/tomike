@@ -9,9 +9,9 @@ import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTE_PATH_COUNT_DOWN_TIMER
+import com.skx.tomike.cannon.ROUTE_PATH_OUTER_START
 
-@Route(path = ROUTE_PATH_COUNT_DOWN_TIMER)
+@Route(path = ROUTE_PATH_OUTER_START)
 class OutterStartActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {}

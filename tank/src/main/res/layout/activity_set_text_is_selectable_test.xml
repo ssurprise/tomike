@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="15dp"
     android:paddingTop="15dp"
     android:paddingRight="15dp"
     android:paddingBottom="15dp"
-    tools:context=".widget.activity.SetTextIsSelectableTestActivity">
+    tools:context=".widget.activity.TextViewCopyActivity">
 
     <TextView
         android:id="@+id/textCopyTest_content"
@@ -17,13 +18,14 @@
         android:textIsSelectable="true"
         android:textSize="14sp" />
 
-    <Button
+    <TextView
+        style="@style/TextBtnStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
         android:onClick="gotoOther"
         android:text="跳转出去"
         android:textColor="@color/skx_ff4081"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
 
-</RelativeLayout>
+</LinearLayout>

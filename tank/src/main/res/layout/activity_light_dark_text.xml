@@ -13,7 +13,7 @@
         android:layout_marginTop="100dp">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/lightDarkText_input"
+            android:id="@+id/et_light2dark_input"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
@@ -21,10 +21,10 @@
             android:inputType="number"
             android:lines="1"
             android:maxLength="1"
-            android:nextFocusForward="@id/lightDarkText_input1" />
+            android:nextFocusForward="@id/et_light2dark_input1" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/lightDarkText_input1"
+            android:id="@+id/et_light2dark_input1"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
@@ -32,10 +32,10 @@
             android:inputType="number"
             android:lines="1"
             android:maxLength="1"
-            android:nextFocusForward="@id/lightDarkText_input2" />
+            android:nextFocusForward="@id/et_light2dark_input2" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/lightDarkText_input2"
+            android:id="@+id/et_light2dark_input2"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
@@ -43,11 +43,11 @@
             android:inputType="number"
             android:lines="1"
             android:maxLength="1"
-            android:nextFocusForward="@id/lightDarkText_input3"
+            android:nextFocusForward="@id/et_light2dark_input3"
             android:privateImeOptions="" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/lightDarkText_input3"
+            android:id="@+id/et_light2dark_input3"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
@@ -59,10 +59,12 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lightDarkText_switch"
+        android:id="@+id/tv_light2dark_switchBtn"
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"
         android:layout_below="@id/lightDarkText_input_master"
-        android:text="" />
+        android:layout_marginTop="10dp"
+        android:text="暗文"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

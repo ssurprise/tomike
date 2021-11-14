@@ -5,23 +5,30 @@ import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
-import com.skx.tomike.tank.R;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.ImageHelperKt;
+import com.skx.tomike.tank.R;
 
+/**
+ * 描述 : 图像处理 - 修改图片色度、亮度、饱和度
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2021/11/14 10:37 下午
+ */
 public class ColorMatrixActivity extends SkxBaseActivity<BaseViewModel> implements SeekBar.OnSeekBarChangeListener {
 
     private ImageView main_img;
-    private static int MAX_VALUE = 255;
-    private static int MID_VALUE = 127;
+    private static final int MAX_VALUE = 255;
+    private static final int MID_VALUE = 127;
 
     private float mHue, mSaturation, mLum;
     private Bitmap bitmap;
 
     @Override
-    protected void initParams() {}
+    protected void initParams() {
+    }
 
     @Override
     protected TitleConfig configHeaderTitle() {

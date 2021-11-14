@@ -7,12 +7,13 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.DoubleFormatToolKt;
 import com.skx.tomike.bomber.R;
 
-public class DoubleFormatActivity extends AppCompatActivity {
+public class DoubleCalculateActivity extends SkxBaseActivity<BaseViewModel> {
 
     private EditText doubleFormat_editText;
     private TextView doubleFormat_result;
@@ -20,14 +21,34 @@ public class DoubleFormatActivity extends AppCompatActivity {
     private TextView doubleFormat_result2;
 
     @Override
+    protected void initParams() {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_double_format;
+    }
+
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("精度计算-浮点数").create();
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_double_format);
-
         doubleFormat_editText = findViewById(R.id.doubleFormat_editText);
         doubleFormat_result = findViewById(R.id.doubleFormat_result);
         doubleFormat_result1 = findViewById(R.id.doubleFormat_result1);
         doubleFormat_result2 = findViewById(R.id.doubleFormat_result2);
+
+        doubleFormat_result.setText("1.11+0.09 =" + (1.11 + 0.09));
 
         doubleFormat_editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -54,4 +75,6 @@ public class DoubleFormatActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="ImageView 背景着色(左：xml 右:code) " />
+            android:text="ImageView 背景着色(左：xml 右:code) "
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,11 +34,10 @@
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:id="@+id/tintTest2_tint_ImageView2"
+                android:id="@+id/mIv_tint2_code_bg"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 tools:ignore="ContentDescription" />
 
@@ -65,12 +65,12 @@
             <!--app:backgroundTint="@color/selector_color_button"-->
 
             <Button
-                android:id="@+id/tintTest2_tint_btn2"
+                android:id="@+id/btn_tint2_code_bg"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 
@@ -78,7 +78,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="AppCompatButton 背景着色(左：xml 右:code) " />
+            android:text="AppCompatButton 背景着色(左：xml 右:code) "
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,11 +95,10 @@
                 app:backgroundTint="#568356" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/tintTest2_tint_btn4"
+                android:id="@+id/acbtn_tent2_code_bg"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -107,7 +107,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="ImageView 设置selector(左：xml 右:code) " />
+            android:text="ImageView 设置selector(左：xml 右:code) "
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,15 +121,17 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_drawable_button"
                 android:clickable="true"
-                app:backgroundTint="@color/selector_color_button" />
+                android:focusable="true"
+                app:backgroundTint="@color/selector_color_button"
+                tools:ignore="ContentDescription" />
 
             <ImageView
-                android:id="@+id/tintTest2_ImageView2"
+                android:id="@+id/iv_tint2_code_selector"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
@@ -136,7 +139,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Button 设置selector(左：xml 右:code) " />
+            android:text="Button 设置selector(左：xml 右:code) "
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,15 +152,16 @@
                 android:layout_height="120dp"
                 android:layout_weight="1"
                 android:background="@drawable/selector_drawable_button"
-                app:backgroundTint="@color/selector_color_button" />
+                app:backgroundTint="@color/selector_color_button"
+                tools:ignore="ButtonStyle" />
 
             <Button
-                android:id="@+id/tintTest2_btn2"
+                android:id="@+id/btn_tint2_code_selector"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 
@@ -164,7 +169,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="AppCompatButton 设置selector(左：xml 右:code) " />
+            android:text="AppCompatButton 设置selector(左：xml 右:code) "
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -180,11 +186,10 @@
                 app:backgroundTint="@color/selector_color_button" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/tintTest2_btn4"
+                android:id="@+id/acbtn_tint2_code_selector"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_weight="1" />
 
         </LinearLayout>

@@ -33,16 +33,16 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_AS_VP;
 @Route(path = ROUTE_PATH_RECYCLER_AS_VP)
 public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
 
-    private final List<String> mBannerList = new ArrayList<>();
+    private final List<Integer> mBannerList = new ArrayList<>();
 
     @Override
     protected void initParams() {
-        mBannerList.add("http://pic1.win4000.com/wallpaper/6/58194994a591e.jpg");
-        mBannerList.add("http://pic1.win4000.com/wallpaper/6/5819499e74cf8.jpg");
-        mBannerList.add("http://pic1.win4000.com/wallpaper/3/584f9928e1771.jpg");
-        mBannerList.add("http://pic1.win4000.com/wallpaper/3/584f992d6bd62.jpg");
-        mBannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590993126378&di=b2f667623306f875b48d50f120267a88&imgtype=0&src=http%3A%2F%2Fs9.rr.itc.cn%2Fr%2FwapChange%2F201611_18_11%2Fa46lpo74655993745596.gif");
-        mBannerList.add("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1761055549,119613524&fm=26&gp=0.jpg");
+        mBannerList.add(R.drawable.image_01);
+        mBannerList.add(R.drawable.image_02);
+        mBannerList.add(R.drawable.image_03);
+        mBannerList.add(R.drawable.image_04);
+        mBannerList.add(R.drawable.image_05);
+        mBannerList.add(R.drawable.image_06);
     }
 
     @Override
@@ -67,9 +67,9 @@ public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> 
 
     private static class RecyclerViewBannerAdapter extends RecyclerView.Adapter<RecyclerViewBannerAdapter.ItemViewHolder> {
 
-        private final List<String> mBannerList = new ArrayList<>();
+        private final List<Integer> mBannerList = new ArrayList<>();
 
-        public RecyclerViewBannerAdapter(List<String> contentList) {
+        public RecyclerViewBannerAdapter(List<Integer> contentList) {
             if (contentList != null) {
                 mBannerList.addAll(contentList);
             }
@@ -82,7 +82,7 @@ public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> 
 
         @NotNull
         @Override
-        public RecyclerViewBannerAdapter.ItemViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+        public RecyclerViewBannerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new RecyclerViewBannerAdapter.ItemViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.adapter_recycler_view_banner, parent, false));
         }
@@ -90,9 +90,6 @@ public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> 
         @Override
         public void onBindViewHolder(@NonNull RecyclerViewBannerAdapter.ItemViewHolder holder, int position) {
             ImageLoader.with(holder.itemView.getContext()).load(mBannerList.get(position)).into(holder.mIvImage);
-//            ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-//            layoutParams.width = ScreenUtilKt.getScreenWidth(holder.itemView.getContext()) - 300;
-//            holder.itemView.setLayoutParams(layoutParams);
         }
 
         private static class ItemViewHolder extends RecyclerView.ViewHolder {

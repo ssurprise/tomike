@@ -23,8 +23,8 @@ public class ColorMatrix2Activity extends SkxBaseActivity<BaseViewModel> {
     private GridLayout mGroup;
     private Bitmap mBitmap;
     private int mEtWidth, mEtHeight;
-    private EditText[] mEts = new EditText[20];
-    private float[] mColorMatrix = new float[20];
+    private final EditText[] mEts = new EditText[20];
+    private final float[] mColorMatrix = new float[20];
 
     @Override
     protected void initParams() {
@@ -50,14 +50,11 @@ public class ColorMatrix2Activity extends SkxBaseActivity<BaseViewModel> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGroup.post(new Runnable() {
-            @Override
-            public void run() {
-                mEtWidth = mGroup.getWidth() / 5;
-                mEtHeight = mGroup.getHeight() / 4;
-                addEts();
-                initMatrix();
-            }
+        mGroup.post(() -> {
+            mEtWidth = mGroup.getWidth() / 5;
+            mEtHeight = mGroup.getHeight() / 4;
+            addEts();
+            initMatrix();
         });
     }
 

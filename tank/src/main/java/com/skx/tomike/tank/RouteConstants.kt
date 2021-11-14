@@ -14,10 +14,10 @@ const val ROUTE_PATH_SCROLLER = "${ROUTER_FIRST_LEVEL_anim}/scroller"
 const val ROUTE_PATH_LAYOUT_TRANSITION = "${ROUTER_FIRST_LEVEL_anim}/layout/transition"
 const val ROUTE_PATH_BEZIER = "${ROUTER_FIRST_LEVEL_anim}/bezier"
 
-const val ROUTE_PATH_scroll_change_title = "${ROUTER_FIRST_LEVEL_linkage}/scroll/changeTitle"
-const val ROUTE_PATH_scroll_anchor = "${ROUTER_FIRST_LEVEL_linkage}/scroll/anchor"
-const val ROUTE_PATH_scroll_zoom = "${ROUTER_FIRST_LEVEL_linkage}/scroll/zoom"
-const val ROUTE_PATH_scroll_zoom2 = "${ROUTER_FIRST_LEVEL_linkage}/scroll/zoom2"
+const val ROUTE_PATH_SCROLL_CHANGE_TITLE = "${ROUTER_FIRST_LEVEL_linkage}/scroll/changeTitle"
+const val ROUTE_PATH_SCROLL_ANCHOR = "${ROUTER_FIRST_LEVEL_linkage}/scroll/anchor"
+const val ROUTE_PATH_SCROLL_ZOOM = "${ROUTER_FIRST_LEVEL_linkage}/scroll/zoom"
+const val ROUTE_PATH_SCROLL_ZOOM2 = "${ROUTER_FIRST_LEVEL_linkage}/scroll/zoom2"
 
 const val ROUTE_PATH_share_Element = "${ROUTER_FIRST_LEVEL_transition}/shareElement"
 

@@ -11,7 +11,7 @@ import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.RecentlyBrowsedBean;
 import com.skx.tomike.cannon.viewmodel.RecentlyBrowsedViewModel;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_room;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ROOM;
 
 /**
  * 描述 : ROOM 测试类
@@ -19,7 +19,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_room;
  * 版本 : V1
  * 创建时间 : 2020-03-08 21:42
  */
-@Route(path = ROUTE_PATH_room)
+@Route(path = ROUTE_PATH_ROOM)
 public class RoomTestActivity extends SkxBaseActivity<RecentlyBrowsedViewModel> implements View.OnClickListener {
 
     private TextView mTvLogcat;

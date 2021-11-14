@@ -12,10 +12,10 @@ import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.User;
 import com.skx.tomike.cannon.viewmodel.UserProfileViewModel;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_view_model;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_VIEW_MODEL;
 
 
-@Route(path = ROUTE_PATH_view_model)
+@Route(path = ROUTE_PATH_VIEW_MODEL)
 public class ViewModelActivity extends AppCompatActivity {
 
     private UserProfileViewModel mViewModel;

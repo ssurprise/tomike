@@ -22,7 +22,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SELECTABL
  * java中setTextIsSelectable(false); 这个时候如果跳出当前页面会报错：StackOverflowError，其他情况的设置一切都是ok的
  */
 @Route(path = ROUTE_PATH_TEXTVIEW_SELECTABLE)
-public class SetTextIsSelectableTestActivity extends SkxBaseActivity<BaseViewModel> {
+public class TextViewCopyActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected void initParams() {
@@ -43,13 +43,10 @@ public class SetTextIsSelectableTestActivity extends SkxBaseActivity<BaseViewMod
     @Override
     protected void initView() {
         TextView tv_textCopyTest_content = findViewById(R.id.textCopyTest_content);
-        tv_textCopyTest_content.setText("啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊" +
-                "啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊" +
-                "啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊" +
-                "啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊" +
-                "啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊" +
-                "啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊" +
-                "啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊 啊啊");
+        tv_textCopyTest_content.setText("啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊" +
+                "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊" +
+                "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊" +
+                "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊");
 
         tv_textCopyTest_content.setTextIsSelectable(false);
     }

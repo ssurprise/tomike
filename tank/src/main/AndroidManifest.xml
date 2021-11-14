@@ -32,9 +32,6 @@
             android:name=".widget.activity.Lowercase2UppercaseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.PopupWindowActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".widget.activity.CardViewActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -51,7 +48,7 @@
             android:name=".widget.activity.CoordinatorLayoutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.SetTextIsSelectableTestActivity"
+            android:name=".widget.activity.TextViewCopyActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".widget.activity.NestedScrollViewViewPagerActivity"

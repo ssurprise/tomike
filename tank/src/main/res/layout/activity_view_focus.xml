@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:gravity="top|start"
         android:hint="姓名"
-        android:nextFocusForward="@id/lightDarkText_input1"
+        android:nextFocusForward="@id/et_light2dark_input1"
         tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <EditText

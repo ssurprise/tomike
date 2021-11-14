@@ -2,7 +2,7 @@ package com.skx.tomike.model;
 
 import com.skx.tomike.bean.CatalogItem;
 import com.skx.tomike.bomber.basics.Base64Activity;
-import com.skx.tomike.bomber.basics.DoubleFormatActivity;
+import com.skx.tomike.bomber.basics.DoubleCalculateActivity;
 import com.skx.tomike.bomber.basics.GsonParseActivity;
 import com.skx.tomike.bomber.basics.UrlEncodeActivity;
 import com.skx.tomike.bomber.basics.UrlParseActivity;
@@ -92,7 +92,7 @@ import com.skx.tomike.tank.widget.activity.MatrixImageActivity;
 import com.skx.tomike.tank.widget.activity.NavigationBarActivity;
 import com.skx.tomike.tank.widget.activity.NestedScrollViewViewPagerActivity;
 import com.skx.tomike.tank.widget.activity.PageIndicatorActivity;
-import com.skx.tomike.tank.widget.activity.PopupWindowActivity;
+import com.skx.tomike.cannon.ui.activity.PopupWindowActivity;
 import com.skx.tomike.tank.widget.activity.RadioGroupActivity;
 import com.skx.tomike.tank.widget.activity.RecyclerAsViewPagerActivity;
 import com.skx.tomike.tank.widget.activity.RecyclerStaggeredGridActivity;
@@ -101,7 +101,7 @@ import com.skx.tomike.tank.widget.activity.RecyclerViewCountDownTimerActivity;
 import com.skx.tomike.tank.widget.activity.RecyclerViewItemUpdateActivity;
 import com.skx.tomike.tank.widget.activity.RecyclerViewScrollToPositionActivity;
 import com.skx.tomike.tank.widget.activity.ScrollViewAndRecyclerViewActivity;
-import com.skx.tomike.tank.widget.activity.SetTextIsSelectableTestActivity;
+import com.skx.tomike.tank.widget.activity.TextViewCopyActivity;
 import com.skx.tomike.tank.widget.activity.ShadowActivity;
 import com.skx.tomike.tank.widget.activity.ShapeDrawableHelperActivity;
 import com.skx.tomike.tank.widget.activity.ShapeViewActivity;
@@ -155,19 +155,20 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_OUTER_START;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PARCELABLE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PERMISSION;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_POPWINDOW;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_SAF;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_aop;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_handler;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_hotfix;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_lifecycle;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_LIFECYCLE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_notification;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_okhttp;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_album;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_reboot;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_retrofit;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_room;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ROOM;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_rxjava;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_service;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_SERVICE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_transparent_theme;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_zxing;
 import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_ARRAY;
@@ -216,6 +217,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SELECTABL
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SPANNABLESTRING;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_WORD_SPACE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TINT;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TINT2;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TWEEN;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VECTOR_DRAWABLE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER2;
@@ -223,10 +225,10 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_LOOP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CONTENT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEW_FOCUS;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_scroll_anchor;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_scroll_change_title;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_scroll_zoom;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_scroll_zoom2;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ANCHOR;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_CHANGE_TITLE;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM2;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
 
 /**
@@ -286,7 +288,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("View 焦点", ROUTE_PATH_VIEW_FOCUS, ViewFocusActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 行间距/字间距", ROUTE_PATH_TEXTVIEW_WORD_SPACE, TextWordSpaceActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextView 富文本SpannableString", ROUTE_PATH_TEXTVIEW_SPANNABLESTRING, SpannableStringBuilderActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TextView 复制测试", ROUTE_PATH_TEXTVIEW_SELECTABLE, SetTextIsSelectableTestActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TextView 复制测试", ROUTE_PATH_TEXTVIEW_SELECTABLE, TextViewCopyActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", ROUTE_PATH_TEXTSWITCH, TextSwitcherActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 光标", ROUTE_PATH_EDITTEXT_CURSOR, EditTextCursorActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", ROUTE_PATH_EDITTEXT_LIGHT2DARK, LightDarkTextActivity.class.getName()));
@@ -307,7 +309,6 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("投影", ROUTE_PATH_SHADOW, ShadowActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("FloatingActionButton", ROUTE_PATH_FLOATINGACTIONBUTTON, FloatingActionButtonActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("SnackBar", ROUTE_PATH_SNACKBAR, SnackBarActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("PopupWindow", "", PopupWindowActivity.class.getName()));
 
         mViewCatalogs.add(new CatalogItem("ViewPager 一屏多展示", ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE, ViewPagerMultiplePageActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", ROUTE_PATH_VIEWPAGER_WRAP_CONTENT, ViewPagerWrapContentActivity.class.getName()));
@@ -318,14 +319,14 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("RecyclerView 滑动到指定position", ROUTE_PATH_RECYCLER_SCROLL2POS, RecyclerViewScrollToPositionActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 瀑布流", ROUTE_PATH_RECYCLER_STAGGERED_GRID, RecyclerStaggeredGridActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 仿ViewPager", ROUTE_PATH_RECYCLER_AS_VP, RecyclerAsViewPagerActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("RecyclerView child count测试", ROUTE_PATH_RECYCLER_CHILD_COUNT, RecyclerViewChildCountActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("RecyclerView child count", ROUTE_PATH_RECYCLER_CHILD_COUNT, RecyclerViewChildCountActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("RecyclerView 倒计时功能", ROUTE_PATH_RECYCLER_COUNT_DOWN, RecyclerViewCountDownTimerActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("ScrollView + RecyclerView", ROUTE_PATH_SCROLLVIEW_RV, ScrollViewAndRecyclerViewActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("ScrollView+RecyclerView", ROUTE_PATH_SCROLLVIEW_RV, ScrollViewAndRecyclerViewActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", ROUTE_PATH_NSCROLLVIEW_VP, NestedScrollViewViewPagerActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("NestedScrollView滑动改变状态栏", ROUTE_PATH_scroll_change_title, ScrollChangeTitleActivity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("回弹效果-滑动缩放头图", ROUTE_PATH_scroll_zoom, ScrollZoomImage2Activity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("滑动缩放头图-demo2", ROUTE_PATH_scroll_zoom2, ScrollZoomImage3Activity.class.getName()));
-        mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ROUTE_PATH_scroll_anchor, ScrollViewAnchorActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("NestedScrollView 滑动改变状态栏", ROUTE_PATH_SCROLL_CHANGE_TITLE, ScrollChangeTitleActivity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("回弹效果-滑动缩放头图", ROUTE_PATH_SCROLL_ZOOM, ScrollZoomImage2Activity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("滑动缩放头图-demo2", ROUTE_PATH_SCROLL_ZOOM2, ScrollZoomImage3Activity.class.getName()));
+        mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ROUTE_PATH_SCROLL_ANCHOR, ScrollViewAnchorActivity.class.getName()));
         mViewCatalogs.add(new CatalogItem("TabLayout 工具类封装检测", ROUTE_PATH_TABLELAYOUT_HELPER, TabLayoutHelperActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_VIEW, mViewCatalogs);
 
@@ -343,15 +344,16 @@ public class CatalogListModel {
 
 
         // 加农炮实验室
-        mFunctionCatalogs.add(new CatalogItem("服务(Service)", ROUTE_PATH_service, ServiceDemoActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("lifecycle", ROUTE_PATH_lifecycle, LifecycleActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("PopupWindow", ROUTE_PATH_POPWINDOW, PopupWindowActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("服务(Service)", ROUTE_PATH_SERVICE, ServiceDemoActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("lifecycle", ROUTE_PATH_LIFECYCLE, LifecycleActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("Handler", ROUTE_PATH_handler, HandlerActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AsyncTask", ROUTE_PATH_ASYNC_TASK, AsyncTaskActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("权限管理", ROUTE_PATH_PERMISSION, PermissionIntroActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("通知", ROUTE_PATH_notification, NotificationActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("透明Activity", ROUTE_PATH_transparent_theme, TransparentThemeActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("替代StartActivityForResult", ROUTE_PATH_ACTIVITY4RESULT, WithCallbackActivity.class.getName()));
-        mFunctionCatalogs.add(new CatalogItem("Room - 最近浏览案例", ROUTE_PATH_room, RoomTestActivity.class.getName()));
+        mFunctionCatalogs.add(new CatalogItem("Room - 最近浏览案例", ROUTE_PATH_ROOM, RoomTestActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("AOP 测试", ROUTE_PATH_aop, AopTestActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("okhttp", ROUTE_PATH_okhttp, OkHttpActivity.class.getName()));
         mFunctionCatalogs.add(new CatalogItem("retrofit", ROUTE_PATH_retrofit, RetrofitActivity.class.getName()));
@@ -375,19 +377,19 @@ public class CatalogListModel {
 
         mUtilCatalogs.add(new CatalogItem("ShapeDrawable工具类", ShapeDrawableHelperActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("水印图", WatermarkActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("Double数据转换", DoubleFormatActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("URL 编码", ROUTE_PATH_URL_ENCODE, UrlEncodeActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("精度计算-浮点数", DoubleCalculateActivity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("Base64 加密/解密", ROUTE_PATH_BASE64, Base64Activity.class.getName()));
+        mUtilCatalogs.add(new CatalogItem("Url 编码", ROUTE_PATH_URL_ENCODE, UrlEncodeActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Url 解析", ROUTE_PATH_URL_PARSE, UrlParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("json 解析", ROUTE_PATH_GSON, GsonParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Xml 解析", ROUTE_PATH_XML_PARSE, XmlParseActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("Base64 加密/解密", ROUTE_PATH_BASE64, Base64Activity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("状态栏-底部导航栏高度", StatusBarNavigationBarActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
 
 
         mOtherCatalogs.add(new CatalogItem("Tint 着色1 -DrawableCompat", ROUTE_PATH_TINT, DrawableTintActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("Tint 着色2 -xml、选择器", ROUTE_PATH_TINT, DrawableTint2Activity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("VectorDrawable", ROUTE_PATH_VECTOR_DRAWABLE, VectorDrawableActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("Tint 着色2 -xml、选择器", ROUTE_PATH_TINT2, DrawableTint2Activity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("矢量图 VectorDrawable", ROUTE_PATH_VECTOR_DRAWABLE, VectorDrawableActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理", "", ColorMatrixActivity.class.getName()));
         mOtherCatalogs.add(new CatalogItem("图像颜色处理2", "", ColorMatrix2Activity.class.getName()));

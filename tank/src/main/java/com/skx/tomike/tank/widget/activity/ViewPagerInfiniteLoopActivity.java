@@ -24,7 +24,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_LOOP;
  * <p>
  * <p>
  * <p>
- * 控制ViewPager 的滑动速度   http://stackoverflow.com/questions/8155257/slowing-speed-of-viewpager-controller-in-android
+ * 控制ViewPager滑动速度:http://stackoverflow.com/questions/8155257/slowing-speed-of-viewpager-controller-in-android
  */
 @Route(path = ROUTE_PATH_VIEWPAGER_LOOP)
 public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel> {
@@ -32,8 +32,8 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
     private ViewPager mVpInfiniteLoop;
     private ViewPager mVpAutomaticLoop;
 
-    private final ArrayList<Integer> infiniteLoopList = new ArrayList<>();
-    private final ArrayList<Integer> automaticLoopList = new ArrayList<>();
+    private final ArrayList<Integer> mInfiniteLoopList = new ArrayList<>();
+    private final ArrayList<Integer> mAutomaticLoopList = new ArrayList<>();
 
     private final Handler mHandler = new Handler(Looper.myLooper());
     private final MyRunnable myRunnable = new MyRunnable();
@@ -41,18 +41,18 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
 
     @Override
     protected void initParams() {
-        infiniteLoopList.add(R.drawable.image_08);
-        infiniteLoopList.add(R.drawable.image_05);
-        infiniteLoopList.add(R.drawable.image_06);
-        infiniteLoopList.add(R.drawable.image_07);
-        infiniteLoopList.add(R.drawable.image_08);
-        infiniteLoopList.add(R.drawable.image_05);
+        mInfiniteLoopList.add(R.drawable.image_08);
+        mInfiniteLoopList.add(R.drawable.image_05);
+        mInfiniteLoopList.add(R.drawable.image_06);
+        mInfiniteLoopList.add(R.drawable.image_07);
+        mInfiniteLoopList.add(R.drawable.image_08);
+        mInfiniteLoopList.add(R.drawable.image_05);
 
-        automaticLoopList.add(R.drawable.image_04);
-        automaticLoopList.add(R.drawable.image_05);
-        automaticLoopList.add(R.drawable.image_06);
-        automaticLoopList.add(R.drawable.image_07);
-        automaticLoopList.add(R.drawable.image_08);
+        mAutomaticLoopList.add(R.drawable.image_04);
+        mAutomaticLoopList.add(R.drawable.image_05);
+        mAutomaticLoopList.add(R.drawable.image_06);
+        mAutomaticLoopList.add(R.drawable.image_07);
+        mAutomaticLoopList.add(R.drawable.image_08);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
     }
 
     private void initInfiniteLoopView() {
-        InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(infiniteLoopList);
+        InfiniteLoopAdapter adapter = new InfiniteLoopAdapter(mInfiniteLoopList);
         mVpInfiniteLoop.setAdapter(adapter);
         mVpInfiniteLoop.setCurrentItem(1);
         mVpInfiniteLoop.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -102,8 +102,8 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
 
                 if (currentPosition == 0) {
                     // 当视图在第一个时，将页面号设置为图片的最后一张。
-                    mVpInfiniteLoop.setCurrentItem(infiniteLoopList.size() - 2, false);
-                } else if (currentPosition == infiniteLoopList.size() - 1) {
+                    mVpInfiniteLoop.setCurrentItem(mInfiniteLoopList.size() - 2, false);
+                } else if (currentPosition == mInfiniteLoopList.size() - 1) {
                     // 当视图在最后一个是,将页面号设置为图片的第一张。
                     mVpInfiniteLoop.setCurrentItem(1, false);
                 }
@@ -112,7 +112,7 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
     }
 
     private void initAutoLoopView() {
-        InfiniteLoopAdapter automaticAdapter = new InfiniteLoopAdapter(automaticLoopList);
+        InfiniteLoopAdapter automaticAdapter = new InfiniteLoopAdapter(mAutomaticLoopList);
         mVpAutomaticLoop.setAdapter(automaticAdapter);
         mHandler.postDelayed(myRunnable, 3000);
     }
@@ -124,7 +124,7 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
         @Override
         public void run() {
             i++;
-            i = i % automaticLoopList.size();
+            i = i % mAutomaticLoopList.size();
             mVpAutomaticLoop.setCurrentItem(i, true);
             mHandler.postDelayed(myRunnable, 3000);
         }

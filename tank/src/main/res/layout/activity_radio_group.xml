@@ -95,7 +95,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:button="@null"
-            android:drawableStart="@drawable/booking_home_vip_check_state_selector"
+            android:drawableStart="@drawable/check_state_selector"
             android:text="西风"
             tools:ignore="HardcodedText,RtlSymmetry" />
 
@@ -104,7 +104,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@null"
-            android:button="@drawable/booking_home_vip_check_state_selector"
+            android:button="@drawable/check_state_selector"
             android:text="南风"
             tools:ignore="HardcodedText,RtlSymmetry" />
 
@@ -113,8 +113,8 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@null"
-            android:button="@drawable/booking_home_vip_check_state_selector"
-            android:drawableStart="@drawable/booking_home_vip_check_state_selector"
+            android:button="@drawable/check_state_selector"
+            android:drawableStart="@drawable/check_state_selector"
             android:text="北风"
             tools:ignore="HardcodedText,RtlSymmetry" />
 

@@ -17,13 +17,17 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.tank.R;
 
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_CHANGE_TITLE;
+
 /**
  * 滑动改变标题栏透明度、颜色
  */
+@Route(path = ROUTE_PATH_SCROLL_CHANGE_TITLE)
 public class ScrollChangeTitleActivity extends SkxBaseActivity<BaseViewModel> {
 
     private Context mContext;
