@@ -1,8 +1,8 @@
 package com.skx.tomike.cannon.ui.activity;
 
-import android.text.Editable;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_retrofit;
+
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,8 +14,6 @@ import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.WeatherMini;
 import com.skx.tomike.cannon.viewmodel.RetrofitViewModel;
-
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_retrofit;
 
 /**
  * 描述 : Retrofit demo。模拟请求城市天气数据
@@ -31,7 +29,6 @@ public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
     private TextView mTvHumidity;
     private TextView mTvWindPower;
     private TextView mTvWindDirection;
-    private String targetCity;
 
     @Override
     protected void initParams() {
@@ -62,23 +59,6 @@ public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
         mTvHumidity = findViewById(R.id.tv_retrofitTest_humidity_value);
         mTvWindDirection = findViewById(R.id.tv_retrofit_windDirection_value);
         mTvWindPower = findViewById(R.id.tv_retrofit_windPower_value);
-
-        mEtCity.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                targetCity = s.toString();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
     private void refreshView(WeatherMini weatherMini) {
@@ -91,6 +71,7 @@ public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
     }
 
     public void onRetrofitClick(View view) {
+        String targetCity = mEtCity.getText().toString();
         if (TextUtils.isEmpty(targetCity)) {
             ToastTool.showToast(this, "没有找到搜索城市");
             return;
