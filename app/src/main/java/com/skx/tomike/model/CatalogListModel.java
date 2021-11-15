@@ -11,13 +11,13 @@ import com.skx.tomike.bomber.coroutine.CoroutineActivity;
 import com.skx.tomike.bomber.generic.GenericTestActivity;
 import com.skx.tomike.bomber.reflect.ReflectTestActivity;
 import com.skx.tomike.bomber.thread.ReentrantLockActivity;
-import com.skx.tomike.bomber.thread.ThreadStartActivity;
 import com.skx.tomike.bomber.thread.ThreadCallbackActivity;
 import com.skx.tomike.bomber.thread.ThreadCommunicationActivity;
 import com.skx.tomike.bomber.thread.ThreadDaemonActivity;
 import com.skx.tomike.bomber.thread.ThreadInterruptActivity;
 import com.skx.tomike.bomber.thread.ThreadPoolActivity;
 import com.skx.tomike.bomber.thread.ThreadPoolExecutorsActivity;
+import com.skx.tomike.bomber.thread.ThreadStartActivity;
 import com.skx.tomike.bomber.thread.ThreadSynchronizedActivity;
 import com.skx.tomike.cannon.ui.activity.AopTestActivity;
 import com.skx.tomike.cannon.ui.activity.AsyncTaskActivity;
@@ -37,6 +37,7 @@ import com.skx.tomike.cannon.ui.activity.OutterStartActivity;
 import com.skx.tomike.cannon.ui.activity.ParcelableActivity;
 import com.skx.tomike.cannon.ui.activity.PermissionIntroActivity;
 import com.skx.tomike.cannon.ui.activity.PhotoAlbumsActivity;
+import com.skx.tomike.cannon.ui.activity.PopupWindowActivity;
 import com.skx.tomike.cannon.ui.activity.RebootAppActivity;
 import com.skx.tomike.cannon.ui.activity.RetrofitActivity;
 import com.skx.tomike.cannon.ui.activity.RoomTestActivity;
@@ -79,7 +80,6 @@ import com.skx.tomike.tank.widget.activity.ColorMatrixActivity;
 import com.skx.tomike.tank.widget.activity.ConstraintLayoutActivity;
 import com.skx.tomike.tank.widget.activity.CoordinatorLayoutActivity;
 import com.skx.tomike.tank.widget.activity.CoordinatorLayoutCaseActivity;
-import com.skx.tomike.tank.widget.activity.DrawableTint2Activity;
 import com.skx.tomike.tank.widget.activity.DrawableTintActivity;
 import com.skx.tomike.tank.widget.activity.DrawerLayoutActivity;
 import com.skx.tomike.tank.widget.activity.EditTextCursorActivity;
@@ -92,7 +92,6 @@ import com.skx.tomike.tank.widget.activity.MatrixImageActivity;
 import com.skx.tomike.tank.widget.activity.NavigationBarActivity;
 import com.skx.tomike.tank.widget.activity.NestedScrollViewViewPagerActivity;
 import com.skx.tomike.tank.widget.activity.PageIndicatorActivity;
-import com.skx.tomike.cannon.ui.activity.PopupWindowActivity;
 import com.skx.tomike.tank.widget.activity.RadioGroupActivity;
 import com.skx.tomike.tank.widget.activity.RecyclerAsViewPagerActivity;
 import com.skx.tomike.tank.widget.activity.RecyclerStaggeredGridActivity;
@@ -101,7 +100,6 @@ import com.skx.tomike.tank.widget.activity.RecyclerViewCountDownTimerActivity;
 import com.skx.tomike.tank.widget.activity.RecyclerViewItemUpdateActivity;
 import com.skx.tomike.tank.widget.activity.RecyclerViewScrollToPositionActivity;
 import com.skx.tomike.tank.widget.activity.ScrollViewAndRecyclerViewActivity;
-import com.skx.tomike.tank.widget.activity.TextViewCopyActivity;
 import com.skx.tomike.tank.widget.activity.ShadowActivity;
 import com.skx.tomike.tank.widget.activity.ShapeDrawableHelperActivity;
 import com.skx.tomike.tank.widget.activity.ShapeViewActivity;
@@ -112,6 +110,7 @@ import com.skx.tomike.tank.widget.activity.SwipeRefreshLayoutActivity;
 import com.skx.tomike.tank.widget.activity.TabLayoutHelperActivity;
 import com.skx.tomike.tank.widget.activity.TabLayoutIndicatorActivity;
 import com.skx.tomike.tank.widget.activity.TextSwitcherActivity;
+import com.skx.tomike.tank.widget.activity.TextViewCopyActivity;
 import com.skx.tomike.tank.widget.activity.TextWordSpaceActivity;
 import com.skx.tomike.tank.widget.activity.VectorDrawableActivity;
 import com.skx.tomike.tank.widget.activity.ViewFocusActivity;
@@ -151,24 +150,24 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DEVICE_INFO;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_GLIDE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_IMAGE_zoom;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_LIFECYCLE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_OUTER_START;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PARCELABLE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PERMISSION;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_POPWINDOW;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ROOM;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_SAF;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_SERVICE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_aop;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_handler;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_hotfix;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_LIFECYCLE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_notification;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_okhttp;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_album;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_reboot;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_retrofit;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ROOM;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_rxjava;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_SERVICE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_transparent_theme;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_zxing;
 import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_ARRAY;
@@ -205,6 +204,10 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_SCROLL2PO
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_STAGGERED_GRID;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLLER;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLLVIEW_RV;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ANCHOR;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_CHANGE_TITLE;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM2;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SHADOW;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SHAKE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SHAPE_VIEW;
@@ -217,7 +220,6 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SELECTABL
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SPANNABLESTRING;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_WORD_SPACE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TINT;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TINT2;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TWEEN;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VECTOR_DRAWABLE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER2;
@@ -225,10 +227,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_LOOP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CONTENT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEW_FOCUS;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ANCHOR;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_CHANGE_TITLE;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM;
-import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM2;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_WATER_MARK;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
 
 /**
@@ -374,9 +373,16 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", ROUTE_PATH_NFC_GROUP, NfcGroupActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
+        mOtherCatalogs.add(new CatalogItem("Tint 着色", ROUTE_PATH_TINT, DrawableTintActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("矢量图 VectorDrawable", ROUTE_PATH_VECTOR_DRAWABLE, VectorDrawableActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("水印图", ROUTE_PATH_WATER_MARK, WatermarkActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("图像颜色处理", "", ColorMatrixActivity.class.getName()));
+        mOtherCatalogs.add(new CatalogItem("图像颜色处理2", "", ColorMatrix2Activity.class.getName()));
+        mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
+
 
         mUtilCatalogs.add(new CatalogItem("ShapeDrawable工具类", ShapeDrawableHelperActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("水印图", WatermarkActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("精度计算-浮点数", DoubleCalculateActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Base64 加密/解密", ROUTE_PATH_BASE64, Base64Activity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("Url 编码", ROUTE_PATH_URL_ENCODE, UrlEncodeActivity.class.getName()));
@@ -385,15 +391,6 @@ public class CatalogListModel {
         mUtilCatalogs.add(new CatalogItem("Xml 解析", ROUTE_PATH_XML_PARSE, XmlParseActivity.class.getName()));
         mUtilCatalogs.add(new CatalogItem("状态栏-底部导航栏高度", StatusBarNavigationBarActivity.class.getName()));
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
-
-
-        mOtherCatalogs.add(new CatalogItem("Tint 着色1 -DrawableCompat", ROUTE_PATH_TINT, DrawableTintActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("Tint 着色2 -xml、选择器", ROUTE_PATH_TINT2, DrawableTint2Activity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("矢量图 VectorDrawable", ROUTE_PATH_VECTOR_DRAWABLE, VectorDrawableActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("emoji过滤", EmojiFilterActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("图像颜色处理", "", ColorMatrixActivity.class.getName()));
-        mOtherCatalogs.add(new CatalogItem("图像颜色处理2", "", ColorMatrix2Activity.class.getName()));
-        mCatalogGroupMap.put(GROUP_OTHER, mOtherCatalogs);
 
 
         // 作战实验室

@@ -3,16 +3,22 @@ package com.skx.tomike.tank.widget.activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
-import com.skx.tomike.tank.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.tank.R;
 
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_WATER_MARK;
+
+@Route(path = ROUTE_PATH_WATER_MARK)
 public class WatermarkActivity extends SkxBaseActivity<BaseViewModel> {
 
     private ImageView imageView01;
@@ -64,10 +70,10 @@ public class WatermarkActivity extends SkxBaseActivity<BaseViewModel> {
         Bitmap newBitmap = getOverlapBitmap(targetBitmap01, overlapBitmap);
         imageView11.setImageBitmap(newBitmap);
 
-        Bitmap newBitmap2 = getOverlapBitmap(targetBitmap02, overlapBitmap);
+        Bitmap newBitmap2 = getOverlapBitmap2(targetBitmap02, overlapBitmap);
         imageView12.setImageBitmap(newBitmap2);
 
-        Bitmap newBitmap3 = getOverlapBitmap(targetBitmap03, overlapBitmap);
+        Bitmap newBitmap3 = getOverlapBitmap3(targetBitmap03);
         imageView13.setImageBitmap(newBitmap3);
     }
 
@@ -97,10 +103,52 @@ public class WatermarkActivity extends SkxBaseActivity<BaseViewModel> {
         int h_2 = overlapBitmap.getHeight();
 
         canvas.drawBitmap(overlapBitmap, Math.abs(w - w_2) / 2, Math.abs(h - h_2) / 2, null);
-        // 保存
-//        canvas.save(Canvas.ALL_SAVE_FLAG);
-        // 存储
-//        canvas.restore();
+        return copyBitmap;
+    }
+
+
+    public Bitmap getOverlapBitmap2(Bitmap targetBitmap, Bitmap overlapBitmap) {
+        if (targetBitmap == null) {
+            throw new IllegalArgumentException("目标bitmap不能为空");
+        }
+        if (overlapBitmap == null) {
+            return targetBitmap;
+        }
+
+        Bitmap copyBitmap = targetBitmap.copy(targetBitmap.getConfig(), true);
+        Canvas canvas = new Canvas(copyBitmap);
+
+        int w = targetBitmap.getWidth();
+        int h = targetBitmap.getHeight();
+        int w_2 = overlapBitmap.getWidth();
+        int h_2 = overlapBitmap.getHeight();
+
+        canvas.drawBitmap(overlapBitmap, Math.abs(w - w_2) / 2 - 150, Math.abs(h - h_2) / 2 - 150, null);
+        return copyBitmap;
+    }
+
+    public Bitmap getOverlapBitmap3(Bitmap targetBitmap) {
+        if (targetBitmap == null) {
+            throw new IllegalArgumentException("目标bitmap不能为空");
+        }
+
+        Bitmap copyBitmap = targetBitmap.copy(targetBitmap.getConfig(), true);
+        Canvas canvas = new Canvas(copyBitmap);
+
+        int w = targetBitmap.getWidth();
+        int h = targetBitmap.getHeight();
+
+        Paint paint = new Paint();
+        paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.UNDERLINE_TEXT_FLAG);
+        paint.setAntiAlias(true);// 抗锯尺
+        paint.setColor(Color.RED);
+        paint.setStrokeWidth(15);
+        paint.setTextSize(60);
+
+        canvas.save();
+        canvas.rotate(-45, w / 2, h / 2);
+        canvas.drawText("惊喜", w / 2 + 50, h / 2 - 80, paint);
+        canvas.restore();
         return copyBitmap;
     }
 }

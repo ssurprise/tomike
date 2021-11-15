@@ -3,11 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="false"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/view_padding_15"
-    android:paddingLeft="@dimen/view_padding_15"
-    android:paddingRight="@dimen/view_padding_15"
-    android:paddingTop="@dimen/view_padding_15"
+    android:padding="@dimen/view_padding_15"
     tools:context="com.skx.tomike.tank.widget.activity.WatermarkActivity">
 
     <LinearLayout
@@ -16,58 +14,72 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未添加水印"
+            android:textColor="@color/skx_212121"
+            tools:ignore="HardcodedText" />
+
         <ImageView
             android:id="@+id/image01"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:scaleType="center" />
+            android:scaleType="center"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/image02"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
-            android:scaleType="center" />
+            android:scaleType="center"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/image03"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
-            android:scaleType="center" />
+            android:scaleType="center"
+            tools:ignore="ContentDescription" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="10dp"
-        android:layout_height="0dp" />
-
     <LinearLayout
-
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
         android:layout_weight="1"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已添加水印"
+            android:textColor="@color/skx_212121"
+            tools:ignore="HardcodedText" />
 
         <ImageView
             android:id="@+id/image11"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:scaleType="center" />
+            android:scaleType="center"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/image12"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
-            android:scaleType="center" />
+            android:scaleType="center"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/image13"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
-            android:scaleType="center" />
+            android:scaleType="center"
+            tools:ignore="ContentDescription" />
     </LinearLayout>
-
-
 </LinearLayout>

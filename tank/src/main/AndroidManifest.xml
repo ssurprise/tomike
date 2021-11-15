@@ -99,9 +99,6 @@
             android:name=".widget.activity.DrawableTintActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.DrawableTint2Activity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".widget.activity.ShapeDrawableHelperActivity"
             android:screenOrientation="portrait" />
         <activity

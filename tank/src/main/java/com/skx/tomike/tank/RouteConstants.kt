@@ -62,4 +62,4 @@ const val ROUTE_PATH_TABLELAYOUT_INDICATOR = "${ROUTER_FIRST_LEVEL_widget}/Table
 const val ROUTE_PATH_GRADIENT_DRAWABLE = "${ROUTER_FIRST_LEVEL_widget}/GradientDrawable"
 const val ROUTE_PATH_VECTOR_DRAWABLE = "${ROUTER_FIRST_LEVEL_widget}/VectorDrawable"
 const val ROUTE_PATH_TINT = "${ROUTER_FIRST_LEVEL_widget}/tint"
-const val ROUTE_PATH_TINT2 = "${ROUTER_FIRST_LEVEL_widget}/tint2"
+const val ROUTE_PATH_WATER_MARK = "${ROUTER_FIRST_LEVEL_widget}/watermark"
