@@ -9,7 +9,7 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTE_PATH_reboot
+import com.skx.tomike.cannon.ROUTE_PATH_REBOOT
 
 /**
  * 描述 : 重启App
@@ -17,7 +17,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_reboot
  * 版本 : V1
  * 创建时间 : 2021/7/12 7:24 下午
  */
-@Route(path = ROUTE_PATH_reboot)
+@Route(path = ROUTE_PATH_REBOOT)
 class RebootAppActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {

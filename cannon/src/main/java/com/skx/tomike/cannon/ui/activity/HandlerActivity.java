@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_handler;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HANDLER;
 
 /**
  * 描述 : Handler demo
@@ -29,7 +29,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_handler;
  * 版本 : V1
  * 创建时间 : 2020/3/30 4:34 PM
  */
-@Route(path = ROUTE_PATH_handler)
+@Route(path = ROUTE_PATH_HANDLER)
 public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     public TextView mHandlerLogcat;

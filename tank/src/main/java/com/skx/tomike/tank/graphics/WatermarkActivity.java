@@ -1,4 +1,4 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.graphics;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

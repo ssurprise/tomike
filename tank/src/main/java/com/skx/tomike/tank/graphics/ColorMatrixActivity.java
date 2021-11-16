@@ -1,22 +1,26 @@
-package com.skx.tomike.tank.widget.activity;
+package com.skx.tomike.tank.graphics;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.ImageHelperKt;
 import com.skx.tomike.tank.R;
 
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_HSL;
+
 /**
- * 描述 : 图像处理 - 修改图片色度、亮度、饱和度
+ * 描述 : 图像处理 - 修改图片HSL(色度、亮度、饱和度)
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2021/11/14 10:37 下午
  */
+@Route(path = ROUTE_PATH_HSL)
 public class ColorMatrixActivity extends SkxBaseActivity<BaseViewModel> implements SeekBar.OnSeekBarChangeListener {
 
     private ImageView main_img;
@@ -32,7 +36,7 @@ public class ColorMatrixActivity extends SkxBaseActivity<BaseViewModel> implemen
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("修改图片色度、亮度、饱和度").create();
+        return new TitleConfig.Builder().setTitleText("ColorMatrix").create();
     }
 
     @Override

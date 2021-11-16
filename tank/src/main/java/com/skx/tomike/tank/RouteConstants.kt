@@ -3,8 +3,15 @@ package com.skx.tomike.tank
 
 const val ROUTER_FIRST_LEVEL_widget = "/widget" // view
 const val ROUTER_FIRST_LEVEL_anim = "/anim" // 动画
+const val ROUTER_FIRST_LEVEL_graphics = "/graphics" // 图形
 const val ROUTER_FIRST_LEVEL_linkage = "/linkage" // 联动
 const val ROUTER_FIRST_LEVEL_transition = "/transition" // 转场
+
+// ------------------------------------分割线-------------------------------------------
+
+
+
+// ------------------------------------动效-------------------------------------------
 
 const val ROUTE_PATH_TWEEN = "${ROUTER_FIRST_LEVEL_anim}/tween"
 const val ROUTE_PATH_PROPERTY = "${ROUTER_FIRST_LEVEL_anim}/property"
@@ -20,6 +27,8 @@ const val ROUTE_PATH_SCROLL_ZOOM = "${ROUTER_FIRST_LEVEL_linkage}/scroll/zoom"
 const val ROUTE_PATH_SCROLL_ZOOM2 = "${ROUTER_FIRST_LEVEL_linkage}/scroll/zoom2"
 
 const val ROUTE_PATH_share_Element = "${ROUTER_FIRST_LEVEL_transition}/shareElement"
+
+// ------------------------------------widget-------------------------------------------
 
 const val ROUTE_PATH_VIEW_FOCUS = "${ROUTER_FIRST_LEVEL_widget}/View/focus"
 const val ROUTE_PATH_TEXTVIEW_SELECTABLE = "${ROUTER_FIRST_LEVEL_widget}/TextView/selectable"
@@ -63,3 +72,12 @@ const val ROUTE_PATH_GRADIENT_DRAWABLE = "${ROUTER_FIRST_LEVEL_widget}/GradientD
 const val ROUTE_PATH_VECTOR_DRAWABLE = "${ROUTER_FIRST_LEVEL_widget}/VectorDrawable"
 const val ROUTE_PATH_TINT = "${ROUTER_FIRST_LEVEL_widget}/tint"
 const val ROUTE_PATH_WATER_MARK = "${ROUTER_FIRST_LEVEL_widget}/watermark"
+
+
+// ------------------------------------图形-------------------------------------------
+
+
+const val ROUTE_PATH_PAINT = "${ROUTER_FIRST_LEVEL_graphics}/paint"
+const val ROUTE_PATH_HSL = "${ROUTER_FIRST_LEVEL_graphics}/hsl"
+const val ROUTE_PATH_COLORMATRIX = "${ROUTER_FIRST_LEVEL_graphics}/colorMatrix"
+

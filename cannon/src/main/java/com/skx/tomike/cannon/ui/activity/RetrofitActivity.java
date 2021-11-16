@@ -1,6 +1,6 @@
 package com.skx.tomike.cannon.ui.activity;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_retrofit;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_RETROFIT;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -21,7 +21,7 @@ import com.skx.tomike.cannon.viewmodel.RetrofitViewModel;
  * 版本 : V1
  * 创建时间 : 2016/6/20
  */
-@Route(path = ROUTE_PATH_retrofit)
+@Route(path = ROUTE_PATH_RETROFIT)
 public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
 
     private EditText mEtCity;

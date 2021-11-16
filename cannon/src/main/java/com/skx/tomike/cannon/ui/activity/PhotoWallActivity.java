@@ -16,7 +16,7 @@ import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
 import com.skx.tomike.cannon.ui.adapter.PhotoWallAdapter;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_wall;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PHOTO_WALL;
 
 /**
  * 描述 : 照片墙
@@ -24,7 +24,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_photo_wall;
  * 版本 : V1
  * 创建时间 : 2020/3/19 4:08 PM
  */
-@Route(path = ROUTE_PATH_photo_wall)
+@Route(path = ROUTE_PATH_PHOTO_WALL)
 public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
 
     private PhotoWallAdapter mAdapter;

@@ -4,24 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.skx.tomike.tank.widget.activity.ColorMatrix2Activity">
+    android:padding="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.tank.graphics.ColorMatrix2Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改图片色度、亮度、饱和度"
+        android:textColor="@color/skx_212121"
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/imageMatrix_image"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_height="260dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_03"
         tools:ignore="ContentDescription" />
 
     <GridLayout
         android:id="@+id/imageMatrix_gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
         android:columnCount="5"
-        android:rowCount="4">
-
-    </GridLayout>
+        android:rowCount="4" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,14 +41,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="change"
-            android:text="change" />
+            android:text="change"
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="reset"
-            android:text="reset" />
+            android:text="reset"
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
     </LinearLayout>
 
 </LinearLayout>

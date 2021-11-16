@@ -1,4 +1,4 @@
-package com.skx.tomike.tank.widget.activity
+package com.skx.tomike.tank.graphics
 
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable

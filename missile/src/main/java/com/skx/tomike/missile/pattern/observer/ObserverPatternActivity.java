@@ -1,9 +1,12 @@
 package com.skx.tomike.missile.pattern.observer;
 
-import com.skx.tomike.missile.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.missile.R;
+
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_OBSERVER;
 
 /**
  * 观察者模式
@@ -12,6 +15,7 @@ import com.skx.common.base.TitleConfig;
  *
  * @author shiguotao
  */
+@Route(path = ROUTE_PATH_OBSERVER)
 public class ObserverPatternActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override

@@ -3,9 +3,12 @@ package com.skx.tomike.missile.pattern.prototype;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.tomike.missile.R;
+
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_PROTOTYPE;
 
 /**
  * 原型模式
@@ -18,6 +21,7 @@ import com.skx.tomike.missile.R;
  *
  * @author shiguotao
  */
+@Route(path = ROUTE_PATH_PROTOTYPE)
 public class PrototypePatternActivity extends SkxBaseActivity<BaseViewModel> {
 
     String noteStr = "super.clone 拷贝如果有包含对象，属于浅拷贝。包含的对象属性也需要实现Cloneable接口，重写clone方法。否则修改复制对象的对象值，则会影响到源对象的属性\n\n"

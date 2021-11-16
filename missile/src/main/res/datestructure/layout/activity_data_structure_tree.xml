@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="15dp"
-        tools:context="com.skx.tomike.missile.activity.TreeDemoActivity">
+        tools:context="com.skx.tomike.missile.ds.activity.TreeDemoActivity">
 
         <TextView
             style="@style/LogcatTextStyle"

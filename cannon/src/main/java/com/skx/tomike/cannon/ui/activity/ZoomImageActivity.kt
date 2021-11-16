@@ -1,26 +1,17 @@
-package com.skx.tomike.cannon.ui.activity;
+package com.skx.tomike.cannon.ui.activity
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.common.base.TitleConfig;
-import com.skx.tomike.cannon.R;
-import com.skx.tomike.cannon.ui.view.ZoomImageView;
-
-import org.jetbrains.annotations.NotNull;
-
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_IMAGE_zoom;
+import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.common.base.TitleConfig
+import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTE_PATH_IMAGE_zoom
+import com.skx.tomike.cannon.ui.view.ZoomImageView
 
 /**
  * 描述 : 图片缩放
@@ -29,86 +20,52 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_IMAGE_zoom;
  * 创建时间 : 2020-03-20 23:14
  */
 @Route(path = ROUTE_PATH_IMAGE_zoom)
-public class ZoomImageActivity extends SkxBaseActivity<BaseViewModel> {
+class ZoomImageActivity : SkxBaseActivity<BaseViewModel?>() {
 
-    private int[] mImageArray;
+    private val mImageArray: IntArray = intArrayOf(
+            R.drawable.image_02,
+            R.drawable.kuantu,
+            R.drawable.changtu
+    )
 
-    @Override
-    protected void initParams() {
-        mImageArray = new int[]{R.drawable.image_02, R.drawable.kuantu, R.drawable.changtu};
+    override fun initParams() {
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_zoom_image;
+    override fun getLayoutId(): Int {
+        return R.layout.activity_zoom_image
     }
 
-    @Override
-    protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("图片缩放").create();
+    override fun configHeaderTitle(): TitleConfig {
+        return TitleConfig.Builder().setTitleText("图片缩放").create()
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initView()
     }
 
-    public void initView() {
-        ViewPager mViewPager = findViewById(R.id.id_viewpager);
-        mViewPager.setAdapter(new PagerAdapter() {
-
-            @NotNull
-            @Override
-            public Object instantiateItem(@NotNull ViewGroup container, int position) {
-                ZoomImageView imageView = new ZoomImageView(getApplicationContext());
-
-                // 图片重叠
-                Bitmap newBitmap = overlapBitmap(position);
-                imageView.setImageBitmap(newBitmap);
-                container.addView(imageView);
-                imageView.setSingleClickListener(v -> Log.e("xianshi", "xianshi"));
-                return imageView;
+    public override fun initView() {
+        val mViewPager = findViewById<ViewPager>(R.id.id_viewpager)
+        mViewPager.adapter = object : PagerAdapter() {
+            override fun instantiateItem(container: ViewGroup, position: Int): Any {
+                val imageView = ZoomImageView(applicationContext)
+                imageView.setImageResource(mImageArray[position])
+                container.addView(imageView)
+                return imageView
             }
 
-            @Override
-            public void destroyItem(@NotNull ViewGroup container, int position, @NotNull Object object) {
-                View view = (View) object;
-                container.removeView(view);
+            override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
+                val view = obj as View
+                container.removeView(view)
             }
 
-            @Override
-            public boolean isViewFromObject(@NotNull View arg0, @NotNull Object arg1) {
-                return arg0 == arg1;
+            override fun isViewFromObject(arg0: View, arg1: Any): Boolean {
+                return arg0 === arg1
             }
 
-            @Override
-            public int getCount() {
-                return mImageArray.length;
+            override fun getCount(): Int {
+                return mImageArray.size
             }
-        });
-    }
-
-    @NonNull
-    private Bitmap overlapBitmap(int position) {
-        Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), mImageArray[position]).copy(Bitmap.Config.ARGB_8888, true);
-//        Bitmap bitmap2 = ((BitmapDrawable) ContextCompat.getDrawable(this, R.drawable.icon_beijing)).getBitmap();
-//        Bitmap newBitmap;
-//        newBitmap = Bitmap.createBitmap(bitmap1);
-//        Canvas canvas = new Canvas(newBitmap);
-//        Paint paint = new Paint();
-//        int w = bitmap1.getWidth();
-//        int h = bitmap1.getHeight();
-//        int w_2 = bitmap2.getWidth();
-//        int h_2 = bitmap2.getHeight();
-//        paint.setColor(Color.WHITE);
-//        paint.setAlpha(0);
-//        canvas.drawRect(0, 0, bitmap1.getWidth(), bitmap1.getHeight(), paint);
-//        paint = new Paint();
-//        canvas.drawBitmap(bitmap2, Math.abs(w - w_2) / 2, Math.abs(h - h_2) / 2, paint);
-//        canvas.save();
-//        // 存储新合成的图片
-//        canvas.restore();
-        return bitmap1;
+        }
     }
 }

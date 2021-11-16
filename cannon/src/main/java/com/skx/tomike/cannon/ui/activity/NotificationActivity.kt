@@ -19,9 +19,9 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTE_PATH_notification
+import com.skx.tomike.cannon.ROUTE_PATH_NOTIFICATION
 
-@Route(path = ROUTE_PATH_notification)
+@Route(path = ROUTE_PATH_NOTIFICATION)
 class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
 
     private var mChannelId = 1

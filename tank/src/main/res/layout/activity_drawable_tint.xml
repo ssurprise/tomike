@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/view_padding_15"
         android:paddingRight="@dimen/view_padding_15"
-        tools:context="com.skx.tomike.tank.widget.activity.DrawableTintActivity">
+        tools:context="com.skx.tomike.tank.graphics.DrawableTintActivity">
 
         <TextView
             style="@style/LogcatTextStyle"

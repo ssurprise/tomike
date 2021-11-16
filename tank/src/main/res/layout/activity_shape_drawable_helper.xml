@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.skx.tomike.tank.widget.activity.ShapeDrawableHelperActivity">
+    tools:context="com.skx.tomike.tank.graphics.ShapeDrawableHelperActivity">
 
     <LinearLayout
         android:id="@+id/ll_drawableUtils_container"
@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="TextView文本内容测试"
-            android:textColor="@color/skx_3a9173" />
+            android:textColor="@color/skx_3a9173"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/button1"
@@ -34,83 +35,95 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="button"
-            android:textColor="@color/skx_ff4081" />
+            android:textColor="@color/skx_ff4081"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/view1"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:text="实线描边" />
+            android:text="实线描边"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/view2"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:text="虚线描边" />
+            android:text="虚线描边"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/view3"
             android:layout_width="250dp"
             android:layout_height="70dp"
             android:layout_marginTop="10dp"
-            android:text="GradientDrawable 实现selector" />
+            android:text="GradientDrawable 实现selector"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/view4"
             android:layout_width="250dp"
             android:layout_height="70dp"
             android:layout_marginTop="10dp"
-            android:text="StateListDrawable 实现selector" />
+            android:text="StateListDrawable 实现selector"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="7" />
+            android:text="7"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="8" />
+            android:text="8"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="9" />
+            android:text="9"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="10" />
+            android:text="10"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="11" />
+            android:text="11"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="12" />
+            android:text="12"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="13" />
+            android:text="13"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 </ScrollView>

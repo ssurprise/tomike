@@ -6,7 +6,7 @@ import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTE_PATH_hotfix
+import com.skx.tomike.cannon.ROUTE_PATH_HOTFIX
 
 /**
  * 描述 : 热修复 - 微信Tinker
@@ -14,7 +14,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_hotfix
  * 版本 : V1
  * 创建时间 : 2021/1/21 6:08 PM
  */
-@Route(path = ROUTE_PATH_hotfix)
+@Route(path = ROUTE_PATH_HOTFIX)
 class HotfixActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {}

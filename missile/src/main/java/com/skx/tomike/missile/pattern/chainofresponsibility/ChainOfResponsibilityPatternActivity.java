@@ -10,18 +10,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.skx.tomike.missile.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.tomike.missile.R;
 
 import java.util.Random;
+
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_CHAINOFRESPONSIBILITY;
 
 /**
  * 责任链设计模式
  *
  * @author shiguotao
  */
+@Route(path = ROUTE_PATH_CHAINOFRESPONSIBILITY)
 public class ChainOfResponsibilityPatternActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private CheckBox mCbComplaintsReasonHosted;

@@ -1,4 +1,4 @@
-package com.skx.tomike.missile.bean;
+package com.skx.tomike.missile.ds.bean;
 
 /**
  * 描述 : 链表节点

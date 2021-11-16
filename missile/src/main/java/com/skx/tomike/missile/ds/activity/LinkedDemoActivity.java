@@ -1,4 +1,4 @@
-package com.skx.tomike.missile.activity;
+package com.skx.tomike.missile.ds.activity;
 
 import android.widget.TextView;
 
@@ -7,7 +7,7 @@ import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.missile.R;
-import com.skx.tomike.missile.bean.ListNode;
+import com.skx.tomike.missile.ds.bean.ListNode;
 
 import java.util.HashSet;
 import java.util.Locale;

@@ -9,11 +9,13 @@ import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.skx.tomike.missile.R
-import com.skx.tomike.missile.pattern.memento.MementoHistoryAdapter.MementoAccessListener
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.tomike.missile.R
+import com.skx.tomike.missile.ROUTE_PATH_MEMENTO
+import com.skx.tomike.missile.pattern.memento.MementoHistoryAdapter.MementoAccessListener
 
 /**
  * 描述 : 备忘录模式demo - 仿游戏存档。提供存档，读档，删档功能
@@ -21,6 +23,7 @@ import com.skx.common.base.TitleConfig
  * 版本 : V1
  * 创建时间 : 2020/3/18 3:42 PM
  */
+@Route(path = ROUTE_PATH_MEMENTO)
 class MementoPatternActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
 
     private var mEtNameInput: EditText? = null

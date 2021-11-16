@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context="com.skx.tomike.missile.activity.StackDemoActivity">
+    tools:context="com.skx.tomike.missile.ds.activity.StackDemoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

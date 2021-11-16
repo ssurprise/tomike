@@ -16,14 +16,14 @@ import com.skx.tomike.cannon.aop.Dog;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_aop;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_AOP;
 
 /**
  * AOP 测试
  *
  * @author shiguotao
  */
-@Route(path = ROUTE_PATH_aop)
+@Route(path = ROUTE_PATH_AOP)
 public class AopTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final static String TAG = "AopTestActivity";

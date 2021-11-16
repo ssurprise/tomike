@@ -7,12 +7,16 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.DoubleFormatToolKt;
 import com.skx.tomike.bomber.R;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_FLOAT_CALCULATE;
+
+@Route(path = ROUTE_PATH_FLOAT_CALCULATE)
 public class DoubleCalculateActivity extends SkxBaseActivity<BaseViewModel> {
 
     private EditText doubleFormat_editText;

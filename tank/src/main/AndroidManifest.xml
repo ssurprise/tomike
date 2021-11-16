@@ -93,13 +93,13 @@
             android:name=".widget.activity.RecyclerViewItemUpdateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.VectorDrawableActivity"
+            android:name=".graphics.VectorDrawableActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.DrawableTintActivity"
+            android:name=".graphics.DrawableTintActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.ShapeDrawableHelperActivity"
+            android:name=".graphics.ShapeDrawableHelperActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".widget.activity.ShadowActivity"
@@ -111,7 +111,7 @@
             android:name=".widget.activity.RadioGroupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.WatermarkActivity"
+            android:name=".graphics.WatermarkActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".widget.activity.MatrixImageActivity"
@@ -120,10 +120,10 @@
             android:name=".widget.activity.StatusBarNavigationBarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.ColorMatrixActivity"
+            android:name=".graphics.ColorMatrixActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.ColorMatrix2Activity"
+            android:name=".graphics.ColorMatrix2Activity"
             android:screenOrientation="portrait" />
 
 
@@ -183,6 +183,7 @@
             android:name=".widget.activity.RecyclerStaggeredGridActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".widget.activity.RecyclerViewCountDownTimerActivity" />
+        <activity android:name=".graphics.PaintActivity" />
 
     </application>
 

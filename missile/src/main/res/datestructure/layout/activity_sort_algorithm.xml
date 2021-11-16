@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="15dp"
-        tools:context="com.skx.tomike.missile.activity.StackDemoActivity">
+        tools:context="com.skx.tomike.missile.ds.activity.StackDemoActivity">
 
         <RadioGroup
             android:id="@+id/rb_sort_sortGroup"

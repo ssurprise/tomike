@@ -28,34 +28,34 @@
 
         <!--        栈-->
         <activity
-            android:name="com.skx.tomike.missile.activity.StackDemoActivity"
+            android:name="com.skx.tomike.missile.ds.activity.StackDemoActivity"
             android:screenOrientation="portrait" />
 
         <!--        队列-->
         <activity
-            android:name="com.skx.tomike.missile.activity.QueueDemoActivity"
+            android:name="com.skx.tomike.missile.ds.activity.QueueDemoActivity"
             android:screenOrientation="portrait" />
 
         <!--        双端队列-->
         <activity
-            android:name="com.skx.tomike.missile.activity.DueueDemoActivity"
+            android:name="com.skx.tomike.missile.ds.activity.DueueDemoActivity"
             android:screenOrientation="portrait" />
 
         <!--        链表-->
         <activity
-            android:name="com.skx.tomike.missile.activity.LinkedDemoActivity"
+            android:name="com.skx.tomike.missile.ds.activity.LinkedDemoActivity"
             android:screenOrientation="portrait" />
 
         <!--        数组-->
         <activity
-            android:name="com.skx.tomike.missile.activity.ArrayDemoActivity"
+            android:name="com.skx.tomike.missile.ds.activity.ArrayDemoActivity"
             android:screenOrientation="portrait" />
 
         <!--        树-->
         <activity
-            android:name="com.skx.tomike.missile.activity.TreeDemoActivity"
+            android:name="com.skx.tomike.missile.ds.activity.TreeDemoActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.skx.tomike.missile.activity.SortDemoActivity" />
+        <activity android:name="com.skx.tomike.missile.ds.activity.SortDemoActivity" />
 
     </application>
 </manifest>

@@ -17,9 +17,9 @@ import java.io.IOException;
 
 import okhttp3.MediaType;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_okhttp;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_OKHTTP;
 
-@Route(path = ROUTE_PATH_okhttp)
+@Route(path = ROUTE_PATH_OKHTTP)
 public class OkHttpActivity extends AppCompatActivity {
 
     private EditText inputBox;

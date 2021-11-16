@@ -1,4 +1,4 @@
-package com.skx.tomike.missile.activity;
+package com.skx.tomike.missile.ds.activity;
 
 import android.graphics.Color;
 import android.view.Gravity;
@@ -15,25 +15,26 @@ import com.skx.common.utils.SkxDrawableUtil;
 import com.skx.common.utils.ToastTool;
 import com.skx.tomike.missile.R;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_QUEUE;
 
 /**
- * 描述 : 数据结构 - 栈 demo
+ * 描述 : 数据结构 - 队列 demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
-@Route(path = ROUTE_PATH_STACK)
-public class StackDemoActivity extends SkxBaseActivity<BaseViewModel> {
+@Route(path = ROUTE_PATH_QUEUE)
+public class QueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
+
+    private LinearLayout mLlStackWrap;
 
     private static final int MAX_SIZE = 5;
 
     private int mIndex = -1;
-    private final Stack<Integer> mStack = new Stack<>();
-
-    private LinearLayout mLlStackWrap;
+    private final Queue<Integer> mQueue = new ArrayDeque<>();
 
     @Override
     protected void initParams() {
@@ -41,45 +42,37 @@ public class StackDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("数据结构 - 栈").create();
+        return new TitleConfig.Builder().setTitleText("数据结构 - 队列").create();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_data_structure_stack;
+        return R.layout.activity_data_structure_queue;
     }
 
     @Override
     protected void initView() {
-        mLlStackWrap = findViewById(R.id.tv_stack_sourceWrap);
-        findViewById(R.id.tv_stack_pushBtn).setOnClickListener(v -> push());
-
-        findViewById(R.id.tv_stack_popBtn).setOnClickListener(v -> pop());
+        mLlStackWrap = findViewById(R.id.tv_queue_sourceWrap);
+        findViewById(R.id.tv_queue_pushBtn).setOnClickListener(v -> push());
+        findViewById(R.id.tv_queue_popBtn).setOnClickListener(v -> pop());
     }
 
-    /**
-     * 入栈
-     */
     private void push() {
         if (mIndex + 1 >= MAX_SIZE) {
             ToastTool.showToast(this, "最大支持添加" + MAX_SIZE + "个");
             return;
         }
-        mStack.push(++mIndex);
+        mQueue.offer(++mIndex);
         addView();
     }
 
-    /**
-     * 出栈
-     */
     private void pop() {
-        if (mStack.size() == 0) {
+        if (mQueue.size() == 0) {
             ToastTool.showToast(this, "当前栈内没有元素哦~");
             return;
         }
         mIndex--;
-        Integer pop = mStack.pop();
-        ToastTool.showToast(this, "出栈的元素为：" + pop);
+        mQueue.poll();
         mLlStackWrap.removeViewAt(0);
     }
 
@@ -96,22 +89,7 @@ public class StackDemoActivity extends SkxBaseActivity<BaseViewModel> {
         lp.topMargin = 15;
         lp.leftMargin = 15;
         lp.rightMargin = 15;
-        mLlStackWrap.addView(textView, 0, lp);
+        mLlStackWrap.addView(textView, lp);
     }
-
-    /*
-    派生自 java.util.Vector 类，其内部实现是 Object[]
-
-    1.入栈 push(E item)
-    方法内部调用的是 addElement(E obj) 方法
-    java.util.Vector.addElement 和 java.util.Vector.add(E) 没区别，方法体是一样的，不过后者有返回值。
-
-    2.出栈 pop()
-    其内部同样是调用父类的 java.util.Vector#removeElementAt 方法完成删除操作
-
-    3.peek()
-    查看该堆栈顶部的对象，但是不移除该元素
-
-     */
 
 }

@@ -4,17 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/view_padding_15"
     android:paddingLeft="@dimen/view_padding_15"
-    android:paddingRight="@dimen/view_padding_15"
     android:paddingTop="@dimen/view_padding_15"
+    android:paddingRight="@dimen/view_padding_15"
+    android:paddingBottom="@dimen/view_padding_15"
     android:weightSum="1"
-    tools:context="com.skx.tomike.tank.widget.activity.ColorMatrixActivity">
+    tools:context="com.skx.tomike.tank.graphics.ColorMatrixActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改图片色度、亮度、饱和度"
+        android:textColor="@color/skx_212121"
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/main_img"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:layout_marginTop="5dp"
+        tools:ignore="ContentDescription" />
 
     <SeekBar
         android:id="@+id/seekBar_hun"

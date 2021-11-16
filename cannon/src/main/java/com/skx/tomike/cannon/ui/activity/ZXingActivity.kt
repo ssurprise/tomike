@@ -9,7 +9,7 @@ import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTE_PATH_zxing
+import com.skx.tomike.cannon.ROUTE_PATH_ZXING
 
 
 /**
@@ -18,7 +18,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_zxing
  * 版本 : V1
  * 创建时间 : 2021/7/22 4:22 下午
  */
-@Route(path = ROUTE_PATH_zxing)
+@Route(path = ROUTE_PATH_ZXING)
 class ZXingActivity : SkxBaseActivity<BaseViewModel>() {
 
     override fun initParams() {

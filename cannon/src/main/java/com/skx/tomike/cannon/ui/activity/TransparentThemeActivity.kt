@@ -1,32 +1,20 @@
-package com.skx.tomike.cannon.ui.activity;
+package com.skx.tomike.cannon.ui.activity
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.SkxBaseActivity;
-import com.skx.tomike.cannon.R;
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.skx.common.base.BaseViewModel
+import com.skx.common.base.SkxBaseActivity
+import com.skx.tomike.cannon.R
+import com.skx.tomike.cannon.ROUTE_PATH_TRANSPARENT_THEME
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_transparent_theme;
+@Route(path = ROUTE_PATH_TRANSPARENT_THEME)
+class TransparentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
 
-
-@Route(path = ROUTE_PATH_transparent_theme)
-public class TransparentThemeActivity extends SkxBaseActivity<BaseViewModel> {
-
-    @Override
-    protected void initParams() {
-
+    override fun initParams() {}
+    override fun getLayoutId(): Int {
+        return R.layout.activity_transparent_theme
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_transparent_theme;
-    }
-
-    @Override
-    protected void initView() {
-
-    }
-
-    /*
+    override fun initView() {} /*
 
     方案一：直接使用透明theme
         1.antivity 配置主题 ： <activity android:theme="@android:style/Theme.Translucent.NoTitleBar"/>

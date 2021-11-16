@@ -3,11 +3,14 @@ package com.skx.tomike.missile.pattern.proxy;
 import android.view.View;
 import android.widget.RadioGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.ToastTool;
 import com.skx.tomike.missile.R;
+
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_PROXY;
 
 /**
  * 描述 : 代理模式
@@ -15,6 +18,7 @@ import com.skx.tomike.missile.R;
  * 版本 : V1
  * 创建时间 : 2020/4/14 9:22 AM
  */
+@Route(path = ROUTE_PATH_PROXY)
 public class ProxyPatternActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
     private ICarFactory iCarFactory;

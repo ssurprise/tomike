@@ -1,4 +1,4 @@
-package com.skx.tomike.missile.activity;
+package com.skx.tomike.missile.ds.activity;
 
 import android.graphics.Color;
 import android.view.Gravity;
@@ -15,26 +15,25 @@ import com.skx.common.utils.SkxDrawableUtil;
 import com.skx.common.utils.ToastTool;
 import com.skx.tomike.missile.R;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Stack;
 
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_DUEUE;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
 
 /**
- * 描述 : 数据结构 - 双端队列 demo
+ * 描述 : 数据结构 - 栈 demo
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/6/29 10:26 AM
  */
-@Route(path = ROUTE_PATH_DUEUE)
-public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
+@Route(path = ROUTE_PATH_STACK)
+public class StackDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
-    private LinearLayout mLlStackWrap;
-
-    private static final int MAX_SIZE = 8;
+    private static final int MAX_SIZE = 5;
 
     private int mIndex = -1;
-    private final Deque<Integer> mQueue = new ArrayDeque<>();
+    private final Stack<Integer> mStack = new Stack<>();
+
+    private LinearLayout mLlStackWrap;
 
     @Override
     protected void initParams() {
@@ -42,56 +41,49 @@ public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("数据结构 - 双端队列").create();
+        return new TitleConfig.Builder().setTitleText("数据结构 - 栈").create();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_data_structure_dueue;
+        return R.layout.activity_data_structure_stack;
     }
 
     @Override
     protected void initView() {
-        mLlStackWrap = findViewById(R.id.tv_dueue_sourceWrap);
+        mLlStackWrap = findViewById(R.id.tv_stack_sourceWrap);
+        findViewById(R.id.tv_stack_pushBtn).setOnClickListener(v -> push());
 
-        findViewById(R.id.tv_dueue_addFirst).setOnClickListener(v -> push(true));
-        findViewById(R.id.tv_dueue_addLast).setOnClickListener(v -> push(false));
-
-        findViewById(R.id.tv_dueue_removeFirst).setOnClickListener(v -> pop(true));
-        findViewById(R.id.tv_dueue_removeLast).setOnClickListener(v -> pop(false));
+        findViewById(R.id.tv_stack_popBtn).setOnClickListener(v -> pop());
     }
 
-    private void push(boolean isFirst) {
+    /**
+     * 入栈
+     */
+    private void push() {
         if (mIndex + 1 >= MAX_SIZE) {
             ToastTool.showToast(this, "最大支持添加" + MAX_SIZE + "个");
             return;
         }
-        mIndex++;
-        if (isFirst) {
-            mQueue.offerFirst(mIndex);
-            mLlStackWrap.addView(createChildView(), 0);
-        } else {
-            mQueue.offerLast(mIndex);
-            mLlStackWrap.addView(createChildView());
-        }
+        mStack.push(++mIndex);
+        addView();
     }
 
-    private void pop(boolean isFirst) {
-        if (mQueue.size() == 0) {
+    /**
+     * 出栈
+     */
+    private void pop() {
+        if (mStack.size() == 0) {
             ToastTool.showToast(this, "当前栈内没有元素哦~");
             return;
         }
         mIndex--;
-        if (isFirst) {
-            mQueue.pollFirst();
-            mLlStackWrap.removeViewAt(0);
-        } else {
-            mQueue.pollLast();
-            mLlStackWrap.removeViewAt(mLlStackWrap.getChildCount() - 1);
-        }
+        Integer pop = mStack.pop();
+        ToastTool.showToast(this, "出栈的元素为：" + pop);
+        mLlStackWrap.removeViewAt(0);
     }
 
-    private TextView createChildView() {
+    private void addView() {
         TextView textView = new TextView(this);
         textView.setText(String.valueOf(mIndex));
         textView.setGravity(Gravity.CENTER);
@@ -104,7 +96,22 @@ public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
         lp.topMargin = 15;
         lp.leftMargin = 15;
         lp.rightMargin = 15;
-        textView.setLayoutParams(lp);
-        return textView;
+        mLlStackWrap.addView(textView, 0, lp);
     }
+
+    /*
+    派生自 java.util.Vector 类，其内部实现是 Object[]
+
+    1.入栈 push(E item)
+    方法内部调用的是 addElement(E obj) 方法
+    java.util.Vector.addElement 和 java.util.Vector.add(E) 没区别，方法体是一样的，不过后者有返回值。
+
+    2.出栈 pop()
+    其内部同样是调用父类的 java.util.Vector#removeElementAt 方法完成删除操作
+
+    3.peek()
+    查看该堆栈顶部的对象，但是不移除该元素
+
+     */
+
 }
