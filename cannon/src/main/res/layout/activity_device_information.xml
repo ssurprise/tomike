@@ -33,12 +33,18 @@
         tools:text="手机型号：" />
 
     <TextView
+        android:id="@+id/tv_deviceInfo_abi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="ABI信息：" />
+
+    <TextView
         android:id="@+id/tv_deviceInfo_systemVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         tools:text="系统Android版本：" />
-
 
     <TextView
         android:id="@+id/tv_deviceInfo_androidId"

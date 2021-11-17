@@ -54,11 +54,18 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
     protected void initView() {
         TextView tvBrand = findViewById(R.id.tv_deviceInfo_brand);
         TextView tvModel = findViewById(R.id.tv_deviceInfo_model);
+        TextView tvABI = findViewById(R.id.tv_deviceInfo_abi);
         TextView tvSystemVersion = findViewById(R.id.tv_deviceInfo_systemVersion);
 
         tvBrand.setText(String.format("手机品牌：%s", Build.BRAND));
         tvModel.setText(String.format("手机型号：%s", Build.MODEL));
         tvSystemVersion.setText(String.format("手机Android 版本：%s", Build.VERSION.RELEASE));
+        String[] supportedAbis = Build.SUPPORTED_ABIS;
+        StringBuilder abi = new StringBuilder();
+        for (String supportedAbi : supportedAbis) {
+            abi.append(supportedAbi).append(" ");
+        }
+        tvABI.setText(String.format("ABI信息：%s", abi.toString()));
 
 
         mTvAndroidId = findViewById(R.id.tv_deviceInfo_androidId);
