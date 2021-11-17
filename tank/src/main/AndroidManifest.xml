@@ -17,9 +17,6 @@
             android:name=".widget.activity.SpannableStringBuilderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".widget.activity.EmojiFilterActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".widget.activity.EditTextCursorActivity"
             android:screenOrientation="portrait" />
         <activity

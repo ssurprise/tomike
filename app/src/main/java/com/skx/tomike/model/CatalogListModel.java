@@ -1,16 +1,8 @@
 package com.skx.tomike.model;
 
-import com.skx.tomike.bean.CatalogItem;
-import com.skx.tomike.tank.widget.activity.EmojiFilterActivity;
-import com.skx.tomike.tank.widget.activity.StatusBarNavigationBarActivity;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_BASE64;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_COROUTINE;
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_EMOJI_FILTER;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_FLOAT_CALCULATE;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GENERIC;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GSON;
@@ -108,6 +100,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SHADOW;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SHAKE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SHAPE_VIEW;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SNACKBAR;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_STATUS_BAR_HEIGHT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SWIPEREFRESH_LAYOUT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_HELPER;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_INDICATOR;
@@ -125,6 +118,13 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CON
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEW_FOCUS;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_WATER_MARK;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
+
+import com.skx.tomike.bean.CatalogItem;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 描述 : 目录列表model
@@ -223,6 +223,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("滑动缩放头图-demo2", ROUTE_PATH_SCROLL_ZOOM2));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ROUTE_PATH_SCROLL_ANCHOR));
         mViewCatalogs.add(new CatalogItem("TabLayout 工具类封装检测", ROUTE_PATH_TABLELAYOUT_HELPER));
+        mViewCatalogs.add(new CatalogItem("获取状态栏/导航栏高度", ROUTE_PATH_STATUS_BAR_HEIGHT));
         mCatalogGroupMap.put(GROUP_VIEW, mViewCatalogs);
 
 
@@ -239,12 +240,13 @@ public class CatalogListModel {
 
 
         // 图形类
+        mGraphicsCatalogs.add(new CatalogItem("paint", ROUTE_PATH_PAINT));
         mGraphicsCatalogs.add(new CatalogItem("Tint 着色", ROUTE_PATH_TINT));
         mGraphicsCatalogs.add(new CatalogItem("矢量图 VectorDrawable", ROUTE_PATH_VECTOR_DRAWABLE));
         mGraphicsCatalogs.add(new CatalogItem("渐变 GradientDrawable", ROUTE_PATH_GRADIENT_DRAWABLE));
         mGraphicsCatalogs.add(new CatalogItem("图像处理-HSL", ROUTE_PATH_HSL));
         mGraphicsCatalogs.add(new CatalogItem("ColorMatrix-HSL", ROUTE_PATH_COLORMATRIX));
-        mGraphicsCatalogs.add(new CatalogItem("paint", ROUTE_PATH_PAINT));
+        mGraphicsCatalogs.add(new CatalogItem("给图片添加水印", ROUTE_PATH_WATER_MARK));
         mCatalogGroupMap.put(GROUP_GRAPHICS, mGraphicsCatalogs);
 
 
@@ -269,7 +271,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("相册", ROUTE_PATH_PHOTO_ALBUM));
         mFunctionCatalogs.add(new CatalogItem("图片缩放", ROUTE_PATH_IMAGE_zoom));
         mFunctionCatalogs.add(new CatalogItem("大图片加载", ROUTE_PATH_BIG_IMAGE_LOAD));
-        mFunctionCatalogs.add(new CatalogItem("水印图", ROUTE_PATH_WATER_MARK));
+        mFunctionCatalogs.add(new CatalogItem("图片添加水印", ROUTE_PATH_WATER_MARK));
         mFunctionCatalogs.add(new CatalogItem("打开文件管理器(SAF)", ROUTE_PATH_SAF));
         mFunctionCatalogs.add(new CatalogItem("Parcelable序列化", ROUTE_PATH_PARCELABLE));
         mFunctionCatalogs.add(new CatalogItem("倒计时", ROUTE_PATH_COUNT_DOWN_TIMER));
@@ -288,9 +290,7 @@ public class CatalogListModel {
         mUtilCatalogs.add(new CatalogItem("Url 解析", ROUTE_PATH_URL_PARSE));
         mUtilCatalogs.add(new CatalogItem("json 解析", ROUTE_PATH_GSON));
         mUtilCatalogs.add(new CatalogItem("Xml 解析", ROUTE_PATH_XML_PARSE));
-        mUtilCatalogs.add(new CatalogItem("状态栏-底部导航栏高度", "", StatusBarNavigationBarActivity.class.getName()));
-        mUtilCatalogs.add(new CatalogItem("emoji过滤", "", EmojiFilterActivity.class.getName()));
-
+        mUtilCatalogs.add(new CatalogItem("emoji过滤", ROUTE_PATH_EMOJI_FILTER));
         mCatalogGroupMap.put(GROUP_UTIL, mUtilCatalogs);
 
 
@@ -342,10 +342,15 @@ public class CatalogListModel {
         for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
             List<CatalogItem> tempGroup = entry.getValue();
 
-            CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(), "", "", null, null);
+            CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(),
+                    "", "", null, null);
             allCatalogs.add(parentModel);
             for (CatalogItem item : tempGroup) {
-                CatalogCellModel cellModel = new CatalogCellModel(item.getName(), item.getPath(), item.getValue(), parentModel, null);
+                CatalogCellModel cellModel = new CatalogCellModel(item.getName(),
+                        item.getPath(),
+                        item.getValue(),
+                        parentModel,
+                        null);
                 parentModel.addChild(cellModel);
                 allCatalogs.add(cellModel);
             }

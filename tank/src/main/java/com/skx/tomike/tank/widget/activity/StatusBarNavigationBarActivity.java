@@ -1,30 +1,28 @@
 package com.skx.tomike.tank.widget.activity;
 
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_STATUS_BAR_HEIGHT;
+
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.skx.tomike.tank.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.common.utils.ScreenUtilKt;
+import com.skx.tomike.tank.R;
 
 import java.util.Locale;
 
 /**
  * 获取状态栏高度Activity
  */
+@Route(path = ROUTE_PATH_STATUS_BAR_HEIGHT)
 public class StatusBarNavigationBarActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
 
-    Button status_bar_height;
-    TextView status_bar_height_tv;
-
-    Button status_bar_height1;
-    TextView status_bar_height1_tv;
-
-    Button status_bar_height2;
-    TextView status_bar_height2_tv;
+    private TextView mTvGetBarHeightByProperty;
+    private TextView mTvGetBarHeightByReflex;
+    private TextView mTvGetBarHeightByWMS;
 
     @Override
     protected void initParams() {
@@ -43,18 +41,13 @@ public class StatusBarNavigationBarActivity extends SkxBaseActivity<BaseViewMode
 
     @Override
     protected void initView() {
-        status_bar_height = findViewById(R.id.btn_statusBarHeight_byProperty);
-        status_bar_height_tv = findViewById(R.id.tv_statusBarHeight_byProperty);
+        mTvGetBarHeightByProperty = findViewById(R.id.tv_statusBarHeight_byProperty);
+        mTvGetBarHeightByReflex = findViewById(R.id.tv_statusBarHeight_byReflex);
+        mTvGetBarHeightByWMS = findViewById(R.id.tv_statusBarHeight_byWMS);
 
-        status_bar_height1 = findViewById(R.id.btn_statusBarHeight_byReflex);
-        status_bar_height1_tv = findViewById(R.id.tv_statusBarHeight_byReflex);
-
-        status_bar_height2 = findViewById(R.id.btn_statusBarHeight_byWMS);
-        status_bar_height2_tv = findViewById(R.id.tv_statusBarHeight_byWMS);
-
-        status_bar_height.setOnClickListener(this);
-        status_bar_height1.setOnClickListener(this);
-        status_bar_height2.setOnClickListener(this);
+        findViewById(R.id.btn_statusBarHeight_byProperty).setOnClickListener(this);
+        findViewById(R.id.btn_statusBarHeight_byReflex).setOnClickListener(this);
+        findViewById(R.id.btn_statusBarHeight_byWMS).setOnClickListener(this);
     }
 
 
@@ -63,15 +56,15 @@ public class StatusBarNavigationBarActivity extends SkxBaseActivity<BaseViewMode
         int id = v.getId();
         if (id == R.id.btn_statusBarHeight_byProperty) {
             int statusBarHeight = ScreenUtilKt.getStatusBarHeight(StatusBarNavigationBarActivity.this);
-            status_bar_height_tv.setText(String.format(Locale.getDefault(), "%d", statusBarHeight));
+            mTvGetBarHeightByProperty.setText(String.format(Locale.getDefault(), "%d", statusBarHeight));
 
         } else if (id == R.id.btn_statusBarHeight_byReflex) {
             int statusBarHeight1 = ScreenUtilKt.getStatusBarHeightByReflex(StatusBarNavigationBarActivity.this);
-            status_bar_height1_tv.setText(String.format(Locale.getDefault(), "%d", statusBarHeight1));
+            mTvGetBarHeightByReflex.setText(String.format(Locale.getDefault(), "%d", statusBarHeight1));
 
         } else if (id == R.id.btn_statusBarHeight_byWMS) {
             int statusBarHeight2 = ScreenUtilKt.getStatusBarHeightByWMS(StatusBarNavigationBarActivity.this);
-            status_bar_height2_tv.setText(String.format(Locale.getDefault(), "%d", statusBarHeight2));
+            mTvGetBarHeightByWMS.setText(String.format(Locale.getDefault(), "%d", statusBarHeight2));
         }
     }
 }
