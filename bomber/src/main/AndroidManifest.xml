@@ -12,6 +12,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".basics.Base64Activity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.skx.tomike.bomber.basics.UrlEncodeActivity"
             android:screenOrientation="portrait" />
 
@@ -19,13 +23,20 @@
             android:name="com.skx.tomike.bomber.basics.UrlParseActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Double 格式转换工具 -->
+        <activity
+            android:name="com.skx.tomike.bomber.basics.GsonParseActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".basics.XmlParseActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.skx.tomike.bomber.basics.DoubleCalculateActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.bomber.basics.GsonParseActivity"
+            android:name="com.skx.tomike.bomber.basics.EmojiFilterActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -67,12 +78,7 @@
         <activity
             android:name="com.skx.tomike.bomber.coroutine.CoroutineActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".basics.XmlParseActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".basics.Base64Activity"
-            android:screenOrientation="portrait" />
+
 
     </application>
 </manifest>

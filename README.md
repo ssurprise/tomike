@@ -6,7 +6,7 @@
 ###  tank：坦克实验室
 ___
 
-目前存放"view、动效"相关的demo
+目前存放"view、图形、动效"相关的demo
 + View
 	1. View焦点
 	2. TextView 字间距
@@ -29,39 +29,43 @@ ___
 	19. DrawerLayout 抽屉效果
 	20. view 投影
 	21. SnackBar
-	22. PopupWindow
-	23. ViewPager 一屏显示多个
-	24. ViewPager 自适应高度
-	25. ViewPager 无限循环+自动轮播
-	26. ViewPager N种页签指示器
-	27. ViewPager2 androidx
-	28. RecyclerView 添加/删除item
-	29. RecyclerView 滑动到指定position
-	30. RecyclerView 瀑布流
-	31. RecyclerView 仿ViewPager
-	32. RecyclerView child count测试
-	33. RecyclerView 倒计时功能
-	34. ScrollView + RecyclerView
-	35. NestedScrollView+ViewPager
-	36. TabLayout+ScrollView
-	37. TabLayout 工具类封装检测
+	22. ViewPager 一屏显示多个
+	23. ViewPager 自适应高度
+	24. ViewPager 无限循环+自动轮播
+	25. ViewPager N种页签指示器
+	26. ViewPager2 androidx
+	27. RecyclerView 添加/删除item
+	28. RecyclerView 滑动到指定position
+	29. RecyclerView 瀑布流
+	30. RecyclerView 仿ViewPager
+	31. RecyclerView child count测试
+	32. RecyclerView 倒计时功能
+	33. ScrollView + RecyclerView
+	34. NestedScrollView+ViewPager
+	35. TabLayout+ScrollView
+	36. TabLayout 工具类封装检测
 	
 + 动效/动画
 	1. 补间动画
 	2. 属性动画
 	3. 实现shake效果
 	4. 圆形揭示效果
-	5. 共享元素转场动画
-	6. view内容移动 - scroller
-	7. Layout添加/删除子view过渡效果
+	5. Scroller动画 - view内容移动
+	6. Layout添加/删除子view过渡效果
+	7. 共享元素转场动画
+	8. ScrollView 滑动改变标题
+	9. ScrollView 滑动仿锚点效果
+	10. ScrollView 回弹效果
 
-+ 其他
-	1. 着色 Tint
-	2. 加载矢量图 - VectorDrawable
-	3. 给图片添加水印
++ 图形
+	1. Paint着色 
+	2. Tint
+	3. 加载矢量图 - VectorDrawableh
 	4. ShapeDrawable工具类
-	5. 修改图片色度、亮度、饱和度
-	6. 获取状态栏高度（3种方式）
+	5. ColorMatrix - 修改图片色度、亮度、饱和度1
+	6. ColorMatrix - 修改图片色度、亮度、饱和度2
+	7. 图片添加水印
+	
 	
 
 ### cannon：加农炮实验室
@@ -94,6 +98,8 @@ _________
 24. 重启APP
 25. 打开指定第三方APP
 26. NFC 读写
+27. 获取状态栏高度（3种方式）
+28. PopupWindow
 
 
 ### bomber：轰炸机实验室

@@ -68,16 +68,19 @@ const val ROUTE_PATH_SNACKBAR = "${ROUTER_FIRST_LEVEL_widget}/SnackBar"
 const val ROUTE_PATH_SWIPEREFRESH_LAYOUT = "${ROUTER_FIRST_LEVEL_widget}/SwipeRefreshLayout"
 const val ROUTE_PATH_TABLELAYOUT_HELPER = "${ROUTER_FIRST_LEVEL_widget}/TableLayout/helper"
 const val ROUTE_PATH_TABLELAYOUT_INDICATOR = "${ROUTER_FIRST_LEVEL_widget}/TableLayout/indicator"
-const val ROUTE_PATH_GRADIENT_DRAWABLE = "${ROUTER_FIRST_LEVEL_widget}/GradientDrawable"
-const val ROUTE_PATH_VECTOR_DRAWABLE = "${ROUTER_FIRST_LEVEL_widget}/VectorDrawable"
-const val ROUTE_PATH_TINT = "${ROUTER_FIRST_LEVEL_widget}/tint"
-const val ROUTE_PATH_WATER_MARK = "${ROUTER_FIRST_LEVEL_widget}/watermark"
+const val ROUTE_PATH_STATUS_BAR_HEIGHT = "${ROUTER_FIRST_LEVEL_widget}/statusBarHeight"
 
 
 // ------------------------------------图形-------------------------------------------
 
 
 const val ROUTE_PATH_PAINT = "${ROUTER_FIRST_LEVEL_graphics}/paint"
+const val ROUTE_PATH_TINT = "${ROUTER_FIRST_LEVEL_graphics}/tint"
 const val ROUTE_PATH_HSL = "${ROUTER_FIRST_LEVEL_graphics}/hsl"
 const val ROUTE_PATH_COLORMATRIX = "${ROUTER_FIRST_LEVEL_graphics}/colorMatrix"
+const val ROUTE_PATH_GRADIENT_DRAWABLE = "${ROUTER_FIRST_LEVEL_graphics}/GradientDrawable"
+const val ROUTE_PATH_VECTOR_DRAWABLE = "${ROUTER_FIRST_LEVEL_graphics}/VectorDrawable"
+const val ROUTE_PATH_WATER_MARK = "${ROUTER_FIRST_LEVEL_graphics}/watermark"
+
+
 

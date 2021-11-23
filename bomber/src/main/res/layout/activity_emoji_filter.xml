@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/view_padding_15"
-    tools:context="com.skx.tomike.tank.widget.activity.EmojiFilterActivity">
+    tools:context="com.skx.tomike.bomber.basics.EmojiFilterActivity">
 
     <EditText
         android:id="@+id/emojiFilter_textContent"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:gravity="top|start" />
+        android:gravity="top|start"
+        tools:ignore="Autofill,LabelFor,TextFields" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="15dp">
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="原字符串长度:"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/emojiFilter_originalTextLength"
@@ -41,14 +42,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="是否包含有emoji表情:"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/emojiFilter_hasEmoji"
@@ -64,14 +66,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="过滤emoji表情后的长度:"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/emojiFilter_filterTextLength"
