@@ -39,6 +39,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HOTFIX;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_IMAGE_zoom;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_LIFECYCLE;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_MUSIC_PLAYER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NOTIFICATION;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_OKHTTP;
@@ -279,6 +280,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("重启APP", ROUTE_PATH_REBOOT));
         mFunctionCatalogs.add(new CatalogItem("打开其他App", ROUTE_PATH_OUTER_START));
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", ROUTE_PATH_NFC_GROUP));
+        mFunctionCatalogs.add(new CatalogItem("音乐播放器", ROUTE_PATH_MUSIC_PLAYER));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 

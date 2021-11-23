@@ -70,7 +70,8 @@ public class PhotoAlbumDao {
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
 
         // 得到一个游标
-        Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns,
+        Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                columns,
                 MediaStore.Images.Media.MIME_TYPE + "=? " +
                         "or " + MediaStore.Images.Media.MIME_TYPE + "=? " +
                         "or " + MediaStore.Images.Media.MIME_TYPE + "=?",
