@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    tools:ignore="ContentDescription">
+
+    <ImageView
+        android:id="@+id/iv_musicPlayer_music_playStatus"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/player_playing_icon" />
+
+    <TextView
+        android:id="@+id/iv_musicPlayer_music_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/iv_musicPlayer_music_playStatus"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxEms="11"
+        android:textColor="@color/skx_212121"
+        android:textSize="16sp"
+        tools:text="允许部分艺术家先富起来 - 二手玫瑰" />
+
+</RelativeLayout>
