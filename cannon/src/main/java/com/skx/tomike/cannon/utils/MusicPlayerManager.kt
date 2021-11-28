@@ -142,6 +142,9 @@ class MusicPlayerManager private constructor() {
         justPlay(mIndex)
     }
 
+    /**
+     * 通知播放状态更新至播放中状态
+     */
     private fun notifyPlayStatus(cur: MusicInfo) {
         var state: PlayState<MusicInfo>? = mPlayStateLiveData.value
         if (state == null) {
@@ -152,6 +155,9 @@ class MusicPlayerManager private constructor() {
         mPlayStateLiveData.postValue(state)
     }
 
+    /**
+     * 通知播放状态更新至暂停状态
+     */
     private fun notifyPauseStatus() {
         var state: PlayState<MusicInfo>? = mPlayStateLiveData.value
         if (state == null) {
@@ -166,6 +172,7 @@ class MusicPlayerManager private constructor() {
      */
     fun next() {
         if (mIndex + 1 > musicListManager.getSize()) {
+            // todo 缺失播放列表循环功能，后续补齐
             return
         }
         Log.e(TAG, "播放下一首.")
@@ -177,6 +184,7 @@ class MusicPlayerManager private constructor() {
      */
     fun prev() {
         if (mIndex - 1 < 0) {
+            // todo 缺失播放列表循环功能，后续补齐
             return
         }
         Log.e(TAG, "播放上一首.")
@@ -187,7 +195,10 @@ class MusicPlayerManager private constructor() {
         return mPlayStateLiveData
     }
 
-    fun release(){
+    /**
+     * 释放播放器资源
+     */
+    fun release() {
         playManager?.release()
     }
 }
@@ -198,6 +209,13 @@ class PlayState<T> {
     var value: T? = null
 }
 
+
+/**
+ * 描述 : 播放器-播放功能管理类接口
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2021/11/28 11:18 下午
+ */
 interface IPlayManager<T> {
 
     /**
@@ -221,11 +239,18 @@ interface IPlayManager<T> {
     fun isPlaying(): Boolean
 
     /**
-     *
+     * 释放播放器资源
      */
     fun release()
 }
 
+
+/**
+ * 描述 : 默认播放器-播放功能实现类（MediaPlayer实现）
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2021/11/28 11:18 下午
+ */
 class PlayManagerImpl : IPlayManager<MusicInfo> {
 
     private val TAG = "PlayManager"
@@ -246,9 +271,7 @@ class PlayManagerImpl : IPlayManager<MusicInfo> {
         mPlayer.setOnBufferingUpdateListener { mp, percent -> }
     }
 
-    override fun init() {
-
-    }
+    override fun init() {}
 
     /**
      * 播放音乐
@@ -295,6 +318,12 @@ class PlayManagerImpl : IPlayManager<MusicInfo> {
     }
 }
 
+/**
+ * 描述 : 播放器-播放列表管理类接口
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2021/11/28 11:17 下午
+ */
 interface IMusicListManager<T> {
 
     fun add(t: T)
@@ -318,7 +347,12 @@ interface IMusicListManager<T> {
     fun indexOfKey(t: T): Int
 }
 
-
+/**
+ * 描述 : 默认播放器-播放列表实现类
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2021/11/28 11:17 下午
+ */
 class MusicListManagerImpl : IMusicListManager<MusicInfo> {
 
     private val mList: MutableList<MusicInfo> = mutableListOf()

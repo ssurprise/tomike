@@ -189,10 +189,11 @@ class PlayerListAdapter : RecyclerView.Adapter<PlayerListAdapter.PlayerListViewH
         val musicInfo = mMusicList[position]
         holder.itemView.setOnClickListener {
             val value = MusicPlayerManager.instance.getPlayStateLiveData().value
-            // 当前正在播放的和 点击的是同一个
+            // todo 当前正在播放的和点击的是同一个,暂且屏蔽掉，后续再想具体业务逻辑。
             if (value?.value?.musicId == musicInfo.musicId) {
                 return@setOnClickListener
             }
+            // todo 歌曲播放切换UI 显示功能待实现
             onItemClickListener?.invoke(holder.itemView, position, musicInfo)
         }
         holder.bindMusicDate(musicInfo)
