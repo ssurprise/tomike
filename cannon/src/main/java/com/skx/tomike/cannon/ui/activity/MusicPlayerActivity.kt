@@ -48,7 +48,9 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
     }
 
     private val mIvPlayerStartBtn by lazy {
-        findViewById<ImageView>(R.id.iv_musicPlayer_play).setOnClickListener(this)
+        findViewById<ImageView>(R.id.iv_musicPlayer_play).also {
+            it.setOnClickListener(this@MusicPlayerActivity)
+        }
     }
 
     private var mActivityResultLauncher: ActivityResultLauncher<Array<String>>? = null
@@ -88,6 +90,13 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
             it.value?.run {
                 mTvPlayingName.text = this.title
             }
+            mIvPlayerStartBtn.setImageResource(
+                    if (1 == it.state) {
+                        R.drawable.player_pause_icon
+                    } else {
+                        R.drawable.player_start_icon
+                    }
+            )
         }
 
         // 1.获取权限 - 读权限 - 获取本地音乐列表要用
@@ -132,6 +141,7 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
                 MusicPlayerManager.instance.next()
             }
             R.id.iv_musicPlayer_play -> {
+                MusicPlayerManager.instance.playOrPause()
             }
             R.id.iv_musicPlayer_prev -> {
                 MusicPlayerManager.instance.prev()
@@ -192,8 +202,8 @@ class PlayerListAdapter : RecyclerView.Adapter<PlayerListAdapter.PlayerListViewH
 
 
     inner class PlayerListViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivPlayStatus = itemView.findViewById<ImageView>(R.id.iv_musicPlayer_music_playStatus)
-        val tvMusicName = itemView.findViewById<TextView>(R.id.iv_musicPlayer_music_name)
+        private val ivPlayStatus = itemView.findViewById<ImageView>(R.id.iv_musicPlayer_music_playStatus)
+        private val tvMusicName = itemView.findViewById<TextView>(R.id.iv_musicPlayer_music_name)
 
         fun bindMusicDate(musicInfo: MusicInfo) {
             tvMusicName.text = SpannableStringUtils.getBuilder(musicInfo.title ?: "")
