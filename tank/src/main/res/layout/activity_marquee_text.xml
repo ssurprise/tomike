@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context="com.skx.tomike.tank.widget.activity.MarqueeTextActivity">
+
+    <TextView
+        android:id="@+id/tv_marquee_value"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="君不见，高阳酒徒起草中，长揖山东隆准公。"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <!--    <com.skx.tomike.tank.widget.view.MarqueeTextView-->
+    <!--        android:id="@+id/tv_marquee_value_self"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/tv_marquee_value"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginTop="50dp"-->
+    <!--    android:textSize="14sp"-->
+    <!--    android:textStyle="bold"-->
+    <!--        android:text="君不见，高阳酒徒起草中，长揖山东隆准公。"-->
+    <!--        android:textSize="18sp"-->
+    <!--        tools:ignore="HardcodedText" />-->
+
+    <com.skx.tomike.tank.widget.view.AlwaysMarqueeTextView
+        android:id="@+id/tv_marquee_value_self2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_marquee_value"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="君不见，高阳酒徒起草中，长揖山东隆准公。"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    <!--       -->
+    <!--    -->
+    <!--    android:gravity="start"-->
+    <!--    a-->
+
+
+    <TextView
+        android:id="@+id/tv_marquee_option"
+        style="@style/LogcatTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_marquee_value_self2"
+        android:layout_marginTop="40dp"
+        android:padding="5dp"
+        android:text="点击以下内容可切换文案"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_marquee_text_1"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/tv_marquee_option"
+        android:layout_marginTop="20dp"
+        android:gravity="start|center_vertical"
+        android:text="填不满TextView宽度"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_marquee_text_2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_marquee_text_1"
+        android:layout_marginTop="20dp"
+        android:gravity="start|center_vertical"
+        android:text="超过宽度 - 文案不够长怎么办？背一首诗吧：白发渔樵江渚上，惯看秋月春风..."
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>

@@ -33,6 +33,7 @@ const val ROUTE_PATH_share_Element = "${ROUTER_FIRST_LEVEL_transition}/shareElem
 const val ROUTE_PATH_VIEW_FOCUS = "${ROUTER_FIRST_LEVEL_widget}/View/focus"
 const val ROUTE_PATH_TEXTVIEW_SELECTABLE = "${ROUTER_FIRST_LEVEL_widget}/TextView/selectable"
 const val ROUTE_PATH_TEXTVIEW_WORD_SPACE = "${ROUTER_FIRST_LEVEL_widget}/TextView/wordSpace"
+const val ROUTE_PATH_TEXTVIEW_MARQUEE = "${ROUTER_FIRST_LEVEL_widget}/TextView/marquee"
 const val ROUTE_PATH_TEXTVIEW_SPANNABLESTRING = "${ROUTER_FIRST_LEVEL_widget}/TextView/spannableString"
 const val ROUTE_PATH_EDITTEXT_LIGHT2DARK = "${ROUTER_FIRST_LEVEL_widget}/EditText/light2dark"
 const val ROUTE_PATH_EDITTEXT_LOWER2UPPER = "${ROUTER_FIRST_LEVEL_widget}/EditText/lower2upper"

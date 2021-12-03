@@ -179,8 +179,15 @@
         <activity
             android:name=".widget.activity.RecyclerStaggeredGridActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".widget.activity.RecyclerViewCountDownTimerActivity" />
-        <activity android:name=".graphics.PaintActivity" />
+        <activity
+            android:name=".widget.activity.RecyclerViewCountDownTimerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".graphics.PaintActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.MarqueeTextActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

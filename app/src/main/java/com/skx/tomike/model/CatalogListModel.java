@@ -106,6 +106,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SWIPEREFRESH_LAYOU
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_HELPER;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_INDICATOR;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTSWITCH;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_MARQUEE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SELECTABLE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SPANNABLESTRING;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_WORD_SPACE;
@@ -183,6 +184,7 @@ public class CatalogListModel {
         // 坦克实验室 - view 篇
         mViewCatalogs.add(new CatalogItem("View 焦点", ROUTE_PATH_VIEW_FOCUS));
         mViewCatalogs.add(new CatalogItem("TextView 行间距/字间距", ROUTE_PATH_TEXTVIEW_WORD_SPACE));
+        mViewCatalogs.add(new CatalogItem("TextView 跑马灯效果", ROUTE_PATH_TEXTVIEW_MARQUEE));
         mViewCatalogs.add(new CatalogItem("TextView 富文本SpannableString", ROUTE_PATH_TEXTVIEW_SPANNABLESTRING));
         mViewCatalogs.add(new CatalogItem("TextView 复制测试", ROUTE_PATH_TEXTVIEW_SELECTABLE));
         mViewCatalogs.add(new CatalogItem("TextSwitcher 测试", ROUTE_PATH_TEXTSWITCH));
