@@ -84,24 +84,23 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         mPlayerManager.getPlayStateLiveData().observe(this) {
             Log.e(TAG, "当前播放的曲目是：" + it.value?.displayName)
             it.value?.run {
                 mTvPlayingName.text = this.title
             }
             mIvPlayerStartBtn.setImageResource(
-                    if (1 == it.state) {
-                        R.drawable.player_pause_icon
-                    } else {
-                        R.drawable.player_start_icon
-                    }
+                if (1 == it.state) {
+                    R.drawable.player_pause_icon
+                } else {
+                    R.drawable.player_start_icon
+                }
             )
         }
 
         // 1.获取权限 - 读权限 - 获取本地音乐列表要用
         mActivityResultLauncher = registerForActivityResult(
-                ActivityResultContracts.RequestMultiplePermissions()
+            ActivityResultContracts.RequestMultiplePermissions()
         ) { result: Map<String?, Boolean?> ->
             // 读权限结果
             val readPermission = result[Manifest.permission.READ_EXTERNAL_STORAGE]
@@ -148,6 +147,11 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        MusicPlayerManager.instance.release()
+    }
 }
 
 /**
@@ -178,8 +182,12 @@ class PlayerListAdapter : RecyclerView.Adapter<PlayerListAdapter.PlayerListViewH
         this.onItemClickListener = listen
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerListAdapter.PlayerListViewHolder {
-        return PlayerListViewHolder(LayoutInflater
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): PlayerListAdapter.PlayerListViewHolder {
+        return PlayerListViewHolder(
+            LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.adapter_music_player_list, parent, false)
         )
@@ -203,15 +211,16 @@ class PlayerListAdapter : RecyclerView.Adapter<PlayerListAdapter.PlayerListViewH
 
 
     inner class PlayerListViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val ivPlayStatus = itemView.findViewById<ImageView>(R.id.iv_musicPlayer_music_playStatus)
+        private val ivPlayStatus =
+            itemView.findViewById<ImageView>(R.id.iv_musicPlayer_music_playStatus)
         private val tvMusicName = itemView.findViewById<TextView>(R.id.iv_musicPlayer_music_name)
 
         fun bindMusicDate(musicInfo: MusicInfo) {
             tvMusicName.text = SpannableStringUtils.getBuilder(musicInfo.title ?: "")
-                    .setTextSize(48)
-                    .append(" - ${musicInfo.artist}")
-                    .setTextSize(42)
-                    .create()
+                .setTextSize(48)
+                .append(" - ${musicInfo.artist}")
+                .setTextSize(42)
+                .create()
 
             val value = MusicPlayerManager.instance.getPlayStateLiveData().value
             ivPlayStatus.visibility = if (value?.value?.musicId == musicInfo.musicId) {

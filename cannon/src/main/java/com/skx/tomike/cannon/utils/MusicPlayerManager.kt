@@ -9,7 +9,7 @@ import com.skx.tomike.cannon.bean.MusicInfo
 
 
 /**
- * 描述 : 音乐播放器manager
+ * 描述 : 音乐播放器manager，内部核心实现分为4部分：音乐列表数据、播放器、播放模式、播放状态通知
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2021/11/28 12:01 下午
@@ -19,7 +19,6 @@ class MusicPlayerManager private constructor() {
     companion object {
         const val TAG = "MusicPlayerManager"
 
-        val DEFAULT_LIST_MANAGER: IMusicListManager<MusicInfo> = MusicListManagerImpl()
         val instance: MusicPlayerManager by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
             MusicPlayerManager()
         }
@@ -28,12 +27,17 @@ class MusicPlayerManager private constructor() {
     /**
      * 播放列表管理器
      */
-    private var musicListManager: IMusicListManager<MusicInfo> = DEFAULT_LIST_MANAGER
+    private var mMusicList: MutableList<MusicInfo> = mutableListOf()
+
+    /**
+     * 播放模式，默认位顺序播放（循环）
+     */
+    private var mPlayMode: AbsPlayMode<MusicInfo> = OrderPlayMode()
 
     /**
      * 真正实现播放音乐功能的管理者
      */
-    private var playManager: IPlayManager<MusicInfo>? = PlayManagerImpl()
+    private var mPlayManager: IPlayManager<MusicInfo>? = PlayManagerImpl()
 
     /**
      * 播放状态LiveData
@@ -43,26 +47,32 @@ class MusicPlayerManager private constructor() {
     // 表示当前播放的音乐在播放列表中的索引位置
     private var mIndex = -1
 
-    // 自动播放
-    private var autoplay = true
 
     init {
         mPlayStateLiveData.value = PlayState<MusicInfo>().also {
             // 初始化播放器状态为未播放状态
             it.state = 0
         }
+        // 初始化数据源
+        mPlayMode.registerMusicList(mMusicList)
     }
 
-    fun registerMusicList(musicListManager: IMusicListManager<MusicInfo>) {
-        this.musicListManager = musicListManager
+    fun registerMusicList(musicListManager: MutableList<MusicInfo>) {
+        this.mMusicList = musicListManager
+        // 数据源发生变化的情况下，需要更新播放模式中的数据源。
+        this.mPlayMode.registerMusicList(mMusicList)
     }
 
     fun registerPlayManager(playManager: IPlayManager<MusicInfo>) {
-        this.playManager = playManager
+        this.mPlayManager = playManager
+    }
+
+    fun setPlayMode(playMode: AbsPlayMode<MusicInfo>) {
+        this.mPlayMode = playMode
     }
 
     fun addMusicList(musicList: List<MusicInfo>) {
-        musicListManager.addAll(musicList)
+        mMusicList.addAll(musicList)
     }
 
     fun play(t: MusicInfo?, autoAddIfNotExist: Boolean = false, playNow: Boolean = false) {
@@ -71,7 +81,7 @@ class MusicPlayerManager private constructor() {
         }
 
         //1.检查该音频资源是否在播放列表里
-        val indexOfKey = musicListManager.indexOfKey(t)
+        val indexOfKey = mMusicList.indexOf(t)
 
         //2.当前播放列表里有该音频资源,直接切换至该资源index 进行播放
         if (indexOfKey != -1) {
@@ -81,11 +91,11 @@ class MusicPlayerManager private constructor() {
         }
         //3.当前播放列表中无此播放资源，判断是否需要追加。
         if (autoAddIfNotExist) {
-            musicListManager.add(t)
+            mMusicList.add(t)
         }
         //4.是否需要立即播放新添加的音乐
         if (autoAddIfNotExist && playNow) {
-            mIndex = musicListManager.getSize() - 1
+            mIndex = mMusicList.size - 1
             justPlay(mIndex)
         }
     }
@@ -95,18 +105,17 @@ class MusicPlayerManager private constructor() {
      * 该方法只负责播放目标音频资源及播放状态更新，不做其他逻辑处理
      */
     private fun justPlay(index: Int) {
-        if (mIndex < 0 || mIndex > musicListManager.getSize() - 1) {
+        if (mIndex < 0 || mIndex > mMusicList.size - 1) {
             Log.e(TAG, "index 越界，无法执行播放任务")
             return
         }
 
-        val cur = musicListManager.get(index)
-        cur?.run {
-            // 更新播放状态 -> 播放中
-            notifyPlayStatus(this)
-        }
-        Log.e(TAG, "播放音乐.name:${cur?.title}")
-        playManager?.play(cur)
+        val cur = mMusicList[index]
+        // 更新播放状态 -> 播放中
+        notifyPlayStatus(cur)
+
+        Log.e(TAG, "播放音乐.name:${cur.title}")
+        mPlayManager?.play(cur)
     }
 
     /**
@@ -115,7 +124,7 @@ class MusicPlayerManager private constructor() {
      */
     private fun justPause() {
         Log.e(TAG, "暂停播放.")
-        playManager?.pause()
+        mPlayManager?.pause()
         // 更新播放状态 -> 暂停
         notifyPauseStatus()
     }
@@ -125,8 +134,9 @@ class MusicPlayerManager private constructor() {
      * 注：犹豫要不要写这个逻辑，总能感觉这是偏向于业务处理的。暂且留ta一命吧！
      */
     fun playOrPause() {
-        if (playManager?.isPlaying() == true
-                && mPlayStateLiveData.value?.state == 1) {
+        if (mPlayManager?.isPlaying() == true
+            && mPlayStateLiveData.value?.state == 1
+        ) {
             // 播放中 -> 暂停
             justPause()
             return
@@ -134,7 +144,7 @@ class MusicPlayerManager private constructor() {
 
         // 如下需要播放音乐
         // 1. 安全校验，播放列表有数据，但是index 处于初始话状态，自动初始化。
-        if (mIndex == -1 && musicListManager.getSize() > 0) {
+        if (mIndex == -1 && mMusicList.size > 0) {
             mIndex = 0
         }
 
@@ -150,7 +160,7 @@ class MusicPlayerManager private constructor() {
         if (state == null) {
             state = PlayState()
         }
-        state.state = 1
+        state.state = PlayState.PLAYING
         state.value = cur
         mPlayStateLiveData.postValue(state)
     }
@@ -163,7 +173,7 @@ class MusicPlayerManager private constructor() {
         if (state == null) {
             state = PlayState()
         }
-        state.state = 2
+        state.state = PlayState.PAUSE
         mPlayStateLiveData.postValue(state)
     }
 
@@ -171,24 +181,28 @@ class MusicPlayerManager private constructor() {
      * 播放下一首
      */
     fun next() {
-        if (mIndex + 1 > musicListManager.getSize()) {
-            // todo 缺失播放列表循环功能，后续补齐
+        Log.e(TAG, "播放下一首...")
+        val next = mPlayMode.next(mIndex)
+        if (next == -1) {
+            Log.e(TAG, "获取下一首音乐失败：next=${next}")
             return
         }
-        Log.e(TAG, "播放下一首.")
-        justPlay(++mIndex)
+        mIndex = next
+        justPlay(mIndex)
     }
 
     /**
      * 播放前一首
      */
     fun prev() {
-        if (mIndex - 1 < 0) {
-            // todo 缺失播放列表循环功能，后续补齐
+        Log.e(TAG, "播放上一首...")
+        val prev = mPlayMode.prev(mIndex)
+        if (prev == -1) {
+            Log.e(TAG, "获取上一首音乐失败：next=${prev}")
             return
         }
-        Log.e(TAG, "播放上一首.")
-        justPlay(--mIndex)
+        mIndex = prev
+        justPlay(mIndex)
     }
 
     fun getPlayStateLiveData(): MutableLiveData<PlayState<MusicInfo>> {
@@ -196,14 +210,39 @@ class MusicPlayerManager private constructor() {
     }
 
     /**
-     * 释放播放器资源
+     * 释放播放器资源，重置播放状态，清空播放数据
      */
     fun release() {
-        playManager?.release()
+        mPlayManager?.release()
+        mIndex = -1
+        val state: PlayState<MusicInfo>? = mPlayStateLiveData.value
+        state?.run {
+            this.state = PlayState.NON_PLAY
+            this.value = null
+        }
+        mPlayStateLiveData.postValue(state)
     }
 }
 
 class PlayState<T> {
+
+    companion object {
+        /**
+         * 未播放状态：注意区分该状态不同于暂停状态，乃是没有任何播放资源的初始状态
+         */
+        const val NON_PLAY = 0
+
+        /**
+         * 播放中状态
+         */
+        const val PLAYING = 1
+
+        /**
+         * 暂停状态
+         */
+        const val PAUSE = 2
+    }
+
     // 播放状态：0-未播放；1-播放中；2-暂停
     var state = 0
     var value: T? = null
@@ -315,82 +354,6 @@ class PlayManagerImpl : IPlayManager<MusicInfo> {
 
     override fun isPlaying(): Boolean {
         return mPlayer.isPlaying
-    }
-}
-
-/**
- * 描述 : 播放器-播放列表管理类接口
- * 作者 : shiguotao
- * 版本 : V1
- * 创建时间 : 2021/11/28 11:17 下午
- */
-interface IMusicListManager<T> {
-
-    fun add(t: T)
-
-    fun addAll(t: Collection<T>)
-
-    fun remove(t: T)
-
-    /**
-     * 移除指定位置的音乐资源
-     */
-    fun remove(index: Int)
-
-    fun getSize(): Int
-
-    fun get(index: Int): T?
-
-    /**
-     * 获取该资源对应的位置
-     */
-    fun indexOfKey(t: T): Int
-}
-
-/**
- * 描述 : 默认播放器-播放列表实现类
- * 作者 : shiguotao
- * 版本 : V1
- * 创建时间 : 2021/11/28 11:17 下午
- */
-class MusicListManagerImpl : IMusicListManager<MusicInfo> {
-
-    private val mList: MutableList<MusicInfo> = mutableListOf()
-
-    override fun add(t: MusicInfo) {
-        mList.add(t)
-    }
-
-    override fun addAll(t: Collection<MusicInfo>) {
-        mList.addAll(t)
-    }
-
-    override fun remove(t: MusicInfo) {
-        mList.remove(t)
-    }
-
-    override fun remove(index: Int) {
-        mList.removeAt(index)
-    }
-
-    override fun get(index: Int): MusicInfo? {
-        if (index < 0 || index > mList.size) {
-            return null
-        }
-        return mList[index]
-    }
-
-    override fun getSize(): Int {
-        return mList.size
-    }
-
-    override fun indexOfKey(t: MusicInfo): Int {
-        mList.forEachIndexed { index, musicInfo ->
-            if (musicInfo.fileUrl == t.fileUrl) {
-                return index
-            }
-        }
-        return -1
     }
 }
 
