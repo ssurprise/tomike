@@ -1,7 +1,6 @@
 package com.skx.tomike.cannon.utils
 
 import com.skx.tomike.cannon.bean.MusicInfo
-import kotlin.random.Random
 
 
 /**
@@ -174,8 +173,7 @@ class RandomPlayMode : AbsPlayMode<MusicInfo>() {
 
     private fun getRandomIndex(): Int {
         mMusicList?.run {
-            val random = Random(this.size)
-            return random.nextInt()
+            return this.indices.random()
         }
         return -1
     }

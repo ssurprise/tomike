@@ -69,6 +69,12 @@ class MusicPlayerManager private constructor() {
 
     fun setPlayMode(playMode: AbsPlayMode<MusicInfo>) {
         this.mPlayMode = playMode
+        // 数据源发生变化的情况下，需要更新播放模式中的数据源。
+        this.mPlayMode.registerMusicList(mMusicList)
+    }
+
+    fun getPlayMode(): AbsPlayMode<MusicInfo> {
+        return mPlayMode
     }
 
     fun addMusicList(musicList: List<MusicInfo>) {

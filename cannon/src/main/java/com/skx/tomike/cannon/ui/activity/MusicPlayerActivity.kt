@@ -22,8 +22,7 @@ import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_MUSIC_PLAYER
 import com.skx.tomike.cannon.bean.MusicInfo
-import com.skx.tomike.cannon.utils.LocalResource
-import com.skx.tomike.cannon.utils.MusicPlayerManager
+import com.skx.tomike.cannon.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -53,6 +52,10 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
         }
     }
 
+    private val mIvPlayModeBtn by lazy {
+        findViewById<ImageView>(R.id.iv_musicPlayer_playMode)
+    }
+
     private var mActivityResultLauncher: ActivityResultLauncher<Array<String>>? = null
     private val mAdapter = PlayerListAdapter()
 
@@ -73,6 +76,7 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
     override fun initView() {
         findViewById<ImageView>(R.id.iv_musicPlayer_prev).setOnClickListener(this)
         findViewById<ImageView>(R.id.iv_musicPlayer_next).setOnClickListener(this)
+        mIvPlayModeBtn.setOnClickListener(this)
         findViewById<RecyclerView>(R.id.rv_musicPlayer_list).apply {
             adapter = mAdapter.also {
                 it.setOnItemClickListener { _, _, date ->
@@ -134,6 +138,26 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
         mAdapter.initMusicList(music)
     }
 
+    private fun renderPlayMode() {
+        when (MusicPlayerManager.instance.getPlayMode()) {
+            is SingleCycleMode -> {
+                mIvPlayModeBtn.setImageResource(R.drawable.play_mode_order_loop)
+                MusicPlayerManager.instance.setPlayMode(OrderPlayMode())
+            }
+            is OrderPlayMode -> {
+                mIvPlayModeBtn.setImageResource(R.drawable.play_mode_random)
+                MusicPlayerManager.instance.setPlayMode(RandomPlayMode())
+            }
+            is RandomPlayMode -> {
+                mIvPlayModeBtn.setImageResource(R.drawable.play_mode_single_cycle)
+                MusicPlayerManager.instance.setPlayMode(SingleCycleMode())
+            }
+            else -> {
+                "unknown"
+            }
+        }
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iv_musicPlayer_next -> {
@@ -144,6 +168,9 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
             }
             R.id.iv_musicPlayer_prev -> {
                 MusicPlayerManager.instance.prev()
+            }
+            R.id.iv_musicPlayer_playMode -> {
+                renderPlayMode()
             }
         }
     }

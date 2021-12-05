@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,7 @@
     tools:context="com.skx.tomike.cannon.ui.activity.MusicPlayerActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_musicPlayer_control"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -24,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lines="1"
-                android:maxWidth="170dp"
+                android:maxWidth="150dp"
                 android:textColor="@color/skx_212121"
                 android:textSize="16sp"
                 tools:ignore="RelativeOverlap"
@@ -32,12 +33,14 @@
 
             <SeekBar
                 android:id="@+id/seek_musicPlayer_duration"
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_musicPlayer_name"
                 android:layout_marginTop="15dp"
                 android:maxHeight="4dp"
-                android:minHeight="4dp" />
+                android:minHeight="4dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp" />
 
             <ImageView
                 android:id="@+id/iv_musicPlayer_next"
@@ -79,8 +82,21 @@
         android:id="@+id/rv_musicPlayer_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/cv_musicPlayer_control"
+        android:layout_marginTop="30dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="5"
         tools:listitem="@layout/adapter_music_player_list" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/iv_musicPlayer_playMode"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_below="@id/cv_musicPlayer_control"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/play_mode_order_loop"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
