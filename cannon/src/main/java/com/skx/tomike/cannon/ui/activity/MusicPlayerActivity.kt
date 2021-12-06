@@ -1,6 +1,7 @@
 package com.skx.tomike.cannon.ui.activity
 
 import android.Manifest
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +12,9 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.ColorRes
 import androidx.annotation.NonNull
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
@@ -53,7 +56,7 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
     }
 
     private val mIvPlayModeBtn by lazy {
-        findViewById<ImageView>(R.id.iv_musicPlayer_playMode)
+        findViewById<TextView>(R.id.iv_musicPlayer_playMode)
     }
 
     private var mActivityResultLauncher: ActivityResultLauncher<Array<String>>? = null
@@ -80,10 +83,24 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
         findViewById<RecyclerView>(R.id.rv_musicPlayer_list).apply {
             adapter = mAdapter.also {
                 it.setOnItemClickListener { _, _, date ->
-                    MusicPlayerManager.instance.play(date)
+                    val cur = MusicPlayerManager.instance.getPlayStateLiveData().value
+                    if (cur?.value?.musicId == date.musicId) {
+                        // 当前正在播放的和点击的是同一个 -> 暂停或者重新播放。
+                        MusicPlayerManager.instance.playOrPause()
+                    } else {
+                        // 切歌
+                        MusicPlayerManager.instance.play(date)
+                    }
                 }
             }
         }
+
+        val drawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.play_mode_order_loop)
+        drawable?.run {
+            setBounds(0, 0, 42, 42)
+            mIvPlayModeBtn.setCompoundDrawables(drawable, null, null, null)
+        }
+        mIvPlayModeBtn.text = "顺序播放"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,17 +111,17 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
                 mTvPlayingName.text = this.title
             }
             mIvPlayerStartBtn.setImageResource(
-                if (1 == it.state) {
-                    R.drawable.player_pause_icon
-                } else {
-                    R.drawable.player_start_icon
-                }
+                    if (1 == it.state) {
+                        R.drawable.player_pause_icon
+                    } else {
+                        R.drawable.player_start_icon
+                    }
             )
         }
 
         // 1.获取权限 - 读权限 - 获取本地音乐列表要用
         mActivityResultLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
+                ActivityResultContracts.RequestMultiplePermissions()
         ) { result: Map<String?, Boolean?> ->
             // 读权限结果
             val readPermission = result[Manifest.permission.READ_EXTERNAL_STORAGE]
@@ -141,19 +158,35 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
     private fun renderPlayMode() {
         when (MusicPlayerManager.instance.getPlayMode()) {
             is SingleCycleMode -> {
-                mIvPlayModeBtn.setImageResource(R.drawable.play_mode_order_loop)
+                val drawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.play_mode_order_loop)
+                drawable?.run {
+                    setBounds(0, 0, 42, 42)
+                    mIvPlayModeBtn.setCompoundDrawables(drawable, null, null, null)
+                }
+                mIvPlayModeBtn.text = "顺序播放"
                 MusicPlayerManager.instance.setPlayMode(OrderPlayMode())
             }
             is OrderPlayMode -> {
-                mIvPlayModeBtn.setImageResource(R.drawable.play_mode_random)
+                val drawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.play_mode_random)
+                drawable?.run {
+                    setBounds(0, 0, 42, 42)
+                    mIvPlayModeBtn.setCompoundDrawables(drawable, null, null, null)
+                }
+                mIvPlayModeBtn.text = "随机播放"
                 MusicPlayerManager.instance.setPlayMode(RandomPlayMode())
             }
             is RandomPlayMode -> {
-                mIvPlayModeBtn.setImageResource(R.drawable.play_mode_single_cycle)
+                val drawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.play_mode_single_cycle)
+                drawable?.run {
+                    setBounds(0, 0, 42, 42)
+                    mIvPlayModeBtn.setCompoundDrawables(drawable, null, null, null)
+                }
+                mIvPlayModeBtn.text = "单曲循环"
                 MusicPlayerManager.instance.setPlayMode(SingleCycleMode())
             }
             else -> {
-                "unknown"
+                mIvPlayModeBtn.setCompoundDrawables(null, null, null, null)
+                mIvPlayModeBtn.text = "unknown"
             }
         }
     }
@@ -192,6 +225,24 @@ class PlayerListAdapter : RecyclerView.Adapter<PlayerListAdapter.PlayerListViewH
     private val mMusicList: MutableList<MusicInfo> = mutableListOf()
     private var onItemClickListener: ((v: View, pos: Int, date: MusicInfo) -> Unit)? = null
 
+    private var mIndex = -1
+
+    init {
+        MusicPlayerManager.instance.addPlayStateObserver {
+            // 1. 获取更新的数据所在索引
+            var new = -1
+            mMusicList.forEachIndexed { index: Int, musicInfo: MusicInfo ->
+                if (musicInfo.musicId == it.value?.musicId) {
+                    new = index
+                }
+            }
+            // 2. 更新播放条目
+            notifyItemChanged(mIndex)
+            mIndex = new
+            notifyItemChanged(mIndex)
+        }
+    }
+
 
     fun initMusicList(musicList: List<MusicInfo>?) {
         mMusicList.clear()
@@ -210,25 +261,19 @@ class PlayerListAdapter : RecyclerView.Adapter<PlayerListAdapter.PlayerListViewH
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+            parent: ViewGroup,
+            viewType: Int
     ): PlayerListAdapter.PlayerListViewHolder {
         return PlayerListViewHolder(
-            LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.adapter_music_player_list, parent, false)
+                LayoutInflater
+                        .from(parent.context)
+                        .inflate(R.layout.adapter_music_player_list, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: PlayerListViewHolder, position: Int) {
         val musicInfo = mMusicList[position]
         holder.itemView.setOnClickListener {
-            val value = MusicPlayerManager.instance.getPlayStateLiveData().value
-            // todo 当前正在播放的和点击的是同一个,暂且屏蔽掉，后续再想具体业务逻辑。
-            if (value?.value?.musicId == musicInfo.musicId) {
-                return@setOnClickListener
-            }
-            // todo 歌曲播放切换UI 显示功能待实现
             onItemClickListener?.invoke(holder.itemView, position, musicInfo)
         }
         holder.bindMusicDate(musicInfo)
@@ -238,19 +283,26 @@ class PlayerListAdapter : RecyclerView.Adapter<PlayerListAdapter.PlayerListViewH
 
 
     inner class PlayerListViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val ivPlayStatus =
-            itemView.findViewById<ImageView>(R.id.iv_musicPlayer_music_playStatus)
+        private val ivPlayStatus = itemView.findViewById<View>(R.id.iv_musicPlayer_music_playStatus)
         private val tvMusicName = itemView.findViewById<TextView>(R.id.iv_musicPlayer_music_name)
 
-        fun bindMusicDate(musicInfo: MusicInfo) {
-            tvMusicName.text = SpannableStringUtils.getBuilder(musicInfo.title ?: "")
-                .setTextSize(48)
-                .append(" - ${musicInfo.artist}")
-                .setTextSize(42)
-                .create()
+        @ColorRes
+        private val selColor: Int = R.color.skx_f05b72
 
+        fun bindMusicDate(musicInfo: MusicInfo) {
             val value = MusicPlayerManager.instance.getPlayStateLiveData().value
-            ivPlayStatus.visibility = if (value?.value?.musicId == musicInfo.musicId) {
+            val sel = value?.value?.musicId == musicInfo.musicId
+            tvMusicName.text = SpannableStringUtils.getBuilder(musicInfo.title ?: "")
+                    .setTextSize(42)
+                    .setForegroundColor(ContextCompat.getColor(itemView.context,
+                            if (sel) selColor else R.color.skx_212121))
+                    .append(" - ${musicInfo.artist}")
+                    .setTextSize(36)
+                    .setForegroundColor(ContextCompat.getColor(itemView.context,
+                            if (sel) selColor else R.color.skx_757575))
+                    .create()
+
+            ivPlayStatus.visibility = if (sel) {
                 View.VISIBLE
             } else {
                 View.GONE

@@ -78,25 +78,43 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/tv_musicPlayer_listText"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_below="@id/cv_musicPlayer_control"
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        android:text="播放列表"
+        android:textColor="@color/skx_000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/iv_musicPlayer_playMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_musicPlayer_listText"
+        android:layout_alignBottom="@id/tv_musicPlayer_listText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="3dp"
+        android:gravity="center"
+        android:textColor="@color/skx_000000"
+        android:textSize="14sp"
+        tools:drawableStart="@drawable/play_mode_order_loop"
+        tools:ignore="ContentDescription"
+        tools:text="随机播放" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_musicPlayer_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cv_musicPlayer_control"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/tv_musicPlayer_listText"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="5"
         tools:listitem="@layout/adapter_music_player_list" />
 
-    <ImageView
-        android:id="@+id/iv_musicPlayer_playMode"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_below="@id/cv_musicPlayer_control"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/play_mode_order_loop"
-        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

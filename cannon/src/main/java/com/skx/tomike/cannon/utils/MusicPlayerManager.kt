@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.text.TextUtils
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.skx.tomike.cannon.bean.MusicInfo
 
 
@@ -43,6 +44,7 @@ class MusicPlayerManager private constructor() {
      * 播放状态LiveData
      */
     private val mPlayStateLiveData: MutableLiveData<PlayState<MusicInfo>> = MutableLiveData()
+    private val mPlayStateObserverList: MutableList<Observer<PlayState<MusicInfo>>> = mutableListOf()
 
     // 表示当前播放的音乐在播放列表中的索引位置
     private var mIndex = -1
@@ -216,6 +218,21 @@ class MusicPlayerManager private constructor() {
     }
 
     /**
+     * 添加播放状态观察者
+     * 注意：该方法添加的是未绑定lifecycle的观察者，此种方式的观察者在不用时一定要注意移除，防止内存泄漏。
+     * 如需使用绑定lifecycle，可通过 {@link #getPlayStateLiveData()} 方法自行处理。
+     */
+    fun addPlayStateObserver(observer: Observer<PlayState<MusicInfo>>) {
+        mPlayStateLiveData.observeForever(observer)
+        mPlayStateObserverList.add(observer)
+    }
+
+    fun removePlayStateObserver(observer: Observer<PlayState<MusicInfo>>) {
+        mPlayStateLiveData.removeObserver(observer)
+        mPlayStateObserverList.remove(observer)
+    }
+
+    /**
      * 释放播放器资源，重置播放状态，清空播放数据
      */
     fun release() {
@@ -226,7 +243,14 @@ class MusicPlayerManager private constructor() {
             this.state = PlayState.NON_PLAY
             this.value = null
         }
+        // 先发送未播放的状态通知
         mPlayStateLiveData.postValue(state)
+        // 移除观察者
+        for (item in (mPlayStateObserverList.size - 1) downTo 0) {
+            val observer = mPlayStateObserverList[item]
+            mPlayStateLiveData.removeObserver(observer)
+            mPlayStateObserverList.removeAt(item)
+        }
     }
 }
 
