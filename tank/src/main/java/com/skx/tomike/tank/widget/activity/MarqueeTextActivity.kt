@@ -20,13 +20,11 @@ import com.skx.tomike.tank.ROUTE_PATH_TEXTVIEW_MARQUEE
 class MarqueeTextActivity : SkxBaseActivity<BaseViewModel>() {
 
     private val mTvMarqueeText by lazy {
-        findViewById<TextView>(R.id.tv_marquee_value)
+        findViewById<TextView>(R.id.tv_marquee_test1_value)
     }
-//    private val mTvMarqueeText2 by lazy {
-//        findViewById<TextView>(R.id.tv_marquee_value_self)
-//    }
-    private val mTvMarqueeText3 by lazy {
-        findViewById<TextView>(R.id.tv_marquee_value_self2)
+
+    private val mTvMarqueeText2 by lazy {
+        findViewById<TextView>(R.id.tv_marquee_test2_value)
     }
 
     private val textArray = arrayOf(
@@ -46,13 +44,11 @@ class MarqueeTextActivity : SkxBaseActivity<BaseViewModel>() {
     override fun initView() {
         findViewById<TextView>(R.id.tv_marquee_text_1).setOnClickListener {
             mTvMarqueeText.text = textArray[0]
-//            mTvMarqueeText2.text = textArray[0]
-            mTvMarqueeText3.text = textArray[0]
+            mTvMarqueeText2.text = textArray[0]
         }
         findViewById<TextView>(R.id.tv_marquee_text_2).setOnClickListener {
             mTvMarqueeText.text = textArray[1]
-//            mTvMarqueeText2.text = textArray[1]
-            mTvMarqueeText3.text = textArray[1]
+            mTvMarqueeText2.text = textArray[1]
         }
         mTvMarqueeText.run {
             isSingleLine = true

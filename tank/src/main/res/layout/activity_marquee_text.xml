@@ -7,54 +7,58 @@
     tools:context="com.skx.tomike.tank.widget.activity.MarqueeTextActivity">
 
     <TextView
-        android:id="@+id/tv_marquee_value"
+        android:id="@+id/tv_marquee_test1_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:text="使用TextView属性："
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_marquee_test1_value"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_marquee_test1_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
         android:text="君不见，高阳酒徒起草中，长揖山东隆准公。"
         android:textSize="14sp"
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
-    <!--    <com.skx.tomike.tank.widget.view.MarqueeTextView-->
-    <!--        android:id="@+id/tv_marquee_value_self"-->
-    <!--        android:layout_width="200dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/tv_marquee_value"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:layout_marginTop="50dp"-->
-    <!--    android:textSize="14sp"-->
-    <!--    android:textStyle="bold"-->
-    <!--        android:text="君不见，高阳酒徒起草中，长揖山东隆准公。"-->
-    <!--        android:textSize="18sp"-->
-    <!--        tools:ignore="HardcodedText" />-->
+    <TextView
+        android:id="@+id/tv_marquee_test2_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_marquee_test1_value"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:text="派生TextView："
+        android:textColor="@color/skx_212121"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 
-    <com.skx.tomike.tank.widget.view.AlwaysMarqueeTextView
-        android:id="@+id/tv_marquee_value_self2"
+    <com.skx.tomike.tank.widget.view.MarqueeTextView
+        android:id="@+id/tv_marquee_test2_value"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_marquee_value"
+        android:layout_below="@id/tv_marquee_test2_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="true"
-        android:singleLine="true"
         android:text="君不见，高阳酒徒起草中，长揖山东隆准公。"
         android:textSize="14sp"
-        android:textStyle="bold" />
-    <!--       -->
-    <!--    -->
-    <!--    android:gravity="start"-->
-    <!--    a-->
-
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_marquee_option"
         style="@style/LogcatTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_marquee_value_self2"
+        android:layout_below="@id/tv_marquee_test2_value"
         android:layout_marginTop="40dp"
         android:padding="5dp"
         android:text="点击以下内容可切换文案"
