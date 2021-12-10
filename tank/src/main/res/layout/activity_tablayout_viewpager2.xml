@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.tank.widget.activity.TabLayoutHelperActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/tl_tb4vp2_tab"
+        android:background="@color/skx_e0e0e0" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_tb4vp2_tab"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:tabBackground="@android:color/transparent"
+        app:tabIndicator="@drawable/tablayout_indicator"
+        app:tabIndicatorColor="@color/skx_26a69a"
+        app:tabMaxWidth="200dp"
+        app:tabMinWidth="20dp"
+        app:tabMode="scrollable"
+        app:tabPadding="0dp"
+        app:tabPaddingEnd="10dp"
+        app:tabPaddingStart="10dp"
+        app:tabSelectedTextColor="@color/skx_26a69a"
+        app:tabTextColor="@color/skx_878787">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_tb4vp2_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tl_tb4vp2_tab"
+        android:gravity="center"
+        android:textColor="#ff4287"
+        android:textSize="24sp">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+</RelativeLayout>

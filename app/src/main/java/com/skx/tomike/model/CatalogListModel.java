@@ -105,6 +105,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_STATUS_BAR_HEIGHT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SWIPEREFRESH_LAYOUT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_HELPER;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_INDICATOR;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_VIEWPAGER2;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTSWITCH;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_MARQUEE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SELECTABLE;
@@ -201,8 +202,6 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("CoordinatorLayout效果", ROUTE_PATH_COORDINATOR2));
         mViewCatalogs.add(new CatalogItem("SwipeRefreshLayout 下拉刷新", ROUTE_PATH_SWIPEREFRESH_LAYOUT));
         mViewCatalogs.add(new CatalogItem("卡片CardView", ROUTE_PATH_CARDVIEW));
-        mViewCatalogs.add(new CatalogItem("TabLayout 指示器", ROUTE_PATH_TABLELAYOUT_INDICATOR));
-        mViewCatalogs.add(new CatalogItem("TabLayout使用扩展", ROUTE_PATH_TABLELAYOUT_HELPER));
         mViewCatalogs.add(new CatalogItem("抽屉效果", ROUTE_PATH_DRAWER_LAYOUT));
         mViewCatalogs.add(new CatalogItem("投影", ROUTE_PATH_SHADOW));
         mViewCatalogs.add(new CatalogItem("FloatingActionButton", ROUTE_PATH_FLOATINGACTIONBUTTON));
@@ -224,7 +223,10 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("NestedScrollView 滑动改变状态栏", ROUTE_PATH_SCROLL_CHANGE_TITLE));
         mViewCatalogs.add(new CatalogItem("回弹效果-滑动缩放头图", ROUTE_PATH_SCROLL_ZOOM));
         mViewCatalogs.add(new CatalogItem("滑动缩放头图-demo2", ROUTE_PATH_SCROLL_ZOOM2));
+        mViewCatalogs.add(new CatalogItem("TabLayout 指示器", ROUTE_PATH_TABLELAYOUT_INDICATOR));
+        mViewCatalogs.add(new CatalogItem("TabLayout 使用扩展", ROUTE_PATH_TABLELAYOUT_HELPER));
         mViewCatalogs.add(new CatalogItem("TabLayout+ScrollView", ROUTE_PATH_SCROLL_ANCHOR));
+        mViewCatalogs.add(new CatalogItem("TabLayout+ViewPager2", ROUTE_PATH_TABLELAYOUT_VIEWPAGER2));
         mViewCatalogs.add(new CatalogItem("TabLayout 工具类封装检测", ROUTE_PATH_TABLELAYOUT_HELPER));
         mViewCatalogs.add(new CatalogItem("获取状态栏/导航栏高度", ROUTE_PATH_STATUS_BAR_HEIGHT));
         mCatalogGroupMap.put(GROUP_VIEW, mViewCatalogs);

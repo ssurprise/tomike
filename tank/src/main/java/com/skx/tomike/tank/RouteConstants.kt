@@ -68,6 +68,7 @@ const val ROUTE_PATH_SHADOW = "${ROUTER_FIRST_LEVEL_widget}/shadow"
 const val ROUTE_PATH_SNACKBAR = "${ROUTER_FIRST_LEVEL_widget}/SnackBar"
 const val ROUTE_PATH_SWIPEREFRESH_LAYOUT = "${ROUTER_FIRST_LEVEL_widget}/SwipeRefreshLayout"
 const val ROUTE_PATH_TABLELAYOUT_HELPER = "${ROUTER_FIRST_LEVEL_widget}/TableLayout/helper"
+const val ROUTE_PATH_TABLELAYOUT_VIEWPAGER2 = "${ROUTER_FIRST_LEVEL_widget}/TableLayout/ViewPager2"
 const val ROUTE_PATH_TABLELAYOUT_INDICATOR = "${ROUTER_FIRST_LEVEL_widget}/TableLayout/indicator"
 const val ROUTE_PATH_STATUS_BAR_HEIGHT = "${ROUTER_FIRST_LEVEL_widget}/statusBarHeight"
 

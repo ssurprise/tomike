@@ -188,6 +188,9 @@
         <activity
             android:name=".widget.activity.MarqueeTextActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.TabLayoutViewPager2Activity"
+            android:screenOrientation="portrait" />
 
     </application>
 
