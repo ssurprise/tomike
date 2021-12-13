@@ -1,11 +1,18 @@
 package com.skx.tomike.cannon.ui.activity
 
+import android.widget.Button
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_TRANSPARENT_THEME
 
+/**
+ * 描述 : 透明（半透明）主题activity
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2019/2/12 9:08 PM
+ */
 @Route(path = ROUTE_PATH_TRANSPARENT_THEME)
 class TransparentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
 
@@ -14,8 +21,20 @@ class TransparentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
         return R.layout.activity_transparent_theme
     }
 
-    override fun initView() {} /*
+    override fun initView() {
+        findViewById<Button>(R.id.tv_transparentTheme_backBtn).setOnClickListener {
+            onBackPressed()
+        }
+    }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // 需要设置这个属性，原因：部分设备在theme中设置 windowAnimationStyle=@null 无效，仍然有退出动效，
+        // 单独设置退出/关闭动画也无效，还是会有动画在
+        overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out)
+    }
+
+    /*
     方案一：直接使用透明theme
         1.antivity 配置主题 ： <activity android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         2.在此activity的 onCreate方法中添加 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -40,6 +59,41 @@ class TransparentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
     主要是和 android:windowIsTranslucent 这个属性的冲突
 
     注意：不要使用 android:windowNoDisplay 属性，否则会有如下报错。Activity did not call finish() prior to onResume() completing
+    注意：虽然设置了退出动效null，但是在部分设备上无效，仍然有退出退出/关闭 效果
+
+
+    activity 的默认动效有这老多
+        <!-- Standard animations for a full-screen window or activity. -->
+    <style name="Animation.Activity">
+        <item name="activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="activityCloseExitAnimation">@anim/activity_close_exit</item>
+        <item name="taskOpenEnterAnimation">@anim/task_open_enter</item>
+        <item name="taskOpenExitAnimation">@anim/task_open_exit</item>
+        <item name="launchTaskBehindTargetAnimation">@anim/launch_task_behind_target</item>
+        <item name="launchTaskBehindSourceAnimation">@anim/launch_task_behind_source</item>
+        <item name="taskCloseEnterAnimation">@anim/task_close_enter</item>
+        <item name="taskCloseExitAnimation">@anim/task_close_exit</item>
+        <item name="taskToFrontEnterAnimation">@anim/task_open_enter</item>
+        <item name="taskToFrontExitAnimation">@anim/task_open_exit</item>
+        <item name="taskToBackEnterAnimation">@anim/task_close_enter</item>
+        <item name="taskToBackExitAnimation">@anim/task_close_exit</item>
+        <item name="wallpaperOpenEnterAnimation">@anim/wallpaper_open_enter</item>
+        <item name="wallpaperOpenExitAnimation">@anim/wallpaper_open_exit</item>
+        <item name="wallpaperCloseEnterAnimation">@anim/wallpaper_close_enter</item>
+        <item name="wallpaperCloseExitAnimation">@anim/wallpaper_close_exit</item>
+        <item name="wallpaperIntraOpenEnterAnimation">@anim/wallpaper_intra_open_enter</item>
+        <item name="wallpaperIntraOpenExitAnimation">@anim/wallpaper_intra_open_exit</item>
+        <item name="wallpaperIntraCloseEnterAnimation">@anim/wallpaper_intra_close_enter</item>
+        <item name="wallpaperIntraCloseExitAnimation">@anim/wallpaper_intra_close_exit</item>
+        <item name="fragmentOpenEnterAnimation">@animator/fragment_open_enter</item>
+        <item name="fragmentOpenExitAnimation">@animator/fragment_open_exit</item>
+        <item name="fragmentCloseEnterAnimation">@animator/fragment_close_enter</item>
+        <item name="fragmentCloseExitAnimation">@animator/fragment_close_exit</item>
+        <item name="fragmentFadeEnterAnimation">@animator/fragment_fade_enter</item>
+        <item name="fragmentFadeExitAnimation">@animator/fragment_fade_exit</item>
+    </style>
 
      */
 }

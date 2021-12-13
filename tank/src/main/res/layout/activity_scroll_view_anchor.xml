@@ -82,7 +82,7 @@
                 android:id="@+id/tv_7"
                 android:layout_width="match_parent"
                 android:layout_height="503dp"
-                android:background="@color/skx_7f000000"
+                android:background="@color/skx_000000_50"
                 android:gravity="center"
                 android:text="7"
                 tools:ignore="HardcodedText" />

@@ -103,7 +103,7 @@
         android:id="@+id/rl_chainOfResponsibility_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/skx_7f000000"
+        android:background="@color/skx_000000_50"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone">

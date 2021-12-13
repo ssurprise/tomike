@@ -15,8 +15,8 @@
         0.15	1f
     -->
     <color name="skx_212121">#212121</color>
-    <color name="skx_7f000000">#7f000000</color>
-    <color name="skx_1f000000">#1f000000</color>
+    <color name="skx_000000_50">#7f000000</color>
+    <color name="skx_000000_15">#1f000000</color>
 
     <color name="skx_323232">#323232</color>
     <color name="skx_878787">#878787</color>

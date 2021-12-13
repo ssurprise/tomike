@@ -60,7 +60,6 @@
         <activity
             android:name="com.skx.tomike.cannon.ui.activity.TransparentThemeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTask"
             android:theme="@style/GlobalCaptchaTheme.Transparent"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 

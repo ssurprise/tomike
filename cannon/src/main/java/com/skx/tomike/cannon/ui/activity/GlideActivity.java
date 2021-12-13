@@ -100,7 +100,7 @@ public class GlideActivity extends SkxBaseActivity<BaseViewModel> {
                 case 1:
                     ImageLoader.with(GlideActivity.this)
                             .load(imageArray[i])
-                            .placeholder(R.color.skx_1f000000)
+                            .placeholder(R.color.skx_000000_15)
                             .transformStrategy(TransformStrategy.CENTER_INSIDE)
                             .into(targetIv);
                     break;
@@ -108,7 +108,7 @@ public class GlideActivity extends SkxBaseActivity<BaseViewModel> {
                 case 2:
                     ImageLoader.with(GlideActivity.this)
                             .load(imageArray[i])
-                            .placeholder(R.color.skx_1f000000)
+                            .placeholder(R.color.skx_000000_15)
                             .transformStrategy(TransformStrategy.FIT_CENTER)
                             .into(targetIv);
                     break;
