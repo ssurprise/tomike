@@ -16,7 +16,11 @@ import java.lang.annotation.RetentionPolicy
  * 版本 : V1
  * 创建时间 : 2019-09-19 17:34
  */
-class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr) {
+class ShapeView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
 
     private val mSolidPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -96,16 +100,24 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val haveStroke = mStrokePaint != null && mStrokePaint!!.color != 0 && mStrokePaint!!.strokeWidth > 0
+        val haveStroke =
+            mStrokePaint != null && mStrokePaint!!.color != 0 && mStrokePaint!!.strokeWidth > 0
 
-        mRect.set(paddingLeft.toFloat(), paddingTop.toFloat(), (width - paddingRight).toFloat(), (height - paddingBottom).toFloat())
+        mRect.set(
+            paddingLeft.toFloat(),
+            paddingTop.toFloat(),
+            (width - paddingRight).toFloat(),
+            (height - paddingBottom).toFloat()
+        )
         when (mShape) {
             RECTANGLE -> if (mRadiusArray != null) {
                 //                    canvas.drawPath();
 
             } else if (mRadius > 0.0f) {
-                val rad = Math.min(mRadius,
-                        Math.min(mRect.width(), mRect.height()) * 0.5f)
+                val rad = Math.min(
+                    mRadius,
+                    Math.min(mRect.width(), mRect.height()) * 0.5f
+                )
                 canvas.drawRoundRect(mRect, rad, rad, mSolidPaint)
                 if (haveStroke) {
                     canvas.drawRoundRect(mRect, rad, rad, mStrokePaint!!)
@@ -122,8 +134,10 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             TRIANGLE -> {
             }
             CIRCLE -> {
-                val rad = Math.min(mRadius,
-                        Math.min(mRect.width(), mRect.height()) * 0.5f)
+                val rad = Math.min(
+                    mRadius,
+                    Math.min(mRect.width(), mRect.height()) * 0.5f
+                )
                 val posX = paddingLeft + mRect.width() / 2
                 val posY = paddingTop + mRect.height() / 2
                 if (mSolidPaint.color != 0) {
@@ -161,6 +175,7 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
          * Shape is a rectangle, possibly with rounded corners
          */
         const val RECTANGLE = 0
+
         /**
          * Shape is a triangle.
          */
@@ -170,6 +185,7 @@ class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
          * Shape is an ellipse
          */
         const val CIRCLE = 2
+
         /**
          * Shape is an oval
          */
