@@ -39,8 +39,11 @@ class TabLayoutViewPager2Activity : SkxBaseActivity<BaseViewModel?>() {
     override fun initParams() {
         tabList.add("全是幺蛾子")
         tabList.add("难")
+        tabList.add("are you kidding？")
         tabList.add("太难了吧")
-        tabList.add("难了")
+        tabList.add("here you are")
+        tabList.add("搞笑呢吧")
+        tabList.add("all right")
     }
 
     override fun getLayoutId(): Int {
@@ -54,7 +57,15 @@ class TabLayoutViewPager2Activity : SkxBaseActivity<BaseViewModel?>() {
     override fun initView() {
         vpContent.adapter = Tlvp2Adapter(
             this,
-            mutableListOf(Tlvp2Fragment(), Tlvp2Fragment(), Tlvp2Fragment(), Tlvp2Fragment())
+            mutableListOf(
+                Tlvp2Fragment(),
+                Tlvp2Fragment(),
+                Tlvp2Fragment(),
+                Tlvp2Fragment(),
+                Tlvp2Fragment(),
+                Tlvp2Fragment(),
+                Tlvp2Fragment()
+            )
         )
         TabLayoutMediator(mTabLayout, vpContent) { tab, position ->
             tab.text = tabList[position]
