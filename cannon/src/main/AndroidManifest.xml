@@ -64,6 +64,12 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
         <activity
+            android:name=".ui.activity.TranslucentThemeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/GlobalCaptchaTheme.Translucent"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+
+        <activity
             android:name="com.skx.tomike.cannon.ui.activity.NfcWriteTextActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

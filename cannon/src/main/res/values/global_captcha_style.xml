@@ -15,7 +15,7 @@
 
     <!-- 半透明主题，关键属性和透明主题一样，只是背景颜色不同-->
     <style name="GlobalCaptchaTheme.Translucent" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@color/skx_000000_40</item>
+        <item name="android:windowBackground">@color/skx_000000_50</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <!-- 这样设置和 设置位@null 区别不大-->

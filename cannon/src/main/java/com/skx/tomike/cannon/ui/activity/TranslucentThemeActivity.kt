@@ -1,30 +1,61 @@
 package com.skx.tomike.cannon.ui.activity
 
+import android.graphics.Rect
+import android.view.View
 import android.widget.Button
+import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
+import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTE_PATH_TRANSPARENT_THEME
+import com.skx.tomike.cannon.ROUTE_PATH_TRANSLUCENT_THEME
 
 /**
- * 描述 : 透明（半透明）主题activity
+ * 描述 : 半透明Activity - 新手引导示例，核心技术点和透明Activity一样，均是通过配置theme 实现半透明效果。
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2019/2/12 9:08 PM
  */
-@Route(path = ROUTE_PATH_TRANSPARENT_THEME)
-class TransparentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
+@Route(path = ROUTE_PATH_TRANSLUCENT_THEME)
+class TranslucentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
+
+    private val mFirstRect: Rect = Rect(300, 600, 500, 700)
+    private val mSecondRect: Rect = Rect(500, 1200, 700, 1300)
+
+    private val mTvFirst: Button by lazy {
+        findViewById<Button>(R.id.tv_translucent_first).apply {
+            this.setOnClickListener {
+                it.visibility = View.INVISIBLE
+                mTvSecond.visibility = View.VISIBLE
+            }
+        }
+    }
+    private val mTvSecond: Button by lazy {
+        findViewById<Button>(R.id.tv_translucent_second).apply {
+            this.setOnClickListener {
+                it.visibility = View.INVISIBLE
+                ToastTool.showToast(mActivity, "好了，新手引导到此结束")
+                onBackPressed()
+            }
+        }
+    }
 
     override fun initParams() {}
     override fun getLayoutId(): Int {
-        return R.layout.activity_theme_transparent
+        return R.layout.activity_theme_translucent
     }
 
     override fun initView() {
-        findViewById<Button>(R.id.tv_transparentTheme_backBtn).setOnClickListener {
-            onBackPressed()
-        }
+        val lp1 = mTvFirst.layoutParams as FrameLayout.LayoutParams
+        lp1.topMargin = mFirstRect.top
+        lp1.marginStart = mFirstRect.left
+        mTvFirst.layoutParams = lp1
+
+        val lp2 = mTvSecond.layoutParams as FrameLayout.LayoutParams
+        lp2.topMargin = mSecondRect.top
+        lp2.marginStart = mSecondRect.left
+        mTvSecond.layoutParams = lp2
     }
 
     override fun onBackPressed() {

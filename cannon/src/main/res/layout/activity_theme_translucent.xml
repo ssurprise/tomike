@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.TranslucentThemeActivity">
+
+    <Button
+        android:id="@+id/tv_translucent_first"
+        style="@style/LogcatTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:padding="@dimen/view_padding_15"
+        android:text="新版本变化1"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/tv_translucent_second"
+        style="@style/LogcatTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/view_padding_15"
+        android:text="新版本变化12"
+        android:visibility="gone"
+        tools:ignore="HardcodedText" />
+
+</FrameLayout>

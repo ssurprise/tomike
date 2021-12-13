@@ -19,7 +19,7 @@ android {
 
         ndk {
             //设置支持的so库架构，每一种 CPU 构架，都定义了一种 ABI（Application Binary Interface），ABI 决定了二进制文件如何与系统进行交互
-            abiFilters 'armeabi', 'x86'//, 'x86','armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi', 'x86', 'arm64-v8a'//'armeabi', 'x86','armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
     }
     buildTypes {

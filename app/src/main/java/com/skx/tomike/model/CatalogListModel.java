@@ -46,6 +46,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ROOM;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_RXJAVA;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_SAF;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_SERVICE;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_TRANSLUCENT_THEME;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_TRANSPARENT_THEME;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_VIEW_MODEL;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ZXING;
@@ -265,6 +266,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("权限管理", ROUTE_PATH_PERMISSION));
         mFunctionCatalogs.add(new CatalogItem("通知", ROUTE_PATH_NOTIFICATION));
         mFunctionCatalogs.add(new CatalogItem("透明Activity", ROUTE_PATH_TRANSPARENT_THEME));
+        mFunctionCatalogs.add(new CatalogItem("半透明Activity - 新手引导", ROUTE_PATH_TRANSLUCENT_THEME));
         mFunctionCatalogs.add(new CatalogItem("替代StartActivityForResult", ROUTE_PATH_ACTIVITY4RESULT));
         mFunctionCatalogs.add(new CatalogItem("Room - 最近浏览案例", ROUTE_PATH_ROOM));
         mFunctionCatalogs.add(new CatalogItem("AOP 测试", ROUTE_PATH_AOP));
