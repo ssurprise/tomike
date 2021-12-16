@@ -59,8 +59,8 @@ class MusicPlayerManager private constructor() {
         mPlayMode.registerMusicList(mMusicList)
     }
 
-    fun registerMusicList(musicListManager: MutableList<MusicInfo>) {
-        this.mMusicList = musicListManager
+    fun registerMusicList(musicList: MutableList<MusicInfo>) {
+        this.mMusicList = musicList
         // 数据源发生变化的情况下，需要更新播放模式中的数据源。
         this.mPlayMode.registerMusicList(mMusicList)
     }
@@ -71,7 +71,7 @@ class MusicPlayerManager private constructor() {
 
     fun setPlayMode(playMode: AbsPlayMode<MusicInfo>) {
         this.mPlayMode = playMode
-        // 数据源发生变化的情况下，需要更新播放模式中的数据源。
+        // 重置播放模式时，需要重新绑定播放模式中的播放数据源。
         this.mPlayMode.registerMusicList(mMusicList)
     }
 
@@ -142,8 +142,9 @@ class MusicPlayerManager private constructor() {
      * 注：犹豫要不要写这个逻辑，总能感觉这是偏向于业务处理的。暂且留ta一命吧！
      */
     fun playOrPause() {
-        if (mPlayManager?.isPlaying() == true
-            && mPlayStateLiveData.value?.state == 1
+        if (mIndex != -1
+                && mPlayManager?.isPlaying() == true
+                && mPlayStateLiveData.value?.state == 1
         ) {
             // 播放中 -> 暂停
             justPause()
