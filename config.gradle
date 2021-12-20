@@ -7,6 +7,7 @@ ext {
     def fragment_version = "1.3.6"
     def arouter_version = "1.5.1"
     def material_version = "1.4.0"
+    def lottie_version = "4.2.1"
 
     appVersion = [
             VERSION_CODE: 140,
@@ -63,12 +64,15 @@ ext {
             router: "com.alibaba:arouter-api:${arouter_version}"
     ]
 
+    lottie = [
+            lottie: "com.airbnb.android:lottie:$lottie_version"
+    ]
+
     annotationKpt = [
             roomCompiler     : "androidx.room:room-compiler:$room_version",
             lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:2.2.0",
             routerCompiler   : "com.alibaba:arouter-compiler:${arouter_version}"
     ]
-
 
     implementationDependencies = new HashMap()
     implementationDependencies.putAll(core)
@@ -78,4 +82,5 @@ ext {
     implementationDependencies.putAll(room)
     implementationDependencies.putAll(mmkv)
     implementationDependencies.putAll(router)
+    implementationDependencies.putAll(lottie)
 }

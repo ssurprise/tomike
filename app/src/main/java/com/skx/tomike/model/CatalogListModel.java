@@ -80,6 +80,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_FLOW_LAYOUT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_GRADIENT_DRAWABLE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_HSL;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_LAYOUT_TRANSITION;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_LOTTIE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_MATRIXIMAGE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NSCROLLVIEW_VP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PAGE_INDICATOR_LAYOUT;
@@ -242,6 +243,7 @@ public class CatalogListModel {
         mAnimatorCatalogs.add(new CatalogItem("Layout添加/删除子view过渡效果", ROUTE_PATH_LAYOUT_TRANSITION));
         mAnimatorCatalogs.add(new CatalogItem("贝塞尔曲线", ROUTE_PATH_BEZIER));
         mAnimatorCatalogs.add(new CatalogItem("共享元素转场动画", ROUTE_PATH_share_Element));
+        mAnimatorCatalogs.add(new CatalogItem("Airbnb Lottie库", ROUTE_PATH_LOTTIE));
         mCatalogGroupMap.put(GROUP_ANIMATOR, mAnimatorCatalogs);
 
 

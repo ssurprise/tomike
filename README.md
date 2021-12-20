@@ -56,6 +56,7 @@ ___
 	8. ScrollView 滑动改变标题
 	9. ScrollView 滑动仿锚点效果
 	10. ScrollView 回弹效果
+	11. Airbnb - lottie 动画库
 
 + 图形
 	1. Paint着色 

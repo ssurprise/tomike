@@ -20,6 +20,7 @@ const val ROUTE_PATH_CIRCULAR_REVEAL = "${ROUTER_FIRST_LEVEL_anim}/circular/reve
 const val ROUTE_PATH_SCROLLER = "${ROUTER_FIRST_LEVEL_anim}/scroller"
 const val ROUTE_PATH_LAYOUT_TRANSITION = "${ROUTER_FIRST_LEVEL_anim}/layout/transition"
 const val ROUTE_PATH_BEZIER = "${ROUTER_FIRST_LEVEL_anim}/bezier"
+const val ROUTE_PATH_LOTTIE = "${ROUTER_FIRST_LEVEL_anim}/lottie"
 
 const val ROUTE_PATH_SCROLL_CHANGE_TITLE = "${ROUTER_FIRST_LEVEL_linkage}/scroll/changeTitle"
 const val ROUTE_PATH_SCROLL_ANCHOR = "${ROUTER_FIRST_LEVEL_linkage}/scroll/anchor"
