@@ -75,6 +75,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_DRAWER_LAYOUT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_EDITTEXT_CURSOR;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_EDITTEXT_LIGHT2DARK;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_EDITTEXT_LOWER2UPPER;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_EDITTEXT_SINGLE_MULTI_LINES;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_FLOATINGACTIONBUTTON;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_FLOW_LAYOUT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_GRADIENT_DRAWABLE;
@@ -194,6 +195,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("EditText 光标", ROUTE_PATH_EDITTEXT_CURSOR));
         mViewCatalogs.add(new CatalogItem("EditText 明暗文切换", ROUTE_PATH_EDITTEXT_LIGHT2DARK));
         mViewCatalogs.add(new CatalogItem("EditText 小写转大写", ROUTE_PATH_EDITTEXT_LOWER2UPPER));
+        mViewCatalogs.add(new CatalogItem("EditText 单行/多行显示", ROUTE_PATH_EDITTEXT_SINGLE_MULTI_LINES));
         mViewCatalogs.add(new CatalogItem("自定义显示方向ImageView", ROUTE_PATH_MATRIXIMAGE));
         mViewCatalogs.add(new CatalogItem("RadioGroup 单选", ROUTE_PATH_RADIOGROUP));
         mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", ROUTE_PATH_CHECKBOX));

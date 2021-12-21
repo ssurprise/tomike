@@ -39,6 +39,7 @@ const val ROUTE_PATH_TEXTVIEW_SPANNABLESTRING = "${ROUTER_FIRST_LEVEL_widget}/Te
 const val ROUTE_PATH_EDITTEXT_LIGHT2DARK = "${ROUTER_FIRST_LEVEL_widget}/EditText/light2dark"
 const val ROUTE_PATH_EDITTEXT_LOWER2UPPER = "${ROUTER_FIRST_LEVEL_widget}/EditText/lower2upper"
 const val ROUTE_PATH_EDITTEXT_CURSOR = "${ROUTER_FIRST_LEVEL_widget}/EditText/cursor"
+const val ROUTE_PATH_EDITTEXT_SINGLE_MULTI_LINES = "${ROUTER_FIRST_LEVEL_widget}/EditText/singleMulti"
 const val ROUTE_PATH_TEXTSWITCH = "${ROUTER_FIRST_LEVEL_widget}/TextSwitch"
 const val ROUTE_PATH_CARDVIEW = "${ROUTER_FIRST_LEVEL_widget}/CardView"
 const val ROUTE_PATH_CHECKBOX = "${ROUTER_FIRST_LEVEL_widget}/CheckBox"

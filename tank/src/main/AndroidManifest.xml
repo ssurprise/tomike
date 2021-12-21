@@ -194,6 +194,9 @@
         <activity
             android:name=".animation.activity.LottieActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.activity.EditTextSingleMultiActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
