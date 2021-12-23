@@ -125,5 +125,15 @@
             android:gravity="center"
             android:text="13"
             tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/triangle_bottom_16dp_7d72ff" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/triangle_top_16dp_7d72ff" />
     </LinearLayout>
 </ScrollView>
