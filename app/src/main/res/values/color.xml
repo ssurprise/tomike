@@ -44,4 +44,9 @@
     <color name="skx_007aff">#007aff</color>
     <color name="skx_4dbbcf">#4dbbcf</color>
 
+    <!--字体的三档黑色-->
+    <color name="textColorBlack">#212121</color>
+    <color name="textColorGray">#757575</color>
+    <color name="textColorLightGray">#bdbdbd</color>
+
 </resources>

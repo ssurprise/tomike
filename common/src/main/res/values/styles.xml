@@ -27,4 +27,33 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+
+    <style name="dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsTranslucent">false</item><!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item><!-- 无标题 -->
+        <item name="android:windowBackground">#00000000</item><!-- 背景透明 -->
+        <item name="android:windowEnterAnimation">@anim/enter_alpha</item>
+        <item name="android:windowExitAnimation">@anim/exit_alpha</item>
+    </style>
+
+
+    <!-- dialog动画效果 -->
+    <style name="dialogWindowAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/enter_up_down</item>
+        <item name="android:windowExitAnimation">@anim/enter_down_up</item>
+    </style>
+
+    <!-- dialog样式 -->
+    <style name="TranslucentActivityTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>    <!--是否浮在界面上-->
+        <item name="android:windowIsTranslucent">true</item> <!--是否半透明-->
+        <item name="android:windowNoTitle">true</item>       <!--是否有标题-->
+        <item name="android:windowBackground">@drawable/dialog_bottom_bg_ffffff</item> <!--窗口背景色透明-->
+        <item name="android:backgroundDimEnabled">true</item><!--遮罩-->
+        <item name="android:backgroundDimAmount">0.6</item><!--遮罩透明度60%-->
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
 </resources>

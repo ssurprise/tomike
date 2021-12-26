@@ -23,9 +23,8 @@ open class BaseFragment : Fragment() {
 
     companion object {
         const val TAG_LIFECYCLE: String = "Lifecycle"
+        const val TAG: String = "com.skx.common.base.BaseFragment"
     }
-
-    val TAG: String = javaClass.simpleName
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

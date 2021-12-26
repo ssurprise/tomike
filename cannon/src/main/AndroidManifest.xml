@@ -197,6 +197,7 @@
             android:name="com.skx.tomike.cannon.ui.activity.PopupWindowActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.MusicPlayerActivity" />
+        <activity android:name=".ui.activity.DialogActivity" />
 
         <service android:name=".ui.activity.MyService" />
     </application>

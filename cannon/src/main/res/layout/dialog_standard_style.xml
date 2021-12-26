@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_r15_cff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/standard_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/skx_212121"
+        android:textSize="16sp"
+        tools:text="标题" />
+
+    <TextView
+        android:id="@+id/standard_dialog_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center_vertical"
+        android:minHeight="38dp"
+        android:textColor="@color/skx_212121"
+        android:textSize="14sp"
+        tools:text="这里是内容~~" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/skx_e0e0e0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/standard_dialog_btn_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_ffffff_f5f5f5_left"
+            android:gravity="center"
+            android:textColor="@color/skx_212121"
+            android:textSize="16sp"
+            tools:text="取消" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/skx_e0e0e0" />
+
+        <TextView
+            android:id="@+id/standard_dialog_two_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_ffffff_f5f5f5_right"
+            android:gravity="center"
+            android:textColor="@color/selector_dialog_btn_text_color"
+            android:textSize="16sp"
+            tools:text="确定" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
