@@ -20,10 +20,11 @@ import androidx.fragment.app.Fragment
 open class BaseFragment : Fragment() {
 
     var mContext: Context? = null
+    val TAG: String = javaClass.simpleName
+
 
     companion object {
         const val TAG_LIFECYCLE: String = "Lifecycle"
-        const val TAG: String = "com.skx.common.base.BaseFragment"
     }
 
     override fun onAttach(context: Context) {
@@ -37,7 +38,11 @@ open class BaseFragment : Fragment() {
         Log.e(TAG_LIFECYCLE, "$TAG -> onCreate")
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         Log.e(TAG_LIFECYCLE, "$TAG -> onCreateView")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
