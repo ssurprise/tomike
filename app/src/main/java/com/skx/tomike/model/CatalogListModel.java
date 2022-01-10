@@ -96,6 +96,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_COUNT_DOW
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_ITEM_UPDATE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_SCROLL2POS;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_STAGGERED_GRID;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_DYNAMIC_MSG_LAYOUT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLLER;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLLVIEW_RV;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ANCHOR;
@@ -235,6 +236,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("TabLayout+ViewPager2", ROUTE_PATH_TABLELAYOUT_VIEWPAGER2));
         mViewCatalogs.add(new CatalogItem("TabLayout 工具类封装检测", ROUTE_PATH_TABLELAYOUT_HELPER));
         mViewCatalogs.add(new CatalogItem("获取状态栏/导航栏高度", ROUTE_PATH_STATUS_BAR_HEIGHT));
+        mViewCatalogs.add(new CatalogItem("动态消息展示-自定义Layout", ROUTE_PATH_DYNAMIC_MSG_LAYOUT));
         mCatalogGroupMap.put(GROUP_VIEW, mViewCatalogs);
 
 

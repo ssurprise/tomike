@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.tank.widget.activity.DynamicMsgLayoutActivity">
+
+    <com.skx.tomike.tank.widget.view.DynamicMsgLayout
+        android:id="@+id/dslMessages"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/skx_f5f5f5">
+
+    </com.skx.tomike.tank.widget.view.DynamicMsgLayout>
+
+
+    <TextView
+        android:id="@+id/tv_dynamicMsg_msgPos"
+        style="@style/LogcatTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dslMessages"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        android:text="消息位置"
+        tools:ignore="HardcodedText" />
+
+    <RadioGroup
+        android:id="@+id/rg_dynamicMsg_rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_dynamicMsg_msgPos"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_dynamicMsg_pos_0"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="0"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/rb_dynamicMsg_pos_1"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/rb_dynamicMsg_pos_2"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="2"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/rb_dynamicMsg_pos_3"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/rb_dynamicMsg_pos_4"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="4"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/rb_dynamicMsg_pos_5"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="5"
+            tools:ignore="HardcodedText" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_dynamicMsg_msgTitle"
+        style="@style/LogcatTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rg_dynamicMsg_rg"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:text="消息内容"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/et_dynamicMsg_msgTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_dynamicMsg_msgTitle"
+        android:textColor="@color/skx_212121"
+        tools:ignore="Autofill,LabelFor,TextFields" />
+
+    <Button
+        android:id="@+id/btn_dynamicMsg_send"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_below="@id/dslMessages"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:text="发送消息" />
+
+</RelativeLayout>

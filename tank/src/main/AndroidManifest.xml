@@ -197,6 +197,7 @@
         <activity
             android:name=".widget.activity.EditTextSingleMultiActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".widget.activity.DynamicMsgLayoutActivity" />
 
     </application>
 

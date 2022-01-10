@@ -10,7 +10,6 @@ const val ROUTER_FIRST_LEVEL_transition = "/transition" // 转场
 // ------------------------------------分割线-------------------------------------------
 
 
-
 // ------------------------------------动效-------------------------------------------
 
 const val ROUTE_PATH_TWEEN = "${ROUTER_FIRST_LEVEL_anim}/tween"
@@ -73,6 +72,7 @@ const val ROUTE_PATH_TABLELAYOUT_HELPER = "${ROUTER_FIRST_LEVEL_widget}/TableLay
 const val ROUTE_PATH_TABLELAYOUT_VIEWPAGER2 = "${ROUTER_FIRST_LEVEL_widget}/TableLayout/ViewPager2"
 const val ROUTE_PATH_TABLELAYOUT_INDICATOR = "${ROUTER_FIRST_LEVEL_widget}/TableLayout/indicator"
 const val ROUTE_PATH_STATUS_BAR_HEIGHT = "${ROUTER_FIRST_LEVEL_widget}/statusBarHeight"
+const val ROUTE_PATH_DYNAMIC_MSG_LAYOUT = "${ROUTER_FIRST_LEVEL_widget}/DynamicMsgLayout"
 
 
 // ------------------------------------图形-------------------------------------------

@@ -48,6 +48,7 @@ public class PermissionFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        mContext = null;
     }
 
     @Override
