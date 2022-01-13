@@ -1,14 +1,17 @@
 package com.skx.tomike.tank.widget.view
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
+import android.text.TextUtils
 import android.util.AttributeSet
-import android.view.View
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.setPadding
 import com.skx.tomike.tank.R
 import java.util.*
-import kotlin.collections.HashMap
+import kotlin.concurrent.scheduleAtFixedRate
 
 class DynamicMsgLayout : ViewGroup {
 
@@ -23,10 +26,11 @@ class DynamicMsgLayout : ViewGroup {
     3.消息位置
      */
 
-    private var autoMiss = true
+    // 消息缓存池
+    private val mPool: Stack<Message> = Stack()
 
-    // view缓存池
-    private val mPool: Stack<TextView> = Stack()
+    // 当前展示的消息队列
+    private val messages: LinkedList<Message> = LinkedList()
     private var mBucketId = 0
 
     // 桶数组，包含所有的桶对象
@@ -41,7 +45,41 @@ class DynamicMsgLayout : ViewGroup {
     )
 
     // 消息view 对 桶的映射关系
-    private val msg2bucket: HashMap<View, Bucket> = HashMap()
+    private val msg2bucket: HashMap<Message, Bucket> = HashMap()
+
+    // 倒计时
+    private val mTimer = Timer()
+    private val mHandler = object : Handler(Looper.getMainLooper()) {
+        override fun handleMessage(msg: android.os.Message) {
+            super.handleMessage(msg)
+            when (msg.what) {
+                0 -> {
+                    if (messages.size <= 0) {
+                        return
+                    }
+                    var i = 0
+                    while (i >= 0 && i < messages.size) {
+                        Log.e(
+                            "DynamicMsgLayout",
+                            "countdown ->index:${i} size:${messages.size}"
+                        )
+                        val message = messages[i]
+                        val diff = System.currentTimeMillis() - message.beginTime
+                        if (diff > 3000) {
+                            val bucket = msg2bucket[message]
+                            bucket?.messages?.poll()?.run {
+                                // 移除msg view
+                                removeMsg(this)
+                            }
+                        } else {
+                            break
+                        }
+                        i++
+                    }
+                }
+            }
+        }
+    }
 
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -50,6 +88,7 @@ class DynamicMsgLayout : ViewGroup {
         attrs,
         defStyleAttr
     ) {
+        initCountdownTime()
         initBucketXY()
     }
 
@@ -59,7 +98,14 @@ class DynamicMsgLayout : ViewGroup {
         defStyleAttr: Int,
         defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
+        initCountdownTime()
         initBucketXY()
+    }
+
+    private fun initCountdownTime() {
+        mTimer.scheduleAtFixedRate(0, 200) {
+            mHandler.sendEmptyMessage(0)
+        }
     }
 
     private fun initBucketXY() {
@@ -103,16 +149,17 @@ class DynamicMsgLayout : ViewGroup {
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        for (i in 0 until childCount) {
-            val child = getChildAt(i)
-            //跳过View.GONE的子View
-            if (child.visibility == GONE) {
+        for (i in 0 until messages.size) {
+            val message = messages[i]
+            val child = message.view
+            // 跳过View.GONE的子View
+            if (child == null || GONE == child.visibility) {
                 continue
             }
             val childWidth = child.measuredWidth
             val childHeight = child.measuredHeight
 
-            val bucket = msg2bucket[child]
+            val bucket = msg2bucket[message]
 
             child.layout(
                 bucket?.x ?: 0,
@@ -124,39 +171,81 @@ class DynamicMsgLayout : ViewGroup {
     }
 
     fun sendMessage(bucketIndex: Int, msg: String) {
-        var tv: TextView? = null
+        Log.e("DynamicMsgLayout", "sendMessage -> START")
+        if (TextUtils.isEmpty(msg)) {
+            return
+        }
+        // 1.获取message 实例对象
+        val message = getMessage().apply {
+            this.text = msg
+            this.beginTime = System.currentTimeMillis()
+            this.view?.text = msg
+        }
+
+        // 2.获取消息所属的桶
+        val bucketByIndex = getBucketByIndex(bucketIndex)
+
+        // 3.桶内已经有消息，先出队
+        bucketByIndex.messages.takeIf {
+            it.size > 0
+        }?.run {
+            this.poll()?.run {
+                // 移除msg view
+                removeMsg(this)
+            }
+        }
+        Log.e("DynamicMsgLayout", "sendMessage -> after remote msg -> ${messages.size}")
+
+
+        // 4.将新消息view添加到桶里面
+        messages.add(message)
+        bucketByIndex.messages.add(message)
+        msg2bucket[message] = bucketByIndex
+        // 5.添加view
+        message.view?.run {
+            addView(
+                this,
+                MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
+            )
+        }
+        Log.e("DynamicMsgLayout", "sendMessage -> after add new -> ${messages.size}")
+    }
+
+    /**
+     * 获取message view。优先从缓存池中加载，如果缓存池中没有空余的，则创建
+     */
+    private fun getMessage(): Message {
+        var msg: Message? = null
         // 1.优先从缓存里添加
         if (mPool.size != 0) {
-            tv = mPool.pop()
+            msg = mPool.pop()
         }
-        if (tv == null) {
-            tv = TextView(context)
+        // 2.缓存中没有可用的->创建新的
+        if (msg == null) {
+            msg = Message()
+            msg.view = TextView(context)
                 .apply {
                     setPadding(30)
                     setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
                 }
         }
-        tv.text = msg
+        return msg
+    }
 
-        // 2.获取所在的桶
-        val bucketByIndex = getBucketByIndex(bucketIndex)
-
-        // 3.桶内已经有消息，先出队
-        if (bucketByIndex.messages.size > 0) {
-            val lastView = bucketByIndex.messages.poll()
-            removeView(lastView)
-            // 添加到缓存池中
-            mPool.push(lastView)
+    private fun removeMsg(msg: Message) {
+        // 移除显示消息内容的 view
+        msg.view?.run {
+            removeView(this)
         }
-
-        // 4.将新消息view添加到桶里面
-        bucketByIndex.messages.add(tv)
-        msg2bucket[tv] = bucketByIndex
-        // 添加view
-        addView(
-            tv,
-            MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
-        )
+        // 从消息队里移除消息，移除和桶的映射关系
+        messages.remove(msg)
+        msg2bucket.remove(msg)
+        // 重置数据,添加到缓存池中
+        msg.run {
+            this.text = ""
+            this.beginTime = -1L
+        }
+        mPool.push(msg)
     }
 
     /**
@@ -180,16 +269,15 @@ class DynamicMsgLayout : ViewGroup {
      * 消息
      */
     class Message {
-        var msg: String = ""
+        var text: String = ""
         var beginTime: Long = 0
-        var bucketId: Int = -1
-        var view: View? = null
+        var view: TextView? = null
     }
 
     class Bucket(var id: Int = 0) {
         var x: Int = 0
         var y: Int = 0
-        var messages: Queue<TextView> = LinkedList()
+        var messages: Queue<Message> = LinkedList()
     }
 
     override fun generateLayoutParams(attrs: AttributeSet?): LayoutParams {
