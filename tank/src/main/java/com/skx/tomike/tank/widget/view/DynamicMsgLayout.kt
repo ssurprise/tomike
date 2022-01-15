@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.setPadding
+import androidx.recyclerview.widget.RecyclerView
+import com.skx.common.utils.dip2px
 import com.skx.tomike.tank.R
 import java.util.*
 import kotlin.concurrent.scheduleAtFixedRate
@@ -34,15 +36,7 @@ class DynamicMsgLayout : ViewGroup {
     private var mBucketId = 0
 
     // 桶数组，包含所有的桶对象
-    private val mBuckets: Array<Bucket?> = arrayOf(
-        Bucket(0),
-        Bucket(1),
-        Bucket(2),
-        Bucket(3),
-        Bucket(4),
-        Bucket(5),
-        Bucket(6)
-    )
+    private val mBuckets: MutableList<Bucket?> = mutableListOf()
 
     // 消息view 对 桶的映射关系
     private val msg2bucket: HashMap<Message, Bucket> = HashMap()
@@ -99,7 +93,6 @@ class DynamicMsgLayout : ViewGroup {
         defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
         initCountdownTime()
-        initBucketXY()
     }
 
     private fun initCountdownTime() {
@@ -108,30 +101,18 @@ class DynamicMsgLayout : ViewGroup {
         }
     }
 
-    private fun initBucketXY() {
-        mBuckets[0]?.apply {
-            x = 30
-            y = 100
-        }
-        mBuckets[1]?.apply {
-            x = 300
-            y = 100
-        }
-        mBuckets[2]?.apply {
-            x = 700
-            y = 100
-        }
-        mBuckets[3]?.apply {
-            x = 30
-            y = 300
-        }
-        mBuckets[4]?.apply {
-            x = 300
-            y = 300
-        }
-        mBuckets[5]?.apply {
-            x = 700
-            y = 300
+    fun initBucketLocByRv(rv: RecyclerView) {
+        mBuckets.clear()
+        val childCount: Int = rv.adapter?.itemCount ?: 0
+        for (i in 0 until childCount) {
+//            val viewholder = rv.findViewHolderForAdapterPosition(i)
+            val view = rv.getChildAt(i)
+            view?.run {
+                val bucket = Bucket()
+                bucket.x = (right - left) / 2
+                bucket.y = top
+                mBuckets.add(i, bucket)
+            }
         }
     }
 
@@ -161,12 +142,17 @@ class DynamicMsgLayout : ViewGroup {
 
             val bucket = msg2bucket[message]
 
-            child.layout(
-                bucket?.x ?: 0,
-                bucket?.y ?: 0,
-                (bucket?.x ?: 0) + childWidth,
-                (bucket?.y ?: 0) + childHeight
-            )
+            val left = bucket?.run {
+                x - childWidth / 2
+            } ?: run {
+                0
+            }
+            val top = bucket?.run {
+                y - childHeight
+            } ?: run {
+                0
+            }
+            child.layout(left, top, left + childWidth, (bucket?.y ?: 0))
         }
     }
 
@@ -226,6 +212,9 @@ class DynamicMsgLayout : ViewGroup {
             msg.view = TextView(context)
                 .apply {
                     setPadding(30)
+                    ellipsize = TextUtils.TruncateAt.END
+                    maxLines = 2
+                    maxWidth = dip2px(context, 150f)
                     setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
                 }
         }
@@ -258,8 +247,8 @@ class DynamicMsgLayout : ViewGroup {
         }
         if (bucket == null) {
             bucket = Bucket()
-            bucket.id = mBucketId
-            mBuckets[bucketIndex] = bucket
+//            bucket.id = mBucketId
+            mBuckets.add(bucketIndex, bucket)
             mBucketId++
         }
         return bucket
@@ -274,7 +263,7 @@ class DynamicMsgLayout : ViewGroup {
         var view: TextView? = null
     }
 
-    class Bucket(var id: Int = 0) {
+    class Bucket() {
         var x: Int = 0
         var y: Int = 0
         var messages: Queue<Message> = LinkedList()

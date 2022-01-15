@@ -1,11 +1,12 @@
 package com.skx.tomike.tank.widget.activity
 
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
@@ -24,6 +25,9 @@ import com.skx.tomike.tank.widget.view.DynamicMsgLayout
 @Route(path = ROUTE_PATH_DYNAMIC_MSG_LAYOUT)
 class DynamicMsgLayoutActivity : SkxBaseActivity<BaseViewModel>() {
 
+    private val rv: RecyclerView by lazy {
+        findViewById(R.id.rvDate)
+    }
     private val root: DynamicMsgLayout by lazy {
         findViewById(R.id.dslMessages)
     }
@@ -39,18 +43,6 @@ class DynamicMsgLayoutActivity : SkxBaseActivity<BaseViewModel>() {
 
     private var msgPos: Int = 0
 
-    private val handler: Handler = object : Handler(Looper.getMainLooper()) {
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            when (msg.what) {
-                0 -> {
-                }
-                1 -> {
-
-                }
-            }
-        }
-    }
 
     override fun initParams() {
     }
@@ -64,6 +56,10 @@ class DynamicMsgLayoutActivity : SkxBaseActivity<BaseViewModel>() {
     }
 
     override fun initView() {
+        rv.adapter = ResourceAdapter()
+        rv.post {
+            root.initBucketLocByRv(rv)
+        }
         mRgPosOption.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_dynamicMsg_pos_0 -> msgPos = 0
@@ -77,5 +73,29 @@ class DynamicMsgLayoutActivity : SkxBaseActivity<BaseViewModel>() {
         mBtnSend.setOnClickListener {
             root.sendMessage(msgPos, mEtMsgText.text.toString())
         }
+    }
+
+    class ResourceAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            return ResourceViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.adapter_dynamic_msg_resource, parent, false)
+            )
+        }
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        }
+
+        override fun getItemCount(): Int {
+            return 6
+        }
+
+
+        inner class ResourceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        }
+
     }
 }

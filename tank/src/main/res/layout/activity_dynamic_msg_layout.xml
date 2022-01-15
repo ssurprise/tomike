@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
     android:padding="@dimen/view_padding_15"
     tools:context="com.skx.tomike.tank.widget.activity.DynamicMsgLayoutActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDate"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/skx_f5f5f5"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        tools:listitem="@layout/adapter_dynamic_msg_resource" />
 
     <com.skx.tomike.tank.widget.view.DynamicMsgLayout
         android:id="@+id/dslMessages"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/skx_f5f5f5">
+        android:layout_height="230dp"
+        android:layout_alignTop="@id/rvDate"
+        android:clipChildren="false">
 
     </com.skx.tomike.tank.widget.view.DynamicMsgLayout>
-
 
     <TextView
         android:id="@+id/tv_dynamicMsg_msgPos"
