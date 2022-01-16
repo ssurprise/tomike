@@ -11,7 +11,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDate"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="180dp"
         android:layout_marginTop="50dp"
         android:background="@color/skx_f5f5f5"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -21,7 +21,7 @@
     <com.skx.tomike.tank.widget.view.DynamicMsgLayout
         android:id="@+id/dslMessages"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="180dp"
         android:layout_alignTop="@id/rvDate"
         android:clipChildren="false">
 

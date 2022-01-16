@@ -15,6 +15,13 @@ import com.skx.tomike.tank.R
 import java.util.*
 import kotlin.concurrent.scheduleAtFixedRate
 
+
+/**
+ * 描述 : 动态消息展示Layout
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2022/1/10 4:00 下午
+ */
 class DynamicMsgLayout : ViewGroup {
 
     /*
@@ -22,7 +29,7 @@ class DynamicMsgLayout : ViewGroup {
     初步想法：不打算使用绝对时间，通过每秒循环来获取是否有到时间的消息来处理倒计时。
             尝试通过两个消息之间的时间差来处理。把所有的消息放入一个队列中 -> 先进先出....
             但是发现两个问题：① 手动取消中间的某个消息队列无法处理 ② 手动取消某个消息倒计时错乱
-            不过有一点是肯定的，整个view 只能有一个倒计时，绝对不会为每个child 分配一个倒计时
+            不过有一点是肯定的，整个view 只能有一个倒计时，绝对不会为每个child 分配一个倒计时。
 
     2.消息绘制
     3.消息位置
@@ -54,8 +61,8 @@ class DynamicMsgLayout : ViewGroup {
                     var i = 0
                     while (i >= 0 && i < messages.size) {
                         Log.e(
-                            "DynamicMsgLayout",
-                            "countdown ->index:${i} size:${messages.size}"
+                                "DynamicMsgLayout",
+                                "countdown ->index:${i} size:${messages.size}"
                         )
                         val message = messages[i]
                         val diff = System.currentTimeMillis() - message.beginTime
@@ -78,19 +85,18 @@ class DynamicMsgLayout : ViewGroup {
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+            context,
+            attrs,
+            defStyleAttr
     ) {
         initCountdownTime()
-        initBucketXY()
     }
 
     constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
+            context: Context?,
+            attrs: AttributeSet?,
+            defStyleAttr: Int,
+            defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
         initCountdownTime()
     }
@@ -105,12 +111,12 @@ class DynamicMsgLayout : ViewGroup {
         mBuckets.clear()
         val childCount: Int = rv.adapter?.itemCount ?: 0
         for (i in 0 until childCount) {
-//            val viewholder = rv.findViewHolderForAdapterPosition(i)
             val view = rv.getChildAt(i)
             view?.run {
                 val bucket = Bucket()
-                bucket.x = (right - left) / 2
+                bucket.x = (right + left) / 2
                 bucket.y = top
+                Log.e("DynamicMsgLayout", "bucket:${i} x=${bucket.x} y=${bucket.y}")
                 mBuckets.add(i, bucket)
             }
         }
@@ -190,8 +196,8 @@ class DynamicMsgLayout : ViewGroup {
         // 5.添加view
         message.view?.run {
             addView(
-                this,
-                MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
+                    this,
+                    MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
             )
         }
         Log.e("DynamicMsgLayout", "sendMessage -> after add new -> ${messages.size}")
@@ -210,13 +216,13 @@ class DynamicMsgLayout : ViewGroup {
         if (msg == null) {
             msg = Message()
             msg.view = TextView(context)
-                .apply {
-                    setPadding(30)
-                    ellipsize = TextUtils.TruncateAt.END
-                    maxLines = 2
-                    maxWidth = dip2px(context, 150f)
-                    setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
-                }
+                    .apply {
+                        setPadding(30)
+                        ellipsize = TextUtils.TruncateAt.END
+                        maxLines = 2
+                        maxWidth = dip2px(context, 150f)
+                        setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
+                    }
         }
         return msg
     }
@@ -263,7 +269,7 @@ class DynamicMsgLayout : ViewGroup {
         var view: TextView? = null
     }
 
-    class Bucket() {
+    class Bucket {
         var x: Int = 0
         var y: Int = 0
         var messages: Queue<Message> = LinkedList()
