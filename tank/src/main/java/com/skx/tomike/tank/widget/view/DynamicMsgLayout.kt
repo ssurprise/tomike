@@ -124,7 +124,7 @@ class DynamicMsgLayout : ViewGroup {
 
     private fun initCountdownTime() {
         mTimer.scheduleAtFixedRate(0, 100) {
-            mHandler.sendEmptyMessage(0)
+//            mHandler.sendEmptyMessage(0)
         }
     }
 
@@ -162,6 +162,7 @@ class DynamicMsgLayout : ViewGroup {
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        val width = r - l
         // 从本地消息队列里取消息，消息中绑定有对应的view，确保只绘制在队列里的view。
         for (i in 0 until messages.size) {
             val message = messages[i]
@@ -177,7 +178,16 @@ class DynamicMsgLayout : ViewGroup {
             val bucket = msg2bucket[message]
 
             val left = bucket?.run {
-                x - childWidth / 2
+                var tl = x - childWidth / 2
+                if (tl < 0) {
+                    //左边界越界的情况下，重置为0
+                    tl = 0
+                }
+                if (tl + childWidth >= width) {
+                    //右边界越界的情况下，重置为最大允许范围
+                    tl = width - childWidth
+                }
+                tl
             } ?: run {
                 0
             }
