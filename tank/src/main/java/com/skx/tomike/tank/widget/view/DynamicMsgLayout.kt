@@ -62,6 +62,8 @@ class DynamicMsgLayout : ViewGroup {
 
     // 消息view 对 桶的映射关系
     private val msg2bucket: HashMap<Message, Bucket> = HashMap()
+    private var leftOffset = 0
+    private var rightOffset = 0
 
     // 倒计时
     private val mTimer = Timer()
@@ -105,13 +107,6 @@ class DynamicMsgLayout : ViewGroup {
         defStyleAttr
     )
 
-    constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes)
-
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         initCountdownTime()
@@ -124,14 +119,14 @@ class DynamicMsgLayout : ViewGroup {
 
     private fun initCountdownTime() {
         mTimer.scheduleAtFixedRate(0, 100) {
-//            mHandler.sendEmptyMessage(0)
+            mHandler.sendEmptyMessage(0)
         }
     }
 
     /**
      * 根据recyclerview 的child view 位置初始化桶的坐标
      */
-    fun initBucketLocByRv(rv: RecyclerView) {
+    fun initBucketLocByRv(rv: RecyclerView, xOffset: Int = 0, yOffset: Int = 0) {
         mBuckets.clear()
         Log.e(TAG, "initBucketLocByRv 初始化桶坐标-start")
         val childCount: Int = rv.adapter?.itemCount ?: 0
@@ -139,13 +134,35 @@ class DynamicMsgLayout : ViewGroup {
             val view = rv.getChildAt(i)
             view?.run {
                 val bucket = Bucket()
-                bucket.x = (right + left) / 2
-                bucket.y = top
+                bucket.x = (right + left) / 2 + xOffset
+                bucket.y = top + yOffset
                 Log.e(TAG, "bucket:${i} x=${bucket.x} y=${bucket.y}")
                 mBuckets.add(i, bucket)
             }
         }
         Log.e(TAG, "initBucketLocByRv 初始化桶坐标-end")
+    }
+
+    /**
+     * 初始化一个桶的坐标
+     */
+    fun initBucketLoc(x: Int, y: Int) {
+        mBuckets.clear()
+        Log.e(TAG, "initBucketLoc 初始化桶坐标-start")
+        val bucket = Bucket()
+        bucket.x = x
+        bucket.y = y
+        Log.e(TAG, "bucket x=${bucket.x} y=${bucket.y}")
+        mBuckets.add(bucket)
+        Log.e(TAG, "initBucketLoc 初始化桶坐标-end")
+    }
+
+    /**
+     * 设置左右偏移间距
+     */
+    fun setOffsetSpace(leftOffset: Int, rightOffset: Int) {
+        this.leftOffset = leftOffset
+        this.rightOffset = rightOffset
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -179,13 +196,13 @@ class DynamicMsgLayout : ViewGroup {
 
             val left = bucket?.run {
                 var tl = x - childWidth / 2
-                if (tl < 0) {
-                    //左边界越界的情况下，重置为0
-                    tl = 0
+                if (tl < leftOffset) {
+                    //左边界越界的情况下，重置为最小允许范围
+                    tl = leftOffset
                 }
-                if (tl + childWidth >= width) {
+                if (tl + childWidth > width - rightOffset) {
                     //右边界越界的情况下，重置为最大允许范围
-                    tl = width - childWidth
+                    tl = width - childWidth - rightOffset
                 }
                 tl
             } ?: run {
@@ -202,7 +219,7 @@ class DynamicMsgLayout : ViewGroup {
     }
 
     fun sendMessage(bucketIndex: Int, msg: String) {
-        Log.e(TAG, "sendMessage -> START")
+        Log.e(TAG, "sendMessage -> START msg:${msg}")
         if (TextUtils.isEmpty(msg)) {
             return
         }
@@ -215,6 +232,10 @@ class DynamicMsgLayout : ViewGroup {
 
         // 2.获取消息所属的桶
         val bucketByIndex = getBucketByIndex(bucketIndex)
+        if (bucketByIndex == null) {
+            Log.e(TAG, "sendMessage -> FAIL reason:没有找到对应的桶")
+            return
+        }
 
         // 3.桶内已经有消息，先出队
         bucketByIndex.messages.takeIf {
@@ -255,13 +276,8 @@ class DynamicMsgLayout : ViewGroup {
         // 2.缓存中没有可用的->创建新的
         if (msg == null) {
             msg = Message()
-            msg.view = TextView(context)
+            msg.view = createTextView()
                 .apply {
-                    setPadding(30)
-                    ellipsize = TextUtils.TruncateAt.END
-                    maxLines = 2
-                    maxWidth = dip2px(context, 150f)
-                    setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
                     setOnClickListener {
                         val bucket = msg2bucket[msg]
                         bucket?.messages?.poll()?.run {
@@ -272,6 +288,16 @@ class DynamicMsgLayout : ViewGroup {
                 }
         }
         return msg
+    }
+
+    private fun createTextView(): TextView {
+        return TextView(context).apply {
+            setPadding(30)
+            ellipsize = TextUtils.TruncateAt.END
+            maxLines = 2
+            maxWidth = dip2px(context, 150f)
+            setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
+        }
     }
 
     private fun removeMsg(msg: Message) {
@@ -295,16 +321,11 @@ class DynamicMsgLayout : ViewGroup {
     /**
      * 根据索引获取一个桶，如果该索引没有对应的桶对象，则创建一个桶对象并返回。
      */
-    private fun getBucketByIndex(bucketIndex: Int): Bucket {
+    private fun getBucketByIndex(bucketIndex: Int): Bucket? {
         var bucket: Bucket? = null
         if (bucketIndex >= 0 && bucketIndex < mBuckets.size) {
             // 获取指定位置的桶
             bucket = mBuckets[bucketIndex]
-        }
-        if (bucket == null) {
-            bucket = Bucket()
-            // 添加到桶集合中
-            mBuckets.add(bucketIndex, bucket)
         }
         return bucket
     }
