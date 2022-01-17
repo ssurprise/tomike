@@ -18,29 +18,44 @@ import kotlin.concurrent.scheduleAtFixedRate
 
 /**
  * 描述 : 动态消息展示Layout
+ * <p>
+ * 1.自动取消 -> 3s
+ * 初步想法：不打算使用绝对时间，通过每秒循环来获取是否有到时间的消息来处理倒计时。
+ * 尝试通过两个消息之间的时间差来处理。把所有的消息放入一个队列中 -> 先进先出....
+ * 但是发现两个问题：① 手动取消中间的某个消息队列无法处理 ② 手动取消某个消息倒计时错乱
+ * 不过有一点是肯定的，整个view 只能有一个倒计时，绝对不会为每个child 分配一个倒计时。
+ *
+ * 最终想法：使用Timer 进行倒计时，配合handler 进行显示控制。每个消息在创建或者使用时会配置一个当前时间。出于性能考虑，
+ * 倒计时每100ms执行一次。在倒计时轮询时，检查每个消息的时间，因为是用的队列，所以当一个消息未达到指定显示时长时，
+ * 后续的消息也必然达不到显示时长，也就不用去做判断了。缺点：因为倒计时每100ms执行一次，所以会存在一个临界值，
+ * 导致消息view 多显示100ms，不过可以接受。
+ * </p>
+
+ * <p>
+ * 2.消息绘制
+ * 消息依附于桶，所以在绘制消息view 之前，需要先确定桶的位置。以桶的位置作为锚点，然后绘制下消息view 的范围。
+ * </p>
+ * <p>
+ * 3.消息位置
+ * 目前只提供了一种确定桶位置的方法，{@link #initBucketLocByRv(RecyclerView)}
+ * </p>
+ *
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2022/1/10 4:00 下午
  */
 class DynamicMsgLayout : ViewGroup {
 
-    /*
-    1.自动取消 -> 3s
-    初步想法：不打算使用绝对时间，通过每秒循环来获取是否有到时间的消息来处理倒计时。
-            尝试通过两个消息之间的时间差来处理。把所有的消息放入一个队列中 -> 先进先出....
-            但是发现两个问题：① 手动取消中间的某个消息队列无法处理 ② 手动取消某个消息倒计时错乱
-            不过有一点是肯定的，整个view 只能有一个倒计时，绝对不会为每个child 分配一个倒计时。
-
-    2.消息绘制
-    3.消息位置
-     */
+    companion object {
+        private const val TAG = "DynamicMsgLayout"
+        private const val DISPLAY_TIME = 3000
+    }
 
     // 消息缓存池
     private val mPool: Stack<Message> = Stack()
 
     // 当前展示的消息队列
     private val messages: LinkedList<Message> = LinkedList()
-    private var mBucketId = 0
 
     // 桶数组，包含所有的桶对象
     private val mBuckets: MutableList<Bucket?> = mutableListOf()
@@ -61,12 +76,12 @@ class DynamicMsgLayout : ViewGroup {
                     var i = 0
                     while (i >= 0 && i < messages.size) {
                         Log.e(
-                                "DynamicMsgLayout",
-                                "countdown ->index:${i} size:${messages.size}"
+                            "DynamicMsgLayout",
+                            "countdown ->index:${i} size:${messages.size}"
                         )
                         val message = messages[i]
                         val diff = System.currentTimeMillis() - message.beginTime
-                        if (diff > 3000) {
+                        if (diff >= DISPLAY_TIME) {
                             val bucket = msg2bucket[message]
                             bucket?.messages?.poll()?.run {
                                 // 移除msg view
@@ -85,28 +100,37 @@ class DynamicMsgLayout : ViewGroup {
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-            context,
-            attrs,
-            defStyleAttr
-    ) {
+        context,
+        attrs,
+        defStyleAttr
+    )
+
+    constructor(
+        context: Context?,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes)
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
         initCountdownTime()
     }
 
-    constructor(
-            context: Context?,
-            attrs: AttributeSet?,
-            defStyleAttr: Int,
-            defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        initCountdownTime()
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        mTimer.cancel()
     }
 
     private fun initCountdownTime() {
-        mTimer.scheduleAtFixedRate(0, 200) {
+        mTimer.scheduleAtFixedRate(0, 100) {
             mHandler.sendEmptyMessage(0)
         }
     }
 
+    /**
+     * 根据recyclerview 的child view 位置初始化桶的坐标
+     */
     fun initBucketLocByRv(rv: RecyclerView) {
         mBuckets.clear()
         val childCount: Int = rv.adapter?.itemCount ?: 0
@@ -116,7 +140,7 @@ class DynamicMsgLayout : ViewGroup {
                 val bucket = Bucket()
                 bucket.x = (right + left) / 2
                 bucket.y = top
-                Log.e("DynamicMsgLayout", "bucket:${i} x=${bucket.x} y=${bucket.y}")
+                Log.e(TAG, "bucket:${i} x=${bucket.x} y=${bucket.y}")
                 mBuckets.add(i, bucket)
             }
         }
@@ -136,6 +160,7 @@ class DynamicMsgLayout : ViewGroup {
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        // 从本地消息队列里取消息，消息中绑定有对应的view
         for (i in 0 until messages.size) {
             val message = messages[i]
             val child = message.view
@@ -146,6 +171,7 @@ class DynamicMsgLayout : ViewGroup {
             val childWidth = child.measuredWidth
             val childHeight = child.measuredHeight
 
+            // 从map中取对应的桶
             val bucket = msg2bucket[message]
 
             val left = bucket?.run {
@@ -158,12 +184,13 @@ class DynamicMsgLayout : ViewGroup {
             } ?: run {
                 0
             }
+            // 消息view 的坐标跟随桶的坐标。
             child.layout(left, top, left + childWidth, (bucket?.y ?: 0))
         }
     }
 
     fun sendMessage(bucketIndex: Int, msg: String) {
-        Log.e("DynamicMsgLayout", "sendMessage -> START")
+        Log.e(TAG, "sendMessage -> START")
         if (TextUtils.isEmpty(msg)) {
             return
         }
@@ -186,8 +213,7 @@ class DynamicMsgLayout : ViewGroup {
                 removeMsg(this)
             }
         }
-        Log.e("DynamicMsgLayout", "sendMessage -> after remote msg -> ${messages.size}")
-
+        Log.e(TAG, "sendMessage -> after remove msg -> ${messages.size}")
 
         // 4.将新消息view添加到桶里面
         messages.add(message)
@@ -196,11 +222,11 @@ class DynamicMsgLayout : ViewGroup {
         // 5.添加view
         message.view?.run {
             addView(
-                    this,
-                    MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
+                this,
+                MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
             )
         }
-        Log.e("DynamicMsgLayout", "sendMessage -> after add new -> ${messages.size}")
+        Log.e(TAG, "sendMessage -> after add new -> ${messages.size}")
     }
 
     /**
@@ -216,13 +242,13 @@ class DynamicMsgLayout : ViewGroup {
         if (msg == null) {
             msg = Message()
             msg.view = TextView(context)
-                    .apply {
-                        setPadding(30)
-                        ellipsize = TextUtils.TruncateAt.END
-                        maxLines = 2
-                        maxWidth = dip2px(context, 150f)
-                        setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
-                    }
+                .apply {
+                    setPadding(30)
+                    ellipsize = TextUtils.TruncateAt.END
+                    maxLines = 2
+                    maxWidth = dip2px(context, 150f)
+                    setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
+                }
         }
         return msg
     }
@@ -249,13 +275,13 @@ class DynamicMsgLayout : ViewGroup {
     private fun getBucketByIndex(bucketIndex: Int): Bucket {
         var bucket: Bucket? = null
         if (bucketIndex >= 0 && bucketIndex < mBuckets.size) {
+            // 获取指定位置的桶
             bucket = mBuckets[bucketIndex]
         }
         if (bucket == null) {
             bucket = Bucket()
-//            bucket.id = mBucketId
+            // 添加到桶集合中
             mBuckets.add(bucketIndex, bucket)
-            mBucketId++
         }
         return bucket
     }
@@ -265,6 +291,8 @@ class DynamicMsgLayout : ViewGroup {
      */
     class Message {
         var text: String = ""
+
+        // 消息开始展示时间
         var beginTime: Long = 0
         var view: TextView? = null
     }
@@ -272,6 +300,8 @@ class DynamicMsgLayout : ViewGroup {
     class Bucket {
         var x: Int = 0
         var y: Int = 0
+
+        // 消息队列
         var messages: Queue<Message> = LinkedList()
     }
 
