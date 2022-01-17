@@ -54,7 +54,7 @@ class DynamicMsgLayout : ViewGroup {
     // 消息缓存池
     private val mPool: Stack<Message> = Stack()
 
-    // 当前展示的消息队列
+    // 当前展示的消息队列，用于绘制使用
     private val messages: LinkedList<Message> = LinkedList()
 
     // 桶数组，包含所有的桶对象
@@ -75,19 +75,19 @@ class DynamicMsgLayout : ViewGroup {
                     }
                     var i = 0
                     while (i >= 0 && i < messages.size) {
-                        Log.e(
-                            "DynamicMsgLayout",
-                            "countdown ->index:${i} size:${messages.size}"
-                        )
                         val message = messages[i]
                         val diff = System.currentTimeMillis() - message.beginTime
                         if (diff >= DISPLAY_TIME) {
+                            Log.e(
+                                TAG, "倒计时->size:${messages.size} index:${i} diff:${diff} 已到显示时长，删除"
+                            )
                             val bucket = msg2bucket[message]
                             bucket?.messages?.poll()?.run {
                                 // 移除msg view
                                 removeMsg(this)
                             }
                         } else {
+                            Log.e(TAG, "倒计时 ->index:${i} diff:${diff} 未到显示时长，继续显示")
                             break
                         }
                         i++
@@ -133,6 +133,7 @@ class DynamicMsgLayout : ViewGroup {
      */
     fun initBucketLocByRv(rv: RecyclerView) {
         mBuckets.clear()
+        Log.e(TAG, "initBucketLocByRv 初始化桶坐标-start")
         val childCount: Int = rv.adapter?.itemCount ?: 0
         for (i in 0 until childCount) {
             val view = rv.getChildAt(i)
@@ -144,6 +145,7 @@ class DynamicMsgLayout : ViewGroup {
                 mBuckets.add(i, bucket)
             }
         }
+        Log.e(TAG, "initBucketLocByRv 初始化桶坐标-end")
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -160,7 +162,7 @@ class DynamicMsgLayout : ViewGroup {
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        // 从本地消息队列里取消息，消息中绑定有对应的view
+        // 从本地消息队列里取消息，消息中绑定有对应的view，确保只绘制在队列里的view。
         for (i in 0 until messages.size) {
             val message = messages[i]
             val child = message.view
@@ -211,9 +213,10 @@ class DynamicMsgLayout : ViewGroup {
             this.poll()?.run {
                 // 移除msg view
                 removeMsg(this)
+                Log.e(TAG, "sendMessage -> remove previous msg -> ${messages.size}")
             }
         }
-        Log.e(TAG, "sendMessage -> after remove msg -> ${messages.size}")
+        Log.e(TAG, "sendMessage -> add new msg start-> ${messages.size}")
 
         // 4.将新消息view添加到桶里面
         messages.add(message)
@@ -226,7 +229,8 @@ class DynamicMsgLayout : ViewGroup {
                 MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
             )
         }
-        Log.e(TAG, "sendMessage -> after add new -> ${messages.size}")
+        Log.e(TAG, "sendMessage -> add new msg end-> ${messages.size}")
+        Log.e(TAG, "sendMessage -> END")
     }
 
     /**
@@ -248,12 +252,21 @@ class DynamicMsgLayout : ViewGroup {
                     maxLines = 2
                     maxWidth = dip2px(context, 150f)
                     setBackgroundResource(R.drawable.rectangle_solid_ffdee9_str_corner_5)
+                    setOnClickListener {
+                        val bucket = msg2bucket[msg]
+                        bucket?.messages?.poll()?.run {
+                            // 移除msg view
+                            removeMsg(this)
+                        }
+                    }
                 }
         }
         return msg
     }
 
     private fun removeMsg(msg: Message) {
+        Log.e(TAG, "remove msg:${msg.text} hashCode:${msg.hashCode()}")
+
         // 移除显示消息内容的 view
         msg.view?.run {
             removeView(this)
@@ -301,7 +314,10 @@ class DynamicMsgLayout : ViewGroup {
         var x: Int = 0
         var y: Int = 0
 
-        // 消息队列
+        /**
+         * 消息队列,这里当前其实用一个实例就够了，但是为了扩展方便做了预留，比如：上一个view 和下一个view 有过渡动画时
+         * 这里如果只是一个变量那肯定就实现不了了。
+         */
         var messages: Queue<Message> = LinkedList()
     }
 
