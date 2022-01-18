@@ -6,7 +6,9 @@ import android.os.Looper
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
@@ -188,33 +190,56 @@ class DynamicMsgLayout : ViewGroup {
             if (child == null || GONE == child.visibility) {
                 continue
             }
-            val childWidth = child.measuredWidth
-            val childHeight = child.measuredHeight
 
             // 从map中取对应的桶
             val bucket = msg2bucket[message]
+            // 布局指示器view
+            indicatorViewLayout(message.indicatorView, bucket)
+            // 布局消息view
+            msgViewLayout(child, bucket, width)
+        }
+    }
 
-            val left = bucket?.run {
-                var tl = x - childWidth / 2
-                if (tl < leftOffset) {
-                    //左边界越界的情况下，重置为最小允许范围
-                    tl = leftOffset
-                }
-                if (tl + childWidth > width - rightOffset) {
-                    //右边界越界的情况下，重置为最大允许范围
-                    tl = width - childWidth - rightOffset
-                }
-                tl
-            } ?: run {
-                0
+    private fun msgViewLayout(child: View, bucket: Bucket?, parentWidth: Int) {
+        val childWidth = child.measuredWidth
+        val childHeight = child.measuredHeight
+        val left = bucket?.run {
+            var tl = x - childWidth / 2
+            if (tl < leftOffset) {
+                //左边界越界的情况下，重置为最小允许范围
+                tl = leftOffset
             }
-            val top = bucket?.run {
-                y - childHeight
-            } ?: run {
-                0
+            if (tl + childWidth > parentWidth - rightOffset) {
+                //右边界越界的情况下，重置为最大允许范围
+                tl = parentWidth - childWidth - rightOffset
             }
-            // 消息view 的坐标跟随桶的坐标。
-            child.layout(left, top, left + childWidth, (bucket?.y ?: 0))
+            tl
+        } ?: run {
+            0
+        }
+        val top = bucket?.run {
+            y - childHeight
+        } ?: run {
+            0
+        }
+        // 消息view 的坐标跟随桶的坐标。
+        child.layout(left, top, left + childWidth, (bucket?.y ?: 0))
+    }
+
+    private fun indicatorViewLayout(
+        child: View?,
+        bucket: Bucket?
+    ) {
+        if (bucket == null) return
+        child?.run {
+            val childWidth = child.measuredWidth
+            val childHeight = child.measuredHeight
+            this.layout(
+                bucket.x - childWidth / 2,
+                bucket.y,
+                bucket.x + childWidth / 2,
+                bucket.y + childHeight
+            )
         }
     }
 
@@ -254,6 +279,12 @@ class DynamicMsgLayout : ViewGroup {
         bucketByIndex.messages.add(message)
         msg2bucket[message] = bucketByIndex
         // 5.添加view
+        message.indicatorView?.run {
+            addView(
+                this,
+                MarginLayoutParams(60, 30)
+            )
+        }
         message.view?.run {
             addView(
                 this,
@@ -286,6 +317,9 @@ class DynamicMsgLayout : ViewGroup {
                         }
                     }
                 }
+            msg.indicatorView = ImageView(context).apply {
+                setImageResource(R.drawable.triangle_bottom_16dp_7d72ff)
+            }
         }
         return msg
     }
@@ -305,6 +339,9 @@ class DynamicMsgLayout : ViewGroup {
 
         // 移除显示消息内容的 view
         msg.view?.run {
+            removeView(this)
+        }
+        msg.indicatorView?.run {
             removeView(this)
         }
         // 从消息队里移除消息，移除和桶的映射关系
@@ -339,6 +376,7 @@ class DynamicMsgLayout : ViewGroup {
         // 消息开始展示时间
         var beginTime: Long = 0
         var view: TextView? = null
+        var indicatorView: ImageView? = null
     }
 
     class Bucket {
