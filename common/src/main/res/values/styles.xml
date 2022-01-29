@@ -56,4 +56,15 @@
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
+
+    <!-- dialog样式 -->
+    <style name="dialog_custom" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>    <!--是否浮在界面上-->
+        <item name="android:windowIsTranslucent">true</item> <!--是否半透明-->
+        <item name="android:windowNoTitle">false</item>       <!--是否有标题-->
+        <item name="android:windowBackground">@android:color/transparent</item> <!--窗口背景色透明-->
+        <item name="android:backgroundDimEnabled">true</item><!--遮罩-->
+        <item name="android:backgroundDimAmount">0.6</item><!--遮罩透明度60%-->
+    </style>
+
 </resources>
