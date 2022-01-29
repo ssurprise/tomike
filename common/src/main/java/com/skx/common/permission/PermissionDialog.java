@@ -34,7 +34,7 @@ public class PermissionDialog extends DialogFragment {
     private TextView mTvConfirmBtn;
 
 
-    public PermissionDialog getInstance(){
+    public PermissionDialog getInstance() {
         PermissionDialog permissionDialog = new PermissionDialog();
         Bundle bundle = new Bundle();
 
@@ -46,6 +46,12 @@ public class PermissionDialog extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mContext = (FragmentActivity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mContext = null;
     }
 
     @Override

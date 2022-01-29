@@ -1,16 +1,15 @@
-package com.skx.common.permission;
+package com.skx.common.permission
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
+import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
+import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 
 /**
  * 描述 : 权限
@@ -18,93 +17,98 @@ import androidx.fragment.app.Fragment;
  * 版本 : V1
  * 创建时间 : 2020/9/16 5:21 PM
  */
-public class PermissionFragment extends Fragment {
+class PermissionFragment : Fragment() {
 
-    private static final String KEY_PERMISSION = "request_permissions";
-    private static final int PERMISSION_REQUEST_CODE = 2003;
+    private var mContext: Context? = null
 
-    private Context mContext;
     /**
      * 申请的权限
      */
-    private String[] mPermissions;
+    private var mPermissions: Array<String>? = null
+    private var mActivityResultLauncher: ActivityResultLauncher<Array<String>>? = null
+    private val mResult = mutableMapOf<String, Boolean>()
 
-
-    public static PermissionFragment getInstance(String[] permissions) {
-        PermissionFragment fragment = new PermissionFragment();
-        Bundle bundle = new Bundle();
-        bundle.putStringArray(KEY_PERMISSION, permissions);
-        fragment.setArguments(bundle);
-        return fragment;
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
     }
 
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mContext = context;
+    override fun onDetach() {
+        super.onDetach()
+        mContext = null
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mContext = null;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initParams()
+        reqPermissions()
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initParams();
-        checkPermissions();
+    private fun initParams() {
+        arguments?.takeIf {
+            it.containsKey(KEY_PERMISSION)
+        }?.run {
+            mPermissions = this.getStringArray(KEY_PERMISSION)
+        }
+
+        mActivityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { result: Map<String?, Boolean?> ->
+            result.forEach {
+                it.key?.run {
+                    Log.d(TAG, "授权结果: ${it.key}->${it.value}")
+                    mResult[this] = it.value ?: false
+                }
+            }
+        }
     }
 
-    private void checkPermissions() {
+    private fun reqPermissions() {
         if (Build.VERSION.SDK_INT < 23) {
-            Toast.makeText(mContext, "6.0 以下", Toast.LENGTH_SHORT).show();
-            return;
+            Toast.makeText(mContext, "6.0 以下", Toast.LENGTH_SHORT).show()
+            return
         }
+        if (mPermissions == null || mPermissions!!.isEmpty()) return
 
-        if (mPermissions == null || mPermissions.length == 0) return;
-
-        for (String permission : mPermissions) {
-
-        }
-
-        // api 23 及以上，进行权限申请
-        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            /**
-             * 这里权限模式
-             */
-            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                // 解释为什么需要定位权限之类的
+        val needRequest = mutableListOf<String>()
+        mPermissions?.forEach {
+            if (!checkPermission(it)) {
+                mResult[it] = false
+                needRequest.add(it)
             } else {
-                // 请求权限处理
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
+                mResult[it] = false
             }
-            /**
-             * 如果要用意图模式的话，就不需要用权限模式了，直接跳转到系统设置页面，
-             * 让用户自己控制权限的授权与否，app只承担了一个引导作用
-             */
-        } else {
-            // 获得定位信息的code
+        }
+
+        // 请求权限处理
+        if (needRequest.size > 0) {
+            val permissions = needRequest.toTypedArray()
+            Log.d(TAG, "需要申请的权限: $permissions")
+            mActivityResultLauncher?.launch(permissions)
         }
     }
 
-    private void initParams() {
-        Bundle arguments = getArguments();
-        if (arguments != null) {
-            if (arguments.containsKey(KEY_PERMISSION)) {
-                mPermissions = arguments.getStringArray(KEY_PERMISSION);
-            }
-        }
+    private fun checkPermission(permission: String): Boolean {
+        val result = ContextCompat.checkSelfPermission(
+            mContext!!,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+        Log.d(TAG, "checkPermission: ${permission}->${result}")
+        return result
     }
 
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE) {
+    companion object {
+        private const val TAG = "PermissionUtils"
+        private const val KEY_PERMISSION = "request_permissions"
 
+        @JvmStatic
+        fun getInstance(permissions: Array<String>?): PermissionFragment {
+            val fragment = PermissionFragment()
+            val bundle = Bundle()
+            bundle.putStringArray(KEY_PERMISSION, permissions)
+            fragment.arguments = bundle
+            return fragment
         }
     }
 }
