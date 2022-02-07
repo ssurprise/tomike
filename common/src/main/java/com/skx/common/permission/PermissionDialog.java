@@ -80,12 +80,12 @@ public class PermissionDialog extends DialogFragment {
     }
 
     private void initView(View root) {
-        mTvTitle = root.findViewById(R.id.tv_permission_dialog_title);
-        mTvText = root.findViewById(R.id.tv_permission_dialog_text);
-        mLlDescWrapper = root.findViewById(R.id.ll_permission_desc_wrap);
-        mTvDesc = root.findViewById(R.id.tv_permission_desc);
-        mTvCancelBtn = root.findViewById(R.id.permission_dialog_btn_cancel);
-        mTvConfirmBtn = root.findViewById(R.id.permission_dialog_btn_confirm);
+//        mTvTitle = root.findViewById(R.id.tv_permission_dialog_title);
+//        mTvText = root.findViewById(R.id.tv_permission_dialog_text);
+//        mLlDescWrapper = root.findViewById(R.id.ll_permission_desc_wrap);
+//        mTvDesc = root.findViewById(R.id.tv_permission_desc);
+//        mTvCancelBtn = root.findViewById(R.id.permission_dialog_btn_cancel);
+//        mTvConfirmBtn = root.findViewById(R.id.permission_dialog_btn_confirm);
 
 //        mTvCancelBtn.setOnClickListener();
 //        mTvConfirmBtn.setOnClickListener();

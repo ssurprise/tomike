@@ -9,9 +9,6 @@ import android.util.SparseArray;
 
 import androidx.annotation.NonNull;
 
-import com.xiaozhu.lib.common.permission.listener.PermissionListener;
-import com.xiaozhu.lib.common.permission.listener.RationaleListener;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +35,7 @@ public class XZPermissionRequest {
     private String[] mPermissions = new String[0];
 
     private int mRequestCode = -1;
-    PermissionListener mCallback;
+    PermissionResultListener mCallback;
     RationaleListener mRationaleListener;
     boolean mShowTipAtFirst;
     boolean mIsForce;
@@ -97,7 +94,7 @@ public class XZPermissionRequest {
      * @param callback
      * @return
      */
-    public XZPermissionRequest callback(PermissionListener callback) {
+    public XZPermissionRequest callback(PermissionResultListener callback) {
         mCallback = callback;
         return this;
     }
@@ -124,10 +121,9 @@ public class XZPermissionRequest {
             callBackResult();
             Log.d("XZPermission", "6.0以下系统，无需请求");
         } else {
-            mDeniedPermissions = com.xiaozhu.lib.common.permission.XZPermissionUtils.getDeniedPermissions(mContext, Arrays
-                    .asList(mPermissions));
-            if (com.xiaozhu.lib.common.permission.XZPermissionUtils.isPermissionInManifest(mContext, mDeniedPermissions
-                    .toArray(new String[mDeniedPermissions.size()]))) {
+            mDeniedPermissions = XZPermissionUtils.getDeniedPermissions(mContext, Arrays.asList(mPermissions));
+            if (XZPermissionUtils.isPermissionInManifest(mContext,
+                    mDeniedPermissions.toArray(new String[mDeniedPermissions.size()]))) {
                 if (!mDeniedPermissions.isEmpty()) {
                     mRequests.put(hashCode(), this);
                     // 跳到独立的activity中进行权限申请
@@ -166,11 +162,10 @@ public class XZPermissionRequest {
      */
     void callBackResult() {
         if (mCallback != null) {
-            mDeniedPermissions = com.xiaozhu.lib.common.permission.XZPermissionUtils
-                    .getDeniedPermissions(mContext, mDeniedPermissions);
+            mDeniedPermissions = XZPermissionUtils.getDeniedPermissions(mContext, mDeniedPermissions);
             if (!mDeniedPermissions.isEmpty()) {
-                mCallback.onFailed(mRequestCode, mDeniedPermissions
-                        .toArray(new String[mDeniedPermissions.size()]));
+                mCallback.onFailed(mRequestCode,
+                        mDeniedPermissions.toArray(new String[mDeniedPermissions.size()]));
             } else {
                 mCallback.onSucceed(mRequestCode, mPermissions);
             }
