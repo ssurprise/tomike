@@ -24,7 +24,7 @@ class CheckBoxActivity : SkxBaseActivity<BaseViewModel?>() {
         return TitleConfig.Builder().setTitleText("CheckBox 实验室").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_check_box
     }
 

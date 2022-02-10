@@ -53,7 +53,7 @@ public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_rx_java;
     }
 

@@ -31,7 +31,7 @@ class TextSwitcherActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("TextSwitcher 实现效果").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_text_switcher
     }
 

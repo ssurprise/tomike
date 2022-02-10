@@ -35,7 +35,7 @@ public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implemen
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_reflect_test;
     }
 

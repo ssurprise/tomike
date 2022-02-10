@@ -43,7 +43,7 @@ public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewMode
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_recyclerview_item_update;
     }
 

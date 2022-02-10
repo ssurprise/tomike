@@ -31,7 +31,7 @@ class LottieActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("Airbnb 动画库-lottie").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_lottie_anim
     }
 

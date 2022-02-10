@@ -1,121 +1,119 @@
-package com.skx.common.base;
+package com.skx.common.base
 
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.annotation.LayoutRes
+import com.skx.common.R
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
+abstract class SkxBaseActivity<T : BaseViewModel?> : BaseMvvmActivity<T>() {
 
-import com.skx.common.R;
+    @JvmField
+    protected val TAG = javaClass.simpleName
 
-public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmActivity<T> {
-
-    protected final String TAG = getClass().getSimpleName();
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        nativeThemeStyle();
-        super.onCreate(savedInstanceState);
-        initParams();
-        initContentView();
-        initView();
-        subscribeEvent();
+    override fun onCreate(savedInstanceState: Bundle?) {
+        nativeThemeStyle()
+        super.onCreate(savedInstanceState)
+        logPrinter("onCreate")
+        initParams()
+        initContentView()
+        initView()
+        subscribeEvent()
     }
 
     /**
      * 初始化主题样式
      */
-    protected void nativeThemeStyle() {
-    }
+    private fun nativeThemeStyle() {}
 
-    private void initContentView() {
-        final TitleConfig titleConfig = configHeaderTitle();
+    private fun initContentView() {
+        val titleConfig = configHeaderTitle()
         if (titleConfig == null) {
             // 没有配置title 信息，加载子类布局
-            setContentView(getLayoutId());
-            return;
+            setContentView(layoutId())
+            return
         }
-
-        setContentView(R.layout.layout_base_ui);
+        setContentView(R.layout.layout_base_ui)
 
         // 配置title view
-        if (titleConfig.getCustomTitleView() == null) {
-            buildDefaultTitleView(titleConfig);
+        if (titleConfig.customTitleView == null) {
+            buildDefaultTitleView(titleConfig)
         } else {
-            buildCustomTitleView(titleConfig);
+            buildCustomTitleView(titleConfig)
         }
 
         // 配置内容view
-        FrameLayout view = findViewById(R.id.fl_baseUI_content);
-        View inflate = LayoutInflater.from(this).inflate(getLayoutId(), view, false);
+        val view = findViewById<FrameLayout>(R.id.fl_baseUI_content)
+        val inflate = LayoutInflater.from(this).inflate(layoutId(), view, false)
         if (inflate != null) {
-            view.addView(inflate);
+            view.addView(inflate)
         }
     }
 
-    private void buildDefaultTitleView(final TitleConfig config) {
+    private fun buildDefaultTitleView(config: TitleConfig) {
         // 标题
-        TextView mTvTitle = findViewById(R.id.tv_baseUI_header_title);
-        mTvTitle.setText(config.getTitleText());
-        if (config.getTitleTextColor() > 0) {
-            mTvTitle.setTextColor(config.getTitleTextColor());
+        val mTvTitle = findViewById<TextView>(R.id.tv_baseUI_header_title)
+        mTvTitle.text = config.titleText
+        if (config.titleTextColor > 0) {
+            mTvTitle.setTextColor(config.titleTextColor)
         }
-        if (config.getTitleTextSize() > 0) {
-            mTvTitle.setTextSize(config.getTitleTextSize());
+        if (config.titleTextSize > 0) {
+            mTvTitle.textSize = config.titleTextSize.toFloat()
         }
 
         // 左边返回按钮
-        ImageView mBtnBack = findViewById(R.id.iv_baseUI_header_back);
-        if (config.getBackBtnRes() > 0) {
-            mBtnBack.setImageResource(config.getBackBtnRes());
+        val mBtnBack = findViewById<ImageView>(R.id.iv_baseUI_header_back)
+        if (config.backBtnRes > 0) {
+            mBtnBack.setImageResource(config.backBtnRes)
         }
-        mBtnBack.setOnClickListener(v -> {
-            if (config.getBackBtnClickListener() == null) {
-                finish();
-                return;
+        mBtnBack.setOnClickListener { v: View? ->
+            if (config.backBtnClickListener == null) {
+                finish()
+                return@setOnClickListener
             }
-            config.getBackBtnClickListener().onClick(v);
-        });
+            config.backBtnClickListener.onClick(v)
+        }
 
         // 右边更多按钮
-        ImageView mBtnMore = findViewById(R.id.iv_baseUI_header_more);
-        if (config.getMoreBtnRes() > 0) {
-            mBtnMore.setImageResource(config.getMoreBtnRes());
+        val mBtnMore = findViewById<ImageView>(R.id.iv_baseUI_header_more)
+        if (config.moreBtnRes > 0) {
+            mBtnMore.setImageResource(config.moreBtnRes)
         }
-        mBtnMore.setOnClickListener(v -> {
-            if (config.getMoreBtnClickListener() == null) {
-                finish();
-                return;
+        mBtnMore.setOnClickListener { v: View? ->
+            if (config.moreBtnClickListener == null) {
+                finish()
+                return@setOnClickListener
             }
-            config.getMoreBtnClickListener().onClick(v);
-        });
+            config.moreBtnClickListener.onClick(v)
+        }
     }
 
-    private void buildCustomTitleView(TitleConfig config) {
-        if (config == null || config.getCustomTitleView() == null) {
-            return;
+    private fun buildCustomTitleView(config: TitleConfig?) {
+        if (config == null || config.customTitleView == null) {
+            return
         }
-        RelativeLayout mTitleWrap = findViewById(R.id.rl_baseUI_header_title);
-        mTitleWrap.removeAllViews();
-        mTitleWrap.addView(config.getCustomTitleView());
+        val mTitleWrap = findViewById<RelativeLayout>(R.id.rl_baseUI_header_title)
+        mTitleWrap.removeAllViews()
+        mTitleWrap.addView(config.customTitleView)
     }
 
     /**
      * 初始化参数
      */
-    protected abstract void initParams();
+    protected abstract fun initParams()
 
     /**
      * 配置页面标题
      */
-    protected TitleConfig configHeaderTitle() {
-        return null;
+    protected open fun configHeaderTitle(): TitleConfig? {
+        return null
     }
 
     /**
@@ -123,26 +121,62 @@ public abstract class SkxBaseActivity<T extends BaseViewModel> extends BaseMvvmA
      *
      * @return 页面布局
      */
-    protected abstract @LayoutRes
-    int getLayoutId();
+    @LayoutRes
+    protected abstract fun layoutId(): Int
 
     /**
      * 初始化view
      */
-    protected abstract void initView();
+    protected abstract fun initView()
 
     /**
      * 事件订阅。可用于监听LiveData 的变化
      */
-    protected void subscribeEvent() {
+    protected open fun subscribeEvent() {}
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onBackPressed()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            onBackPressed();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        logPrinter("onNewIntent")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        logPrinter("onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        logPrinter("onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        logPrinter("onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        logPrinter("onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        logPrinter("onDestroy")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        logPrinter("onRestart")
+    }
+
+    private fun logPrinter(content: String) {
+        Log.i("ActivityLifecycle", "$TAG -> $content")
     }
 }

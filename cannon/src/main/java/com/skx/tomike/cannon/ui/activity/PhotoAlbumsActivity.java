@@ -44,7 +44,7 @@ public class PhotoAlbumsActivity extends SkxBaseActivity<PhotoAlbumViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_photo_albums;
     }
 

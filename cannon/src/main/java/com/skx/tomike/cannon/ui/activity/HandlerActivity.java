@@ -51,7 +51,7 @@ public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements V
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_handler;
     }
 

@@ -34,7 +34,7 @@ class FragmentPracticeActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickL
         return TitleConfig.Builder().setTitleText("fragment demo").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_fragment_practice
     }
 

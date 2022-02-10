@@ -27,7 +27,7 @@ class VectorDrawableActivity : SkxBaseActivity<BaseViewModel?>() {
         return TitleConfig.Builder().setTitleText("矢量图-VectorDrawable").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_vector_drawable
     }
 

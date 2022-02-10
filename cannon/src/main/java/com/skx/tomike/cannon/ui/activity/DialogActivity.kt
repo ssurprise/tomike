@@ -23,7 +23,7 @@ class DialogActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("Dialog 多样化显示").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_dialog
     }
 

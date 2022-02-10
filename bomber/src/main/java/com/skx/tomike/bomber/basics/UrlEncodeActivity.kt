@@ -28,7 +28,7 @@ class UrlEncodeActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("URL编码").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_url_encode
     }
 

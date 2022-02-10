@@ -13,7 +13,6 @@ public class SkxApplication extends Application {
         safeCheck();
         super.onCreate();
         init();
-        registerActivityLifecycleCallbacks(new ActivityLifecycleObserver());
     }
 
     /**
@@ -39,6 +38,8 @@ public class SkxApplication extends Application {
 
     private void init() {
         routerInit();
+        // 注册生命周期管理栈
+        registerActivityLifecycleCallbacks(new ActivityLifecycleObserver());
     }
 
     /**

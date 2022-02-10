@@ -27,7 +27,7 @@ class RebootAppActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("重启App").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_reboot
     }
 

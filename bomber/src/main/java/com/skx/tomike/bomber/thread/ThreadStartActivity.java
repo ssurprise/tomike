@@ -84,7 +84,7 @@ public class ThreadStartActivity extends SkxBaseActivity<BaseViewModel> implemen
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_thread;
     }
 

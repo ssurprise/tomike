@@ -22,7 +22,7 @@ public class CoordinatorLayoutActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_coordinator_layout;
     }
 

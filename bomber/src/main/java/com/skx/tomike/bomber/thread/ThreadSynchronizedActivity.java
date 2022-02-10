@@ -50,7 +50,7 @@ public class ThreadSynchronizedActivity extends SkxBaseActivity<BaseViewModel> i
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_thread_synchronized;
     }
 

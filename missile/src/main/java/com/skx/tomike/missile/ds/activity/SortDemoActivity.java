@@ -45,7 +45,7 @@ public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements 
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_sort_algorithm;
     }
 

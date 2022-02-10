@@ -51,7 +51,7 @@ public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> 
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_recyclerview_as_view_pager;
     }
 

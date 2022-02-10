@@ -26,7 +26,7 @@ class MatrixImageActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListe
         return TitleConfig.Builder().setTitleText("自定义Image 显示位置的ImageView").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_martix_image
     }
 

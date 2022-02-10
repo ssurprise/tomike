@@ -24,18 +24,18 @@ open class BaseFragment : Fragment() {
 
 
     companion object {
-        const val TAG_LIFECYCLE: String = "Lifecycle"
+        const val TAG_LIFECYCLE: String = "FragmentLifecycle"
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.e(TAG_LIFECYCLE, "$TAG -> onAttach")
+        logPrinter("onAttach")
         mContext = context
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e(TAG_LIFECYCLE, "$TAG -> onCreate")
+        logPrinter("onCreate")
     }
 
     override fun onCreateView(
@@ -43,53 +43,57 @@ open class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e(TAG_LIFECYCLE, "$TAG -> onCreateView")
+        logPrinter("onCreateView")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e(TAG_LIFECYCLE, "$TAG -> onViewCreated")
+        logPrinter("onViewCreated")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.e(TAG_LIFECYCLE, "$TAG -> onActivityCreated")
+        logPrinter("onActivityCreated")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.e(TAG_LIFECYCLE, "$TAG -> onStart")
+        logPrinter("onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.e(TAG_LIFECYCLE, "$TAG -> onResume")
+        logPrinter("onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.e(TAG_LIFECYCLE, "$TAG -> onPause")
+        logPrinter("onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.e(TAG_LIFECYCLE, "$TAG -> onStop")
+        logPrinter("onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.e(TAG_LIFECYCLE, "$TAG -> onDestroyView")
+        logPrinter("onDestroyView")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.e(TAG_LIFECYCLE, "$TAG -> onDestroy")
+        logPrinter("onDestroy")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.e(TAG_LIFECYCLE, "$TAG -> onDetach")
+        logPrinter("onDetach")
         mContext = null
+    }
+
+    private fun logPrinter(content: String) {
+        Log.i(TAG_LIFECYCLE, "$TAG -> $content")
     }
 }

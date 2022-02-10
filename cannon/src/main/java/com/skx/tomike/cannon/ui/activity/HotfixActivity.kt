@@ -23,7 +23,7 @@ class HotfixActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("热修复 - 微信Tinker").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_hotfix_tinker
     }
 

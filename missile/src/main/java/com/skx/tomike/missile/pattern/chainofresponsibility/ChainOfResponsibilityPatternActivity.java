@@ -49,7 +49,7 @@ public class ChainOfResponsibilityPatternActivity extends SkxBaseActivity<BaseVi
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_pattern_chain_of_responsibility;
     }
 

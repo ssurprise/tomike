@@ -125,7 +125,7 @@ public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_thread_pool;
     }
 

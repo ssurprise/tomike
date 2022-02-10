@@ -55,7 +55,7 @@ class WithCallbackActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListe
         }
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_with_callback
     }
 

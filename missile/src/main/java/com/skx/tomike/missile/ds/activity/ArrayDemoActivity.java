@@ -31,7 +31,7 @@ public class ArrayDemoActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_data_structure_array;
     }
 

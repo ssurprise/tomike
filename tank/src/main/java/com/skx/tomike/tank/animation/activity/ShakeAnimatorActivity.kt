@@ -34,7 +34,7 @@ class ShakeAnimatorActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("摇晃动画的两种实现").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_shake_animatior
     }
 

@@ -51,7 +51,7 @@ class DynamicMsgLayoutActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("自定义Layout-动态消息DynamicMsgLayout").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_dynamic_msg_layout
     }
 

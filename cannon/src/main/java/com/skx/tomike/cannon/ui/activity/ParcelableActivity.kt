@@ -34,7 +34,7 @@ class ParcelableActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("Parcelable 序列化").create()
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_parcelable
+    override fun layoutId(): Int = R.layout.activity_parcelable
 
     override fun initView() {
         val mTvLogcat = findViewById<TextView>(R.id.tv_parcelable_logcat)

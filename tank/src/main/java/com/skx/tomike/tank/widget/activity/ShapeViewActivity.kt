@@ -20,7 +20,7 @@ class ShapeViewActivity : SkxBaseActivity<BaseViewModel>() {
     override fun initParams() {
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_shape_view
     }
 

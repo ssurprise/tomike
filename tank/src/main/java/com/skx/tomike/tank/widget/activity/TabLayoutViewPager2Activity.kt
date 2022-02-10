@@ -46,7 +46,7 @@ class TabLayoutViewPager2Activity : SkxBaseActivity<BaseViewModel?>() {
         tabList.add("all right")
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_tablayout_viewpager2
     }
 

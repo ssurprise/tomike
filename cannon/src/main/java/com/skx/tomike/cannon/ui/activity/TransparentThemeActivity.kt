@@ -17,7 +17,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_TRANSPARENT_THEME
 class TransparentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
 
     override fun initParams() {}
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_theme_transparent
     }
 

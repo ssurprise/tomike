@@ -33,7 +33,7 @@ public class ProxyPatternActivity extends SkxBaseActivity<BaseViewModel> impleme
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_pattern_proxy;
     }
 

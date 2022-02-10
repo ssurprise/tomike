@@ -72,7 +72,7 @@ class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
         return TitleConfig.Builder().setTitleText("音乐播放器").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_music_player
     }
 

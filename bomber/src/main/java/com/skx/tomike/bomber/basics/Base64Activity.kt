@@ -27,7 +27,7 @@ class Base64Activity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("Base64 加密/解密").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_base64_encode
     }
 

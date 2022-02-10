@@ -32,7 +32,7 @@ public class NestedScrollViewViewPagerActivity extends SkxBaseActivity<BaseViewM
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_nestedscrollview_viewpager;
     }
 

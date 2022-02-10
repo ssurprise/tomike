@@ -22,7 +22,7 @@ class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
     override fun initParams() {
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_coroutine
+    override fun layoutId(): Int = R.layout.activity_coroutine
 
     override fun configHeaderTitle(): TitleConfig {
         return TitleConfig.Builder().setTitleText("kotlin-协程").create()

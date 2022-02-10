@@ -39,7 +39,7 @@ class LayoutTransitionActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("LayoutTransition 实现子view动画").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_layout_transition
     }
 
