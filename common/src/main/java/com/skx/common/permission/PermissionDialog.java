@@ -1,17 +1,16 @@
 package com.skx.common.permission;
 
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.skx.common.R;
@@ -28,7 +27,6 @@ public class PermissionDialog extends DialogFragment {
 
     private TextView mTvTitle;
     private TextView mTvText;
-    private LinearLayout mLlDescWrapper;
     private TextView mTvDesc;
     private TextView mTvCancelBtn;
     private TextView mTvConfirmBtn;
@@ -82,10 +80,9 @@ public class PermissionDialog extends DialogFragment {
     private void initView(View root) {
         mTvTitle = root.findViewById(R.id.tv_permission_dialog_title);
         mTvText = root.findViewById(R.id.tv_permission_dialog_text);
-        mLlDescWrapper = root.findViewById(R.id.ll_permission_desc_wrap);
         mTvDesc = root.findViewById(R.id.tv_permission_desc);
-        mTvCancelBtn = root.findViewById(R.id.permission_dialog_btn_cancel);
-        mTvConfirmBtn = root.findViewById(R.id.permission_dialog_btn_confirm);
+        mTvCancelBtn = root.findViewById(R.id.tv_permission_dialog_btn_cancel);
+        mTvConfirmBtn = root.findViewById(R.id.tv_permission_dialog_btn_confirm);
 
 //        mTvCancelBtn.setOnClickListener();
 //        mTvConfirmBtn.setOnClickListener();
