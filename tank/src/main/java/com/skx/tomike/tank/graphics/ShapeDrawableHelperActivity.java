@@ -44,7 +44,7 @@ public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> 
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_shape_drawable_helper;
     }
 

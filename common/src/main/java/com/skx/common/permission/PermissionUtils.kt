@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.text.TextUtils
+import android.util.Log
 import androidx.core.app.AppOpsManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -18,11 +19,24 @@ import androidx.fragment.app.FragmentManager
  */
 object PermissionUtils {
 
-    fun requestPermission(
+    private const val TAG = "PermissionUtils"
+
+    private fun requestPermission(
         fragmentManager: FragmentManager,
         permission: Array<String>?,
         listener: PermissionResultListener?
     ) {
+        if (permission == null || permission.isEmpty()) {
+            Log.d(TAG, "当前没有需要动态申请的权限")
+            return
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            // 6.0下安装时默认同意全部权限
+//            callBackResult()
+            Log.d(TAG, "6.0以下系统，无需动态申请权限")
+        }
+
         var fragment = fragmentManager.findFragmentByTag("permission_fragment")
         val isNewInstance = fragment == null
         if (isNewInstance) {
@@ -45,7 +59,7 @@ object PermissionUtils {
     /**
      * 检查权限
      *
-     * @param cx         上下文
+     * @param activity   上下文
      * @param permission 申请的权限
      * @param listener   授权结果回调
      */
@@ -56,6 +70,21 @@ object PermissionUtils {
     ) {
         requestPermission(activity.supportFragmentManager, permission, listener)
     }
+
+    /**
+     * 检测清单文件中是否注册了该权限
+     *
+     * @param context
+     * @param permissions
+     * @return
+     */
+//    fun isPermissionInManifest(context: Context, permissions: Array<String?>): Boolean {
+//        var result = true
+//        for (permission in permissions) {
+//            result = result and XZPermissionUtils.getAllPermission(context).contains(permission)
+//        }
+//        return result
+//    }
 
     /**
      * 检查目标权限是否已被授权

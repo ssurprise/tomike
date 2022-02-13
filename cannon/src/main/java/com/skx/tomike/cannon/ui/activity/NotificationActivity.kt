@@ -34,7 +34,7 @@ class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("通知权限").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_notification
     }
 

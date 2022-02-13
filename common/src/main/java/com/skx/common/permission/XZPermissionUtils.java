@@ -16,9 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.AppOpsManagerCompat;
 import androidx.core.content.ContextCompat;
 
-import com.xiaozhu.lib.common.permission.listener.PermissionListener;
-import com.xiaozhu.lib.common.permission.listener.RationaleListener;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -72,11 +69,11 @@ public class XZPermissionUtils {
 
     private static final String[] GROUP_STORAGE = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
 
-    public static void checkPermission(Context cx, String[] permission, PermissionListener listener) {
+    public static void checkPermission(Context cx, String[] permission, PermissionResultListener listener) {
         checkPermission(cx, true, permission, listener);
     }
 
-    public static void checkPermission(Context cx, boolean showTipAtFirst, String[] permission, PermissionListener listener) {
+    public static void checkPermission(Context cx, boolean showTipAtFirst, String[] permission, PermissionResultListener listener) {
         XZPermissionUtils
                 .with(cx, showTipAtFirst)
                 .permission(permission)

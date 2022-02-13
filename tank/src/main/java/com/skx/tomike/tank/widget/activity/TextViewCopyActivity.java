@@ -35,7 +35,7 @@ public class TextViewCopyActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_set_text_is_selectable_test;
     }
 

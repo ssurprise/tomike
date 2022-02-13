@@ -45,7 +45,7 @@ class TextWordSpaceActivity : SkxBaseActivity<BaseViewModel?>() {
 
     override fun initParams() {}
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_text_view_word_spacing
     }
 

@@ -25,7 +25,7 @@ class CircularRevealActivity : SkxBaseActivity<BaseViewModel>() {
     override fun initParams() {
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_circular_reveal
     }
 

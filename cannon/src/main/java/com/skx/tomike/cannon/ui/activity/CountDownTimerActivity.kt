@@ -68,7 +68,7 @@ class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("倒计时功能").create()
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_count_down_timer
+    override fun layoutId(): Int = R.layout.activity_count_down_timer
 
     override fun initView() {
         mEtTime.setText(mTime.toString())

@@ -29,7 +29,7 @@ class SwipeRefreshLayoutActivity : SkxBaseActivity<SwipeRefreshViewModel>(), OnR
         mData.addAll(listOf("Java", "Javascript", "C++", "Ruby", "Json", "HTML"))
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_swipe_refresh_layout
     }
 

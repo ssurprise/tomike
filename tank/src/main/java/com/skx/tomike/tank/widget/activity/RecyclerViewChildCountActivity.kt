@@ -47,7 +47,7 @@ class RecyclerViewChildCountActivity : SkxBaseActivity<BaseViewModel?>(), View.O
         return TitleConfig.Builder().setTitleText("RecyclerView child count 测试").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_recyclerview_child_count
     }
 

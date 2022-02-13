@@ -30,7 +30,7 @@ public class DoubleCalculateActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_double_format;
     }
 

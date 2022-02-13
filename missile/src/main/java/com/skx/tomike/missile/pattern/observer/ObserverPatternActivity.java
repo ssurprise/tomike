@@ -29,7 +29,7 @@ public class ObserverPatternActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_pattern_observer;
     }
 

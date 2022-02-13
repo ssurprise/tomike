@@ -38,7 +38,7 @@ class ServiceDemoActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListen
         return TitleConfig.Builder().setTitleText("服务Service").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_service_test
     }
 

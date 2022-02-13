@@ -40,7 +40,7 @@ public class PicturePreviewActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_picture_preview;
     }
 

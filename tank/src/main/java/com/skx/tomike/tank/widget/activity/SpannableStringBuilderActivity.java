@@ -43,7 +43,7 @@ public class SpannableStringBuilderActivity extends SkxBaseActivity<BaseViewMode
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_spannable_string_builder;
     }
 

@@ -46,7 +46,7 @@ class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener
         return TitleConfig.Builder().setTitleText("打开指定的系统目录").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_open_file
     }
 

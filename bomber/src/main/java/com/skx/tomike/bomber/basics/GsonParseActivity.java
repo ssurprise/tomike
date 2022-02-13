@@ -33,7 +33,7 @@ public class GsonParseActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_url_encode;
     }
 

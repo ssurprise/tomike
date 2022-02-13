@@ -23,7 +23,7 @@ class EditTextSingleMultiActivity : SkxBaseActivity<BaseViewModel?>() {
         return TitleConfig.Builder().setTitleText("EditText单行、多行显示").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_edit_text_single_multi_lines
     }
 

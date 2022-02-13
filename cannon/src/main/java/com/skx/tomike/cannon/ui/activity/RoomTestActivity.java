@@ -34,7 +34,7 @@ public class RoomTestActivity extends SkxBaseActivity<RecentlyBrowsedViewModel> 
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_room_test;
     }
 

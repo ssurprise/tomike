@@ -56,7 +56,7 @@ public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_vp_infinite_loop;
     }
 

@@ -51,7 +51,7 @@ public class ViewPager2Activity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_androidx_view_pager2;
     }
 

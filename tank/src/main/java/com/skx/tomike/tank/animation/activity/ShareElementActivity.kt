@@ -21,7 +21,7 @@ class ShareElementActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListe
 
     override fun initParams() {}
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_share_element
     }
 

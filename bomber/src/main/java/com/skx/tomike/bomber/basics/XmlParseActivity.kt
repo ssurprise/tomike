@@ -48,7 +48,7 @@ class XmlParseActivity : SkxBaseActivity<BaseViewModel>() {
     override fun initParams() {
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_xml_parse
     }
 

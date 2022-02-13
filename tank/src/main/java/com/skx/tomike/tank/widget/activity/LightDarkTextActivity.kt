@@ -36,7 +36,7 @@ class LightDarkTextActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("EditText 明暗文切换").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_light_dark_text
     }
 

@@ -47,7 +47,7 @@ class MementoPatternActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickLis
         mPlayer.equipment.add(EQUIPMENT_GRENADE)
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_pattern_memento
     }
 

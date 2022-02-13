@@ -35,7 +35,7 @@ public class StatusBarNavigationBarActivity extends SkxBaseActivity<BaseViewMode
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_statusbar_navigation_height;
     }
 

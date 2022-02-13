@@ -16,7 +16,7 @@ class ShadowActivity : SkxBaseActivity<BaseViewModel?>() {
         return TitleConfig.Builder().setTitleText("投影").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_shadow
     }
 

@@ -20,7 +20,7 @@ class OutterStartActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("打开外部APP").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_outter_start
     }
 

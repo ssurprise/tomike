@@ -42,7 +42,7 @@ class TranslucentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
     }
 
     override fun initParams() {}
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_theme_translucent
     }
 

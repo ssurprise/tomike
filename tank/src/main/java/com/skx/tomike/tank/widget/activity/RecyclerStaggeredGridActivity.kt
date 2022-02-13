@@ -82,7 +82,7 @@ class RecyclerStaggeredGridActivity : SkxBaseActivity<BaseViewModel?>() {
         return TitleConfig.Builder().setTitleText("RecyclerView 瀑布流").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_recyclerview_staggered_grid
     }
 

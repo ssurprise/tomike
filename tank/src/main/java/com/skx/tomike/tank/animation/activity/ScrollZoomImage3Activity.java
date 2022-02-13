@@ -33,7 +33,7 @@ public class ScrollZoomImage3Activity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_scroll_zoom_image3;
     }
 

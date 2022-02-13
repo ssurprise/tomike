@@ -23,7 +23,7 @@ class RadioGroupActivity : SkxBaseActivity<BaseViewModel>() {
         return TitleConfig.Builder().setTitleText("单选-RadioGroup").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_radio_group
     }
 

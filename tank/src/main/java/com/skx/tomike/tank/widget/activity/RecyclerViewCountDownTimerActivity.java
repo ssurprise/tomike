@@ -55,7 +55,7 @@ public class RecyclerViewCountDownTimerActivity extends SkxBaseActivity<BaseView
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_recyclerview_countdown_timer;
     }
 

@@ -50,7 +50,7 @@ class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(),
         return TitleConfig.Builder().setTitleText("RecyclerView 滑动到指定位置").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_recyclerview_scroll_to_position
     }
 

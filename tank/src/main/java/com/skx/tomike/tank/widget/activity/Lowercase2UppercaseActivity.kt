@@ -28,7 +28,7 @@ class Lowercase2UppercaseActivity : SkxBaseActivity<BaseViewModel?>() {
         return TitleConfig.Builder().setTitleText("EditText 小写字母转大写").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_lowercase_2_uppercase
     }
 

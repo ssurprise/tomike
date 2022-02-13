@@ -41,7 +41,7 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_device_information;
     }
 

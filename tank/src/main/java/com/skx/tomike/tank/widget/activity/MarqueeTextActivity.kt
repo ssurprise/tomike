@@ -35,7 +35,7 @@ class MarqueeTextActivity : SkxBaseActivity<BaseViewModel>() {
     override fun initParams() {
     }
 
-    override fun getLayoutId() = R.layout.activity_marquee_text
+    override fun layoutId() = R.layout.activity_marquee_text
 
     override fun configHeaderTitle(): TitleConfig {
         return TitleConfig.Builder().setTitleText("TextView 跑马灯效果").create()

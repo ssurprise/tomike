@@ -48,7 +48,7 @@ public class NavigationBarActivity extends SkxBaseActivity<BaseViewModel> implem
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_navigation_bar;
     }
 

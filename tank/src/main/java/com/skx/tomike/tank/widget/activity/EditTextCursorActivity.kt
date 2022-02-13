@@ -22,7 +22,7 @@ class EditTextCursorActivity : SkxBaseActivity<BaseViewModel?>() {
         return TitleConfig.Builder().setTitleText("EditText 光标修改").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_edit_text_cursor
     }
 

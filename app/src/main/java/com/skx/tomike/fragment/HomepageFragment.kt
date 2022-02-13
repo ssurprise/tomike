@@ -30,7 +30,11 @@ class HomepageFragment : BaseFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_homepage, container, false)
         mIvMainImg1 = view.findViewById(R.id.homepage_main_1)
         mIvMainImg2 = view.findViewById(R.id.homepage_main_2)

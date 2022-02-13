@@ -36,7 +36,7 @@ class LifecycleActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListene
         return TitleConfig.Builder().setTitleText("Lifecycle demo").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_lifecycle_test
     }
 

@@ -40,7 +40,7 @@ public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_retrofit;
     }
 

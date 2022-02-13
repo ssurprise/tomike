@@ -30,7 +30,7 @@ class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickLi
         return TitleConfig.Builder().setTitleText("补间动画").create()
     }
 
-    override fun getLayoutId(): Int {
+    override fun layoutId(): Int {
         return R.layout.activity_tween_animation
     }
 

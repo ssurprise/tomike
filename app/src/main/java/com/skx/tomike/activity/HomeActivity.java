@@ -1,10 +1,8 @@
 package com.skx.tomike.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -21,8 +19,6 @@ import com.skx.tomike.bean.HomepageNavigationTabBo;
 import com.skx.tomike.fragment.CatalogFragment;
 import com.skx.tomike.fragment.HomepageFragment;
 import com.skx.tomike.fragment.PersonalFragment;
-import com.skx.tomike.service.LocalService;
-import com.skx.tomike.service.RemoteService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +52,7 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_main;
     }
 
@@ -85,53 +81,9 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        Log.e("Lifecycle", TAG + " - onNewIntent");
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("Lifecycle", TAG + " - onCreate");
         renderView();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.e("Lifecycle", TAG + " - onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.e("Lifecycle", TAG + " - onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e("Lifecycle", TAG + " - onStop");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e("Lifecycle", TAG + " - onStop");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e("Lifecycle", TAG + " - onDestroy");
-    }
-
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.e("Lifecycle", TAG + " - onRestart");
     }
 
     private void renderView() {

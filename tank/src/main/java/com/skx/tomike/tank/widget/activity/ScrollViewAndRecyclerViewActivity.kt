@@ -36,7 +36,7 @@ class ScrollViewAndRecyclerViewActivity : SkxBaseActivity<BaseViewModel?>() {
         }
     }
 
-    override fun getLayoutId() = R.layout.activity_scrollview_and_recyclerview
+    override fun layoutId() = R.layout.activity_scrollview_and_recyclerview
 
     override fun initView() {
         mRvShow = findViewById(R.id.rv_scrollViewAndRecyclerview_show)

@@ -50,7 +50,7 @@ public class ViewPagerWrapContentActivity extends SkxBaseActivity<BaseViewModel>
     }
 
     @Override
-    protected int getLayoutId() {
+    protected int layoutId() {
         return R.layout.activity_view_pager_wrap_content;
     }
 
