@@ -5,11 +5,10 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import com.skx.common.base.BaseFragment
 
 /**
  * 描述 : 权限
@@ -17,16 +16,16 @@ import androidx.fragment.app.Fragment
  * 版本 : V1
  * 创建时间 : 2020/9/16 5:21 PM
  */
-class PermissionFragment : Fragment() {
+class PermissionFragment : BaseFragment() {
 
-    private var mContext: Context? = null
+//    private var mContext: Context? = null
 
     /**
      * 申请的权限
      */
     private var mPermissions: Array<String>? = null
+//    private val mResult = mutableMapOf<String, Boolean>()
     private var mActivityResultLauncher: ActivityResultLauncher<Array<String>>? = null
-    private val mResult = mutableMapOf<String, Boolean>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,57 +40,77 @@ class PermissionFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initParams()
-        reqPermissions()
     }
 
     private fun initParams() {
-        arguments?.takeIf {
-            it.containsKey(KEY_PERMISSION)
-        }?.run {
-            mPermissions = this.getStringArray(KEY_PERMISSION)
-        }
-
         mActivityResultLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
+                ActivityResultContracts.RequestMultiplePermissions()
         ) { result: Map<String?, Boolean?> ->
+            val deniedList: MutableList<String> = mutableListOf()
             result.forEach {
                 it.key?.run {
                     Log.d(TAG, "授权结果: ${it.key}->${it.value}")
-                    mResult[this] = it.value ?: false
+//                    mResult[this] = it.value ?: false
+                    if (false == it.value) {
+                        deniedList.add(this)
+                    }
                 }
             }
+            // 1.拒绝的权限
+            if (deniedList.isNotEmpty()) {
+                PermissionUtils.mCallback?.onFailed(deniedList.toTypedArray())
+                return@registerForActivityResult
+            }
+            // 2.全部同意
+            if (deniedList.isEmpty()) {
+                PermissionUtils.mCallback?.onSucceed(mPermissions ?: arrayOf())
+            }
         }
     }
 
-    private fun reqPermissions() {
-        if (Build.VERSION.SDK_INT < 23) {
-            Toast.makeText(mContext, "6.0 以下", Toast.LENGTH_SHORT).show()
+
+    fun reqPermissions(permissions: Array<String>?) {
+        if (permissions == null || permissions.isEmpty()) {
+            Log.d(TAG, "没有需要动态申请的权限")
             return
         }
-        if (mPermissions == null || mPermissions!!.isEmpty()) return
+        if (Build.VERSION.SDK_INT < 23) {
+            Log.d(TAG, "6.0 以下，无需申请权限")
+            return
+        }
 
         val needRequest = mutableListOf<String>()
-        mPermissions?.forEach {
+        permissions.forEach {
             if (!checkPermission(it)) {
-                mResult[it] = false
+//                mResult[it] = false
                 needRequest.add(it)
             } else {
-                mResult[it] = false
+                // 权限已经授权，无需再次申请
+//                mResult[it] = false
             }
         }
 
-        // 请求权限处理
-        if (needRequest.size > 0) {
-            val permissions = needRequest.toTypedArray()
-            Log.d(TAG, "需要申请的权限: $permissions")
-            mActivityResultLauncher?.launch(permissions)
+        if (needRequest.size <= 0) {
+            Log.d(TAG, "目标权限均已全部授权过")
+            PermissionUtils.mCallback?.onSucceed(mPermissions ?: arrayOf())
+            return
         }
+
+        mPermissions = permissions
+        val needReq = needRequest.toTypedArray()
+        Log.d(TAG, "需要申请的权限: $needReq")
+        mActivityResultLauncher?.launch(needReq)
     }
 
+    /**
+     * 检查是否该权限是否已经授权
+     *
+     * @param permission 目标权限
+     */
     private fun checkPermission(permission: String): Boolean {
         val result = ContextCompat.checkSelfPermission(
-            mContext!!,
-            permission
+                mContext!!,
+                permission
         ) == PackageManager.PERMISSION_GRANTED
         Log.d(TAG, "checkPermission: ${permission}->${result}")
         return result

@@ -164,10 +164,10 @@ public class XZPermissionRequest {
         if (mCallback != null) {
             mDeniedPermissions = XZPermissionUtils.getDeniedPermissions(mContext, mDeniedPermissions);
             if (!mDeniedPermissions.isEmpty()) {
-                mCallback.onFailed(mRequestCode,
+                mCallback.onFailed(
                         mDeniedPermissions.toArray(new String[mDeniedPermissions.size()]));
             } else {
-                mCallback.onSucceed(mRequestCode, mPermissions);
+                mCallback.onSucceed(mPermissions);
             }
         }
         release();
