@@ -71,7 +71,7 @@ class DynamicMsgLayoutActivity : SkxBaseActivity<BaseViewModel>() {
             }
         }
         mBtnSend.setOnClickListener {
-            root.sendMessage(msgPos, mEtMsgText.text.toString())
+            root.sendTextMessage(msgPos, mEtMsgText.text.toString())
         }
     }
 
