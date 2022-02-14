@@ -1,11 +1,9 @@
 package com.skx.tomike.cannon.ui.activity;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
-
 import android.graphics.Rect;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -23,6 +21,8 @@ import com.skx.common.utils.KeyboardTool;
 import com.skx.common.utils.ScreenUtilKt;
 import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannon.R;
+
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
 
 /**
  * Created by shiguotao on 2016/7/19.
@@ -61,6 +61,11 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
     private EditText mEditText;
     private FrameLayout fl_keyboard_content;
 
+    private final int STATE_NONE = 0;
+    private final int STATE_KEYBOARD = 1;
+    private final int STATE_EMOJI = 2;
+    private int mState = STATE_NONE;
+
     private int keyboardHeight = 0;
 
     @Override
@@ -89,12 +94,16 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
         mEditText.setOnFocusChangeListener((v, hasFocus) -> {
             Log.e(TAG, "EditText hasFocus ->" + hasFocus);
             if (hasFocus) {
-                showInputKeyboard();
+                updateState(STATE_KEYBOARD);
             }
         });
 
-        mIvEmojiBtn.setOnClickListener(v -> showEmojiView());
-        mIvSendBtn.setOnClickListener(v -> showInputKeyboard());
+        mIvEmojiBtn.setOnClickListener(v -> {
+            updateState(STATE_EMOJI);
+        });
+        mIvSendBtn.setOnClickListener(v -> {
+
+        });
         mRlRoot.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutListener);
     }
 
@@ -106,7 +115,7 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
             mRlRoot.getWindowVisibleDisplayFrame(r);
 
             int screenHeight = ScreenUtilKt.getScreenHeight(mActivity);
-            int heightDifference = screenHeight - (r.bottom - r.top);
+            int heightDifference = screenHeight - (r.bottom - r.top) - ScreenUtilKt.getStatusBarHeight(mActivity);
             boolean isKeyboardShowing = heightDifference > screenHeight / 3; //如果之前软键盘状态为显示，现在为关闭，或者之前为关闭，现在为显示，则表示软键盘的状态发生了改变
 
             if (isKeyboardShowing) {
@@ -122,6 +131,22 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
         }
     };
 
+    private void updateState(int newState) {
+        if (mState == newState) {
+            return;
+        }
+        mState = newState;
+        switch (mState) {
+            case STATE_KEYBOARD:
+                showInputKeyboard();
+                break;
+            case STATE_EMOJI:
+                showEmojiView();
+            default:
+                break;
+        }
+    }
+
     /*
      * 显示输入法
      */
@@ -130,7 +155,7 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
         mEditText.requestFocus();
         //打开输入法
         KeyboardTool.getInstances(KeyboardActivity.this).showKeyboard(mEditText);
-        new Handler().postDelayed(() -> {
+        new Handler(Looper.myLooper()).postDelayed(() -> {
             fl_keyboard_content.setVisibility(View.GONE);
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }, 300);
@@ -148,28 +173,6 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
             //关闭键盘
             KeyboardTool.getInstances(KeyboardActivity.this).hideKeyboard(mEditText);
         }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            View view = getCurrentFocus();
-            if (isHideInput(view, ev)) {
-                KeyboardTool.getInstances(KeyboardActivity.this).toggleKeyboard();
-            }
-        }
-        return super.dispatchTouchEvent(ev);
-    }
-
-    // 判定是否需要隐藏
-    private boolean isHideInput(View v, MotionEvent ev) {
-        if ((v instanceof EditText)) {
-            int[] l = {0, 0};
-            v.getLocationInWindow(l);
-            int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left + v.getWidth();
-            return (ev.getX() > left && ev.getX() < right && ev.getY() > top && ev.getY() < bottom);
-        }
-        return false;
     }
 
     @Override

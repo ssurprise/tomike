@@ -9,6 +9,7 @@
         android:id="@+id/rv_keyboard_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/image_02"
         android:layout_above="@id/rl_keyboard_ke"
         android:layout_alignParentTop="true" />
 
