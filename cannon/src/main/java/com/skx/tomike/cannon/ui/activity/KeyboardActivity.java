@@ -87,9 +87,10 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
         fl_keyboard_content = findViewById(R.id.fl_keyboard_content);
 
         mEditText.setOnFocusChangeListener((v, hasFocus) -> {
-//            if (hasFocus) {
-//                showInputKeyboard();
-//            }
+            Log.e(TAG, "EditText hasFocus ->" + hasFocus);
+            if (hasFocus) {
+                showInputKeyboard();
+            }
         });
 
         mIvEmojiBtn.setOnClickListener(v -> showEmojiView());
@@ -125,6 +126,7 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
      * 显示输入法
      */
     private void showInputKeyboard() {
+        Log.e(TAG, "showInputKeyboard");
         mEditText.requestFocus();
         //打开输入法
         KeyboardTool.getInstances(KeyboardActivity.this).showKeyboard(mEditText);
@@ -135,6 +137,7 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
     }
 
     private void showEmojiView() {
+        Log.e(TAG, "showEmojiView");
         if (fl_keyboard_content.getVisibility() != View.VISIBLE) {
             mEditText.clearFocus();
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
