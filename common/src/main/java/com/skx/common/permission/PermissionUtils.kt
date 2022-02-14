@@ -1,15 +1,19 @@
 package com.skx.common.permission
 
+import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.AppOpsManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import java.util.*
 
 /**
  * 描述 : 权限工具类
@@ -21,10 +25,13 @@ object PermissionUtils {
 
     private const val TAG = "PermissionUtils"
 
+    var mCallback: PermissionResultListener? = null
+
+
     private fun requestPermission(
-        fragmentManager: FragmentManager,
-        permission: Array<String>?,
-        listener: PermissionResultListener?
+            fragmentManager: FragmentManager,
+            permission: Array<String>?,
+            listener: PermissionResultListener?
     ) {
         if (permission == null || permission.isEmpty()) {
             Log.d(TAG, "当前没有需要动态申请的权限")
@@ -33,27 +40,30 @@ object PermissionUtils {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // 6.0下安装时默认同意全部权限
-//            callBackResult()
             Log.d(TAG, "6.0以下系统，无需动态申请权限")
+            listener?.onSucceed(permission)
+            return
         }
-
-        var fragment = fragmentManager.findFragmentByTag("permission_fragment")
-        val isNewInstance = fragment == null
-        if (isNewInstance) {
+        this.mCallback = listener
+        var fragment = fragmentManager.findFragmentByTag("tomike_permission_fragment")
+        if (fragment == null) {
             fragment = PermissionFragment.getInstance(permission)
             fragmentManager
-                .beginTransaction()
-                .add(fragment, "permission_fragment")
-                .commitNow()
+                    .beginTransaction()
+                    .add(fragment, "tomike_permission_fragment")
+                    .commitNow()
+        }
+        if (fragment is PermissionFragment) {
+            fragment.reqPermissions(permission)
         }
     }
 
     fun requestPermission(
-        fragment: Fragment,
-        permission: Array<String>?,
-        listener: PermissionResultListener?
+            fragment: Fragment,
+            permission: Array<String>?,
+            listener: PermissionResultListener?
     ) {
-        requestPermission(fragment.parentFragmentManager, permission, listener)
+        requestPermission(fragment.childFragmentManager, permission, listener)
     }
 
     /**
@@ -64,27 +74,12 @@ object PermissionUtils {
      * @param listener   授权结果回调
      */
     fun requestPermission(
-        activity: FragmentActivity,
-        permission: Array<String>?,
-        listener: PermissionResultListener?
+            activity: FragmentActivity,
+            permission: Array<String>?,
+            listener: PermissionResultListener?
     ) {
         requestPermission(activity.supportFragmentManager, permission, listener)
     }
-
-    /**
-     * 检测清单文件中是否注册了该权限
-     *
-     * @param context
-     * @param permissions
-     * @return
-     */
-//    fun isPermissionInManifest(context: Context, permissions: Array<String?>): Boolean {
-//        var result = true
-//        for (permission in permissions) {
-//            result = result and XZPermissionUtils.getAllPermission(context).contains(permission)
-//        }
-//        return result
-//    }
 
     /**
      * 检查目标权限是否已被授权
@@ -118,14 +113,45 @@ object PermissionUtils {
             if (TextUtils.isEmpty(op)) {
                 continue
             }
-            var result = AppOpsManagerCompat.noteProxyOp(context, op!!, context.packageName)
-            if (result == AppOpsManagerCompat.MODE_IGNORED) return false
-            result = ContextCompat.checkSelfPermission(context, permission)
-            if (result != PackageManager.PERMISSION_GRANTED) {
+            if (AppOpsManagerCompat.MODE_IGNORED == AppOpsManagerCompat.noteProxyOp(context, op!!, context.packageName)) {
+                return false
+            }
+            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                 return false
             }
         }
         return true
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun getDeniedPermissions(context: Context?, permissions: List<String>): List<String>? {
+        val deniedList: MutableList<String> = ArrayList(1)
+        for (permission in permissions) {
+            if (isSpecialPermission(permission)) {
+                if (Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission, ignoreCase = true)
+                        && !Settings.canDrawOverlays(context)) {
+                    deniedList.add(permission) // 特殊权限
+                }
+                if (Manifest.permission.WRITE_SETTINGS.equals(permission, ignoreCase = true)
+                        && !Settings.System.canWrite(context)) {
+                    deniedList.add(permission) // 特殊权限
+                }
+            } else if (ContextCompat.checkSelfPermission(context!!, permission) != PackageManager.PERMISSION_GRANTED) {
+                deniedList.add(permission)
+            }
+        }
+        return deniedList
+    }
+
+    /**
+     * 判断是否为特殊权限
+     *
+     * @param permission
+     * @return
+     */
+    private fun isSpecialPermission(permission: String): Boolean {
+        return (Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission, ignoreCase = true)
+                || Manifest.permission.WRITE_SETTINGS.equals(permission, ignoreCase = true))
     }
 
     /*

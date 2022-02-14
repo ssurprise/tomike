@@ -57,13 +57,13 @@ public class PermissionRationaleDialog extends Dialog {
         setContentView(R.layout.permission_dialog_layout);
         // title
         boolean showTitle = !TextUtils.isEmpty(mTitle);
-        TextView tv_title = findViewById(R.id.dialog_title);
+        TextView tv_title = findViewById(R.id.tv_permission_dialog_title);
         if (showTitle) {
             tv_title.setText(mTitle);
         }
         tv_title.setVisibility(showTitle ? View.VISIBLE : View.GONE);
         // msg
-        TextView tv_msg = findViewById(R.id.dialog_text);
+        TextView tv_msg = findViewById(R.id.tv_permission_dialog_text);
         tv_msg.setText(mMsg);
 
         // 权限信息
@@ -97,7 +97,7 @@ public class PermissionRationaleDialog extends Dialog {
 
         // 确认
         boolean showBtnSure = !TextUtils.isEmpty(positiveBtnText);
-        TextView btn_sure = findViewById(R.id.dialog_sure);
+        TextView btn_sure = findViewById(R.id.tv_permission_dialog_btn_confirm);
         if (showBtnSure) {
             btn_sure.setText(positiveBtnText);
             if (posBtnTextColor != 0) {
@@ -117,7 +117,7 @@ public class PermissionRationaleDialog extends Dialog {
 
         // 取消
         boolean showBtnCancel = !TextUtils.isEmpty(negativeBtnText);
-        TextView btn_cancel = findViewById(R.id.dialog_cancel);
+        TextView btn_cancel = findViewById(R.id.tv_permission_dialog_btn_cancel);
         if (showBtnCancel) {
             btn_cancel.setText(negativeBtnText);
             if (negBtnTextColor != 0) {

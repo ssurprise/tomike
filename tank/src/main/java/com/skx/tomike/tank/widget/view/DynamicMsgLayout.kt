@@ -51,6 +51,9 @@ class DynamicMsgLayout : ViewGroup {
     companion object {
         private const val TAG = "DynamicMsgLayout"
         private const val DISPLAY_TIME = 3000
+
+        private const val MSG_TYPE_TEXT = 0
+        private const val MSG_TYPE_EMOJI = 1
     }
 
     // 消息缓存池
@@ -83,7 +86,7 @@ class DynamicMsgLayout : ViewGroup {
                         val diff = System.currentTimeMillis() - message.beginTime
                         if (diff >= DISPLAY_TIME) {
                             Log.e(
-                                TAG, "倒计时->size:${messages.size} index:${i} diff:${diff} 已到显示时长，删除"
+                                    TAG, "倒计时->size:${messages.size} index:${i} diff:${diff} 已到显示时长，删除"
                             )
                             val bucket = msg2bucket[message]
                             bucket?.messages?.poll()?.run {
@@ -104,9 +107,9 @@ class DynamicMsgLayout : ViewGroup {
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+            context,
+            attrs,
+            defStyleAttr
     )
 
     override fun onAttachedToWindow() {
@@ -185,7 +188,7 @@ class DynamicMsgLayout : ViewGroup {
         // 从本地消息队列里取消息，消息中绑定有对应的view，确保只绘制在队列里的view。
         for (i in 0 until messages.size) {
             val message = messages[i]
-            val child = message.view
+            val child = message.tvTextMsg
             // 跳过View.GONE的子View
             if (child == null || GONE == child.visibility) {
                 continue
@@ -198,6 +201,10 @@ class DynamicMsgLayout : ViewGroup {
             // 布局消息view
             msgViewLayout(child, bucket, width)
         }
+    }
+
+    override fun generateLayoutParams(attrs: AttributeSet?): LayoutParams {
+        return MarginLayoutParams(context, attrs)
     }
 
     private fun msgViewLayout(child: View, bucket: Bucket?, parentWidth: Int) {
@@ -227,23 +234,31 @@ class DynamicMsgLayout : ViewGroup {
     }
 
     private fun indicatorViewLayout(
-        child: View?,
-        bucket: Bucket?
+            child: View?,
+            bucket: Bucket?
     ) {
         if (bucket == null) return
         child?.run {
             val childWidth = child.measuredWidth
             val childHeight = child.measuredHeight
             this.layout(
-                bucket.x - childWidth / 2,
-                bucket.y,
-                bucket.x + childWidth / 2,
-                bucket.y + childHeight
+                    bucket.x - childWidth / 2,
+                    bucket.y,
+                    bucket.x + childWidth / 2,
+                    bucket.y + childHeight
             )
         }
     }
 
-    fun sendMessage(bucketIndex: Int, msg: String) {
+    fun sendTextMessage(bucketIndex: Int, msg: String) {
+        sendMessage(bucketIndex, msg, MSG_TYPE_TEXT)
+    }
+
+    fun sendEmojiMessage(bucketIndex: Int, msg: String) {
+        sendMessage(bucketIndex, msg, MSG_TYPE_EMOJI)
+    }
+
+    private fun sendMessage(bucketIndex: Int, msg: String, msgType: Int) {
         Log.e(TAG, "sendMessage -> START msg:${msg}")
         if (TextUtils.isEmpty(msg)) {
             return
@@ -252,7 +267,7 @@ class DynamicMsgLayout : ViewGroup {
         val message = getMessage().apply {
             this.text = msg
             this.beginTime = System.currentTimeMillis()
-            this.view?.text = msg
+            this.tvTextMsg?.text = msg
         }
 
         // 2.获取消息所属的桶
@@ -279,20 +294,50 @@ class DynamicMsgLayout : ViewGroup {
         bucketByIndex.messages.add(message)
         msg2bucket[message] = bucketByIndex
         // 5.添加view
-        message.indicatorView?.run {
-            addView(
-                this,
-                MarginLayoutParams(60, 30)
-            )
-        }
-        message.view?.run {
-            addView(
-                this,
-                MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
-            )
-        }
+        addMsgView(msgType, message)
         Log.e(TAG, "sendMessage -> add new msg end-> ${messages.size}")
         Log.e(TAG, "sendMessage -> END")
+    }
+
+    /**
+     * 添加消息view
+     */
+    private fun addMsgView(msgType: Int, message: Message) {
+        when (msgType) {
+            MSG_TYPE_TEXT -> {
+                message.indicatorView?.run {
+                    addView(
+                            this,
+                            MarginLayoutParams(60, 30)
+                    )
+                }
+                message.tvTextMsg?.run {
+                    addView(
+                            this,
+                            MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
+                    )
+                }
+            }
+            MSG_TYPE_EMOJI -> {
+                message.tvTextMsg?.run {
+                    addView(
+                            this,
+                            MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT, MarginLayoutParams.WRAP_CONTENT)
+                    )
+                }
+            }
+            else -> {
+            }
+        }
+    }
+
+    private fun configMsgView(msgType: Int, message: Message) {
+        when (msgType) {
+            MSG_TYPE_TEXT -> {
+            }
+            MSG_TYPE_EMOJI -> {
+            }
+        }
     }
 
     /**
@@ -307,16 +352,16 @@ class DynamicMsgLayout : ViewGroup {
         // 2.缓存中没有可用的->创建新的
         if (msg == null) {
             msg = Message()
-            msg.view = createTextView()
-                .apply {
-                    setOnClickListener {
-                        val bucket = msg2bucket[msg]
-                        bucket?.messages?.poll()?.run {
-                            // 移除msg view
-                            removeMsg(this)
+            msg.tvTextMsg = createTextView()
+                    .apply {
+                        setOnClickListener {
+                            val bucket = msg2bucket[msg]
+                            bucket?.messages?.poll()?.run {
+                                // 移除msg view
+                                removeMsg(this)
+                            }
                         }
                     }
-                }
             msg.indicatorView = ImageView(context).apply {
                 setImageResource(R.drawable.triangle_bottom_16dp_7d72ff)
             }
@@ -338,7 +383,7 @@ class DynamicMsgLayout : ViewGroup {
         Log.e(TAG, "remove msg:${msg.text} hashCode:${msg.hashCode()}")
 
         // 移除显示消息内容的 view
-        msg.view?.run {
+        msg.tvTextMsg?.run {
             removeView(this)
         }
         msg.indicatorView?.run {
@@ -371,12 +416,14 @@ class DynamicMsgLayout : ViewGroup {
      * 消息
      */
     class Message {
+        var magType: Int = 0
         var text: String = ""
 
         // 消息开始展示时间
         var beginTime: Long = 0
-        var view: TextView? = null
+        var tvTextMsg: TextView? = null
         var indicatorView: ImageView? = null
+        var ivEmojiMsg: ImageView? = null
     }
 
     class Bucket {
@@ -388,9 +435,5 @@ class DynamicMsgLayout : ViewGroup {
          * 这里如果只是一个变量那肯定就实现不了了。
          */
         var messages: Queue<Message> = LinkedList()
-    }
-
-    override fun generateLayoutParams(attrs: AttributeSet?): LayoutParams {
-        return MarginLayoutParams(context, attrs)
     }
 }

@@ -15,6 +15,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.common.permission.PermissionResultListener
 import com.skx.common.permission.PermissionUtils
 import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_PERMISSION
@@ -72,45 +73,31 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
         }
 
         PermissionUtils.requestPermission(
-            this,
-            permissions.toTypedArray(),
-            null
-        )
+                this,
+                permissions.toTypedArray(),
+                object : PermissionResultListener {
+                    override fun onSucceed(grantPermissions: Array<out String>) {
+                        grantPermissions.forEach {
+                            mTvLogcat.append("$it 授权同意\n")
+                        }
+                    }
 
-        // 解释为什么需要定位权限之类的
-//        Log.e(TAG, "需要解释申请" + Manifest.permission.ACCESS_FINE_LOCATION + " 权限的原因")
-//                mActivityResultLauncher?.launch(
-//                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CAMERA)
-//                )
-
-
-//            /*
-//             * 如果要用意图模式的话，就不需要用权限模式了，直接跳转到系统设置页面，
-//             * 让用户自己控制权限的授权与否，app只承担了一个引导作用
-//             */
-//            if (ActivityCompat.checkSelfPermission(
-//                    this,
-//                    Manifest.permission.ACCESS_FINE_LOCATION
-//                ) != PackageManager.PERMISSION_GRANTED
-//            ) {
-//                shouldShowRequestPermissionRationale()
-//
-//
-//            } else {
-//                mTvLogcat.append("当前已有" + Manifest.permission.ACCESS_FINE_LOCATION + " 权限\n")
-//                Log.e(TAG, "当前已有" + Manifest.permission.ACCESS_FINE_LOCATION + " 权限")
-//                // 获得定位信息的code
-//            }
+                    override fun onFailed(deniedPermissions: Array<out String>) {
+                        deniedPermissions.forEach {
+                            mTvLogcat.append("$it 授权拒绝\n")
+                        }
+                    }
+                })
     }
 
     companion object {
         val PERMISSIONS = mutableListOf(
-            // 获取手机状态（包括手机号码、IMEI、IMSI权限等）
-            Permission(Manifest.permission.READ_PHONE_STATE, "获取手机状态"),
-            Permission(Manifest.permission.ACCESS_FINE_LOCATION, "定位权限"),
-            Permission(Manifest.permission.CAMERA, "摄像头权限"),
-            Permission(Manifest.permission.READ_EXTERNAL_STORAGE, "读权限"),
-            Permission(Manifest.permission.WRITE_EXTERNAL_STORAGE, "写权限")
+                // 获取手机状态（包括手机号码、IMEI、IMSI权限等）
+                Permission(Manifest.permission.READ_PHONE_STATE, "获取手机状态"),
+                Permission(Manifest.permission.ACCESS_FINE_LOCATION, "定位权限"),
+                Permission(Manifest.permission.CAMERA, "摄像头权限"),
+                Permission(Manifest.permission.READ_EXTERNAL_STORAGE, "读权限"),
+                Permission(Manifest.permission.WRITE_EXTERNAL_STORAGE, "写权限")
         )
     }
 
@@ -134,8 +121,8 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             return PermissionViewHolder(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.adapter_permission_request, parent, false)
+                    LayoutInflater.from(parent.context)
+                            .inflate(R.layout.adapter_permission_request, parent, false)
             )
         }
 

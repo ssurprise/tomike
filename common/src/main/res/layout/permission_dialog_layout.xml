@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dialog_center_background"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-    <!--    android:background="@drawable/dialog_center_background"-->
-
 
     <TextView
-        android:id="@+id/dialog_title"
+        android:id="@+id/tv_permission_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -32,7 +31,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/dialog_text"
+            android:id="@+id/tv_permission_dialog_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/skx_212121"
@@ -68,7 +67,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/dialog_cancel"
+            android:id="@+id/tv_permission_dialog_btn_cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -84,7 +83,7 @@
             android:background="@color/skx_e0e0e0" />
 
         <TextView
-            android:id="@+id/dialog_sure"
+            android:id="@+id/tv_permission_dialog_btn_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

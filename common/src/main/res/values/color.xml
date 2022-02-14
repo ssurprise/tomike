@@ -18,6 +18,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
 
+    <color name="skx_ffffff">#ffffff</color>
     <color name="skx_000000">#000000</color>
     <color name="skx_000000_15">#1f000000</color>
     <color name="skx_000000_40">#66000000</color>
