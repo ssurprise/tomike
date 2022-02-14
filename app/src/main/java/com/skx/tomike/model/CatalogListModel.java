@@ -32,6 +32,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HANDLER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HOTFIX;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_IMAGE_zoom;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD_2;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_LIFECYCLE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_MUSIC_PLAYER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_GROUP;
@@ -293,7 +294,8 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("Parcelable序列化", ROUTE_PATH_PARCELABLE));
         mFunctionCatalogs.add(new CatalogItem("倒计时", ROUTE_PATH_COUNT_DOWN_TIMER));
         mFunctionCatalogs.add(new CatalogItem("设备、APP 基础信息", ROUTE_PATH_DEVICE_INFO));
-        mFunctionCatalogs.add(new CatalogItem("键盘、输入法", ROUTE_PATH_KEYBOARD));
+        mFunctionCatalogs.add(new CatalogItem("键盘应用-1", ROUTE_PATH_KEYBOARD));
+        mFunctionCatalogs.add(new CatalogItem("键盘应用-2", ROUTE_PATH_KEYBOARD_2));
         mFunctionCatalogs.add(new CatalogItem("热修复-微信Tinker", ROUTE_PATH_HOTFIX));
         mFunctionCatalogs.add(new CatalogItem("重启APP", ROUTE_PATH_REBOOT));
         mFunctionCatalogs.add(new CatalogItem("打开其他App", ROUTE_PATH_OUTER_START));
