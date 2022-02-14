@@ -173,8 +173,9 @@
         <activity
             android:name="com.skx.tomike.cannon.ui.activity.KeyboardActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name="com.skx.tomike.cannon.ui.activity.HotfixActivity"
             android:screenOrientation="portrait" />

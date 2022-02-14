@@ -3,35 +3,89 @@
     android:id="@+id/rl_keyboard_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/view_padding_15"
     tools:context="com.skx.tomike.cannon.ui.activity.KeyboardActivity">
 
-    <EditText
-        android:id="@+id/et_keyboard_inputBox"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="91dp"
-        android:hint="请输入"
-        android:textSize="14sp"
-        tools:ignore="Autofill,TextFields" />
-
-    <Button
-        android:id="@+id/btn_keyboard_1"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_keyboard_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_keyboard_inputBox"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="31dp"
-        android:text="点击" />
+        android:layout_above="@id/rl_keyboard_ke"
+        android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/btn_keyboard_2"
+    <RelativeLayout
+        android:id="@+id/rl_keyboard_ke"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_keyboard_inputBox"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="106dp"
-        android:text="点击2" />
+        android:layout_alignParentBottom="true"
+        android:background="@color/skx_f5f5f5"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <RelativeLayout
+            android:id="@+id/iv_keyboard_aaaa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:id="@+id/iv_keyboard_send"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@id/et_keyboard_inputBox"
+                android:layout_alignBottom="@id/et_keyboard_inputBox"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_used"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_keyboard_emoji"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@id/et_keyboard_inputBox"
+                android:layout_alignBottom="@id/et_keyboard_inputBox"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@id/iv_keyboard_send"
+                android:src="@drawable/icon_used"
+                tools:ignore="ContentDescription" />
+
+            <EditText
+                android:id="@+id/et_keyboard_inputBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@id/iv_keyboard_emoji"
+                android:background="@drawable/rectangle_solid_ffffff_corner_10dp"
+                android:hint="请输入"
+                android:maxLines="5"
+                android:minHeight="40dp"
+                android:paddingStart="10dp"
+                android:textSize="14sp"
+                tools:ignore="Autofill,RtlSymmetry,TextFields" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_keyboard_content"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/iv_keyboard_aaaa"
+            android:background="@color/skx_2c3e50"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="表情"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+        </FrameLayout>
+    </RelativeLayout>
 </RelativeLayout>

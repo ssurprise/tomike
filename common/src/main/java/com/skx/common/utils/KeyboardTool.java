@@ -32,7 +32,6 @@ public class KeyboardTool {
      * 切换软键盘的显示与隐藏
      */
     public void toggleKeyboard() {
-//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
@@ -49,19 +48,10 @@ public class KeyboardTool {
      * 弹出软键盘
      */
     public void showKeyboard(View view) {
-        imm.showSoftInput(view, 0);
-    }
-
-    /**
-     * 针对于EditText 获得焦点，显示软键盘
-     *
-     * @param edit EditText
-     */
-    public void showKeyboard(EditText edit) {
-        edit.setFocusable(true);
-        edit.setFocusableInTouchMode(true);
-        edit.requestFocus();
-        imm.showSoftInput(edit, 0);
+        if (imm.isActive()) {
+            return;
+        }
+        imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
     }
 
     /**
@@ -71,10 +61,18 @@ public class KeyboardTool {
      * @param view view
      */
     public void hideKeyboard(View view) {
-        if (imm.isActive()) {
+        if (imm.isActive() && view != null) {
             // 关闭软键盘，开启方法相同，这个方法是切换开启与关闭状态的
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    /**
+     * 隐藏软键盘
+     */
+    public void hideKeyboard() {
+        View view = ((Activity) mContext).getWindow().peekDecorView();
+        hideKeyboard(view);
     }
 
     /**
@@ -87,13 +85,16 @@ public class KeyboardTool {
         imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
     }
 
+
     /**
-     * 隐藏软键盘
+     * 针对于EditText 获得焦点，显示软键盘
+     *
+     * @param edit EditText
      */
-    public void hideKeyboard() {
-        View view = ((Activity) mContext).getWindow().peekDecorView();
-        if (view != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+    public void showKeyboard(EditText edit) {
+        edit.setFocusable(true);
+        edit.setFocusableInTouchMode(true);
+        edit.requestFocus();
+        imm.showSoftInput(edit, InputMethodManager.SHOW_FORCED);
     }
 }

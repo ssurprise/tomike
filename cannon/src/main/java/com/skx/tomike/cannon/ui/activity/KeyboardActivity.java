@@ -1,12 +1,18 @@
 package com.skx.tomike.cannon.ui.activity;
 
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
+
 import android.graphics.Rect;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -18,36 +24,44 @@ import com.skx.common.utils.ScreenUtilKt;
 import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannon.R;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
-
 /**
  * Created by shiguotao on 2016/7/19.
  * <p/>
  * <p/>
  * 默认情况下，当页面中只有一个EditText，且不做任何设置时，EditText有光标，键盘不弹出，而且不会失去焦点，就算点击其他地方手动 clearFocus 焦点，照样还会重新自动获得焦点。
  * <p/>
- * 1.  如果不想让 EditText 初始获得焦点可以在父控件上设置    android:focusable="true" android:focusableInTouchMode="true"
+ * 1. 如果不想让 EditText 初始获得焦点可以在父控件上设置
+ * android:focusable="true"
+ * android:focusableInTouchMode="true"
  * <p/>
- * 2.  mEditText.clearFocus(); 清除焦点
+ * <p>
+ * 2. 清除焦点 view.clearFocus();
  * <p/>
  * <p/>
- * 3.  android:windowSoftInputMode="adjustResize" 重新计算高度。测试用例，activity 的root 控件是RelativeLayout .
- * EditText 居中显示。 button 按钮 below EditText. 间距比较大的时候button 被键盘覆盖掉。调整间距，会发现会存在Button 文字展示不全的情况，也就是说完全被挤压了
- * EditText 居中显示。 button 按钮 alignParentBottom   . marginBottom  间距比较大的时候，Button 会在EditText 后面，虽然按照xml绘制顺序，应该是Button 把EditText 覆盖掉，但是并没有
- * <p/>
- * 4. android:windowSoftInputMode="adjustPan" 会直接覆盖掉挡住的部分 这个就比较好理解了
  * <p/>
  * 5. isFocusable()  返回此控件是否可以获得焦点
+ * <p>
+ * <p>
+ * <p>
+ * 3.windowSoftInputMode属性介绍：
+ * https://www.cnblogs.com/exmyth/p/4696344.html
+ * https://blog.csdn.net/qiutiandepaomo/article/details/84028558
+ * <p>
+ * <p>
+ * <p>
+ * 4.仿微信键盘切换:
+ * https://www.imooc.com/article/40369
  */
 @Route(path = ROUTE_PATH_KEYBOARD)
 public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
 
     private RelativeLayout mRlRoot;
-    private Button btn;
-    private Button btn2;
+    private ImageView mIvEmojiBtn;
+    private ImageView mIvSendBtn;
+    private EditText mEditText;
+    private FrameLayout fl_keyboard_content;
+
+    private int keyboardHeight = 0;
 
     @Override
     protected void initParams() {
@@ -56,7 +70,7 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("键盘（输入法）管理").create();
+        return new TitleConfig.Builder().setTitleText("键盘应用管理").create();
     }
 
     @Override
@@ -67,28 +81,20 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
     @Override
     protected void initView() {
         mRlRoot = findViewById(R.id.rl_keyboard_root);
-        EditText mEditText = findViewById(R.id.et_keyboard_inputBox);
-        btn = findViewById(R.id.btn_keyboard_1);
-        btn2 = findViewById(R.id.btn_keyboard_2);
+        mEditText = findViewById(R.id.et_keyboard_inputBox);
+        mIvEmojiBtn = findViewById(R.id.iv_keyboard_emoji);
+        mIvSendBtn = findViewById(R.id.iv_keyboard_send);
+        fl_keyboard_content = findViewById(R.id.fl_keyboard_content);
 
+        mEditText.setOnFocusChangeListener((v, hasFocus) -> {
+//            if (hasFocus) {
+//                showInputKeyboard();
+//            }
+        });
+
+        mIvEmojiBtn.setOnClickListener(v -> showEmojiView());
+        mIvSendBtn.setOnClickListener(v -> showInputKeyboard());
         mRlRoot.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutListener);
-
-        mEditText.setFocusable(true);
-        mEditText.setFocusableInTouchMode(true);
-        mEditText.requestFocus();//获取焦点 光标出现
-
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                KeyboardTool.getInstances(KeyboardActivity.this).toggleKeyboard();
-            }
-        }, 256);
-
-        btn.setOnClickListener(v ->
-                KeyboardTool.getInstances(KeyboardActivity.this).toggleKeyboard());
-
-        btn2.setOnClickListener(v ->
-                KeyboardTool.getInstances(KeyboardActivity.this).hideKeyboard(btn));
     }
 
     private final ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -103,6 +109,7 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
             boolean isKeyboardShowing = heightDifference > screenHeight / 3; //如果之前软键盘状态为显示，现在为关闭，或者之前为关闭，现在为显示，则表示软键盘的状态发生了改变
 
             if (isKeyboardShowing) {
+                keyboardHeight = heightDifference;
                 // 显示键盘 -> 隐藏底部导航栏
                 Log.e(TAG, "onGlobalLayout: 键盘弹出");
                 ToastTool.showToast(mActivity, "键盘弹出");
@@ -113,6 +120,32 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
             }
         }
     };
+
+    /*
+     * 显示输入法
+     */
+    private void showInputKeyboard() {
+        mEditText.requestFocus();
+        //打开输入法
+        KeyboardTool.getInstances(KeyboardActivity.this).showKeyboard(mEditText);
+        new Handler().postDelayed(() -> {
+            fl_keyboard_content.setVisibility(View.GONE);
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        }, 300);
+    }
+
+    private void showEmojiView() {
+        if (fl_keyboard_content.getVisibility() != View.VISIBLE) {
+            mEditText.clearFocus();
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+            ViewGroup.LayoutParams lp = fl_keyboard_content.getLayoutParams();
+            lp.height = keyboardHeight;
+            fl_keyboard_content.setLayoutParams(lp);
+            fl_keyboard_content.setVisibility(View.VISIBLE);
+            //关闭键盘
+            KeyboardTool.getInstances(KeyboardActivity.this).hideKeyboard(mEditText);
+        }
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -139,6 +172,7 @@ public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        KeyboardTool.getInstances(KeyboardActivity.this).hideKeyboard(mEditText);
         mRlRoot.getViewTreeObserver().removeOnGlobalLayoutListener(mGlobalLayoutListener);
     }
 }
