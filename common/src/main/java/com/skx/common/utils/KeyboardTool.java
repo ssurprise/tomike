@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 
 /**
  * Created by shiguotao on 2016/7/19.
@@ -12,8 +11,8 @@ import android.widget.EditText;
 public class KeyboardTool {
 
     private static KeyboardTool keyboardManager;
-    private Context mContext;
-    private InputMethodManager imm;
+    private final Context mContext;
+    private final InputMethodManager imm;
 
     private KeyboardTool(Context context) {
         this.mContext = context;
@@ -73,28 +72,5 @@ public class KeyboardTool {
     public void hideKeyboard() {
         View view = ((Activity) mContext).getWindow().peekDecorView();
         hideKeyboard(view);
-    }
-
-    /**
-     * 针对于EditText ,失去焦点，隐藏软件盘
-     *
-     * @param edit
-     */
-    public void hideKeyboard(EditText edit) {
-        edit.clearFocus();
-        imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
-    }
-
-
-    /**
-     * 针对于EditText 获得焦点，显示软键盘
-     *
-     * @param edit EditText
-     */
-    public void showKeyboard(EditText edit) {
-        edit.setFocusable(true);
-        edit.setFocusableInTouchMode(true);
-        edit.requestFocus();
-        imm.showSoftInput(edit, InputMethodManager.SHOW_FORCED);
     }
 }
