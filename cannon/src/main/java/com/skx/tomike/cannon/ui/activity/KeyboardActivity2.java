@@ -50,6 +50,9 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD_2;
  * <p>
  * 4.仿微信键盘切换:
  * https://www.imooc.com/article/40369
+ *
+ * 5.adjustNothing模式下 获取软键盘高度
+ * https://www.jianshu.com/p/1c879bb52c5c
  */
 @Route(path = ROUTE_PATH_KEYBOARD_2)
 public class KeyboardActivity2 extends SkxBaseActivity<BaseViewModel> {
