@@ -188,18 +188,25 @@ class DynamicMsgLayout : ViewGroup {
         // 从本地消息队列里取消息，消息中绑定有对应的view，确保只绘制在队列里的view。
         for (i in 0 until messages.size) {
             val message = messages[i]
-            val child = message.tvTextMsg
-            // 跳过View.GONE的子View
-            if (child == null || GONE == child.visibility) {
-                continue
-            }
+            if (message.msgType == MSG_TYPE_TEXT) {
+                val child = message.tvTextMsg
+                // 跳过View.GONE的子View
+                if (child == null || GONE == child.visibility) {
+                    continue
+                }
 
-            // 从map中取对应的桶
-            val bucket = msg2bucket[message]
-            // 布局指示器view
-            indicatorViewLayout(message.indicatorView, bucket)
-            // 布局消息view
-            msgViewLayout(child, bucket, width)
+                // 从map中取对应的桶
+                val bucket = msg2bucket[message]
+                // 布局指示器view
+                indicatorViewLayout(message.indicatorView, bucket)
+                // 布局消息view
+                msgViewLayout(child, bucket, width)
+
+            } else if (message.msgType == MSG_TYPE_EMOJI) {
+                // 从map中取对应的桶
+                val bucket = msg2bucket[message]
+                emojiMsgLayout(message.ivEmojiMsg, bucket, width)
+            }
         }
     }
 
@@ -232,6 +239,17 @@ class DynamicMsgLayout : ViewGroup {
         // 消息view 的坐标跟随桶的坐标。
         child.layout(left, top, left + childWidth, (bucket?.y ?: 0))
     }
+
+
+    private fun emojiMsgLayout(child: View?, bucket: Bucket?, parentWidth: Int) {
+        if (child == null || GONE == child.visibility) {
+            return
+        }
+
+        val childWidth = child.measuredWidth
+        val childHeight = child.measuredHeight
+    }
+
 
     private fun indicatorViewLayout(
             child: View?,
@@ -416,7 +434,7 @@ class DynamicMsgLayout : ViewGroup {
      * 消息
      */
     class Message {
-        var magType: Int = 0
+        var msgType: Int = 0
         var text: String = ""
 
         // 消息开始展示时间
