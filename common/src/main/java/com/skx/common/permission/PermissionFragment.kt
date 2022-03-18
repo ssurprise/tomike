@@ -1,6 +1,5 @@
 package com.skx.common.permission
 
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -18,24 +17,12 @@ import com.skx.common.base.BaseFragment
  */
 class PermissionFragment : BaseFragment() {
 
-//    private var mContext: Context? = null
-
     /**
      * 申请的权限
      */
     private var mPermissions: Array<String>? = null
-//    private val mResult = mutableMapOf<String, Boolean>()
     private var mActivityResultLauncher: ActivityResultLauncher<Array<String>>? = null
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mContext = context
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mContext = null
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,13 +31,12 @@ class PermissionFragment : BaseFragment() {
 
     private fun initParams() {
         mActivityResultLauncher = registerForActivityResult(
-                ActivityResultContracts.RequestMultiplePermissions()
+            ActivityResultContracts.RequestMultiplePermissions()
         ) { result: Map<String?, Boolean?> ->
             val deniedList: MutableList<String> = mutableListOf()
             result.forEach {
                 it.key?.run {
                     Log.d(TAG, "授权结果: ${it.key}->${it.value}")
-//                    mResult[this] = it.value ?: false
                     if (false == it.value) {
                         deniedList.add(this)
                     }
@@ -82,11 +68,7 @@ class PermissionFragment : BaseFragment() {
         val needRequest = mutableListOf<String>()
         permissions.forEach {
             if (!checkPermission(it)) {
-//                mResult[it] = false
                 needRequest.add(it)
-            } else {
-                // 权限已经授权，无需再次申请
-//                mResult[it] = false
             }
         }
 
@@ -109,25 +91,19 @@ class PermissionFragment : BaseFragment() {
      */
     private fun checkPermission(permission: String): Boolean {
         val result = ContextCompat.checkSelfPermission(
-                mContext!!,
-                permission
+            mContext!!,
+            permission
         ) == PackageManager.PERMISSION_GRANTED
         Log.d(TAG, "checkPermission: ${permission}->${result}")
         return result
     }
 
-
     companion object {
         private const val TAG = "PermissionUtils"
-        private const val KEY_PERMISSION = "request_permissions"
 
         @JvmStatic
-        fun getInstance(permissions: Array<String>?): PermissionFragment {
-            val fragment = PermissionFragment()
-            val bundle = Bundle()
-            bundle.putStringArray(KEY_PERMISSION, permissions)
-            fragment.arguments = bundle
-            return fragment
+        fun getInstance(): PermissionFragment {
+            return PermissionFragment()
         }
     }
 }

@@ -51,6 +51,11 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
  * <p>
  * 4.仿微信键盘切换:
  * https://www.imooc.com/article/40369
+ *
+ * 5.问题
+ * 全屏模式下，adjustsize 不生效
+ * https://www.jianshu.com/p/773f6e6ab972
+ * https://blog.csdn.net/lovexjyong/article/details/51490034
  */
 @Route(path = ROUTE_PATH_KEYBOARD)
 public class KeyboardActivity extends SkxBaseActivity<BaseViewModel> {

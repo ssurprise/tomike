@@ -363,15 +363,13 @@ public class CatalogListModel {
             List<CatalogItem> tempGroup = entry.getValue();
 
             CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(),
-                    "", "", null, null);
+                    "", "", null);
             allCatalogs.add(parentModel);
             for (CatalogItem item : tempGroup) {
                 CatalogCellModel cellModel = new CatalogCellModel(item.getName(),
                         item.getPath(),
                         item.getValue(),
-                        parentModel,
-                        null);
-                parentModel.addChild(cellModel);
+                        parentModel);
                 allCatalogs.add(cellModel);
             }
         }

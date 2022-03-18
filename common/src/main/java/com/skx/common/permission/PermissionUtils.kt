@@ -24,14 +24,15 @@ import java.util.*
 object PermissionUtils {
 
     private const val TAG = "PermissionUtils"
+    private const val KEY_PERMISSION_FRAGMENT = "tomike_permission_fragment"
 
     var mCallback: PermissionResultListener? = null
 
 
     private fun requestPermission(
-            fragmentManager: FragmentManager,
-            permission: Array<String>?,
-            listener: PermissionResultListener?
+        fragmentManager: FragmentManager,
+        permission: Array<String>?,
+        listener: PermissionResultListener?
     ) {
         if (permission == null || permission.isEmpty()) {
             Log.d(TAG, "当前没有需要动态申请的权限")
@@ -45,13 +46,13 @@ object PermissionUtils {
             return
         }
         this.mCallback = listener
-        var fragment = fragmentManager.findFragmentByTag("tomike_permission_fragment")
+        var fragment = fragmentManager.findFragmentByTag(KEY_PERMISSION_FRAGMENT)
         if (fragment == null) {
-            fragment = PermissionFragment.getInstance(permission)
+            fragment = PermissionFragment.getInstance()
             fragmentManager
-                    .beginTransaction()
-                    .add(fragment, "tomike_permission_fragment")
-                    .commitNow()
+                .beginTransaction()
+                .add(fragment, KEY_PERMISSION_FRAGMENT)
+                .commitNow()
         }
         if (fragment is PermissionFragment) {
             fragment.reqPermissions(permission)
@@ -59,9 +60,9 @@ object PermissionUtils {
     }
 
     fun requestPermission(
-            fragment: Fragment,
-            permission: Array<String>?,
-            listener: PermissionResultListener?
+        fragment: Fragment,
+        permission: Array<String>?,
+        listener: PermissionResultListener?
     ) {
         requestPermission(fragment.childFragmentManager, permission, listener)
     }
@@ -74,9 +75,9 @@ object PermissionUtils {
      * @param listener   授权结果回调
      */
     fun requestPermission(
-            activity: FragmentActivity,
-            permission: Array<String>?,
-            listener: PermissionResultListener?
+        activity: FragmentActivity,
+        permission: Array<String>?,
+        listener: PermissionResultListener?
     ) {
         requestPermission(activity.supportFragmentManager, permission, listener)
     }
@@ -113,10 +114,19 @@ object PermissionUtils {
             if (TextUtils.isEmpty(op)) {
                 continue
             }
-            if (AppOpsManagerCompat.MODE_IGNORED == AppOpsManagerCompat.noteProxyOp(context, op!!, context.packageName)) {
+            if (AppOpsManagerCompat.MODE_IGNORED == AppOpsManagerCompat.noteProxyOp(
+                    context,
+                    op!!,
+                    context.packageName
+                )
+            ) {
                 return false
             }
-            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    permission
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 return false
             }
         }
@@ -129,14 +139,20 @@ object PermissionUtils {
         for (permission in permissions) {
             if (isSpecialPermission(permission)) {
                 if (Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission, ignoreCase = true)
-                        && !Settings.canDrawOverlays(context)) {
+                    && !Settings.canDrawOverlays(context)
+                ) {
                     deniedList.add(permission) // 特殊权限
                 }
                 if (Manifest.permission.WRITE_SETTINGS.equals(permission, ignoreCase = true)
-                        && !Settings.System.canWrite(context)) {
+                    && !Settings.System.canWrite(context)
+                ) {
                     deniedList.add(permission) // 特殊权限
                 }
-            } else if (ContextCompat.checkSelfPermission(context!!, permission) != PackageManager.PERMISSION_GRANTED) {
+            } else if (ContextCompat.checkSelfPermission(
+                    context!!,
+                    permission
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 deniedList.add(permission)
             }
         }
