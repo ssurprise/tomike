@@ -15,8 +15,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.common.permission.PermissionController
 import com.skx.common.permission.PermissionResultListener
-import com.skx.common.permission.PermissionUtils
 import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_PERMISSION
 import com.skx.tomike.cannon.bean.Permission
@@ -72,22 +72,22 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
             Log.e(TAG, "申请权限： $it")
         }
 
-        PermissionUtils.requestPermission(
-                this,
-                permissions.toTypedArray(),
-                object : PermissionResultListener {
-                    override fun onSucceed(grantPermissions: Array<out String>) {
-                        grantPermissions.forEach {
-                            mTvLogcat.append("$it 授权同意\n")
-                        }
+        PermissionController.Builder(this)
+            .permissions(permissions)
+            .callback(object : PermissionResultListener {
+                override fun onSucceed(grantPermissions: Array<out String>) {
+                    grantPermissions.forEach {
+                        mTvLogcat.append("$it 授权同意\n")
                     }
+                }
 
-                    override fun onFailed(deniedPermissions: Array<out String>) {
-                        deniedPermissions.forEach {
-                            mTvLogcat.append("$it 授权拒绝\n")
-                        }
+                override fun onFailed(deniedPermissions: Array<out String>) {
+                    deniedPermissions.forEach {
+                        mTvLogcat.append("$it 授权拒绝\n")
                     }
-                })
+                }
+            })
+            .request()
     }
 
     companion object {

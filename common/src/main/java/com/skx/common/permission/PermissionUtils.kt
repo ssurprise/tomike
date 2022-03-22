@@ -6,13 +6,9 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
 import android.text.TextUtils
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.AppOpsManagerCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import java.util.*
 
 /**
@@ -22,65 +18,6 @@ import java.util.*
  * 创建时间 : 2020/9/16 5:19 PM
  */
 object PermissionUtils {
-
-    private const val TAG = "PermissionUtils"
-    private const val KEY_PERMISSION_FRAGMENT = "tomike_permission_fragment"
-
-    var mCallback: PermissionResultListener? = null
-
-
-    private fun requestPermission(
-        fragmentManager: FragmentManager,
-        permission: Array<String>?,
-        listener: PermissionResultListener?
-    ) {
-        if (permission == null || permission.isEmpty()) {
-            Log.d(TAG, "当前没有需要动态申请的权限")
-            return
-        }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            // 6.0下安装时默认同意全部权限
-            Log.d(TAG, "6.0以下系统，无需动态申请权限")
-            listener?.onSucceed(permission)
-            return
-        }
-        this.mCallback = listener
-        var fragment = fragmentManager.findFragmentByTag(KEY_PERMISSION_FRAGMENT)
-        if (fragment == null) {
-            fragment = PermissionFragment.getInstance()
-            fragmentManager
-                .beginTransaction()
-                .add(fragment, KEY_PERMISSION_FRAGMENT)
-                .commitNow()
-        }
-        if (fragment is PermissionFragment) {
-            fragment.reqPermissions(permission)
-        }
-    }
-
-    fun requestPermission(
-        fragment: Fragment,
-        permission: Array<String>?,
-        listener: PermissionResultListener?
-    ) {
-        requestPermission(fragment.childFragmentManager, permission, listener)
-    }
-
-    /**
-     * 检查权限
-     *
-     * @param activity   上下文
-     * @param permission 申请的权限
-     * @param listener   授权结果回调
-     */
-    fun requestPermission(
-        activity: FragmentActivity,
-        permission: Array<String>?,
-        listener: PermissionResultListener?
-    ) {
-        requestPermission(activity.supportFragmentManager, permission, listener)
-    }
 
     /**
      * 检查目标权限是否已被授权
@@ -100,7 +37,7 @@ object PermissionUtils {
      * @param permissions 需要检查的权限
      * @return true：全部均已授权
      */
-    fun hasPermission(context: Context, permissions: Array<String>): Boolean {
+    private fun hasPermission(context: Context, permissions: Array<String>): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) { // 6.0 以下的系统
             return true
         }
@@ -170,37 +107,10 @@ object PermissionUtils {
                 || Manifest.permission.WRITE_SETTINGS.equals(permission, ignoreCase = true))
     }
 
-    /*
-     1.检查是否有某个权限
-
-     2.申请权限
-        2.1 链式
-        2.2 聚合式
-
-     基本诉求：
-     1.请求单个权限
-     2.请求多个权限 -> 结果一起处理 ； 可中断，某个权限拒绝后不在请求下个权限。
-
-
-     实现方案：
-     1.类RxJava 式的函数式编程。
-
+    /**
+     * 释放资源
      */
-    class Builder {
-        fun with(context: Context?): Builder {
-            return this
-        }
+    fun release() {
 
-        fun with(fragmentActivity: FragmentActivity?): Builder {
-            return this
-        }
-
-        fun with(fragment: Fragment?): Builder {
-            return this
-        }
-
-        private fun requestPermission(vararg permissions: String): Builder {
-            return this
-        }
     }
 }

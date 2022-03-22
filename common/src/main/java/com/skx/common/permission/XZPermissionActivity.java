@@ -146,9 +146,7 @@ public final class XZPermissionActivity extends Activity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_PERMISSION_SETTING) {
-            settingHandler.cancel();
-        } else if (requestCode == REQUEST_CODE_PERMISSION_SYSTEM_ALERT_WINDOW) {
+        if (requestCode == REQUEST_CODE_PERMISSION_SYSTEM_ALERT_WINDOW) {
             String permission = Manifest.permission.SYSTEM_ALERT_WINDOW;
             mReqPermissionList.remove(permission);
             if (hasSpecialPermission(permission)) {
