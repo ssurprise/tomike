@@ -40,32 +40,43 @@ class PermissionController(private val params: PermissionParams) {
                     .commitNow()
             }
             if (fragment is PermissionFragment) {
-                fragment.reqPermissions(params.mPermissions, params.mCallback)
+                fragment.reqPermissions(
+                    params.mPermissions,
+                    params.mCallback,
+                    params.mReqPermissionTip
+                )
             }
+            return
+        }
+        params.mContext?.run {
+            // todo
         }
     }
 
-    class Builder private constructor(){
+    class Builder private constructor() {
 
         private val params: PermissionParams = PermissionParams()
 
         constructor(context: Context?) : this() {
             params.mContext = context
         }
+
         constructor(fragmentActivity: FragmentActivity?) : this() {
+            params.mContext = fragmentActivity
             params.mFragmentManager = fragmentActivity?.supportFragmentManager
         }
 
-        constructor(fragment: Fragment?):this(){
+        constructor(fragment: Fragment?) : this() {
+            params.mContext = fragment?.context
             params.mFragmentManager = fragment?.childFragmentManager
         }
 
-        fun permissions( permissions: Array<String>): Builder {
+        fun permissions(permissions: Array<String>): Builder {
             params.mPermissions = permissions
             return this
         }
 
-        fun permissions( permissions: List<String>): Builder {
+        fun permissions(permissions: List<String>): Builder {
             params.mPermissions = permissions.toTypedArray()
             return this
         }
@@ -75,7 +86,17 @@ class PermissionController(private val params: PermissionParams) {
             return this
         }
 
-        fun create():PermissionController{
+        fun associateDefaultTip():Builder{
+            params.mReqPermissionTip = DefaultReqPermissionTip(params.mContext)
+            return this
+        }
+
+        fun associateCustomTip(reqPermissionTip: ReqPermissionTip): Builder {
+            params.mReqPermissionTip = reqPermissionTip
+            return this
+        }
+
+        fun create(): PermissionController {
             return PermissionController(params)
         }
 

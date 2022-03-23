@@ -12,10 +12,10 @@ import androidx.fragment.app.FragmentManager
  */
 class PermissionParams {
 
-     var mContext: Context? = null
-     var mCallback: PermissionResultListener? = null
-     var mReqPermissionTip: DefaultReqPermissionTip? = null
-     var mPermissions: Array<String>? = null
-     var mFragmentManager: FragmentManager? = null
+    var mContext: Context? = null
+    var mCallback: PermissionResultListener? = null
+    var mReqPermissionTip: ReqPermissionTip? = null
+    var mPermissions: Array<String>? = null
+    var mFragmentManager: FragmentManager? = null
 
 }

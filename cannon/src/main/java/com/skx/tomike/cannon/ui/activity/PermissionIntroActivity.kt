@@ -74,6 +74,7 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
 
         PermissionController.Builder(this)
             .permissions(permissions)
+            .associateDefaultTip()
             .callback(object : PermissionResultListener {
                 override fun onSucceed(grantPermissions: Array<out String>) {
                     grantPermissions.forEach {
@@ -92,14 +93,14 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
 
     companion object {
         val PERMISSIONS = mutableListOf(
-                // 获取手机状态（包括手机号码、IMEI、IMSI权限等）
-                Permission(Manifest.permission.READ_PHONE_STATE, "获取手机状态"),
-                Permission(Manifest.permission.ACCESS_FINE_LOCATION, "定位权限"),
-                Permission(Manifest.permission.CAMERA, "摄像头权限"),
-                Permission(Manifest.permission.READ_EXTERNAL_STORAGE, "读权限"),
-                Permission(Manifest.permission.WRITE_EXTERNAL_STORAGE, "写权限"),
-                Permission(Manifest.permission.SYSTEM_ALERT_WINDOW, "悬浮窗"),
-                Permission(Manifest.permission.WRITE_SETTINGS, "系统设置")
+            // 获取手机状态（包括手机号码、IMEI、IMSI权限等）
+            Permission(Manifest.permission.READ_PHONE_STATE, "获取手机状态"),
+            Permission(Manifest.permission.ACCESS_FINE_LOCATION, "定位权限"),
+            Permission(Manifest.permission.CAMERA, "摄像头权限"),
+            Permission(Manifest.permission.READ_EXTERNAL_STORAGE, "读权限"),
+            Permission(Manifest.permission.WRITE_EXTERNAL_STORAGE, "写权限"),
+            Permission(Manifest.permission.SYSTEM_ALERT_WINDOW, "悬浮窗"),
+            Permission(Manifest.permission.WRITE_SETTINGS, "系统设置")
         )
     }
 
@@ -123,8 +124,8 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             return PermissionViewHolder(
-                    LayoutInflater.from(parent.context)
-                            .inflate(R.layout.adapter_permission_request, parent, false)
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.adapter_permission_request, parent, false)
             )
         }
 

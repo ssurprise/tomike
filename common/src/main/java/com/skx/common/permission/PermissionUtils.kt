@@ -103,8 +103,8 @@ object PermissionUtils {
      * @return
      */
     private fun isSpecialPermission(permission: String): Boolean {
-        return (Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission, ignoreCase = true)
-                || Manifest.permission.WRITE_SETTINGS.equals(permission, ignoreCase = true))
+        return Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission, ignoreCase = true)
+                || Manifest.permission.WRITE_SETTINGS.equals(permission, ignoreCase = true)
     }
 
     /**
