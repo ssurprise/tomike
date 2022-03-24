@@ -1,7 +1,6 @@
 package com.skx.common.permission
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -9,7 +8,6 @@ import android.provider.Settings
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import com.skx.common.base.BaseFragment
 
 /**
@@ -21,7 +19,7 @@ import com.skx.common.base.BaseFragment
 class PermissionFragment : BaseFragment(), PermissionNegotiate {
 
     /**
-     * 申请的权限
+     * 用户提交的所有权限
      */
     private var mPermissions: Array<String>? = null
     private var mCallback: PermissionResultListener? = null
@@ -40,58 +38,39 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
         mPermissionReqLauncher = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) { result: Map<String?, Boolean?> ->
-            val deniedList: MutableList<String> = mutableListOf()
-            result.forEach {
-                it.key?.run {
-                    Log.d(DTAG, "授权结果: ${it.key}->${it.value}")
-                    if (false == it.value) {
-                        deniedList.add(this)
-                    }
-                }
-            }
-            // 1.拒绝的权限
-            if (deniedList.isNotEmpty()) {
-                // 1.1 外部接管
-                if (mReqPermissionTip != null) {
-                    mReqPermissionTip?.showReqPermissionsReason(this)
-                    return@registerForActivityResult
-                }
-                // 1.2 外部不接管，走授权失败回调
-                mCallback?.onFailed(deniedList.toTypedArray())
-                release()
+            // 注：这里之所有没有直接使用回调参数中的result 进行判断是因为有些特殊权限不会通过这里获取授权结果。
+//            val deniedList: MutableList<String> = mutableListOf()
+//            result.forEach {
+//                it.key?.run {
+//                    Log.d(DTAG, "授权结果: ${it.key}->${it.value}")
+//                    if (false == it.value) {
+//                        deniedList.add(this)
+//                    }
+//                }
+//            }
+            val deniedArray = generateDeniedArray(mPermissions)
+            // 1.全部同意
+            if (deniedArray.isNullOrEmpty()) {
+                dispatchResult(null)
                 return@registerForActivityResult
             }
-            // 2.全部同意
-            if (deniedList.isEmpty()) {
-                mCallback?.onSucceed(mPermissions ?: arrayOf())
+            // 2.拒绝的权限
+            // 2.1 外部接管
+            if (mReqPermissionTip != null) {
+                mReqPermissionTip?.showReqPermissionsReason(deniedArray, this)
+                return@registerForActivityResult
             }
-            release()
+            // 2.2 外部不接管，走授权失败回调
+            dispatchResult(deniedArray)
         }
         // 权限设置
         mSettingLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            Log.e(DTAG, "从权限设置页返回")
-
+            Log.e(DTAG, "从权限设置页返回 resultCode:${it.resultCode}")
+            val needRequest = generateDeniedArray(mPermissions)
+            dispatchResult(needRequest)
         }
-    }
-
-    fun dispatchResult() {
-
-    }
-
-    /**
-     * 判断第一次权限请求是否被拒绝了
-     *
-     * @param permissions
-     * @return
-     */
-    fun shouldShowRationalePermissionsRationale(permissions: List<String?>): Boolean {
-        for (permission in permissions) {
-            val rationale = shouldShowRequestPermissionRationale(permission!!)
-            if (rationale) return true
-        }
-        return false
     }
 
     fun reqPermissions(
@@ -108,48 +87,56 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
             return
         }
 
-        val needRequest = mutableListOf<String>()
-        permissions.forEach {
-            if (!checkPermission(it)) {
-                needRequest.add(it)
-            }
-        }
-
-        if (needRequest.size <= 0) {
+        val needRequest = generateDeniedArray(permissions)
+        if (needRequest.isEmpty()) {
             Log.d(DTAG, "目标权限均已全部授权过")
-            callback?.onSucceed(mPermissions ?: arrayOf())
+            callback?.onSucceed(permissions)
             return
         }
         this.mCallback = callback
         this.mPermissions = permissions
         this.mReqPermissionTip = reqPermissionTip
-        val needReq = needRequest.toTypedArray()
-        Log.d(DTAG, "需要申请的权限: $needReq")
-        mPermissionReqLauncher?.launch(needReq)
+        Log.d(DTAG, "需要申请的权限: $needRequest")
+        mPermissionReqLauncher?.launch(needRequest)
     }
 
     /**
-     * 检查是否该权限是否已经授权
+     * 授权结果分发
      *
-     * @param permission 目标权限
+     * @param denied 未授权的权限
      */
-    private fun checkPermission(permission: String): Boolean {
-        val result = ContextCompat.checkSelfPermission(
-            mContext!!,
-            permission
-        ) == PackageManager.PERMISSION_GRANTED
-        Log.d(DTAG, "checkPermission: ${permission}->${result}")
-        return result
+    private fun dispatchResult(denied: Array<String>?) {
+        if (denied == null || denied.isEmpty()) {
+            Log.d(DTAG, "所需权限均已全部授权-> 执行成功回调")
+            mCallback?.onSucceed(mPermissions ?: arrayOf())
+        } else {
+            Log.d(DTAG, "权限:${denied} 拒绝授权-> 执行失败回调")
+            mCallback?.onFailed(denied)
+        }
+        release()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mCallback = null
+    /**
+     * 生成需要请求授权的权限数组
+     *
+     * @param permissions   目标权限集
+     * @return 需要请求授权的权限数组
+     */
+    private fun generateDeniedArray(permissions: Array<String>?): Array<String> {
+        if (permissions == null || permissions.isEmpty()) return arrayOf()
+
+        val needReq = mutableListOf<String>()
+        permissions.forEach {
+            if (!PermissionUtils.hasPermission(requireContext(), it)) {
+                needReq.add(it)
+            }
+        }
+        return needReq.toTypedArray()
     }
 
     override fun resume() {
         //去系统设置中设置权限
-        Log.e(DTAG, "用户选择再次授权->跳转权限设置页")
+        Log.d(DTAG, "用户选择再次授权->跳转权限设置页")
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val uri = Uri.fromParts("package", context?.packageName, null)
         intent.data = uri
@@ -157,12 +144,11 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
     }
 
     override fun termination() {
-        Log.e(DTAG, "用户终止了操作..")
-
+        Log.d(DTAG, "用户终止了操作..")
     }
 
     fun release() {
-        Log.e(DTAG, "重置数据，释放资源")
+        Log.d(DTAG, "权限请求流程执行完毕 -> 重置数据，释放资源")
         mPermissions = null
         mCallback = null
         mReqPermissionTip = null

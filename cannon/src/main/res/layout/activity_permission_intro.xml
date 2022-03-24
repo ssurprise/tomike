@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,12 +22,20 @@
         android:text="申请权限"
         tools:ignore="HardcodedText,UsingOnClickInXml" />
 
-    <TextView
-        android:id="@+id/tv_permission_logcat"
-        style="@style/LogcatTextStyle"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"
-        android:padding="5dp" />
+        android:background="@drawable/text_logcat_show">
+
+        <TextView
+            android:id="@+id/tv_permission_logcat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+    </ScrollView>
 
 </LinearLayout>

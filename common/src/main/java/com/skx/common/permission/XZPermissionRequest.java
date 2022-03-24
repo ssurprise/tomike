@@ -122,8 +122,7 @@ public class XZPermissionRequest {
             Log.d("XZPermission", "6.0以下系统，无需请求");
         } else {
             mDeniedPermissions = XZPermissionUtils.getDeniedPermissions(mContext, Arrays.asList(mPermissions));
-            if (XZPermissionUtils.isPermissionInManifest(mContext,
-                    mDeniedPermissions.toArray(new String[mDeniedPermissions.size()]))) {
+            if (XZPermissionUtils.isPermissionInManifest(mContext, mDeniedPermissions.toArray(new String[mDeniedPermissions.size()]))) {
                 if (!mDeniedPermissions.isEmpty()) {
                     mRequests.put(hashCode(), this);
                     // 跳到独立的activity中进行权限申请

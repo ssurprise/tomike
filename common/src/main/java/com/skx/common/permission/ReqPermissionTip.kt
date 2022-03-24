@@ -12,7 +12,10 @@ import android.content.DialogInterface
  */
 class DefaultReqPermissionTip(private val context: Context?) : ReqPermissionTip {
 
-    override fun showReqPermissionsReason(negotiate: PermissionNegotiate) {
+    override fun showReqPermissionsReason(
+        permission: Array<String>?,
+        negotiate: PermissionNegotiate
+    ) {
         val builder = AlertDialog.Builder(context)
         builder.setMessage("xx权限请求失败....需要手动打开")
         builder.setCancelable(false)
@@ -36,7 +39,8 @@ interface ReqPermissionTip {
      * 如果需要继续走申请流程，调用{@link #negotiate.resume()}，否则调用{@link #negotiate.termination}。
      * 这两个方法如果不执行，可能会收不到授权结果回调。
      *
-     * @param negotiate 权限操作谈判类
+     * @param permission    请求失败的权限
+     * @param negotiate     权限操作谈判类
      */
-    fun showReqPermissionsReason(negotiate: PermissionNegotiate)
+    fun showReqPermissionsReason(permission: Array<String>?, negotiate: PermissionNegotiate)
 }
