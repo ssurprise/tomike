@@ -1,5 +1,6 @@
 package com.skx.common.permission
 
+import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -8,7 +9,9 @@ import android.provider.Settings
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import com.skx.common.base.BaseFragment
+import java.util.*
 
 /**
  * 描述 : 权限
@@ -25,8 +28,17 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
     private var mCallback: PermissionResultListener? = null
     private var mReqPermissionTip: ReqPermissionTip? = null
 
+    // 普通权限请求launcher
     private var mPermissionReqLauncher: ActivityResultLauncher<Array<String>>? = null
+
+    // 打开APP 介绍页launcher
     private var mSettingLauncher: ActivityResultLauncher<Intent>? = null
+
+    // 系统设置页launcher
+    private var mSystemSettingLauncher: ActivityResultLauncher<Intent>? = null
+
+    // 全局弹窗launcher
+    private var mSystemAlertWindowLauncher: ActivityResultLauncher<Intent>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,15 +51,6 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
             ActivityResultContracts.RequestMultiplePermissions()
         ) { result: Map<String?, Boolean?> ->
             // 注：这里之所有没有直接使用回调参数中的result 进行判断是因为有些特殊权限不会通过这里获取授权结果。
-//            val deniedList: MutableList<String> = mutableListOf()
-//            result.forEach {
-//                it.key?.run {
-//                    Log.d(DTAG, "授权结果: ${it.key}->${it.value}")
-//                    if (false == it.value) {
-//                        deniedList.add(this)
-//                    }
-//                }
-//            }
             val deniedArray = generateDeniedArray(mPermissions)
             // 1.全部同意
             if (deniedArray.isNullOrEmpty()) {
@@ -67,9 +70,21 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
         mSettingLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            Log.e(DTAG, "从权限设置页返回 resultCode:${it.resultCode}")
+            Log.d(DTAG, "从权限设置页返回 resultCode:${it.resultCode}")
             val needRequest = generateDeniedArray(mPermissions)
             dispatchResult(needRequest)
+        }
+        // 系统权限设置
+        mSystemSettingLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            specialPermissionHandling(WRITE_SETTINGS)
+        }
+        // 系统悬浮窗权限设置
+        mSystemAlertWindowLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            specialPermissionHandling(SYSTEM_ALERT_WINDOW)
         }
     }
 
@@ -82,22 +97,55 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
             Log.d(DTAG, "没有需要动态申请的权限")
             return
         }
+        this.mCallback = callback
+        this.mPermissions = permissions
+        this.mReqPermissionTip = reqPermissionTip
+
         if (Build.VERSION.SDK_INT < 23) {
-            Log.d(DTAG, "6.0 以下，无需申请权限")
+            Log.d(DTAG, "6.0 以下，无需申请权限，默认全部同意")
+            dispatchResult(null)
             return
         }
 
         val needRequest = generateDeniedArray(permissions)
+        // ① 目标权限均已授权，走成功的回调
         if (needRequest.isEmpty()) {
-            Log.d(DTAG, "目标权限均已全部授权过")
-            callback?.onSucceed(permissions)
+            dispatchResult(null)
             return
         }
-        this.mCallback = callback
-        this.mPermissions = permissions
-        this.mReqPermissionTip = reqPermissionTip
-        Log.d(DTAG, "需要申请的权限: $needRequest")
-        mPermissionReqLauncher?.launch(needRequest)
+
+        // ② 执行权限请求
+        Log.d(DTAG, "需要申请的权限: ${needRequest.contentToString()}")
+        realCall(needRequest)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun realCall(permissions: Array<String>?) {
+        if (permissions == null || permissions.isEmpty()) {
+            dispatchResult(null)
+            return
+        }
+        // ① 检索特殊权限
+        val specialPermission: String? = permissions.firstOrNull {
+            PermissionUtils.isSpecialPermission(it)
+        }
+
+        // ② 优先处理特殊权限
+        specialPermission?.run {
+            specialPermissionReq(this)
+            return
+        }
+
+        // ③ 过滤掉特殊权限，处理普通权限
+        val filter = permissions.filter {
+            !it.equals(SYSTEM_ALERT_WINDOW, ignoreCase = true)
+                    && !it.equals(WRITE_SETTINGS, ignoreCase = true)
+        }
+        if (filter.isEmpty()) {
+            dispatchResult(null)
+        } else {
+            mPermissionReqLauncher?.launch(filter.toTypedArray())
+        }
     }
 
     /**
@@ -110,14 +158,14 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
             Log.d(DTAG, "所需权限均已全部授权-> 执行成功回调")
             mCallback?.onSucceed(mPermissions ?: arrayOf())
         } else {
-            Log.d(DTAG, "权限:${denied} 拒绝授权-> 执行失败回调")
+            Log.d(DTAG, "权限:${denied.contentToString()} 拒绝授权-> 执行失败回调")
             mCallback?.onFailed(denied)
         }
         release()
     }
 
     /**
-     * 生成需要请求授权的权限数组
+     * 生成需要请求授权的权限数组，包含未请求过 和 之前请求请求失败的权限
      *
      * @param permissions   目标权限集
      * @return 需要请求授权的权限数组
@@ -145,9 +193,61 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
 
     override fun termination() {
         Log.d(DTAG, "用户终止了操作..")
+        val needRequest = generateDeniedArray(mPermissions)
+        dispatchResult(needRequest)
     }
 
-    fun release() {
+    /**
+     * 请求特殊权限
+     *
+     * @param specialPermission 特殊权限
+     */
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun specialPermissionReq(specialPermission: String) {
+        when (specialPermission) {
+            SYSTEM_ALERT_WINDOW -> {
+                context?.run {
+                    val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+                    intent.data = Uri.parse("package:${this.packageName}")
+                    mSystemAlertWindowLauncher?.launch(intent)
+                }
+            }
+            WRITE_SETTINGS -> {
+                context?.run {
+                    val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+                    intent.data = Uri.parse("package:${this.packageName}")
+                    mSystemAlertWindowLauncher?.launch(intent)
+                }
+            }
+        }
+    }
+
+    /**
+     * 特殊权限处理
+     */
+    private fun specialPermissionHandling(specialPermission: String) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            // 6.0 以下直接授权成功，无须申请
+            dispatchResult(null)
+            return
+        }
+        var isAllow = true
+        if (SYSTEM_ALERT_WINDOW.equals(specialPermission, ignoreCase = true)) {
+            isAllow = Settings.canDrawOverlays(context)
+
+        } else if (WRITE_SETTINGS.equals(specialPermission, ignoreCase = true)) {
+            isAllow = Settings.System.canWrite(context)
+        }
+        val deniedArray = generateDeniedArray(mPermissions)
+        if (isAllow) {
+            // 当前权限已经同意，如果还有其他权限，继续执行
+            realCall(deniedArray)
+        } else {
+            dispatchResult(deniedArray)
+        }
+    }
+
+    private fun release() {
         Log.d(DTAG, "权限请求流程执行完毕 -> 重置数据，释放资源")
         mPermissions = null
         mCallback = null
@@ -155,6 +255,9 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
     }
 
     companion object {
+
+        private const val SYSTEM_ALERT_WINDOW = Manifest.permission.SYSTEM_ALERT_WINDOW
+        private const val WRITE_SETTINGS = Manifest.permission.WRITE_SETTINGS
 
         private const val DTAG = "PermissionController"
 

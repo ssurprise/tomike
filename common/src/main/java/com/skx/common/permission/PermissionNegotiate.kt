@@ -10,12 +10,12 @@ package com.skx.common.permission
 interface PermissionNegotiate {
 
     /**
-     * 继续谈判
+     * 继续谈判，用于选择继续进行授权
      */
     fun resume()
 
     /**
-     * 终止谈判
+     * 终止谈判，用于停止/取消授权操作
      */
     fun termination()
 

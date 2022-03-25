@@ -1,8 +1,10 @@
 package com.skx.common.permission
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import java.util.*
 
 /**
  * 描述 : 请求权限提示-用于展示需要请求权限的目的
@@ -12,16 +14,37 @@ import android.content.DialogInterface
  */
 class DefaultReqPermissionTip(private val context: Context?) : ReqPermissionTip {
 
+    private val MAP_LABEL_STR: Map<String, String> = HashMap<String, String>().apply {
+        put(Manifest.permission.READ_EXTERNAL_STORAGE, "存储")
+        put(Manifest.permission.WRITE_EXTERNAL_STORAGE, "存储")
+        put(Manifest.permission.ACCESS_COARSE_LOCATION, "位置信息")
+        put(Manifest.permission.ACCESS_FINE_LOCATION, "位置信息")
+        put(Manifest.permission.READ_PHONE_STATE, "电话")
+        put(Manifest.permission.CAMERA, "相机")
+    }
+
     override fun showReqPermissionsReason(
         permission: Array<String>?,
         negotiate: PermissionNegotiate
     ) {
         val builder = AlertDialog.Builder(context)
-        builder.setMessage("xx权限请求失败....需要手动打开")
+        val content = StringBuilder("需要")
+        permission?.forEachIndexed { index, s ->
+            if (MAP_LABEL_STR.containsKey(s)) {
+                content.append(MAP_LABEL_STR[s])
+            } else {
+                content.append(s)
+            }
+            if (index < (permission.size - 1)) {
+                content.append("、")
+            }
+        }
+        content.append("权限，否则可能会影响您的正常使用")
+        builder.setMessage(content)
         builder.setCancelable(false)
         builder.setNegativeButton("取消") { dialog: DialogInterface, which: Int ->
             dialog.dismiss()
-            negotiate.resume()
+            negotiate.termination()
         }
         builder.setPositiveButton("去打开") { dialog: DialogInterface, which: Int ->
             dialog.dismiss()

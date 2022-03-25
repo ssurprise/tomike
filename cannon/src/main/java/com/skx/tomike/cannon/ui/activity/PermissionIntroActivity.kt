@@ -77,13 +77,14 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
             .associateDefaultTip()
             .callback(object : PermissionResultListener {
                 override fun onSucceed(grantPermissions: Array<out String>) {
-                    mTvLogcat.append("该权限已授权\n\n")
+                    mTvLogcat.append("目标权限已授权\n\n")
                 }
 
                 override fun onFailed(deniedPermissions: Array<out String>) {
                     deniedPermissions.forEach {
                         mTvLogcat.append("$it 授权拒绝\n")
                     }
+                    mTvLogcat.append("\n")
                 }
             })
             .request()

@@ -1,5 +1,7 @@
 package com.skx.common.permission;
 
+import static com.skx.common.utils.DpPxSpToolKt.dip2px;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -25,9 +27,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import com.skx.common.R;
-import com.skx.common.utils.ScreenUtilKt;
-
-import static com.skx.common.utils.DpPxSpToolKt.dip2px;
 
 
 /**
@@ -103,14 +102,11 @@ public class PermissionRationaleDialog extends Dialog {
             if (posBtnTextColor != 0) {
                 btn_sure.setTextColor(posBtnTextColor);
             }
-            btn_sure.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (positiveButtonClickListener != null) {
-                        positiveButtonClickListener.onClick(PermissionRationaleDialog.this, v.getId());
-                    }
-                    dismiss();
+            btn_sure.setOnClickListener(v -> {
+                if (positiveButtonClickListener != null) {
+                    positiveButtonClickListener.onClick(PermissionRationaleDialog.this, v.getId());
                 }
+                dismiss();
             });
         }
         btn_sure.setVisibility(showBtnSure ? View.VISIBLE : View.GONE);
@@ -123,14 +119,11 @@ public class PermissionRationaleDialog extends Dialog {
             if (negBtnTextColor != 0) {
                 btn_cancel.setTextColor(negBtnTextColor);
             }
-            btn_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (negativeButtonClickListener != null) {
-                        negativeButtonClickListener.onClick(PermissionRationaleDialog.this, v.getId());
-                    }
-                    dismiss();
+            btn_cancel.setOnClickListener(v -> {
+                if (negativeButtonClickListener != null) {
+                    negativeButtonClickListener.onClick(PermissionRationaleDialog.this, v.getId());
                 }
+                dismiss();
             });
         }
         btn_cancel.setVisibility(showBtnCancel ? View.VISIBLE : View.GONE);
