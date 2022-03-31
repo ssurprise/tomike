@@ -17,5 +17,6 @@ class PermissionParams {
     var mReqPermissionTip: ReqPermissionTip? = null
     var mPermissions: Array<String>? = null
     var mFragmentManager: FragmentManager? = null
+    var mError: PermissionError? = null
 
 }

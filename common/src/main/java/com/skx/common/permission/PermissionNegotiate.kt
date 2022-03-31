@@ -2,7 +2,7 @@ package com.skx.common.permission
 
 
 /**
- * 描述 : 权限-谈判
+ * 描述 : 权限-谈判类，用于请求失败时二次沟通
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/9/16 5:21 PM
