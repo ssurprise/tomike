@@ -15,8 +15,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
-import com.skx.common.permission.PermissionController
-import com.skx.common.permission.PermissionResultListener
+import com.skx.common.permission.*
 import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_PERMISSION
 import com.skx.tomike.cannon.bean.Permission
@@ -76,12 +75,12 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
             .permissions(permissions)
             .associateDefaultTip()
             .callback(object : PermissionResultListener {
-                override fun onSucceed(grantPermissions: Array<out String>) {
+                override fun onSucceed(grantPermissions: Array<String>?) {
                     mTvLogcat.append("目标权限已授权\n\n")
                 }
 
-                override fun onFailed(deniedPermissions: Array<out String>) {
-                    deniedPermissions.forEach {
+                override fun onFailed(deniedPermissions: Array<String>?) {
+                    deniedPermissions?.forEach {
                         mTvLogcat.append("$it 授权拒绝\n")
                     }
                     mTvLogcat.append("\n")
