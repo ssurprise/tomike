@@ -12,6 +12,7 @@ const val ROUTE_PATH_VIEW_MODEL = "${ROUTER_FIRST_LEVEL_JETPACK}/viewmodel"
 const val ROUTE_PATH_ROOM = "${ROUTER_FIRST_LEVEL_JETPACK}/room"
 const val ROUTE_PATH_ACTIVITY4RESULT = "${ROUTER_FIRST_LEVEL_JETPACK}/activity4result"
 const val ROUTE_PATH_RXJAVA = "${ROUTER_FIRST_LEVEL_third}/rxjava"
+const val ROUTE_PATH_FLOW = "${ROUTER_FIRST_LEVEL_third}/flow"
 
 
 const val ROUTE_PATH_OKHTTP = "${ROUTER_FIRST_LEVEL_third}/okhttp"

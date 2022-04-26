@@ -35,7 +35,8 @@ class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
         super.onCreate(savedInstanceState)
 //        test0()
 //        test1()
-        test2()
+//        test2()
+        test3()
     }
 
     private fun test0() {
@@ -54,29 +55,54 @@ class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
      */
     private fun test1() {
         GlobalScope.launch { // 在后台启动一个新的协程并继续
-            Log.e(TAG, "协程 - thread:" + Thread.currentThread().name)
+            Log.e(TAG, "1 - GlobalScope.launch所在线程:" + Thread.currentThread().name)
             delay(1000L) // 非阻塞的等待 1 秒钟（默认时间单位是毫秒）
-            Log.e(TAG, "协程 - print: word")
+            Log.e(TAG, "3 - 'word'")
         }
-        Log.e(TAG, "协程 - thread:" + Thread.currentThread().name)
-        Log.e(TAG, "协程 - print: Hello,")
         runBlocking {     // 调用了 runBlocking 的主线程会一直 阻塞 直到 runBlocking 内部的协程执行完毕。
+            Log.e(TAG, "2 - runBlocking 所在线程:" + Thread.currentThread().name)
             delay(2000L)  // ……我们延迟 2 秒来保证 JVM 的存活
+            Log.e(TAG, "4 - 'Hello-1'")
         }
+        Log.e(TAG, "5 - thread:" + Thread.currentThread().name)
+        Log.e(TAG, "6 - 'Hello-2'")
     }
-   /**
+
+    /**
      * 知识点：join
      */
     private fun test2() {
-       runBlocking{
-           val job = GlobalScope.launch { // 启动一个新协程并保持对这个作业的引用
-               Log.e(TAG, "协程 - thread:" + Thread.currentThread().name)
-               delay(1000L)
-               Log.e(TAG, "协程 - print: word")
-           }
-           Log.e(TAG, "协程 - print: Hello，")
-           job.join() // 等待直到子协程执行结束
-       }
+        runBlocking {
+            val job = GlobalScope.launch { // 启动一个新协程并保持对这个作业的引用
+                Log.e(TAG, "协程 - thread:" + Thread.currentThread().name)
+                delay(1000L)
+                Log.e(TAG, "协程 - print: word")
+            }
+            Log.e(TAG, "协程 - print: Hello，")
+            job.join() // 等待直到子协程执行结束
+        }
+    }
+
+    /**
+     * 取消协程的执行
+     */
+    private fun test3() {
+        GlobalScope.launch {
+            // 该 launch 函数返回了一个可以被用来取消运行中的协程的 Job
+            val job = GlobalScope.launch {
+                repeat(1000) { i ->
+                    Log.e(TAG, "job: I'm sleeping $i ...")
+                    delay(500L)
+                }
+            }
+            delay(1300L) // delay a bit
+            Log.e(TAG, "main: I'm tired of waiting!")
+            job.cancel() // cancels the job
+            job.join() // waits for job's completion
+//            job.cancelAndJoin() // 取消该作业并等待它结束
+
+            Log.e(TAG, "main: Now I can quit.")
+        }
     }
 
 

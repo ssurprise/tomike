@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.RxJavaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:showDividers="middle">
+
+        <TextView
+            android:id="@+id/tv_flow_single"
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:text="单一执行 = A-> A'  "
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_flow_parallelExecute"
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:text="并行：A/B= ->> A+B  "
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_flow_serialExecute"
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:text="串行：A->B ->> B  "
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_flow_serialAndMerge1"
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:text="串行合并：A->B ->> A+B  (方案1)"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_flow_serialAndMerge2"
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="串行合并：A->B ->> A+B  (方案2)"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rl_flow_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/skx_ff4081"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-70dp"
+            android:indeterminate="true" />
+
+        <TextView
+            android:id="@+id/tv_flow_loadingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="loading..."
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+</RelativeLayout>

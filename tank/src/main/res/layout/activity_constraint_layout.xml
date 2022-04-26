@@ -1,100 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".widget.activity.ConstraintLayoutActivity"
-    tools:layout_editor_absoluteY="25dp">
+    android:orientation="vertical"
+    tools:context=".widget.activity.ConstraintLayoutActivity">
 
-    <TextView
-        android:id="@+id/tab3"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="#A67"
-        android:gravity="center"
-        android:text="TAB3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tab2"
-        app:layout_constraintRight_toRightOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tab2"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="#767"
-        android:gravity="center"
-        android:text="TAB2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tab1"
-        app:layout_constraintRight_toLeftOf="@+id/tab3" />
+        <TextView
+            android:id="@+id/tv_constraint_1"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_2cb298"
+            android:gravity="center"
+            android:text="1"
+            app:layout_constraintEnd_toStartOf="@id/tv_constraint_2"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/tab1"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="#f67"
-        android:gravity="center"
-        android:text="TAB1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/tab2" />
+        <TextView
+            android:id="@+id/tv_constraint_2"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_ee5c72"
+            android:gravity="center"
+            android:text="2"
+            app:layout_constraintEnd_toStartOf="@id/tv_constraint_3"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/tv_constraint_1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#765"
-        android:gravity="center"
-        android:text="Banner"
-        app:layout_constraintDimensionRatio="h,16:9"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="0dp"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/tv_constraint_3"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_4dbbcf"
+            android:gravity="center"
+            android:text="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/tv_constraint_2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:text="CheckBox"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="137dp"
-        android:layout_height="52dp"
-        android:layout_marginEnd="12dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
-        tools:layout_editor_absoluteY="282dp"
-        tools:ignore="MissingConstraints,RtlCompat" />
+        <TextView
+            android:id="@+id/tv_constraint_4"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_2cb298"
+            android:gravity="center"
+            android:text="1"
+            app:layout_constraintEnd_toStartOf="@id/tv_constraint_5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
-    <SeekBar
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.72"
-        app:layout_constraintStart_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
-        tools:ignore="RtlCompat" />
+        <TextView
+            android:id="@+id/tv_constraint_5"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_ee5c72"
+            android:gravity="center"
+            android:text="2"
+            app:layout_constraintEnd_toStartOf="@id/tv_constraint_6"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/tv_constraint_4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_constraint_6"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_4dbbcf"
+            android:gravity="center"
+            android:text="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/tv_constraint_5"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tv_constraint_7"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_2cb298"
+            android:gravity="center"
+            android:text="1"
+            app:layout_constraintEnd_toStartOf="@id/tv_constraint_8"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_constraint_8"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_ee5c72"
+            android:gravity="center"
+            android:text="2"
+            app:layout_constraintEnd_toStartOf="@id/tv_constraint_9"
+            app:layout_constraintStart_toEndOf="@id/tv_constraint_7"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_constraint_9"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_4dbbcf"
+            android:gravity="center"
+            android:text="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_constraint_8"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="175dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="184dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="@dimen/view_padding_15"
+        tools:ignore="RtlSymmetry">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/et_constraint_1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:maxWidth="180dp"
+            android:maxLines="1"
+            android:minWidth="100dp"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="Autofill,LabelFor,TextFields" />
+
+        <EditText
+            android:id="@+id/et_constraint_2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:maxWidth="250dp"
+            android:maxLines="1"
+            android:minWidth="50dp"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_constraint_1"
+            tools:ignore="Autofill,LabelFor,TextFields" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_constraint_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/skx_2cb298"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="et_constraint_1,et_constraint_2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:background="@color/skx_f5066d"
+            app:layout_constraintBottom_toBottomOf="@id/et_constraint_2"
+            app:layout_constraintStart_toEndOf="@id/barrier_constraint_1"
+            app:layout_constraintTop_toTopOf="@id/et_constraint_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

@@ -214,6 +214,9 @@
         <activity
             android:name=".ui.activity.FragmentPracticeActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.KotlinFlowActivity"
+            android:screenOrientation="portrait" />
 
         <service android:name=".ui.activity.MyService" />
     </application>
