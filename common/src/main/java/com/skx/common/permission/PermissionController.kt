@@ -12,25 +12,25 @@ import androidx.fragment.app.FragmentActivity
  * 版本 : V1
  * 创建时间 : 2020/9/16 5:21 PM
  */
-class PermissionController(private val params: PermissionParams) {
+class PermissionController(private val permissionParams: PermissionParams) {
 
     companion object {
         private const val KEY_PERMISSION_FRAGMENT = "tomike_permission_fragment"
     }
 
     fun requestPermission() {
-        if (params.mPermissions == null || params.mPermissions?.isEmpty() == true) {
+        if (permissionParams.mPermissions == null || permissionParams.mPermissions?.isEmpty() == true) {
             PermLog.d("当前没有需要动态申请的权限")
-            params.mError?.onErrorEvent(
+            permissionParams.mError?.onErrorEvent(
                 PermissionError.ERROR_CODE_PERMISSION_EMPTY,
                 "当前没有需要动态申请的权限"
             )
             return
         }
 
-        if (params.mContext == null && params.mFragmentManager == null) {
+        if (permissionParams.mContext == null && permissionParams.mFragmentManager == null) {
             PermLog.d("缺少上下文")
-            params.mError?.onErrorEvent(
+            permissionParams.mError?.onErrorEvent(
                 PermissionError.ERROR_CODE_CONTEXT_NOT_FIND,
                 "缺少上下文"
             )
@@ -40,10 +40,10 @@ class PermissionController(private val params: PermissionParams) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // 6.0下安装时默认同意全部权限
             PermLog.d("6.0以下系统，无需动态申请权限")
-            params.mCallback?.onSucceed(params.mPermissions!!)
+            permissionParams.mCallback?.onSucceed(permissionParams.mPermissions!!)
             return
         }
-        params.mFragmentManager?.run {
+        permissionParams.mFragmentManager?.run {
             var fragment = this.findFragmentByTag(KEY_PERMISSION_FRAGMENT)
             if (fragment == null) {
                 fragment = PermissionFragment.getInstance()
@@ -53,16 +53,16 @@ class PermissionController(private val params: PermissionParams) {
             }
             if (fragment is PermissionFragment) {
                 fragment.reqPermissions(
-                    params.mPermissions,
-                    params.mCallback,
-                    params.mReqPermissionTip
+                    permissionParams.mPermissions,
+                    permissionParams.mCallback,
+                    permissionParams.mReqPermissionTip
                 )
             }
             return
         }
-        params.mContext?.run {
+        permissionParams.mContext?.run {
             PermLog.d("不支持的上下文")
-            params.mError?.onErrorEvent(
+            permissionParams.mError?.onErrorEvent(
                 PermissionError.ERROR_CODE_UNSUPPORT_CONTEXT,
                 "不支持的上下文"
             )
@@ -77,12 +77,12 @@ class PermissionController(private val params: PermissionParams) {
      */
     class Builder private constructor() {
 
-        private val params: PermissionParams = PermissionParams()
+        private val mParams: PermissionParams = PermissionParams()
 
         constructor(context: Context?) : this() {
-            params.mContext = context
+            mParams.mContext = context
             val activity = scanForActivity(context)
-            params.mFragmentManager = activity?.supportFragmentManager
+            mParams.mFragmentManager = activity?.supportFragmentManager
         }
 
         private fun scanForActivity(cont: Context?): FragmentActivity? {
@@ -97,51 +97,51 @@ class PermissionController(private val params: PermissionParams) {
         }
 
         constructor(fragmentActivity: FragmentActivity?) : this() {
-            params.mContext = fragmentActivity
-            params.mFragmentManager = fragmentActivity?.supportFragmentManager
+            mParams.mContext = fragmentActivity
+            mParams.mFragmentManager = fragmentActivity?.supportFragmentManager
         }
 
         constructor(fragment: Fragment?) : this() {
-            params.mContext = fragment?.context
-            params.mFragmentManager = fragment?.childFragmentManager
+            mParams.mContext = fragment?.context
+            mParams.mFragmentManager = fragment?.childFragmentManager
         }
 
         fun permissions(permissions: Array<String>): Builder {
-            params.mPermissions = permissions
+            mParams.mPermissions = permissions
             return this
         }
 
         fun permissions(permissions: List<String>): Builder {
-            params.mPermissions = permissions.toTypedArray()
+            mParams.mPermissions = permissions.toTypedArray()
             return this
         }
 
         fun callback(callback: PermissionResultListener): Builder {
-            params.mCallback = callback
+            mParams.mCallback = callback
             return this
         }
 
         fun associateDefaultTip(): Builder {
-            params.mReqPermissionTip = DefaultReqPermissionTip(params.mContext)
+            mParams.mReqPermissionTip = DefaultReqPermissionTip(mParams.mContext)
             return this
         }
 
         fun associateCustomTip(reqPermissionTip: ReqPermissionTip): Builder {
-            params.mReqPermissionTip = reqPermissionTip
+            mParams.mReqPermissionTip = reqPermissionTip
             return this
         }
 
         fun error(error: PermissionError): Builder {
-            params.mError = error
+            mParams.mError = error
             return this
         }
 
         fun create(): PermissionController {
-            return PermissionController(params)
+            return PermissionController(mParams)
         }
 
         fun request() {
-            val controller = PermissionController(params)
+            val controller = PermissionController(mParams)
             controller.requestPermission()
         }
     }

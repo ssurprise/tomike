@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.cannon.ui.activity.LifecycleActivity">
+
+    <TextView
+        android:id="@+id/tv_livedata_content"
+        style="@style/LogcatTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="100dp"
+        android:padding="10dp"
+        tools:text="aaaa" />
+
+    <Button
+        android:id="@+id/btn_livedata_showDialog"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="弹出Dialog"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_livedata_set"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_livedata_showDialog"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:text="set"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_livedata_post"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_livedata_set"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:text="post"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>

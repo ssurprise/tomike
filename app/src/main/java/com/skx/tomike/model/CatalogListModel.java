@@ -35,6 +35,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_IMAGE_zoom;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD_2;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_LIFECYCLE;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_LIVEDATA;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_MUSIC_PLAYER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NOTIFICATION;
@@ -272,6 +273,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("服务(Service)", ROUTE_PATH_SERVICE));
         mFunctionCatalogs.add(new CatalogItem("fragment 练习", ROUTE_PATH_FRAGMENT));
         mFunctionCatalogs.add(new CatalogItem("lifecycle", ROUTE_PATH_LIFECYCLE));
+        mFunctionCatalogs.add(new CatalogItem("livedata", ROUTE_PATH_LIVEDATA));
         mFunctionCatalogs.add(new CatalogItem("ViewModel", ROUTE_PATH_VIEW_MODEL));
         mFunctionCatalogs.add(new CatalogItem("Handler", ROUTE_PATH_HANDLER));
         mFunctionCatalogs.add(new CatalogItem("AsyncTask", ROUTE_PATH_ASYNC_TASK));

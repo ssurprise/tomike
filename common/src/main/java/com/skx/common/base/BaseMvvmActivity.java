@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -30,7 +30,7 @@ public abstract class BaseMvvmActivity<T extends BaseViewModel> extends AppCompa
             Class<T> clazz = (Class<T>) params[0];
 
             if (clazz != null) {
-                mViewModel = ViewModelProviders.of(this).get(clazz);
+                mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance().create(clazz);
             }
         } catch (Exception e) {
             e.printStackTrace();
