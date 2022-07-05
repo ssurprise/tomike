@@ -30,7 +30,7 @@ public abstract class BaseMvvmActivity<T extends BaseViewModel> extends AppCompa
             Class<T> clazz = (Class<T>) params[0];
 
             if (clazz != null) {
-                mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance().create(clazz);
+                mViewModel = new ViewModelProvider(this).get(clazz);
             }
         } catch (Exception e) {
             e.printStackTrace();
