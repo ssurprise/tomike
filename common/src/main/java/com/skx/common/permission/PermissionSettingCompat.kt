@@ -4,7 +4,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import com.skx.common.BuildConfig
 
 /**
  * @author: shiguotao
@@ -80,11 +79,6 @@ object PermissionSettingCompat {
 //        intent.component = comp;
         return intent
     }
-
-    //
-    //————————————————
-    //版权声明：本文为CSDN博主「发型不给力」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-    //原文链接：https://blog.csdn.net/luckrr/article/details/78211465
 
     //小米系统有以下几个版本需要适配
 //    private fun goXiaoMiManager(context: Context) {
