@@ -9,6 +9,9 @@ import com.skx.common.base.TitleConfig
 import com.skx.tomike.bomber.R
 import com.skx.tomike.bomber.ROUTE_PATH_COROUTINE
 import kotlinx.coroutines.*
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.createCoroutine
+import kotlin.coroutines.resume
 
 /**
  * 描述 : 协程demo
@@ -48,6 +51,14 @@ class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
         Log.e(TAG, "协程 - thread:" + Thread.currentThread().name)
         Log.e(TAG, "协程 - print: Hello,")
         Thread.sleep(2000L) // 阻塞主线程 2 秒钟来保证 JVM 存活
+
+        /*
+ E/CoroutineActivity: 协程 - thread:main
+ E/CoroutineActivity: 协程 - print: Hello,
+ E/CoroutineActivity: 协程 - thread:DefaultDispatcher-worker-1
+ E/CoroutineActivity: 协程 - print: word
+         */
+
     }
 
     /**
@@ -66,6 +77,19 @@ class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
         }
         Log.e(TAG, "5 - thread:" + Thread.currentThread().name)
         Log.e(TAG, "6 - 'Hello-2'")
+
+        /*
+ E/CoroutineActivity: 1 - GlobalScope.launch所在线程:DefaultDispatcher-worker-1
+ E/CoroutineActivity: 2 - runBlocking 所在线程:main
+
+ (注：1、2的顺序不一定，可能是1-2 也可能是2-1)
+
+
+ E/CoroutineActivity: 3 - 'word'
+ E/CoroutineActivity: 4 - 'Hello-1'
+ E/CoroutineActivity: 5 - thread:main
+ E/CoroutineActivity: 6 - 'Hello-2'
+         */
     }
 
     /**
@@ -79,7 +103,18 @@ class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
                 Log.e(TAG, "协程 - print: word")
             }
             Log.e(TAG, "协程 - print: Hello，")
+            Log.e(TAG, "协程 - print: end?")
             job.join() // 等待直到子协程执行结束
+            Log.e(TAG, "协程 - print: end!")
+
+            /*
+            输出：
+ E/CoroutineActivity: 协程 - print: Hello，
+ E/CoroutineActivity: 协程 - print: end?
+ E/CoroutineActivity: 协程 - thread:DefaultDispatcher-worker-1
+ E/CoroutineActivity: 协程 - print: word
+ E/CoroutineActivity: 协程 - print: end!   // 注：在join 的子协程完毕之后执行。
+             */
         }
     }
 
@@ -102,6 +137,14 @@ class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
 //            job.cancelAndJoin() // 取消该作业并等待它结束
 
             Log.e(TAG, "main: Now I can quit.")
+
+            /*
+2022-10-13 15:05:06.401 25464-25518/com.skx.tomike E/CoroutineActivity: job: I'm sleeping 1 ...
+
+2022-10-13 15:05:06.905 25464-25518/com.skx.tomike E/CoroutineActivity: job: I'm sleeping 2 ...
+2022-10-13 15:05:07.204 25464-25518/com.skx.tomike E/CoroutineActivity: main: I'm tired of waiting!
+2022-10-13 15:05:07.205 25464-25517/com.skx.tomike E/CoroutineActivity: main: Now I can quit.
+             */
         }
     }
 
