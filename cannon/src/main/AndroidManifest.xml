@@ -18,10 +18,15 @@
 
     <application android:networkSecurityConfig="@xml/network_security_config">
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.NotificationActivity"
+            android:name=".ui.activity.FullscreenActivity"
+            android:screenOrientation="portrait"
+            />
+<!--        android:theme="@style/Theme.Skxlaboratory.Fullscreen"-->
+        <activity
+            android:name=".ui.activity.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.NfcGroupActivity"
+            android:name=".ui.activity.NfcGroupActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -45,7 +50,7 @@
         </activity>
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.OutterStartActivity"
+            android:name=".ui.activity.OutterStartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -61,7 +66,7 @@
         </activity>
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.TransparentThemeActivity"
+            android:name=".ui.activity.TransparentThemeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/GlobalCaptchaTheme.Transparent"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
@@ -73,114 +78,125 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.NfcWriteTextActivity"
+            android:name=".ui.activity.NfcWriteTextActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.NfcReadTextActivity"
+            android:name=".ui.activity.NfcReadTextActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.NfcPermissionTestActivity"
+            android:name=".ui.activity.NfcPermissionTestActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.PermissionIntroActivity"
+            android:name=".ui.activity.PermissionIntroActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.RxJavaActivity"
+            android:name=".ui.activity.RxJavaActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.OkHttpActivity"
+            android:name=".ui.activity.OkHttpActivity"
             android:screenOrientation="portrait" />
 
         <!-- 图片加载 -->
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.ImageLoadActivity"
+            android:name=".ui.activity.ImageLoadActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.GlideActivity"
+            android:name=".ui.activity.GlideActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.RetrofitActivity"
+            android:name=".ui.activity.RetrofitActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.RoomTestActivity"
+            android:name=".ui.activity.RoomTestActivity"
             android:screenOrientation="portrait" />
 
         <!-- 照片墙 -->
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.PhotoWallActivity"
+            android:name=".ui.activity.PhotoWallActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+
         <!-- 多相册 -->
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.PhotoAlbumsActivity"
+            android:name=".ui.activity.PhotoAlbumsActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+
         <!-- 图片预览 -->
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.PicturePreviewActivity"
+            android:name=".ui.activity.PicturePreviewActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+
         <!-- 拍照 -->
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.PhotographActivity"
+            android:name=".ui.activity.PhotographActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.ZoomImageActivity"
+            android:name=".ui.activity.ZoomImageActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.HandlerActivity"
+            android:name=".ui.activity.HandlerActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.LivedataActivity"
+            android:name=".ui.activity.LivedataActivity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.LifecycleActivity"
+            android:name=".ui.activity.LifecycleActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.LifecycleActivity2"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.ViewModelActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.skx.tomike.cannon.ui.activity.AopTestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.skx.tomike.cannon.ui.activity.AsyncTaskActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.skx.tomike.cannon.ui.activity.OpenFileActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.skx.tomike.cannon.ui.activity.ParcelableActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.skx.tomike.cannon.ui.activity.DeviceInformationActivity"
+            android:name=".ui.activity.ViewModelActivity"
             android:screenOrientation="portrait" />
 
-        <!-- 键盘 实例 -->
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.KeyboardActivity"
+            android:name=".ui.activity.AopTestActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.AsyncTaskActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.OpenFileActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.ParcelableActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.DeviceInformationActivity"
+            android:screenOrientation="portrait" /> <!-- 键盘 实例 -->
+
+        <activity
+            android:name=".ui.activity.KeyboardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden"
             tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name=".ui.activity.KeyboardActivity2"
             android:screenOrientation="portrait"
@@ -188,10 +204,11 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.HotfixActivity"
+            android:name=".ui.activity.HotfixActivity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.CountDownTimerActivity"
+            android:name=".ui.activity.CountDownTimerActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.RebootAppActivity"
@@ -206,7 +223,7 @@
             android:name=".ui.activity.ServiceDemoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.skx.tomike.cannon.ui.activity.PopupWindowActivity"
+            android:name=".ui.activity.PopupWindowActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.MusicPlayerActivity"

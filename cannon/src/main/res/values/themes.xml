@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="Theme.Skxlaboratory" parent="Theme.Design.Light.NoActionBar" />
+
+    <style name="Theme.Skxlaboratory.Fullscreen" parent="Theme.Skxlaboratory">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+</resources>

@@ -114,7 +114,7 @@ class MusicPlayerManager private constructor() {
      */
     private fun justPlay(index: Int) {
         if (mIndex < 0 || mIndex > mMusicList.size - 1) {
-            Log.e(TAG, "index 越界，无法执行播放任务")
+            Log.e(TAG, "index:${index} 越界，无法执行播放任务")
             return
         }
 
@@ -207,7 +207,7 @@ class MusicPlayerManager private constructor() {
         Log.e(TAG, "播放上一首...")
         val prev = mPlayMode.prev(mIndex)
         if (prev == -1) {
-            Log.e(TAG, "获取上一首音乐失败：next=${prev}")
+            Log.e(TAG, "获取上一首音乐失败：prev=${prev}")
             return
         }
         mIndex = prev

@@ -31,7 +31,7 @@ abstract class SkxBaseActivity<T : BaseViewModel?> : BaseMvvmActivity<T>() {
     /**
      * 初始化主题样式
      */
-    private fun nativeThemeStyle() {}
+    protected open fun nativeThemeStyle() {}
 
     private fun initContentView() {
         val titleConfig = configHeaderTitle()

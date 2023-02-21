@@ -28,6 +28,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DEVICE_INFO;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DIALOG;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FLOW;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FRAGMENT;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FULL_SCREEN;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_GLIDE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HANDLER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HOTFIX;
@@ -270,6 +271,7 @@ public class CatalogListModel {
         // 加农炮实验室
         mFunctionCatalogs.add(new CatalogItem("Dialog", ROUTE_PATH_DIALOG));
         mFunctionCatalogs.add(new CatalogItem("PopupWindow", ROUTE_PATH_POPWINDOW));
+        mFunctionCatalogs.add(new CatalogItem("全屏页", ROUTE_PATH_FULL_SCREEN));
         mFunctionCatalogs.add(new CatalogItem("服务(Service)", ROUTE_PATH_SERVICE));
         mFunctionCatalogs.add(new CatalogItem("fragment 练习", ROUTE_PATH_FRAGMENT));
         mFunctionCatalogs.add(new CatalogItem("lifecycle", ROUTE_PATH_LIFECYCLE));
