@@ -19,34 +19,25 @@ object DataTimeUtils {
      *
      * @return 当前日期
      */
-    fun getNow(timeZone: TimeZone = TimeZone.getDefault()): Date {
+    fun getNowDate(timeZone: TimeZone = TimeZone.getDefault()): Date {
         return Calendar.getInstance(timeZone).time
     }
 
-    /**
-     * 获得默认时区的当前时间
-     *
-     * @param format - 转换格式（yyyy-MM-dd）
-     * @return
-     */
-    fun getNowByDefaultTz(format: String, locale: Locale = Locale.getDefault()): String? {
-        val date = getNow()
-        val fmt = SimpleDateFormat(format, locale)
-        fmt.timeZone = TimeZone.getDefault()
-        return fmt.format(date)
-    }
 
     /**
-     * 获得指定时区的当前时间,返回指定格式的字符串形式
+     * 获得目标时区的当前时间，返回指定格式的字符串形式.
+     * 注：默认为当前时区
      *
-     * @param timeZoneId - 时区id（例如：GMT-8:00）
      * @param format - 转换格式（例如：yyyy-MM-dd）
+     * @param timeZone - 时区
      * @return
      */
-    fun getDateTextByTz(timeZoneId: String, format: String): String? {
-        val timeZone = TimeZone.getTimeZone(timeZoneId)
-        val date = getNow(timeZone)
-        val fmt = SimpleDateFormat(format, Locale.getDefault())
+    fun getNowDateText(format: String,
+                       timeZone: TimeZone = TimeZone.getDefault(),
+                       locale: Locale = Locale.getDefault()
+    ): String? {
+        val date = getNowDate(timeZone)
+        val fmt = SimpleDateFormat(format, locale)
         fmt.timeZone = timeZone
         return fmt.format(date)
     }
@@ -155,7 +146,6 @@ object DataTimeUtils {
      * @return 是否超过12点
      */
     fun isOverNoon(): Boolean {
-        // todo 待完善
         val time = System.currentTimeMillis()
         val cal = Calendar.getInstance()
         cal.timeInMillis = time
@@ -292,21 +282,23 @@ object DataTimeUtils {
      *
      * attention！！！当前月时间要算，使用时注意n-1
      *
-     * @param timeZoneId - 时区号（如：悉尼的GMT+11:00）
-     * @param timeFormat - 转换格式（yyyy-MM-dd）
+     * @param timeFormat    - 转换格式（yyyy-MM-dd）
+     * @param n             - n个月
+     * @param timeZone      - 时区
      * @return
      */
-    fun getEndDayOfOneMonth(timeZoneId: String?, timeFormat: String?, n: Int): String? {
-        val calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+08:00"))
-        val format = SimpleDateFormat(timeFormat)
-        val timeZone = TimeZone.getTimeZone(timeZoneId)
-        if (timeZone != null) {
-            calendar.timeZone = timeZone
-            format.timeZone = timeZone
-        }
+    fun getLastDayOfOneMonth(timeFormat: String,
+                             n: Int,
+                             timeZone: TimeZone = TimeZone.getDefault(),
+                             locale: Locale = Locale.getDefault()
+    ): String? {
+        val format = SimpleDateFormat(timeFormat, locale)
+        format.timeZone = timeZone
+
+        val calendar = Calendar.getInstance(timeZone)
         // 设置为当前月第一天
         calendar[Calendar.DAY_OF_MONTH] = 1
-        //n+1个月的第一天
+        // n+1个月的第一天
         calendar.add(Calendar.MONTH, n + 1)
         calendar.add(Calendar.DATE, -1)
         return format.format(calendar.time)
