@@ -1,21 +1,30 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:windowNoTitle">true</item>
+        <!--沉浸式状态栏会用到的属性-->
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="android:textCursorDrawable">@drawable/cursor_global</item>
+        <item name="android:windowBackground">@color/skx_ffffff</item>
+        <item name="android:configChanges">locale|layoutDirection</item>
+<!--
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+-->
+
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="SplashTheme" parent="AppTheme">
+    <style name="Welcome.Theme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/main_dazhongsi_2</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges
+        </item>
     </style>
 
 </resources>

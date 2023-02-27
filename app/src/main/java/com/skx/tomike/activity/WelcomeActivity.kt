@@ -1,9 +1,12 @@
 package com.skx.tomike.activity
 
 import android.content.Intent
+import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.view.WindowManager
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.tomike.R
@@ -16,6 +19,15 @@ class WelcomeActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener 
     private val handler = Handler(Looper.myLooper()!!)
     private val runnable = Runnable { gotoHomepage() }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= 28) {
+            val lp = window.attributes
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            window.attributes = lp
+        }
+        super.onCreate(savedInstanceState)
+    }
+
     override fun initParams() {}
 
     override fun layoutId(): Int {
@@ -25,7 +37,7 @@ class WelcomeActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener 
     override fun initView() {
         findViewById<View>(R.id.iv_welcome_mainImg).setOnClickListener(this)
         findViewById<View>(R.id.tv_welcome_skipBtn).setOnClickListener(this)
-        handler.postDelayed(runnable, 3000)
+        handler.postDelayed(runnable, 1500)
     }
 
     private fun gotoHomepage() {

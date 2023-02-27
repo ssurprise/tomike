@@ -57,6 +57,13 @@ android {
 //        exclude 'lib/arm64-v8a/libcardioRecognizer.so'
 //        exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 kapt {

@@ -3,8 +3,6 @@ package com.skx.tomike.core
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import com.skx.tomike.core.AppActivityStackManager.pop
-import com.skx.tomike.core.AppActivityStackManager.put
 
 /**
  * 描述 : Activity 生命周期观察者
@@ -15,7 +13,7 @@ import com.skx.tomike.core.AppActivityStackManager.put
 class ActivityLifecycleObserver : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        put(activity)
+        AppActivityStackManager.put(activity)
     }
 
     override fun onActivityStarted(activity: Activity) {}
@@ -25,6 +23,6 @@ class ActivityLifecycleObserver : Application.ActivityLifecycleCallbacks {
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 
     override fun onActivityDestroyed(activity: Activity) {
-        pop()
+        AppActivityStackManager.pop()
     }
 }

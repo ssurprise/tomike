@@ -53,7 +53,7 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
 
     @Override
     protected int layoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_home;
     }
 
     @Override
