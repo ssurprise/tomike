@@ -1,126 +1,133 @@
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
     tools:context="com.skx.tomike.fragment.HomepageFragment">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="20dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
 
-            <ImageView
-                android:id="@+id/homepage_main_1"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/main_clear_sky"
-                tools:ignore="ContentDescription" />
+                android:layout_height="200dp"
+                app:cardCornerRadius="20dp">
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/homepage_main_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/main_clear_sky"
+                    tools:ignore="ContentDescription" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="10dp" />
+            </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="20dp">
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="10dp" />
 
-            <ImageView
-                android:id="@+id/homepage_main_2"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription" />
+                android:layout_height="200dp"
+                app:cardCornerRadius="20dp">
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/homepage_main_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="10dp" />
+            </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="20dp">
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="10dp" />
 
-            <ImageView
-                android:id="@+id/homepage_main_3"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription" />
+                android:layout_height="200dp"
+                app:cardCornerRadius="20dp">
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/homepage_main_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="10dp" />
+            </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="20dp">
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="10dp" />
 
-            <ImageView
-                android:id="@+id/homepage_main_4"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription" />
+                android:layout_height="200dp"
+                app:cardCornerRadius="20dp">
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/homepage_main_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="10dp" />
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="10dp" />
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="20dp">
-
-            <ImageView
-                android:id="@+id/homepage_main_5"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription" />
+                android:layout_height="200dp"
+                app:cardCornerRadius="20dp">
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/homepage_main_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="10dp" />
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="10dp" />
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="20dp">
-
-            <ImageView
-                android:id="@+id/homepage_main_6"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription" />
+                android:layout_height="200dp"
+                app:cardCornerRadius="20dp">
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/homepage_main_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
 
-    </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-</androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.skx.common.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -33,27 +34,28 @@ public class StatusBarUtils {
      *
      * @param window
      */
+    @SuppressLint("ObsoleteSdkInt")
     public static void translucentStatusView(Window window) {
-
-        if (window != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {// 5.0+ 透明状态栏实现
-                    int flag = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//6.0+ 可以设置字体颜色
-                        flag |= View.SYSTEM_UI_FLAG_VISIBLE;
-                    }
-                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                    window.getDecorView().setSystemUiVisibility(flag);
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                    window.setStatusBarColor(Color.TRANSPARENT);
-                } else {
-                    window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        if (window == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {// 5.0+ 透明状态栏实现
+                int flag = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//6.0+ 可以设置字体颜色
+                    flag |= View.SYSTEM_UI_FLAG_VISIBLE;
                 }
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {// 4.4-6.0以下由于不可以修改字体颜色，统一加蒙层
-                    addTranslucentView(window.getDecorView(), 51);// 20%透明度
-                }
-                AndroidBug5497Workaround.assistWindow(window);
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                window.getDecorView().setSystemUiVisibility(flag);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.TRANSPARENT);
+            } else {
+                window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             }
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {// 4.4-6.0以下由于不可以修改字体颜色，统一加蒙层
+                addTranslucentView(window.getDecorView(), 51);// 20%透明度
+            }
+            AndroidBug5497Workaround.assistWindow(window);
         }
     }
 

@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.utils.StatusBarUtils;
 import com.skx.tomike.R;
 import com.skx.tomike.bean.HomepageNavigationTabBo;
 import com.skx.tomike.fragment.CatalogFragment;
@@ -45,6 +46,13 @@ public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnCl
     private int currentIndex = 0;
     private int lastIndex = 0;
     private Fragment from;
+
+    @Override
+    protected void nativeThemeStyle() {
+        super.nativeThemeStyle();
+        StatusBarUtils.translucentStatusView(this);
+        StatusBarUtils.changeStatueTextBlack(getWindow(), true);
+    }
 
     @Override
     protected void initParams() {

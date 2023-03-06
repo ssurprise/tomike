@@ -23,6 +23,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ACTIVITY4RESULT;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_AOP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ASYNC_TASK;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BIG_IMAGE_LOAD;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BROADCAST;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_COUNT_DOWN_TIMER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DEVICE_INFO;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DIALOG;
@@ -273,6 +274,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("PopupWindow", ROUTE_PATH_POPWINDOW));
         mFunctionCatalogs.add(new CatalogItem("全屏页", ROUTE_PATH_FULL_SCREEN));
         mFunctionCatalogs.add(new CatalogItem("服务(Service)", ROUTE_PATH_SERVICE));
+        mFunctionCatalogs.add(new CatalogItem("广播(broadcast)", ROUTE_PATH_BROADCAST));
         mFunctionCatalogs.add(new CatalogItem("fragment 练习", ROUTE_PATH_FRAGMENT));
         mFunctionCatalogs.add(new CatalogItem("lifecycle", ROUTE_PATH_LIFECYCLE));
         mFunctionCatalogs.add(new CatalogItem("livedata", ROUTE_PATH_LIVEDATA));
