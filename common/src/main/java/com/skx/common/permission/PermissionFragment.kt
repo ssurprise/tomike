@@ -47,7 +47,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
 
     private fun initParams() {
         mPermissionReqLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
+                ActivityResultContracts.RequestMultiplePermissions()
         ) { result: Map<String?, Boolean?> ->
             // 注：这里之所有没有直接使用回调参数中的result 进行判断是因为有些特殊权限不会通过这里获取授权结果。
             val deniedArray = generateDeniedArray(mPermissions)
@@ -67,7 +67,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
         }
         // 权限设置
         mSettingLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
+                ActivityResultContracts.StartActivityForResult()
         ) {
             PermLog.d("从权限设置页返回 resultCode:${it.resultCode}")
             val needRequest = generateDeniedArray(mPermissions)
@@ -75,22 +75,22 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
         }
         // 系统权限设置
         mSystemSettingLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
+                ActivityResultContracts.StartActivityForResult()
         ) {
             specialPermissionHandling(WRITE_SETTINGS)
         }
         // 系统悬浮窗权限设置
         mSystemAlertWindowLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
+                ActivityResultContracts.StartActivityForResult()
         ) {
             specialPermissionHandling(SYSTEM_ALERT_WINDOW)
         }
     }
 
     fun reqPermissions(
-        permissions: Array<String>?,
-        callback: PermissionResultListener?,
-        reqPermissionTip: ReqPermissionTip?
+            permissions: Array<String>?,
+            callback: PermissionResultListener?,
+            reqPermissionTip: ReqPermissionTip?
     ) {
         if (permissions == null || permissions.isEmpty()) {
             PermLog.d("没有需要动态申请的权限")
@@ -131,6 +131,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
 
         // ② 优先处理特殊权限
         specialPermission?.run {
+            PermLog.d("含有特殊权限...")
             specialPermissionReq(this)
             return
         }
@@ -206,6 +207,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
         when (specialPermission) {
             SYSTEM_ALERT_WINDOW -> {
                 context?.run {
+                    PermLog.d("含有特殊权限:android.permission.SYSTEM_ALERT_WINDOW，打开系统悬浮窗设置页面")
                     val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
                     intent.data = Uri.parse("package:${this.packageName}")
                     mSystemAlertWindowLauncher?.launch(intent)
@@ -213,9 +215,10 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
             }
             WRITE_SETTINGS -> {
                 context?.run {
+                    PermLog.d("含有特殊权限:android.permission.WRITE_SETTINGS，打开允许修改系统设置页面")
                     val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
                     intent.data = Uri.parse("package:${this.packageName}")
-                    mSystemAlertWindowLauncher?.launch(intent)
+                    mSystemSettingLauncher?.launch(intent)
                 }
             }
         }
