@@ -62,6 +62,7 @@ const val ROUTE_PATH_RECYCLER_SCROLL2POS = "${ROUTER_FIRST_LEVEL_widget}/Recycle
 const val ROUTE_PATH_VIEWPAGER2 = "${ROUTER_FIRST_LEVEL_widget}/ViewPager2"
 const val ROUTE_PATH_VIEWPAGER_LOOP = "${ROUTER_FIRST_LEVEL_widget}/ViewPager/loop"
 const val ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE = "${ROUTER_FIRST_LEVEL_widget}/ViewPager/multiplePage"
+const val ROUTE_PATH_VIEWPAGER_PAGE_TRANSFORMER = "${ROUTER_FIRST_LEVEL_widget}/ViewPager/transformer"
 const val ROUTE_PATH_VIEWPAGER_WRAP_CONTENT = "${ROUTER_FIRST_LEVEL_widget}/ViewPager/wrapContent"
 const val ROUTE_PATH_SCROLLVIEW_RV = "${ROUTER_FIRST_LEVEL_widget}/ScrollView/recyclerview"
 const val ROUTE_PATH_NSCROLLVIEW_VP = "${ROUTER_FIRST_LEVEL_widget}/NScrollView/viewpager"

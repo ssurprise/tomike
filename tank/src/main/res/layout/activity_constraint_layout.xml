@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".widget.activity.ConstraintLayoutActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="chainStyle=spread_inside"
+        tools:ignore="HardcodedText" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -52,10 +59,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="chainStyle=spread"
+        tools:ignore="HardcodedText" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_constraint_4"
@@ -98,10 +111,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="chainStyle=packed"
+        tools:ignore="HardcodedText" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_constraint_7"
@@ -142,18 +161,25 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="constraintlayout.widget.Barrier"
+        tools:ignore="HardcodedText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:paddingStart="@dimen/view_padding_15"
+        android:paddingEnd="@dimen/view_padding_15"
         tools:ignore="RtlSymmetry">
 
         <EditText
             android:id="@+id/et_constraint_1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:hint="写点什么好呢？"
             android:maxWidth="180dp"
             android:maxLines="1"
             android:minWidth="100dp"
@@ -167,6 +193,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
+            android:hint="可输入"
             android:maxWidth="250dp"
             android:maxLines="1"
             android:minWidth="50dp"

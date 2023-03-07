@@ -128,6 +128,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VECTOR_DRAWABLE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER2;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_LOOP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_PAGE_TRANSFORMER;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CONTENT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEW_FOCUS;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_WATER_MARK;
@@ -219,6 +220,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("FloatingActionButton", ROUTE_PATH_FLOATINGACTIONBUTTON));
         mViewCatalogs.add(new CatalogItem("SnackBar", ROUTE_PATH_SNACKBAR));
 
+        mViewCatalogs.add(new CatalogItem("ViewPager 页面切换效果", ROUTE_PATH_VIEWPAGER_PAGE_TRANSFORMER));
         mViewCatalogs.add(new CatalogItem("ViewPager 一屏多展示", ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE));
         mViewCatalogs.add(new CatalogItem("ViewPager 自适应高度", ROUTE_PATH_VIEWPAGER_WRAP_CONTENT));
         mViewCatalogs.add(new CatalogItem("ViewPager 无限循环+自动轮播", ROUTE_PATH_VIEWPAGER_LOOP));
@@ -273,6 +275,8 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("Dialog", ROUTE_PATH_DIALOG));
         mFunctionCatalogs.add(new CatalogItem("PopupWindow", ROUTE_PATH_POPWINDOW));
         mFunctionCatalogs.add(new CatalogItem("全屏页", ROUTE_PATH_FULL_SCREEN));
+        mFunctionCatalogs.add(new CatalogItem("透明Activity", ROUTE_PATH_TRANSPARENT_THEME));
+        mFunctionCatalogs.add(new CatalogItem("半透明Activity - 新手引导", ROUTE_PATH_TRANSLUCENT_THEME));
         mFunctionCatalogs.add(new CatalogItem("服务(Service)", ROUTE_PATH_SERVICE));
         mFunctionCatalogs.add(new CatalogItem("广播(broadcast)", ROUTE_PATH_BROADCAST));
         mFunctionCatalogs.add(new CatalogItem("fragment 练习", ROUTE_PATH_FRAGMENT));
@@ -283,8 +287,6 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("AsyncTask", ROUTE_PATH_ASYNC_TASK));
         mFunctionCatalogs.add(new CatalogItem("权限管理", ROUTE_PATH_PERMISSION));
         mFunctionCatalogs.add(new CatalogItem("通知", ROUTE_PATH_NOTIFICATION));
-        mFunctionCatalogs.add(new CatalogItem("透明Activity", ROUTE_PATH_TRANSPARENT_THEME));
-        mFunctionCatalogs.add(new CatalogItem("半透明Activity - 新手引导", ROUTE_PATH_TRANSLUCENT_THEME));
         mFunctionCatalogs.add(new CatalogItem("替代StartActivityForResult", ROUTE_PATH_ACTIVITY4RESULT));
         mFunctionCatalogs.add(new CatalogItem("Room - 最近浏览案例", ROUTE_PATH_ROOM));
         mFunctionCatalogs.add(new CatalogItem("AOP 测试", ROUTE_PATH_AOP));
