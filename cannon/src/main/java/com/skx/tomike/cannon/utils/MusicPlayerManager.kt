@@ -289,11 +289,6 @@ class PlayState<T> {
 interface IPlayManager<T> {
 
     /**
-     * 注册播放列表
-     */
-    fun init()
-
-    /**
      * 播放
      */
     fun play(t: T?)
@@ -328,20 +323,21 @@ class PlayManagerImpl : IPlayManager<MusicInfo> {
     private var mPlayer: MediaPlayer = MediaPlayer()
     private var isPause = false
 
-    fun init(context: Context) {
+    init {
         mPlayer.setOnCompletionListener {
+            isPause = false
             Log.e("music-player", "播放结束")
         }
         mPlayer.setOnErrorListener { mp, what, extra ->
+            Log.e("music-player", "播放错误")
             false
         }
         mPlayer.setOnPreparedListener {
-
+            Log.e("music-player", "播放之前...")
         }
         mPlayer.setOnBufferingUpdateListener { mp, percent -> }
     }
 
-    override fun init() {}
 
     /**
      * 播放音乐
@@ -358,11 +354,12 @@ class PlayManagerImpl : IPlayManager<MusicInfo> {
         }
         mPlayer.run {
             Log.e(TAG, "file-url:" + t.fileUrl)
-            if (this@PlayManagerImpl.isPlaying()) {
+            if (isPlaying) {
                 // 当前正在播放中需要重置状态
                 reset()
             }
             if (!isPause) {
+                reset()
                 setDataSource(t.fileUrl)
                 prepare()
             }
@@ -380,6 +377,7 @@ class PlayManagerImpl : IPlayManager<MusicInfo> {
 
     override fun release() {
         mPlayer.stop()
+        mPlayer.reset()
         mPlayer.release()
     }
 
