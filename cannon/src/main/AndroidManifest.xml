@@ -209,48 +209,62 @@
         <activity
             android:name=".ui.activity.CountDownTimerActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.RebootAppActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.WithCallbackActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.ZXingActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.ServiceDemoActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.BroadcastDemoActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.PopupWindowActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.MusicPlayerActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.DialogActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.FragmentPracticeActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.KotlinFlowActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.FileTreeVisitorActivity"
             android:screenOrientation="portrait" />
 
         <service android:name=".ui.activity.MyService" />
 
         <receiver android:name=".ui.activity.BroadcastDemoActivity$SuperBroadcastReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BATTERY_OKAY"/>
-                <action android:name="android.intent.action.BATTERY_LOW"/>
-                <action android:name="android.intent.action.USER_PRESENT"/>
-                <action android:name="android.intent.action.USER_UNLOCKED"/>
-                <action android:name="android.intent.action.BATTERY_CHANGED"/>
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.USER_UNLOCKED" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
     </application>

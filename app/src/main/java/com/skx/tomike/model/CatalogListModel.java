@@ -27,6 +27,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BROADCAST;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_COUNT_DOWN_TIMER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DEVICE_INFO;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DIALOG;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FILE_TREE_VISITOR;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FLOW;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FRAGMENT;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FULL_SCREEN;
@@ -311,6 +312,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("打开其他App", ROUTE_PATH_OUTER_START));
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", ROUTE_PATH_NFC_GROUP));
         mFunctionCatalogs.add(new CatalogItem("音乐播放器", ROUTE_PATH_MUSIC_PLAYER));
+        mFunctionCatalogs.add(new CatalogItem("文件扫描", ROUTE_PATH_FILE_TREE_VISITOR));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 
