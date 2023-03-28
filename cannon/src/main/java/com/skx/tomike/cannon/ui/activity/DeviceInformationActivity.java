@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
         return new TitleConfig.Builder().setTitleText("设备/应用信息").create();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void initView() {
         TextView tvBrand = findViewById(R.id.tv_deviceInfo_brand);
@@ -79,6 +81,9 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
         tvScreenWidth.setText(String.format("屏幕宽：%spx", getResources().getDisplayMetrics().widthPixels));
         tvScreenHeight.setText(String.format("屏幕高：%spx", getResources().getDisplayMetrics().heightPixels));
 
+        TextView tvExternal = findViewById(R.id.tv_deviceInfo_external);
+        tvExternal.setText(String.format("SD卡根目录：%s", Environment.getExternalStorageDirectory().getAbsolutePath()));
+
 
         TextView tvAppName = findViewById(R.id.tv_appInfo_appName);
         TextView tvPackageName = findViewById(R.id.tv_appInfo_packageName);
@@ -105,7 +110,19 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
             e.printStackTrace();
         }
 
+        TextView tvAppDataDir = findViewById(R.id.tv_deviceInfo_appFilesDir);
+        tvAppDataDir.setText(String.format("files：%s", getFilesDir().getAbsolutePath()));
 
+
+        TextView tvAppCacheDir = findViewById(R.id.tv_deviceInfo_appCacheDir);
+        tvAppCacheDir.setText(String.format("cache：%s", getCacheDir().getAbsolutePath()));
+
+
+        TextView tvAppPrivateDir = findViewById(R.id.tv_deviceInfo_appPrivateFiles);
+        tvAppPrivateDir.setText(String.format("files：%s", getExternalFilesDir(null).getAbsolutePath()));
+
+        TextView tvAppPrivateCache = findViewById(R.id.tv_deviceInfo_appPrivateCache);
+        tvAppPrivateCache.setText(String.format("cache：%s", getExternalCacheDir().getAbsolutePath()));
     }
 
     private void requestPermission() {
