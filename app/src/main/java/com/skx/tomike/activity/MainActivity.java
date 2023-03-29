@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeActivity extends SkxBaseActivity<BaseViewModel> implements OnClickListener {
+public class MainActivity extends SkxBaseActivity<BaseViewModel> implements OnClickListener {
 
     private FragmentManager mFragmentManager;
 

@@ -60,7 +60,7 @@
 
         <!-- 首页 -->
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 

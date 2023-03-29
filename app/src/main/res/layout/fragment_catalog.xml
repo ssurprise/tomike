@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,10 +22,30 @@
         android:textColor="@color/skx_212121"
         android:textSize="16sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/catalog_recyclerView"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_catalog_tab"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tabBackground="@android:color/transparent"
+        app:tabIndicator="@drawable/tablayout_indicator"
+        app:tabIndicatorColor="@color/skx_26a69a"
+        app:tabMaxWidth="200dp"
+        app:tabMinWidth="20dp"
+        app:tabMode="scrollable"
+        app:tabPadding="0dp"
+        app:tabPaddingEnd="10dp"
+        app:tabPaddingStart="10dp"
+        app:tabSelectedTextColor="@color/skx_26a69a"
+        app:tabTextColor="@color/skx_878787">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_catalog_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="2dp" />
+        android:gravity="center"
+        android:textColor="#ff4287"
+        android:textSize="24sp"/>
 
 </LinearLayout>

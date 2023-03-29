@@ -372,19 +372,34 @@ public class CatalogListModel {
         List<CatalogCellModel> allCatalogs = new ArrayList<>();
 
         for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
-            List<CatalogItem> tempGroup = entry.getValue();
-
             CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(),
                     "", "", null);
             allCatalogs.add(parentModel);
-            for (CatalogItem item : tempGroup) {
-                CatalogCellModel cellModel = new CatalogCellModel(item.getName(),
-                        item.getPath(),
-                        item.getValue(),
-                        parentModel);
-                allCatalogs.add(cellModel);
-            }
         }
         return allCatalogs;
+    }
+
+    /**
+     * 获取目录
+     *
+     * @param key
+     * @return 目录分组结构
+     */
+    public static List<CatalogItem> fetchCatalogByKey(String key) {
+//        for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
+//            List<CatalogItem> tempGroup = entry.getValue();
+//
+//            CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(),
+//                    "", "", null);
+//            allCatalogs.add(parentModel);
+//            for (CatalogItem item : tempGroup) {
+//                CatalogCellModel cellModel = new CatalogCellModel(item.getName(),
+//                        item.getPath(),
+//                        item.getValue(),
+//                        parentModel);
+//                allCatalogs.add(cellModel);
+//            }
+//        }
+        return mCatalogGroupMap.get(key);
     }
 }

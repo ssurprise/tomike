@@ -52,11 +52,6 @@ open class BaseFragment : Fragment() {
         logPrinter("onViewCreated")
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        logPrinter("onActivityCreated")
-    }
-
     override fun onStart() {
         super.onStart()
         logPrinter("onStart")
