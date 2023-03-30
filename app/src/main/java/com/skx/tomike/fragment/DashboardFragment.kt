@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skx.common.base.BaseFragment
+import com.skx.common.utils.dip2px
+import com.skx.common.widget.GridSpaceItemDecoration
 import com.skx.tomike.R
 import com.skx.tomike.adapter.DashboardAdapter
 import com.skx.tomike.model.CatalogListModel
@@ -36,6 +38,10 @@ class DashboardFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         mRv?.run {
             layoutManager = GridLayoutManager(activity, 4)
+            addItemDecoration(GridSpaceItemDecoration(4,
+                    dip2px(view.context, 8f),
+                    dip2px(view.context, 6f))
+            )
             adapter = DashboardAdapter(CatalogListModel.fetchCatalogByKey(mKey))
         }
     }

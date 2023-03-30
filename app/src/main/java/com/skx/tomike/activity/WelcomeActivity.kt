@@ -26,6 +26,12 @@ class WelcomeActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener 
             window.attributes = lp
         }
         super.onCreate(savedInstanceState)
+
+//        if (intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0) {
+//            finish()
+//            return
+//        }
+
     }
 
     override fun initParams() {}

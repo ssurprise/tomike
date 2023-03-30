@@ -61,6 +61,7 @@
         <!-- 首页 -->
         <activity
             android:name=".activity.MainActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 

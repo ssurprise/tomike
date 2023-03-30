@@ -1,6 +1,8 @@
 package com.skx.tomike.core;
 
 import android.app.Application;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.StrictMode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -40,6 +42,10 @@ public class SkxApplication extends Application {
         routerInit();
         // 注册生命周期管理栈
         registerActivityLifecycleCallbacks(new ActivityLifecycleObserver());
+        // 注册home键监听
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+        registerReceiver(new HomeKeyReceiver(), filter);
     }
 
     /**
@@ -47,7 +53,7 @@ public class SkxApplication extends Application {
      * 注：后续会自己实现路线功能
      */
     private void routerInit() {
-//        if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             // 这两行必须写在init之前，否则这些配置在init过程中将无效.
             // 打印日志
             ARouter.openLog();
@@ -55,8 +61,7 @@ public class SkxApplication extends Application {
             ARouter.openDebug();
             // 打印日志的时候打印线程堆栈
             ARouter.printStackTrace();
-//        }
+        }
         ARouter.init(this);
     }
-
 }

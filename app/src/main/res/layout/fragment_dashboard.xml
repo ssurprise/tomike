@@ -9,6 +9,8 @@
         android:id="@+id/rv_dashboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="2dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp" />
 
 </FrameLayout>
