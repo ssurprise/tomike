@@ -15,7 +15,7 @@ class PermissionParams {
     var mContext: Context? = null
     var mCallback: PermissionResultListener? = null
     var mReqPermissionTip: ReqPermissionTip? = null
-    var mPermissions: Array<String>? = null
+    var mPermissions: MutableList<String>? = null
     var mFragmentManager: FragmentManager? = null
     var mError: PermissionError? = null
 

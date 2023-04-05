@@ -25,10 +25,7 @@ class DefaultReqPermissionTip(private val context: Context?) : ReqPermissionTip 
         }
     }
 
-    override fun showReqPermissionsReason(
-        permission: Array<String>?,
-        negotiate: PermissionNegotiate
-    ) {
+    override fun showReqPermissionsReason(permission: List<String>?, negotiate: PermissionNegotiate) {
         val builder = AlertDialog.Builder(context)
         val content = StringBuilder("需要")
         permission?.forEachIndexed { index, s ->
@@ -73,5 +70,5 @@ interface ReqPermissionTip {
      * @param permission    请求失败的权限
      * @param negotiate     权限操作谈判类
      */
-    fun showReqPermissionsReason(permission: Array<String>?, negotiate: PermissionNegotiate)
+    fun showReqPermissionsReason(permission: List<String>?, negotiate: PermissionNegotiate)
 }

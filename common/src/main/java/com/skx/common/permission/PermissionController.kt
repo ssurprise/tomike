@@ -22,8 +22,8 @@ class PermissionController(private val permissionParams: PermissionParams) {
         if (permissionParams.mPermissions == null || permissionParams.mPermissions?.isEmpty() == true) {
             PermLog.d("当前没有需要动态申请的权限")
             permissionParams.mError?.onErrorEvent(
-                PermissionError.ERROR_CODE_PERMISSION_EMPTY,
-                "当前没有需要动态申请的权限"
+                    PermissionError.ERROR_CODE_PERMISSION_EMPTY,
+                    "当前没有需要动态申请的权限"
             )
             return
         }
@@ -31,8 +31,8 @@ class PermissionController(private val permissionParams: PermissionParams) {
         if (permissionParams.mContext == null && permissionParams.mFragmentManager == null) {
             PermLog.d("缺少上下文")
             permissionParams.mError?.onErrorEvent(
-                PermissionError.ERROR_CODE_CONTEXT_NOT_FIND,
-                "缺少上下文"
+                    PermissionError.ERROR_CODE_CONTEXT_NOT_FIND,
+                    "缺少上下文"
             )
             return
         }
@@ -40,7 +40,7 @@ class PermissionController(private val permissionParams: PermissionParams) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // 6.0下安装时默认同意全部权限
             PermLog.d("6.0以下系统，无需动态申请权限")
-            permissionParams.mCallback?.onSucceed(permissionParams.mPermissions!!)
+            permissionParams.mCallback?.onSucceed(permissionParams.mPermissions)
             return
         }
         permissionParams.mFragmentManager?.run {
@@ -48,14 +48,14 @@ class PermissionController(private val permissionParams: PermissionParams) {
             if (fragment == null) {
                 fragment = PermissionFragment.getInstance()
                 this.beginTransaction()
-                    .add(fragment, KEY_PERMISSION_FRAGMENT)
-                    .commitNow()
+                        .add(fragment, KEY_PERMISSION_FRAGMENT)
+                        .commitNow()
             }
             if (fragment is PermissionFragment) {
                 fragment.reqPermissions(
-                    permissionParams.mPermissions,
-                    permissionParams.mCallback,
-                    permissionParams.mReqPermissionTip
+                        permissionParams.mPermissions,
+                        permissionParams.mCallback,
+                        permissionParams.mReqPermissionTip
                 )
             }
             return
@@ -63,8 +63,8 @@ class PermissionController(private val permissionParams: PermissionParams) {
         permissionParams.mContext?.run {
             PermLog.d("不支持的上下文")
             permissionParams.mError?.onErrorEvent(
-                PermissionError.ERROR_CODE_UNSUPPORT_CONTEXT,
-                "不支持的上下文"
+                    PermissionError.ERROR_CODE_UNSUPPORT_CONTEXT,
+                    "不支持的上下文"
             )
         }
     }
@@ -106,13 +106,27 @@ class PermissionController(private val permissionParams: PermissionParams) {
             mParams.mFragmentManager = fragment?.childFragmentManager
         }
 
+        fun permission(permission: String): Builder {
+            if (mParams.mPermissions == null) {
+                mParams.mPermissions = mutableListOf()
+            }
+            mParams.mPermissions?.add(permission)
+            return this
+        }
+
         fun permissions(permissions: Array<String>): Builder {
-            mParams.mPermissions = permissions
+            if (mParams.mPermissions == null) {
+                mParams.mPermissions = mutableListOf()
+            }
+            mParams.mPermissions?.addAll(permissions)
             return this
         }
 
         fun permissions(permissions: List<String>): Builder {
-            mParams.mPermissions = permissions.toTypedArray()
+            if (mParams.mPermissions == null) {
+                mParams.mPermissions = mutableListOf()
+            }
+            mParams.mPermissions?.addAll(permissions)
             return this
         }
 

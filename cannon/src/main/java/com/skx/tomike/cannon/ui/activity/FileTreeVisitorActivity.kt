@@ -58,14 +58,14 @@ class FileTreeVisitorActivity : SkxBaseActivity<BaseViewModel>() {
         findViewById<TextView>(R.id.tv_fileVisitor_startAction).apply {
             setOnClickListener {
                 PermissionController.Builder(this@FileTreeVisitorActivity)
-                        .permissions(mutableListOf(Manifest.permission.READ_EXTERNAL_STORAGE))
+                        .permission(Manifest.permission.READ_EXTERNAL_STORAGE)
                         .associateDefaultTip()
                         .callback(object : PermissionResultListener {
-                            override fun onSucceed(grantPermissions: Array<String>?) {
+                            override fun onSucceed(grantPermissions: List<String>?) {
                                 startScan()
                             }
 
-                            override fun onFailed(deniedPermissions: Array<String>?) {
+                            override fun onFailed(deniedPermissions: List<String>?) {
                                 ToastTool.showToast(this@FileTreeVisitorActivity, "当前没有读权限！")
                             }
                         })

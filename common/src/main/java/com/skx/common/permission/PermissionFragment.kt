@@ -23,7 +23,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
     /**
      * 用户提交的所有权限
      */
-    private var mPermissions: Array<String>? = null
+    private var mPermissions: List<String>? = null
     private var mCallback: PermissionResultListener? = null
     private var mReqPermissionTip: ReqPermissionTip? = null
 
@@ -59,6 +59,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
             // 2.拒绝的权限
             // 2.1 外部接管
             if (mReqPermissionTip != null) {
+                PermLog.d("有权限请求失败，展示请求权限的原因，deniedArray=${deniedArray}")
                 mReqPermissionTip?.showReqPermissionsReason(deniedArray, this)
                 return@registerForActivityResult
             }
@@ -88,7 +89,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
     }
 
     fun reqPermissions(
-            permissions: Array<String>?,
+            permissions: List<String>?,
             callback: PermissionResultListener?,
             reqPermissionTip: ReqPermissionTip?
     ) {
@@ -114,12 +115,12 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
         }
 
         // ② 执行权限请求
-        PermLog.d("需要申请的权限: ${needRequest.contentToString()}")
+        PermLog.d("需要申请的权限: $needRequest")
         realCall(needRequest)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    fun realCall(permissions: Array<String>?) {
+    fun realCall(permissions: List<String>?) {
         if (permissions == null || permissions.isEmpty()) {
             dispatchResult(null)
             return
@@ -153,12 +154,12 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
      *
      * @param denied 未授权的权限
      */
-    private fun dispatchResult(denied: Array<String>?) {
+    private fun dispatchResult(denied: List<String>?) {
         if (denied == null || denied.isEmpty()) {
             PermLog.d("所需权限均已全部授权-> 执行成功回调")
-            mCallback?.onSucceed(mPermissions ?: arrayOf())
+            mCallback?.onSucceed(mPermissions ?: mutableListOf())
         } else {
-            PermLog.d("权限:${denied.contentToString()} 拒绝授权-> 执行失败回调")
+            PermLog.d("权限:${denied} 拒绝授权-> 执行失败回调")
             mCallback?.onFailed(denied)
         }
         release()
@@ -170,8 +171,8 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
      * @param permissions   目标权限集
      * @return 需要请求授权的权限数组
      */
-    private fun generateDeniedArray(permissions: Array<String>?): Array<String> {
-        if (permissions == null || permissions.isEmpty()) return arrayOf()
+    private fun generateDeniedArray(permissions: List<String>?): List<String> {
+        if (permissions.isNullOrEmpty()) return mutableListOf()
 
         val needReq = mutableListOf<String>()
         permissions.forEach {
@@ -179,7 +180,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
                 needReq.add(it)
             }
         }
-        return needReq.toTypedArray()
+        return needReq
     }
 
     override fun resume() {

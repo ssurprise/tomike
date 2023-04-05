@@ -12,12 +12,12 @@ interface PermissionResultListener {
      *
      * @param grantPermissions 请求的权限
      */
-    fun onSucceed(grantPermissions: Array<String>?)
+    fun onSucceed(grantPermissions: List<String>?)
 
     /**
      * 申请权限失败回调
      *
      * @param deniedPermissions 请求失败的权限
      */
-    fun onFailed(deniedPermissions: Array<String>?)
+    fun onFailed(deniedPermissions: List<String>?)
 }
