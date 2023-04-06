@@ -35,6 +35,7 @@
         app:tabPadding="0dp"
         app:tabPaddingEnd="10dp"
         app:tabPaddingStart="10dp"
+        app:tabRippleColor="@android:color/transparent"
         app:tabSelectedTextColor="@color/skx_26a69a"
         app:tabTextColor="@color/skx_878787">
 
@@ -46,6 +47,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="#ff4287"
-        android:textSize="24sp"/>
+        android:textSize="24sp" />
 
 </LinearLayout>

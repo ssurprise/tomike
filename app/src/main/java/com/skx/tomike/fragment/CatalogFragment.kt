@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import com.skx.common.base.BaseFragment
 import com.skx.tomike.R
 import com.skx.tomike.model.CatalogListModel
 import com.skx.tomike.tank.widget.activity.Tlvp2Adapter
+import com.skx.tomike.tank.widget.view.TabLayoutMediatorX
 import java.util.*
 
 /**
@@ -30,6 +30,7 @@ class CatalogFragment : BaseFragment() {
         val view = inflater.inflate(R.layout.fragment_catalog, container, false)
         mTbLayout = view.findViewById(R.id.tl_catalog_tab)
         mVpContent = view.findViewById(R.id.vp_catalog_content)
+        mVpContent?.isUserInputEnabled = true
         return view
     }
 
@@ -52,7 +53,7 @@ class CatalogFragment : BaseFragment() {
         }
 
         if (mTbLayout != null && mVpContent != null) {
-            TabLayoutMediator(mTbLayout!!, mVpContent!!) { tab, position ->
+            TabLayoutMediatorX(mTbLayout!!, mVpContent!!, false, false) { tab, position ->
                 tab.text = tabList[position]
             }.attach()
         }

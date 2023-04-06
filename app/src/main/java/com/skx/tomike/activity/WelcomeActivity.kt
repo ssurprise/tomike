@@ -20,18 +20,16 @@ class WelcomeActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener 
     private val runnable = Runnable { gotoHomepage() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun nativeThemeStyle() {
+        super.nativeThemeStyle()
         if (Build.VERSION.SDK_INT >= 28) {
             val lp = window.attributes
             lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             window.attributes = lp
         }
-        super.onCreate(savedInstanceState)
-
-//        if (intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0) {
-//            finish()
-//            return
-//        }
-
     }
 
     override fun initParams() {}
@@ -43,7 +41,9 @@ class WelcomeActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener 
     override fun initView() {
         findViewById<View>(R.id.iv_welcome_mainImg).setOnClickListener(this)
         findViewById<View>(R.id.tv_welcome_skipBtn).setOnClickListener(this)
-        handler.postDelayed(runnable, 1500)
+        if (!isFinishing && !isDestroyed) {
+            handler.postDelayed(runnable, 1500)
+        }
     }
 
     private fun gotoHomepage() {

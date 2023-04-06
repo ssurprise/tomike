@@ -1,8 +1,6 @@
 package com.skx.tomike.core;
 
 import android.app.Application;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.StrictMode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -43,9 +41,20 @@ public class SkxApplication extends Application {
         // 注册生命周期管理栈
         registerActivityLifecycleCallbacks(new ActivityLifecycleObserver());
         // 注册home键监听
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        registerReceiver(new HomeKeyReceiver(), filter);
+        registerHomeKeyListener();
+
+    }
+
+    /**
+     * 注册home键监听
+     */
+    private void registerHomeKeyListener() {
+        HomeKeyReceiver homeKeyReceiver = new HomeKeyReceiver();
+        homeKeyReceiver.setOnHomeKeyClickListener(() -> {
+
+            return null;
+        });
+        homeKeyReceiver.register(this);
     }
 
     /**
