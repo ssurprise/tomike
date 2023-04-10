@@ -21,6 +21,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_URL_PARSE;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_XML_PARSE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ACTIVITY4RESULT;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_AOP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_APP_USAGE_STATS;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ASYNC_TASK;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BIG_IMAGE_LOAD;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BROADCAST;
@@ -236,7 +237,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("ScrollView+RecyclerView", ROUTE_PATH_SCROLLVIEW_RV));
         mViewCatalogs.add(new CatalogItem("NestedScrollView+ViewPager", ROUTE_PATH_NSCROLLVIEW_VP));
         mViewCatalogs.add(new CatalogItem("NestedScrollView 滑动改变状态栏", ROUTE_PATH_SCROLL_CHANGE_TITLE));
-        mViewCatalogs.add(new CatalogItem("回弹效果-滑动缩放头图", ROUTE_PATH_SCROLL_ZOOM));
+        mViewCatalogs.add(new CatalogItem("带回弹效果的ScrollView", ROUTE_PATH_SCROLL_ZOOM));
         mViewCatalogs.add(new CatalogItem("滑动缩放头图-demo2", ROUTE_PATH_SCROLL_ZOOM2));
         mViewCatalogs.add(new CatalogItem("TabLayout 指示器", ROUTE_PATH_TABLELAYOUT_INDICATOR));
         mViewCatalogs.add(new CatalogItem("TabLayout 使用扩展", ROUTE_PATH_TABLELAYOUT_HELPER));
@@ -313,6 +314,7 @@ public class CatalogListModel {
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", ROUTE_PATH_NFC_GROUP));
         mFunctionCatalogs.add(new CatalogItem("音乐播放器", ROUTE_PATH_MUSIC_PLAYER));
         mFunctionCatalogs.add(new CatalogItem("文件扫描", ROUTE_PATH_FILE_TREE_VISITOR));
+        mFunctionCatalogs.add(new CatalogItem("APP使用列表", ROUTE_PATH_APP_USAGE_STATS));
         mCatalogGroupMap.put(GROUP_FUNCTION, mFunctionCatalogs);
 
 
