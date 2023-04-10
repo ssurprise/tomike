@@ -7,8 +7,11 @@ import android.widget.ImageView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
+import com.skx.common.base.TitleConfig;
 import com.skx.common.widget.ZoomImageNestedScrollingParent2;
 import com.skx.tomike.tank.R;
+
+import org.jetbrains.annotations.Nullable;
 
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM;
 
@@ -39,6 +42,12 @@ public class ScrollZoomImage2Activity extends SkxBaseActivity<BaseViewModel> {
     @Override
     protected int layoutId() {
         return R.layout.activity_scroll_zoom_image2;
+    }
+
+    @Nullable
+    @Override
+    protected TitleConfig configHeaderTitle() {
+        return new TitleConfig.Builder().setTitleText("带回弹效果的ScrollView").create();
     }
 
     @Override

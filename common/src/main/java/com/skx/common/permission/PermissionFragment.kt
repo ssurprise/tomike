@@ -1,10 +1,13 @@
 package com.skx.common.permission
 
 import android.Manifest
+import android.app.AppOpsManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Process
 import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -38,6 +41,9 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
 
     // 全局弹窗launcher
     private var mSystemAlertWindowLauncher: ActivityResultLauncher<Intent>? = null
+
+    // 使用情况访问权限launcher
+    private var mUsageStatsLauncher: ActivityResultLauncher<Intent>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,6 +91,12 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
                 ActivityResultContracts.StartActivityForResult()
         ) {
             specialPermissionHandling(SYSTEM_ALERT_WINDOW)
+        }
+        // 使用情况访问权限设置
+        mUsageStatsLauncher = registerForActivityResult(
+                ActivityResultContracts.StartActivityForResult()
+        ) {
+            specialPermissionHandling(PACKAGE_USAGE_STATS)
         }
     }
 
@@ -141,6 +153,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
         val filter = permissions.filter {
             !it.equals(SYSTEM_ALERT_WINDOW, ignoreCase = true)
                     && !it.equals(WRITE_SETTINGS, ignoreCase = true)
+                    && !it.equals(PACKAGE_USAGE_STATS, ignoreCase = true)
         }
         if (filter.isEmpty()) {
             dispatchResult(null)
@@ -222,6 +235,14 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
                     mSystemSettingLauncher?.launch(intent)
                 }
             }
+            PACKAGE_USAGE_STATS -> {
+                context?.run {
+                    PermLog.d("含有特殊权限:android.permission.PACKAGE_USAGE_STATS，打开使用情况访问权限页面")
+                    val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+                    intent.data = Uri.parse("package:${this.packageName}")
+                    mUsageStatsLauncher?.launch(intent)
+                }
+            }
         }
     }
 
@@ -240,6 +261,14 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
 
         } else if (WRITE_SETTINGS.equals(specialPermission, ignoreCase = true)) {
             isAllow = Settings.System.canWrite(context)
+
+        } else if (PACKAGE_USAGE_STATS.equals(specialPermission, ignoreCase = true)) {
+            context?.run {
+                val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+                val mode = appOps.checkOpNoThrow("android:get_usage_stats",
+                        Process.myUid(), packageName)
+                isAllow = mode == AppOpsManager.MODE_ALLOWED
+            }
         }
         val deniedArray = generateDeniedArray(mPermissions)
         if (isAllow) {
@@ -261,6 +290,7 @@ class PermissionFragment : BaseFragment(), PermissionNegotiate {
 
         private const val SYSTEM_ALERT_WINDOW = Manifest.permission.SYSTEM_ALERT_WINDOW
         private const val WRITE_SETTINGS = Manifest.permission.WRITE_SETTINGS
+        private const val PACKAGE_USAGE_STATS = Manifest.permission.PACKAGE_USAGE_STATS
 
         @JvmStatic
         fun getInstance(): PermissionFragment {

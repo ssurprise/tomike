@@ -10,12 +10,12 @@
         android:id="@+id/lightDarkText_input_master"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="50dp">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_light2dark_input"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:imeOptions="actionNext"
             android:inputType="number"
@@ -26,7 +26,7 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_light2dark_input1"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:imeOptions="actionNext"
             android:inputType="number"
@@ -37,7 +37,7 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_light2dark_input2"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:imeOptions="actionNext"
             android:inputType="number"
@@ -49,7 +49,7 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_light2dark_input3"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:imeOptions="actionDone"
             android:inputType="number"

@@ -98,7 +98,8 @@ class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
                 Permission(Manifest.permission.READ_EXTERNAL_STORAGE, "读权限"),
                 Permission(Manifest.permission.WRITE_EXTERNAL_STORAGE, "写权限"),
                 Permission(Manifest.permission.SYSTEM_ALERT_WINDOW, "悬浮窗"),
-                Permission(Manifest.permission.WRITE_SETTINGS, "系统设置")
+                Permission(Manifest.permission.WRITE_SETTINGS, "系统设置"),
+                Permission(Manifest.permission.PACKAGE_USAGE_STATS, "使用情况访问权限")
         )
     }
 

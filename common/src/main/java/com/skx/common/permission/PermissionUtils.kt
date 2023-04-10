@@ -1,9 +1,11 @@
 package com.skx.common.permission
 
 import android.Manifest
+import android.app.AppOpsManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Process
 import android.provider.Settings
 import android.text.TextUtils
 import androidx.core.app.AppOpsManagerCompat
@@ -39,12 +41,20 @@ object PermissionUtils {
             return Settings.System.canWrite(context)
         }
 
+        // 特殊权限-使用情况访问权限
+        if (Manifest.permission.PACKAGE_USAGE_STATS.equals(permission, ignoreCase = true)) {
+            val appOps = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+            val mode = appOps.checkOpNoThrow("android:get_usage_stats",
+                    Process.myUid(), context.packageName)
+            return mode == AppOpsManager.MODE_ALLOWED
+        }
+
         // 常规权限检查，但是有漏洞。比如在小米（6.0以上） 定位权限，用户虽然拒绝了权限，但是代码回调中返回的却是同意。
         // 解决方法：在权限回调中，运用系统层，判断是否真的获取权限
         if (ContextCompat.checkSelfPermission(
-                context,
-                permission
-            ) != PackageManager.PERMISSION_GRANTED
+                        context,
+                        permission
+                ) != PackageManager.PERMISSION_GRANTED
         ) {
             return false
         }
@@ -52,11 +62,11 @@ object PermissionUtils {
         // 系统层权限检查
         val op = AppOpsManagerCompat.permissionToOp(permission)
         if (!TextUtils.isEmpty(op)
-            && AppOpsManagerCompat.MODE_IGNORED == AppOpsManagerCompat.noteProxyOp(
-                context,
-                op!!,
-                context.packageName
-            )
+                && AppOpsManagerCompat.MODE_IGNORED == AppOpsManagerCompat.noteProxyOp(
+                        context,
+                        op!!,
+                        context.packageName
+                )
         ) {
             return false
         }
@@ -104,6 +114,7 @@ object PermissionUtils {
     fun isSpecialPermission(permission: String): Boolean {
         return Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission, ignoreCase = true)
                 || Manifest.permission.WRITE_SETTINGS.equals(permission, ignoreCase = true)
+                || Manifest.permission.PACKAGE_USAGE_STATS.equals(permission, ignoreCase = true)
     }
 
 }

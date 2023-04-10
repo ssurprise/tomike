@@ -14,8 +14,7 @@
             android:id="@+id/scrollZoom2_mainImage"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image_06" />
+            android:scaleType="centerCrop" />
 
     </LinearLayout>
 
@@ -24,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="90dp"
         android:overScrollMode="never"
         android:scrollbars="vertical">
 
