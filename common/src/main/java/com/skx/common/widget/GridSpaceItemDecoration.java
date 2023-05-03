@@ -50,9 +50,9 @@ public class GridSpaceItemDecoration extends RecyclerView.ItemDecoration {
         // 右边距：列间距 - (column + 1) * (列间距 * (1f /列数))
         outRect.right = mColumnSpacing - (column + 1) * mColumnSpacing / mSpanCount;
 
-        Log.e(TAG, "position:" + position
+        Log.d(TAG, "position:" + position
                 + "    columnIndex: " + column
-                + "    left,right ->" + outRect.left + "," + outRect.right);
+                + "    outRect.left=" + outRect.left + ", outRect.right=" + outRect.right);
 
         // 如果position > 行数，说明不是在第一行，则不指定行高，其他行的上间距为 top=mRowSpacing
         if (position >= mSpanCount) {
