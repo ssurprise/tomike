@@ -7,24 +7,24 @@
 
     <!--本地读写权限-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
     <uses-permission android:name="Manifest.permission.WRITE_SETTINGS" />
     <uses-permission android:name="Manifest.permission.SYSTEM_ALERT_WINDOW" />
 
+    <!--允许查询设备上的任何正常应用程序，而不考虑清单声明。-->
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
+    <!--app使用情况统计信息权限-->
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
 
-
     <uses-permission android:name="android.permission.NFC" />
 
-    <application android:networkSecurityConfig="@xml/network_security_config">
+    <application>
         <activity
             android:name=".ui.activity.FullscreenActivity"
             android:screenOrientation="portrait" />

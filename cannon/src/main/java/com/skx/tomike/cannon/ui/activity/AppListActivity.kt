@@ -20,21 +20,21 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.common.utils.AppUtils
 import com.skx.tomike.cannon.R
-import com.skx.tomike.cannon.ROUTE_PATH_APP_LIST
+import com.skx.tomike.cannon.ROUTE_PATH_PACKAGE_LIST
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.*
 
 
 /**
- * 描述 : app列表
+ * 描述 : app安装列表
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2023/4/10 11:49 下午
  */
-@Route(path = ROUTE_PATH_APP_LIST)
+@Route(path = ROUTE_PATH_PACKAGE_LIST)
 class AppListActivity : SkxBaseActivity<AppListViewModel>() {
 
     private var mLoadingView: View? = null
@@ -45,7 +45,7 @@ class AppListActivity : SkxBaseActivity<AppListViewModel>() {
     }
 
     override fun configHeaderTitle(): TitleConfig {
-        return TitleConfig.Builder().setTitleText("APP列表").create()
+        return TitleConfig.Builder().setTitleText("APP安装列表").create()
     }
 
     override fun layoutId(): Int {
@@ -139,8 +139,7 @@ class AppListViewModel(@NonNull application: Application) : BaseViewModel(applic
     fun getAppList(context: Context) {
         Observable.create<MutableList<AppListActivity.AppInfo>> { emitter ->
 
-            val packageManager = context.packageManager
-            val list = packageManager.getInstalledPackages(0)
+
             /* 注意
             getInstalledPackages 方法并不耗时。
             下面的两个方法比较耗时：
@@ -158,21 +157,24 @@ class AppListViewModel(@NonNull application: Application) : BaseViewModel(applic
                 2023-05-04 01:01:48.114 6998-6998/com.skx.tomike E/AppListActivity: 耗时2：=836
 
              */
+            val packageManager = context.packageManager
             val result: MutableList<AppListActivity.AppInfo> = mutableListOf()
-            for (p in list) {
-                val bean = AppListActivity.AppInfo(0,
-                        packageManager.getApplicationLabel(p.applicationInfo).toString(),
-                        p.packageName,
-                        p.versionName,
-                        p.applicationInfo.loadIcon(packageManager)
-                )
-                // 判断是否是属于系统的apk
-                if (p.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
-                    // 系统应用
-                    Log.e("AppListActivity", "packageName=${p.packageName}, appName=${bean.appName}, 系统应用？yes")
-                } else {
-                    Log.e("AppListActivity", "packageName=${p.packageName}, appName=${bean.appName}, 系统应用? no")
-                    result.add(bean)
+            AppUtils.getInstalledPackages(context, false)?.run {
+                for (p in this) {
+                    val bean = AppListActivity.AppInfo(0,
+                            packageManager.getApplicationLabel(p.applicationInfo).toString(),
+                            p.packageName,
+                            p.versionName,
+                            p.applicationInfo.loadIcon(packageManager)
+                    )
+                    // 判断是否是属于系统的apk
+                    if (p.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
+                        // 系统应用
+                        Log.e("AppListActivity", "packageName=${p.packageName}, appName=${bean.appName}, 系统应用？yes")
+                    } else {
+                        Log.e("AppListActivity", "packageName=${p.packageName}, appName=${bean.appName}, 系统应用? no")
+                        result.add(bean)
+                    }
                 }
             }
             emitter?.onNext(result)
