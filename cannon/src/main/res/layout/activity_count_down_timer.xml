@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,91 +8,157 @@
     android:padding="15dp"
     tools:context=".ui.activity.CountDownTimerActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="设置倒计时时间"
-        android:textColor="@color/skx_212121" />
-
-    <EditText
-        android:id="@+id/et_countDownTimer_time"
+    <LinearLayout
+        android:id="@+id/ll_countDownTimer_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:hint="单位：秒"
-        android:inputType="number"
-        android:textSize="12sp"
-        tools:ignore="Autofill" />
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        style="@style/TextBtnStyle"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:onClick="onSettingCountDownTime"
-        android:rowOrderPreserved="true"
-        android:text="设置"
-        tools:ignore="HardcodedText" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置倒计时时间"
+            android:textColor="@color/skx_212121" />
 
-    <TextView
-        style="@style/TextBtnStyle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        <EditText
+            android:id="@+id/et_countDownTimer_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:hint="单位：秒"
+            android:inputType="number"
+            android:textSize="12sp"
+            tools:ignore="Autofill" />
+
+        <TextView
+            style="@style/TextBtnStyle"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:onClick="onSettingCountDownTime"
+            android:rowOrderPreserved="true"
+            android:text="设置"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_countDownTimer_handler"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:onClick="onTimerTask"
-        android:rowOrderPreserved="true"
-        android:text="方式1：Timer + TimerTask"
-        tools:ignore="HardcodedText" />
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/ll_countDownTimer_onTimerTask"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_countDownTimer_setting">
 
-    <TextView
-        android:id="@+id/tv_countDownTimer_timer"
+        <TextView
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:onClick="onHandler"
+            android:rowOrderPreserved="true"
+            android:text="方式1：\nHandler post"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_countDownTimer_handler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_countDownTimer_onTimerTask"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ll_countDownTimer_handler"
+        app:layout_constraintTop_toTopOf="@id/ll_countDownTimer_handler">
+
+        <TextView
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:onClick="onTimerTask"
+            android:rowOrderPreserved="true"
+            android:text="方式2：\nTimer + TimerTask"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_countDownTimer_timer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_countDownTimer_scheduledExecutorService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/skx_212121"
-        android:textSize="14sp" />
-
-
-    <TextView
-        style="@style/TextBtnStyle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:onClick="onScheduledExecutor"
-        android:rowOrderPreserved="true"
-        android:text="方式2：ScheduledExecutorService"
-        tools:ignore="HardcodedText" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/ll_countDownTimer_onTimerTask">
 
+        <TextView
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:onClick="onScheduledExecutor"
+            android:rowOrderPreserved="true"
+            android:text="方式3：ScheduledExecutorService"
+            tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/tv_countDownTimer_scheduledExecutor"
+        <TextView
+            android:id="@+id/tv_countDownTimer_scheduledExecutor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/skx_212121"
-        android:textSize="14sp" />
-
-
-    <TextView
-        style="@style/TextBtnStyle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:onClick="onCountDownTimer"
-        android:rowOrderPreserved="true"
-        android:text="方式3：CountDownTimer"
-        tools:ignore="HardcodedText" />
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_countDownTimer_scheduledExecutorService">
 
+        <TextView
+            style="@style/TextBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:onClick="onCountDownTimer"
+            android:rowOrderPreserved="true"
+            android:text="方式4：CountDownTimer"
+            tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/tv_countDownTimer_countDownTimer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/skx_212121"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_countDownTimer_countDownTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="待补充"
+            android:textColor="@color/skx_212121"
+            android:textSize="14sp" />
 
-</LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

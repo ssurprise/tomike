@@ -120,6 +120,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".widget.activity.ProgressActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".widget.activity.RecyclerViewItemUpdateActivity"
             android:screenOrientation="portrait" />
 
@@ -272,8 +276,9 @@
             android:name=".widget.activity.EditTextSingleMultiActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".widget.activity.DynamicMsgLayoutActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".widget.activity.DynamicMsgLayoutActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

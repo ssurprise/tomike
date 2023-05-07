@@ -42,6 +42,7 @@ const val ROUTE_PATH_EDITTEXT_SINGLE_MULTI_LINES = "${ROUTER_FIRST_LEVEL_widget}
 const val ROUTE_PATH_TEXTSWITCH = "${ROUTER_FIRST_LEVEL_widget}/TextSwitch"
 const val ROUTE_PATH_CARDVIEW = "${ROUTER_FIRST_LEVEL_widget}/CardView"
 const val ROUTE_PATH_CHECKBOX = "${ROUTER_FIRST_LEVEL_widget}/CheckBox"
+const val ROUTE_PATH_PROGRESS_BAR = "${ROUTER_FIRST_LEVEL_widget}/ProgressBar"
 const val ROUTE_PATH_FLOATINGACTIONBUTTON = "${ROUTER_FIRST_LEVEL_widget}/FloatingActionButton"
 const val ROUTE_PATH_RADIOGROUP = "${ROUTER_FIRST_LEVEL_widget}/RadioGroup"
 const val ROUTE_PATH_MATRIXIMAGE = "${ROUTER_FIRST_LEVEL_widget}/MatrixImage"

@@ -97,6 +97,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_MATRIXIMAGE;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NSCROLLVIEW_VP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PAGE_INDICATOR_LAYOUT;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PAINT;
+import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PROGRESS_BAR;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PROPERTY;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RADIOGROUP;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_AS_VP;
@@ -211,6 +212,7 @@ public class CatalogListModel {
         mViewCatalogs.add(new CatalogItem("自定义显示方向ImageView", ROUTE_PATH_MATRIXIMAGE));
         mViewCatalogs.add(new CatalogItem("RadioGroup 单选", ROUTE_PATH_RADIOGROUP));
         mViewCatalogs.add(new CatalogItem("CheckBox 更换自定义icon", ROUTE_PATH_CHECKBOX));
+        mViewCatalogs.add(new CatalogItem("ProgressBar", ROUTE_PATH_PROGRESS_BAR));
         mViewCatalogs.add(new CatalogItem("自定义ShapeView", ROUTE_PATH_SHAPE_VIEW));
         mViewCatalogs.add(new CatalogItem("FlowLayout 流式布局", ROUTE_PATH_FLOW_LAYOUT));
         mViewCatalogs.add(new CatalogItem("ConstraintLayout约束布局", ROUTE_PATH_CONSTRAINT_LAYOUT));
