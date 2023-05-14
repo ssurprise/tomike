@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.skx.tomike.fragment.CatalogFragment">
+    tools:context="com.skx.tomike.catalog.CatalogFragment">
 
     <View
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.skx.tomike.adapter
+package com.skx.tomike.catalog
 
 import android.app.Activity
 import android.content.Intent
@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.skx.tomike.R
-import com.skx.tomike.bean.CatalogItem
 import java.util.*
 
 /**
@@ -63,6 +62,7 @@ class DashboardAdapter(list: List<CatalogItem>?) : RecyclerView.Adapter<Dashboar
                         v.elevation = 5.0f
                     }
                     try {
+                        CatalogListModel.add2RecentHistory(data)
                         if (!TextUtils.isEmpty(data.path)) {
                             ARouter.getInstance().build(data.path).navigation()
 

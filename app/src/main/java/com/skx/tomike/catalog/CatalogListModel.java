@@ -1,4 +1,12 @@
-package com.skx.tomike.model;
+package com.skx.tomike.catalog;
+
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_BASE64;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_COROUTINE;
@@ -21,7 +29,6 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_URL_PARSE;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_XML_PARSE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ACTIVITY4RESULT;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_AOP;
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PACKAGE_LIST;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_APP_USAGE_STATS;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ASYNC_TASK;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BIG_IMAGE_LOAD;
@@ -46,6 +53,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_GROUP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NOTIFICATION;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_OKHTTP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_OUTER_START;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PACKAGE_LIST;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PARCELABLE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PERMISSION;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PHOTO_ALBUM;
@@ -138,13 +146,6 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEW_FOCUS;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_WATER_MARK;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
 
-import com.skx.tomike.bean.CatalogItem;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * 描述 : 目录列表model
  * 作者 : shiguotao
@@ -153,6 +154,9 @@ import java.util.Map;
  */
 public class CatalogListModel {
 
+    private static final String TAG = "CatalogListModel";
+
+    private static final String GROUP_HISTORY = "最近使用";
     private static final String GROUP_VIEW = "控件";
     private static final String GROUP_GRAPHICS = "图形";
     private static final String GROUP_ANIMATOR = "动效类";
@@ -164,6 +168,10 @@ public class CatalogListModel {
 
     private static final LinkedHashMap<String, List<CatalogItem>> mCatalogGroupMap = new LinkedHashMap<>();
 
+    /**
+     * 最近访问记录
+     */
+    private static final List<CatalogItem> mRecentHistory = new LinkedList<>();
     /**
      * view 类分组
      */
@@ -198,6 +206,9 @@ public class CatalogListModel {
     private static final List<CatalogItem> mDataStructureCatalogs = new ArrayList<>();
 
     static {
+        // 最近访问记录
+        mCatalogGroupMap.put(GROUP_HISTORY, mRecentHistory);
+
         // 坦克实验室 - view 篇
         mViewCatalogs.add(new CatalogItem("View 焦点", ROUTE_PATH_VIEW_FOCUS));
         mViewCatalogs.add(new CatalogItem("TextView 行间距/字间距", ROUTE_PATH_TEXTVIEW_WORD_SPACE));
@@ -376,7 +387,6 @@ public class CatalogListModel {
      */
     public static List<CatalogCellModel> createCatalogGroup() {
         List<CatalogCellModel> allCatalogs = new ArrayList<>();
-
         for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
             CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(),
                     "", "", null);
@@ -406,6 +416,42 @@ public class CatalogListModel {
 //                allCatalogs.add(cellModel);
 //            }
 //        }
-        return mCatalogGroupMap.get(key);
+
+        List<CatalogItem> catalogItems = mCatalogGroupMap.get(key);
+        Log.d(TAG, "fetchCatalogByKey, key=" + key + " size=" + (catalogItems == null ? 0 : catalogItems.size()));
+
+        return catalogItems;
+    }
+
+    public static void add2RecentHistory(CatalogItem catalogItem) {
+        if (catalogItem == null) return;
+
+        int index = -1;
+        for (int i = 0, j = mRecentHistory.size(); i < j; i++) {
+            CatalogItem item = mRecentHistory.get(i);
+            if (catalogItem.getPath().equals(item.getPath())) {
+                index = i;
+                break;
+            }
+        }
+        if (index == 0) {
+            // 当前已经排在首位，无需处理
+            Log.d(TAG, "add2RecentHistory, 当前已经排在首位，无需处理");
+            return;
+        }
+        if (index != -1) {
+            Log.d(TAG, "add2RecentHistory, 之前有浏览记录，name=" + catalogItem.getName() + " index=" + index);
+            // 说明之前有此记录，但是没有排在首位，需要重新插入到队首
+            mRecentHistory.remove(index);
+            mRecentHistory.add(0, catalogItem);
+            return;
+        }
+
+        Log.d(TAG, "add2RecentHistory, 新插入浏览记录 name=" + catalogItem.getName());
+        mRecentHistory.add(0, catalogItem);
+        if (mRecentHistory.size() > 10) {
+            Log.d(TAG, "add2RecentHistory, 浏览记录超过10条，移除多余的记录");
+            mRecentHistory.remove(10);
+        }
     }
 }

@@ -45,7 +45,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activity.WelcomeActivity"
+            android:name=".main.WelcomeActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Welcome.Theme"
@@ -64,7 +64,7 @@
 
         <!-- 首页 -->
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".main.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

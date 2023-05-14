@@ -1,4 +1,4 @@
-package com.skx.tomike.activity
+package com.skx.tomike.main
 
 import android.content.Intent
 import android.os.Build

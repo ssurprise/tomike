@@ -1,4 +1,4 @@
-package com.skx.tomike.adapter
+package com.skx.tomike.catalog
 
 import android.app.Activity
 import android.content.Intent
@@ -14,8 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.skx.tomike.R
-import com.skx.tomike.adapter.Catalog2Adapter.CatalogCellViewHolder
-import com.skx.tomike.model.CatalogCellModel
+import com.skx.tomike.catalog.Catalog2Adapter.CatalogCellViewHolder
 import java.util.*
 
 /**

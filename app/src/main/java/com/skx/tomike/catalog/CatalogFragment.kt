@@ -1,4 +1,4 @@
-package com.skx.tomike.fragment
+package com.skx.tomike.catalog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.skx.common.base.BaseFragment
 import com.skx.tomike.R
-import com.skx.tomike.model.CatalogListModel
 import com.skx.tomike.tank.widget.activity.Tlvp2Adapter
 import com.skx.tomike.tank.widget.view.TabLayoutMediatorX
 import java.util.*

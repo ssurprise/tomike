@@ -1,4 +1,4 @@
-package com.skx.tomike.fragment
+package com.skx.tomike.catalog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,6 @@ import com.skx.common.base.BaseFragment
 import com.skx.common.utils.dip2px
 import com.skx.common.widget.GridSpaceItemDecoration
 import com.skx.tomike.R
-import com.skx.tomike.adapter.DashboardAdapter
-import com.skx.tomike.model.CatalogListModel
 
 /**
  * 目录导航页

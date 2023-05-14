@@ -1,4 +1,4 @@
-package com.skx.tomike.bean
+package com.skx.tomike.main
 
 /**
  * Created by shiguotao on 2017/2/27.

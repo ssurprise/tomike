@@ -1,4 +1,4 @@
-package com.skx.tomike.model
+package com.skx.tomike.catalog
 
 /**
  * 目录单元model
@@ -7,10 +7,10 @@ package com.skx.tomike.model
  * Created on 2017/12/29.
  */
 class CatalogCellModel(
-    val title: String,
-    val path: String? = "",
-    val target: String,
-    var parent: CatalogCellModel?,
+        val title: String,
+        val path: String? = "",
+        val target: String,
+        var parent: CatalogCellModel?,
 ) {
 
     val isParent: Boolean

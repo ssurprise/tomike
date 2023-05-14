@@ -1,4 +1,4 @@
-package com.skx.tomike.activity;
+package com.skx.tomike.main;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -16,10 +16,9 @@ import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.utils.StatusBarUtils;
 import com.skx.tomike.R;
-import com.skx.tomike.bean.HomepageNavigationTabBo;
-import com.skx.tomike.fragment.CatalogFragment;
-import com.skx.tomike.fragment.HomepageFragment;
-import com.skx.tomike.fragment.PersonalFragment;
+import com.skx.tomike.catalog.CatalogFragment;
+import com.skx.tomike.home.HomepageFragment;
+import com.skx.tomike.personal.PersonalFragment;
 
 import java.util.ArrayList;
 import java.util.List;

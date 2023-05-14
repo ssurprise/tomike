@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_dazhongsi_2"
     android:id="@+id/rl_welcome_root"
-    tools:context="com.skx.tomike.activity.WelcomeActivity">
+    tools:context="com.skx.tomike.main.WelcomeActivity">
 
     <ImageView
         android:id="@+id/iv_welcome_mainImg"
