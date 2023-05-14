@@ -21,7 +21,7 @@ import com.skx.tomike.tank.ROUTE_PATH_PROPERTY
  * 属性动画事例
  */
 @Route(path = ROUTE_PATH_PROPERTY)
-class PropertyAnimatorActivity : SkxBaseActivity<BaseViewModel>() {
+class PropertyAnimatorActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     // 头像
     private val cvHeader: CardView by lazy {

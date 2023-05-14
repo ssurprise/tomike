@@ -26,7 +26,7 @@ import kotlin.io.path.absolutePathString
  * 创建时间 : 2021/8/30 5:00 下午
  */
 @Route(path = ROUTE_PATH_FILE_TREE_VISITOR)
-class FileTreeVisitorActivity : SkxBaseActivity<BaseViewModel>() {
+class FileTreeVisitorActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
 
     private val mHandler: Handler = object : Handler(Looper.myLooper()!!) {

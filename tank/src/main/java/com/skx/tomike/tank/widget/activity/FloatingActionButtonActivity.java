@@ -8,7 +8,7 @@ import com.skx.tomike.tank.R;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_FLOATINGACTIONBUTTON;
 
 @Route(path = ROUTE_PATH_FLOATINGACTIONBUTTON)
-public class FloatingActionButtonActivity extends SkxBaseActivity<BaseViewModel> {
+public class FloatingActionButtonActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

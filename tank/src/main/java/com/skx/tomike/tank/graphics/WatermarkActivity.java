@@ -19,7 +19,7 @@ import com.skx.tomike.tank.R;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_WATER_MARK;
 
 @Route(path = ROUTE_PATH_WATER_MARK)
-public class WatermarkActivity extends SkxBaseActivity<BaseViewModel> {
+public class WatermarkActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private ImageView imageView01;
     private ImageView imageView02;

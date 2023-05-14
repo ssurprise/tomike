@@ -24,7 +24,7 @@ import com.skx.tomike.cannon.bean.Permission
  * 6.0 权限介绍
  */
 @Route(path = ROUTE_PATH_PERMISSION)
-class PermissionIntroActivity : SkxBaseActivity<BaseViewModel?>() {
+class PermissionIntroActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mTvLogcat by lazy {
         findViewById<TextView>(R.id.tv_permission_logcat)

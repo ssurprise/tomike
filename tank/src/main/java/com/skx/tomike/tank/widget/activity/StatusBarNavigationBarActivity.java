@@ -18,7 +18,7 @@ import java.util.Locale;
  * 获取状态栏高度Activity
  */
 @Route(path = ROUTE_PATH_STATUS_BAR_HEIGHT)
-public class StatusBarNavigationBarActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class StatusBarNavigationBarActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     private TextView mTvGetBarHeightByProperty;
     private TextView mTvGetBarHeightByReflex;

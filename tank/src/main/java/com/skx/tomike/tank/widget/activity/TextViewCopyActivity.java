@@ -22,7 +22,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SELECTABL
  * java中setTextIsSelectable(false); 这个时候如果跳出当前页面会报错：StackOverflowError，其他情况的设置一切都是ok的
  */
 @Route(path = ROUTE_PATH_TEXTVIEW_SELECTABLE)
-public class TextViewCopyActivity extends SkxBaseActivity<BaseViewModel> {
+public class TextViewCopyActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

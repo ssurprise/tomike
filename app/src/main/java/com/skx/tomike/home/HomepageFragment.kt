@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.skx.common.base.BaseFragment
+import com.skx.common.base.BaseViewModel
 import com.skx.common.imageloader.ImageLoader
 import com.skx.tomike.R
 
-class HomepageFragment : BaseFragment() {
+class HomepageFragment : BaseFragment<BaseViewModel<*>>() {
 
     private var mIvMainImg1: ImageView? = null
     private var mIvMainImg2: ImageView? = null

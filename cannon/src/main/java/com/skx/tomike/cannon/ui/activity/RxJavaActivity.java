@@ -38,7 +38,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_RXJAVA;
  * 创建时间 : 2020/3/23 4:25 PM
  */
 @Route(path = ROUTE_PATH_RXJAVA)
-public class RxJavaActivity extends SkxBaseActivity<BaseViewModel> {
+public class RxJavaActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private LinearLayout mRlLoading;
     private TextView mTvLoadingText;

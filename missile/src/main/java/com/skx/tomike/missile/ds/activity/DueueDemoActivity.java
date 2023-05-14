@@ -27,7 +27,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_DUEUE;
  * 创建时间 : 2020/6/29 10:26 AM
  */
 @Route(path = ROUTE_PATH_DUEUE)
-public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
+public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private LinearLayout mLlStackWrap;
 

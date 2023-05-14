@@ -18,7 +18,7 @@ import com.skx.tomike.tank.widget.view.TranslateImageView
  * 创建时间 : 2016/4/19 5:59 PM
  */
 @Route(path = ROUTE_PATH_SCROLLER)
-class ScrollerPracticeActivity : SkxBaseActivity<BaseViewModel?>() {
+class ScrollerPracticeActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mIv: TranslateImageView by lazy {
         findViewById(R.id.tv_scroller_transImageView)

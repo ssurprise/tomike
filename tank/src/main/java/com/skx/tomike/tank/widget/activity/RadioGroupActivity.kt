@@ -14,7 +14,7 @@ import com.skx.tomike.tank.ROUTE_PATH_RADIOGROUP
  * 创建时间 : 2020/4/20 12:31 PM
  */
 @Route(path = ROUTE_PATH_RADIOGROUP)
-class RadioGroupActivity : SkxBaseActivity<BaseViewModel>() {
+class RadioGroupActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {
     }

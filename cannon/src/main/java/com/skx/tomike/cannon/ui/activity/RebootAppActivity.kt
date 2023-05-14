@@ -18,7 +18,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_REBOOT
  * 创建时间 : 2021/7/12 7:24 下午
  */
 @Route(path = ROUTE_PATH_REBOOT)
-class RebootAppActivity : SkxBaseActivity<BaseViewModel>() {
+class RebootAppActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {
     }

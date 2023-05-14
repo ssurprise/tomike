@@ -18,7 +18,7 @@ import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_POPWINDOW
 
 @Route(path = ROUTE_PATH_POPWINDOW)
-class PopupWindowActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+class PopupWindowActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
 
     override fun initParams() {

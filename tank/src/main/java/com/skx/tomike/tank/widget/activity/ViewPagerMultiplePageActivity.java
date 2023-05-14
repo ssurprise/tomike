@@ -35,7 +35,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_MULTIPLE
  * 创建时间 : 2016/4/20
  */
 @Route(path = ROUTE_PATH_VIEWPAGER_MULTIPLE_PAGE)
-public class ViewPagerMultiplePageActivity extends SkxBaseActivity<BaseViewModel> {
+public class ViewPagerMultiplePageActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private final ArrayList<Integer> list = new ArrayList<>();
     private final List<Integer> list2 = new ArrayList<>();

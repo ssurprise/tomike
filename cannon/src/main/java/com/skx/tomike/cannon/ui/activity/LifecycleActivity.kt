@@ -23,7 +23,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_LIFECYCLE
  * 创建时间 : 2020/4/10 9:15 AM
  */
 @Route(path = ROUTE_PATH_LIFECYCLE)
-class LifecycleActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class LifecycleActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val tv: TextView by lazy {
         findViewById(R.id.tv_lifecycle_content)

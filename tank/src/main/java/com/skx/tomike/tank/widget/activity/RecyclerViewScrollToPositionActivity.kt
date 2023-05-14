@@ -26,7 +26,7 @@ import java.util.*
  * 创建时间 : 2020/5/30 5:01 PM
  */
 @Route(path = ROUTE_PATH_RECYCLER_SCROLL2POS)
-class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel?>(),
+class RecyclerViewScrollToPositionActivity : SkxBaseActivity<BaseViewModel<*>>(),
         RadioGroup.OnCheckedChangeListener {
 
     private var mTvTargetPos: TextView? = null

@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
  * 创建时间 : 2020/3/23 4:25 PM
  */
 @Route(path = ROUTE_PATH_FLOW)
-class KotlinFlowActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class KotlinFlowActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private var mRlLoading: LinearLayout? = null
     private var mTvLoadingText: TextView? = null

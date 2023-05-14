@@ -25,7 +25,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ASYNC_TASK;
  * 创建时间 : 2020/3/30 4:34 PM
  */
 @Route(path = ROUTE_PATH_ASYNC_TASK)
-public class AsyncTaskActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class AsyncTaskActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     private SeekBar mSeekBarProcess;
     private DownloadFilesTask mDownloadFilesTask;

@@ -15,7 +15,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_HOTFIX
  * 创建时间 : 2021/1/21 6:08 PM
  */
 @Route(path = ROUTE_PATH_HOTFIX)
-class HotfixActivity : SkxBaseActivity<BaseViewModel>() {
+class HotfixActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

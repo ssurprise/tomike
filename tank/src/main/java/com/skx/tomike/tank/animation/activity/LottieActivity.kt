@@ -15,7 +15,7 @@ import com.skx.tomike.tank.ROUTE_PATH_LOTTIE
  * 创建时间 : 2021/12/18 2:36 PM
  */
 @Route(path = ROUTE_PATH_LOTTIE)
-class LottieActivity : SkxBaseActivity<BaseViewModel>() {
+class LottieActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val lottieView by lazy {
         findViewById<LottieAnimationView>(R.id.lottieView)

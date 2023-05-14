@@ -20,7 +20,7 @@ import kotlin.coroutines.resume
  * 创建时间 : 2021/1/7 3:27 PM
  */
 @Route(path = ROUTE_PATH_COROUTINE)
-class CoroutineActivity : SkxBaseActivity<BaseViewModel>() {
+class CoroutineActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {
     }

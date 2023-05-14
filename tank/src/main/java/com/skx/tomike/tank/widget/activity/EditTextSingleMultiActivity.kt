@@ -15,7 +15,7 @@ import com.skx.tomike.tank.ROUTE_PATH_EDITTEXT_SINGLE_MULTI_LINES
  * 创建时间 : 2020/4/1 7:46 PM
  */
 @Route(path = ROUTE_PATH_EDITTEXT_SINGLE_MULTI_LINES)
-class EditTextSingleMultiActivity : SkxBaseActivity<BaseViewModel?>() {
+class EditTextSingleMultiActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

@@ -22,7 +22,7 @@ import com.skx.tomike.tank.R;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_GRADIENT_DRAWABLE;
 
 @Route(path = ROUTE_PATH_GRADIENT_DRAWABLE)
-public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel> {
+public class ShapeDrawableHelperActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private LinearLayout mLlContainer;
     private ImageView imageView1;

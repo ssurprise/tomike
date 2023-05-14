@@ -20,7 +20,7 @@ import com.skx.tomike.tank.ROUTE_PATH_EDITTEXT_LOWER2UPPER
  * 扩展：inputType 的枚举类型 -> https://blog.csdn.net/chaod5659/article/details/17117193
  */
 @Route(path = ROUTE_PATH_EDITTEXT_LOWER2UPPER)
-class Lowercase2UppercaseActivity : SkxBaseActivity<BaseViewModel?>() {
+class Lowercase2UppercaseActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

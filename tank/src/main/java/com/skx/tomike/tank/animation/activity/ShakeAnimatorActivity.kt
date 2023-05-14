@@ -22,7 +22,7 @@ import com.skx.tomike.tank.ROUTE_PATH_SHAKE
  * 创建时间 : 2020/3/23 4:55 PM
  */
 @Route(path = ROUTE_PATH_SHAKE)
-class ShakeAnimatorActivity : SkxBaseActivity<BaseViewModel>() {
+class ShakeAnimatorActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mTargetView: ImageView by lazy {
         findViewById(R.id.shakeAnimator_target)

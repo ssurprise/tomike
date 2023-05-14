@@ -15,7 +15,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_NFC_PERMISSION;
  * Created by shiguotao on 2017/12/11.
  */
 @Route(path = ROUTE_PATH_NFC_PERMISSION)
-public class NfcPermissionTestActivity extends SkxBaseActivity<BaseViewModel> {
+public class NfcPermissionTestActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

@@ -30,7 +30,7 @@ import java.util.*
  * 设置行间距的倍数，如”1.2″。
  */
 @Route(path = ROUTE_PATH_TEXTVIEW_WORD_SPACE)
-class TextWordSpaceActivity : SkxBaseActivity<BaseViewModel?>() {
+class TextWordSpaceActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     companion object {
         const val TEST_CONTENT = "不自见，故明；不自是，故彰；不自伐，故有功；不自矜，故长。"

@@ -15,7 +15,7 @@ import com.skx.tomike.tank.ROUTE_PATH_CIRCULAR_REVEAL
 import kotlin.math.hypot
 
 @Route(path = ROUTE_PATH_CIRCULAR_REVEAL)
-class CircularRevealActivity : SkxBaseActivity<BaseViewModel>() {
+class CircularRevealActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mIvCircularReveal: ImageView by lazy {
         findViewById(R.id.circularReveal_1)

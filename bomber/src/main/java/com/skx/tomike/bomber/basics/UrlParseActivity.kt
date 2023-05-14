@@ -19,7 +19,7 @@ import java.net.URL
  * 创建时间 : 2020/7/27 12:26 AM
  */
 @Route(path = ROUTE_PATH_URL_PARSE)
-class UrlParseActivity : SkxBaseActivity<BaseViewModel?>() {
+class UrlParseActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private var mTargetUrl = "https://haokan.baidu.com/v?vid=17099850856972684618"
     private val mTvResult: TextView by lazy {

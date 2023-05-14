@@ -12,7 +12,7 @@ import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_OUTER_START
 
 @Route(path = ROUTE_PATH_OUTER_START)
-class OutterStartActivity : SkxBaseActivity<BaseViewModel>() {
+class OutterStartActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

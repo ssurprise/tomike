@@ -23,7 +23,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NSCROLLVIEW_VP;
  * 创建时间 : 2018/12/21 4:24 PM
  */
 @Route(path = ROUTE_PATH_NSCROLLVIEW_VP)
-public class NestedScrollViewViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
+public class NestedScrollViewViewPagerActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private static final ArrayList<String> mContent = new ArrayList<>();
 

@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit
  * 创建时间 : 2020/12/8 1:35 PM
  */
 @Route(path = ROUTE_PATH_COUNT_DOWN_TIMER)
-class CountDownTimerActivity : SkxBaseActivity<BaseViewModel>() {
+class CountDownTimerActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     companion object {
         const val VALUE_WHAT_HANDLER = 1

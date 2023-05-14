@@ -31,7 +31,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_AS_VP;
  * 创建时间 : 2020/5/30 5:01 PM
  */
 @Route(path = ROUTE_PATH_RECYCLER_AS_VP)
-public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel> {
+public class RecyclerAsViewPagerActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private final List<Integer> mBannerList = new ArrayList<>();
 

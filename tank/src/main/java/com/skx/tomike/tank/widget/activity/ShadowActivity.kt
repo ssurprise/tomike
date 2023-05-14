@@ -8,7 +8,7 @@ import com.skx.tomike.tank.R
 import com.skx.tomike.tank.ROUTE_PATH_SHADOW
 
 @Route(path = ROUTE_PATH_SHADOW)
-class ShadowActivity : SkxBaseActivity<BaseViewModel?>() {
+class ShadowActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

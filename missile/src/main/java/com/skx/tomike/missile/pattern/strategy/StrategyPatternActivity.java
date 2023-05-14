@@ -15,7 +15,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STRATEGY;
  * 创建时间 : 2020/3/18 1:43 PM
  */
 @Route(path = ROUTE_PATH_STRATEGY)
-public class StrategyPatternActivity extends SkxBaseActivity<BaseViewModel> {
+public class StrategyPatternActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

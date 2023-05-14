@@ -35,7 +35,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_COUNT_DOW
  * 创建时间 : 2020/3/20 6:27 PM
  */
 @Route(path = ROUTE_PATH_RECYCLER_COUNT_DOWN)
-public class RecyclerViewCountDownTimerActivity extends SkxBaseActivity<BaseViewModel>
+public class RecyclerViewCountDownTimerActivity extends SkxBaseActivity<BaseViewModel<?>>
         implements SwipeRefreshLayout.OnRefreshListener {
 
     private final List<Integer> mCon = new LinkedList<>();

@@ -24,7 +24,7 @@ import java.util.concurrent.ScheduledExecutorService
  * 创建时间 : 2021/8/30 5:00 下午
  */
 @Route(path = ROUTE_PATH_SERVICE)
-class ServiceDemoActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+class ServiceDemoActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val connection = MyServiceConnection()
     private val mTvLogcat by lazy {

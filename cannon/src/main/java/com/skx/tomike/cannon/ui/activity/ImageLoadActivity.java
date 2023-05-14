@@ -25,7 +25,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BIG_IMAGE_LOAD;
  * 创建时间 : 2020/3/23 3:56 PM
  */
 @Route(path = ROUTE_PATH_BIG_IMAGE_LOAD)
-public class ImageLoadActivity extends SkxBaseActivity<BaseViewModel> {
+public class ImageLoadActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

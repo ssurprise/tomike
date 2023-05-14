@@ -21,7 +21,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_HSL;
  * 创建时间 : 2021/11/14 10:37 下午
  */
 @Route(path = ROUTE_PATH_HSL)
-public class ColorMatrixActivity extends SkxBaseActivity<BaseViewModel> implements SeekBar.OnSeekBarChangeListener {
+public class ColorMatrixActivity extends SkxBaseActivity<BaseViewModel<?>> implements SeekBar.OnSeekBarChangeListener {
 
     private ImageView main_img;
     private static final int MAX_VALUE = 255;

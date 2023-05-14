@@ -23,7 +23,7 @@ import java.util.*
  * 创建时间 : 2020/5/30 5:01 PM
  */
 @Route(path = ROUTE_PATH_RECYCLER_STAGGERED_GRID)
-class RecyclerStaggeredGridActivity : SkxBaseActivity<BaseViewModel?>() {
+class RecyclerStaggeredGridActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mBannerList: MutableList<Int> = mutableListOf()
 

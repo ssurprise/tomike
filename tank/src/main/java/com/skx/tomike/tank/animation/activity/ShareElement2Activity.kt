@@ -8,7 +8,7 @@ import com.skx.tomike.tank.R
 /**
  * 共享元素2
  */
-class ShareElement2Activity : SkxBaseActivity<BaseViewModel>() {
+class ShareElement2Activity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

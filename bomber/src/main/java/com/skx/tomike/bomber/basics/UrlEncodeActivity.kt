@@ -13,7 +13,7 @@ import java.net.URLDecoder
 import java.net.URLEncoder
 
 @Route(path = ROUTE_PATH_URL_ENCODE)
-class UrlEncodeActivity : SkxBaseActivity<BaseViewModel>() {
+class UrlEncodeActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mEvOriginalVal: EditText by lazy {
         findViewById(R.id.et_urlEncode_original_value)

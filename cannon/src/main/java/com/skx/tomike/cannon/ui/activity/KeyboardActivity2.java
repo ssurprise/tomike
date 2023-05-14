@@ -55,7 +55,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_KEYBOARD_2;
  * https://www.jianshu.com/p/1c879bb52c5c
  */
 @Route(path = ROUTE_PATH_KEYBOARD_2)
-public class KeyboardActivity2 extends SkxBaseActivity<BaseViewModel> {
+public class KeyboardActivity2 extends SkxBaseActivity<BaseViewModel<?>> {
 
     private RelativeLayout mRlRoot;
     private ImageView mIvEmojiBtn;

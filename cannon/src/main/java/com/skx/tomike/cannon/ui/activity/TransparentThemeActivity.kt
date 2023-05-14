@@ -14,7 +14,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_TRANSPARENT_THEME
  * 创建时间 : 2019/2/12 9:08 PM
  */
 @Route(path = ROUTE_PATH_TRANSPARENT_THEME)
-class TransparentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
+class TransparentThemeActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
     override fun layoutId(): Int {

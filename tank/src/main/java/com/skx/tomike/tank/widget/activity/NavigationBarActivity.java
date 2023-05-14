@@ -28,7 +28,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_NAVIGATION_BAR;
  * 创建时间 : 2020-03-18 23:16
  */
 @Route(path = ROUTE_PATH_NAVIGATION_BAR)
-public class NavigationBarActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class NavigationBarActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     private NavigationBarLayout<String> mNavigationBar;
     private TextView contentText;

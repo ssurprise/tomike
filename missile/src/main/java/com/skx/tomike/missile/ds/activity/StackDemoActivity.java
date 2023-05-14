@@ -26,7 +26,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_STACK;
  * 创建时间 : 2020/6/29 10:26 AM
  */
 @Route(path = ROUTE_PATH_STACK)
-public class StackDemoActivity extends SkxBaseActivity<BaseViewModel> {
+public class StackDemoActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private static final int MAX_SIZE = 5;
 

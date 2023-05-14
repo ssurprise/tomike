@@ -14,7 +14,7 @@ import com.skx.tomike.tank.ROUTE_PATH_EDITTEXT_CURSOR
  * 创建时间 : 2020/4/1 7:46 PM
  */
 @Route(path = ROUTE_PATH_EDITTEXT_CURSOR)
-class EditTextCursorActivity : SkxBaseActivity<BaseViewModel?>() {
+class EditTextCursorActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

@@ -28,7 +28,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CON
  * 创建时间 : 2016/4/20.
  */
 @Route(path = ROUTE_PATH_VIEWPAGER_WRAP_CONTENT)
-public class ViewPagerWrapContentActivity extends SkxBaseActivity<BaseViewModel> {
+public class ViewPagerWrapContentActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private final ArrayList<Integer> mImageList = new ArrayList<>();
 

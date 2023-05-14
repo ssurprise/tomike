@@ -15,7 +15,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_CARDVIEW;
  * 如果要在您的代码中设置圆角半径，请使用 CardView.setRadius 方法。
  */
 @Route(path = ROUTE_PATH_CARDVIEW)
-public class CardViewActivity extends SkxBaseActivity<BaseViewModel> {
+public class CardViewActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

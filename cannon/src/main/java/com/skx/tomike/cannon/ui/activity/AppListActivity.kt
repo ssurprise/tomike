@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
+import com.skx.common.base.IRepository
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
 import com.skx.common.utils.AppUtils
@@ -128,7 +129,7 @@ class AppListActivity : SkxBaseActivity<AppListViewModel>() {
 
 }
 
-class AppListViewModel(@NonNull application: Application) : BaseViewModel(application) {
+class AppListViewModel(@NonNull application: Application) : BaseViewModel<IRepository>(application) {
 
     private val mAppsInfoLiveData: MutableLiveData<MutableList<AppListActivity.AppInfo>> = MutableLiveData()
 

@@ -15,7 +15,7 @@ import com.skx.tomike.tank.ROUTE_PATH_SHAPE_VIEW
  * 创建时间 : 2020-03-18 23:10
  */
 @Route(path = ROUTE_PATH_SHAPE_VIEW)
-class ShapeViewActivity : SkxBaseActivity<BaseViewModel>() {
+class ShapeViewActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {
     }

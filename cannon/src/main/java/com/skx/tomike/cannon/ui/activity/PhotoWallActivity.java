@@ -25,7 +25,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PHOTO_WALL;
  * 创建时间 : 2020/3/19 4:08 PM
  */
 @Route(path = ROUTE_PATH_PHOTO_WALL)
-public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel> {
+public class PhotoWallActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private PhotoWallAdapter mAdapter;
     private PhotoUpImageBucket mPhotoAlbum;

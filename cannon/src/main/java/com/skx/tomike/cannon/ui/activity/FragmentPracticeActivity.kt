@@ -23,7 +23,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_FRAGMENT
  * 创建时间 : 2021/12/31 2:11 下午
  */
 @Route(path = ROUTE_PATH_FRAGMENT)
-class FragmentPracticeActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+class FragmentPracticeActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private var index = 0
 
@@ -70,7 +70,7 @@ class FragmentPracticeActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickL
     }
 }
 
-class FgmtPartice : BaseFragment() {
+class FgmtPartice : BaseFragment<BaseViewModel<*>>() {
 
     private var mTvTxt: TextView? = null
     private var mIndex = ""

@@ -17,7 +17,7 @@ import com.skx.tomike.bomber.R;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_FLOAT_CALCULATE;
 
 @Route(path = ROUTE_PATH_FLOAT_CALCULATE)
-public class DoubleCalculateActivity extends SkxBaseActivity<BaseViewModel> {
+public class DoubleCalculateActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private EditText doubleFormat_editText;
     private TextView doubleFormat_result;

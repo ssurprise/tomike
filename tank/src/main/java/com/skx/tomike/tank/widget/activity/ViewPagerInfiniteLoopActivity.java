@@ -27,7 +27,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_LOOP;
  * 控制ViewPager滑动速度:http://stackoverflow.com/questions/8155257/slowing-speed-of-viewpager-controller-in-android
  */
 @Route(path = ROUTE_PATH_VIEWPAGER_LOOP)
-public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel> {
+public class ViewPagerInfiniteLoopActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private ViewPager mVpInfiniteLoop;
     private ViewPager mVpAutomaticLoop;

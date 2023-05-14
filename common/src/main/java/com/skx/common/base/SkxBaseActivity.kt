@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.skx.common.R
 
-abstract class SkxBaseActivity<T : BaseViewModel?> : BaseMvvmActivity<T>() {
+abstract class SkxBaseActivity<T : BaseViewModel<out IRepository>?> : BaseMvvmActivity<T>() {
 
     @JvmField
     protected val TAG = javaClass.simpleName

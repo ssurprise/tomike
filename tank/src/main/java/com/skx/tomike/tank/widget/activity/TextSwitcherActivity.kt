@@ -19,7 +19,7 @@ import com.skx.tomike.tank.ROUTE_PATH_TEXTSWITCH
  * 创建时间 : 2020/3/18 8:31 PM
  */
 @Route(path = ROUTE_PATH_TEXTSWITCH)
-class TextSwitcherActivity : SkxBaseActivity<BaseViewModel>() {
+class TextSwitcherActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private var textSwitcher: TextSwitcher? = null
     private var textSwitcher2: TextSwitcher? = null

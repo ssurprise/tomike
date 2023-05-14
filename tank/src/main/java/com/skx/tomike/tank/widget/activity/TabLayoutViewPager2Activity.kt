@@ -25,7 +25,7 @@ import java.util.*
  * 创建时间 :  2021/12/10 10:07 上午
  */
 @Route(path = ROUTE_PATH_TABLELAYOUT_VIEWPAGER2)
-class TabLayoutViewPager2Activity : SkxBaseActivity<BaseViewModel?>() {
+class TabLayoutViewPager2Activity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mTabLayout: TabLayout by lazy {
         findViewById(R.id.tl_tb4vp2_tab)

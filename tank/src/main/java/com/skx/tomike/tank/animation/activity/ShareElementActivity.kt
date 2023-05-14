@@ -17,7 +17,7 @@ import com.skx.tomike.tank.ROUTE_PATH_share_Element
  * 共享元素1
  */
 @Route(path = ROUTE_PATH_share_Element)
-class ShareElementActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+class ShareElementActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     override fun initParams() {}
 

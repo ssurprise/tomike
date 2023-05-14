@@ -21,7 +21,7 @@ import java.util.*
  * 创建时间 : 2020-03-23 23:23
  */
 @Route(path = ROUTE_PATH_PROGRESS_BAR)
-class ProgressActivity : SkxBaseActivity<BaseViewModel?>() {
+class ProgressActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val tv_reset_btn: TextView by lazy {
         findViewById(R.id.tv_reset_btn)

@@ -21,7 +21,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_INTERRUPT
  * 创建时间 : 2019-12-19 17:03
  */
 @Route(path = ROUTE_PATH_THREAD_INTERRUPT)
-public class ThreadInterruptActivity extends SkxBaseActivity<BaseViewModel> {
+public class ThreadInterruptActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private TextView mTvLogcat;
     private LoopThread mLoopThread;

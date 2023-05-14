@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import java.lang.reflect.ParameterizedType
 
 
 /**
@@ -17,11 +19,15 @@ import androidx.fragment.app.Fragment
  * 版本 : V1
  * 创建时间 : 2021/9/24 3:50 下午
  */
-open class BaseFragment : Fragment() {
+open class BaseFragment<T : BaseViewModel<out IRepository>> : Fragment() {
 
     var mContext: Context? = null
     val TAG: String = javaClass.simpleName
+    protected var mViewModel: T? = null
 
+    init {
+        initViewModel()
+    }
 
     companion object {
         const val TAG_LIFECYCLE: String = "FragmentLifecycle"
@@ -38,10 +44,25 @@ open class BaseFragment : Fragment() {
         logPrinter("onCreate")
     }
 
+    private fun initViewModel() {
+        try {
+            val genType = this.javaClass.genericSuperclass
+            val params = (genType as ParameterizedType).actualTypeArguments
+            if (params.isNotEmpty()) {
+                val clazz = params[0] as? Class<T>
+                clazz?.let {
+                    mViewModel = ViewModelProvider(this)[it]
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         logPrinter("onCreateView")
         return super.onCreateView(inflater, container, savedInstanceState)

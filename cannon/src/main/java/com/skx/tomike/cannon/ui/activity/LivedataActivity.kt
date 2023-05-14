@@ -21,7 +21,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_LIVEDATA
  * 创建时间 : 2020/4/10 9:15 AM
  */
 @Route(path = ROUTE_PATH_LIVEDATA)
-class LivedataActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class LivedataActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val source: MutableLiveData<Int> = MutableLiveData()
 

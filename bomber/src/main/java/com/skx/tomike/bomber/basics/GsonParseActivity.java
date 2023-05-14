@@ -18,7 +18,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GSON;
  * 创建时间 : 2020/12/25 11:05 AM
  */
 @Route(path = ROUTE_PATH_GSON)
-public class GsonParseActivity extends SkxBaseActivity<BaseViewModel> {
+public class GsonParseActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private static final String URL_ENCODE = "UTF-8";
 

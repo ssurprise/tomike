@@ -29,7 +29,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_PAGE_INDICATOR_LAY
  * 创建时间 : 2016/4/20
  */
 @Route(path = ROUTE_PATH_PAGE_INDICATOR_LAYOUT)
-public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
+public class PageIndicatorActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     /**
      * 边框指示器

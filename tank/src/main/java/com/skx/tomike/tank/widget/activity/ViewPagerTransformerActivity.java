@@ -26,7 +26,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_PAGE_TRA
  * 创建时间 : 2016/4/20
  */
 @Route(path = ROUTE_PATH_VIEWPAGER_PAGE_TRANSFORMER)
-public class ViewPagerTransformerActivity extends SkxBaseActivity<BaseViewModel> {
+public class ViewPagerTransformerActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private ViewPager mViewPager;
 

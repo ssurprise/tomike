@@ -12,7 +12,7 @@ import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import com.skx.common.base.BaseFragment
+import androidx.fragment.app.Fragment
 import java.util.*
 
 /**
@@ -21,7 +21,7 @@ import java.util.*
  * 版本 : V1
  * 创建时间 : 2020/9/16 5:21 PM
  */
-class PermissionFragment : BaseFragment(), PermissionNegotiate {
+class PermissionFragment : Fragment(), PermissionNegotiate {
 
     /**
      * 用户提交的所有权限

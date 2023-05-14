@@ -14,7 +14,7 @@ import com.skx.tomike.R
 /**
  * 启动图、欢迎页
  */
-class WelcomeActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class WelcomeActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val handler = Handler(Looper.myLooper()!!)
     private val runnable = Runnable { gotoHomepage() }

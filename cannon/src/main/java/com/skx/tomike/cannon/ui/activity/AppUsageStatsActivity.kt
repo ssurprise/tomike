@@ -28,7 +28,7 @@ import java.util.*
  * 创建时间 : 2023/4/10 11:49 下午
  */
 @Route(path = ROUTE_PATH_APP_USAGE_STATS)
-class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel>() {
+class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mData: MutableList<AppInfo> = mutableListOf()
 

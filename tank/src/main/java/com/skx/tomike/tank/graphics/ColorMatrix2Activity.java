@@ -28,7 +28,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_COLORMATRIX;
  * 创建时间 : 2021/11/16 11:25 下午
  */
 @Route(path = ROUTE_PATH_COLORMATRIX)
-public class ColorMatrix2Activity extends SkxBaseActivity<BaseViewModel> {
+public class ColorMatrix2Activity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private ImageView mIvImageMatrix;
     private GridLayout mGroup;

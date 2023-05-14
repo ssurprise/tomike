@@ -9,7 +9,7 @@ import com.skx.tomike.tank.ROUTE_PATH_PAINT
 
 
 @Route(path = ROUTE_PATH_PAINT)
-class PaintActivity : SkxBaseActivity<BaseViewModel>() {
+class PaintActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {
     }

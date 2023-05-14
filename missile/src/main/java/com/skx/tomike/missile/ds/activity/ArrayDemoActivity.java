@@ -19,7 +19,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_ARRAY;
  * 创建时间 : 2020/6/29 10:26 AM
  */
 @Route(path = ROUTE_PATH_ARRAY)
-public class ArrayDemoActivity extends SkxBaseActivity<BaseViewModel> {
+public class ArrayDemoActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

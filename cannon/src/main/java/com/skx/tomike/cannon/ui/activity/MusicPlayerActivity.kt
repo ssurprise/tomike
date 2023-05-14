@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
  * 创建时间 : 2021/11/23 9:08 下午
  */
 @Route(path = ROUTE_PATH_MUSIC_PLAYER)
-class MusicPlayerActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+class MusicPlayerActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val mTvPlayingName by lazy {
         findViewById<TextView>(R.id.tv_musicPlayer_name)

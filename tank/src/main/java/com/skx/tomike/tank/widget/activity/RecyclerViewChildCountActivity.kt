@@ -21,7 +21,7 @@ import java.util.*
  * 创建时间 : 2020/5/30 5:01 PM
  */
 @Route(path = ROUTE_PATH_RECYCLER_CHILD_COUNT)
-class RecyclerViewChildCountActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class RecyclerViewChildCountActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private var mRvShow: RecyclerView? = null
 

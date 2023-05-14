@@ -17,7 +17,7 @@ import com.skx.tomike.tank.R;
  * 创建时间 : 2021/11/14 10:38 下午
  */
 @Route(path = ROUTE_PATH_CONSTRAINT_LAYOUT)
-public class ConstraintLayoutActivity extends SkxBaseActivity<BaseViewModel> {
+public class ConstraintLayoutActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

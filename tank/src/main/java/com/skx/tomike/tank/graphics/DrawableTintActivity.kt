@@ -48,7 +48,7 @@ import com.skx.tomike.tank.ROUTE_PATH_TINT
  * 4.setTint()  setTintList() 着色方法
  */
 @Route(path = ROUTE_PATH_TINT)
-class DrawableTintActivity : SkxBaseActivity<BaseViewModel?>() {
+class DrawableTintActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mIvCodeBg: ImageView by lazy {
         findViewById(R.id.mIv_tint2_code_bg)

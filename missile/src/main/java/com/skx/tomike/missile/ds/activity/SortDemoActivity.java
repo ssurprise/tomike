@@ -24,7 +24,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_SORT;
  * 创建时间 : 2020/9/7 2:25 PM
  */
 @Route(path = ROUTE_PATH_SORT)
-public class SortDemoActivity extends SkxBaseActivity<BaseViewModel> implements RadioGroup.OnCheckedChangeListener {
+public class SortDemoActivity extends SkxBaseActivity<BaseViewModel<?>> implements RadioGroup.OnCheckedChangeListener {
 
     private static final int[] SOURCE = {9, 7, 2, 1, 3, 5, 8, 6, 4};
 //    private final int[] SOURCE = {9, 8, 7, 6, 5, 4, 3, 2, 1};

@@ -16,7 +16,7 @@ import com.skx.tomike.tank.ROUTE_PATH_CHECKBOX
  * 创建时间 : 2020-03-23 23:23
  */
 @Route(path = ROUTE_PATH_CHECKBOX)
-class CheckBoxActivity : SkxBaseActivity<BaseViewModel?>() {
+class CheckBoxActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

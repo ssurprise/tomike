@@ -25,7 +25,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_RECYCLER_ITEM_UPDA
  * 创建时间 : 2020/3/20 6:27 PM
  */
 @Route(path = ROUTE_PATH_RECYCLER_ITEM_UPDATE)
-public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewModel> {
+public class RecyclerViewItemUpdateActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private ItemAnimatorAdapter mAdapter;
     private final List<String> mCon = new LinkedList<>();

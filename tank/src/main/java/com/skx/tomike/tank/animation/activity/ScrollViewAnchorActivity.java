@@ -44,7 +44,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ANCHOR;
  * 创建时间 : 2020/3/20 6:15 PM
  */
 @Route(path = ROUTE_PATH_SCROLL_ANCHOR)
-public class ScrollViewAnchorActivity extends SkxBaseActivity<BaseViewModel> {
+public class ScrollViewAnchorActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     // 头部导航标签
     private final String[] mNavigationTag = {"照片", "概览", "描述", "点评", "位置", "日期", "设施", "规则", "退订", "日记", "推荐"};

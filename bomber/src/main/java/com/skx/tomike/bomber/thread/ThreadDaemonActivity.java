@@ -25,7 +25,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_DAEMON;
  * 创建时间 : 2019-12-19 17:03
  */
 @Route(path = ROUTE_PATH_THREAD_DAEMON)
-public class ThreadDaemonActivity extends SkxBaseActivity<BaseViewModel> {
+public class ThreadDaemonActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private final static String TAG = "ThreadDaemonActivity";
 

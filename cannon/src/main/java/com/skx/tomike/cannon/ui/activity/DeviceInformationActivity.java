@@ -30,7 +30,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DEVICE_INFO;
  * 创建时间 : 2020/8/5 4:44 PM
  */
 @Route(path = ROUTE_PATH_DEVICE_INFO)
-public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel> {
+public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private TextView mTvAndroidId;
     private TextView mTvDeviceId;

@@ -19,7 +19,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_PROXY;
  * 创建时间 : 2020/4/14 9:22 AM
  */
 @Route(path = ROUTE_PATH_PROXY)
-public class ProxyPatternActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class ProxyPatternActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     private ICarFactory iCarFactory;
 

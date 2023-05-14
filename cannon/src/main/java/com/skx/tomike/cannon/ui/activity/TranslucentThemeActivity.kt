@@ -18,7 +18,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_TRANSLUCENT_THEME
  * 创建时间 : 2019/2/12 9:08 PM
  */
 @Route(path = ROUTE_PATH_TRANSLUCENT_THEME)
-class TranslucentThemeActivity : SkxBaseActivity<BaseViewModel?>() {
+class TranslucentThemeActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mFirstRect: Rect = Rect(300, 600, 500, 700)
     private val mSecondRect: Rect = Rect(500, 1200, 700, 1300)

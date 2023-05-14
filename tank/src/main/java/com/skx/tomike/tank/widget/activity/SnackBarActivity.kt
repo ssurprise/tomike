@@ -11,7 +11,7 @@ import com.skx.tomike.tank.R
 import com.skx.tomike.tank.ROUTE_PATH_SNACKBAR
 
 @Route(path = ROUTE_PATH_SNACKBAR)
-class SnackBarActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+class SnackBarActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private var mTvLabel: TextView? = null
 

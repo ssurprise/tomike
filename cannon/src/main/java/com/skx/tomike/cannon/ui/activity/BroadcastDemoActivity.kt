@@ -20,7 +20,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_BROADCAST
  * 创建时间 : 2021/8/30 5:00 下午
  */
 @Route(path = ROUTE_PATH_BROADCAST)
-class BroadcastDemoActivity : SkxBaseActivity<BaseViewModel>() {
+class BroadcastDemoActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mBroadcastReceiver = SuperBroadcastReceiver()
 

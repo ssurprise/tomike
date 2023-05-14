@@ -23,7 +23,7 @@ import java.util.*
  * 创建时间 : 2020/4/1 7:46 PM
  */
 @Route(path = ROUTE_PATH_EDITTEXT_LIGHT2DARK)
-class LightDarkTextActivity : SkxBaseActivity<BaseViewModel>() {
+class LightDarkTextActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private var isDarkStatus = false
     private var btnSwitch: AppCompatTextView? = null

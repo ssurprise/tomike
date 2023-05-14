@@ -26,7 +26,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TEXTVIEW_SPANNABLE
  * 创建时间 : 2020/12/25 11:28 AM
  */
 @Route(path = ROUTE_PATH_TEXTVIEW_SPANNABLESTRING)
-public class SpannableStringBuilderActivity extends SkxBaseActivity<BaseViewModel> {
+public class SpannableStringBuilderActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     TextView textView;
     TextView textView_topMark;

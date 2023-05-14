@@ -18,7 +18,7 @@ import com.skx.tomike.tank.ROUTE_PATH_VIEW_FOCUS
  * 创建时间 : 2020/4/1 7:46 PM
  */
 @Route(path = ROUTE_PATH_VIEW_FOCUS)
-class ViewFocusActivity : SkxBaseActivity<BaseViewModel?>() {
+class ViewFocusActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

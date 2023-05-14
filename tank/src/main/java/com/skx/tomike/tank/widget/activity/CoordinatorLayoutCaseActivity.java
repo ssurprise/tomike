@@ -10,7 +10,7 @@ import com.skx.tomike.tank.widget.view.CustomCommentLayoutView;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_COORDINATOR2;
 
 @Route(path = ROUTE_PATH_COORDINATOR2)
-public class CoordinatorLayoutCaseActivity extends SkxBaseActivity<BaseViewModel> {
+public class CoordinatorLayoutCaseActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     int lastVerticalOffset = -1;
 

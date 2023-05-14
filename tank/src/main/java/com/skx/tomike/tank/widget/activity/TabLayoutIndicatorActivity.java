@@ -22,7 +22,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_INDICA
  * 创建时间 : 2020/5/30 10:55 AM
  */
 @Route(path = ROUTE_PATH_TABLELAYOUT_INDICATOR)
-public class TabLayoutIndicatorActivity extends SkxBaseActivity<BaseViewModel> {
+public class TabLayoutIndicatorActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

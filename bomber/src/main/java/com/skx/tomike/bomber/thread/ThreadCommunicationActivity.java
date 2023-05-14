@@ -23,7 +23,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_COMMUNICA
  * 创建时间 : 2019-12-19 17:03
  */
 @Route(path = ROUTE_PATH_THREAD_COMMUNICATION)
-public class ThreadCommunicationActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class ThreadCommunicationActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     private final static int INIT = 20;
 

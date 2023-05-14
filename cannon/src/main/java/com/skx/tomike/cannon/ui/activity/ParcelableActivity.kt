@@ -18,7 +18,7 @@ import com.skx.tomike.cannon.bean.Student
  * 创建时间 : 2020/12/8 1:35 PM
  */
 @Route(path = ROUTE_PATH_PARCELABLE)
-class ParcelableActivity : SkxBaseActivity<BaseViewModel>() {
+class ParcelableActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     var student: Student? = null
 

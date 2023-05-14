@@ -29,7 +29,7 @@ import com.skx.tomike.tank.ROUTE_PATH_LAYOUT_TRANSITION
  * 创建时间 : 2018/12/16 5:43 PM
  */
 @Route(path = ROUTE_PATH_LAYOUT_TRANSITION)
-class LayoutTransitionActivity : SkxBaseActivity<BaseViewModel>() {
+class LayoutTransitionActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private var mContainer: LinearLayout? = null
 

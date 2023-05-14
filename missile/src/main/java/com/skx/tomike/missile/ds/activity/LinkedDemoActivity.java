@@ -22,7 +22,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_LINKED;
  * 创建时间 : 2020/6/29 10:26 AM
  */
 @Route(path = ROUTE_PATH_LINKED)
-public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel> {
+public class LinkedDemoActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private TextView mTvExample;
     private TextView mTvHasRing;

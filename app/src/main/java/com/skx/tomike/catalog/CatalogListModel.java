@@ -1,6 +1,14 @@
 package com.skx.tomike.catalog;
 
+import android.app.Application;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.IRepository;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -152,7 +160,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
  * 版本 : V1
  * 创建时间 : 2017/12/29 6:08 PM
  */
-public class CatalogListModel {
+public class CatalogListModel extends BaseViewModel<IRepository> {
 
     private static final String TAG = "CatalogListModel";
 
@@ -380,19 +388,29 @@ public class CatalogListModel {
         mCatalogGroupMap.put(GROUP_DATA_STRUCTURE_AND_ALGORITHM, mDataStructureCatalogs);
     }
 
+    private final MutableLiveData<List<CatalogCellModel>> mCatalogGroupLiveData = new MutableLiveData<>();
+
+    public CatalogListModel(@NonNull Application application) {
+        super(application);
+    }
+
+    public LiveData<List<CatalogCellModel>> getCatalogGroupLiveData() {
+        return mCatalogGroupLiveData;
+    }
+
     /**
      * 创建目录分组
      *
      * @return 目录分组结构
      */
-    public static List<CatalogCellModel> createCatalogGroup() {
+    public void createCatalogGroup() {
         List<CatalogCellModel> allCatalogs = new ArrayList<>();
         for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
             CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(),
                     "", "", null);
             allCatalogs.add(parentModel);
         }
-        return allCatalogs;
+        mCatalogGroupLiveData.postValue(allCatalogs);
     }
 
     /**

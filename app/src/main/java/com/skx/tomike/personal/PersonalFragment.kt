@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.skx.common.base.BaseFragment
+import com.skx.common.base.BaseViewModel
 import com.skx.tomike.R
 
-class PersonalFragment : BaseFragment() {
+class PersonalFragment : BaseFragment<BaseViewModel<*>>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

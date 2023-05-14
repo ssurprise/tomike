@@ -24,7 +24,7 @@ import com.skx.tomike.missile.pattern.memento.MementoHistoryAdapter.MementoAcces
  * 创建时间 : 2020/3/18 3:42 PM
  */
 @Route(path = ROUTE_PATH_MEMENTO)
-class MementoPatternActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+class MementoPatternActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private var mEtNameInput: EditText? = null
     private var mSeekBarBloodVolume: SeekBar? = null

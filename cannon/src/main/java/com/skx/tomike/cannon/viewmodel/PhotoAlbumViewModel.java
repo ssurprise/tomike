@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.skx.common.base.BaseViewModel;
+import com.skx.common.base.IRepository;
 import com.skx.tomike.cannon.bean.PhotoUpImageBucket;
 
 import java.util.List;
@@ -25,7 +26,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  * 版本 : V1
  * 创建时间 : 2020/3/19 4:10 PM
  */
-public class PhotoAlbumViewModel extends BaseViewModel {
+public class PhotoAlbumViewModel extends BaseViewModel<IRepository> {
 
     private final MutableLiveData<List<PhotoUpImageBucket>> mPhotoAlbumsLiveData = new MutableLiveData<>();
 

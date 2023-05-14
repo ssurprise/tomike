@@ -18,7 +18,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_ZOOM2;
  * @author shiguotao
  */
 @Route(path = ROUTE_PATH_SCROLL_ZOOM2)
-public class ScrollZoomImage3Activity extends SkxBaseActivity<BaseViewModel> {
+public class ScrollZoomImage3Activity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private final String TAG = "ScrollZoomImage";
 

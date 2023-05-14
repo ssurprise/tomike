@@ -16,7 +16,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_OBSERVER;
  * @author shiguotao
  */
 @Route(path = ROUTE_PATH_OBSERVER)
-public class ObserverPatternActivity extends SkxBaseActivity<BaseViewModel> {
+public class ObserverPatternActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

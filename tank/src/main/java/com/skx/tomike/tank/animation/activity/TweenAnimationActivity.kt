@@ -20,7 +20,7 @@ import com.skx.tomike.tank.ROUTE_PATH_TWEEN
  * 创建时间 : 2020/4/3 2:19 PM
  */
 @Route(path = ROUTE_PATH_TWEEN)
-class TweenAnimationActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class TweenAnimationActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private var mIvTarget: ImageView? = null
 

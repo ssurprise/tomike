@@ -27,7 +27,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_QUEUE;
  * 创建时间 : 2020/6/29 10:26 AM
  */
 @Route(path = ROUTE_PATH_QUEUE)
-public class QueueDemoActivity extends SkxBaseActivity<BaseViewModel> {
+public class QueueDemoActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private LinearLayout mLlStackWrap;
 

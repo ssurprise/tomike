@@ -17,7 +17,7 @@ import com.skx.tomike.tank.widget.adapter.ItemAnimatorAdapter
  * 创建时间 : 2021/1/8 5:08 PM
  */
 @Route(path = ROUTE_PATH_SCROLLVIEW_RV)
-class ScrollViewAndRecyclerViewActivity : SkxBaseActivity<BaseViewModel?>() {
+class ScrollViewAndRecyclerViewActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private var mRvShow: RecyclerView? = null
 

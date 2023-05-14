@@ -20,7 +20,7 @@ import com.skx.tomike.cannon.ui.view.ZoomImageView
  * 创建时间 : 2020-03-20 23:14
  */
 @Route(path = ROUTE_PATH_IMAGE_zoom)
-class ZoomImageActivity : SkxBaseActivity<BaseViewModel?>() {
+class ZoomImageActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mImageArray: IntArray = intArrayOf(
             R.drawable.image_02,

@@ -18,7 +18,7 @@ import com.skx.tomike.bomber.R;
  * emoji 表情过滤
  */
 @Route(path = ROUTE_PATH_EMOJI_FILTER)
-public class EmojiFilterActivity extends SkxBaseActivity<BaseViewModel> {
+public class EmojiFilterActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private TextView tv_hasEmoji;
     private TextView tv_textLength_original;

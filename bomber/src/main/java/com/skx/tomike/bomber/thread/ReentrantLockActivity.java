@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_REENTRANT_LOCK;
 
 @Route(path = ROUTE_PATH_THREAD_REENTRANT_LOCK)
-public class ReentrantLockActivity extends SkxBaseActivity<BaseViewModel> {
+public class ReentrantLockActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

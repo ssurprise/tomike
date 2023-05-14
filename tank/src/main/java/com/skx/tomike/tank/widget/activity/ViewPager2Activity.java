@@ -31,7 +31,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER2;
  * 创建时间 : 2020/5/30 5:01 PM
  */
 @Route(path = ROUTE_PATH_VIEWPAGER2)
-public class ViewPager2Activity extends SkxBaseActivity<BaseViewModel> {
+public class ViewPager2Activity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private final List<String> mBannerList = new ArrayList<>();
 

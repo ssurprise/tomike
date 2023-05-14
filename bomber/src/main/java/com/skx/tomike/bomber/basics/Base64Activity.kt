@@ -12,7 +12,7 @@ import com.skx.tomike.bomber.R
 import com.skx.tomike.bomber.ROUTE_PATH_BASE64
 
 @Route(path = ROUTE_PATH_BASE64)
-class Base64Activity : SkxBaseActivity<BaseViewModel>() {
+class Base64Activity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mEvOriginalVal: EditText by lazy {
         findViewById(R.id.et_base64_original_value)

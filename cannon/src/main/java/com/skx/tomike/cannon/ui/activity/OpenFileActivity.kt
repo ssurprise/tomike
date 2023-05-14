@@ -34,7 +34,7 @@ import java.util.*
  * 创建时间 : 2020/3/23 3:56 PM
  */
 @Route(path = ROUTE_PATH_SAF)
-class OpenFileActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class OpenFileActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val mPath = Environment.getExternalStorageDirectory().absolutePath +
             File.separator + "xzdz" + File.separator

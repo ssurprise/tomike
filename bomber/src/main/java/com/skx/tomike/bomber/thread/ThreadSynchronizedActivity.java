@@ -25,7 +25,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_SYNCHRONI
  * 创建时间 : 2019-12-19 17:03
  */
 @Route(path = ROUTE_PATH_THREAD_SYNCHRONIZED)
-public class ThreadSynchronizedActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class ThreadSynchronizedActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     private TextView mTvLogcat;
 

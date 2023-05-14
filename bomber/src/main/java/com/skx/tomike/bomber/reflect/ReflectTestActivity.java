@@ -23,7 +23,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_REFLECT;
  * 创建时间 : 2020/4/13 10:06 AM
  */
 @Route(path = ROUTE_PATH_REFLECT)
-public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class ReflectTestActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     @Override
     protected void initParams() {

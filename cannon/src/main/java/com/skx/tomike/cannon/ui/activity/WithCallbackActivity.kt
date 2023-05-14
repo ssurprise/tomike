@@ -21,7 +21,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_ACTIVITY4RESULT
  * 创建时间 : 2021/7/30 11:18 上午
  */
 @Route(path = ROUTE_PATH_ACTIVITY4RESULT)
-class WithCallbackActivity : SkxBaseActivity<BaseViewModel>(), View.OnClickListener {
+class WithCallbackActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val mTvAcceptData: TextView by lazy {
         findViewById(R.id.tv_withCallBack_acceptValue)

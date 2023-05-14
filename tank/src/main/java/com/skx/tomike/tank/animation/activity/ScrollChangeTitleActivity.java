@@ -28,7 +28,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_SCROLL_CHANGE_TITL
  * 滑动改变标题栏透明度、颜色
  */
 @Route(path = ROUTE_PATH_SCROLL_CHANGE_TITLE)
-public class ScrollChangeTitleActivity extends SkxBaseActivity<BaseViewModel> {
+public class ScrollChangeTitleActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private Context mContext;
     private RelativeLayout mHeaderView;

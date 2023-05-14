@@ -21,7 +21,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_PHOTO_PREVIEW;
  * 创建时间 : 2020/3/20 8:30 PM
  */
 @Route(path = ROUTE_PATH_PHOTO_PREVIEW)
-public class PicturePreviewActivity extends SkxBaseActivity<BaseViewModel> {
+public class PicturePreviewActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private final List<IPicture> mPicturesList = new ArrayList<>();
     private int mPosition = 0;

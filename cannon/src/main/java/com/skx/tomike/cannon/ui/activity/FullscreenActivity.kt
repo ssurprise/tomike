@@ -17,7 +17,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_FULL_SCREEN
  * status bar and navigation/system bar) with user interaction.
  */
 @Route(path = ROUTE_PATH_FULL_SCREEN)
-class FullscreenActivity : SkxBaseActivity<BaseViewModel>() {
+class FullscreenActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun nativeThemeStyle() {
         super.nativeThemeStyle()

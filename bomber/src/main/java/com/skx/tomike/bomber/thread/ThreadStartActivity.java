@@ -30,7 +30,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_START;
  * 创建时间 : 2019-12-19 18:46
  */
 @Route(path = ROUTE_PATH_THREAD_START)
-public class ThreadStartActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class ThreadStartActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     private ScrollView mSvLogcat;
     private TextView mTvLogcat;

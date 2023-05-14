@@ -22,7 +22,7 @@ import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_NOTIFICATION
 
 @Route(path = ROUTE_PATH_NOTIFICATION)
-class NotificationActivity : SkxBaseActivity<BaseViewModel>() {
+class NotificationActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private var mChannelId = 1
     private var mSwitchNotification: SwitchCompat? = null

@@ -19,7 +19,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_ZXING
  * 创建时间 : 2021/7/22 4:22 下午
  */
 @Route(path = ROUTE_PATH_ZXING)
-class ZXingActivity : SkxBaseActivity<BaseViewModel>() {
+class ZXingActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {
     }

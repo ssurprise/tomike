@@ -17,7 +17,7 @@ import com.skx.tomike.cannon.R
  * 版本 : V1
  * 创建时间 : 2020/4/10 9:15 AM
  */
-class LifecycleActivity2 : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class LifecycleActivity2 : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val tv: TextView by lazy {
         findViewById(R.id.tv_lifecycle_content)

@@ -18,7 +18,7 @@ import java.util.*
  *
  * @author shiguotao
  */
-class CatalogFragment : BaseFragment() {
+class CatalogFragment : BaseFragment<CatalogListModel>() {
 
     private val tabList: MutableList<String> = ArrayList()
 
@@ -36,25 +36,27 @@ class CatalogFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val date = CatalogListModel.createCatalogGroup()
+        mViewModel?.catalogGroupLiveData?.observe(viewLifecycleOwner, { mutableList ->
+            val fragments: MutableList<DashboardFragment> = mutableListOf()
+            mutableList.forEach {
+                tabList.add(it.title)
+                fragments.add(DashboardFragment.getInstance(it.title))
+            }
 
-        val fragments: MutableList<DashboardFragment> = mutableListOf()
-        date.forEach {
-            tabList.add(it.title)
-            fragments.add(DashboardFragment.getInstance(it.title))
-        }
+            if (mContext is FragmentActivity) {
+                mVpContent?.adapter = Tlvp2Adapter(
+                        mContext as FragmentActivity,
+                        fragments
+                )
+            }
 
-        if (mContext is FragmentActivity) {
-            mVpContent?.adapter = Tlvp2Adapter(
-                    mContext as FragmentActivity,
-                    fragments
-            )
-        }
+            if (mTbLayout != null && mVpContent != null) {
+                TabLayoutMediatorX(mTbLayout!!, mVpContent!!, false, false) { tab, position ->
+                    tab.text = tabList[position]
+                }.attach()
+            }
+        })
 
-        if (mTbLayout != null && mVpContent != null) {
-            TabLayoutMediatorX(mTbLayout!!, mVpContent!!, false, false) { tab, position ->
-                tab.text = tabList[position]
-            }.attach()
-        }
+        mViewModel?.createCatalogGroup()
     }
 }

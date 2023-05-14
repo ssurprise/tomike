@@ -19,7 +19,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GENERIC;
  * 创建时间 : 2020/4/23 9:56 AM
  */
 @Route(path = ROUTE_PATH_GENERIC)
-public class GenericTestActivity extends SkxBaseActivity<BaseViewModel> {
+public class GenericTestActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

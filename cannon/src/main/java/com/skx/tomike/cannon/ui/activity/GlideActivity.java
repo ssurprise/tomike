@@ -30,7 +30,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_GLIDE;
  * 创建时间 : 2020/3/23 4:16 PM
  */
 @Route(path = ROUTE_PATH_GLIDE)
-public class GlideActivity extends SkxBaseActivity<BaseViewModel> {
+public class GlideActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private final String[] imageArray = {
             // 第1行

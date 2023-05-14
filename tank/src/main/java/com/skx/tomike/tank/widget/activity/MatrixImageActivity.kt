@@ -16,7 +16,7 @@ import com.skx.tomike.tank.widget.view.TranslateImageView
  * 创建时间 : 2020/6/23 2:16 PM
  */
 @Route(path = ROUTE_PATH_MATRIXIMAGE)
-class MatrixImageActivity : SkxBaseActivity<BaseViewModel?>(), View.OnClickListener {
+class MatrixImageActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private var mImage: TranslateImageView? = null
 

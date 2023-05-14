@@ -23,7 +23,7 @@ import com.skx.tomike.tank.widget.view.DynamicMsgLayout
  * 创建时间 : 2022/1/4 4:44 下午
  */
 @Route(path = ROUTE_PATH_DYNAMIC_MSG_LAYOUT)
-class DynamicMsgLayoutActivity : SkxBaseActivity<BaseViewModel>() {
+class DynamicMsgLayoutActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val rv: RecyclerView by lazy {
         findViewById(R.id.rvDate)

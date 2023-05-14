@@ -26,7 +26,7 @@ import java.util.List;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_TABLELAYOUT_HELPER;
 
 @Route(path = ROUTE_PATH_TABLELAYOUT_HELPER)
-public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel> {
+public class TabLayoutHelperActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private TabLayout mTabLayout;
     private ViewPager vpContent;

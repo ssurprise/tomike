@@ -26,7 +26,7 @@ import java.util.*
  * 创建时间 : 2020/3/24 8:05 PM
  */
 @Route(path = ROUTE_PATH_FLOW_LAYOUT)
-class FlowLayoutActivity : SkxBaseActivity<BaseViewModel?>() {
+class FlowLayoutActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

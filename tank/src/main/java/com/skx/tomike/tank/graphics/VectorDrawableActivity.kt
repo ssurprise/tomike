@@ -19,7 +19,7 @@ import com.skx.tomike.tank.ROUTE_PATH_VECTOR_DRAWABLE
  * 创建时间 : 2021/7/8 5:36 下午
  */
 @Route(path = ROUTE_PATH_VECTOR_DRAWABLE)
-class VectorDrawableActivity : SkxBaseActivity<BaseViewModel?>() {
+class VectorDrawableActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     override fun initParams() {}
 

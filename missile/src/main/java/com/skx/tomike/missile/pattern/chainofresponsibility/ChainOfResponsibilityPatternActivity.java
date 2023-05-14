@@ -26,7 +26,7 @@ import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_CHAINOFRESPONSI
  * @author shiguotao
  */
 @Route(path = ROUTE_PATH_CHAINOFRESPONSIBILITY)
-public class ChainOfResponsibilityPatternActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class ChainOfResponsibilityPatternActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     private CheckBox mCbComplaintsReasonHosted;
     private CheckBox mCbComplaintsReasonActor;

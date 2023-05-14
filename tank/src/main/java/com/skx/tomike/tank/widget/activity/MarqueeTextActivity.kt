@@ -17,7 +17,7 @@ import com.skx.tomike.tank.ROUTE_PATH_TEXTVIEW_MARQUEE
  * 创建时间 : 2021/12/3 5:23 下午
  */
 @Route(path = ROUTE_PATH_TEXTVIEW_MARQUEE)
-class MarqueeTextActivity : SkxBaseActivity<BaseViewModel>() {
+class MarqueeTextActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mTvMarqueeText by lazy {
         findViewById<TextView>(R.id.tv_marquee_test1_value)

@@ -12,7 +12,7 @@ import com.skx.tomike.cannon.ROUTE_PATH_DIALOG
 import com.skx.tomike.cannon.ui.dialog.SkxDialogFragment
 
 @Route(path = ROUTE_PATH_DIALOG)
-class DialogActivity : SkxBaseActivity<BaseViewModel>() {
+class DialogActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private var gravity = Gravity.CENTER
 

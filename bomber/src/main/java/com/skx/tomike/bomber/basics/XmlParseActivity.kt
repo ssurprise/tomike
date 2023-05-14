@@ -29,7 +29,7 @@ import javax.xml.parsers.SAXParserFactory
  * 创建时间 : 2021/7/14 10:09 上午
  */
 @Route(path = ROUTE_PATH_XML_PARSE)
-class XmlParseActivity : SkxBaseActivity<BaseViewModel>() {
+class XmlParseActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mTvResult: TextView by lazy {
         findViewById(R.id.tv_xmlParse_result)

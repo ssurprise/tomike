@@ -30,7 +30,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HANDLER;
  * 创建时间 : 2020/3/30 4:34 PM
  */
 @Route(path = ROUTE_PATH_HANDLER)
-public class HandlerActivity extends SkxBaseActivity<BaseViewModel> implements View.OnClickListener {
+public class HandlerActivity extends SkxBaseActivity<BaseViewModel<?>> implements View.OnClickListener {
 
     public TextView mHandlerLogcat;
 

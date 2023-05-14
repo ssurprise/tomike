@@ -14,7 +14,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_COORDINATOR;
  * 创建时间 : 2021/11/14 10:38 下午
  */
 @Route(path = ROUTE_PATH_COORDINATOR)
-public class CoordinatorLayoutActivity extends SkxBaseActivity<BaseViewModel> {
+public class CoordinatorLayoutActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected void initParams() {

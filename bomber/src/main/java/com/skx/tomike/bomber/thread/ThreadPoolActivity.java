@@ -32,7 +32,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_THREAD_POOL;
  * 创建时间 : 2019-12-19 17:03
  */
 @Route(path = ROUTE_PATH_THREAD_POOL)
-public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel> {
+public class ThreadPoolActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private SeekBar seekb_threadPool_process;
     private TextView tv_threadPool_processText;
