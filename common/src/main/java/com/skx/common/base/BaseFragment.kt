@@ -25,10 +25,6 @@ open class BaseFragment<T : BaseViewModel<out IRepository>> : Fragment() {
     val TAG: String = javaClass.simpleName
     protected var mViewModel: T? = null
 
-    init {
-        initViewModel()
-    }
-
     companion object {
         const val TAG_LIFECYCLE: String = "FragmentLifecycle"
     }
@@ -42,6 +38,7 @@ open class BaseFragment<T : BaseViewModel<out IRepository>> : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logPrinter("onCreate")
+        initViewModel()
     }
 
     private fun initViewModel() {
