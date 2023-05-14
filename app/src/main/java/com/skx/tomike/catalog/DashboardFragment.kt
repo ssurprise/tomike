@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skx.common.base.BaseFragment
-import com.skx.common.base.BaseViewModel
 import com.skx.common.utils.dip2px
 import com.skx.common.widget.GridSpaceItemDecoration
 import com.skx.tomike.R
@@ -17,9 +16,10 @@ import com.skx.tomike.R
  *
  * @author shiguotao
  */
-class DashboardFragment : BaseFragment<BaseViewModel<*>>() {
+class DashboardFragment : BaseFragment<CatalogViewModel>() {
 
     private var mRv: RecyclerView? = null
+    private var mAdapter: DashboardAdapter = DashboardAdapter()
     private var mKey: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +41,21 @@ class DashboardFragment : BaseFragment<BaseViewModel<*>>() {
                     dip2px(view.context, 8f),
                     dip2px(view.context, 6f))
             )
-            adapter = DashboardAdapter(CatalogListModel.fetchCatalogByKey(mKey))
+            adapter = mAdapter.also {
+                it.setItemClickListener { _, item ->
+                    mViewModel?.add2RecentHistory(item)
+                }
+            }
         }
+        mViewModel?.catalogItemLiveData?.observe(viewLifecycleOwner, {
+            mAdapter.setData(it)
+        })
+        if (mViewModel?.isRecentHistoryGroup(KEY) == true) {
+            mViewModel?.recentItemLiveData?.observe(viewLifecycleOwner, {
+                mAdapter.setData(it)
+            })
+        }
+        mViewModel?.fetchCatalogByKey(mKey)
     }
 
     companion object {

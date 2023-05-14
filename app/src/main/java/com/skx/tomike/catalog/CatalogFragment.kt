@@ -18,7 +18,7 @@ import java.util.*
  *
  * @author shiguotao
  */
-class CatalogFragment : BaseFragment<CatalogListModel>() {
+class CatalogFragment : BaseFragment<CatalogViewModel>() {
 
     private val tabList: MutableList<String> = ArrayList()
 

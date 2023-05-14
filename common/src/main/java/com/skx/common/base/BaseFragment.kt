@@ -41,7 +41,7 @@ open class BaseFragment<T : BaseViewModel<out IRepository>> : Fragment() {
         initViewModel()
     }
 
-    private fun initViewModel() {
+    protected open fun initViewModel() {
         try {
             val genType = this.javaClass.genericSuperclass
             val params = (genType as ParameterizedType).actualTypeArguments

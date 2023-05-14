@@ -160,7 +160,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
  * 版本 : V1
  * 创建时间 : 2017/12/29 6:08 PM
  */
-public class CatalogListModel extends BaseViewModel<IRepository> {
+public class CatalogViewModel extends BaseViewModel<IRepository> {
 
     private static final String TAG = "CatalogListModel";
 
@@ -389,14 +389,31 @@ public class CatalogListModel extends BaseViewModel<IRepository> {
     }
 
     private final MutableLiveData<List<CatalogCellModel>> mCatalogGroupLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<CatalogItem>> mCatalogItemLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<CatalogItem>> mRecentItemLiveData = new MutableLiveData<>();
 
-    public CatalogListModel(@NonNull Application application) {
+    public CatalogViewModel(@NonNull Application application) {
         super(application);
     }
 
     public LiveData<List<CatalogCellModel>> getCatalogGroupLiveData() {
         return mCatalogGroupLiveData;
     }
+
+
+    public LiveData<List<CatalogItem>> getCatalogItemLiveData() {
+        return mCatalogItemLiveData;
+    }
+
+
+    public LiveData<List<CatalogItem>> getRecentItemLiveData() {
+        return mRecentItemLiveData;
+    }
+
+    public boolean isRecentHistoryGroup(String key) {
+        return GROUP_HISTORY.equals(key);
+    }
+
 
     /**
      * 创建目录分组
@@ -419,29 +436,13 @@ public class CatalogListModel extends BaseViewModel<IRepository> {
      * @param key
      * @return 目录分组结构
      */
-    public static List<CatalogItem> fetchCatalogByKey(String key) {
-//        for (Map.Entry<String, List<CatalogItem>> entry : mCatalogGroupMap.entrySet()) {
-//            List<CatalogItem> tempGroup = entry.getValue();
-//
-//            CatalogCellModel parentModel = new CatalogCellModel(entry.getKey(),
-//                    "", "", null);
-//            allCatalogs.add(parentModel);
-//            for (CatalogItem item : tempGroup) {
-//                CatalogCellModel cellModel = new CatalogCellModel(item.getName(),
-//                        item.getPath(),
-//                        item.getValue(),
-//                        parentModel);
-//                allCatalogs.add(cellModel);
-//            }
-//        }
-
+    public void fetchCatalogByKey(String key) {
         List<CatalogItem> catalogItems = mCatalogGroupMap.get(key);
         Log.d(TAG, "fetchCatalogByKey, key=" + key + " size=" + (catalogItems == null ? 0 : catalogItems.size()));
-
-        return catalogItems;
+        mCatalogItemLiveData.postValue(catalogItems);
     }
 
-    public static void add2RecentHistory(CatalogItem catalogItem) {
+    public void add2RecentHistory(CatalogItem catalogItem) {
         if (catalogItem == null) return;
 
         int index = -1;
@@ -462,6 +463,8 @@ public class CatalogListModel extends BaseViewModel<IRepository> {
             // 说明之前有此记录，但是没有排在首位，需要重新插入到队首
             mRecentHistory.remove(index);
             mRecentHistory.add(0, catalogItem);
+
+            mRecentItemLiveData.postValue(mRecentHistory);
             return;
         }
 
@@ -471,5 +474,6 @@ public class CatalogListModel extends BaseViewModel<IRepository> {
             Log.d(TAG, "add2RecentHistory, 浏览记录超过10条，移除多余的记录");
             mRecentHistory.remove(10);
         }
+        mRecentItemLiveData.postValue(mRecentHistory);
     }
 }

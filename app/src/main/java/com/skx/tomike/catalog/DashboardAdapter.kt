@@ -19,19 +19,22 @@ import java.util.*
  * @author shiguotao
  * Created on 2016/4/11.
  */
-class DashboardAdapter(list: List<CatalogItem>?) : RecyclerView.Adapter<DashboardAdapter.ItemViewHolder>() {
+class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.ItemViewHolder>() {
 
     private val mList: MutableList<CatalogItem> = ArrayList()
+    private var mItemClickListener: ((pos: Int, item: CatalogItem) -> Unit)? = null
 
-    init {
-        setData(list)
-    }
 
     fun setData(list: List<CatalogItem>?) {
         mList.clear()
         if (list != null) {
             mList.addAll(list)
         }
+        notifyDataSetChanged()
+    }
+
+    fun setItemClickListener(itemClickListener: ((pos: Int, item: CatalogItem) -> Unit)? = null) {
+        this.mItemClickListener = itemClickListener
     }
 
 
@@ -46,7 +49,25 @@ class DashboardAdapter(list: List<CatalogItem>?) : RecyclerView.Adapter<Dashboar
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bindData(mList[position])
+        val data = mList[position]
+        holder.bindData(data)
+        holder.itemView.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                it.elevation = 5.0f
+            }
+            try {
+                if (!TextUtils.isEmpty(data.path)) {
+                    ARouter.getInstance().build(data.path).navigation()
+
+                } else {
+                    val intent = Intent(holder.itemView.context, Class.forName(data.value))
+                    (holder.itemView.context as Activity).startActivity(intent)
+                }
+            } catch (e: ClassNotFoundException) {
+                e.printStackTrace()
+            }
+            mItemClickListener?.invoke(position, data)
+        }
     }
 
 
@@ -57,23 +78,6 @@ class DashboardAdapter(list: List<CatalogItem>?) : RecyclerView.Adapter<Dashboar
         fun bindData(data: CatalogItem) {
             tvCellName.run {
                 text = data.name
-                setOnClickListener { v: View ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        v.elevation = 5.0f
-                    }
-                    try {
-                        CatalogListModel.add2RecentHistory(data)
-                        if (!TextUtils.isEmpty(data.path)) {
-                            ARouter.getInstance().build(data.path).navigation()
-
-                        } else {
-                            val intent = Intent(itemView.context, Class.forName(data.value))
-                            (itemView.context as Activity).startActivity(intent)
-                        }
-                    } catch (e: ClassNotFoundException) {
-                        e.printStackTrace()
-                    }
-                }
             }
         }
     }
