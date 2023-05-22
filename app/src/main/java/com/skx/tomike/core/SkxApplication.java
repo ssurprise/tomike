@@ -53,7 +53,7 @@ public class SkxApplication extends Application {
     }
 
     private void initHttpManager() {
-        NetConfig config = new NetConfig("https://www.baidu.com");
+        NetConfig config = new NetConfig("http://v.juhe.cn/");
 //        config.setErrorResponse(ErrorResponseManager());
 //        config.setInterceptorConverter(GlobalConverterInterceptor())
         OkHttpClient.Builder builder = new OkHttpClient.Builder();

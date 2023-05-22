@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.IRepository;
 import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannon.bean.BaseBean;
 import com.skx.tomike.cannon.bean.WeatherMini;
@@ -30,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 版本 : V1
  * 创建时间 : 2020/3/24 2:11 PM
  */
-public class RetrofitViewModel extends BaseViewModel<IRepository> {
+public class RetrofitViewModel extends BaseViewModel<RetrofitRepository> {
 
     private final MutableLiveData<BaseBean<WeatherMini>> mWeatherLiveData = new MutableLiveData<>();
 
@@ -43,12 +42,12 @@ public class RetrofitViewModel extends BaseViewModel<IRepository> {
     }
 
     public void queryCityWeather(String cityName) {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://v.juhe.cn/")
-                .addConverterFactory(GsonConverterFactory.create())//使用了gson去解析json
-                .build();
-        IWeatherService weather = retrofit.create(IWeatherService.class);
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://v.juhe.cn/")
+//                .addConverterFactory(GsonConverterFactory.create())//使用了gson去解析json
+//                .build();
+//        IWeatherService weather = retrofit.create(IWeatherService.class);
 
-        Call<BaseBean<WeatherMini>> resp = weather.querySimpleWeather(cityName);
+        Call<BaseBean<WeatherMini>> resp = mRepository.querySimpleWeather(cityName);
 
         resp.enqueue(new Callback<BaseBean<WeatherMini>>() {
             @Override

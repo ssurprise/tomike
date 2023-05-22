@@ -3,7 +3,6 @@ package com.skx.common.base
 import com.skx.common.net.HttpManager
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
 
 
 /**
@@ -19,11 +18,15 @@ open class BaseRepository<S> : IRepository {
 
     init {
         try {
-            val genType: Type = this.javaClass.genericSuperclass
-            val params = (genType as ParameterizedType).actualTypeArguments
-            if (params.isNotEmpty()) {
-                val clazz = params[0] as? Class<S>
-                service = mRetrofit?.create(clazz)
+            // getGenericSuperclass() : 去获得父类的Type 对象
+            this.javaClass.genericSuperclass?.run {
+                if (this is ParameterizedType) {
+                    val params = this.actualTypeArguments
+                    if (params.isNotEmpty()) {
+                        val clazz = params[0] as? Class<S>
+                        service = mRetrofit?.create(clazz)
+                    }
+                }
             }
 
         } catch (e: ClassCastException) {

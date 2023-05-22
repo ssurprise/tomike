@@ -15,7 +15,7 @@ public class BaseViewModel<T extends IRepository> extends AndroidViewModel {
 
 
     protected Application mApplication;
-    protected IRepository mRepository;
+    protected T mRepository;
 
     public BaseViewModel(@NonNull Application application) {
         super(application);
@@ -23,12 +23,16 @@ public class BaseViewModel<T extends IRepository> extends AndroidViewModel {
 
         try {
             Type genType = this.getClass().getGenericSuperclass();
-            Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-            @SuppressWarnings("unchecked")
-            Class<T> clazz = (Class<T>) params[0];
+            if (genType != null) {
+                Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+                if (params.length > 0) {
+                    @SuppressWarnings("unchecked")
+                    Class<T> clazz = (Class<T>) params[0];
 
-            if (clazz != null) {
-                mRepository = clazz.newInstance();
+                    if (clazz != null) {
+                        mRepository = clazz.newInstance();
+                    }
+                }
             }
         } catch (Exception e) {
             Log.e(TAG, "类泛型初始化错误，e=" + e);

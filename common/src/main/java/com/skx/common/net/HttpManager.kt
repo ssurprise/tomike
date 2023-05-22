@@ -3,6 +3,7 @@ package com.skx.common.net
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
@@ -55,6 +56,7 @@ class HttpManager private constructor(config: NetConfig) {
                 .client(okHttpClient)
                 .baseUrl(config.baseUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
 //                .addConverterFactory(MyGsonConverterFactory.create(config.getInterceptorConverter()))
                 .build()
     }
