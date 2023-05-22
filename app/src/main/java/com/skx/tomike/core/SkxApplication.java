@@ -4,7 +4,13 @@ import android.app.Application;
 import android.os.StrictMode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.skx.common.net.HttpManager;
+import com.skx.common.net.NetConfig;
 import com.tencent.mmkv.BuildConfig;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class SkxApplication extends Application {
 
@@ -42,7 +48,38 @@ public class SkxApplication extends Application {
         registerActivityLifecycleCallbacks(new ActivityLifecycleObserver());
         // 注册home键监听
         registerHomeKeyListener();
+        initHttpManager();
 
+    }
+
+    private void initHttpManager() {
+        NetConfig config = new NetConfig("https://www.baidu.com");
+//        config.setErrorResponse(ErrorResponseManager());
+//        config.setInterceptorConverter(GlobalConverterInterceptor())
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+//        builder.addInterceptor(XZBizUrlInterceptor());
+//        builder.addInterceptor(RequestInterceptor());
+//        builder.addInterceptor(MicroServiceInterceptor());
+//        builder.addInterceptor(MoreBaseUrlInterceptor());
+//            if (isDebug) {
+//                addInterceptor(LogInterceptor())
+//            }
+//        builder.addInterceptor(LoginTimeOutInterceptor());
+//        builder.addInterceptor(ServerTimeInterceptor());
+//            if (isDebug) {
+//                addInterceptor(ResponseDebugInterceptor())
+//            }
+
+        builder.connectTimeout(60, TimeUnit.SECONDS);
+        builder.readTimeout(30, TimeUnit.SECONDS);
+        builder.writeTimeout(30, TimeUnit.SECONDS);
+//            if (!EnvSetting.isDebug()) {
+//                proxy(Proxy.NO_PROXY)
+//            }
+//        }
+        config.setBuilder(builder);
+        HttpManager.init(config);
     }
 
     /**
