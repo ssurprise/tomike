@@ -1,13 +1,18 @@
 package com.skx.common.base;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Objects;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 
 /**
  * 描述 : base ViewModel 类
@@ -21,6 +26,9 @@ public class BaseViewModel<T extends BaseRepository<?>> extends AndroidViewModel
 
     protected Application mApplication;
     protected T mRepository;
+
+    private CompositeDisposable mCompositeDisposable;
+
 
     public BaseViewModel(@NonNull Application application) {
         super(application);
@@ -37,8 +45,52 @@ public class BaseViewModel<T extends BaseRepository<?>> extends AndroidViewModel
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "类泛型初始化错误，e=" + e);
             e.printStackTrace();
         }
+    }
+
+    protected final <E extends BaseObserver<K>, K> E subscribeDisposable(BaseObserver<K> disposable) {
+        return subscribe(disposable);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <E extends BaseObserver<K>, K> E subscribe(BaseObserver<K> disposable) {
+        disposable
+                .getObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+//                .onErrorResumeNext(new RxScheduler.HandlerException<K>())
+                .subscribe(disposable);
+        return (E) addSubscribe(disposable);
+    }
+
+
+    public <E> BaseObserver<E> addSubscribe(BaseObserver<E> disposable) {
+        Objects.requireNonNull(disposable, "disposable is null");
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(disposable);
+        return disposable;
+    }
+
+
+    public <E> void removeSubscribe(BaseObserver<E> disposable) {
+        Objects.requireNonNull(disposable, "disposable is null");
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.remove(disposable);
+        }
+    }
+
+    public void unsubscribe() {
+        if (mCompositeDisposable != null && mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable.clear();
+        }
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        unsubscribe();
     }
 }
