@@ -9,7 +9,7 @@ import java.lang.reflect.ParameterizedType
  * 描述 : 数据仓库-默认自带Retrofit 网络请求
  * 作者 : shiguotao
  * 版本 : V1
- * 创建时间 : 2023/5/23 12:54 上午
+ * 创建时间 : 2019/1/25 12:54 上午
  */
 open class BaseRepository<S> : IRepository {
 

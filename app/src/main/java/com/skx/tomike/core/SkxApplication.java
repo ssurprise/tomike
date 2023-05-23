@@ -6,6 +6,7 @@ import android.os.StrictMode;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.skx.common.net.HttpManager;
 import com.skx.common.net.NetConfig;
+import com.skx.common.net.interceptor.BaseUrlInterceptor;
 import com.tencent.mmkv.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
@@ -53,11 +54,12 @@ public class SkxApplication extends Application {
     }
 
     private void initHttpManager() {
-        NetConfig config = new NetConfig("http://v.juhe.cn/");
+        NetConfig config = new NetConfig("http://www.baidu.com");
 //        config.setErrorResponse(ErrorResponseManager());
 //        config.setInterceptorConverter(GlobalConverterInterceptor())
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
+        builder.addInterceptor(new BaseUrlInterceptor());
 //        builder.addInterceptor(XZBizUrlInterceptor());
 //        builder.addInterceptor(RequestInterceptor());
 //        builder.addInterceptor(MicroServiceInterceptor());

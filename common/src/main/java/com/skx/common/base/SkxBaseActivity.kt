@@ -13,7 +13,13 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.skx.common.R
 
-abstract class SkxBaseActivity<T : BaseViewModel<out IRepository>?> : BaseMvvmActivity<T>() {
+/**
+ * 描述 : 类描述
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2020/1/13 8:12 下午
+ */
+abstract class SkxBaseActivity<T : BaseViewModel<out BaseRepository<*>>?> : BaseMvvmActivity<T>() {
 
     @JvmField
     protected val TAG = javaClass.simpleName

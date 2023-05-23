@@ -19,7 +19,7 @@ import java.lang.reflect.ParameterizedType
  * 版本 : V1
  * 创建时间 : 2021/9/24 3:50 下午
  */
-open class BaseFragment<T : BaseViewModel<out IRepository>> : Fragment() {
+open class BaseFragment<T : BaseViewModel<out BaseRepository<*>>> : Fragment() {
 
     var mContext: Context? = null
     val TAG: String = javaClass.simpleName

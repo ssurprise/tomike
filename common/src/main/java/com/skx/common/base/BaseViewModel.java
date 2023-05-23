@@ -9,10 +9,15 @@ import androidx.lifecycle.AndroidViewModel;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public class BaseViewModel<T extends IRepository> extends AndroidViewModel {
+/**
+ * 描述 : base ViewModel 类
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2019/1/25 11:09 上午
+ */
+public class BaseViewModel<T extends BaseRepository<?>> extends AndroidViewModel {
 
     protected String TAG = getClass().getSimpleName();
-
 
     protected Application mApplication;
     protected T mRepository;
@@ -23,15 +28,12 @@ public class BaseViewModel<T extends IRepository> extends AndroidViewModel {
 
         try {
             Type genType = this.getClass().getGenericSuperclass();
-            if (genType != null) {
+            if (genType instanceof ParameterizedType) {
                 Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-                if (params.length > 0) {
+                if (params.length > 0 && params[0] instanceof Class) {
                     @SuppressWarnings("unchecked")
                     Class<T> clazz = (Class<T>) params[0];
-
-                    if (clazz != null) {
-                        mRepository = clazz.newInstance();
-                    }
+                    mRepository = clazz.newInstance();
                 }
             }
         } catch (Exception e) {

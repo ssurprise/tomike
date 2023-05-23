@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.skx.common.base.BaseRepository;
 import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.IRepository;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -160,7 +160,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
  * 版本 : V1
  * 创建时间 : 2017/12/29 6:08 PM
  */
-public class CatalogViewModel extends BaseViewModel<IRepository> {
+public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
 
     private static final String TAG = "CatalogListModel";
 

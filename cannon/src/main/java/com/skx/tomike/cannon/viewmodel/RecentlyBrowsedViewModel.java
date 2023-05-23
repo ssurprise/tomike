@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.skx.common.base.BaseRepository;
 import com.skx.common.base.BaseViewModel;
-import com.skx.common.base.IRepository;
 import com.skx.tomike.cannon.bean.RecentlyBrowsedBean;
 import com.skx.tomike.cannon.repository.RecentlyBrowsedRepository;
 
@@ -24,7 +24,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  * 版本 : V1
  * 创建时间 : 2020-03-08 17:44
  */
-public class RecentlyBrowsedViewModel extends BaseViewModel<IRepository> {
+public class RecentlyBrowsedViewModel extends BaseViewModel<BaseRepository<?>> {
 
 
     private RecentlyBrowsedRepository mRepository = new RecentlyBrowsedRepository();

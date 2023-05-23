@@ -10,7 +10,13 @@ import androidx.lifecycle.ViewModelProvider;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class BaseMvvmActivity<T extends BaseViewModel> extends AppCompatActivity {
+/**
+ * 描述 : MVVM 架构基础activity
+ * 作者 : shiguotao
+ * 版本 : V1
+ * 创建时间 : 2019/1/25 11:09 上午
+ */
+public abstract class BaseMvvmActivity<T extends BaseViewModel<?>> extends AppCompatActivity {
 
     protected Context mActivity;
     protected T mViewModel;
@@ -25,12 +31,13 @@ public abstract class BaseMvvmActivity<T extends BaseViewModel> extends AppCompa
     private void initViewModel() {
         try {
             Type genType = this.getClass().getGenericSuperclass();
-            Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-            @SuppressWarnings("unchecked")
-            Class<T> clazz = (Class<T>) params[0];
-
-            if (clazz != null) {
-                mViewModel = new ViewModelProvider(this).get(clazz);
+            if (genType instanceof ParameterizedType) {
+                Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+                if (params.length > 0 && params[0] instanceof Class) {
+                    @SuppressWarnings("unchecked")
+                    Class<T> clazz = (Class<T>) params[0];
+                    mViewModel = new ViewModelProvider(this).get(clazz);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

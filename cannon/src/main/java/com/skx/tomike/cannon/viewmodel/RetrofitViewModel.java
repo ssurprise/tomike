@@ -42,13 +42,7 @@ public class RetrofitViewModel extends BaseViewModel<RetrofitRepository> {
     }
 
     public void queryCityWeather(String cityName) {
-//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://v.juhe.cn/")
-//                .addConverterFactory(GsonConverterFactory.create())//使用了gson去解析json
-//                .build();
-//        IWeatherService weather = retrofit.create(IWeatherService.class);
-
         Call<BaseBean<WeatherMini>> resp = mRepository.querySimpleWeather(cityName);
-
         resp.enqueue(new Callback<BaseBean<WeatherMini>>() {
             @Override
             public void onResponse(Call<BaseBean<WeatherMini>> call, Response<BaseBean<WeatherMini>> response) {
