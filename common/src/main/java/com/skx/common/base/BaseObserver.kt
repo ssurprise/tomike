@@ -1,7 +1,7 @@
 package com.skx.common.base
 
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.observers.DisposableObserver
+import io.reactivex.Observable
+import io.reactivex.observers.DisposableObserver
 
 
 /**
@@ -22,9 +22,12 @@ abstract class BaseObserver<T>(private val mObservable: Observable<T>) : Disposa
     }
 
     override fun onNext(t: T) {
+        doOnNext(t)
     }
 
-    override fun onError(e: Throwable?) {
+
+    override fun onError(e: Throwable) {
+
     }
 
     override fun onComplete() {

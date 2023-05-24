@@ -1,16 +1,20 @@
 package com.skx.tomike.cannon.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
+import com.skx.common.base.BaseObserver;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannon.bean.BaseBean;
 import com.skx.tomike.cannon.bean.WeatherMini;
 import com.skx.tomike.cannon.repository.IWeatherService;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -42,23 +46,28 @@ public class RetrofitViewModel extends BaseViewModel<RetrofitRepository> {
     }
 
     public void queryCityWeather(String cityName) {
-        Call<BaseBean<WeatherMini>> resp = mRepository.querySimpleWeather(cityName);
-        resp.enqueue(new Callback<BaseBean<WeatherMini>>() {
+        subscribeDisposable(new BaseObserver<BaseBean<WeatherMini>>(mRepository.querySimpleWeather(cityName)) {
             @Override
-            public void onResponse(Call<BaseBean<WeatherMini>> call, Response<BaseBean<WeatherMini>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    BaseBean<WeatherMini> body = response.body();
+            protected void onStart() {
+                super.onStart();
+                Log.e(TAG,"onStart");
+            }
 
-                    if ("200".equalsIgnoreCase(body.resultCode)) {
-                        mWeatherLiveData.setValue(body);
-                    } else {
-                        ToastTool.showToast(mApplication, body.reason);
-                    }
+            @Override
+            public void doOnNext(BaseBean<WeatherMini> response) {
+                Log.e(TAG,"doOnNext");
+
+                if ("200".equalsIgnoreCase(response.resultCode)) {
+                    mWeatherLiveData.setValue(response);
+                } else {
+                    ToastTool.showToast(mApplication, response.reason);
                 }
             }
 
             @Override
-            public void onFailure(Call<BaseBean<WeatherMini>> call, Throwable t) {
+            public void onError(@NotNull Throwable e) {
+                super.onError(e);
+                Log.e(TAG,"doOnNext");
             }
         });
     }

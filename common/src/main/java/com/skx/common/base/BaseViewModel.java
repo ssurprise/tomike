@@ -9,9 +9,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.disposables.CompositeDisposable;
 
 
 /**
@@ -57,8 +55,7 @@ public class BaseViewModel<T extends BaseRepository<?>> extends AndroidViewModel
     private <E extends BaseObserver<K>, K> E subscribe(BaseObserver<K> disposable) {
         disposable
                 .getObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(new IO_MAIN<K>())
 //                .onErrorResumeNext(new RxScheduler.HandlerException<K>())
                 .subscribe(disposable);
         return (E) addSubscribe(disposable);

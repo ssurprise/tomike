@@ -55,6 +55,7 @@ class HttpManager private constructor(config: NetConfig) {
         mRetrofitClient = Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(config.baseUrl)
+                // 调用适配器工厂，用于支持｛@link call｝以外的服务方法返回类型，比如兼容RxJava的Observable
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
 //                .addConverterFactory(MyGsonConverterFactory.create(config.getInterceptorConverter()))

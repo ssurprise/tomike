@@ -3,6 +3,7 @@ package com.skx.tomike.cannon.repository;
 import com.skx.tomike.cannon.bean.BaseBean;
 import com.skx.tomike.cannon.bean.WeatherMini;
 
+import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -21,7 +22,7 @@ public interface IWeatherService {
 
     @Headers({"base_url: http://v.juhe.cn"})
     @GET("weather/index?format=2&key=487a0e269f87aa5c666ebf17b40e80f3")
-    Call<BaseBean<WeatherMini>> querySimpleWeather(@Query("cityname") String cityName);
+    Observable<BaseBean<WeatherMini>> querySimpleWeather(@Query("cityname") String cityName);
 
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
