@@ -55,8 +55,8 @@ public class BaseViewModel<T extends BaseRepository<?>> extends AndroidViewModel
     private <E extends BaseObserver<K>, K> E subscribe(BaseObserver<K> disposable) {
         disposable
                 .getObservable()
-                .compose(new IO_MAIN<K>())
-//                .onErrorResumeNext(new RxScheduler.HandlerException<K>())
+                .compose(new IO_MAIN<>())
+                .onErrorResumeNext(new HandlerException<>())
                 .subscribe(disposable);
         return (E) addSubscribe(disposable);
     }
