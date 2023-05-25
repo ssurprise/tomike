@@ -49,6 +49,7 @@ import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FLOW;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FRAGMENT;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_FULL_SCREEN;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_GLIDE;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_H5;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HANDLER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_HOTFIX;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_IMAGE_zoom;
@@ -335,6 +336,7 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
         mFunctionCatalogs.add(new CatalogItem("打开其他App", ROUTE_PATH_OUTER_START));
         mFunctionCatalogs.add(new CatalogItem("NFC功能测试", ROUTE_PATH_NFC_GROUP));
         mFunctionCatalogs.add(new CatalogItem("音乐播放器", ROUTE_PATH_MUSIC_PLAYER));
+        mFunctionCatalogs.add(new CatalogItem("H5", ROUTE_PATH_H5));
         mFunctionCatalogs.add(new CatalogItem("文件扫描", ROUTE_PATH_FILE_TREE_VISITOR));
         mFunctionCatalogs.add(new CatalogItem("APP安装列表", ROUTE_PATH_PACKAGE_LIST));
         mFunctionCatalogs.add(new CatalogItem("APP使用信息统计", ROUTE_PATH_APP_USAGE_STATS));

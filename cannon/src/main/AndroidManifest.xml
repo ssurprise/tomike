@@ -270,6 +270,10 @@
             android:name=".ui.activity.AppListActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.activity.H5Activity"
+            android:screenOrientation="portrait" />
+
         <service android:name=".ui.activity.MyService" />
 
         <receiver android:name=".ui.activity.BroadcastDemoActivity$SuperBroadcastReceiver">
