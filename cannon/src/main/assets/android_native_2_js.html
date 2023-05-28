@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<script>
+        function callJs(param) {
+            alert("我是Js的弹窗。Android调用了JS的callJs方法，通过android native 提供的"+param+"方法");
+        }
+        function startPay() {
+            isUp2You.startPay("orderId:10086")
+        }
+        function onPayResult(param) {
+            alert("我是Js的弹窗。收到支付结果："+param);
+        }
+
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+
+<body>
+    <h1>你好！我是网页</h1>
+    <div>
+
+        <button style="height:80px;width:200px;" type="button" onclick="startPay()">点击这里->发起支付</button>
+
+    </div>
+</body>
+</html>

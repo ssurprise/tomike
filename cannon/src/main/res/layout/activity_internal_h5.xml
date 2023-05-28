@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context="com.skx.tomike.cannon.ui.activity.MusicPlayerActivity">
+    tools:context="com.skx.tomike.cannon.ui.activity.H5Activity">
 
     <ProgressBar
         android:id="@+id/pb_h5_progress"
@@ -15,15 +16,90 @@
         android:layout_alignParentTop="true"
         android:max="100"
         android:progress="0"
-        android:progressDrawable="@drawable/update_progressbar_bg" />
+        android:progressDrawable="@drawable/update_progressbar_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <com.skx.tomike.cannon.ui.activity.MyWebView
+    <com.skx.tomike.cannon.ui.activity.web.MyWebView
         android:id="@+id/wv_h5_browser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/pb_h5_progress">
+        android:layout_below="@id/pb_h5_progress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    </com.skx.tomike.cannon.ui.activity.MyWebView>
+    </com.skx.tomike.cannon.ui.activity.web.MyWebView>
 
-</RelativeLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/skx_f5f5f5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/id_internalH5_n2js_1"
+            style="@style/LogcatTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:text="点击以下按钮可通过不同方式调用js方法"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/id_internalH5_n2js_load"
+            style="@style/TextBtnStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="loadUrl()"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_internalH5_n2js_1"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/id_internalH5_n2js_load_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_internalH5_n2js_load"
+            tools:ignore="HardcodedText,SmallSp"
+            tools:text="优点：" />
+
+        <TextView
+            android:id="@+id/id_internalH5_n2js_evaluate"
+            style="@style/TextBtnStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="evaluateJavascript()"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_internalH5_n2js_load_detail"
+            tools:ignore="HardcodedText" />
+
+
+        <TextView
+            android:id="@+id/id_internalH5_n2js_evaluate_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_internalH5_n2js_evaluate"
+            tools:ignore="HardcodedText,SmallSp"
+            tools:text="优点：" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

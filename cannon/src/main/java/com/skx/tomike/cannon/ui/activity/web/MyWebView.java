@@ -1,10 +1,11 @@
-package com.skx.tomike.cannon.ui.activity;
+package com.skx.tomike.cannon.ui.activity.web;
 
 
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +13,7 @@ import androidx.annotation.Nullable;
 
 import static android.content.Context.MODE_PRIVATE;
 
-class MyWebView extends android.webkit.WebView {
+public class MyWebView extends WebView {
 
     public MyWebView(@NonNull Context context) {
         super(context);
