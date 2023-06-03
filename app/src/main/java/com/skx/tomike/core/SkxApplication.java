@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.skx.common.net.HttpManager;
 import com.skx.common.net.NetConfig;
 import com.skx.common.net.interceptor.BaseUrlInterceptor;
+import com.skx.common.net.interceptor.CommonParamsInterceptor;
 import com.tencent.mmkv.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
@@ -60,9 +61,8 @@ public class SkxApplication extends Application {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
         builder.addInterceptor(new BaseUrlInterceptor());
-//        builder.addInterceptor(XZBizUrlInterceptor());
+        builder.addInterceptor(new CommonParamsInterceptor());
 //        builder.addInterceptor(RequestInterceptor());
-//        builder.addInterceptor(MicroServiceInterceptor());
 //        builder.addInterceptor(MoreBaseUrlInterceptor());
 //            if (isDebug) {
 //                addInterceptor(LogInterceptor())

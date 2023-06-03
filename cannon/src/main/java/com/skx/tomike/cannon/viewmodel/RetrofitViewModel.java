@@ -9,8 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.gson.Gson;
 import com.skx.common.base.BaseObserver;
 import com.skx.common.base.BaseViewModel;
+import com.skx.common.net.BaseResponse;
 import com.skx.common.utils.ToastTool;
-import com.skx.tomike.cannon.bean.BaseBean;
 import com.skx.tomike.cannon.bean.WeatherMini;
 import com.skx.tomike.cannon.repository.IWeatherService;
 
@@ -35,18 +35,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitViewModel extends BaseViewModel<RetrofitRepository> {
 
-    private final MutableLiveData<BaseBean<WeatherMini>> mWeatherLiveData = new MutableLiveData<>();
+    private final MutableLiveData<BaseResponse<WeatherMini>> mWeatherLiveData = new MutableLiveData<>();
 
     public RetrofitViewModel(@NonNull Application application) {
         super(application);
     }
 
-    public MutableLiveData<BaseBean<WeatherMini>> getWeatherLiveData() {
+    public MutableLiveData<BaseResponse<WeatherMini>> getWeatherLiveData() {
         return mWeatherLiveData;
     }
 
     public void queryCityWeather(String cityName) {
-        subscribeDisposable(new BaseObserver<BaseBean<WeatherMini>>(mRepository.querySimpleWeather(cityName)) {
+        subscribeDisposable(new BaseObserver<BaseResponse<WeatherMini>>(mRepository.querySimpleWeather(cityName)) {
             @Override
             protected void onStart() {
                 super.onStart();
@@ -54,7 +54,7 @@ public class RetrofitViewModel extends BaseViewModel<RetrofitRepository> {
             }
 
             @Override
-            public void doOnNext(BaseBean<WeatherMini> response) {
+            public void doOnNext(BaseResponse<WeatherMini> response) {
                 Log.e(TAG,"doOnNext");
 
                 if ("200".equalsIgnoreCase(response.resultCode)) {
