@@ -1,5 +1,7 @@
 package com.skx.common.net.convert;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonWriter;
@@ -32,12 +34,16 @@ class EncryptRequestBodyConverter<T> implements Converter<T, RequestBody> {
     private final TypeAdapter<T> adapter;
 
     EncryptRequestBodyConverter(Gson gson, TypeAdapter<T> adapter) {
+        Log.e("RequestBodyConverter", "init");
+
         this.gson = gson;
         this.adapter = adapter;
     }
 
     @Override
     public RequestBody convert(T value) throws IOException {
+        Log.e("RequestBodyConverter", "convert");
+
         Buffer buffer = new Buffer();
         Writer writer = new OutputStreamWriter(buffer.outputStream(), UTF_8);
         JsonWriter jsonWriter = gson.newJsonWriter(writer);

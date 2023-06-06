@@ -1,5 +1,7 @@
 package com.skx.common.net.convert;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.TypeAdapter;
@@ -23,6 +25,7 @@ class DecryptResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     private final TypeAdapter<T> adapter;
 
     DecryptResponseBodyConverter(Gson gson, TypeAdapter<T> adapter) {
+        Log.e("ResponseBodyConverter", "init");
         this.gson = gson;
         this.adapter = adapter;
     }
@@ -30,6 +33,7 @@ class DecryptResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     @Override
     public T convert(ResponseBody value) throws IOException {
         // todo 解密操作。
+        Log.e("ResponseBodyConverter", "value=" + value.string());
         JsonReader jsonReader = gson.newJsonReader(value.charStream());
         try {
             T result = adapter.read(jsonReader);

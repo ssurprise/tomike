@@ -46,30 +46,55 @@ public class RetrofitViewModel extends BaseViewModel<RetrofitRepository> {
     }
 
     public void queryCityWeather(String cityName) {
-        subscribeDisposable(new BaseObserver<BaseResponse<WeatherMini>>(mRepository.querySimpleWeather(cityName)) {
-            @Override
-            protected void onStart() {
-                super.onStart();
-                Log.e(TAG,"onStart");
-            }
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://v.juhe.cn/")
+//                .addConverterFactory(GsonConverterFactory.create())//使用了gson去解析json
+//                .build();
+//        IWeatherService weather = retrofit.create(IWeatherService.class);
 
-            @Override
-            public void doOnNext(BaseResponse<WeatherMini> response) {
-                Log.e(TAG,"doOnNext");
+        Call<BaseResponse<WeatherMini>> resp = mRepository.querySimpleWeather(cityName);
 
-                if ("200".equalsIgnoreCase(response.resultCode)) {
-                    mWeatherLiveData.setValue(response);
-                } else {
-                    ToastTool.showToast(mApplication, response.reason);
+        resp.enqueue(new Callback<BaseResponse<WeatherMini>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<WeatherMini>> call, Response<BaseResponse<WeatherMini>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    BaseResponse<WeatherMini> body = response.body();
+
+                    if ("200".equalsIgnoreCase(body.resultCode)) {
+                        mWeatherLiveData.setValue(body);
+                    } else {
+                        ToastTool.showToast(mApplication, body.reason);
+                    }
                 }
             }
 
             @Override
-            public void onError(@NotNull Throwable e) {
-                super.onError(e);
-                Log.e(TAG,"doOnNext");
+            public void onFailure(Call<BaseResponse<WeatherMini>> call, Throwable t) {
             }
         });
+//        subscribeDisposable(new BaseObserver<BaseResponse<WeatherMini>>(mRepository.querySimpleWeather(cityName)) {
+//            @Override
+//            protected void onStart() {
+//                super.onStart();
+//                Log.e(TAG,"onStart");
+//            }
+//
+//            @Override
+//            public void doOnNext(BaseResponse<WeatherMini> response) {
+//                Log.e(TAG,"doOnNext");
+//
+//                if ("200".equalsIgnoreCase(response.resultCode)) {
+//                    mWeatherLiveData.setValue(response);
+//                } else {
+//                    ToastTool.showToast(mApplication, response.reason);
+//                }
+//            }
+//
+//            @Override
+//            public void onError(@NotNull Throwable e) {
+//                super.onError(e);
+//                Log.e(TAG,"doOnNext");
+//            }
+//        });
     }
 
     public void uploadXzApp() {

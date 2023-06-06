@@ -1,6 +1,8 @@
 package com.skx.common.net.convert;
 
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
@@ -19,7 +21,7 @@ import retrofit2.Retrofit;
  * 版本 : V1
  * 创建时间 : 2023/5/28 11:16 下午
  */
-class EncryptConvertFactory extends Converter.Factory {
+public class EncryptConvertFactory extends Converter.Factory {
 
     /**
      * Create an instance using a default {@link Gson} instance for conversion. Encoding to JSON and
@@ -49,6 +51,8 @@ class EncryptConvertFactory extends Converter.Factory {
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
                                                             Retrofit retrofit) {
+
+        Log.e("ResponseBodyConverter", "responseBodyConverter");
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
         return new DecryptResponseBodyConverter<>(gson, adapter);
     }
@@ -58,6 +62,7 @@ class EncryptConvertFactory extends Converter.Factory {
                                                           Annotation[] parameterAnnotations,
                                                           Annotation[] methodAnnotations,
                                                           Retrofit retrofit) {
+        Log.e("RequestBodyConverter", "requestBodyConverter");
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
         return new EncryptRequestBodyConverter<>(gson, adapter);
     }
