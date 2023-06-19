@@ -3,6 +3,8 @@ package com.skx.common.net.exception;
 import android.net.ParseException;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.JsonParseException;
 
 import org.apache.http.conn.ConnectTimeoutException;
@@ -44,7 +46,6 @@ public class ExceptionHandle {
         } else if (e instanceof ServerException) {
             ServerException resultException = (ServerException) e;
             ex = new ResponseThrowable(resultException, resultException.result);
-            ex.content = resultException.content;
             ex.msg = resultException.msg;
         } else if (e instanceof ResponseThrowable) {
             ex = (ResponseThrowable) e;
@@ -89,12 +90,18 @@ public class ExceptionHandle {
 
         public int result;
         public String msg;
-        public String content;
 
         public ResponseThrowable(Throwable throwable, int result) {
             super(throwable);
             this.result = result;
+        }
 
+        @NonNull
+        @Override
+        public String toString() {
+            return "result=" + result +
+                    " msg=" + msg +
+                    " detail=" + getCause();
         }
     }
 
@@ -102,16 +109,14 @@ public class ExceptionHandle {
 
         public int result;
         public String msg;
-        public String content;
 
-        public ServerException(int code, String msg, String content) {
+        public ServerException(int code, String msg) {
             this.result = code;
             this.msg = msg;
-            this.content = content;
         }
     }
 
-    public class ERROR {
+    public static class ERROR {
         public static final int UNKNOWN = 1000;
         public static final int PARSE_ERROR = 1001;
         public static final int NETWORK_ERROR = 1002;
@@ -121,4 +126,3 @@ public class ExceptionHandle {
         public static final int UNKNOWN_HOST = 1007;
     }
 }
-

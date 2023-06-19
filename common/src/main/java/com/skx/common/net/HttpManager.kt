@@ -1,10 +1,9 @@
 package com.skx.common.net
 
-import com.skx.common.net.convert.EncryptConvertFactory
+import com.skx.common.net.convert.MyJsonConvertFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
@@ -58,7 +57,7 @@ class HttpManager private constructor(config: NetConfig) {
                 .baseUrl(config.baseUrl)
                 // 调用适配器工厂，用于支持｛@link call｝以外的服务方法返回类型，比如兼容RxJava的Observable
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(EncryptConvertFactory.create())
+                .addConverterFactory(MyJsonConvertFactory.create())
                 .build()
     }
 

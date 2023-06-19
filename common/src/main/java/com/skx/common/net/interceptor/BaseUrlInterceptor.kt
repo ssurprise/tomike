@@ -18,15 +18,13 @@ class BaseUrlInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         var request: Request = chain.request()
-        Log.e("BaseUrlInterceptor", "原始url= ${request.url()}")
-        Log.e("BaseUrlInterceptor", "原始headers= ${request.headers()}")
-
         val newBaseUrl = request.header("base_url")
         if (!TextUtils.isEmpty(newBaseUrl)) {
-            // 2.构建新的请求url
+            Log.d(TAG, "BaseUrlInterceptor, 原始url= ${request.url()}")
+            // 1. 构建新的请求url
             val domainUrl = HttpUrl.parse(newBaseUrl!!)
             domainUrl?.run {
-                // 2.1 以旧的 httpUrl对象为基础，通过newBuilder()方法构建新的 HttpUrl 对象。目的：只改变需要修改的部分，保持未修改的数据不变。
+                // 2. 以旧的 httpUrl对象为基础，通过newBuilder()方法构建新的 HttpUrl 对象。目的：只改变需要修改的部分，保持未修改的数据不变。
                 val httpUrl = request.url()
                 val newUrl: HttpUrl = httpUrl.newBuilder()
                         .scheme(domainUrl.scheme())
@@ -40,9 +38,12 @@ class BaseUrlInterceptor : Interceptor {
                 builder.removeHeader("base_url")
                 request = builder.build()
             }
-            Log.e("BaseUrlInterceptor", "更新后的url= ${request.url()}")
-            Log.e("BaseUrlInterceptor", "更新后的headers= ${request.headers()}")
         }
+        Log.d(TAG, "BaseUrlInterceptor,request url= ${request.url()}")
         return chain.proceed(request)
+    }
+
+    companion object {
+        private const val TAG: String = "TimokeInterceptor"
     }
 }

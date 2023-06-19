@@ -12,26 +12,27 @@ public class BaseResponse<T> {
 
     @SerializedName(value = "resultcode", alternate = {"resultCode"})
     public String resultCode;
-    public int status;
+    @SerializedName(value = "code", alternate = {"status"})
+    public int code = -1;
     public T result;
-    @SerializedName(value = "reason", alternate = {"msg"})
-    public String reason;
+    @SerializedName(value = "msg", alternate = {"reason"})
+    public String msg;
     public String timestamp;
 
     public String getResultCode() {
         return resultCode;
     }
 
-    public int getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
     public T getResult() {
         return result;
     }
 
-    public String getReason() {
-        return reason;
+    public String getMsg() {
+        return msg;
     }
 
     public String getTimestamp() {
@@ -39,8 +40,8 @@ public class BaseResponse<T> {
     }
 
     public boolean isOk() {
-        return status == 0
-                || status == 200
+        return code == 0
+                || code == 200
                 || "0".equalsIgnoreCase(resultCode)
                 || "200".equalsIgnoreCase(resultCode);
     }

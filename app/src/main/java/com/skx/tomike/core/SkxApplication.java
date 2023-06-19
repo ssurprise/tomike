@@ -57,29 +57,15 @@ public class SkxApplication extends Application {
     private void initHttpManager() {
         NetConfig config = new NetConfig("http://www.baidu.com");
 //        config.setErrorResponse(ErrorResponseManager());
-//        config.setInterceptorConverter(GlobalConverterInterceptor())
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
         builder.addInterceptor(new BaseUrlInterceptor());
         builder.addInterceptor(new CommonParamsInterceptor());
-//        builder.addInterceptor(RequestInterceptor());
-//        builder.addInterceptor(MoreBaseUrlInterceptor());
-//            if (isDebug) {
-//                addInterceptor(LogInterceptor())
-//            }
-//        builder.addInterceptor(LoginTimeOutInterceptor());
-//        builder.addInterceptor(ServerTimeInterceptor());
-//            if (isDebug) {
-//                addInterceptor(ResponseDebugInterceptor())
-//            }
+//        builder.addInterceptor(new EncryptionInterceptor());//加解密拦截器
 
         builder.connectTimeout(60, TimeUnit.SECONDS);
         builder.readTimeout(30, TimeUnit.SECONDS);
         builder.writeTimeout(30, TimeUnit.SECONDS);
-//            if (!EnvSetting.isDebug()) {
-//                proxy(Proxy.NO_PROXY)
-//            }
-//        }
         config.setBuilder(builder);
         HttpManager.init(config);
     }

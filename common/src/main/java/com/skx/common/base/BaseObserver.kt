@@ -1,5 +1,6 @@
 package com.skx.common.base
 
+import com.skx.common.net.exception.ExceptionHandle
 import io.reactivex.Observable
 import io.reactivex.observers.DisposableObserver
 
@@ -25,9 +26,10 @@ abstract class BaseObserver<T>(private val mObservable: Observable<T>) : Disposa
         doOnNext(t)
     }
 
-
     override fun onError(e: Throwable) {
-
+        if (e is ExceptionHandle.ResponseThrowable) {
+            doOnError(e)
+        }
     }
 
     override fun onComplete() {
@@ -38,6 +40,9 @@ abstract class BaseObserver<T>(private val mObservable: Observable<T>) : Disposa
     }
 
     abstract fun doOnNext(t: T)
+
+    abstract fun doOnError(e: ExceptionHandle.ResponseThrowable?)
+
 
 //    abstract fun doOnError(e: ExceptionHandle.ResponseThrowable?)
 }
