@@ -14,7 +14,7 @@ import androidx.annotation.RequiresPermission;
  * 版本 : V1
  * 创建时间 : 2023/6/14 12:04 上午
  */
-class DevicesUtils {
+public class DevicesUtils {
 
 
     /**
@@ -71,6 +71,12 @@ class DevicesUtils {
         return Build.SERIAL;
     }
 
+    @RequiresPermission("android.permission.READ_PRIVILEGED_PHONE_STATE")
+    public static String getDeviceId(Context context) {
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        return tm.getDeviceId();
+    }
+
     /**
      * 获取设备的imei
      * 注意：Android Q(10) 之后禁止使用
@@ -83,6 +89,22 @@ class DevicesUtils {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {// Android 8
             return tm.getImei();
+        }
+        return "";
+    }
+
+   /**
+     * 获取设备的meid
+     * 注意：Android Q(10) 之后禁止使用
+     *
+     * @param context 上下文
+     * @return
+     */
+    @RequiresPermission("android.permission.READ_PRIVILEGED_PHONE_STATE")
+    public static String getMeid(Context context) {
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {// Android 8
+            return tm.getMeid();
         }
         return "";
     }

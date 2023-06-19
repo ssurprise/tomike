@@ -66,6 +66,13 @@
             tools:ignore="HardcodedText" />
 
         <TextView
+            android:id="@+id/tv_deviceInfo_sn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sn ：未获取到"
+            tools:ignore="HardcodedText" />
+
+        <TextView
             android:id="@+id/tv_deviceInfo_imei"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,6 +94,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             tools:text="屏幕宽：" />
+
+        <TextView
+            android:id="@+id/tv_deviceInfo_dpi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            tools:text="dpi：" />
 
         <TextView
             android:id="@+id/tv_deviceInfo_screenHeight"

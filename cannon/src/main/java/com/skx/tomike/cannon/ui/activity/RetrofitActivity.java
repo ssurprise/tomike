@@ -1,7 +1,5 @@
 package com.skx.tomike.cannon.ui.activity;
 
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_RETROFIT;
-
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +12,8 @@ import com.skx.common.utils.ToastTool;
 import com.skx.tomike.cannon.R;
 import com.skx.tomike.cannon.bean.WeatherMini;
 import com.skx.tomike.cannon.viewmodel.RetrofitViewModel;
+
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_RETROFIT;
 
 /**
  * 描述 : Retrofit demo。模拟请求城市天气数据
@@ -48,7 +48,7 @@ public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
     protected void subscribeEvent() {
         mViewModel.getWeatherLiveData().observe(this, weatherMiniBaseBean -> {
             if (weatherMiniBaseBean == null) return;
-            refreshView(weatherMiniBaseBean.getResult());
+            refreshView(weatherMiniBaseBean);
         });
     }
 
@@ -62,7 +62,7 @@ public class RetrofitActivity extends SkxBaseActivity<RetrofitViewModel> {
     }
 
     private void refreshView(WeatherMini weatherMini) {
-        if (weatherMini != null) {
+        if (weatherMini != null && weatherMini.sk != null) {
             mTvTemperature.setText(weatherMini.sk.temperature);
             mTvHumidity.setText(weatherMini.sk.humidity);
             mTvWindPower.setText(weatherMini.sk.windPower);

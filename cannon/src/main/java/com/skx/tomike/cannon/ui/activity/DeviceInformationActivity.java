@@ -2,25 +2,25 @@ package com.skx.tomike.cannon.ui.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.widget.TextView;
-
-import androidx.annotation.RequiresPermission;
-import androidx.core.app.ActivityCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.skx.common.base.BaseViewModel;
 import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
+import com.skx.common.permission.PermissionController;
+import com.skx.common.permission.PermissionResultListener;
+import com.skx.common.utils.DevicesUtils;
 import com.skx.tomike.cannon.R;
 
-import static android.Manifest.permission.READ_PHONE_STATE;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DEVICE_INFO;
 
 /**
@@ -34,6 +34,7 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>>
 
     private TextView mTvAndroidId;
     private TextView mTvDeviceId;
+    private TextView mTvSn;
     private TextView mTvImei;
     private TextView mTvMeid;
 
@@ -59,8 +60,8 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>>
         TextView tvABI = findViewById(R.id.tv_deviceInfo_abi);
         TextView tvSystemVersion = findViewById(R.id.tv_deviceInfo_systemVersion);
 
-        tvBrand.setText(String.format("手机品牌：%s", Build.BRAND));
-        tvModel.setText(String.format("手机型号：%s", Build.MODEL));
+        tvBrand.setText(String.format("手机品牌：%s", DevicesUtils.getBrand()));
+        tvModel.setText(String.format("手机型号：%s", DevicesUtils.getModel()));
         tvSystemVersion.setText(String.format("手机Android 版本：%s", Build.VERSION.RELEASE));
         String[] supportedAbis = Build.SUPPORTED_ABIS;
         StringBuilder abi = new StringBuilder();
@@ -72,14 +73,17 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>>
 
         mTvAndroidId = findViewById(R.id.tv_deviceInfo_androidId);
         mTvDeviceId = findViewById(R.id.tv_deviceInfo_deviceId);
+        mTvSn = findViewById(R.id.tv_deviceInfo_sn);
         mTvImei = findViewById(R.id.tv_deviceInfo_imei);
         mTvMeid = findViewById(R.id.tv_deviceInfo_meid);
         requestPermission();
 
         TextView tvScreenWidth = findViewById(R.id.tv_deviceInfo_screenWidth);
         TextView tvScreenHeight = findViewById(R.id.tv_deviceInfo_screenHeight);
-        tvScreenWidth.setText(String.format("屏幕宽：%spx", getResources().getDisplayMetrics().widthPixels));
-        tvScreenHeight.setText(String.format("屏幕高：%spx", getResources().getDisplayMetrics().heightPixels));
+        TextView tvDpi = findViewById(R.id.tv_deviceInfo_dpi);
+        tvScreenWidth.setText(String.format("屏幕宽：%spx", DevicesUtils.getScreenWidth(this)));
+        tvScreenHeight.setText(String.format("屏幕高：%spx", DevicesUtils.getScreenHeight(this)));
+        tvScreenHeight.setText(String.format("dpi：%s", DevicesUtils.getDensityDpi(this)));
 
         TextView tvExternal = findViewById(R.id.tv_deviceInfo_external);
         tvExternal.setText(String.format("SD卡根目录：%s", Environment.getExternalStorageDirectory().getAbsolutePath()));
@@ -126,36 +130,49 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>>
     }
 
     private void requestPermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)) {
-                    // 解释为什么需要定位权限之类的
-                    renderView();
-                } else {
-                    // 请求权限处理
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
-                }
-            } else {
-                renderView();
-            }
-        } else {
-            renderView();
-        }
+        new PermissionController.Builder(this)
+                .permission(Manifest.permission.READ_PHONE_STATE)
+                .callback(new PermissionResultListener() {
+                    @Override
+                    public void onSucceed(@Nullable List<String> grantPermissions) {
+                        renderView();
+                    }
+
+                    @Override
+                    public void onFailed(@Nullable List<String> deniedPermissions) {
+                        renderView();
+                    }
+                })
+                .request();
     }
 
-    @SuppressLint("HardwareIds")
-    @RequiresPermission(READ_PHONE_STATE)
     private void renderView() {
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        mTvAndroidId.setText(String.format("androidId：%s", Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID)));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            try {
-                mTvDeviceId.setText(String.format("devicedId：%s", tm.getDeviceId()));
-                mTvImei.setText(String.format("imei：%s", tm.getImei()));
-                mTvMeid.setText(String.format("meid：%s", tm.getMeid()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            mTvAndroidId.setText(String.format("androidId：%s", DevicesUtils.getAndroidId(this)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            mTvDeviceId.setText(String.format("devicedId：%s", DevicesUtils.getDeviceId(this)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            mTvImei.setText(String.format("sn：%s", DevicesUtils.getSerialNo()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            mTvImei.setText(String.format("imei：%s", DevicesUtils.getImei(this)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            mTvMeid.setText(String.format("meid：%s", DevicesUtils.getMeid(this)));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
