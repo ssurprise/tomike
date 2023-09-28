@@ -21,15 +21,22 @@ class WelcomeActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideBottomNav()
     }
 
     override fun nativeThemeStyle() {
         super.nativeThemeStyle()
         if (Build.VERSION.SDK_INT >= 28) {
             val lp = window.attributes
-            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            lp.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             window.attributes = lp
         }
+    }
+
+    private fun hideBottomNav() {
+        findViewById<View>(R.id.rl_welcome_root).systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
     }
 
     override fun initParams() {}

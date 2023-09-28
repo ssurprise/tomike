@@ -8,8 +8,8 @@ buildscript {
     // buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
     repositories {
         // 添加阿里云 maven 地址
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+//        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
 
         google()
 //        jcenter()
@@ -303,7 +303,7 @@ this.gradle.buildFinished {}
 allprojects {
     // allprojects块的repositories用于多项目构建，为所有项目提供共同所需依赖包。而子项目可以配置自己的repositories以获取自己独需的依赖包。
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         google()
 //        jcenter()
         mavenCentral()

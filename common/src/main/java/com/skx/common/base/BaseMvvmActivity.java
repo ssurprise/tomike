@@ -1,6 +1,7 @@
 package com.skx.common.base;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -26,6 +27,17 @@ public abstract class BaseMvvmActivity<T extends BaseViewModel<?>> extends AppCo
         super.onCreate(savedInstanceState);
         mActivity = this;
         initViewModel();
+    }
+
+    @Override
+    public Resources getResources() {
+        // 修改字体不随系统字体大小变化
+        Resources resources = super.getResources();
+        Context configContext = createConfigurationContext(resources.getConfiguration());
+        Resources newRes = configContext.getResources();
+        newRes.getConfiguration().fontScale = 1.0f;
+        newRes.getDisplayMetrics().scaledDensity = newRes.getDisplayMetrics().density * newRes.getConfiguration().fontScale;
+        return newRes;
     }
 
     private void initViewModel() {
