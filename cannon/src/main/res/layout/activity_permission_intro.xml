@@ -18,8 +18,11 @@
         style="@style/TextBtnStyle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:onClick="onByPressed"
         android:text="申请权限"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         tools:ignore="HardcodedText,UsingOnClickInXml" />
 
     <ScrollView

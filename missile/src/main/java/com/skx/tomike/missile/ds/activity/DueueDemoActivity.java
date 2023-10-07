@@ -1,10 +1,12 @@
 package com.skx.tomike.missile.ds.activity;
 
-import android.graphics.Color;
+import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_DUEUE;
+
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -18,8 +20,6 @@ import com.skx.tomike.missile.R;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import static com.skx.tomike.missile.RouteConstantsKt.ROUTE_PATH_DUEUE;
-
 /**
  * 描述 : 数据结构 - 双端队列 demo
  * 作者 : shiguotao
@@ -31,7 +31,7 @@ public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     private LinearLayout mLlStackWrap;
 
-    private static final int MAX_SIZE = 8;
+    private static final int MAX_SIZE = 6;
 
     private int mIndex = -1;
     private final Deque<Integer> mQueue = new ArrayDeque<>();
@@ -42,7 +42,7 @@ public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel<?>> {
 
     @Override
     protected TitleConfig configHeaderTitle() {
-        return new TitleConfig.Builder().setTitleText("数据结构 - 双端队列").create();
+        return new TitleConfig.Builder().setTitleText("数据结构-双端队列(Deque)").create();
     }
 
     @Override
@@ -97,13 +97,13 @@ public class DueueDemoActivity extends SkxBaseActivity<BaseViewModel<?>> {
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(14);
         ViewCompat.setBackground(textView, new SkxDrawableUtil().getBuilder(SkxDrawableUtil.Builder.RECTANGLE)
-                .setColor(Color.parseColor("#2cb298"))
+                .setColor(ContextCompat.getColor(this, R.color.skx_2cb298))
                 .setCornerRadius(8)
                 .create());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 150);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 130);
         lp.topMargin = 15;
-        lp.leftMargin = 15;
-        lp.rightMargin = 15;
+        lp.leftMargin = 20;
+        lp.rightMargin = 20;
         textView.setLayoutParams(lp);
         return textView;
     }
