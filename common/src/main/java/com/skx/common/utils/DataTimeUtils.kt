@@ -32,16 +32,16 @@ object DataTimeUtils {
      * @param timeZone - 时区
      * @return
      */
-    fun getNowDateText(format: String,
-                       timeZone: TimeZone = TimeZone.getDefault(),
-                       locale: Locale = Locale.getDefault()
+    fun getNowDateText(
+        format: String,
+        timeZone: TimeZone = TimeZone.getDefault(),
+        locale: Locale = Locale.getDefault()
     ): String? {
         val date = getNowDate(timeZone)
         val fmt = SimpleDateFormat(format, locale)
         fmt.timeZone = timeZone
         return fmt.format(date)
     }
-
 
     /**
      * 计算两个日期之间相差的自然日天数
@@ -104,7 +104,7 @@ object DataTimeUtils {
      * @return 转换格式后的日期
      */
     @Throws(ParseException::class)
-    fun formateTime(time: String, patternFrom: String, patternTo: String): String {
+    fun formatTime(time: String, patternFrom: String, patternTo: String): String {
         val simpleDateFormat = SimpleDateFormat(patternFrom, Locale.getDefault())
         simpleDateFormat.timeZone = TimeZone.getDefault()
         val date = simpleDateFormat.parse(time)
@@ -125,6 +125,19 @@ object DataTimeUtils {
         fmt.timeZone = TimeZone.getTimeZone("GMT")
         return fmt.parse(date)
     }
+
+    /**
+     * 将时间戳转转为字符串日期
+     * 注：采用默认时区
+     *
+     * @param time 时间戳（单位:毫秒）
+     * @param pattern 格式
+     */
+    fun convert2String(time: Long, pattern: String): String? {
+        val dateTime = Date(time)
+        return convert2String(dateTime, pattern)
+    }
+
 
     /**
      * Date 转 字符串日期。
@@ -199,9 +212,10 @@ object DataTimeUtils {
     }
 
     @Throws(ArrayIndexOutOfBoundsException::class)
-    fun getDayOfWeek(date: Date,
-                     weekOfDays: Array<String>,
-                     timeZone: TimeZone = TimeZone.getDefault()
+    fun getDayOfWeek(
+        date: Date,
+        weekOfDays: Array<String>,
+        timeZone: TimeZone = TimeZone.getDefault()
     ): String {
         val cal = Calendar.getInstance(timeZone)
         cal.time = date
@@ -246,9 +260,10 @@ object DataTimeUtils {
      * @param timeFormat
      * @return
      */
-    fun getFirstDayOfMonth(timeFormat: String?,
-                           zone: TimeZone = TimeZone.getDefault(),
-                           locale: Locale = Locale.getDefault()
+    fun getFirstDayOfMonth(
+        timeFormat: String?,
+        zone: TimeZone = TimeZone.getDefault(),
+        locale: Locale = Locale.getDefault()
     ): String? {
         val calendar = Calendar.getInstance(zone)
         val format = SimpleDateFormat(timeFormat, locale)
@@ -287,10 +302,11 @@ object DataTimeUtils {
      * @param timeZone      - 时区
      * @return
      */
-    fun getLastDayOfOneMonth(timeFormat: String,
-                             n: Int,
-                             timeZone: TimeZone = TimeZone.getDefault(),
-                             locale: Locale = Locale.getDefault()
+    fun getLastDayOfOneMonth(
+        timeFormat: String,
+        n: Int,
+        timeZone: TimeZone = TimeZone.getDefault(),
+        locale: Locale = Locale.getDefault()
     ): String? {
         val format = SimpleDateFormat(timeFormat, locale)
         format.timeZone = timeZone
@@ -339,9 +355,10 @@ object DataTimeUtils {
      * @return true：是今天 false：不是今天
      */
     @Throws(ParseException::class)
-    fun isToday(date: String,
-                format: String = "yyyy-MM-dd",
-                timeZone: TimeZone = TimeZone.getDefault()
+    fun isToday(
+        date: String,
+        format: String = "yyyy-MM-dd",
+        timeZone: TimeZone = TimeZone.getDefault()
     ): Boolean {
         val fmt = SimpleDateFormat(format, Locale.getDefault())
         fmt.timeZone = timeZone
@@ -364,9 +381,10 @@ object DataTimeUtils {
      * @return true今天 false不是
      */
     @Throws(ParseException::class)
-    fun isBeforeToday(date: String,
-                      format: String = "yyyy-MM-dd",
-                      timeZone: TimeZone = TimeZone.getDefault()
+    fun isBeforeToday(
+        date: String,
+        format: String = "yyyy-MM-dd",
+        timeZone: TimeZone = TimeZone.getDefault()
     ): Boolean {
         val fmt = SimpleDateFormat(format, Locale.getDefault())
         fmt.timeZone = timeZone
@@ -392,10 +410,11 @@ object DataTimeUtils {
      *          如果参数date1 表示的时间在date2表示的时间之后，则值大于0。
      */
     @Throws(ParseException::class)
-    fun compareDate(date1: String,
-                    date2: String,
-                    format: String = "yyyy-MM-dd",
-                    timeZone: TimeZone = TimeZone.getDefault()
+    fun compareDate(
+        date1: String,
+        date2: String,
+        format: String = "yyyy-MM-dd",
+        timeZone: TimeZone = TimeZone.getDefault()
     ): Int {
         val fmt: DateFormat = SimpleDateFormat(format, Locale.getDefault())
         val c1 = Calendar.getInstance(timeZone)

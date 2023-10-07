@@ -3,9 +3,11 @@ package com.skx.common.utils
 import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
+import android.util.DisplayMetrics
 import android.view.KeyCharacterMap
 import android.view.KeyEvent
 import android.view.ViewConfiguration
+import android.view.WindowManager
 
 
 /**
@@ -103,7 +105,7 @@ fun checkDeviceHasNavigationBar(context: Context): Boolean {
 /**
  * 获取NavigationBar的高度：
  *
- * @param context
+ * @param context 上下文
  * @return
  */
 fun getNavigationBarHeight(context: Context): Int {
@@ -119,12 +121,22 @@ fun getNavigationBarHeight(context: Context): Int {
 /**
  * 通过判断设备是否有返回键、菜单键(不是虚拟键,是手机屏幕外的按键)来确定是否有navigation bar
  *
- * @param activity
+ * @param context 上下文
  * @return
  */
-fun checkDeviceHasNavigationBar2(activity: Context?): Boolean {
-    val hasMenuKey = ViewConfiguration.get(activity).hasPermanentMenuKey()
+fun checkDeviceHasNavigationBar2(context: Context): Boolean {
+    val hasMenuKey = ViewConfiguration.get(context).hasPermanentMenuKey()
     val hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK)
     return !hasMenuKey && !hasBackKey
 }
 
+/**
+ * 获取设备的屏幕密度
+ * @param context 上下文
+ */
+fun getDisplayMetrics(context: Context): DisplayMetrics? {
+    val metrics = DisplayMetrics()
+    val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as? WindowManager
+    windowManager?.defaultDisplay?.getRealMetrics(metrics)
+    return metrics
+}

@@ -196,8 +196,13 @@
 
         <activity
             android:name=".ui.activity.DeviceInformationActivity"
-            android:screenOrientation="portrait" /> <!-- 键盘 实例 -->
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.activity.AppInformationActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 键盘 实例 -->
         <activity
             android:name=".ui.activity.KeyboardActivity"
             android:screenOrientation="portrait"

@@ -56,10 +56,14 @@ open class BaseFragment<T : BaseViewModel<out BaseRepository<*>>> : Fragment() {
         }
     }
 
+    open fun getNickName(): String {
+        return ""
+    }
+
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         logPrinter("onCreateView")
         return super.onCreateView(inflater, container, savedInstanceState)
@@ -107,6 +111,6 @@ open class BaseFragment<T : BaseViewModel<out BaseRepository<*>>> : Fragment() {
     }
 
     private fun logPrinter(content: String) {
-        Log.i(TAG_LIFECYCLE, "$TAG -> $content")
+        Log.i(TAG_LIFECYCLE, "$TAG:" + getNickName() + " -> $content")
     }
 }

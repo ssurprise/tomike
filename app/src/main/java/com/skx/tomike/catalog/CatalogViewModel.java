@@ -1,21 +1,5 @@
 package com.skx.tomike.catalog;
 
-import android.app.Application;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
-import com.skx.common.base.BaseRepository;
-import com.skx.common.base.BaseViewModel;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_BASE64;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_COROUTINE;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_EMOJI_FILTER;
@@ -37,6 +21,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_URL_PARSE;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_XML_PARSE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ACTIVITY4RESULT;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_AOP;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_APP_INFO;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_APP_USAGE_STATS;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ASYNC_TASK;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_BIG_IMAGE_LOAD;
@@ -154,6 +139,22 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEWPAGER_WRAP_CON
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_VIEW_FOCUS;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_WATER_MARK;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
+
+import android.app.Application;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import com.skx.common.base.BaseRepository;
+import com.skx.common.base.BaseViewModel;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 描述 : 目录列表model
@@ -329,6 +330,7 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
         mFunctionCatalogs.add(new CatalogItem("Parcelable序列化", ROUTE_PATH_PARCELABLE));
         mFunctionCatalogs.add(new CatalogItem("倒计时", ROUTE_PATH_COUNT_DOWN_TIMER));
         mFunctionCatalogs.add(new CatalogItem("设备、APP 基础信息", ROUTE_PATH_DEVICE_INFO));
+        mFunctionCatalogs.add(new CatalogItem("APP信息", ROUTE_PATH_APP_INFO));
         mFunctionCatalogs.add(new CatalogItem("键盘应用-1", ROUTE_PATH_KEYBOARD));
         mFunctionCatalogs.add(new CatalogItem("键盘应用-2", ROUTE_PATH_KEYBOARD_2));
         mFunctionCatalogs.add(new CatalogItem("热修复-微信Tinker", ROUTE_PATH_HOTFIX));
@@ -441,7 +443,11 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
     public void fetchCatalogByKey(String key) {
         List<CatalogItem> catalogItems = mCatalogGroupMap.get(key);
         Log.d(TAG, "fetchCatalogByKey, key=" + key + " size=" + (catalogItems == null ? 0 : catalogItems.size()));
-        mCatalogItemLiveData.postValue(catalogItems);
+        if (isRecentHistoryGroup(key)) {
+            mRecentItemLiveData.postValue(catalogItems);
+        } else {
+            mCatalogItemLiveData.postValue(catalogItems);
+        }
     }
 
     public void add2RecentHistory(CatalogItem catalogItem) {

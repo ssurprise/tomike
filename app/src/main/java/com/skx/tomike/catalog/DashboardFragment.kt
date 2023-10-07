@@ -1,6 +1,7 @@
 package com.skx.tomike.catalog
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,11 @@ class DashboardFragment : BaseFragment<CatalogViewModel>() {
         mKey = arguments?.getString(KEY) ?: ""
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
         mRv = view.findViewById(R.id.rv_dashboard)
         return view
@@ -37,9 +42,12 @@ class DashboardFragment : BaseFragment<CatalogViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         mRv?.run {
             layoutManager = GridLayoutManager(activity, 4)
-            addItemDecoration(GridSpaceItemDecoration(4,
+            addItemDecoration(
+                GridSpaceItemDecoration(
+                    4,
                     dip2px(view.context, 8f),
-                    dip2px(view.context, 6f))
+                    dip2px(view.context, 6f)
+                )
             )
             adapter = mAdapter.also {
                 it.setItemClickListener { _, item ->
@@ -47,15 +55,31 @@ class DashboardFragment : BaseFragment<CatalogViewModel>() {
                 }
             }
         }
-        mViewModel?.catalogItemLiveData?.observe(viewLifecycleOwner, {
-            mAdapter.setData(it)
-        })
-        if (mViewModel?.isRecentHistoryGroup(KEY) == true) {
-            mViewModel?.recentItemLiveData?.observe(viewLifecycleOwner, {
+        if (true == mViewModel?.isRecentHistoryGroup(mKey)) {
+            // 最近使用
+            Log.e("111111","111-0")
+            mViewModel?.recentItemLiveData?.observe(viewLifecycleOwner) {
+                Log.e("111111","111-1")
                 mAdapter.setData(it)
-            })
+            }
+        } else {
+            mViewModel?.catalogItemLiveData?.observe(viewLifecycleOwner) {
+                Log.e("111111","222")
+                mAdapter.setData(it)
+            }
         }
         mViewModel?.fetchCatalogByKey(mKey)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (true == mViewModel?.isRecentHistoryGroup(mKey)) {
+            mViewModel?.fetchCatalogByKey(mKey)
+        }
+    }
+
+    override fun getNickName(): String {
+        return mKey
     }
 
     companion object {

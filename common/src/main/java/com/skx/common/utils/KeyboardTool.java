@@ -1,5 +1,6 @@
 package com.skx.common.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -10,12 +11,11 @@ import android.view.inputmethod.InputMethodManager;
  */
 public class KeyboardTool {
 
+    @SuppressLint("StaticFieldLeak")
     private static KeyboardTool keyboardManager;
-    private final Context mContext;
     private final InputMethodManager imm;
 
     private KeyboardTool(Context context) {
-        this.mContext = context;
         // 得到InputMethodManager的实例
         imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
     }
@@ -64,13 +64,5 @@ public class KeyboardTool {
             // 关闭软键盘，开启方法相同，这个方法是切换开启与关闭状态的
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-    }
-
-    /**
-     * 隐藏软键盘
-     */
-    public void hideKeyboard() {
-        View view = ((Activity) mContext).getWindow().peekDecorView();
-        hideKeyboard(view);
     }
 }
