@@ -1,10 +1,9 @@
 package com.skx.tomike.cannon.ui.activity
 
 import android.app.Service
-import android.content.ComponentName
-import android.content.Intent
-import android.content.ServiceConnection
+import android.content.*
 import android.os.Binder
+import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.view.View
@@ -26,9 +25,21 @@ import java.util.concurrent.ScheduledExecutorService
 @Route(path = ROUTE_PATH_SERVICE)
 class ServiceDemoActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
-    private val connection = MyServiceConnection()
     private val mTvLogcat by lazy {
-        findViewById<TextView>(R.id.tv_service_content)
+        findViewById<TextView>(R.id.tv_service_logcat)
+    }
+
+    private val receiver: ServiceBroadcastReceiver = ServiceBroadcastReceiver()
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            Log.e("MyService", "ServiceConnection - onServiceConnected")
+            mTvLogcat.append("onServiceConnected. name=${name?.shortClassName}\n")
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            Log.e("MyService", "ServiceConnection - onServiceDisconnected")
+            mTvLogcat.append("onServiceDisconnected. name=${name}\n")
+        }
     }
 
     override fun initParams() {
@@ -47,6 +58,12 @@ class ServiceDemoActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickLis
         findViewById<TextView>(R.id.btn_service_stopService).setOnClickListener(this)
         findViewById<TextView>(R.id.btn_service_bindService).setOnClickListener(this)
         findViewById<TextView>(R.id.btn_service_unbindService).setOnClickListener(this)
+        findViewById<TextView>(R.id.btn_service_startAndBindService).setOnClickListener(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        registerReceiver(receiver, IntentFilter("com.skx.tomike.cannon.test"))
     }
 
     override fun onClick(v: View?) {
@@ -66,6 +83,24 @@ class ServiceDemoActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickLis
             R.id.btn_service_unbindService -> {
                 unbindService(connection)
             }
+            R.id.btn_service_startAndBindService -> {
+                val intent = Intent(this, MyService::class.java)
+                startService(intent)
+                val bindService = bindService(intent, connection, BIND_AUTO_CREATE)
+                Log.e("MyService", "bindService，result=$bindService")
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
+    }
+
+    inner class ServiceBroadcastReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val content = intent?.getStringExtra("msg") ?: ""
+            mTvLogcat?.append("$content\n")
         }
     }
 }
@@ -76,53 +111,51 @@ class MyService : Service() {
 
     private var time: Int = 0
 
+    private val mIntent = Intent("com.skx.tomike.cannon.test")
+
     // onCreate()方法只会创建调用一次，无论是何种启动方式
     override fun onCreate() {
         super.onCreate()
-        Log.e("MyService", "onCreate")
-//        newScheduledThreadPool = Executors.newScheduledThreadPool(1)
-//        newScheduledThreadPool?.scheduleAtFixedRate({
-//            Log.e("MyService", "子线程执行")
-//            time++
-//            if (time > 10) {
-//                stopSelf()
-//            }
-//        }, 0, 1, TimeUnit.SECONDS)
+        sendMsgNotify("MyService-onCreate")
     }
 
     // startService启动方式：重复调用时，startCommand()会每次都会被调用
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.e("MyService", "onStartCommand")
+        sendMsgNotify("MyService-onStartCommand")
+
+        val stringExtra = intent?.getStringExtra("cmd")
+        if("download" ==stringExtra){
+            download()
+        }
         return START_STICKY
+    }
+
+    private fun download() {
+
     }
 
     //  bindService启动方式：重复调用时，onCreate()与onBind()都只会调用一次
     override fun onBind(intent: Intent?): IBinder? {
-        Log.e("MyService", "onBind")
+        sendMsgNotify("MyService-onBind")
         return MyBinder()
     }
 
     override fun onUnbind(intent: Intent?): Boolean {
-        Log.e("MyService", "onUnbind")
+        sendMsgNotify("MyService-onUnbind")
         return super.onUnbind(intent)
     }
 
     override fun onDestroy() {
+        sendMsgNotify("MyService-onDestroy")
         super.onDestroy()
         newScheduledThreadPool?.shutdown()
-        Log.e("MyService", "onDestroy")
+    }
+
+    private fun sendMsgNotify(msg: String) {
+        Log.e("MyService", msg)
+        mIntent.putExtra("msg", msg)
+        sendBroadcast(mIntent)
     }
 }
-
 
 class MyBinder : Binder()
-
-class MyServiceConnection : ServiceConnection {
-    override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-        Log.e("MyService", "ServiceConnection - onServiceConnected")
-    }
-
-    override fun onServiceDisconnected(name: ComponentName?) {
-        Log.e("MyService", "ServiceConnection - onServiceDisconnected")
-    }
-}

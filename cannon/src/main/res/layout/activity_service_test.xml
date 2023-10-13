@@ -9,7 +9,7 @@
     tools:context="com.skx.tomike.cannon.ui.activity.ServiceDemoActivity">
 
     <TextView
-        android:id="@+id/tv_service_content"
+        android:id="@+id/tv_service_logcat"
         style="@style/LogcatTextStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -60,6 +60,19 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:text="unbind服务"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+
+    <Button
+        android:id="@+id/btn_service_startAndBindService"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_service_unbindService"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:text="start and bind\n 服务"
         android:textAllCaps="false"
         tools:ignore="HardcodedText" />
 
