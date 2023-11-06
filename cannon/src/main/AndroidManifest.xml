@@ -244,6 +244,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.activity.JobSchedulerActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.activity.PopupWindowActivity"
             android:screenOrientation="portrait" />
 
@@ -279,7 +283,15 @@
             android:name=".ui.activity.H5Activity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.activity.DownloadActivity"
+            android:screenOrientation="portrait" />
+
         <service android:name=".ui.activity.MyService" />
+
+        <service
+            android:name=".ui.activity.JobSchedulerService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver android:name=".ui.activity.BroadcastDemoActivity$SuperBroadcastReceiver">
             <intent-filter>

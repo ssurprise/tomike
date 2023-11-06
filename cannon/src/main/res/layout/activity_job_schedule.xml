@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/view_padding_15"
+    tools:context="com.skx.tomike.cannon.ui.activity.JobSchedulerActivity">
+
+    <TextView
+        android:id="@+id/tv_jobSchedule_logcat"
+        style="@style/LogcatTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="100dp"
+        android:padding="10dp"
+        tools:text="aaaa" />
+
+    <Button
+        android:id="@+id/btn_jobSchedule_start"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="start"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_jobSchedule_finish"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_jobSchedule_start"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:text="finish"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_jobSchedule_cancel"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_jobSchedule_finish"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:text="cancel"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>
