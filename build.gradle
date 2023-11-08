@@ -4,7 +4,7 @@ apply plugin: 'com.alibaba.arouter'
 
 
 buildscript {
-    ext.kotlin_version = '1.5.10'
+    ext.kotlin_version = '1.7.10'
     // buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
     repositories {
         // 添加阿里云 maven 地址

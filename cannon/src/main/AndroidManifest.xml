@@ -248,6 +248,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.activity.WorkManagerActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.activity.PopupWindowActivity"
             android:screenOrientation="portrait" />
 
@@ -285,6 +289,10 @@
 
         <activity
             android:name=".ui.activity.DownloadActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.WorkManagerActivity"
             android:screenOrientation="portrait" />
 
         <service android:name=".ui.activity.MyService" />
