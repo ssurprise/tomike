@@ -15,28 +15,44 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="100dp"
         android:padding="10dp"
+        android:textSize="12sp"
         tools:text="aaaa" />
 
     <Button
-        android:id="@+id/btn_jobSchedule_start"
+        android:id="@+id/btn_jobSchedule_delay"
         style="@style/TextBtnStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:text="start"
+        android:text="开启延迟\n任务"
         android:textAllCaps="false"
+        android:textSize="12sp"
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/btn_jobSchedule_finish"
+        android:id="@+id/btn_jobSchedule_periodic"
         style="@style/TextBtnStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_jobSchedule_start"
+        android:layout_below="@id/btn_jobSchedule_delay"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
-        android:text="finish"
+        android:text="开启周期\n任务"
         android:textAllCaps="false"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_jobSchedule_delayAndPeriodic"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_jobSchedule_periodic"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:text="开启延迟和\n周期任务"
+        android:textAllCaps="false"
+        android:textSize="12sp"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -44,10 +60,23 @@
         style="@style/TextBtnStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_jobSchedule_finish"
+        android:layout_below="@id/btn_jobSchedule_delayAndPeriodic"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
-        android:text="cancel"
+        android:text="取消所有\n任务"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_jobSchedule_clear"
+        style="@style/TextBtnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_jobSchedule_cancel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="80dp"
+        android:text="清屏"
         android:textAllCaps="false"
         tools:ignore="HardcodedText" />
 
