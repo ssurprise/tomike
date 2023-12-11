@@ -1,13 +1,21 @@
 package com.skx.tomike.cannon.ui.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
@@ -31,7 +39,7 @@ import java.util.*
 class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
     private val mData: MutableList<AppInfo> = mutableListOf()
-
+    private var mAdapter: AppStatsInfoAdapter? = null
 
     override fun initParams() {
     }
@@ -45,21 +53,26 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
     }
 
     override fun initView() {
+        val mRv = findViewById<RecyclerView>(R.id.rv_appList_apps)
+        mRv.layoutManager = LinearLayoutManager(this)
+        mAdapter = AppStatsInfoAdapter()
+        mRv.adapter = mAdapter
+
         PermissionController.Builder(this)
-                .permission(Manifest.permission.PACKAGE_USAGE_STATS)
-                .associateDefaultTip()
-                .callback(object : PermissionResultListener {
+            .permission(Manifest.permission.PACKAGE_USAGE_STATS)
+            .associateDefaultTip()
+            .callback(object : PermissionResultListener {
 
-                    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
-                    override fun onSucceed(grantPermissions: List<String>?) {
-                        getPackages()
-                    }
+                @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+                override fun onSucceed(grantPermissions: List<String>?) {
+                    getPackages()
+                }
 
-                    override fun onFailed(deniedPermissions: List<String>?) {
-                        ToastTool.showToast(this@AppUsageStatsActivity, "当前没有'使用情况访问权限'！")
-                    }
-                })
-                .request()
+                override fun onFailed(deniedPermissions: List<String>?) {
+                    ToastTool.showToast(this@AppUsageStatsActivity, "当前没有'使用情况访问权限'！")
+                }
+            })
+            .request()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -67,10 +80,12 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
         mData.clear()
         val allAppInfo: MutableList<AppInfo> = mutableListOf()
         AppUtils.getInstalledPackages(this)?.forEach {
-            val appInfo = AppInfo(packageManager.getApplicationLabel(it.applicationInfo).toString(),
-                    0,
-                    it.packageName,
-                    it.applicationInfo.loadIcon(packageManager)
+            val appInfo = AppInfo(
+                packageManager.getApplicationLabel(it.applicationInfo).toString(),
+                0,
+                it.packageName,
+                it.applicationInfo.loadIcon(packageManager),
+                it.versionName
             )
             allAppInfo.add(appInfo)
         }
@@ -81,7 +96,7 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
             }
         }
         mData.sort()
-//        adapter.setDatas(mData)
+        mAdapter?.setData(mData)
     }
 
 
@@ -102,26 +117,26 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
      * 根据使用频次推荐app
      */
     private fun addRecommendApp(
-            stats: UsageStats,
-            localApps: MutableList<AppInfo>,
-            appInfoList: List<AppInfo>
+        stats: UsageStats,
+        localApps: MutableList<AppInfo>,
+        appInfoList: List<AppInfo>
     ) {
         try {
 //            usageStats.getFirstTimeStamp();//获取第一次运行的时间
 //            usageStats.getLastTimeStamp();//获取最后一次运行的时间
 //            usageStats.getTotalTimeInForeground();//获取总共运行的时间
 
-
             // 获取应用启动次数，UsageStats未提供方法来获取，只能通过反射来拿到
             val count = stats.javaClass.getDeclaredField("mLaunchCount").get(stats) as Int
-            Log.e(TAG, stats.packageName
-                    + " launchCount=${count}"
-                    + " FirstTimeStamp=${stats.firstTimeStamp}"
-                    + " LastTimeStamp=${stats.lastTimeStamp}"
-                    + " totalTimeInForeground=${stats.totalTimeInForeground}"
+            Log.e(
+                TAG, stats.packageName
+                        + " launchCount=${count}"
+                        + " FirstTimeStamp=${stats.firstTimeStamp}"
+                        + " LastTimeStamp=${stats.lastTimeStamp}"
+                        + " totalTimeInForeground=${stats.totalTimeInForeground}"
             )
 
-            if (count != 0) {
+            if (count >= 0) {
                 for (i in appInfoList.indices) {
                     if (stats.packageName == appInfoList[i].packageName) {
                         appInfoList[i].launchCount = count
@@ -137,12 +152,74 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
     }
 
 
-    class AppInfo(val name: String?, var launchCount: Int, val packageName: String?, val icon: Drawable) : Comparable<Any?> {
+    class AppInfo(
+        val name: String?,
+        var launchCount: Int,
+        val packageName: String?,
+        val icon: Drawable,
+        val versionName: String?
+    ) : Comparable<Any?> {
 
-        override operator fun compareTo(o: Any?): Int {
-            return if (o is AppInfo) {
-                if (launchCount > o.launchCount) -1 else 1
+        override operator fun compareTo(other: Any?): Int {
+            return if (other is AppInfo) {
+                if (launchCount > other.launchCount) -1 else 1
             } else 0
+        }
+    }
+
+    class AppStatsInfoAdapter : RecyclerView.Adapter<AppStatsInfoViewHolder>() {
+
+        private val mAppInfoList: MutableList<AppInfo> = mutableListOf()
+
+        fun setData(appInfoList: MutableList<AppInfo>?) {
+            mAppInfoList.clear()
+            appInfoList?.run {
+                mAppInfoList.addAll(this)
+            }
+            notifyDataSetChanged()
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppStatsInfoViewHolder {
+            return AppStatsInfoViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.adapter_app_stats_info, parent, false
+                )
+            )
+        }
+
+        override fun onBindViewHolder(holder: AppStatsInfoViewHolder, position: Int) {
+            holder.bindAppInfo(mAppInfoList[position])
+        }
+
+        override fun getItemCount(): Int = mAppInfoList.size
+    }
+
+    class AppStatsInfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private val ivIcon: ImageView = itemView.findViewById(R.id.iv_appStatsInfo_icon)
+        private val tvAppName: TextView = itemView.findViewById(R.id.tv_appStatsInfo_appName)
+        private val tvPackageName: TextView = itemView.findViewById(R.id.tv_appStatsInfo_pkgName)
+        private val tvUseStats: TextView = itemView.findViewById(R.id.tv_appStatsInfo_useStats)
+        private val tvVersionName: TextView =
+            itemView.findViewById(R.id.tv_appStatsInfo_versionName)
+
+        @SuppressLint("SetTextI18n")
+        fun bindAppInfo(appInfo: AppInfo) {
+            appInfo.icon.run {
+                ivIcon.setImageDrawable(this)
+            }
+            appInfo.name?.run {
+                tvAppName.text = this
+            }
+            appInfo.packageName?.run {
+                tvPackageName.text = this
+            }
+            appInfo.versionName?.run {
+                tvVersionName.text = this
+            }
+            appInfo.launchCount.run {
+                tvUseStats.text = "最近使用${this}次"
+            }
         }
     }
 

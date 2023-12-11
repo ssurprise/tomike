@@ -1,5 +1,7 @@
 package com.skx.tomike.cannon.ui.activity;
 
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DEVICE_INFO;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
@@ -15,13 +17,13 @@ import com.skx.common.base.TitleConfig;
 import com.skx.common.permission.PermissionController;
 import com.skx.common.permission.PermissionResultListener;
 import com.skx.common.utils.DevicesUtils;
+import com.skx.common.utils.MemoryUtils;
+import com.skx.common.utils.StorageUtils;
 import com.skx.tomike.cannon.R;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-
-import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_DEVICE_INFO;
 
 /**
  * 描述 : 设备信息
@@ -57,12 +59,14 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>>
     protected void initView() {
         TextView tvBrand = findViewById(R.id.tv_deviceInfo_brand);
         TextView tvModel = findViewById(R.id.tv_deviceInfo_model);
+        TextView tvManufacturer = findViewById(R.id.tv_deviceInfo_manufacturer);
         TextView tvABI = findViewById(R.id.tv_deviceInfo_abi);
         TextView tvSystemVersion = findViewById(R.id.tv_deviceInfo_systemVersion);
 
         tvBrand.setText(String.format("手机品牌：%s", DevicesUtils.getBrand()));
         tvModel.setText(String.format("手机型号：%s", DevicesUtils.getModel()));
-        tvSystemVersion.setText(String.format("手机Android 版本：%s", Build.VERSION.RELEASE));
+        tvManufacturer.setText(String.format("设备制造商：%s", DevicesUtils.getManufacturer()));
+        tvSystemVersion.setText(String.format("手机Android版本：%s", Build.VERSION.RELEASE));
         String[] supportedAbis = Build.SUPPORTED_ABIS;
         StringBuilder abi = new StringBuilder();
         for (String supportedAbi : supportedAbis) {
@@ -70,35 +74,67 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>>
         }
         tvABI.setText(String.format("ABI信息：%s", abi.toString()));
 
-
         mTvAndroidId = findViewById(R.id.tv_deviceInfo_androidId);
         mTvDeviceId = findViewById(R.id.tv_deviceInfo_deviceId);
         mTvSn = findViewById(R.id.tv_deviceInfo_sn);
         mTvImei = findViewById(R.id.tv_deviceInfo_imei);
         mTvMeid = findViewById(R.id.tv_deviceInfo_meid);
+
         requestPermission();
 
-        TextView tvScreenWidth = findViewById(R.id.tv_deviceInfo_screenWidth);
-        TextView tvScreenHeight = findViewById(R.id.tv_deviceInfo_screenHeight);
-        TextView tvDpi = findViewById(R.id.tv_deviceInfo_dpi);
-        tvScreenWidth.setText(String.format("屏幕宽：%spx", DevicesUtils.getScreenWidth(this)));
-        tvScreenHeight.setText(String.format("屏幕高：%spx", DevicesUtils.getScreenHeight(this)));
-        tvScreenHeight.setText(String.format("dpi：%s", DevicesUtils.getDensityDpi(this)));
+        setResolutionInfo();
 
         TextView tvExternal = findViewById(R.id.tv_deviceInfo_external);
         tvExternal.setText(String.format("SD卡根目录：%s", Environment.getExternalStorageDirectory().getAbsolutePath()));
 
+        setStorage();
+        setMemory();
 
+        setAppInfo();
+    }
+
+    private void setStorage() {
+        TextView tvTotalStorage = findViewById(R.id.tv_deviceInfo_totalStorage);
+        TextView tvAvailStorage = findViewById(R.id.tv_deviceInfo_availStorage);
+
+        tvTotalStorage.setText("总存储空间：" + StorageUtils.INSTANCE.getTotalStorageSize(this, "GB") + "GB");
+        tvAvailStorage.setText("可用存储空间：" + StorageUtils.INSTANCE.getAvailableStorageSize(this, "GB") + "GB");
+    }
+
+    private void setMemory() {
+        TextView tvTotalMem = findViewById(R.id.tv_deviceInfo_totalMem);
+        TextView tvAvailMem = findViewById(R.id.tv_deviceInfo_availMem);
+
+        tvTotalMem.setText("总内存：" + MemoryUtils.INSTANCE.getTotalMemory("GB") + "GB");
+        tvAvailMem.setText("可用内存：" + MemoryUtils.INSTANCE.getAvailMemory(this,"GB") + "GB");
+    }
+
+    /**
+     * 分辨率相关
+     */
+    private void setResolutionInfo() {
+        TextView tvScreenWidth = findViewById(R.id.tv_deviceInfo_screenWidth);
+        TextView tvScreenHeight = findViewById(R.id.tv_deviceInfo_screenHeight);
+        TextView tvDpi = findViewById(R.id.tv_deviceInfo_dpi);
+
+        tvScreenWidth.setText(String.format("屏幕宽：%spx", DevicesUtils.getScreenWidth(this)));
+        tvScreenHeight.setText(String.format("屏幕高：%spx", DevicesUtils.getScreenHeight(this)));
+        tvDpi.setText(String.format("dpi：%s", DevicesUtils.getDensityDpi(this)));
+    }
+
+    /**
+     * app 信息相关
+     */
+    private void setAppInfo() {
         TextView tvAppName = findViewById(R.id.tv_appInfo_appName);
         TextView tvPackageName = findViewById(R.id.tv_appInfo_packageName);
         TextView tvAppVersionName = findViewById(R.id.tv_appInfo_appVersionName);
         TextView tvAppVersionCode = findViewById(R.id.tv_deviceInfo_appVersionCode);
 
-
         //获取包管理器
         PackageManager pm = getPackageManager();
-        //获取包信息
         try {
+            //获取包信息
             PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);
             int labelRes = packageInfo.applicationInfo.labelRes;
             tvAppName.setText(String.format("名称：%s", getResources().getString(labelRes)));
@@ -117,10 +153,8 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>>
         TextView tvAppDataDir = findViewById(R.id.tv_deviceInfo_appFilesDir);
         tvAppDataDir.setText(String.format("files：%s", getFilesDir().getAbsolutePath()));
 
-
         TextView tvAppCacheDir = findViewById(R.id.tv_deviceInfo_appCacheDir);
         tvAppCacheDir.setText(String.format("cache：%s", getCacheDir().getAbsolutePath()));
-
 
         TextView tvAppPrivateDir = findViewById(R.id.tv_deviceInfo_appPrivateFiles);
         tvAppPrivateDir.setText(String.format("files：%s", getExternalFilesDir(null).getAbsolutePath()));

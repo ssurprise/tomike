@@ -37,6 +37,13 @@
             tools:text="手机型号：" />
 
         <TextView
+            android:id="@+id/tv_deviceInfo_manufacturer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            tools:text="备制造商：" />
+
+        <TextView
             android:id="@+id/tv_deviceInfo_abi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,13 +103,6 @@
             tools:text="屏幕宽：" />
 
         <TextView
-            android:id="@+id/tv_deviceInfo_dpi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            tools:text="dpi：" />
-
-        <TextView
             android:id="@+id/tv_deviceInfo_screenHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,11 +110,46 @@
             tools:text="屏幕高：" />
 
         <TextView
-            android:id="@+id/tv_deviceInfo_external"
+            android:id="@+id/tv_deviceInfo_dpi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            tools:text="dpi：" />
+
+        <TextView
+            android:id="@+id/tv_deviceInfo_external"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             tools:text="sd卡根目录：" />
+
+        <TextView
+            android:id="@+id/tv_deviceInfo_totalStorage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            tools:text="总存储：" />
+
+        <TextView
+            android:id="@+id/tv_deviceInfo_availStorage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            tools:text="可用存储空间：" />
+
+        <TextView
+            android:id="@+id/tv_deviceInfo_totalMem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            tools:text="总内存：" />
+
+        <TextView
+            android:id="@+id/tv_deviceInfo_availMem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            tools:text="可用内存：" />
 
         <TextView
             android:layout_width="wrap_content"

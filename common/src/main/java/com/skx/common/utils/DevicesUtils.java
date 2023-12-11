@@ -6,6 +6,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
 
 /**
@@ -23,7 +24,7 @@ public class DevicesUtils {
      * @param context 上下文
      * @return
      */
-    public static int getScreenWidth(Context context) {
+    public static int getScreenWidth(@NonNull Context context) {
         return context.getResources().getDisplayMetrics().widthPixels;
     }
 
@@ -33,7 +34,7 @@ public class DevicesUtils {
      * @param context 上下文
      * @return
      */
-    public static int getScreenHeight(Context context) {
+    public static int getScreenHeight(@NonNull Context context) {
         return context.getResources().getDisplayMetrics().heightPixels;
     }
 
@@ -43,7 +44,7 @@ public class DevicesUtils {
      * @param context 上下文
      * @return
      */
-    public static int getDensityDpi(Context context) {
+    public static int getDensityDpi(@NonNull Context context) {
         return context.getResources().getDisplayMetrics().densityDpi;
     }
 
@@ -72,7 +73,7 @@ public class DevicesUtils {
     }
 
     @RequiresPermission("android.permission.READ_PRIVILEGED_PHONE_STATE")
-    public static String getDeviceId(Context context) {
+    public static String getDeviceId(@NonNull Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
     }
@@ -85,7 +86,7 @@ public class DevicesUtils {
      * @return
      */
     @RequiresPermission("android.permission.READ_PRIVILEGED_PHONE_STATE")
-    public static String getImei(Context context) {
+    public static String getImei(@NonNull Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {// Android 8
             return tm.getImei();
@@ -93,7 +94,7 @@ public class DevicesUtils {
         return "";
     }
 
-   /**
+    /**
      * 获取设备的meid
      * 注意：Android Q(10) 之后禁止使用
      *
@@ -101,7 +102,7 @@ public class DevicesUtils {
      * @return
      */
     @RequiresPermission("android.permission.READ_PRIVILEGED_PHONE_STATE")
-    public static String getMeid(Context context) {
+    public static String getMeid(@NonNull Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {// Android 8
             return tm.getMeid();
@@ -116,7 +117,7 @@ public class DevicesUtils {
      * @param context 上下文
      * @return
      */
-    public static String getAndroidId(Context context) {
+    public static String getAndroidId(@NonNull Context context) {
         return Settings.System.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 

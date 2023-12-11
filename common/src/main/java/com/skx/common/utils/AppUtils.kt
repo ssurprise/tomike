@@ -1,5 +1,7 @@
 package com.skx.common.utils
 
+import android.app.usage.StorageStats
+import android.app.usage.StorageStatsManager
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
@@ -7,7 +9,12 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.storage.StorageManager
 import android.text.TextUtils
+import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.annotation.WorkerThread
+import java.util.*
 
 /**
  * 描述 : App/Pkg 工具类
@@ -16,6 +23,7 @@ import android.text.TextUtils
  * 创建时间 : 2023/5/7 4:59 下午
  */
 object AppUtils {
+    const val TAG = "AppUtils"
 
     /**
      * 获取App 包名
@@ -103,12 +111,12 @@ object AppUtils {
      * 需要申明权限：android.permission.PACKAGE_USAGE_STATS
      */
     fun getUsageStatsList(ctx: Context, beginTime: Long, endTime: Long): List<UsageStats> {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            val manager = ctx.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-            return manager.queryUsageStats(
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {// Android 5.1
+            val manager = ctx.getSystemService(Context.USAGE_STATS_SERVICE) as? UsageStatsManager
+            return manager?.queryUsageStats(
                 UsageStatsManager.INTERVAL_DAILY,
                 beginTime, endTime
-            )
+            ) ?: kotlin.run { emptyList() }
         }
         return emptyList()
     }
@@ -162,6 +170,76 @@ object AppUtils {
         }
         return isInstalled
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAppCacheSize(context: Context, packageName: String?): Long {
+        if (TextUtils.isEmpty(packageName)) return -1
+        val storageStatsManager =
+            context.applicationContext.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
+        val storageManager =
+            context.applicationContext.getSystemService(Context.STORAGE_SERVICE) as StorageManager
+
+        var uid = -1
+        try {
+            uid = context.packageManager.getApplicationInfo(
+                packageName!!,
+                PackageManager.GET_META_DATA
+            ).uid
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+        Log.e(TAG, "#getAppCacheSize. packageName=${packageName}, uid=$uid")
+        if (uid == -1) {
+            Log.e(TAG, "#getAppCacheSize. uid=-1 return")
+            return -1
+        }
+        Log.e(TAG, "#getAppCacheSize. storageVolumes size=" + storageManager.storageVolumes.size)
+        var totalCacheSize: Long = 0
+        var storageStats: StorageStats?
+        for (item in storageManager.storageVolumes) {
+            val uuid = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                Log.e(TAG, "#getAppCacheSize. uuid=${item.storageUuid}")
+                item.storageUuid ?: StorageManager.UUID_DEFAULT
+            } else if (!TextUtils.isEmpty(item.uuid)) {
+                Log.e(TAG, "#getAppCacheSize. uuid=${item.uuid}")
+                UUID.fromString(item.uuid)
+            } else {
+                Log.e(TAG, "#getAppCacheSize. use default = ${StorageManager.UUID_DEFAULT}")
+                StorageManager.UUID_DEFAULT
+            }
+            try {
+                storageStats = storageStatsManager.queryStatsForUid(uuid, uid)
+                totalCacheSize += storageStats.cacheBytes
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        return totalCacheSize
+    }
+
+    @WorkerThread
+    fun getCacheSize(context: Context, packageName: String?, unit: String = "MB"): String {
+        if (TextUtils.isEmpty(packageName)) {
+            return "unknown"
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val storageStats = getAppCacheSize(context, packageName) * 1.00f
+            // 应用程序缓存数据的大小，包括存储在 Context.getCacheDir() 和 Context.getCodeCacheDir() 下的文件.
+            // 即 data/data/package-name/ 下关于缓存相关的目录
+            return (storageStats / (1024 * 1024)).toString()
+        }
+        return "unknown"
+    }
+//    StorageStats storageStats = storageStatsManager.queryStatsForPackage(uuid, packageName, userHandle);
+//应用程序的大小。这包括 APK 文件、优化的编译器输出和解压的原生库
+// long appBytes = storageStats.getAppBytes();
+// 应用程序缓存数据的大小。这包括存储在 Context.getCacheDir() 和 Context.getCodeCacheDir() 下的文件
+// long cacheBytes = storageStats.getCacheBytes();
+// 应用程序所有数据的大小。这包括存储在 Context.getDataDir()、Context.getCacheDir()、Context.getCodeCacheDir() 下的文件
+// long dataBytes = storageStats.getDataBytes();
+// 主外部共享存储中所有缓存数据的大小。这包括存储在 Context.getExternalCacheDir() 下的文件
+// long externalCacheBytes = storageStats.getExternalCacheBytes();
+// } catch (IOException | PackageManager.NameNotFoundException e) {e.printStackTrace();}
 
 
 //    fun getAppEnter(context: Context, packageName: String): String {

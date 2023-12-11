@@ -12,6 +12,9 @@
     <uses-permission android:name="Manifest.permission.WRITE_SETTINGS" />
     <uses-permission android:name="Manifest.permission.SYSTEM_ALERT_WINDOW" />
 
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+
     <!--允许查询设备上的任何正常应用程序，而不考虑清单声明。-->
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"

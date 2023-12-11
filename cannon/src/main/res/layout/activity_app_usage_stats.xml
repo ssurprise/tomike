@@ -9,6 +9,7 @@
     tools:context="com.skx.tomike.cannon.ui.activity.AppUsageStatsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_appList_apps"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
