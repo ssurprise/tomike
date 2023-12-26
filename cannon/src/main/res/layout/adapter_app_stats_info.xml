@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="16dp"
+    android:paddingStart="@dimen/view_padding_15"
     android:paddingTop="5dp"
-    android:paddingEnd="16dp"
+    android:paddingEnd="@dimen/view_padding_15"
     android:paddingBottom="10dp"
     tools:ignore="ContentDescription">
 
     <ImageView
         android:id="@+id/iv_appStatsInfo_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +33,7 @@
         android:id="@+id/tv_appStatsInfo_pkgName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="1dp"
         android:textColor="@color/skx_212121"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/tv_appStatsInfo_appName"
@@ -47,7 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="1dp"
         android:textColor="@color/skx_212121"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/tv_appStatsInfo_appName"

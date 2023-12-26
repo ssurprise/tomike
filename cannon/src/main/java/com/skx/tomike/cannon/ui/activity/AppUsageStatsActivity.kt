@@ -7,6 +7,7 @@ import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -26,6 +28,8 @@ import com.skx.common.utils.AppUtils
 import com.skx.common.utils.ToastTool
 import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_APP_USAGE_STATS
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -38,8 +42,8 @@ import java.util.*
 @Route(path = ROUTE_PATH_APP_USAGE_STATS)
 class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
-    private val mData: MutableList<AppInfo> = mutableListOf()
     private var mAdapter: AppStatsInfoAdapter? = null
+    private val mStatsInfoLiveData = MutableLiveData<MutableList<AppInfo>>()
 
     override fun initParams() {
     }
@@ -65,38 +69,40 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
                 @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
                 override fun onSucceed(grantPermissions: List<String>?) {
-                    getPackages()
+                    getStats()
                 }
 
                 override fun onFailed(deniedPermissions: List<String>?) {
                     ToastTool.showToast(this@AppUsageStatsActivity, "当前没有'使用情况访问权限'！")
+                    finish()
                 }
             })
             .request()
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
-    private fun getPackages() {
-        mData.clear()
-        val allAppInfo: MutableList<AppInfo> = mutableListOf()
-        AppUtils.getInstalledPackages(this)?.forEach {
-            val appInfo = AppInfo(
-                packageManager.getApplicationLabel(it.applicationInfo).toString(),
-                0,
-                it.packageName,
-                it.applicationInfo.loadIcon(packageManager),
-                it.versionName
-            )
-            allAppInfo.add(appInfo)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mStatsInfoLiveData.observe(this) {
+            mAdapter?.setData(it)
         }
+    }
 
-        getUsageList(applicationContext)?.forEach {
-            if (!AppUtils.isSystemApp(applicationContext, it.packageName)) {
-                addRecommendApp(it, mData, allAppInfo)
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+    private fun getStats() {
+        GlobalScope.launch {
+            val statsMap = TreeMap<String, AppInfo>()
+            getUsageList(this@AppUsageStatsActivity)?.filter {
+                AppUtils.isApkInstalled(this@AppUsageStatsActivity, it.packageName)
+                        && !AppUtils.isSystemApp(this@AppUsageStatsActivity, it.packageName)
+            }?.forEach {
+                relatedLaunchCount(it, statsMap)
             }
+            val sorted = statsMap.map { it.value }.sorted()
+            val list = mutableListOf<AppInfo>().apply {
+                addAll(sorted)
+            }
+            mStatsInfoLiveData.postValue(list)
         }
-        mData.sort()
-        mAdapter?.setData(mData)
     }
 
 
@@ -116,33 +122,37 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
     /**
      * 根据使用频次推荐app
      */
-    private fun addRecommendApp(
-        stats: UsageStats,
-        localApps: MutableList<AppInfo>,
-        appInfoList: List<AppInfo>
-    ) {
+    private fun relatedLaunchCount(stats: UsageStats, map: TreeMap<String, AppInfo>) {
         try {
-//            usageStats.getFirstTimeStamp();//获取第一次运行的时间
-//            usageStats.getLastTimeStamp();//获取最后一次运行的时间
-//            usageStats.getTotalTimeInForeground();//获取总共运行的时间
-
+            /*
+            usageStats.getFirstTimeStamp();//获取第一次运行的时间
+            usageStats.getLastTimeStamp();//获取最后一次运行的时间
+            usageStats.getTotalTimeInForeground();//获取总共运行的时间
+             */
             // 获取应用启动次数，UsageStats未提供方法来获取，只能通过反射来拿到
             val count = stats.javaClass.getDeclaredField("mLaunchCount").get(stats) as Int
             Log.e(
                 TAG, stats.packageName
                         + " launchCount=${count}"
-                        + " FirstTimeStamp=${stats.firstTimeStamp}"
-                        + " LastTimeStamp=${stats.lastTimeStamp}"
-                        + " totalTimeInForeground=${stats.totalTimeInForeground}"
+                        + ", firstTimeStamp=${stats.firstTimeStamp}"
+                        + ", lastTimeStamp=${stats.lastTimeStamp}"
+                        + ", totalTimeInForeground=${stats.totalTimeInForeground}"
             )
-
-            if (count >= 0) {
-                for (i in appInfoList.indices) {
-                    if (stats.packageName == appInfoList[i].packageName) {
-                        appInfoList[i].launchCount = count
-                        localApps.add(appInfoList[i])
-                    }
+            val packageInfo = packageManager.getPackageInfo(stats.packageName, 0)
+            if (map.containsKey(stats.packageName)) {
+                map[stats.packageName]?.run {
+                    launchCount += count
                 }
+            } else {
+                val applicationInfo = packageInfo.applicationInfo
+                val appInfo = AppInfo(
+                    packageManager.getApplicationLabel(applicationInfo).toString(),
+                    count,
+                    stats.packageName,
+                    applicationInfo.loadIcon(packageManager),
+                    packageInfo.versionName
+                )
+                map[stats.packageName] = appInfo
             }
         } catch (e: IllegalAccessException) {
             e.printStackTrace()
@@ -171,6 +181,7 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
 
         private val mAppInfoList: MutableList<AppInfo> = mutableListOf()
 
+        @SuppressLint("NotifyDataSetChanged")
         fun setData(appInfoList: MutableList<AppInfo>?) {
             mAppInfoList.clear()
             appInfoList?.run {
@@ -222,5 +233,4 @@ class AppUsageStatsActivity : SkxBaseActivity<BaseViewModel<*>>() {
             }
         }
     }
-
 }
