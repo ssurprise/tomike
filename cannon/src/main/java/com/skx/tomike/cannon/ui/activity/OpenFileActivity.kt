@@ -37,7 +37,7 @@ import java.util.*
 class OpenFileActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
 
     private val mPath = Environment.getExternalStorageDirectory().absolutePath +
-            File.separator + "xzdz" + File.separator
+            File.separator + "tomike" + File.separator
     // +"debug_api.xml"
 
     override fun initParams() {}
