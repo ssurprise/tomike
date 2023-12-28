@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -31,6 +32,7 @@ class PropertyAnimatorActivity : SkxBaseActivity<BaseViewModel<*>>() {
     private var mPivotX: Float = 0.0f
     private var mPivotY: Float = 0.0f
     private var mDuration: Long = 0
+    private var mType: Int = 2
 
 
     override fun configHeaderTitle(): TitleConfig {
@@ -87,6 +89,43 @@ class PropertyAnimatorActivity : SkxBaseActivity<BaseViewModel<*>>() {
             }
         }
 
+        val mRgOptions = findViewById<RadioGroup>(R.id.rg_propertyAnimator_options)
+        mRgOptions.check(R.id.tv_propertyAnimator_scan)
+        mRgOptions.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.tv_propertyAnimator_rotate -> {
+                    mType = 10
+                }
+                R.id.tv_propertyAnimator_rotateX -> {
+                    mType = 11
+                }
+                R.id.tv_propertyAnimator_rotateY -> {
+                    mType = 12
+                }
+                R.id.tv_propertyAnimator_scan -> {
+                    mType = 20
+                }
+                R.id.tv_propertyAnimator_scanX -> {
+                    mType = 21
+                }
+                R.id.tv_propertyAnimator_scanY -> {
+                    mType = 22
+                }
+                R.id.tv_propertyAnimator_translation -> {
+                    mType = 30
+                }
+                R.id.tv_propertyAnimator_translationX -> {
+                    mType = 31
+                }
+                R.id.tv_propertyAnimator_translationY -> {
+                    mType = 32
+                }
+                R.id.tv_propertyAnimator_alpha -> {
+                    mType = 40
+                }
+            }
+        }
+
     }
 
     private fun onAnimStart() {
@@ -96,8 +135,41 @@ class PropertyAnimatorActivity : SkxBaseActivity<BaseViewModel<*>>() {
 //        valueAnimator.repeatCount = 1
         valueAnimator.setTarget(ivTarget)
         valueAnimator.addUpdateListener {
-            ivTarget.scaleX = it.animatedValue as Float
-            ivTarget.scaleY = it.animatedValue as Float
+            when (mType) {
+                10 -> {
+                    ivTarget.rotationX = it.animatedValue as Float
+                }
+                11 -> {
+                    ivTarget.rotationY = it.animatedValue as Float
+                }
+                12 -> {
+                    ivTarget.rotationY = it.animatedValue as Float
+                }
+                20 -> {
+                    ivTarget.scaleX = it.animatedValue as Float
+                    ivTarget.scaleY = it.animatedValue as Float
+                }
+                21 -> {
+                    ivTarget.scaleX = it.animatedValue as Float
+                }
+                22 -> {
+                    ivTarget.scaleY = it.animatedValue as Float
+                }
+                30 -> {
+                    ivTarget.translationX = it.animatedValue as Float
+                    ivTarget.translationY = it.animatedValue as Float
+                }
+                31 -> {
+                    ivTarget.translationX = it.animatedValue as Float
+                }
+                32 -> {
+                    ivTarget.translationY = it.animatedValue as Float
+                }
+                40 -> {
+                    ivTarget.alpha = it.animatedValue as Float
+                }
+            }
+
         }
         valueAnimator.start()
     }
