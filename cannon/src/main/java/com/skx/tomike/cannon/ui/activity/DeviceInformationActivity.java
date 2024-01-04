@@ -106,7 +106,7 @@ public class DeviceInformationActivity extends SkxBaseActivity<BaseViewModel<?>>
         TextView tvAvailMem = findViewById(R.id.tv_deviceInfo_availMem);
 
         tvTotalMem.setText("总内存：" + MemoryUtils.INSTANCE.getTotalMemory("GB") + "GB");
-        tvAvailMem.setText("可用内存：" + MemoryUtils.INSTANCE.getAvailMemory(this,"GB") + "GB");
+        tvAvailMem.setText("可用内存：" + MemoryUtils.INSTANCE.getAvailMemory(this, "GB") + "GB");
     }
 
     /**
