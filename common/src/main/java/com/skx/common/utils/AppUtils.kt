@@ -5,16 +5,16 @@ import android.app.usage.StorageStatsManager
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
+import android.content.pm.*
 import android.os.Build
 import android.os.storage.StorageManager
 import android.text.TextUtils
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.annotation.WorkerThread
+import java.lang.reflect.Method
 import java.util.*
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * 描述 : App/Pkg 工具类
@@ -172,7 +172,7 @@ object AppUtils {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getAppCacheSize(context: Context, packageName: String?): Long {
+    fun getAppCacheSizeO(context: Context, packageName: String?): Long {
         if (TextUtils.isEmpty(packageName)) return -1
         val storageStatsManager =
             context.applicationContext.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
@@ -188,23 +188,23 @@ object AppUtils {
         } catch (e: Throwable) {
             e.printStackTrace()
         }
-        Log.e(TAG, "#getAppCacheSize. packageName=${packageName}, uid=$uid")
+        Log.d(TAG, "#getAppCacheSizeO. packageName=${packageName}, uid=$uid")
         if (uid == -1) {
-            Log.e(TAG, "#getAppCacheSize. uid=-1 return")
+            Log.d(TAG, "#getAppCacheSizeO. uid=-1 return")
             return -1
         }
-        Log.e(TAG, "#getAppCacheSize. storageVolumes size=" + storageManager.storageVolumes.size)
+        Log.d(TAG, "#getAppCacheSizeO. storageVolumes size=" + storageManager.storageVolumes.size)
         var totalCacheSize: Long = 0
         var storageStats: StorageStats?
         for (item in storageManager.storageVolumes) {
             val uuid = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                Log.e(TAG, "#getAppCacheSize. uuid=${item.storageUuid}")
+                Log.d(TAG, "#getAppCacheSizeO. uuid=${item.storageUuid}")
                 item.storageUuid ?: StorageManager.UUID_DEFAULT
             } else if (!TextUtils.isEmpty(item.uuid)) {
-                Log.e(TAG, "#getAppCacheSize. uuid=${item.uuid}")
+                Log.d(TAG, "#getAppCacheSizeO. uuid=${item.uuid}")
                 UUID.fromString(item.uuid)
             } else {
-                Log.e(TAG, "#getAppCacheSize. use default = ${StorageManager.UUID_DEFAULT}")
+                Log.d(TAG, "#getAppCacheSizeO. use default = ${StorageManager.UUID_DEFAULT}")
                 StorageManager.UUID_DEFAULT
             }
             try {
@@ -217,16 +217,42 @@ object AppUtils {
         return totalCacheSize
     }
 
+    fun getAppCacheSize(context: Context, packageName: String?): Long {
+        var totalCacheSize: Long = 0
+        val method: Method = PackageManager::class.java.getMethod(
+            "getPackageSizeInfo",
+            String::class.java,
+            IPackageStatsObserver::class.java
+        )
+        val finish = AtomicBoolean(false)
+        method.invoke(context.packageManager, packageName, object : IPackageStatsObserver.Stub() {
+            override fun onGetStatsCompleted(pStats: PackageStats?, succeeded: Boolean) {
+                totalCacheSize += pStats?.cacheSize ?: 0
+                Log.d(TAG, "#getAppCacheSize. totalCacheSize=${totalCacheSize}")
+                finish.compareAndSet(false, true)
+            }
+        })
+        while (!finish.get()) {
+            Thread.sleep(100)
+        }
+        return totalCacheSize
+    }
+
     @WorkerThread
     fun getCacheSize(context: Context, packageName: String?, unit: String = "MB"): String {
         if (TextUtils.isEmpty(packageName)) {
             return "unknown"
         }
+        var cacheSize = 0L
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val storageStats = getAppCacheSize(context, packageName) * 1.00f
             // 应用程序缓存数据的大小，包括存储在 Context.getCacheDir() 和 Context.getCodeCacheDir() 下的文件.
             // 即 data/data/package-name/ 下关于缓存相关的目录
-            return (storageStats / (1024 * 1024)).toString()
+            cacheSize = getAppCacheSizeO(context, packageName)
+        } else {
+            cacheSize = getAppCacheSize(context, packageName)
+        }
+        if (cacheSize > 0) {
+            return (cacheSize / (1024 * 1024)).toString()
         }
         return "unknown"
     }

@@ -135,4 +135,17 @@ object StorageUtils {
             .divide(BigDecimal(n), 2, RoundingMode.HALF_UP)
             .toFloat()
     }
+
+
+    /**
+     * sd卡是否存在并且已经挂在成功
+     * @return true:存在并且已经挂载在可以读写的装载点
+     */
+    private fun hasSdCard(): Boolean {
+        val mounted = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)
+        if (!mounted) {
+            Log.d(TAG, "hasSdCard=false, not found sd card!")
+        }
+        return mounted
+    }
 }
