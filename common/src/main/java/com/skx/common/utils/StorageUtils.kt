@@ -8,37 +8,41 @@ import android.os.StatFs
 import android.os.storage.StorageManager
 import android.util.Log
 import androidx.annotation.WorkerThread
-import java.io.IOException
-import java.math.BigDecimal
-import java.math.RoundingMode
-import java.util.*
 
 
-/*
+/**
  * 描述 : 存储信息工具类
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2023/6/14 12:04 上午
  */
-
 object StorageUtils {
     const val TAG = "StorageUtils"
 
     /**
-     * 获取手机内部空间总大小（单位：字节）
-     * android 需要 android.Manifest.permission.READ_EXTERNAL_STORAGE 权限
-     * @return 空间总大小
+     * 获取设备存储空间大小（单位：字节）
+     * 注：需要 android.Manifest.permission.READ_EXTERNAL_STORAGE 权限
+     *
+     * @return Pair对象。first：空间总大小；second：可用空间大小
      */
     @WorkerThread
-    fun getTotalStorageBytes(context: Context): Long {
+    fun getDeviceStorageBytes(context: Context): Pair<Long, Long> {
         var totalSize: Long = 0
+        var availSize: Long = 0
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val storageStatsManager =
-                context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
+                context.getSystemService(Context.STORAGE_STATS_SERVICE) as? StorageStatsManager
             try {
-                totalSize = storageStatsManager.getTotalBytes(StorageManager.UUID_DEFAULT)
-                Log.d(TAG, "#获取设备总存储空间大小. StorageStatsManager.getTotalBytes=$totalSize")
-            } catch (e: IOException) {
+                storageStatsManager?.run {
+                    totalSize = this.getTotalBytes(StorageManager.UUID_DEFAULT)
+                    availSize = this.getFreeBytes(StorageManager.UUID_DEFAULT)
+                }
+                Log.d(
+                    TAG,
+                    "#获取设备存储空间大小. by StorageStatsManager. totalSize=$totalSize, availSize=$availSize"
+                )
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         } else {
@@ -48,13 +52,27 @@ object StorageUtils {
                 // 系统的空间描述类
                 val dataStat = StatFs(dataPath.path)
                 totalSize = dataStat.totalBytes
-                Log.d(TAG, "#获取设备总存储空间大小. StatFs.totalBytes=$totalSize")
-
-            } catch (e: java.lang.Exception) {
+                availSize = dataStat.availableBytes
+                Log.d(
+                    TAG,
+                    "#获取设备存储空间大小. by StatFs. totalSize=$totalSize, availSize=$availSize"
+                )
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
-        return totalSize
+
+        return Pair(totalSize, availSize)
+    }
+
+    /**
+     * 获取手机内部空间总大小（单位：字节）
+     * android 需要 android.Manifest.permission.READ_EXTERNAL_STORAGE 权限
+     * @return 空间总大小
+     */
+    @WorkerThread
+    fun getTotalStorageBytes(context: Context): Long {
+        return getDeviceStorageBytes(context).first
     }
 
     /**
@@ -65,7 +83,7 @@ object StorageUtils {
      */
     @WorkerThread
     fun getTotalStorageSize(context: Context, unit: String = "GB"): Float {
-        return format(getTotalStorageBytes(context), unit)
+        return ByteFormatter.format(getTotalStorageBytes(context), unit)
     }
 
     /**
@@ -76,34 +94,7 @@ object StorageUtils {
      */
     @WorkerThread
     fun getAvailStorageBytes(context: Context): Long {
-        var availSize: Long = 0
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val storageStatsManager =
-                context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
-            try {
-                // 剩余空间大小
-                availSize = storageStatsManager.getFreeBytes(StorageManager.UUID_DEFAULT)
-                Log.d(
-                    TAG,
-                    "#获取可用存储空间. StorageStatsManager.getFreeBytes=$availSize"
-                )
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        } else {
-            try {
-                val path = Environment.getDataDirectory()
-                val stat = StatFs(path.path)
-//            val blockSize = stat.blockSizeLong
-//            // 获取可用区块数量
-//            val availableBlocks = stat.availableBlocksLong
-                availSize = stat.availableBytes
-                Log.d(TAG, "#获取可用存储空间. StatFs.availableBytes=$availSize")
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-        return availSize
+        return getDeviceStorageBytes(context).second
     }
 
     /**
@@ -113,32 +104,13 @@ object StorageUtils {
      */
     @WorkerThread
     fun getAvailableStorageSize(context: Context, unit: String): Float {
-        return format(getAvailStorageBytes(context), unit)
-    }
-
-    /**
-     * 格式转换
-     * @param bytes 字节大小
-     * @param unit 单位，支持：GB、MB、KB，默认为GB
-     * @return 格式转换后的大小，四舍五入保留两位小数
-     */
-    fun format(bytes: Long, unit: String = "GB"): Float {
-        // 区分不同进制是因为在8.0以后google提供了用于面向用户展示的方法，返回的数是虚数。如：32000000000
-        val k = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) 1000L else 1024L
-        val n: Long = when (unit.lowercase(Locale.getDefault())) {
-            "gb" -> k * k * k
-            "mb" -> k * k
-            "kb" -> k
-            else -> 1
-        }
-        return BigDecimal(bytes)
-            .divide(BigDecimal(n), 2, RoundingMode.HALF_UP)
-            .toFloat()
+        return ByteFormatter.format(getAvailStorageBytes(context), unit)
     }
 
 
     /**
      * sd卡是否存在并且已经挂在成功
+     *
      * @return true:存在并且已经挂载在可以读写的装载点
      */
     private fun hasSdCard(): Boolean {

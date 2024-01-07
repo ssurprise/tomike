@@ -50,7 +50,7 @@ object MemoryUtils {
             }
             // 获得系统总内存，单位是KB
             totalMem = arrayOfString[1].toInt().toLong()
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             e.printStackTrace()
         } finally {
             try {
@@ -69,7 +69,7 @@ object MemoryUtils {
      * @param unit 单位：GB、MB、KB。默认：GB
      * @return 对应单位返回的值
      */
-    fun getTotalMemory(unit: String = "GB"): Float {
+    fun getTotalMemSize(unit: String = "GB"): Float {
         var totalMemory = getTotalMem() * 1.00f
         when (unit.lowercase(Locale.getDefault())) {
             "gb" -> totalMemory /= (1000 * 1000)

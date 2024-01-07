@@ -50,7 +50,7 @@ class AppInformationActivity : SkxBaseActivity<BaseViewModel<*>>() {
     }
 
     override fun configHeaderTitle(): TitleConfig? {
-        return TitleConfig.Builder().setTitleText("设备/应用信息").create()
+        return TitleConfig.Builder().setTitleText("App信息").create()
     }
 
     override fun initView() {

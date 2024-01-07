@@ -335,7 +335,7 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
         mFunctionCatalogs.add(new CatalogItem("打开文件管理器(SAF)", ROUTE_PATH_SAF));
         mFunctionCatalogs.add(new CatalogItem("Parcelable序列化", ROUTE_PATH_PARCELABLE));
         mFunctionCatalogs.add(new CatalogItem("倒计时", ROUTE_PATH_COUNT_DOWN_TIMER));
-        mFunctionCatalogs.add(new CatalogItem("设备、APP 基础信息", ROUTE_PATH_DEVICE_INFO));
+        mFunctionCatalogs.add(new CatalogItem("设备信息", ROUTE_PATH_DEVICE_INFO));
         mFunctionCatalogs.add(new CatalogItem("APP信息", ROUTE_PATH_APP_INFO));
         mFunctionCatalogs.add(new CatalogItem("键盘应用-1", ROUTE_PATH_KEYBOARD));
         mFunctionCatalogs.add(new CatalogItem("键盘应用-2", ROUTE_PATH_KEYBOARD_2));
