@@ -78,7 +78,7 @@ object StorageUtils {
     /**
      * 获取手机内部空间总大小
      *
-     * @param unit 单位，支持：GB、MB、KB
+     * @param unit 单位，支持：GB、MB、KB，默认为GB
      * @return 空间总大小，四舍五入保留两位小数
      */
     @WorkerThread
@@ -98,12 +98,13 @@ object StorageUtils {
     }
 
     /**
-     * 获取手机内部可用空间大小
+     * 获取手机内部剩余可用空间大小
      *
-     * @return 大小，字节为单位
+     * @param unit 单位，支持：GB、MB、KB，默认为GB
+     * @return 剩余可用空间大小，四舍五入保留两位小数
      */
     @WorkerThread
-    fun getAvailableStorageSize(context: Context, unit: String): Float {
+    fun getAvailableStorageSize(context: Context, unit: String = "GB"): Float {
         return ByteFormatter.format(getAvailStorageBytes(context), unit)
     }
 

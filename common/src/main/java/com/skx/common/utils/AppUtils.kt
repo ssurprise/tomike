@@ -15,6 +15,7 @@ import androidx.annotation.WorkerThread
 import java.lang.reflect.Method
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicLong
 
 /**
  * 描述 : App/Pkg 工具类
@@ -171,8 +172,20 @@ object AppUtils {
         return isInstalled
     }
 
+    /**
+     * android 8.0及以上版本获取指定包名的app缓存大小。
+     * 应用程序缓存数据的大小，包括存储在 Context.getCacheDir() 和 Context.getCodeCacheDir() 下的文件。
+     * 即 data/data/package-name/ 下关于缓存相关的目录
+     *
+     * 需要权限：android.permission.PACKAGE_USAGE_STATS，需要动态申请！
+     * 注：需要在子线程执行。
+     *
+     * @param context 上下文
+     * @param packageName app包名
+     * @return 缓存大小，单位:byte
+     */
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getAppCacheSizeO(context: Context, packageName: String?): Long {
+    fun getAppCacheBytesO(context: Context, packageName: String?): Long {
         if (TextUtils.isEmpty(packageName)) return -1
         val storageStatsManager =
             context.applicationContext.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
@@ -217,44 +230,76 @@ object AppUtils {
         return totalCacheSize
     }
 
-    fun getAppCacheSize(context: Context, packageName: String?): Long {
-        var totalCacheSize: Long = 0
-        val method: Method = PackageManager::class.java.getMethod(
+    /**
+     * android 8.0以下版本获取App缓存大小
+     * 应用程序缓存数据的大小，包括存储在 Context.getCacheDir() 和 Context.getCodeCacheDir() 下的文件。
+     * 即 data/data/package-name/ 下关于缓存相关的目录
+     *
+     * 需要权限：android.permission.GET_PACKAGE_SIZE，不需要动态申请，在清单文件中声明了即可!
+     * 注：
+     * 1，会阻塞任务，需要在子线程执行,；
+     * 2.最大等待时长100ms，超过该阈值还未获取到缓存大小，返回0
+     *
+     * @param context 上下文
+     * @param packageName app包名
+     * @return 缓存大小，单位:byte
+     */
+    @WorkerThread
+    fun getAppCacheBytes(context: Context, packageName: String?): Long {
+        val totalCacheSize = AtomicLong(0)
+        val method: Method? = PackageManager::class.java.getMethod(
             "getPackageSizeInfo",
             String::class.java,
             IPackageStatsObserver::class.java
         )
-        val finish = AtomicBoolean(false)
-        method.invoke(context.packageManager, packageName, object : IPackageStatsObserver.Stub() {
-            override fun onGetStatsCompleted(pStats: PackageStats?, succeeded: Boolean) {
-                totalCacheSize += pStats?.cacheSize ?: 0
-                Log.d(TAG, "#getAppCacheSize. totalCacheSize=${totalCacheSize}")
-                finish.compareAndSet(false, true)
+        if (method != null) {
+            try {
+                val finish = AtomicBoolean(false)
+                method.invoke(context.packageManager, packageName, object : IPackageStatsObserver.Stub() {
+                    override fun onGetStatsCompleted(pStats: PackageStats?, succeeded: Boolean) {
+                        totalCacheSize.addAndGet(pStats?.cacheSize ?: 0)
+                        finish.compareAndSet(false, true)
+                    }
+                })
+                var maxWaitTime = 100
+                while (!finish.get() && maxWaitTime > 0) {
+                    Log.d(TAG, "#getAppCacheSize. wait...")
+                    Thread.sleep(10)
+                    maxWaitTime -= 10
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-        })
-        while (!finish.get()) {
-            Thread.sleep(100)
         }
-        return totalCacheSize
+        Log.d(TAG, "#getAppCacheSize. appCache=${totalCacheSize.get()} byte")
+        return totalCacheSize.get()
     }
 
+    /**
+     * 获取指定包名的App缓存大小。
+     * 需要权限：
+     * android 8.0以下：android.permission.GET_PACKAGE_SIZE，不需要动态申请，在清单文件中声明了即可!
+     * android 8.0及以上：android.permission.PACKAGE_USAGE_STATS，需要动态申请！
+     *
+     * @param context 上下文
+     * @param packageName app包名
+     * @param unit 单位，支持：GB、MB、KB，默认为MB
+     * @return 空间总大小，四舍五入保留两位小数
+     */
     @WorkerThread
-    fun getCacheSize(context: Context, packageName: String?, unit: String = "MB"): String {
+    fun getCacheSize(context: Context, packageName: String?, unit: String = "MB"): Float {
         if (TextUtils.isEmpty(packageName)) {
-            return "unknown"
+            return 0.0f
         }
-        var cacheSize = 0L
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // 应用程序缓存数据的大小，包括存储在 Context.getCacheDir() 和 Context.getCodeCacheDir() 下的文件.
-            // 即 data/data/package-name/ 下关于缓存相关的目录
-            cacheSize = getAppCacheSizeO(context, packageName)
+        val cacheSize = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getAppCacheBytesO(context, packageName)
         } else {
-            cacheSize = getAppCacheSize(context, packageName)
+            getAppCacheBytes(context, packageName)
         }
         if (cacheSize > 0) {
-            return (cacheSize / (1024 * 1024)).toString()
+            return ByteFormatter.format(cacheSize, unit)
         }
-        return "unknown"
+        return 0.0f
     }
 //    StorageStats storageStats = storageStatsManager.queryStatsForPackage(uuid, packageName, userHandle);
 //应用程序的大小。这包括 APK 文件、优化的编译器输出和解压的原生库

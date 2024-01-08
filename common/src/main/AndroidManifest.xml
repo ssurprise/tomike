@@ -8,6 +8,7 @@
         android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
 
     <!--网络权限-->
     <uses-permission android:name="android.permission.INTERNET" />
