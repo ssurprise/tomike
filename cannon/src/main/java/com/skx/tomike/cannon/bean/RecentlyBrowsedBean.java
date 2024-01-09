@@ -29,5 +29,5 @@ public class RecentlyBrowsedBean {
     public String group = "";
 
     @ColumnInfo(name = "timestamp")
-    public String timestamp = "";
+    public Long timestamp;
 }

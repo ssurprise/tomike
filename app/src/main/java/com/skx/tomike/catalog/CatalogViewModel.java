@@ -166,6 +166,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableEmitter;
 import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
@@ -462,23 +463,31 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
             if (catalogItems != null && !catalogItems.isEmpty()) {
                 mRecentItemLiveData.postValue(catalogItems);
             } else {
-                Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
-                            List<RecentlyBrowsedBean> recentlyBrowsed = RecentlyBrowsedDatabase.getInstance(getApplication())
-                                    .recentlyBrowsedDao().getRecentlyBrowsed();
-                            if (recentlyBrowsed != null && !recentlyBrowsed.isEmpty()) {
-                                List<CatalogItem> items = new ArrayList<>();
-                                for (RecentlyBrowsedBean it : recentlyBrowsed) {
-                                    CatalogItem catalogItem = new CatalogItem(it.name, it.path);
-                                    items.add(catalogItem);
-                                }
-                                mCatalogGroupMap.put(GROUP_HISTORY, items);
-                                mRecentItemLiveData.postValue(items);
-                            }
-                            emitter.onNext(true);
-                            emitter.onComplete();
-                        }).subscribeOn(Schedulers.io())
+                Observable.create((ObservableOnSubscribe<List<CatalogItem>>) emitter -> {
+                    List<RecentlyBrowsedBean> recentlyBrowsed = RecentlyBrowsedDatabase.getInstance(getApplication())
+                            .recentlyBrowsedDao().getRecentlyBrowsed();
+                    List<CatalogItem> items = new ArrayList<>();
+                    if (recentlyBrowsed != null && !recentlyBrowsed.isEmpty()) {
+                        for (RecentlyBrowsedBean it : recentlyBrowsed) {
+                            Log.d(TAG, "fetchHistory, name=" + it.name + " path=" + it.path);
+                            CatalogItem catalogItem = new CatalogItem(it.name, it.path);
+                            items.add(catalogItem);
+                        }
+                    }
+                    emitter.onNext(items);
+                    emitter.onComplete();
+                }).subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe();
+                        .subscribe(new Consumer<List<CatalogItem>>() {
+                            @Override
+                            public void accept(List<CatalogItem> catalogItems) throws Throwable {
+                                if (!mRecentHistory.isEmpty()) {
+                                    mRecentHistory.clear();
+                                }
+                                mRecentHistory.addAll(catalogItems);
+                                mRecentItemLiveData.postValue(catalogItems);
+                            }
+                        });
             }
         } else {
             mCatalogItemLiveData.postValue(catalogItems);
@@ -524,29 +533,29 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
     private void asyncUpdateLocalData(CatalogItem catalogItem) {
         if (catalogItem == null) return;
         Observable.create(new ObservableOnSubscribe<Boolean>() {
-                    @Override
-                    public void subscribe(ObservableEmitter<Boolean> emitter) {
-                        RecentlyBrowsedBean browsedBean = new RecentlyBrowsedBean();
-                        if (!TextUtils.isEmpty(catalogItem.getValue())) {
-                            browsedBean.acId = catalogItem.getValue();
-                        } else {
-                            String path = catalogItem.getPath();
-                            if (path.contains("/")) {
-                                String[] split = path.split("/");
-                                browsedBean.acId = split[split.length - 1];
-                            } else {
-                                browsedBean.acId = path;
-                            }
-                        }
-                        browsedBean.path = catalogItem.getPath();
-                        browsedBean.name = catalogItem.getName();
-                        browsedBean.timestamp = String.valueOf(System.currentTimeMillis());
-
-                        RecentlyBrowsedDatabase.getInstance(getApplication()).recentlyBrowsedDao().updateBrowsedRecord(browsedBean);
-                        emitter.onNext(true);
-                        emitter.onComplete();
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) {
+                RecentlyBrowsedBean browsedBean = new RecentlyBrowsedBean();
+                if (!TextUtils.isEmpty(catalogItem.getValue())) {
+                    browsedBean.acId = catalogItem.getValue();
+                } else {
+                    String path = catalogItem.getPath();
+                    if (path.contains("/")) {
+                        String[] split = path.split("/");
+                        browsedBean.acId = split[split.length - 1];
+                    } else {
+                        browsedBean.acId = path;
                     }
-                }).subscribeOn(Schedulers.io())
+                }
+                browsedBean.path = catalogItem.getPath();
+                browsedBean.name = catalogItem.getName();
+                browsedBean.timestamp = System.currentTimeMillis();
+
+                RecentlyBrowsedDatabase.getInstance(getApplication()).recentlyBrowsedDao().insertBrowsedRecord(browsedBean);
+                emitter.onNext(true);
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
     }

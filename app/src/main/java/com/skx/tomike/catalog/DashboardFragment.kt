@@ -57,18 +57,18 @@ class DashboardFragment : BaseFragment<CatalogViewModel>() {
         }
         if (true == mViewModel?.isRecentHistoryGroup(mKey)) {
             // 最近使用
-            Log.e("111111","111-0")
+            Log.e("111111", "111-0")
             mViewModel?.recentItemLiveData?.observe(viewLifecycleOwner) {
-                Log.e("111111","111-1")
+                Log.e("111111", "111-1")
                 mAdapter.setData(it)
             }
         } else {
             mViewModel?.catalogItemLiveData?.observe(viewLifecycleOwner) {
-                Log.e("111111","222")
+                Log.e("111111", "222")
                 mAdapter.setData(it)
             }
+            mViewModel?.fetchCatalogByKey(mKey)
         }
-        mViewModel?.fetchCatalogByKey(mKey)
     }
 
     override fun onResume() {
