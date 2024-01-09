@@ -29,9 +29,15 @@ public interface RecentlyBrowsedDao {
     @Delete
     void deleteBrowsedRecord(RecentlyBrowsedBean browsedRecord);
 
+    @Query("DELETE FROM recently_browsed WHERE `ac_id`  = :ac_id")
+    void deleteBrowsedRecordByAcId(String ac_id);
+
+    @Query("DELETE FROM recently_browsed WHERE `path`  = :path")
+    void deleteBrowsedRecordByPath(String path);
+
     @Query("SELECT * FROM recently_browsed")
     List<RecentlyBrowsedBean> getRecentlyBrowsed();
 
-    @Query("SELECT * FROM recently_browsed WHERE lu_city_id = (:cityId)")
-    List<RecentlyBrowsedBean> getRecentlyBrowsedByCityId(String cityId);
+    @Query("SELECT * FROM recently_browsed WHERE `group` = :group")
+    List<RecentlyBrowsedBean> getRecentlyBrowsedByGroup(String group);
 }

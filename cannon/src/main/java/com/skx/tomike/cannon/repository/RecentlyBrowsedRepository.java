@@ -25,13 +25,7 @@ public class RecentlyBrowsedRepository {
         return Observable.create(new ObservableOnSubscribe<List<RecentlyBrowsedBean>>() {
             @Override
             public void subscribe(ObservableEmitter<List<RecentlyBrowsedBean>> emitter) {
-                List<RecentlyBrowsedBean> recentlyBrowsedByCityId = RecentlyBrowsedDatabase.getInstance(context)
-                        .recentlyBrowsedDao().getRecentlyBrowsedByCityId(cityId);
-
-                if (recentlyBrowsedByCityId == null) {
-                    recentlyBrowsedByCityId = new ArrayList<>();
-                }
-                emitter.onNext(recentlyBrowsedByCityId);
+                emitter.onNext(new ArrayList<>());
                 emitter.onComplete();
             }
         }).subscribeOn(Schedulers.io()); // 指定 subscribe() 发生在 IO 线程

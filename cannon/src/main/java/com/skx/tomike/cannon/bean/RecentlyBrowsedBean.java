@@ -14,19 +14,19 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "recently_browsed")
 public class RecentlyBrowsedBean {
 
-    /**
-     * 用户id，这里做个预留，如果用户
-     */
-    @ColumnInfo(name = "use_id")
-    public String useID = "";
-
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "lu_id")
-    public String luID = "";
+    @ColumnInfo(name = "ac_id")
+    public String acId = "";
 
-    @ColumnInfo(name = "lu_city_id")
-    public String luCityID = "";
+    @ColumnInfo(name = "path")
+    public String path = "";
+
+    @ColumnInfo(name = "name")
+    public String name = "";
+
+    @ColumnInfo(name = "group")
+    public String group = "";
 
     @ColumnInfo(name = "timestamp")
     public String timestamp = "";

@@ -43,7 +43,6 @@ public class RoomTestActivity extends SkxBaseActivity<RecentlyBrowsedViewModel> 
         mViewModel.getRecentlyBrowsedLiveData().observe(this, recentlyBrowsedBeans -> {
             Log.e("RoomTestActivity", recentlyBrowsedBeans.size() + "");
             for (RecentlyBrowsedBean item : recentlyBrowsedBeans) {
-                Log.e("RoomTestActivity", "luID：" + item.luID + " - timestamp:" + item.timestamp);
             }
         });
     }
@@ -63,25 +62,25 @@ public class RoomTestActivity extends SkxBaseActivity<RecentlyBrowsedViewModel> 
         if (v.getId() == R.id.btn_roomTest_insert) {
             // 插入数据可以作为修改使用
             RecentlyBrowsedBean browsedBean = new RecentlyBrowsedBean();
-            browsedBean.luCityID = "1";
-            browsedBean.luID = "101";
-            browsedBean.timestamp = System.currentTimeMillis() + "";
+//            browsedBean.luCityID = "1";
+//            browsedBean.luID = "101";
+//            browsedBean.timestamp = System.currentTimeMillis() + "";
 
             mViewModel.insertRecentlyBrowsed(browsedBean);
 
         } else if (v.getId() == R.id.btn_roomTest_update) {
             // 修改数据不能做插入处理
             RecentlyBrowsedBean browsedBean = new RecentlyBrowsedBean();
-            browsedBean.luCityID = "1";
-            browsedBean.luID = "101";
-            browsedBean.timestamp = System.currentTimeMillis() + "";
+//            browsedBean.luCityID = "1";
+//            browsedBean.luID = "101";
+//            browsedBean.timestamp = System.currentTimeMillis() + "";
 
             mViewModel.updateRecentlyBrowsed(browsedBean);
 
         } else if (v.getId() == R.id.btn_roomTest_delete) {
             RecentlyBrowsedBean browsedBean = new RecentlyBrowsedBean();
-            browsedBean.luID = "101";
-            browsedBean.timestamp = System.currentTimeMillis() + "";
+//            browsedBean.luID = "101";
+//            browsedBean.timestamp = System.currentTimeMillis() + "";
 
             mViewModel.deleteRecentlyBrowsed(browsedBean);
 

@@ -144,6 +144,7 @@ import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_WATER_MARK;
 import static com.skx.tomike.tank.RouteConstantsKt.ROUTE_PATH_share_Element;
 
 import android.app.Application;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -152,12 +153,20 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.skx.common.base.BaseRepository;
 import com.skx.common.base.BaseViewModel;
+import com.skx.tomike.cannon.bean.RecentlyBrowsedBean;
+import com.skx.tomike.cannon.repository.RecentlyBrowsedDatabase;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * 描述 : 目录列表model
@@ -450,7 +459,27 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
         List<CatalogItem> catalogItems = mCatalogGroupMap.get(key);
         Log.d(TAG, "fetchCatalogByKey, key=" + key + " size=" + (catalogItems == null ? 0 : catalogItems.size()));
         if (isRecentHistoryGroup(key)) {
-            mRecentItemLiveData.postValue(catalogItems);
+            if (catalogItems != null && !catalogItems.isEmpty()) {
+                mRecentItemLiveData.postValue(catalogItems);
+            } else {
+                Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
+                            List<RecentlyBrowsedBean> recentlyBrowsed = RecentlyBrowsedDatabase.getInstance(getApplication())
+                                    .recentlyBrowsedDao().getRecentlyBrowsed();
+                            if (recentlyBrowsed != null && !recentlyBrowsed.isEmpty()) {
+                                List<CatalogItem> items = new ArrayList<>();
+                                for (RecentlyBrowsedBean it : recentlyBrowsed) {
+                                    CatalogItem catalogItem = new CatalogItem(it.name, it.path);
+                                    items.add(catalogItem);
+                                }
+                                mCatalogGroupMap.put(GROUP_HISTORY, items);
+                                mRecentItemLiveData.postValue(items);
+                            }
+                            emitter.onNext(true);
+                            emitter.onComplete();
+                        }).subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe();
+            }
         } else {
             mCatalogItemLiveData.postValue(catalogItems);
         }
@@ -467,6 +496,7 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
                 break;
             }
         }
+        asyncUpdateLocalData(catalogItem);
         if (index == 0) {
             // 当前已经排在首位，无需处理
             Log.d(TAG, "add2RecentHistory, 当前已经排在首位，无需处理");
@@ -489,5 +519,35 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
             mRecentHistory.remove(10);
         }
         mRecentItemLiveData.postValue(mRecentHistory);
+    }
+
+    private void asyncUpdateLocalData(CatalogItem catalogItem) {
+        if (catalogItem == null) return;
+        Observable.create(new ObservableOnSubscribe<Boolean>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Boolean> emitter) {
+                        RecentlyBrowsedBean browsedBean = new RecentlyBrowsedBean();
+                        if (!TextUtils.isEmpty(catalogItem.getValue())) {
+                            browsedBean.acId = catalogItem.getValue();
+                        } else {
+                            String path = catalogItem.getPath();
+                            if (path.contains("/")) {
+                                String[] split = path.split("/");
+                                browsedBean.acId = split[split.length - 1];
+                            } else {
+                                browsedBean.acId = path;
+                            }
+                        }
+                        browsedBean.path = catalogItem.getPath();
+                        browsedBean.name = catalogItem.getName();
+                        browsedBean.timestamp = String.valueOf(System.currentTimeMillis());
+
+                        RecentlyBrowsedDatabase.getInstance(getApplication()).recentlyBrowsedDao().updateBrowsedRecord(browsedBean);
+                        emitter.onNext(true);
+                        emitter.onComplete();
+                    }
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 }
