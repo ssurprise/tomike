@@ -144,19 +144,14 @@ public class ClipViewPager extends ViewPager {
         float y = ev.getY();
 
         if (firstRect.contains((int) x, (int) y)) {
-//            Log.e("firstRect", "1111");
             return 1;
         } else if (SecondRect.contains((int) x, (int) y)) {
-//            Log.e("SecondRect", "2222222");
             return 2;
         } else if (thirdRect.contains((int) x, (int) y)) {
-//            Log.e("thirdRect", "3333333333");
             return -1;
         } else if (fourthRect.contains((int) x, (int) y)) {
-//            Log.e("fourthRect", "4444444444444");
             return 4;
         } else if (fifthRect.contains((int) x, (int) y)) {
-//            Log.e("fifthRect", "555555555555555555555");
             return 5;
         }
         //1 计算其他四个展示图片的位置

@@ -100,7 +100,7 @@ class JobSchedulerActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickLi
         // 指定启动Job时是否需要连接电源
 //            jb.setRequiresCharging(false)
 
-        // 指定启动Job时是否需要设别处于空闲状态
+        // 指定启动Job时是否需要设备处于空闲状态
 //            jb.setRequiresDeviceIdle(false)
 
         mJobScheduler?.schedule(builder.build())

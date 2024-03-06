@@ -143,7 +143,6 @@ public class ZoomImageNestedScrollingParent extends RelativeLayout implements Ne
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        Log.e(TAG, "onLayout:1111111111111");
     }
 
     public void changeNestedScrollViewTopMargin(int dy) {

@@ -65,7 +65,7 @@ class WorkManagerActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickLis
     }
 
     private fun startOneTimeWork() {
-        Log.e(TAG, "按下'开始'按钮")
+        Log.e(TAG, "按下'一次性任务'按钮")
 
         // 创建约束条件（非必需）
         val constraints: Constraints = Constraints.Builder()
@@ -83,7 +83,7 @@ class WorkManagerActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickLis
     }
 
     private fun startPeriodicWork() {
-        Log.e(TAG, "按下'开始'按钮")
+        Log.e(TAG, "按下'周期任务'按钮")
         val testRequest = PeriodicWorkRequestBuilder<TestWorker>(15, TimeUnit.MINUTES)
             .build()
         WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
