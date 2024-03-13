@@ -12,7 +12,8 @@
     <uses-permission android:name="Manifest.permission.WRITE_SETTINGS" />
     <uses-permission android:name="Manifest.permission.SYSTEM_ALERT_WINDOW" />
 
-    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"
+    <uses-permission
+        android:name="android.permission.FORCE_STOP_PACKAGES"
         tools:ignore="ProtectedPermissions" />
 
     <!--允许查询设备上的任何正常应用程序，而不考虑清单声明。-->
@@ -255,6 +256,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.activity.AlarmManagerActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.activity.PopupWindowActivity"
             android:screenOrientation="portrait" />
 
@@ -315,6 +320,13 @@
         <receiver android:name=".ui.activity.ServiceDemoActivity$ServiceBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.skx.tomike.cannon.test" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.skx.tomike.cannon.ui.activity.AlarmManagerReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.skx.tomike.action.alarm_manager" />
             </intent-filter>
         </receiver>
     </application>

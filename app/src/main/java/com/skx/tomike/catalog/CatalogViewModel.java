@@ -20,6 +20,7 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_URL_ENCODE;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_URL_PARSE;
 import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_XML_PARSE;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ACTIVITY4RESULT;
+import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_ALARM_MANAGER;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_AOP;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_APP_INFO;
 import static com.skx.tomike.cannon.RouteConstantsKt.ROUTE_PATH_APP_USAGE_STATS;
@@ -320,6 +321,7 @@ public class CatalogViewModel extends BaseViewModel<BaseRepository<?>> {
         mFunctionCatalogs.add(new CatalogItem("广播(broadcast)", ROUTE_PATH_BROADCAST));
         mFunctionCatalogs.add(new CatalogItem("JobSchedule", ROUTE_PATH_JOB_SCHEDULER));
         mFunctionCatalogs.add(new CatalogItem("WorkManager", ROUTE_PATH_WORK_MANAGER));
+        mFunctionCatalogs.add(new CatalogItem("AlarmManager", ROUTE_PATH_ALARM_MANAGER));
         mFunctionCatalogs.add(new CatalogItem("fragment 练习", ROUTE_PATH_FRAGMENT));
         mFunctionCatalogs.add(new CatalogItem("lifecycle", ROUTE_PATH_LIFECYCLE));
         mFunctionCatalogs.add(new CatalogItem("livedata", ROUTE_PATH_LIVEDATA));
