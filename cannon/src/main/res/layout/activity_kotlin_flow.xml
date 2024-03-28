@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.RxJavaActivity">
 
+    <ScrollView
+        android:id="@+id/sv_flow_logcat"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/text_logcat_show">
+
+        <TextView
+            android:id="@+id/tv_flow_logcat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+    </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/sv_flow_logcat"
         android:orientation="vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
@@ -24,8 +40,8 @@
         <TextView
             android:id="@+id/tv_flow_parallelExecute"
             style="@style/TextBtnStyle"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:text="并行：A/B= ->> A+B  "
             tools:ignore="HardcodedText" />
 
@@ -52,37 +68,6 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="串行合并：A->B ->> A+B  (方案2)"
-            tools:ignore="HardcodedText" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rl_flow_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/skx_ff4081"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-70dp"
-            android:indeterminate="true" />
-
-        <TextView
-            android:id="@+id/tv_flow_loadingText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="loading..."
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 </RelativeLayout>

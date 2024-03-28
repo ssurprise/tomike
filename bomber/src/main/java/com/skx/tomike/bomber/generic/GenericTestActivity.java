@@ -1,5 +1,7 @@
 package com.skx.tomike.bomber.generic;
 
+import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GENERIC;
+
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,7 +12,8 @@ import com.skx.common.base.SkxBaseActivity;
 import com.skx.common.base.TitleConfig;
 import com.skx.tomike.bomber.R;
 
-import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GENERIC;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 描述 : 泛型demo
@@ -20,6 +23,8 @@ import static com.skx.tomike.bomber.RouteConstantsKt.ROUTE_PATH_GENERIC;
  */
 @Route(path = ROUTE_PATH_GENERIC)
 public class GenericTestActivity extends SkxBaseActivity<BaseViewModel<?>> {
+
+    private ArrayList<? extends Fruit> s = new ArrayList<>();
 
     @Override
     protected void initParams() {
@@ -49,4 +54,37 @@ public class GenericTestActivity extends SkxBaseActivity<BaseViewModel<?>> {
     private void test1() {
 
     }
+
+    public void extendsTest(Fruit a) {
+//        List<Fruit> fruits = new ArrayList<Apple>();
+//
+//        // 集合可读、不可写，集合泛型协变。
+//        fruits.add(new Apple());
+//        fruits.add(new Fruit());
+//        Fruit fruit = fruits.get(0);
+//        fruits.add(new Food());
+    }
+
+
+    public void superTest(Fruit a) {
+//        List<? super Fruit> fruits = new ArrayList<Food>();
+//
+//        fruits.add(new Apple());
+//        fruits.add(new Fruit());
+//        Object object = fruits.get(0);
+//
+//        fruits.add(new Food());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

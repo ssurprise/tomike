@@ -1,31 +1,33 @@
 package com.skx.tomike.cannon.ui.activity
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.skx.common.base.BaseViewModel
 import com.skx.common.base.SkxBaseActivity
 import com.skx.common.base.TitleConfig
+import com.skx.common.loudspeaker.LoudSpeaker
 import com.skx.tomike.cannon.R
 import com.skx.tomike.cannon.ROUTE_PATH_FLOW
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.util.*
 
 /**
- * 描述 : RxJava 实现并行、串行访问数据
+ * 描述 : kotlin flow 实现并行、串行访问数据
  * 作者 : shiguotao
  * 版本 : V1
  * 创建时间 : 2020/3/23 4:25 PM
  */
 @Route(path = ROUTE_PATH_FLOW)
-class KotlinFlowActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener {
+class KotlinFlowActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickListener, Observer {
 
-    private var mRlLoading: LinearLayout? = null
-    private var mTvLoadingText: TextView? = null
+    private var mTvLogcat: TextView? = null
 
     override fun initParams() {}
 
@@ -38,8 +40,7 @@ class KotlinFlowActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickList
     }
 
     override fun initView() {
-        mRlLoading = findViewById(R.id.rl_flow_loading)
-        mTvLoadingText = findViewById(R.id.tv_flow_loadingText)
+        mTvLogcat = findViewById(R.id.tv_flow_logcat)
         findViewById<TextView>(R.id.tv_flow_single).setOnClickListener(this)
         findViewById<TextView>(R.id.tv_flow_parallelExecute).setOnClickListener(this)
         findViewById<TextView>(R.id.tv_flow_serialExecute).setOnClickListener(this)
@@ -47,6 +48,10 @@ class KotlinFlowActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickList
         findViewById<TextView>(R.id.tv_flow_serialAndMerge2).setOnClickListener(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        LoudSpeaker.addObserver(this)
+    }
 
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -69,29 +74,30 @@ class KotlinFlowActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickList
     }
 
     private fun single() {
+        mTvLogcat?.text = ""
         GlobalScope.launch {
             flow {
-                Log.e(TAG, "send 1 thread:${Thread.currentThread().name}")
-                emit("1") //发送数据
-                Log.e(TAG, "send 2 thread:${Thread.currentThread().name}")
-                emit("2") //发送数据
-                Log.e(TAG, "send 3 thread:${Thread.currentThread().name}")
-                emit("3") //发送数据
+                for (i in 1..3) {
+                    delay(3000)//可以使用挂起函数
+                    emit(i)//发射元素
+                    LoudSpeaker.sendMsg("send $i thread:${Thread.currentThread().name}")
+                }
             }
-                .flowOn(Dispatchers.Main)
-                .onEmpty {
-                    Log.e(TAG, "onEmpty thread:${Thread.currentThread().name}")
-                }.onStart {
-                    Log.e(TAG, "onStart thread:${Thread.currentThread().name}")
-                }.onEach {
-                    Log.e(TAG, "onEach: $it  thread:${Thread.currentThread().name}")
+                .flowOn(Dispatchers.IO)
+                .onStart {
+                    LoudSpeaker.sendMsg("onStart thread:${Thread.currentThread().name}")
+                }
+                .onEach {
+                    //上游向下游发送数据之前调用，每一个上游数据发送后都会经过onEach()
+                    LoudSpeaker.sendMsg("onEach: $it  thread:${Thread.currentThread().name}")
                 }.onCompletion {
-                    Log.e(TAG, "onCompletion thread:${Thread.currentThread().name}")
+                    LoudSpeaker.sendMsg("onCompletion.  thread:${Thread.currentThread().name}")
                 }.catch { exception ->
-                    exception.message?.let { Log.e(TAG, it) }
-                }.collect {
+                    exception.message?.let { LoudSpeaker.sendMsg("catch. thread:${Thread.currentThread().name}") }
+                }
+                .collect {
                     //接收数据流
-                    Log.e(TAG, "collect: $it thread:${Thread.currentThread().name}")
+                    LoudSpeaker.sendMsg("collect: $it thread:${Thread.currentThread().name}")
                 }
         }
     }
@@ -136,4 +142,28 @@ class KotlinFlowActivity : SkxBaseActivity<BaseViewModel<*>>(), View.OnClickList
     private fun serialAndMerge2() {
 
     }
+
+    override fun update(o: Observable?, arg: Any?) {
+        if (arg is String) {
+            logPrint(arg)
+        }
+    }
+
+    private fun logPrint(s: String) {
+        Log.d(TAG, s)
+//        mTvLogcat?.append("\n$s")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LoudSpeaker.deleteObserver(this)
+    }
+    /*
+    冷流：主动需要即是主动收集才会提供发射数据
+    热流：不管你需不需要一上来数据全都发射给你。
+
+    好文推荐：Kotlin协程：Flow 异步流 https://blog.csdn.net/qq_32955807/article/details/128579310
+
+     flow 默认是冷流，
+     */
 }
