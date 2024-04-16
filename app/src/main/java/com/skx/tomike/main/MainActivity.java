@@ -189,19 +189,25 @@ public class MainActivity extends SkxBaseActivity<BaseViewModel<?>> implements O
         for (int i = 0, j = tabList.size(); i < j; i++) {
             if (i == currentIndex) {
                 if (i == 0) {
-                    mTvHomeTabText.setTextColor(Color.parseColor("#ff4081"));
+                    mTvHomeTabText.setTextColor(Color.parseColor("#e92f4f"));
+                    mIvHomeTabIcon.setImageResource(R.drawable.ic_home_selected);
                 } else if (i == 1) {
-                    mTvCatalogTabText.setTextColor(Color.parseColor("#ff4081"));
+                    mTvCatalogTabText.setTextColor(Color.parseColor("#e92f4f"));
+                    mIvCatalogTabIcon.setImageResource(R.drawable.ic_catalog_selected);
                 } else if (i == 2) {
-                    mTvPersonalTabText.setTextColor(Color.parseColor("#ff4081"));
+                    mTvPersonalTabText.setTextColor(Color.parseColor("#e92f4f"));
+                    mIvPersonalTabIcon.setImageResource(R.drawable.ic_personal_selected);
                 }
             } else if (i == lastIndex) {
                 if (i == 0) {
-                    mTvHomeTabText.setTextColor(Color.parseColor("#323232"));
+                    mTvHomeTabText.setTextColor(Color.parseColor("#212121"));
+                    mIvHomeTabIcon.setImageResource(R.drawable.ic_home_normal);
                 } else if (i == 1) {
-                    mTvCatalogTabText.setTextColor(Color.parseColor("#323232"));
+                    mTvCatalogTabText.setTextColor(Color.parseColor("#212121"));
+                    mIvCatalogTabIcon.setImageResource(R.drawable.ic_catalog_normal);
                 } else if (i == 2) {
-                    mTvPersonalTabText.setTextColor(Color.parseColor("#323232"));
+                    mTvPersonalTabText.setTextColor(Color.parseColor("#212121"));
+                    mIvPersonalTabIcon.setImageResource(R.drawable.ic_personal_normal);
                 }
             }
         }
