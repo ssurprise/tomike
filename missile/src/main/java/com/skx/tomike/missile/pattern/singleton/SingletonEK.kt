@@ -9,7 +9,7 @@ package com.skx.tomike.missile.pattern.singleton
  */
 class SingletonEK private constructor() {
 
-    object Holder {
+    private object Holder {
         val holder: SingletonEK = SingletonEK()
     }
 
@@ -17,16 +17,3 @@ class SingletonEK private constructor() {
         val instance = Holder.holder
     }
 }
-
-/*
-class SingletonDemo private constructor() {
-    companion object {
-        val instance = SingletonHolder.holder
-    }
-
-    private object SingletonHolder {
-        val holder= SingletonDemo()
-    }
-
-}
- */

@@ -9,3 +9,21 @@ package com.skx.tomike.missile.pattern.singleton
  */
 object SingletonAK {
 }
+
+
+
+/*
+反编译后的代码如下：
+public final class SingletonAK {
+   @NotNull
+   public static final SingletonAK INSTANCE;
+
+   private SingletonAK() {
+   }
+
+   static {
+      SingletonAK var0 = new SingletonAK();
+      INSTANCE = var0;
+   }
+}
+ */
